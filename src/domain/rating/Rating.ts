@@ -1,0 +1,25 @@
+
+export default class Rating
+{
+    #id: string;
+    #creatorId: string;
+    #comicId: string;
+    #commentId: string;
+
+    constructor(id: string, creatorId: string,comicId: string,commentid: string)
+    {
+        this.#id = id;
+        this.#creatorId = creatorId;
+        this.#comicId = comicId;
+        this.#commentId = commentid;
+    }
+
+    get id() {return this.#id; }
+
+    get creatorId() {return this.#creatorId;}
+
+    get comicId() { return this.#comicId; }
+    
+    get commentId() { return this.#commentId; }
+
+}
