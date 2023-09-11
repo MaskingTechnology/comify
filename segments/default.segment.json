@@ -1,0 +1,3 @@
+{
+    "./shared/sayHello": { "sayHello": { "access": "public" } }
+}
