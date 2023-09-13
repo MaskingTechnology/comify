@@ -6,10 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && tsc",
+    "clean": "rm -rf dist",
     "standalone": "node --experimental-network-imports dist/jitar.js --config=services/standalone.json",
-    "preview": "vite preview"
+    "preview": "vite preview",
     "test": "vitest run",
     "test-coverage": "vitest run --coverage",
+    "lint": "eslint . --ext .ts,.tsx"
   },
   "dependencies": {
     "jitar": "^0.4.1",
