@@ -8,6 +8,8 @@
     "build": "vite build && tsc",
     "standalone": "node --experimental-network-imports dist/jitar.js --config=services/standalone.json",
     "preview": "vite preview"
+    "test": "vitest run",
+    "test-coverage": "vitest run --coverage",
   },
   "dependencies": {
     "jitar": "^0.4.1",
