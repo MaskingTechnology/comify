@@ -16,15 +16,13 @@ export default class Creator
         this.#email = email;
     }
 
-    get id() { return this.#id }
+    get id() { return this.#id; }
 
-    get fullName() { return this.#fullName }
+    get fullName() { return this.#fullName; }
 
-    get nickName() { return this.#nickName }
+    get nickName() { return this.#nickName; }
 
-    get portrait() { return this.#portrait }
+    get portrait() { return this.#portrait; }
     
-    get email() { return this.#email }
-
+    get email() { return this.#email; }
 }
-

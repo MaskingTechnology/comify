@@ -8,12 +8,10 @@ export default class Post
 
     constructor(id: string, creatorId: string, title: string, comic: string)
     {
-
         this.#id = id;
         this.#creatorId = creatorId;
         this.#title = title;
         this.#comic = comic;
-
     }
 
     get id() { return this.#id; }
@@ -23,5 +21,4 @@ export default class Post
     get title() { return this.#title; }
 
     get comic() { return this.#comic; }
-
 }

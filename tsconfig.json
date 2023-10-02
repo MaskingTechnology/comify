@@ -14,7 +14,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": false,
-    "outDir": "dist",
+    "rootDir": "./src",
+    "outDir": "./dist",
     "jsx": "react-jsx"
   },
   "include": ["src"],

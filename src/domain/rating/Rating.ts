@@ -6,12 +6,12 @@ export default class Rating
     #comicId: string;
     #commentId: string;
 
-    constructor(id: string, creatorId: string,comicId: string,commentid: string)
+    constructor(id: string, creatorId: string, comicId: string, commentId: string)
     {
         this.#id = id;
         this.#creatorId = creatorId;
         this.#comicId = comicId;
-        this.#commentId = commentid;
+        this.#commentId = commentId;
     }
 
     get id() {return this.#id; }
@@ -21,5 +21,4 @@ export default class Rating
     get comicId() { return this.#comicId; }
     
     get commentId() { return this.#commentId; }
-
 }
