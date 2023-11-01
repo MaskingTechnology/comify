@@ -7,7 +7,7 @@ export default class Creator
     #portrait: string;
     #email: string;
 
-    constructor(id: string, fullName: string, nickName: string, portrait: string, email: string)
+    constructor(id: string, fullName: string, nickName: string, portrait: string, email = '')
     {
         this.#id = id;
         this.#fullName = fullName;

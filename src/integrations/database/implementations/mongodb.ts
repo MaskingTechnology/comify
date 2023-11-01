@@ -1,9 +1,9 @@
 
 import { QueryExpression, QueryOperator, QueryMultiExpressionStatement, QuerySingleExpressionStatement, QueryStatement, RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType, RecordValue } from '../definitions/types';
-import createId from '../../../common/createId';
 import { MongoClient, Document, Collection, Db, DbOptions, Filter, Sort } from 'mongodb';
-import DatabaseError from './DatabaseError';
-import { QueryOperators, SortDirections } from '../module';
+import createId from '../../../common/createId.js';
+import DatabaseError from './DatabaseError.js';
+import { QueryOperators, SortDirections } from '../module.js';
 
 const OPERATORS = 
 {
@@ -20,13 +20,20 @@ const OPERATORS =
     [QueryOperators.ENDS_WITH]: '$regex'
 };
 
+const BOOLEAN =
+{
+    ['AND'] : '$and',
+    ['OR'] : '$or'
+
+};
+
 let client: MongoClient;
 let database: Db;
 
 export async function connect(connectionString: string, databaseName: string): Promise<void>
 {
-    client = await createClient();
-    database = getDatabase();
+    client = await createClient(connectionString);
+    database = getDatabase(databaseName);
 }
 
 export async function disconnect(): Promise<void>
@@ -41,7 +48,7 @@ export async function createRecord(type: RecordType, data: RecordData): Promise<
     
     try
     {
-        await collection.insertOne({ _id: mongoId, data : data } );
+        await collection.insertOne({ _id: mongoId, ...data } );
     }
     catch (error: any)
     {
@@ -100,12 +107,13 @@ export async function findRecord(type: RecordType, query: RecordQuery, fields?: 
 export async function searchRecords(type: RecordType, query: RecordQuery, fields?: RecordField[], sort?: RecordSort, limit?: number, offset?: number): Promise<RecordData[]>
 {
     const mongoQuery = buildMongoQuery(query);
+    console.log(JSON.stringify(mongoQuery));
     const mongoSort = buildMongoSort(sort);
-
+    console.log(JSON.stringify(sort));
     const collection = await getCollection(type);
     const cursor = collection.find(mongoQuery, { sort: mongoSort, limit: limit, skip: offset });
     const result = await cursor.toArray();
-
+ 
     return result.map(data => buildRecordData(data, fields));
 }
 
@@ -124,29 +132,11 @@ function buildMongoQuery(query: RecordQuery): Filter<any>
             
             for (const statement of singleMultiStatements)
             {
-                for (const field in statement)
-                {
-                    
-                    const expression = statement[field];
-                    const mongoExpression: Record<string, unknown> = {};
-
-                    for (const operator in expression)
-                    {
-                        const value = extractValue(expression as RecordData, operator as QueryOperator);
-                        const mongoOperator = OPERATORS[operator];
-        
-                        mongoExpression[mongoOperator] = value;
-                    }
-        
-                    mongoQuery[field] = mongoExpression;
-       
-
-                }
-
+                const mongoQuery = buildMongoQuery(statement);
                 multiMongoQuery.push(mongoQuery);
-                
             }
-            mongoQuery[key] = multiMongoQuery;
+            const mongoKey = BOOLEAN[key];
+            mongoQuery[mongoKey] = multiMongoQuery;
         }
         
         else
@@ -199,21 +189,21 @@ async function getCollection<T>(name : RecordType): Promise<Collection<T extends
     return database.collection(name);
 }
 
-function getDatabase(): Db
+function getDatabase(databaseName: string): Db
 {   
     if (client === undefined)
     {
         throw new DatabaseError("Connection lost");
     }
     
-    return client.db('react-mongodb');   
+    return client.db(databaseName);   
 }
     
-async function createClient(): Promise<MongoClient>
+async function createClient(connectionString: string): Promise<MongoClient>
 {
      try
      {
-         return await MongoClient.connect('mongodb://root:example@localhost:27017');
+         return await MongoClient.connect(connectionString);
      }
      catch (error: any)
      {

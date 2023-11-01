@@ -61,6 +61,6 @@ const records = await searchRecords(ITEM_COLLECTION, query, undefined, sort, lim
 
 *************************************************************************************/
 
-export * from './definitions/constants';
-export * from './definitions/types';
-export * from './implementations/mongodb';
+export * from './definitions/constants.js';
+export * from './definitions/types.js';
+export * from './implementations/mongodb.js';
