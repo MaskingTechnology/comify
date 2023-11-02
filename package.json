@@ -30,6 +30,6 @@
     "eslint-plugin-sonarjs": "^0.22.0",
     "typescript": "^5.0.4",
     "vite": "^4.5.0",
-    "vitest": "^0.34.3"
+    "vitest": "^0.34.6"
   }
 }
