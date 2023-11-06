@@ -16,11 +16,9 @@ export default class Reaction
 
     get id() { return this.#id; }
 
-    get creatorid() { return this.#creatorId; }
+    get creatorId() { return this.#creatorId; }
 
     get comicId() { return this.#comicId; }
 
-    get commentId() { return this.#commentId}
-
+    get commentId() { return this.#commentId; }
 }
-

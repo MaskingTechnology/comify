@@ -13,5 +13,4 @@ export default class Comment
     get id() { return this.#id; }
 
     get comment() { return this.#comment; }
-
 }

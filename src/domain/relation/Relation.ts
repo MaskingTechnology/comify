@@ -17,5 +17,4 @@ export default class Relation
     get follower() { return this.#followerId; }
 
     get followee() { return this.#followeeId; }
-
 }
