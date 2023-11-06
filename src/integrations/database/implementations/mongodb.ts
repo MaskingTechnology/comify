@@ -1,6 +1,6 @@
 
-import { QueryExpression, QueryOperator, QueryMultiExpressionStatement, QuerySingleExpressionStatement, QueryStatement, RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType, RecordValue } from '../definitions/types';
-import { MongoClient, Document, Collection, Db, DbOptions, Filter, Sort } from 'mongodb';
+import { QueryOperator, QueryMultiExpressionStatement, QuerySingleExpressionStatement, RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType, RecordValue } from '../definitions/types';
+import { MongoClient, Document, Collection, Db, Filter, Sort } from 'mongodb';
 import createId from '../../../common/createId.js';
 import DatabaseError from './DatabaseError.js';
 import { QueryOperators, SortDirections } from '../module.js';
@@ -50,13 +50,13 @@ export async function createRecord(type: RecordType, data: RecordData): Promise<
     {
         await collection.insertOne({ _id: mongoId, ...data } );
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     catch (error: any)
     {
         throw new DatabaseError(error?.message);
     }   
 
     return mongoId.toHexString();
-
 }
 
 export async function readRecord(type: RecordType, id: RecordId, fields?: RecordField[]): Promise<RecordData | undefined>
@@ -94,7 +94,6 @@ export async function deleteRecord(type: RecordType, id: RecordId): Promise<void
     {
         throw new DatabaseError("Record delete failed");
     }
-
 }
 
 export async function findRecord(type: RecordType, query: RecordQuery, fields?: RecordField[], sort?: RecordSort): Promise<RecordData | undefined>
@@ -107,9 +106,7 @@ export async function findRecord(type: RecordType, query: RecordQuery, fields?: 
 export async function searchRecords(type: RecordType, query: RecordQuery, fields?: RecordField[], sort?: RecordSort, limit?: number, offset?: number): Promise<RecordData[]>
 {
     const mongoQuery = buildMongoQuery(query);
-    console.log(JSON.stringify(mongoQuery));
     const mongoSort = buildMongoSort(sort);
-    console.log(JSON.stringify(sort));
     const collection = await getCollection(type);
     const cursor = collection.find(mongoQuery, { sort: mongoSort, limit: limit, skip: offset });
     const result = await cursor.toArray();
@@ -117,8 +114,10 @@ export async function searchRecords(type: RecordType, query: RecordQuery, fields
     return result.map(data => buildRecordData(data, fields));
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function buildMongoQuery(query: RecordQuery): Filter<any> 
 {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const mongoQuery: Filter<any> = {};
     const multiStatements = query as QueryMultiExpressionStatement;
     const singleStatements = query as QuerySingleExpressionStatement;
@@ -128,6 +127,7 @@ function buildMongoQuery(query: RecordQuery): Filter<any>
         if (key === 'AND' || key ==='OR')
         {
             const singleMultiStatements  = multiStatements[key] ?? [];
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const multiMongoQuery: Filter<any>[] = [];
             
             for (const statement of singleMultiStatements)
@@ -137,11 +137,9 @@ function buildMongoQuery(query: RecordQuery): Filter<any>
             }
             const mongoKey = BOOLEAN[key];
             mongoQuery[mongoKey] = multiMongoQuery;
-        }
-        
+        }   
         else
         {
-            
             const expresssion = singleStatements[key];
             const mongoExpression: Record<string, unknown> = {};
             
@@ -155,7 +153,6 @@ function buildMongoQuery(query: RecordQuery): Filter<any>
 
             mongoQuery[key] = mongoExpression;
         }
-
     }   
 
     return mongoQuery;
@@ -179,6 +176,7 @@ function buildMongoSort(sort?: RecordSort): Sort
     return mongoSort;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function getCollection<T>(name : RecordType): Promise<Collection<T extends Document ? any: any>>
 {
     if (database === undefined)
@@ -205,6 +203,7 @@ async function createClient(connectionString: string): Promise<MongoClient>
      {
          return await MongoClient.connect(connectionString);
      }
+     // eslint-disable-next-line @typescript-eslint/no-explicit-any
      catch (error: any)
      {
          throw new DatabaseError(error?.message);
