@@ -1,9 +1,32 @@
 
-import { QueryOperator, QueryMultiExpressionStatement, QuerySingleExpressionStatement, RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType, RecordValue } from '../definitions/types';
-import { MongoClient, Document, Collection, Db, Filter, Sort } from 'mongodb';
-import createId from '../../../common/createId.js';
-import DatabaseError from './DatabaseError.js';
-import { QueryOperators, SortDirections } from '../module.js';
+import { ObjectId, MongoClient, Document, Collection, Db, Filter, Sort } from 'mongodb';
+
+import { Database } from '../definitions/interfaces.js';
+
+import {
+    QueryOperators,
+    SortDirections
+} from '../definitions/constants.js';
+
+import {
+    QueryOperator,
+    QueryMultiExpressionStatement,
+    QuerySingleExpressionStatement,
+    RecordData,
+    RecordField,
+    RecordId,
+    RecordQuery,
+    RecordSort,
+    RecordType,
+    RecordValue
+} from '../definitions/types.js';
+
+import {
+    NotConnected,
+    RecordNotCreated,
+    RecordNotUpdated,
+    RecordNotDeleted
+} from '../definitions/errors.js';
 
 const OPERATORS = 
 {
@@ -24,219 +47,233 @@ const BOOLEAN =
 {
     ['AND'] : '$and',
     ['OR'] : '$or'
-
 };
 
-let client: MongoClient;
-let database: Db;
-
-export async function connect(connectionString: string, databaseName: string): Promise<void>
+export default class MongoDB implements Database
 {
-    client = await createClient(connectionString);
-    database = getDatabase(databaseName);
-}
-
-export async function disconnect(): Promise<void>
-{
-   return client.close(true);
-}
-
-export async function createRecord(type: RecordType, data: RecordData): Promise<RecordId>
-{
-    const collection = await getCollection(type);
-    const mongoId = await createId();
+    #client?: MongoClient;
+    #database?: Db;
     
-    try
+    async connect(connectionString: string, databaseName: string): Promise<void>
     {
-        await collection.insertOne({ _id: mongoId, ...data } );
-    }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    catch (error: any)
-    {
-        throw new DatabaseError(error?.message);
-    }   
-
-    return mongoId.toHexString();
-}
-
-export async function readRecord(type: RecordType, id: RecordId, fields?: RecordField[]): Promise<RecordData | undefined>
-{
-    const collection = await getCollection(type);
-    const mongoId = await createId(id);       
-    const entry = await collection.findOne({_id : mongoId, filter : fields });
-
-    if (entry === null)
-    {
-        return;
+        this.#client = await this.#createClient(connectionString);
+        this.#database = this.#getDatabase(databaseName);
     }
 
-    return buildRecordData(entry as Document, fields);
-}
-
-export async function updateRecord(type: RecordType, id: RecordId, data: RecordData): Promise<void>
-{
-    const collection = await getCollection(type);
-    const entry = await collection.updateOne({_id : id},{$set : data});
-
-    if (entry.modifiedCount === 0)
+    async disconnect(): Promise<void>
     {
-        throw new DatabaseError("Record update failed");
-    }
-}
-
-export async function deleteRecord(type: RecordType, id: RecordId): Promise<void>
-{
-    const collection = await getCollection(type);
-    const mongoId = await createId(id);
-    const result = await collection.deleteOne({ _id: mongoId } );
-
-    if (result.deletedCount !== 1)
-    {
-        throw new DatabaseError("Record delete failed");
-    }
-}
-
-export async function findRecord(type: RecordType, query: RecordQuery, fields?: RecordField[], sort?: RecordSort): Promise<RecordData | undefined>
-{
-    const result = await searchRecords(type, query, fields, sort, 1, 0);
-
-    return result[0];
-}
-
-export async function searchRecords(type: RecordType, query: RecordQuery, fields?: RecordField[], sort?: RecordSort, limit?: number, offset?: number): Promise<RecordData[]>
-{
-    const mongoQuery = buildMongoQuery(query);
-    const mongoSort = buildMongoSort(sort);
-    const collection = await getCollection(type);
-    const cursor = collection.find(mongoQuery, { sort: mongoSort, limit: limit, skip: offset });
-    const result = await cursor.toArray();
- 
-    return result.map(data => buildRecordData(data, fields));
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function buildMongoQuery(query: RecordQuery): Filter<any> 
-{
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const mongoQuery: Filter<any> = {};
-    const multiStatements = query as QueryMultiExpressionStatement;
-    const singleStatements = query as QuerySingleExpressionStatement;
- 
-    for (const key in multiStatements)
-    {
-        if (key === 'AND' || key ==='OR')
+        if (this.#client === undefined)
         {
-            const singleMultiStatements  = multiStatements[key] ?? [];
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const multiMongoQuery: Filter<any>[] = [];
-            
-            for (const statement of singleMultiStatements)
-            {
-                const mongoQuery = buildMongoQuery(statement);
-                multiMongoQuery.push(mongoQuery);
-            }
-            const mongoKey = BOOLEAN[key];
-            mongoQuery[mongoKey] = multiMongoQuery;
-        }   
-        else
-        {
-            const expresssion = singleStatements[key];
-            const mongoExpression: Record<string, unknown> = {};
-            
-            for (const operator in expresssion)
-            {
-                const value = extractValue(expresssion as RecordData, operator as QueryOperator);
-                const mongoOperator = OPERATORS[operator];
-
-                mongoExpression[mongoOperator] = value;
-            }
-
-            mongoQuery[key] = mongoExpression;
+            throw new NotConnected();
         }
-    }   
 
-    return mongoQuery;
-}
+        return this.#client.close(true);
+    }
 
-function buildMongoSort(sort?: RecordSort): Sort
-{
-    const mongoSort: Sort = {};
-
-    if (sort === undefined)
+    async createRecord(type: RecordType, data: RecordData): Promise<RecordId>
     {
+        const collection = await this.#getCollection(type);
+        const mongoId = this.#createId();
+        
+        try
+        {
+            await collection.insertOne({ _id: mongoId, ...data });
+        }
+        catch (error: unknown)
+        {
+            const message = error instanceof Error ? error.message : undefined;
+
+            throw new RecordNotCreated(message);
+        }
+
+        return mongoId.toHexString();
+    }
+
+    async readRecord(type: RecordType, id: RecordId, fields?: RecordField[]): Promise<RecordData | undefined>
+    {
+        const collection = await this.#getCollection(type);
+        const mongoId = this.#createId(id);       
+        const entry = await collection.findOne({_id : mongoId, filter : fields });
+
+        if (entry === null)
+        {
+            return;
+        }
+
+        return this.#buildRecordData(entry as Document, fields);
+    }
+
+    async updateRecord(type: RecordType, id: RecordId, data: RecordData): Promise<void>
+    {
+        const collection = await this.#getCollection(type);
+        const entry = await collection.updateOne({_id : id},{$set : data});
+
+        if (entry.modifiedCount === 0)
+        {
+            throw new RecordNotUpdated();
+        }
+    }
+
+    async deleteRecord(type: RecordType, id: RecordId): Promise<void>
+    {
+        const collection = await this.#getCollection(type);
+        const mongoId = this.#createId(id);
+        const result = await collection.deleteOne({ _id: mongoId } );
+
+        if (result.deletedCount !== 1)
+        {
+            throw new RecordNotDeleted();
+        }
+    }
+
+    async findRecord(type: RecordType, query: RecordQuery, fields?: RecordField[], sort?: RecordSort): Promise<RecordData | undefined>
+    {
+        const result = await this.searchRecords(type, query, fields, sort, 1, 0);
+
+        return result[0];
+    }
+
+    async searchRecords(type: RecordType, query: RecordQuery, fields?: RecordField[], sort?: RecordSort, limit?: number, offset?: number): Promise<RecordData[]>
+    {
+        const mongoQuery = this.#buildMongoQuery(query);
+        const mongoSort = this.#buildMongoSort(sort);
+        const collection = await this.#getCollection(type);
+        const cursor = collection.find(mongoQuery, { sort: mongoSort, limit: limit, skip: offset });
+        const result = await cursor.toArray();
+    
+        return result.map(data => this.#buildRecordData(data, fields));
+    }
+
+    #createId(inputId?: string): ObjectId
+    {
+        return new ObjectId(inputId);
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    #buildMongoQuery(query: RecordQuery): Filter<any> 
+    {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const mongoQuery: Filter<any> = {};
+        const multiStatements = query as QueryMultiExpressionStatement;
+        const singleStatements = query as QuerySingleExpressionStatement;
+    
+        for (const key in multiStatements)
+        {
+            if (key === 'AND' || key ==='OR')
+            {
+                const singleMultiStatements  = multiStatements[key] ?? [];
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                const multiMongoQuery: Filter<any>[] = [];
+                
+                for (const statement of singleMultiStatements)
+                {
+                    const mongoQuery = this.#buildMongoQuery(statement);
+                    multiMongoQuery.push(mongoQuery);
+                }
+                const mongoKey = BOOLEAN[key];
+                mongoQuery[mongoKey] = multiMongoQuery;
+            }   
+            else
+            {
+                const expression = singleStatements[key];
+                const mongoExpression: Record<string, unknown> = {};
+                
+                for (const operator in expression)
+                {
+                    const value = this.#extractValue(expression as RecordData, operator as QueryOperator);
+                    const mongoOperator = OPERATORS[operator];
+
+                    mongoExpression[mongoOperator] = value;
+                }
+
+                mongoQuery[key] = mongoExpression;
+            }
+        }   
+
+        return mongoQuery;
+    }
+
+    #buildMongoSort(sort?: RecordSort): Sort
+    {
+        const mongoSort: Sort = {};
+
+        if (sort === undefined)
+        {
+            return mongoSort;
+        }
+
+        for (const element in sort)
+        {
+            const direction = sort[element];
+            mongoSort[element] = direction === SortDirections.DESCENDING ? -1 : 1;
+        }
+
         return mongoSort;
     }
 
-    for (const element in sort)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    async #getCollection<T>(name : RecordType): Promise<Collection<T extends Document ? any: any>>
     {
-        const direction = sort[element];
-        mongoSort[element] = direction === SortDirections.DESCENDING ? -1 : 1;
+        if (this.#database === undefined)
+        {
+            throw new NotConnected();
+        }
+
+        return this.#database.collection(name);
     }
 
-    return mongoSort;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-async function getCollection<T>(name : RecordType): Promise<Collection<T extends Document ? any: any>>
-{
-    if (database === undefined)
-    {
-        throw new DatabaseError("Connection lost");
+    #getDatabase(databaseName: string): Db
+    {   
+        if (this.#client === undefined)
+        {
+            throw new NotConnected();
+        }
+        
+        return this.#client.db(databaseName);   
     }
 
-    return database.collection(name);
-}
-
-function getDatabase(databaseName: string): Db
-{   
-    if (client === undefined)
+    async #createClient(connectionString: string): Promise<MongoClient>
     {
-        throw new DatabaseError("Connection lost");
-    }
-    
-    return client.db(databaseName);   
-}
-    
-async function createClient(connectionString: string): Promise<MongoClient>
-{
-     try
-     {
-         return await MongoClient.connect(connectionString);
-     }
-     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-     catch (error: any)
-     {
-         throw new DatabaseError(error?.message);
-     }   
-}
+        try
+        {
+            return await MongoClient.connect(connectionString);
+        }
+        catch (error: unknown)
+        {
+            const message = error instanceof Error ? error.message : undefined;
 
-function buildRecordData(data: Document, fields?: RecordField[]) : RecordData
-{ 
-    const result: RecordData = {};
-
-    if (fields === undefined)
-    {
-        return {...data};
+            throw new NotConnected(message);
+        }
     }
 
-    for (const field of fields)
-    {
-        const dataField = field === 'id' ? '_id' : field;
-        result[field] = data[dataField];
+    #buildRecordData(data: Document, fields?: RecordField[]) : RecordData
+    { 
+        const result: RecordData = {};
+
+        if (fields === undefined)
+        {
+            return {...data};
+        }
+
+        for (const field of fields)
+        {
+            const dataField = field === 'id' ? '_id' : field;
+            result[field] = data[dataField];
+        }
+
+        return(result);
     }
 
-    return(result);
-}
-
-function extractValue(expression: RecordData, operator: QueryOperator): RecordValue
-{
-    const value = expression[operator];
-
-    switch (operator)
+    #extractValue(expression: RecordData, operator: QueryOperator): RecordValue
     {
-        case QueryOperators.STARTS_WITH: return '^' + value;
-        case QueryOperators.ENDS_WITH: return value + '$';
-    }
+        const value = expression[operator];
 
-    return value;
+        switch (operator)
+        {
+            case QueryOperators.STARTS_WITH: return '^' + value;
+            case QueryOperators.ENDS_WITH: return value + '$';
+        }
+
+        return value;
+    }
 }

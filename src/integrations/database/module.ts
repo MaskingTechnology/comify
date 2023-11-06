@@ -5,23 +5,6 @@
 This module provides a consistent interface for the domain layer to interact with the database layer.
 It's designed as a lightweight wrapper around the database implementation, which is currently MongoDB.
 
-# INTERFACE
-
-All implementations must implement the following functions.
-
-```ts
-import { RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType } from '../definitions/types';
-
-export async function connect(): Promise<void> {}`
-export async function disconnect(): Promise<void> {}`
-export async function createRecord(type: RecordType, data: RecordData): Promise<RecordId> {}
-export async function readRecord(type: RecordType, id: RecordId, fields?: RecordField[]): Promise<RecordData> {}
-export async function updateRecord(type: RecordType, id: RecordId, data: RecordData): Promise<void> {}
-export async function deleteRecord(type: RecordType, id: RecordId): Promise<void> {}
-export async function findRecord(type: RecordType, query: RecordQuery, fields?: RecordField[], sort?: RecordSort): Promise<RecordData> {}
-export async function searchRecords(type: RecordType, query: RecordQuery, fields?: RecordField[], sort?: RecordSort, limit?: number, offset?: number): Promise<RecordData[]> {}
-```
-
 # EXAMPLES OF USAGE
 
 ```ts
@@ -61,6 +44,18 @@ const records = await searchRecords(ITEM_COLLECTION, query, undefined, sort, lim
 
 *************************************************************************************/
 
+import Implementation from './implementation.js';
+
 export * from './definitions/constants.js';
 export * from './definitions/types.js';
-export * from './implementations/mongodb.js';
+
+const implementation = new Implementation();
+
+export const connect = implementation.connect;
+export const disconnect = implementation.disconnect;
+export const createRecord = implementation.createRecord;
+export const readRecord = implementation.readRecord;
+export const updateRecord = implementation.updateRecord;
+export const deleteRecord = implementation.deleteRecord;
+export const findRecord = implementation.findRecord;
+export const searchRecords = implementation.searchRecords;
