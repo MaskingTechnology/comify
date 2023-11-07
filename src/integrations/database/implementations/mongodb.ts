@@ -248,20 +248,27 @@ export default class MongoDB implements Database
 
     #buildRecordData(data: Document, fields?: RecordField[]) : RecordData
     { 
-        const result: RecordData = {};
+        let result: RecordData = {};
 
         if (fields === undefined)
         {
-            return {...data};
+            result = {...data};
         }
-
-        for (const field of fields)
+        else
         {
-            const dataField = field === 'id' ? '_id' : field;
-            result[field] = data[dataField];
+            for (const field of fields)
+            {
+                result[field] = data[field];
+            }               
         }
 
-        return(result);
+        if (result['_id'] !== undefined)
+        {
+            result['id'] = result['_id'];
+            delete result['_id'];
+        }
+
+        return result;
     }
 
     #extractValue(expression: RecordData, operator: QueryOperator): RecordValue

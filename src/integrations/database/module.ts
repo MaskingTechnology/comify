@@ -48,14 +48,8 @@ import Implementation from './implementation.js';
 
 export * from './definitions/constants.js';
 export * from './definitions/types.js';
+export * from './definitions/errors.js';
 
 const implementation = new Implementation();
 
-export const connect = implementation.connect;
-export const disconnect = implementation.disconnect;
-export const createRecord = implementation.createRecord;
-export const readRecord = implementation.readRecord;
-export const updateRecord = implementation.updateRecord;
-export const deleteRecord = implementation.deleteRecord;
-export const findRecord = implementation.findRecord;
-export const searchRecords = implementation.searchRecords;
+export default implementation;
