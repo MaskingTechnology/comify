@@ -106,7 +106,8 @@ export default class MongoDB implements Database
     async updateRecord(type: RecordType, id: RecordId, data: RecordData): Promise<void>
     {
         const collection = await this.#getCollection(type);
-        const entry = await collection.updateOne({_id : id},{$set : data});
+        const mongoId = this.#createId(id);
+        const entry = await collection.updateOne({_id : mongoId},{$set : data});
 
         if (entry.modifiedCount === 0)
         {
@@ -170,23 +171,25 @@ export default class MongoDB implements Database
                     const mongoQuery = this.#buildMongoQuery(statement);
                     multiMongoQuery.push(mongoQuery);
                 }
+
                 const mongoKey = BOOLEAN[key];
                 mongoQuery[mongoKey] = multiMongoQuery;
             }   
             else
             {
                 const expression = singleStatements[key];
+                const mongoKey = key === 'id' ? '_id' : key;
                 const mongoExpression: Record<string, unknown> = {};
                 
                 for (const operator in expression)
                 {
                     const value = this.#extractValue(expression as RecordData, operator as QueryOperator);
+                    const mongoValue = key === 'id' ? this.#createId(value as string) : value;
                     const mongoOperator = OPERATORS[operator];
-
-                    mongoExpression[mongoOperator] = value;
+                    mongoExpression[mongoOperator] = mongoValue;
                 }
 
-                mongoQuery[key] = mongoExpression;
+                mongoQuery[mongoKey] = mongoExpression;
             }
         }   
 
