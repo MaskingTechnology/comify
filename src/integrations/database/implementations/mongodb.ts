@@ -174,23 +174,23 @@ export default class MongoDB implements Database
 
                 const mongoKey = BOOLEAN[key];
                 mongoQuery[mongoKey] = multiMongoQuery;
-            }   
-            else
-            {
-                const expression = singleStatements[key];
-                const mongoKey = key === 'id' ? '_id' : key;
-                const mongoExpression: Record<string, unknown> = {};
-                
-                for (const operator in expression)
-                {
-                    const value = this.#extractValue(expression as RecordData, operator as QueryOperator);
-                    const mongoValue = key === 'id' ? this.#createId(value as string) : value;
-                    const mongoOperator = OPERATORS[operator];
-                    mongoExpression[mongoOperator] = mongoValue;
-                }
 
-                mongoQuery[mongoKey] = mongoExpression;
+                continue;
             }
+            
+            const expression = singleStatements[key];
+            const mongoKey = key === 'id' ? '_id' : key;
+            const mongoExpression: Record<string, unknown> = {};
+            
+            for (const operator in expression)
+            {
+                const value = this.#extractValue(expression as RecordData, operator as QueryOperator);
+                const mongoValue = key === 'id' ? this.#createId(value as string) : value;
+                const mongoOperator = OPERATORS[operator];
+                mongoExpression[mongoOperator] = mongoValue;
+            }
+
+            mongoQuery[mongoKey] = mongoExpression;
         }   
 
         return mongoQuery;
