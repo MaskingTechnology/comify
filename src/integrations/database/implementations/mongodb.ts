@@ -13,7 +13,8 @@ import { Database } from '../definitions/interfaces.js';
 
 import {
     QueryOperators,
-    SortDirections
+    SortDirections,
+    LogicalOperators
 } from '../definitions/constants.js';
 
 import {
@@ -50,12 +51,6 @@ const OPERATORS =
     [QueryOperators.CONTAINS]: '$regex',
     [QueryOperators.STARTS_WITH]: '$regex',
     [QueryOperators.ENDS_WITH]: '$regex'
-};
-
-const LOGICAL_OPERATORS =
-{
-    AND: '$and',
-    OR: '$or'
 };
 
 export default class MongoDB implements Database
@@ -183,7 +178,7 @@ export default class MongoDB implements Database
                     multiMongoQuery.push(mongoQuery);
                 }
 
-                const mongoKey = LOGICAL_OPERATORS[key];
+                const mongoKey = LogicalOperators[key];
                 mongoQuery[mongoKey] = multiMongoQuery;
 
                 continue;

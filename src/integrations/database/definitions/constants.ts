@@ -1,4 +1,10 @@
 
+export const LogicalOperators =
+{
+    AND: '$and',
+    OR: '$or'
+};
+
 export const SortDirections =
 {
     ASCENDING: 'ASCENDING',
