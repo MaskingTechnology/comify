@@ -1,5 +1,13 @@
 
-import { ObjectId, MongoClient, Document, Collection, Db, Filter, Sort } from 'mongodb';
+import { 
+    ObjectId,
+    MongoClient,
+    Document,
+    Collection,
+    Db,
+    Filter,
+    Sort
+} from 'mongodb';
 
 import { Database } from '../definitions/interfaces.js';
 
@@ -25,7 +33,8 @@ import {
     NotConnected,
     RecordNotCreated,
     RecordNotUpdated,
-    RecordNotDeleted
+    RecordNotDeleted,
+    RecordNotFound
 } from '../definitions/errors.js';
 
 const OPERATORS = 
@@ -43,10 +52,10 @@ const OPERATORS =
     [QueryOperators.ENDS_WITH]: '$regex'
 };
 
-const BOOLEAN =
+const LOGICAL_OPERATORS =
 {
-    ['AND'] : '$and',
-    ['OR'] : '$or'
+    AND: '$and',
+    OR: '$or'
 };
 
 export default class MongoDB implements Database
@@ -89,15 +98,16 @@ export default class MongoDB implements Database
         return mongoId.toHexString();
     }
 
-    async readRecord(type: RecordType, id: RecordId, fields?: RecordField[]): Promise<RecordData | undefined>
+    async readRecord(type: RecordType, id: RecordId, fields?: RecordField[]): Promise<RecordData>
     {
+
         const collection = await this.#getCollection(type);
-        const mongoId = this.#createId(id);       
-        const entry = await collection.findOne({_id : mongoId, filter : fields });
+        const mongoId = this.#createId(id); 
+        const entry = await collection.findOne({ _id : mongoId });
 
         if (entry === null)
         {
-            return;
+            throw new RecordNotFound();
         }
 
         return this.#buildRecordData(entry as Document, fields);
@@ -107,7 +117,7 @@ export default class MongoDB implements Database
     {
         const collection = await this.#getCollection(type);
         const mongoId = this.#createId(id);
-        const entry = await collection.updateOne({_id : mongoId},{$set : data});
+        const entry = await collection.updateOne({ _id : mongoId },{ $set : data });
 
         if (entry.modifiedCount === 0)
         {
@@ -119,7 +129,7 @@ export default class MongoDB implements Database
     {
         const collection = await this.#getCollection(type);
         const mongoId = this.#createId(id);
-        const result = await collection.deleteOne({ _id: mongoId } );
+        const result = await collection.deleteOne({ _id: mongoId });
 
         if (result.deletedCount !== 1)
         {
@@ -138,6 +148,7 @@ export default class MongoDB implements Database
     {
         const mongoQuery = this.#buildMongoQuery(query);
         const mongoSort = this.#buildMongoSort(sort);
+
         const collection = await this.#getCollection(type);
         const cursor = collection.find(mongoQuery, { sort: mongoSort, limit: limit, skip: offset });
         const result = await cursor.toArray();
@@ -160,7 +171,7 @@ export default class MongoDB implements Database
     
         for (const key in multiStatements)
         {
-            if (key === 'AND' || key ==='OR')
+            if (key === 'AND' || key === 'OR')
             {
                 const singleMultiStatements  = multiStatements[key] ?? [];
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -172,7 +183,7 @@ export default class MongoDB implements Database
                     multiMongoQuery.push(mongoQuery);
                 }
 
-                const mongoKey = BOOLEAN[key];
+                const mongoKey = LOGICAL_OPERATORS[key];
                 mongoQuery[mongoKey] = multiMongoQuery;
 
                 continue;
@@ -187,6 +198,7 @@ export default class MongoDB implements Database
                 const value = this.#extractValue(expression as RecordData, operator as QueryOperator);
                 const mongoValue = key === 'id' ? this.#createId(value as string) : value;
                 const mongoOperator = OPERATORS[operator];
+
                 mongoExpression[mongoOperator] = mongoValue;
             }
 
@@ -255,13 +267,14 @@ export default class MongoDB implements Database
 
         if (fields === undefined)
         {
-            result = {...data};
+            result = { ...data };
         }
         else
         {
             for (const field of fields)
             {
-                result[field] = data[field];
+                const mongoField = field === 'id' ? '_id' : field; 
+                result[field] = data[mongoField];
             }               
         }
 
