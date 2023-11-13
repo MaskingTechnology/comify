@@ -4,16 +4,16 @@ export default class Creator
     #id: string;
     #fullName: string;
     #nickName: string;
+    #portrait: string;
     #email: string;
-    #portrait?: string;
 
-    constructor(id: string, fullName: string, nickName: string, email:string, portrait?: string)
+    constructor(id: string, fullName: string, nickName: string, portrait: string, email: string)
     {
         this.#id = id;
         this.#fullName = fullName;
         this.#nickName = nickName;
-        this.#email = email;
         this.#portrait = portrait;
+        this.#email = email;
     }
 
     get id() { return this.#id; }
@@ -22,7 +22,7 @@ export default class Creator
 
     get nickName() { return this.#nickName; }
 
+    get portrait() { return this.#portrait; }
+    
     get email() { return this.#email; }
-
-    get portrait() { return this.#portrait; }    
 }
