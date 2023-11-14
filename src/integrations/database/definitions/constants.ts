@@ -1,8 +1,8 @@
 
 export const LogicalOperators =
 {
-    AND: '$and',
-    OR: '$or'
+    AND: 'AND',
+    OR: 'OR'
 };
 
 export const SortDirections =
@@ -26,5 +26,6 @@ export const QueryOperators =
     ENDS_WITH: 'ENDS_WITH' // "%LIKE"
 };
 
+Object.freeze(LogicalOperators);
 Object.freeze(SortDirections);
 Object.freeze(QueryOperators);

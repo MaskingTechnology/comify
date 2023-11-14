@@ -53,6 +53,12 @@ const OPERATORS =
     [QueryOperators.ENDS_WITH]: '$regex'
 };
 
+const LOGICAL_OPERATORS =
+{
+    [LogicalOperators.AND]: '$and',
+    [LogicalOperators.OR]: '$or' 
+};
+
 export default class MongoDB implements Database
 {
     #client?: MongoClient;
@@ -178,7 +184,7 @@ export default class MongoDB implements Database
                     multiMongoQuery.push(mongoQuery);
                 }
 
-                const mongoKey = LogicalOperators[key];
+                const mongoKey = LOGICAL_OPERATORS[key];
                 mongoQuery[mongoKey] = multiMongoQuery;
 
                 continue;
