@@ -1,4 +1,6 @@
 
+export const ID = 'id';
+
 export const LogicalOperators =
 {
     AND: 'AND',

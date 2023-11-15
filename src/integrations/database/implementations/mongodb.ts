@@ -1,42 +1,10 @@
 
-import { 
-    ObjectId,
-    MongoClient,
-    Document,
-    Collection,
-    Db,
-    Filter,
-    Sort
-} from 'mongodb';
+import {  ObjectId, MongoClient, Document, Collection, Db, Filter, Sort } from 'mongodb';
 
 import { Database } from '../definitions/interfaces.js';
-
-import {
-    QueryOperators,
-    SortDirections,
-    LogicalOperators
-} from '../definitions/constants.js';
-
-import {
-    QueryOperator,
-    QueryMultiExpressionStatement,
-    QuerySingleExpressionStatement,
-    RecordData,
-    RecordField,
-    RecordId,
-    RecordQuery,
-    RecordSort,
-    RecordType,
-    RecordValue
-} from '../definitions/types.js';
-
-import {
-    NotConnected,
-    RecordNotCreated,
-    RecordNotUpdated,
-    RecordNotDeleted,
-    RecordNotFound
-} from '../definitions/errors.js';
+import { ID, LogicalOperators, SortDirections, QueryOperators } from '../definitions/constants.js';
+import { QueryOperator, QueryMultiExpressionStatement, QuerySingleExpressionStatement, RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType, RecordValue } from '../definitions/types.js';
+import { NotConnected, RecordNotCreated, RecordNotUpdated, RecordNotDeleted, RecordNotFound } from '../definitions/errors.js';
 
 const OPERATORS = 
 {
@@ -58,6 +26,8 @@ const LOGICAL_OPERATORS =
     [LogicalOperators.AND]: '$and',
     [LogicalOperators.OR]: '$or' 
 };
+
+const MONGO_ID: string = '_id';
 
 export default class MongoDB implements Database
 {
@@ -104,7 +74,7 @@ export default class MongoDB implements Database
 
         const collection = await this.#getCollection(type);
         const mongoId = this.#createId(id); 
-        const entry = await collection.findOne({ _id : mongoId });
+        const entry = await collection.findOne({ _id: mongoId });
 
         if (entry === null)
         {
@@ -169,11 +139,12 @@ export default class MongoDB implements Database
         const mongoQuery: Filter<any> = {};
         const multiStatements = query as QueryMultiExpressionStatement;
         const singleStatements = query as QuerySingleExpressionStatement;
-    
+
         for (const key in multiStatements)
         {
-            if (key === 'AND' || key === 'OR')
+            if (key === LOGICAL_OPERATORS.AND || key === 'OR')
             {
+                // @ts-ignore 
                 const singleMultiStatements  = multiStatements[key] ?? [];
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 const multiMongoQuery: Filter<any>[] = [];
@@ -191,13 +162,13 @@ export default class MongoDB implements Database
             }
             
             const expression = singleStatements[key];
-            const mongoKey = key === 'id' ? '_id' : key;
+            const mongoKey = key === ID ? MONGO_ID : key;
             const mongoExpression: Record<string, unknown> = {};
             
             for (const operator in expression)
             {
                 const value = this.#extractValue(expression as RecordData, operator as QueryOperator);
-                const mongoValue = key === 'id' ? this.#createId(value as string) : value;
+                const mongoValue = key === ID ? this.#createId(value as string) : value;
                 const mongoOperator = OPERATORS[operator];
 
                 mongoExpression[mongoOperator] = mongoValue;
@@ -274,15 +245,15 @@ export default class MongoDB implements Database
         {
             for (const field of fields)
             {
-                const mongoField = field === 'id' ? '_id' : field; 
+                const mongoField = field === ID ? MONGO_ID : field; 
                 result[field] = data[mongoField];
             }               
         }
 
-        if (result['_id'] !== undefined)
+        if (result[MONGO_ID] !== undefined)
         {
-            result['id'] = result['_id'];
-            delete result['_id'];
+            result[ID] = result[MONGO_ID];
+            delete result[MONGO_ID];
         }
 
         return result;
