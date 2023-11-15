@@ -142,10 +142,9 @@ export default class MongoDB implements Database
 
         for (const key in multiStatements)
         {
-            if (key === LOGICAL_OPERATORS.AND || key === 'OR')
+            if (key === 'AND' || key === 'OR')
             {
-                // @ts-ignore 
-                const singleMultiStatements  = multiStatements[key] ?? [];
+                 const singleMultiStatements  = multiStatements[key] ?? [];
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 const multiMongoQuery: Filter<any>[] = [];
                 
@@ -240,20 +239,17 @@ export default class MongoDB implements Database
         if (fields === undefined)
         {
             result = { ...data };
-        }
-        else
-        {
-            for (const field of fields)
-            {
-                const mongoField = field === ID ? MONGO_ID : field; 
-                result[field] = data[mongoField];
-            }               
-        }
 
-        if (result[MONGO_ID] !== undefined)
-        {
             result[ID] = result[MONGO_ID];
             delete result[MONGO_ID];
+
+            return result;
+        }
+
+        for (const field of fields)
+        {
+            const mongoField = field === ID ? MONGO_ID : field; 
+            result[field] = data[mongoField];
         }
 
         return result;
