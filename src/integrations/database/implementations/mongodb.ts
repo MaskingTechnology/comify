@@ -27,7 +27,7 @@ const LOGICAL_OPERATORS =
     [LogicalOperators.OR]: '$or' 
 };
 
-const MONGO_ID: string = '_id';
+const MONGO_ID = '_id';
 
 export default class MongoDB implements Database
 {
