@@ -1,12 +1,12 @@
 
-import {  ObjectId, MongoClient, Document, Collection, Db, Filter, Sort } from 'mongodb';
+import { ObjectId, MongoClient, Document, Collection, Db, Filter, Sort } from 'mongodb';
 
 import { Database } from '../definitions/interfaces.js';
 import { ID, LogicalOperators, SortDirections, QueryOperators } from '../definitions/constants.js';
 import { QueryOperator, QueryMultiExpressionStatement, QuerySingleExpressionStatement, RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType, RecordValue } from '../definitions/types.js';
 import { NotConnected, RecordNotCreated, RecordNotUpdated, RecordNotDeleted, RecordNotFound } from '../definitions/errors.js';
 
-const OPERATORS = 
+const OPERATORS =
 {
     [QueryOperators.EQUALS]: '$eq',
     [QueryOperators.GREATER_THAN]: '$gt',
@@ -24,7 +24,7 @@ const OPERATORS =
 const LOGICAL_OPERATORS =
 {
     [LogicalOperators.AND]: '$and',
-    [LogicalOperators.OR]: '$or' 
+    [LogicalOperators.OR]: '$or'
 };
 
 const MONGO_ID = '_id';
@@ -33,7 +33,7 @@ export default class MongoDB implements Database
 {
     #client?: MongoClient;
     #database?: Db;
-    
+
     async connect(connectionString: string, databaseName: string): Promise<void>
     {
         this.#client = await this.#createClient(connectionString);
@@ -54,7 +54,7 @@ export default class MongoDB implements Database
     {
         const collection = await this.#getCollection(type);
         const mongoId = this.#createId();
-        
+
         try
         {
             await collection.insertOne({ _id: mongoId, ...data });
@@ -73,7 +73,7 @@ export default class MongoDB implements Database
     {
 
         const collection = await this.#getCollection(type);
-        const mongoId = this.#createId(id); 
+        const mongoId = this.#createId(id);
         const entry = await collection.findOne({ _id: mongoId });
 
         if (entry === null)
@@ -88,7 +88,7 @@ export default class MongoDB implements Database
     {
         const collection = await this.#getCollection(type);
         const mongoId = this.#createId(id);
-        const entry = await collection.updateOne({ _id : mongoId },{ $set : data });
+        const entry = await collection.updateOne({ _id: mongoId }, { $set: data });
 
         if (entry.modifiedCount === 0)
         {
@@ -123,7 +123,7 @@ export default class MongoDB implements Database
         const collection = await this.#getCollection(type);
         const cursor = collection.find(mongoQuery, { sort: mongoSort, limit: limit, skip: offset });
         const result = await cursor.toArray();
-    
+
         return result.map(data => this.#buildRecordData(data, fields));
     }
 
@@ -144,10 +144,10 @@ export default class MongoDB implements Database
         {
             if (key === 'AND' || key === 'OR')
             {
-                 const singleMultiStatements  = multiStatements[key] ?? [];
+                const singleMultiStatements = multiStatements[key] ?? [];
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 const multiMongoQuery: Filter<any>[] = [];
-                
+
                 for (const statement of singleMultiStatements)
                 {
                     const mongoQuery = this.#buildMongoQuery(statement);
@@ -159,11 +159,11 @@ export default class MongoDB implements Database
 
                 continue;
             }
-            
+
             const expression = singleStatements[key];
             const mongoKey = key === ID ? MONGO_ID : key;
             const mongoExpression: Record<string, unknown> = {};
-            
+
             for (const operator in expression)
             {
                 const value = this.#extractValue(expression as RecordData, operator as QueryOperator);
@@ -174,7 +174,7 @@ export default class MongoDB implements Database
             }
 
             mongoQuery[mongoKey] = mongoExpression;
-        }   
+        }
 
         return mongoQuery;
     }
@@ -198,7 +198,7 @@ export default class MongoDB implements Database
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    async #getCollection<T>(name : RecordType): Promise<Collection<T extends Document ? any: any>>
+    async #getCollection<T>(name: RecordType): Promise<Collection<T extends Document ? any : any>>
     {
         if (this.#database === undefined)
         {
@@ -209,13 +209,13 @@ export default class MongoDB implements Database
     }
 
     #getDatabase(databaseName: string): Db
-    {   
+    {
         if (this.#client === undefined)
         {
             throw new NotConnected();
         }
-        
-        return this.#client.db(databaseName);   
+
+        return this.#client.db(databaseName);
     }
 
     async #createClient(connectionString: string): Promise<MongoClient>
@@ -232,8 +232,8 @@ export default class MongoDB implements Database
         }
     }
 
-    #buildRecordData(data: Document, fields?: RecordField[]) : RecordData
-    { 
+    #buildRecordData(data: Document, fields?: RecordField[]): RecordData
+    {
         let result: RecordData = {};
 
         if (fields === undefined)
@@ -248,7 +248,7 @@ export default class MongoDB implements Database
 
         for (const field of fields)
         {
-            const mongoField = field === ID ? MONGO_ID : field; 
+            const mongoField = field === ID ? MONGO_ID : field;
             result[field] = data[mongoField];
         }
 

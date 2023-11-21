@@ -14,11 +14,11 @@ export default class Rating
         this.#commentId = commentId;
     }
 
-    get id() {return this.#id; }
+    get id() { return this.#id; }
 
-    get creatorId() {return this.#creatorId;}
+    get creatorId() { return this.#creatorId; }
 
     get comicId() { return this.#comicId; }
-    
+
     get commentId() { return this.#commentId; }
 }

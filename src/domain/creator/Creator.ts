@@ -23,6 +23,6 @@ export default class Creator
     get nickName() { return this.#nickName; }
 
     get portrait() { return this.#portrait; }
-    
+
     get email() { return this.#email; }
 }

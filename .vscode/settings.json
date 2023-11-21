@@ -1,5 +1,8 @@
 {
     "editor.formatOnSave": true,
+    "editor.indentSize": "tabSize",
+    "editor.tabSize": 4,
+    "json.format.enable": false,
     "javascript.format.placeOpenBraceOnNewLineForControlBlocks": true,
     "javascript.format.placeOpenBraceOnNewLineForFunctions": true,
     "typescript.format.placeOpenBraceOnNewLineForControlBlocks": true,
@@ -7,5 +10,7 @@
     "javascript.preferences.importModuleSpecifierEnding": "js",
     "javascript.preferences.quoteStyle": "single",
     "typescript.preferences.importModuleSpecifierEnding": "js",
-    "typescript.preferences.quoteStyle": "single"
+    "typescript.preferences.quoteStyle": "single",
+    "javascript.format.semicolons": "insert",
+    "typescript.format.semicolons": "insert",
 }
