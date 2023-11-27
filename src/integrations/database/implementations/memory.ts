@@ -1,7 +1,26 @@
 
 import { Database } from '../definitions/interfaces.js';
-import { RecordData, RecordField, QueryStatement, RecordSort } from '../definitions/types.js';
-import { NotConnected, RecordNotFound, RecordNotUpdated } from '../module.js';
+import { RecordData, RecordField, RecordValue, QueryOperator, QueryStatement, QueryMultiExpressionStatement, QuerySingleExpressionStatement, RecordSort, RecordQuery, QueryExpression } from '../definitions/types.js';
+import { LogicalOperators, QueryOperators, SortDirections } from '../definitions/constants.js';
+import { NotConnected, RecordNotFound, RecordNotUpdated } from '../definitions/errors.js';
+
+type FilterFunction = (record: RecordData) => boolean;
+
+const OPERATORS = 
+{
+    [QueryOperators.EQUALS]: '==',
+    [QueryOperators.GREATER_THAN]: '>',
+    [QueryOperators.GREATER_THAN_OR_EQUALS]: '>=',
+    [QueryOperators.LESS_THAN]: '<',
+    [QueryOperators.LESS_THAN_OR_EQUALS]: '<=',
+    [QueryOperators.NOT_EQUALS]: '!=',
+};
+
+const LOGICAL_OPERATORS =
+{
+    [LogicalOperators.AND]: '&&',
+    [LogicalOperators.OR]: '||' 
+};
 
 export default class MemoryDb implements Database
 {
@@ -81,7 +100,131 @@ export default class MemoryDb implements Database
 
     async searchRecords(type: string, query: QueryStatement, fields?: string[] | undefined, sort?: RecordSort | undefined, limit?: number | undefined, offset?: number | undefined): Promise<RecordData[]>
     {
-        throw new Error('Method not implemented.');
+        const collection = this.#getCollection(type); 
+        const filterFunction = this.#buildFilterFunction(query);
+        const result = collection.filter(filterFunction);
+
+        const limitedResult = this.#limitNumberOfRecords(result, limit);
+
+        const sortedResult = this.#sortRecords(limitedResult, sort);
+        return result.map(records => this.#buildRecordData(records, fields));
+    }
+
+    #limitNumberOfRecords(result: RecordData[], offset?: number, limit?: number): RecordData[]
+    {
+        if (offset === undefined && limit === undefined)
+        {
+            return result;
+        }
+
+        const first = offset === undefined ? 0 : offset;
+        const last = limit === undefined ? undefined : first + limit;
+        
+        return result.slice(first, last);
+    }
+
+    #sortRecords(result: RecordData[], sort?: RecordSort): RecordData[]
+    {
+        if (sort === undefined)
+        {
+            return result;
+        }
+
+        return result.sort((a: RecordData, b: RecordData) =>
+        {
+            for (const key in sort)
+            {
+                const order = sort[key];
+                const valueA = a[key] as string;
+                const valueB = b[key] as string;
+
+                if (valueA > valueB)
+                {
+                    return order === SortDirections.ASCENDING ? 1 : -1;
+                }
+                else if (valueA < valueB)
+                {
+                    return order === SortDirections.ASCENDING ? -1 : 1;
+                }
+            }
+
+            return 0;
+        });
+    }
+
+    #buildFilterFunction(query: RecordQuery): FilterFunction
+    {
+        const statementCode = this.#buildStatementCode(query);
+        const functionCode = statementCode === '' ? 'true' : statementCode;
+
+        return new Function('record', `return ${functionCode}`) as FilterFunction;
+    }
+
+    #buildStatementCode(query: RecordQuery): string
+    {
+        const multiStatements = query as QueryMultiExpressionStatement;
+        const singleStatements = query as QuerySingleExpressionStatement;
+
+        let statementCodes = [];
+
+        for (const key in multiStatements)
+        {
+            const code = key === 'AND' || key === 'OR'
+                ? this.#buildMultiStatementCode(key, multiStatements[key] ?? [])
+                : this.#buildExpressionCode(key, singleStatements[key]);
+
+            statementCodes.push(code);
+        }   
+
+        return statementCodes.join(' && ');
+    }
+
+    #buildMultiStatementCode(operator: string, statements: QuerySingleExpressionStatement[])
+    {
+        const codeOperator = LOGICAL_OPERATORS[operator];
+        const statementCodes = [];
+
+        for (const statement of statements)
+        {
+            const statementCode = this.#buildStatementCode(statement);
+
+            statementCodes.push(statementCode);
+        }
+
+        return `(${statementCodes.join(` ${codeOperator} `)})`;
+    }
+
+    #buildExpressionCode(key:string, expression: QueryExpression)
+    {
+        let expressionCodes = [];
+
+        for (const operator in expression)
+        {
+            const value = (expression as RecordData)[operator];
+            const expressionCode = this.#buildOperatorCode(key, operator as QueryOperator, value);
+
+            expressionCodes.push(expressionCode);
+        }
+
+        return `(${expressionCodes.join(' && ')})`;
+    }
+
+    #buildOperatorCode(key: string, operator: QueryOperator, value: RecordValue): string
+    {
+        const codeValue = JSON.stringify(value);
+
+        switch (operator)
+        {
+            case QueryOperators.STARTS_WITH: return `record.${key}.startsWith(${codeValue})`;
+            case QueryOperators.ENDS_WITH: return `record.${key}.endsWith(${codeValue})`;
+            case QueryOperators.CONTAINS: return `record.${key}.includes(${codeValue})`;
+            case QueryOperators.IN: return `${codeValue}.includes(record.${key})`;
+            case QueryOperators.NOT_IN: return `!${codeValue}.includes(record.${key})`;
+        }
+
+        const codeOperator = OPERATORS[operator];
+
+        return `record.${key} ${codeOperator} ${codeValue}`;
     }
 
     #createId(): string
