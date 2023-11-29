@@ -1,15 +1,21 @@
 version: '3.1'
 
+volumes:
+    comify-mongo-data:
+    comify-minio-data:
+
 services:
 
   mongo:
     image: mongo
     restart: always
+    volumes:
+      - comify-mongo-data:/data/db
     ports:
       - 27017:27017
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_ROOT_USERNAME: development
+      MONGO_INITDB_ROOT_PASSWORD: development
 
   mongo-express:
     image: mongo-express
@@ -17,6 +23,19 @@ services:
     ports:
       - 8081:8081
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_ADMINUSERNAME: development
+      ME_CONFIG_MONGODB_ADMINPASSWORD: development
       ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+  
+  minio:
+    image: minio/minio
+    restart: always
+    volumes:
+      - comify-minio-data:/data
+    ports:
+      - 9000:9000
+      - 9001:9001
+    environment:
+      MINIO_ACCESS_KEY: development
+      MINIO_SECRET_KEY: development
+    command: server --console-address ":9001" /data
