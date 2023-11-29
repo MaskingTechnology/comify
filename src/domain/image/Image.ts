@@ -18,7 +18,7 @@ export default class image
 
     get fileName() { return this.#fileName; }
 
-    get mimeType() {return this.#mimeType; }
+    get mimeType() { return this.#mimeType; }
 
     get size() { return this.#size; }
 }
