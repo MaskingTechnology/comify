@@ -1,5 +1,54 @@
-.primary {}
+button
+{
+    font-size: var(--comify-button-text-size);
+    font-family: var(--comify-font-family);
+    color: var(--comify-color-text-primary);
+    border-radius: var(--comify-button-border-radius);
+    border: solid;
+    margin: 4px 2px;
+    text-align: center;
+    padding: 14px 47px;
+    cursor: pointer;
+}
 
-.secondary {}
+.primary
+{
+    background-color: var(--comify-color-button-primary);
+    border-color: var(--comify-color-button-primary);
+    font-weight: var(--comify-font-weight-bold);
+}
 
-.tertiary {}
+.primary:hover
+{
+    background-color: var(--comify-color-button-primary-hover);
+}
+
+.primary:focus
+{
+    background-color: var(--comify-color-button-primary-focus);
+}
+
+.secondary
+{
+    background-color: var(--comify-color-button-secondary);
+    border-color: var(--comify-color-button-secondary);
+    font-weight: var(--comify-font-weight-medium);
+}
+
+.secondary:hover
+{
+    background-color: var(--comify-color-button-secondary-hover);
+}
+
+.secondary:focus
+{
+    background-color: var(--comify-color-button-secondary-focus);
+}
+
+.disabled
+{
+    background-color: var(--comify-color-button-disabled);
+    border-color: var(--comify-color-button-border);
+    font-weight: var(--comify-font-weight-normal);
+    cursor: not-allowed;
+}
