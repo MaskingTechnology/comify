@@ -1,0 +1,16 @@
+.normal {
+    background-color: var(--comify-color-primary);
+    padding: 1.25rem;
+}
+
+.alert {
+    background-color: var(--comify-color-secondary);
+    padding: 1.25rem;
+}
+
+.card {
+    background-color: var(--comify-color-tertiary);
+    border-style: solid;
+    border-color: #cccccc;
+    padding: 1.25rem;
+}
