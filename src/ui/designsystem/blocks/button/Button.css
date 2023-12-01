@@ -1,54 +1,73 @@
-button
+.ds-button
 {
-    font-size: var(--comify-button-text-size);
-    font-family: var(--comify-font-family);
-    color: var(--comify-color-text-primary);
-    border-radius: var(--comify-button-border-radius);
-    border: solid;
-    margin: 4px 2px;
-    text-align: center;
-    padding: 14px 47px;
+    --margin: 0.5em;
+    --padding: 1em 2.5em;
+
+    --border-radius: 2em;
+    --border-style: solid;
+    --border-width: 1px;
+    --border-color: var(--color-border);
+
+    --primary-background-color: var(--color-primary);
+    --secondary-background-color: var(--color-secondary);
+    --disabled-background-color: transparant;
+}
+
+.ds-button
+{
+    border-radius: var(--border-radius);
+    border: 0;
+
     cursor: pointer;
+    margin: var(--margin);
+    padding: var(--padding);
+    text-align: center;
+    width: fit-content;
 }
 
-.primary
+.ds-button.ds-button-primary
 {
-    background-color: var(--comify-color-button-primary);
-    border-color: var(--comify-color-button-primary);
-    font-weight: var(--comify-font-weight-bold);
+    background-color: var(--primary-background-color);
+
+    font-weight: var(--font-weight-bold);
 }
 
-.primary:hover
+.ds-button.ds-button-primary:hover
 {
-    background-color: var(--comify-color-button-primary-hover);
+    background-color: color-mix(in srgb, black 10%, var(--primary-background-color));
 }
 
-.primary:focus
+.ds-button.ds-button-primary:focus
 {
-    background-color: var(--comify-color-button-primary-focus);
+    background-color: color-mix(in srgb, black 20%, var(--primary-background-color));
 }
 
-.secondary
+.ds-button.ds-button-secondary
 {
-    background-color: var(--comify-color-button-secondary);
-    border-color: var(--comify-color-button-secondary);
-    font-weight: var(--comify-font-weight-medium);
+    background-color: var(--secondary-background-color);
+
+    font-weight: var(--font-weight-normal);
 }
 
-.secondary:hover
+.ds-button.ds-button-secondary:hover
 {
-    background-color: var(--comify-color-button-secondary-hover);
+    background-color: color-mix(in srgb, black 10%, var(--secondary-background-color));
 }
 
-.secondary:focus
+.ds-button.ds-button-secondary:focus
 {
-    background-color: var(--comify-color-button-secondary-focus);
+    background-color: color-mix(in srgb, black 20%, var(--secondary-background-color));
 }
 
-.disabled
+.ds-button.ds-button-disabled
 {
-    background-color: var(--comify-color-button-disabled);
-    border-color: var(--comify-color-button-border);
-    font-weight: var(--comify-font-weight-normal);
-    cursor: not-allowed;
+    background-color: var(--disabled-background-color);
+
+    border-color: var(--border-color);
+    border-style: var(--border-style);
+    border-width: var(--border-width);
+
+    font-weight: var(--font-weight-light);
+
+    cursor: default;
 }
