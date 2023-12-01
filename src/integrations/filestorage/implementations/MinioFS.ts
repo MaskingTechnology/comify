@@ -30,7 +30,7 @@ export default class MinioFS implements FileStorage
         this.#client = undefined;
     }
 
-    async storeFile(path: string, data: Buffer): Promise<void>
+    async writeFile(path: string, data: Buffer): Promise<void>
     {
         const client = this.#getClient();
 

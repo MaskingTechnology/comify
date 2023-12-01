@@ -12,11 +12,15 @@ const GOODBYE_FILE_BUFFER = Buffer.from(GOODBYE_FILE_CONTENT);
 
 const UNKNOWN_FILE_NAME = 'unknown.txt';
 
+const fileStorage = new MemoryFS();
+await fileStorage.connect();
+
 async function createMemoryFS(): Promise<MemoryFS>
 {
     const fileStorage = new MemoryFS();
 
-    await fileStorage.storeFile(HELLO_FILE_NAME, HELLO_FILE_BUFFER);
+    await fileStorage.connect();
+    await fileStorage.writeFile(HELLO_FILE_NAME, HELLO_FILE_BUFFER);
 
     return fileStorage;
 }

@@ -1,23 +1,38 @@
 
 import { FileStorage } from '../definitions/interfaces.js';
-import { FileNotFound } from '../definitions/errors.js';
+import { NotConnected, FileNotFound } from '../definitions/errors.js';
 
 export default class MemoryFS implements FileStorage
 {
-    #files: Map<string, Buffer> = new Map();
+    #files?: Map<string, Buffer>;
 
-    async connect(): Promise<void> { }
-
-    async disconnect(): Promise<void> { }
-
-    async storeFile(path: string, data: Buffer): Promise<void>
+    async connect(): Promise<void>
     {
-        this.#files.set(path, data);
+        this.#files = new Map();
+    }
+
+    async disconnect(): Promise<void>
+    {
+        if (this.#files === undefined)
+        {
+            throw new NotConnected();
+        }
+
+        this.#files = undefined;
+    }
+
+    async writeFile(path: string, data: Buffer): Promise<void>
+    {
+        const files = this.#getFiles();
+
+        files.set(path, data);
     }
 
     async readFile(path: string): Promise<Buffer>
     {
-        const data = this.#files.get(path);
+        const files = this.#getFiles();
+
+        const data = files.get(path);
 
         if (data === undefined)
         {
@@ -29,11 +44,23 @@ export default class MemoryFS implements FileStorage
 
     async deleteFile(path: string): Promise<void>
     {
-        if (this.#files.has(path) === false)
+        const files = this.#getFiles();
+
+        if (files.has(path) === false)
         {
             throw new FileNotFound(path);
         }
 
-        this.#files.delete(path);
+        files.delete(path);
+    }
+
+    #getFiles(): Map<string, Buffer>
+    {
+        if (this.#files === undefined)
+        {
+            throw new NotConnected();
+        }
+
+        return this.#files;
     }
 }

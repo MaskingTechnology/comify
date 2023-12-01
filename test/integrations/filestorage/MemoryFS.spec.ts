@@ -31,15 +31,26 @@ describe('MemoryFS', () =>
         });
     });
 
-    describe('.storeFile(path)', () =>
+    describe('.writeFile(path)', () =>
     {
-        it('should store files', async () =>
+        it('should write files', async () =>
         {
             const fileStorage = await createMemoryFS();
 
-            await fileStorage.storeFile(GOODBYE_FILE_NAME, GOODBYE_FILE_BUFFER);
+            await fileStorage.writeFile(GOODBYE_FILE_NAME, GOODBYE_FILE_BUFFER);
 
             const buffer = await fileStorage.readFile(GOODBYE_FILE_NAME);
+
+            expect(buffer).toEqual(GOODBYE_FILE_BUFFER);
+        });
+
+        it('should overwrite files', async () =>
+        {
+            const fileStorage = await createMemoryFS();
+
+            await fileStorage.writeFile(HELLO_FILE_NAME, GOODBYE_FILE_BUFFER);
+
+            const buffer = await fileStorage.readFile(HELLO_FILE_NAME);
 
             expect(buffer).toEqual(GOODBYE_FILE_BUFFER);
         });
