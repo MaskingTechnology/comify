@@ -38,6 +38,4 @@
 {
     --font-family: var(--comify-font-family);
     --font-size: var(--comify-font-size);
-
-    --body-background-color: var(--comify-color-primary);
 }

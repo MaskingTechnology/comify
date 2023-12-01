@@ -3,13 +3,21 @@
     --font-family: inherit;
     --font-size: inherit;
 
-    --color-primary: #f3f3f3;
-    --color-secondary: #d9d9d9;
-    --color-tertiary: #ffffff;
+    --font-weight-extra-light: 200;
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semi-bold: 600;
+    --font-weight-bold: 700;
 
-    --body-background-color: var(--color-primary);
-
-    --border-color-primary: #cccccc;
+    --color-background: #ffffff;
+    --color-primary: #cccccc;
+    --color-secondary: #f3f3f3;
+    --color-alert: #d9d9d9;
+    --color-border: #b7b7b7;
+    --color-active: #666666;
+    --color-foreground: #000000;
+    --color-input: #ffffff;
 }
 
 .ds
@@ -17,9 +25,5 @@
     font-family: var(--font-family);
     font-size: var(--font-size);
 
-    background-color: var(--body-background-color);
-    padding: 0;
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
+    background-color: var(--color-background);
 }
