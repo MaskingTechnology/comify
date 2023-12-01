@@ -1,0 +1,18 @@
+.ds-image
+{
+    --margin: 0.2em;
+
+    --width: 4em;
+    --height: 4em;
+}
+
+.ds-image
+{
+    width: var(--width);
+    height: var(--height);
+}
+
+.ds-image.ds-image-portrait
+{
+    border-radius: 50%;
+}
