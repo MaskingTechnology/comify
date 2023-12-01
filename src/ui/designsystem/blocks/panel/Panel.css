@@ -1,16 +1,40 @@
-.normal {
-    background-color: var(--comify-color-primary);
-    padding: 1.25rem;
+.ds-panel
+{
+    --border-radius: 0em;
+    --padding: 2em 2em;
+
+    --normal-background-color: var(--color-primary);
+
+    --alert-background-color: var(--color-secondary);
+
+    --card-background-color: var(--color-tertiary);
+    --card-border-color: var(--border-color-primary);
+    --card-border-width: 1px;
+    --card-border-style: solid;
 }
 
-.alert {
-    background-color: var(--comify-color-secondary);
-    padding: 1.25rem;
+.ds-panel
+{
+    border-radius: var(--border-radius);
+    padding: var(--padding);
 }
 
-.card {
-    background-color: var(--comify-color-tertiary);
-    border-style: solid;
-    border-color: #cccccc;
-    padding: 1.25rem;
+.ds-panel.ds-panel-normal
+{
+    background-color: var(--normal-background-color);
+}
+
+.ds-panel.ds-panel-alert
+{
+    background-color: var(--alert-background-color);
+}
+
+.ds-panel.ds-panel-card
+{
+    background-color: var(--card-background-color);
+
+    border-color: var(--card-border-color);
+    border-radius: var(--card-border-radius);
+    border-style: var(--card-border-style);
+    border-width: var(--card-border-width);
 }

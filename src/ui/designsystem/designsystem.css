@@ -1,0 +1,25 @@
+.ds
+{
+    --font-family: inherit;
+    --font-size: inherit;
+
+    --color-primary: #f3f3f3;
+    --color-secondary: #d9d9d9;
+    --color-tertiary: #ffffff;
+
+    --body-background-color: var(--color-primary);
+
+    --border-color-primary: #cccccc;
+}
+
+.ds
+{
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+
+    background-color: var(--body-background-color);
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+}

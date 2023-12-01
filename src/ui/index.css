@@ -1,7 +1,7 @@
 :root
 {
     --comify-font-family: 'Sans-Serif';
-    --comify-font-size: 14px;
+    --comify-font-size: 16px;
 
     --comify-font-color-primary: #000000;
     --comify-font-color-secondary: #b7b7b7;
@@ -11,7 +11,7 @@
     --comify-font-weight-medium: 600;
     --comify-font-weight-bold: 800;
 
-    --comify-color-primary: #f3f3f3ff;
+    --comify-color-primary: rgb(215, 110, 0);
     --comify-color-secondary: #d9d9d9ff;
     --comify-color-tertiary: #fff;
 
@@ -32,13 +32,12 @@
     --comify-color-button-secondary-focus: #d9d9d9ff;
 
     --comify-color-button-border: #cccccc;
-
-    /*** Panel ***/
-
 }
 
-body
+.ds
 {
-    font-family: var(--comify-font-family);
-    font-size: var(--comify-font-size);
+    --font-family: var(--comify-font-family);
+    --font-size: var(--comify-font-size);
+
+    --body-background-color: var(--comify-color-primary);
 }
