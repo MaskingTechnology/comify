@@ -3,14 +3,14 @@
     --border-radius: 0em;
     --padding: 2em 2em;
 
-    --normal-background-color: var(--color-primary);
+    --normal-background-color: var(--color-secondary);
 
-    --alert-background-color: var(--color-secondary);
+    --alert-background-color: var(--color-alert);
 
-    --card-background-color: var(--color-tertiary);
-    --card-border-color: var(--border-color-primary);
-    --card-border-width: 1px;
-    --card-border-style: solid;
+    --background-color: transparent;
+    --border-color: var(--color-border);
+    --border-width: 1px;
+    --border-style: solid;
 }
 
 .ds-panel
@@ -29,12 +29,12 @@
     background-color: var(--alert-background-color);
 }
 
-.ds-panel.ds-panel-card
+.ds-panel.ds-panel-border
 {
-    background-color: var(--card-background-color);
+    background-color: transparent;
 
-    border-color: var(--card-border-color);
-    border-radius: var(--card-border-radius);
-    border-style: var(--card-border-style);
-    border-width: var(--card-border-width);
+    border-color: var(--border-color);
+    border-radius: var(--border-radius);
+    border-style: var(--border-style);
+    border-width: var(--border-width);
 }
