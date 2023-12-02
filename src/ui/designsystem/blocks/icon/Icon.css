@@ -17,19 +17,19 @@
     margin: var(--margin);
 }
 
-.ds-icon.ds-icon-small
+.ds-icon.ds-icon-size-small
 {
     width: var(--small-width);
     height: var(--small-height);
 }
 
-.ds-icon.ds-icon-icon-medium
+.ds-icon.ds-icon-icon-size-medium
 {
     width: var(--medium-width);
     height: var(--medium-height);
 }
 
-.ds-icon.ds-icon-large
+.ds-icon.ds-icon-size-large
 {
     width: var(--large-width);
     height: var(--large-height);

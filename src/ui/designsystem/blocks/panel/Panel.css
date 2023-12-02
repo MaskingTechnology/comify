@@ -3,14 +3,11 @@
     --border-radius: 0em;
     --padding: 2em 2em;
 
-    --normal-background-color: var(--color-secondary);
-
     --alert-background-color: var(--color-alert);
-
-    --background-color: transparent;
-    --border-color: var(--color-border);
-    --border-width: 1px;
-    --border-style: solid;
+    --error-background-color: var(--color-error);
+    --normal-background-color: var(--color-secondary);
+    --success-background-color: var(--color-success);
+    --warning-background-color: var(--color-warning);
 }
 
 .ds-panel
@@ -19,22 +16,27 @@
     padding: var(--padding);
 }
 
-.ds-panel.ds-panel-normal
-{
-    background-color: var(--normal-background-color);
-}
-
 .ds-panel.ds-panel-alert
 {
     background-color: var(--alert-background-color);
 }
 
-.ds-panel.ds-panel-border
+.ds-panel.ds-panel-error
 {
-    background-color: transparent;
+    background-color: var(--error-background-color);
+}
 
-    border-color: var(--border-color);
-    border-radius: var(--border-radius);
-    border-style: var(--border-style);
-    border-width: var(--border-width);
+.ds-panel.ds-panel-normal
+{
+    background-color: var(--normal-background-color);
+}
+
+.ds-panel.ds-panel-success
+{
+    background-color: var(--success-background-color);
+}
+
+.ds-panel.ds-panel-warning
+{
+    background-color: var(--warning-background-color);
 }

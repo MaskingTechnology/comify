@@ -1,18 +1,30 @@
 .ds-image
 {
-    --margin: 0.2em;
+    --small-width: 2em;
+    --small-height: 2em;
 
-    --width: 4em;
-    --height: 4em;
+    --medium-width: 4em;
+    --medium-height: 4em;
+
+    --large-width: 6em;
+    --large-height: 6em;
 }
 
-.ds-image
+.ds-image.ds-image-size-small
 {
-    width: var(--width);
-    height: var(--height);
+    width: var(--small-width);
+    height: var(--small-height);
+
 }
 
-.ds-image.ds-image-portrait
+.ds-image.ds-image-size-medium
 {
-    border-radius: 50%;
+    width: var(--medium-width);
+    height: var(--medium-height);
+}
+
+.ds-image.ds-image-size-large
+{
+    width: var(--large-width);
+    height: var(--large-height);
 }

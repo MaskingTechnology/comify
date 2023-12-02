@@ -18,6 +18,9 @@
     --color-active: #666666;
     --color-foreground: #000000;
     --color-input: #ffffff;
+    --color-success: #efefef;
+    --color-warning: #999999;
+    --color-error: #666666;
 }
 
 .ds

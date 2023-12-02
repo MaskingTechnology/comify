@@ -10,7 +10,7 @@
 
     --primary-background-color: var(--color-primary);
     --secondary-background-color: var(--color-secondary);
-    --disabled-background-color: transparant;
+    --disabled-background-color: transparent;
 }
 
 .ds-button

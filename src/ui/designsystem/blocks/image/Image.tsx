@@ -1,14 +1,16 @@
 
+import React from 'react';
+
 import './Image.css';
 
 export type ImageProps = {
-    url: string;
-    type: "picture" | "portrait";
+    size?: 'large' | 'medium' | 'small';
+    source: string;
 };
 
 export default function Image(props: ImageProps)
 {
-    return (
-        <img className={"ds-image ds-image-" + props.type} src={props.url} />
-    );
+    const size = props.size ?? 'medium';
+
+    return <img className={'ds-image ds-image-size-' + size} src={props.source} />;
 }

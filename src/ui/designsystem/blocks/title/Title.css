@@ -1,0 +1,28 @@
+.ds-title
+{
+    --margin: 0.2em 0;
+
+    --font-size-large: 2em;
+    --font-size-medium: 1.5em;
+    --font-size-small: 1em;
+}
+
+.ds-title
+{
+    margin: var(--margin);
+}
+
+.ds-title.ds-title-size-large
+{
+    font-size: var(--font-size-large);
+}
+
+.ds-title.ds-title-size-medium
+{
+    font-size: var(--font-size-medium);
+}
+
+.ds-title.ds-title-size-small
+{
+    font-size: var(--font-size-small);
+}

@@ -1,0 +1,28 @@
+.ds-message
+{
+    --margin: 0.2em 0;
+
+    --font-size-large: 1.5em;
+    --font-size-medium: 1em;
+    --font-size-small: 0.75em;
+}
+
+.ds-message
+{
+    margin: var(--margin);
+}
+
+.ds-message.ds-message-size-large
+{
+    font-size: var(--font-size-large);
+}
+
+.ds-message.ds-message-size-medium
+{
+    font-size: var(--font-size-medium);
+}
+
+.ds-message.ds-message-size-small
+{
+    font-size: var(--font-size-small);
+}

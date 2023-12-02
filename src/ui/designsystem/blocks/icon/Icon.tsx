@@ -1,14 +1,16 @@
 
+import React from 'react';
+
 import './Icon.css';
 
 export type IconProps = {
-    size: "small" | "medium" | "large";
-    url: string;
+    size?: 'large' | 'medium' | 'small';
+    source: string;
 };
 
 export default function Icon(props: IconProps)
 {
-    return (
-        <img className={"ds-icon ds-icon-" + props.size} src={props.url} />
-    );
+    const size = props.size ?? 'medium';
+
+    return <img className={'ds-icon ds-icon-size-' + size} src={props.source} />;
 }

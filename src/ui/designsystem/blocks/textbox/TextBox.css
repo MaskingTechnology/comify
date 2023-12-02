@@ -1,0 +1,26 @@
+.ds-textbox
+{
+    --margin: 0.5em;
+    --padding: 0.5em 1em;
+
+    --border-style: solid;
+    --border-width: 1px;
+    --border-color: var(--color-border);
+}
+
+.ds-textbox
+{
+    margin: var(--margin);
+    padding: var(--padding);
+
+    border-style: var(--border-style);
+    border-width: var(--border-width);
+    border-color: var(--border-color);
+
+    background-color: var(--color-input);
+}
+
+.ds-textbox:focus-visible
+{
+    outline-color: color-mix(in srgb, black 10%, var(--border-color));
+}
