@@ -1,0 +1,39 @@
+.ds-home
+{
+    display: flex;
+    flex-direction: row;
+
+    height: 100%;
+}
+
+.ds-home.ds-home-main
+{
+    flex: 3;
+    flex-direction: column;
+}
+
+.ds-home.ds-home-main.ds-home-main-top
+{
+    flex: 1;
+}
+
+.ds-home.ds-home-main.ds-home-main-bottom
+{
+    flex: 2;
+}
+
+.ds-home.ds-home-sidebar
+{
+    flex: 1;
+    flex-direction: column;
+}
+
+.ds-home.ds-home-sidebar.ds-home-sidebar-top
+{
+    flex: 1;
+}
+
+.ds-home.ds-home-sidebar.ds-home-sidebar-bottom
+{
+    flex: 1;
+}
