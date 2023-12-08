@@ -1,6 +1,6 @@
 .ds-button
 {
-    --margin: 0.5em;
+    --margin: 0em;
     --padding: 1em 2.5em;
 
     --border-radius: 2em;
@@ -8,8 +8,10 @@
     --border-width: 1px;
     --border-color: var(--color-border);
 
-    --primary-background-color: var(--color-primary);
-    --secondary-background-color: var(--color-secondary);
+    --primary-background-color: var(--color-primary-background);
+    --primary-foreground-color: var(--color-primary-foreground);
+    --secondary-background-color: var(--color-secondary-background);
+    --secondary-foreground-color: var(--color-secondary-foreground);
     --disabled-background-color: transparent;
 }
 
@@ -23,16 +25,21 @@
     padding: var(--padding);
     text-align: center;
     width: fit-content;
+
+    font-family: inherit;
+    font-size: inherit;
 }
 
-.ds-button.ds-button-primary
+.ds-button.ds-button-primary,
+.ds-button.ds-button-submit
 {
     background-color: var(--primary-background-color);
-
+    color: var(--primary-foreground-color);
     font-weight: var(--font-weight-bold);
 }
 
-.ds-button.ds-button-primary:hover
+.ds-button.ds-button-primary:hover,
+.ds-button.ds-button-submit:hover
 {
     background-color: color-mix(in srgb, black 10%, var(--primary-background-color));
 }
@@ -45,7 +52,7 @@
 .ds-button.ds-button-secondary
 {
     background-color: var(--secondary-background-color);
-
+    color: var(--secondary-foreground-color);
     font-weight: var(--font-weight-normal);
 }
 

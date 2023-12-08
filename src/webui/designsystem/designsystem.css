@@ -1,7 +1,7 @@
 .ds
 {
-    --font-family: inherit;
-    --font-size: inherit;
+    --font-family: sans-serif;
+    --font-size: 16px;
 
     --font-weight-extra-light: 200;
     --font-weight-light: 300;
@@ -11,16 +11,29 @@
     --font-weight-bold: 700;
 
     --color-background: #ffffff;
-    --color-primary: #cccccc;
-    --color-secondary: #f3f3f3;
-    --color-alert: #d9d9d9;
-    --color-border: #b7b7b7;
-    --color-active: #666666;
     --color-foreground: #000000;
-    --color-input: #ffffff;
-    --color-success: #efefef;
-    --color-warning: #999999;
-    --color-error: #666666;
+    --color-border: #b7b7b7;
+
+    --color-primary-background: #cccccc;
+    --color-primary-foreground: #000000;
+
+    --color-secondary-background: #f3f3f3;
+    --color-secondary-foreground: #000000;
+
+    --color-input-background: #ffffff;
+    --color-input-foreground: #000000;
+
+    --color-alert-background: #d9d9d9;
+    --color-alert-foreground: #666666;
+
+    --color-error-background: #666666;
+    --color-error-foreground: #f3f3f3;
+
+    --color-warning-background: #999999;
+    --color-warning-foreground: #f3f3f3;
+
+    --color-success-background: #efefef;
+    --color-success-foreground: #666666;
 }
 
 .ds
@@ -29,4 +42,10 @@
     font-size: var(--font-size);
 
     background-color: var(--color-background);
+    font-weight: var(--font-weight-light);
+}
+
+.ds *:is(:last-child)
+{
+    margin-bottom: 0;
 }

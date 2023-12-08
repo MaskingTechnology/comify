@@ -13,7 +13,7 @@ export default function Text(props: TitleProps)
     const size = props.size ?? 'large';
     const className = 'ds-title ds-title-size-' + size;
 
-    switch (props.size)
+    switch (size)
     {
         case 'large': return <h1 className={className}> {props.value} </h1>;
         case 'medium': return <h2 className={className}> {props.value} </h2>;

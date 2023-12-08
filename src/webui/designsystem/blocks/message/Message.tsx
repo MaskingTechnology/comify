@@ -12,5 +12,5 @@ export default function Message(props: MessageProps)
 {
     const size = props.size ?? 'medium';
 
-    return <span className={'ds-message ds-message-size-' + size} > {props.value} </span >;
+    return <p className={'ds-message ds-message-size-' + size} > {props.value} </p >;
 }

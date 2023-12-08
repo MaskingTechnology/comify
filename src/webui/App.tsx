@@ -1,44 +1,59 @@
 
 import React from 'react';
-import Panel from './designsystem/blocks/panel/Panel.js';
-import Button from './designsystem/blocks/button/Button.js';
-import Icon from './designsystem/blocks/icon/Icon.js';
-import Image from './designsystem/blocks/image/Image.js';
-import Ruler from './designsystem/blocks/ruler/Ruler.js';
-import Title from './designsystem/blocks/title/Title.js';
-import Label from './designsystem/blocks/label/Label.js';
-import Message from './designsystem/blocks/message/Message.js';
-import Link from './designsystem/blocks/link/Link.js';
-import TextBox from './designsystem/blocks/textbox/TextBox.js';
-import TextArea from './designsystem/blocks/textarea/TextArea.js';
-import Select from './designsystem/blocks/select/Select.js';
-import Avatar from './designsystem/blocks/avatar/Avatar.js';
-import Input from './designsystem/compounds/input/Input.js';
-import Form from './designsystem/components/form/Form.js';
-import Tab from './designsystem/components/tab/Tabs.js';
-import { Home } from './layouts/home/Home.js';
 
-const myFunction = () =>
-{
-    console.log("Hello world!");
-};
+import Form from './designsystem/blocks/form/Form.js';
+import Title from './designsystem/blocks/title/Title.js';
+import Input from './designsystem/compounds/input/Input.js';
+import Label from './designsystem/blocks/label/Label.js';
+import TextBox from './designsystem/blocks/textbox/TextBox.js';
+import Panel from './designsystem/blocks/panel/Panel.js';
+import Message from './designsystem/blocks/message/Message.js';
+import Textarea from './designsystem/blocks/textarea/TextArea.js';
+import Select from './designsystem/blocks/select/Select.js';
+import Button from './designsystem/blocks/button/Button.js';
+import Ruler from './designsystem/blocks/ruler/Ruler.js';
 
 export default function App()
 {
-    const options = new Map<string, string>().set('1', 'One').set('2', 'Two').set('3', 'Three');
-    const title = <Title size="large" value="Large title" />;
-    const message = <Message value="Message" />;
-    const primaryButton = <Button type="primary" text="Primary" clickHandler={myFunction} />;
-    const secondaryButton = <Button type="secondary" text="Secondary" clickHandler={myFunction} />;
-    const aside = <Message size="small" value="Aside" />;
-    const form = <Form title={title} message={message} primaryButton={primaryButton} secondaryButton={secondaryButton} aside={aside}><Input label={<Label size="large" value="Large label" />} element={<TextBox name="Name" value="Textbox" />} /><br /></Form>;
-    const tab = <Tab><Input label={<Label size="large" value="Large label" />} element={<TextBox name="Name" value="Textbox" />} /><br /><Input label={<Label size="large" value="Large label" />} element={<TextBox name="Name" value="Textbox" />} /><br /></Tab>;
+    const message = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed iaculis, risus scelerisque ornare cursus, magna mi viverra ipsum, sit amet vestibulum leo velit condimentum lectus. Fusce id dignissim dui. Suspendisse et metus in purus vulputate lacinia ut at nisl. Nullam et quam feugiat, fermentum turpis in, dictum turpis. Aliquam eget tempor orci. Nulla vitae nisi ultrices, mattis sapien ac, egestas libero. Integer turpis nisl, luctus id tellus a, cursus tempus lacus. Cras eleifend ipsum ut mauris lobortis, nec vulputate risus elementum.';
+    const values = new Map<string, string>();
+    values.set('1', 'Lorem ipsum dolor sit amet');
+    values.set('2', 'Consectetur adipiscing elit');
+    values.set('3', 'Sed iaculis, risus scelerisque ornare cursus');
+
+    const submitHandler = (event: any) =>
+    {
+        event.preventDefault();
+
+        console.log(event.target.fullName.value);
+    };
 
     return (
-        <section>
-            <h1>Amazing design system!</h1>
-            <h2>Home</h2>
-            <Home mainTop={<h1>Top section</h1>} mainBottom={form} sidebarTop={<h1>Top section</h1>} sidebarBottom={<h1>Bottom section</h1>} />
-        </section>
+        <Panel>
+            <Title value="Dit is de titel" />
+            <Message value={message} />
+            <Panel type="error"><Message value="Dit is een foutmelding" /></Panel>
+            <Panel type="warning"><Message value="Dit is een waarschuwing" /></Panel>
+            <Panel type="alert"><Message value="Dit is een opletten" /></Panel>
+            <Panel type="success"><Message value="Dit is een succes" /></Panel>
+            <Form submitHandler={submitHandler}>
+                <Input
+                    label={<Label value='Wat is je volledige naam?' />}
+                    element={<TextBox name="fullName" placeholder='Full name' />}
+                />
+                <Input
+                    label={<Label value='Schrijf hier je levensverhaal' />}
+                    element={<Textarea name="lifeStory" placeholder='Life story' />}
+                />
+                <Input
+                    label={<Label value='Selecteer hier je favo lipsum' />}
+                    element={<Select name="favorite" values={values} />}
+                />
+                <Button type='disabled' text='Doet het niet' />
+                <Button type='secondary' text='Cancel' />
+                <Button type='primary' text='Primair' />
+                <Button type='submit' text='Submit' />
+            </Form>
+        </Panel >
     );
 }

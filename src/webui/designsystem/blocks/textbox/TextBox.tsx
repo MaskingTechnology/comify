@@ -12,5 +12,5 @@ export type TextBoxProps = {
 
 export default function TextBox(props: TextBoxProps)
 {
-    return <input className='ds-textbox' type='text' placeholder={props.placeholder} defaultValue={props.value} onChange={props.changeHandler} />;
+    return <input className='ds-textbox' type='text' name={props.name} placeholder={props.placeholder} defaultValue={props.value} onChange={props.changeHandler} />;
 }

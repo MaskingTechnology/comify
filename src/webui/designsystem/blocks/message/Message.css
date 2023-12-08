@@ -1,6 +1,7 @@
 .ds-message
 {
-    --margin: 0.2em 0;
+    --margin: 0 0 1.2em 0;
+    --line-height: 1.5em;
 
     --font-size-large: 1.5em;
     --font-size-medium: 1em;
@@ -10,6 +11,7 @@
 .ds-message
 {
     margin: var(--margin);
+    line-height: var(--line-height);
 }
 
 .ds-message.ds-message-size-large
