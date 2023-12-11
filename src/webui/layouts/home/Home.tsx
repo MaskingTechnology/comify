@@ -13,15 +13,14 @@ export type HomeProps = {
 export function Home(props: HomeProps)
 {
     return (
-        <div className='ds-home'>
-            <div className='ds-home ds-home-main'>
-                <div className='ds-home ds-home-main ds-home-main-top'>{props.mainTop}</div>
-                <div className='ds-home ds-home-main ds-home-main-bottom'>{props.mainBottom}</div>
-                <div>Test content</div>
+        <div className='home'>
+            <div className='home-main'>
+                <div className='home-main-top'>{props.mainTop}</div>
+                <div className='home-main-bottom'>{props.mainBottom}</div>
             </div>
-            <div className='ds-home ds-home-sidebar'>
-                <div className='ds-home ds-home-main ds-home-sidebar-top'>{props.sidebarTop}</div>
-                <div className='ds-home ds-home-main ds-home-sidebar-bottom'>{props.sidebarBottom}</div>
+            <div className='home-sidebar'>
+                <div className='home-sidebar-top'>{props.sidebarTop}</div>
+                <div className='home-sidebar-bottom'>{props.sidebarBottom}</div>
             </div>
         </div>
     );
