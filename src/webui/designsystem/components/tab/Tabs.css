@@ -1,4 +1,17 @@
-.ds-tab
+.ds-tabs
 {
-    display: block;
+    width: 80%;
+    height: auto;
+    min-height: 400px;
+    background: #053742;
+    margin: 3.5rem auto 1.5rem;
+    padding: 2rem 1rem;
+    color: #E8F0F2;
+    border-radius: 2rem;
+
+    @media (max-width: 769px)
+    {
+        padding: 2rem 0;
+    }
+
 }
