@@ -1,0 +1,56 @@
+.ds-tab
+{
+    --margin: 0;
+    --padding-nav-item: 0.5em 1em;
+
+    --foreground-color: var(--color-foreground);
+    --background-color: color-mix(in srgb, black 10%, var(--color-secondary-background));
+    --border-color: var(--color-border);
+    --border-width: 5px;
+    --border-style: solid;
+
+    --font-size: 1.5em;
+}
+
+.ds-tab
+{
+    margin: var(--margin);
+}
+
+.ds-tab-nav
+{
+    display: flex;
+    justify-content: center;
+    color: var(--foreground-color);
+    font-size: var(--font-size);
+}
+
+.ds-tab-nav-item
+{
+    cursor: pointer;
+    padding: var(--padding-nav-item);
+    width: 100%;
+    text-align: center;
+
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: var(--border-width);
+    border-color: var(--border-color);
+    border-style: var(--border-style);
+}
+
+.ds-tab-nav-item:hover
+{
+    background: var(--background-color);
+}
+
+.ds-tab-nav-item.active
+{
+    font-weight: var(--font-weight-bold);
+}
+
+.ds-tab-nav-item.inactive
+{
+    font-weight: var(--font-weight-light);
+}

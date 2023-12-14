@@ -5,6 +5,7 @@ import './Panel.css';
 
 export type PanelProps = {
     type?: 'normal' | 'alert' | 'warning' | 'success' | 'error';
+    title?: string;
     children?: React.ReactNode;
 };
 
