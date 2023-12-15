@@ -6,6 +6,11 @@ export default class MemoryFS implements FileStorage
 {
     #files?: Map<string, Buffer>;
 
+    get connected()
+    {
+        return this.#files !== undefined;
+    }
+
     async connect(): Promise<void>
     {
         this.#files = new Map();

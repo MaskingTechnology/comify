@@ -1,6 +1,9 @@
 
-import FileStorage from '../filestorage/module';
+import fileStorage from '../filestorage/module';
 
-await FileStorage.disconnect();
+if (fileStorage.connected)
+{
+    await fileStorage.disconnect();
+}
 
 console.log('Node teardown complete');

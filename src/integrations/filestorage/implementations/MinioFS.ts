@@ -10,6 +10,11 @@ export default class MinioFS implements FileStorage
 {
     #client?: Client;
 
+    get connected()
+    {
+        return this.#client !== undefined;
+    }
+
     async connect(configuration: ClientOptions): Promise<void>
     {
         this.#client = new Client(configuration);
