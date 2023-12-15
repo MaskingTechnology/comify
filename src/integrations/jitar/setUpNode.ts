@@ -1,6 +1,6 @@
 
-import FileStorage from '../filestorage/module';
+import fileStorage from '../filestorage/module';
 
-await FileStorage.connect();
+await fileStorage.connect();
 
 console.log('Node setup complete');
