@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import './Selection.css';
 
 export type SelectionProps = {
-    defaultText: string;
+    defaultText?: string;
     optionsList: SelectionOptions[];
 };
 
@@ -15,31 +15,30 @@ export type SelectionOptions = {
 
 export default function Selection(props: SelectionProps)
 {
-    const [showOptionsList, setShowOptionsList] = useState(false);
-    const [defaultSelectText, setDefaultSelectText] = useState(props.defaultText);
-
     const optionsList = props.optionsList;
+    const defaultText = props.defaultText ?? optionsList[0].name;
+
+    const [showOptionsList, setShowOptionsList] = useState(false);
+    const [defaultSelectText, setDefaultSelectText] = useState(defaultText);
 
     const handleClickOutside = (event: React.MouseEvent) =>
     {
-        console.log('handleClickOutside');
-
         if (event === undefined)
         {
-            console.log('event undefined');
-
             return;
         }
 
+        event.preventDefault();
+
         const target = event.target as HTMLElement;
 
-        if (!target.classList.contains("custom-select-option") && !target.classList.contains("selected-text"))
+        if (!target.classList.contains("ds-selection-option") && !target.classList.contains("ds-selection-text"))
         {
             setShowOptionsList(false);
         }
     };
 
-    const handleListDisplay = () =>
+    const toggleListDisplay = () =>
     {
         setShowOptionsList(!showOptionsList);
     };
@@ -47,8 +46,7 @@ export default function Selection(props: SelectionProps)
     const handleOptionClick = (event: React.MouseEvent) =>
     {
         const target = event.target as HTMLElement;
-        const selectedText = target.getAttribute("data-name") ?? props.defaultText;
-        console.log('selectedText', selectedText);
+        const selectedText = target.getAttribute("data-name") ?? defaultText;
 
         setDefaultSelectText(selectedText);
         setShowOptionsList(false);
@@ -56,26 +54,22 @@ export default function Selection(props: SelectionProps)
 
     useEffect(() =>
     {
-        console.log('mount');
         document.addEventListener("mousedown", () => handleClickOutside);
-
-        console.log('use effect', defaultSelectText);
 
         setDefaultSelectText(defaultSelectText);
 
         return () =>
         {
-            console.log('unmount');
             document.removeEventListener("mousedown", () => handleClickOutside);
         };
-    }, [defaultSelectText]);
+    }, [defaultSelectText, handleClickOutside]);
 
 
     return (
         <div className="ds-selection">
             <div
                 className={showOptionsList ? "ds-selection-text active" : "ds-selection-text"}
-                onClick={handleListDisplay}
+                onClick={toggleListDisplay}
             >
                 {defaultSelectText}
             </div>

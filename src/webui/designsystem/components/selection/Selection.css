@@ -1,22 +1,21 @@
 .ds-selection
 {
-    --background-color-selection: var(--color-secondary-background);
+    --background-color-selection: var(--color-background);
+    --color-selection-arrow: var(--color-alert-foreground);
 }
 
 .ds-selection
 {
     display: inline-block;
     min-width: fit-content;
-    text-align: center;
     position: relative;
+    cursor: pointer;
 }
-
 
 .ds-selection-text
 {
     background-color: var(--background-color-selection);
     padding: 0.8em 2em 0.8em 0.8em;
-    border-bottom: 1px solid var(--color-border);
 }
 
 .ds-selection-text::after
@@ -24,41 +23,34 @@
     content: "";
     position: absolute;
     right: 10px;
-    top: 16px;
+    top: 1.3em;
     border: 7px solid transparent;
-    border-color: #e70909 transparent transparent transparent;
+    border-color: var(--color-selection-arrow) transparent transparent transparent;
 }
 
 .ds-selection-text.active::after
 {
-    top: 8px;
-    border-color: transparent transparent #fff transparent;
-}
-
-ul
-{
-    margin: 0;
-    padding: 0;
-    text-align: center;
+    top: 0.9em;
+    border-color: transparent transparent var(--color-selection-arrow) transparent;
 }
 
 .ds-selection-options
 {
     position: absolute;
-    width: 100%;
+    min-width: fit-content;
+    white-space: nowrap;
+    text-align: left;
+    border: 1px solid var(--color-selection-arrow);
 }
 
 .ds-selection-option
 {
-    list-style-type: none;
-    padding: 6px 20px;
-    background: #47eded;
-    border-bottom: 1px solid #37b0b0;
+    padding: 0.8em 2em 0.8em 0.8em;
+    background: var(--color-background);
     cursor: pointer;
 }
 
 .ds-selection-option:hover
 {
-    background-color: #32a6a6;
-    color: #ffffff;
+    background-color: color-mix(in srgb, black 5%, var(--background-color-selection));
 }
