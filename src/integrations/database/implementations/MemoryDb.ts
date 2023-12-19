@@ -27,7 +27,7 @@ export default class MemoryDb implements Database
     #memory?: Map<string, RecordData[]>;
     recId: number = 0;
 
-
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async connect(connectionString: string, databaseName: string): Promise<void>
     {
         this.#memory = new Map(); 
@@ -48,7 +48,7 @@ export default class MemoryDb implements Database
         return id; 
     }
 
-    async readRecord(type: string, id: string, fields?: string[] | undefined): Promise<RecordData | undefined>
+    async readRecord(type: string, id: string, fields?: string[] | undefined): Promise<RecordData>
     {
         const collection = this.#getCollection(type);
         const record = collection.find(object => object.id === id);
@@ -71,7 +71,7 @@ export default class MemoryDb implements Database
             throw new RecordNotUpdated();
         }
         
-        for (const key in Object.keys(data))
+        for (const key of Object.keys(data))
         {
             record[key] = data[key];
         }
@@ -88,7 +88,6 @@ export default class MemoryDb implements Database
         }
 
         collection.splice(index, 1);
-        
     }
 
     async findRecord(type: string, query: QueryStatement, fields?: string[] | undefined, sort?: RecordSort | undefined): Promise<RecordData | undefined>
@@ -104,10 +103,10 @@ export default class MemoryDb implements Database
         const filterFunction = this.#buildFilterFunction(query);
         const result = collection.filter(filterFunction);
 
-        const limitedResult = this.#limitNumberOfRecords(result, limit);
-
-        const sortedResult = this.#sortRecords(limitedResult, sort);
-        return result.map(records => this.#buildRecordData(records, fields));
+        const sortedResult = this.#sortRecords(result, sort);
+        const limitedResult = this.#limitNumberOfRecords(sortedResult, offset, limit);
+        
+        return limitedResult.map(records => this.#buildRecordData(records, fields));
     }
 
     #limitNumberOfRecords(result: RecordData[], offset?: number, limit?: number): RecordData[]
@@ -165,7 +164,7 @@ export default class MemoryDb implements Database
         const multiStatements = query as QueryMultiExpressionStatement;
         const singleStatements = query as QuerySingleExpressionStatement;
 
-        let statementCodes = [];
+        const statementCodes = [];
 
         for (const key in multiStatements)
         {
@@ -191,12 +190,14 @@ export default class MemoryDb implements Database
             statementCodes.push(statementCode);
         }
 
-        return `(${statementCodes.join(` ${codeOperator} `)})`;
+        const code = statementCodes.join(` ${codeOperator} `);
+
+        return `(${code})`;
     }
 
     #buildExpressionCode(key:string, expression: QueryExpression)
     {
-        let expressionCodes = [];
+        const expressionCodes = [];
 
         for (const operator in expression)
         {
@@ -229,9 +230,8 @@ export default class MemoryDb implements Database
 
     #createId(): string
     {
-        const newId = (this.recId++).toString().padStart(8,'0');
 
-        return newId;
+        return (this.recId++).toString().padStart(8,'0');
     }
 
     #getCollection(type: string): RecordData[]
