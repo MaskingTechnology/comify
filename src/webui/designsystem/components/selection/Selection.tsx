@@ -21,23 +21,6 @@ export default function Selection(props: SelectionProps)
     const [showOptionsList, setShowOptionsList] = useState(false);
     const [defaultSelectText, setDefaultSelectText] = useState(defaultText);
 
-    const handleClickOutside = (event: React.MouseEvent) =>
-    {
-        if (event === undefined)
-        {
-            return;
-        }
-
-        event.preventDefault();
-
-        const target = event.target as HTMLElement;
-
-        if (!target.classList.contains("ds-selection-option") && !target.classList.contains("ds-selection-text"))
-        {
-            setShowOptionsList(false);
-        }
-    };
-
     const toggleListDisplay = () =>
     {
         setShowOptionsList(!showOptionsList);
@@ -51,19 +34,6 @@ export default function Selection(props: SelectionProps)
         setDefaultSelectText(selectedText);
         setShowOptionsList(false);
     };
-
-    useEffect(() =>
-    {
-        document.addEventListener("mousedown", () => handleClickOutside);
-
-        setDefaultSelectText(defaultSelectText);
-
-        return () =>
-        {
-            document.removeEventListener("mousedown", () => handleClickOutside);
-        };
-    }, [defaultSelectText, handleClickOutside]);
-
 
     return (
         <div className="ds-selection">

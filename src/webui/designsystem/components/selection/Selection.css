@@ -15,7 +15,7 @@
 .ds-selection-text
 {
     background-color: var(--background-color-selection);
-    padding: 0.8em 2em 0.8em 0.8em;
+    padding: 0.8em 2em 0.8em 0em;
 }
 
 .ds-selection-text::after
@@ -23,7 +23,7 @@
     content: "";
     position: absolute;
     right: 10px;
-    top: 1.3em;
+    top: 1em;
     border: 7px solid transparent;
     border-color: var(--color-selection-arrow) transparent transparent transparent;
 }
