@@ -3,10 +3,10 @@ import React from 'react';
 
 import './Input.css';
 
-import { LabelProps } from '../label/Label.js';
-import { TextBoxProps } from '../textbox/TextBox.js';
-import { TextareaProps } from '../textarea/TextArea.js';
-import { SelectProps } from '../select/Select.js';
+import { LabelProps } from '../label/Label';
+import { TextBoxProps } from '../textbox/TextBox';
+import { TextareaProps } from '../textarea/TextArea';
+import { SelectProps } from '../select/Select';
 
 export type InputProps = {
     label: React.ReactElement<LabelProps>;
