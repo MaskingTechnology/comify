@@ -3,10 +3,10 @@ import React from 'react';
 
 import Avatar from './designsystem/elements/avatar/Avatar';
 import Button from './designsystem/elements/button/Button';
-import Column from './designsystem/elements/column/Column';
+// import Column from './designsystem/elements/column/Column';
 import Form from './designsystem/elements/form/Form';
 import Icon from './designsystem/elements/icon/Icon';
-import Image from './designsystem/elements/image/Image';
+// import Image from './designsystem/elements/image/Image';
 import Input from './designsystem/elements/input/Input';
 import Label from './designsystem/elements/label/Label';
 import Link from './designsystem/elements/link/Link';
