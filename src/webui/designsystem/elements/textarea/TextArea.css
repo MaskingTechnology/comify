@@ -1,0 +1,33 @@
+.ds-textarea
+{
+    --margin: 0;
+    --padding: 0.8em;
+
+    --border-style: solid;
+    --border-color: var(--color-border);
+    --border-width: var(--width-border);
+}
+
+.ds-textarea
+{
+    margin: var(--margin);
+    padding: var(--padding);
+
+    border-style: var(--border-style);
+    border-width: var(--border-width);
+    border-color: var(--border-color);
+
+    background-color: var(--color-input-background);
+    font-family: inherit;
+    font-size: inherit;
+
+    box-sizing: border-box;
+    resize: vertical;
+    width: 100%;
+    height: 6em;
+}
+
+.ds-textarea:focus-visible
+{
+    outline-color: color-mix(in srgb, black 10%, var(--border-color));
+}

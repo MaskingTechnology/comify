@@ -1,0 +1,30 @@
+.ds-paragraph
+{
+    --margin: 0 0 1.2em 0;
+    --line-height: 1.5em;
+
+    --font-size-large: 1.5em;
+    --font-size-medium: 1em;
+    --font-size-small: 0.75em;
+}
+
+.ds-paragraph
+{
+    margin: var(--margin);
+    line-height: var(--line-height);
+}
+
+.ds-paragraph.ds-paragraph-size-large
+{
+    font-size: var(--font-size-large);
+}
+
+.ds-paragraph.ds-paragraph-size-medium
+{
+    font-size: var(--font-size-medium);
+}
+
+.ds-paragraph.ds-paragraph-size-small
+{
+    font-size: var(--font-size-small);
+}

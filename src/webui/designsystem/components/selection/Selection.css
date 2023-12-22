@@ -1,5 +1,6 @@
 .ds-selection
 {
+    /* No margin? */
     --background-color-selection: var(--color-background);
     --color-selection-arrow: var(--color-alert-foreground);
 }
@@ -20,6 +21,7 @@
 
 .ds-selection-text::after
 {
+    /* No px */
     content: "";
     position: absolute;
     right: 10px;

@@ -1,5 +1,6 @@
 .ds-tab
 {
+    /* No px */
     --margin: 0;
     --padding-nav-item: 0.5em 1em;
 
@@ -35,11 +36,13 @@
 
 .ds-tab-nav-item:hover
 {
+    /* Why is the background color used for the hover? */
     background: var(--background-color);
 }
 
 .ds-tab-nav-item.active
 {
+    /* Should this be more configurable? */
     font-weight: var(--font-weight-bold);
 }
 

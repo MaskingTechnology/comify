@@ -1,0 +1,254 @@
+.ds-icon
+{
+    --icon-attachment: '\1F4CE';
+
+    --icon-bookmark: '\1F516';
+    --icon-box: '\2610';
+    --icon-box-checked: '\2611';
+    --icon-box-crossed: '\2612';
+
+    --icon-calendar: '\1F4C5';
+    --icon-caution: '\2621';
+    --icon-check: '\2713';
+    --icon-clock: '\1F554';
+    --icon-close: '\2715';
+    --icon-cloud: '\2601';
+    --icon-comment: '\1F4AC';
+
+    --icon-diamond: '\2666';
+
+    --icon-eye: '\1F441';
+
+    --icon-flag: '\2691';
+
+    --icon-heart: '\2665';
+    --icon-home: '\2302';
+
+    --icon-info: '\2139';
+
+    --icon-lock: '\1F512';
+
+    --icon-mail: '\2709';
+    --icon-music: '\266B';
+
+    --icon-phone: '\260E';
+    --icon-piece: '\262E';
+
+    --icon-question: '\2753';
+
+    --icon-rain: '\26C6';
+    --icon-recycle: '\267B';
+
+    --icon-search: '\1F50D';
+    --icon-settings: '\2699';
+    --icon-star: '\2605';
+    --icon-sun: '\2600';
+
+    --icon-tag: '\1F3F7';
+    --icon-trash: '\1F5D1';
+
+    --icon-umbrella: '\2602';
+    --icon-unlock: '\1F513';
+    --icon-user: '\1F464';
+
+    --icon-video: '\1F3AC';
+
+    --icon-warning: '\26A0';
+
+    --icon-yinyang: '\262F';
+}
+
+.ds-icon.ds-icon-attachment:before
+{
+    content: var(--icon-attachment);
+}
+
+.ds-icon.ds-icon-bookmark:before
+{
+    content: var(--icon-bookmark);
+}
+
+.ds-icon.ds-icon-box:before
+{
+    content: var(--icon-box);
+}
+
+.ds-icon.ds-icon-box-checked:before
+{
+    content: var(--icon-box-checked);
+}
+
+.ds-icon.ds-icon-box-crossed:before
+{
+    content: var(--icon-box-crossed);
+}
+
+.ds-icon.ds-icon-calendar:before
+{
+    content: var(--icon-calendar);
+}
+
+.ds-icon.ds-icon-caution:before
+{
+    content: var(--icon-caution);
+}
+
+.ds-icon.ds-icon-check:before
+{
+    content: var(--icon-check);
+}
+
+.ds-icon.ds-icon-clock:before
+{
+    content: var(--icon-clock);
+}
+
+.ds-icon.ds-icon-close:before
+{
+    content: var(--icon-close);
+}
+
+.ds-icon.ds-icon-cloud:before
+{
+    content: var(--icon-cloud);
+}
+
+.ds-icon.ds-icon-comment:before
+{
+    content: var(--icon-comment);
+}
+
+.ds-icon.ds-icon-diamond:before
+{
+    content: var(--icon-diamond);
+}
+
+.ds-icon.ds-icon-eye:before
+{
+    content: var(--icon-eye);
+}
+
+.ds-icon.ds-icon-flag:before
+{
+    content: var(--icon-flag);
+}
+
+.ds-icon.ds-icon-heart:before
+{
+    content: var(--icon-heart);
+}
+
+.ds-icon.ds-icon-home:before
+{
+    content: var(--icon-home);
+}
+
+.ds-icon.ds-icon-info:before
+{
+    content: var(--icon-info);
+}
+
+.ds-icon.ds-icon-lock:before
+{
+    content: var(--icon-lock);
+}
+
+.ds-icon.ds-icon-mail:before
+{
+    content: var(--icon-mail);
+}
+
+.ds-icon.ds-icon-music:before
+{
+    content: var(--icon-music);
+}
+
+.ds-icon.ds-icon-phone:before
+{
+    content: var(--icon-phone);
+}
+
+.ds-icon.ds-icon-piece:before
+{
+    content: var(--icon-piece);
+}
+
+.ds-icon.ds-icon-question:before
+{
+    content: var(--icon-question);
+}
+
+.ds-icon.ds-icon-rain:before
+{
+    content: var(--icon-rain);
+}
+
+.ds-icon.ds-icon-recycle:before
+{
+    content: var(--icon-recycle);
+}
+
+.ds-icon.ds-icon-search:before
+{
+    content: var(--icon-search);
+}
+
+.ds-icon.ds-icon-settings:before
+{
+    content: var(--icon-settings);
+}
+
+.ds-icon.ds-icon-star:before
+{
+    content: var(--icon-star);
+}
+
+.ds-icon.ds-icon-sun:before
+{
+    content: var(--icon-sun);
+}
+
+.ds-icon.ds-icon-tag:before
+{
+    content: var(--icon-tag);
+}
+
+.ds-icon.ds-icon-trash:before
+{
+    content: var(--icon-trash);
+}
+
+.ds-icon.ds-icon-trash:before
+{
+    content: var(--icon-trash);
+}
+
+.ds-icon.ds-icon-umbrella:before
+{
+    content: var(--icon-umbrella);
+}
+
+.ds-icon.ds-icon-unlock:before
+{
+    content: var(--icon-unlock);
+}
+
+.ds-icon.ds-icon-user:before
+{
+    content: var(--icon-user);
+}
+
+.ds-icon.ds-icon-video:before
+{
+    content: var(--icon-video);
+}
+
+.ds-icon.ds-icon-warning:before
+{
+    content: var(--icon-warning);
+}
+
+.ds-icon.ds-icon-yinyang:before
+{
+    content: var(--icon-yinyang);
+}

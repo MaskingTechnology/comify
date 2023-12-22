@@ -1,0 +1,9 @@
+.ds-form
+{
+    --margin: 0 0 1.2em 0;
+}
+
+.ds-form
+{
+    margin: var(--margin);
+}

@@ -1,0 +1,80 @@
+.ds-button
+{
+    --margin: 0em;
+    --padding: 0.9em 2.2em;
+
+    --border-radius: 2em;
+    --border-style: solid;
+    --border-color: var(--color-border);
+    --border-width: var(--width-border);
+
+    --primary-background-color: var(--color-primary-background);
+    --primary-foreground-color: var(--color-primary-foreground);
+    --secondary-background-color: var(--color-secondary-background);
+    --secondary-foreground-color: var(--color-secondary-foreground);
+    --disabled-background-color: transparent;
+}
+
+.ds-button
+{
+    border-radius: var(--border-radius);
+    border: 0;
+
+    cursor: pointer;
+    margin: var(--margin);
+    padding: var(--padding);
+    text-align: center;
+    width: fit-content;
+
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.ds-button.ds-button-primary,
+.ds-button.ds-button-submit
+{
+    background-color: var(--primary-background-color);
+    color: var(--primary-foreground-color);
+    font-weight: var(--font-weight-bold);
+}
+
+.ds-button.ds-button-primary:hover,
+.ds-button.ds-button-submit:hover
+{
+    background-color: color-mix(in srgb, black 10%, var(--primary-background-color));
+}
+
+.ds-button.ds-button-primary:focus
+{
+    background-color: color-mix(in srgb, black 20%, var(--primary-background-color));
+}
+
+.ds-button.ds-button-secondary
+{
+    background-color: var(--secondary-background-color);
+    color: var(--secondary-foreground-color);
+    font-weight: var(--font-weight-normal);
+}
+
+.ds-button.ds-button-secondary:hover
+{
+    background-color: color-mix(in srgb, black 10%, var(--secondary-background-color));
+}
+
+.ds-button.ds-button-secondary:focus
+{
+    background-color: color-mix(in srgb, black 20%, var(--secondary-background-color));
+}
+
+.ds-button.ds-button-disabled
+{
+    background-color: var(--disabled-background-color);
+
+    border-color: var(--border-color);
+    border-style: var(--border-style);
+    border-width: var(--border-width);
+
+    font-weight: var(--font-weight-light);
+
+    cursor: default;
+}

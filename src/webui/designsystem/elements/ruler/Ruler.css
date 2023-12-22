@@ -1,0 +1,26 @@
+.ds-ruler
+{
+    --margin-horizontal: 0 0 1.2em 0;
+    --margin-vertical: 0 1.2em 0 0;
+    --border-width: 0.3em;
+    --color: var(--color-border);
+}
+
+.ds-ruler
+{
+    background-color: var(--color);
+}
+
+.ds-ruler.ds-ruler-horizontal
+{
+    width: 100%;
+    height: var(--border-width);
+    margin: var(--margin-horizontal);
+}
+
+.ds-ruler.ds-ruler-vertical
+{
+    height: 100%;
+    width: var(--border-width);
+    margin: var(--margin-vertical);
+}

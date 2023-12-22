@@ -7,6 +7,7 @@ export type TabsProps = {
     children: React.ReactElement | React.ReactElement[];
 };
 
+// Why is this a function, and does this nog exist in the selection?
 function constructNavigation(elements: React.ReactElement[], selected: number, setSelected: (index: number) => void)
 {
     return elements.map((element, index) =>
@@ -16,7 +17,7 @@ function constructNavigation(elements: React.ReactElement[], selected: number, s
             setSelected(index);
         };
 
-        const style = index === selected ? "active" : "inactive";
+        const style = index === selected ? "active" : "inactive"; // Single quotes
 
         return (
             <div

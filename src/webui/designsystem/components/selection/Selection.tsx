@@ -5,9 +5,12 @@ import './Selection.css';
 
 export type SelectionProps = {
     defaultText?: string;
-    optionsList: SelectionOptions[];
+    optionsList: SelectionOptions[]; // optionList OR options
+    // How to handle a selection change from outside this component?
 };
 
+/* SelectionOption (single) */
+/* Should be above the props */
 export type SelectionOptions = {
     id: number;
     name: string;
