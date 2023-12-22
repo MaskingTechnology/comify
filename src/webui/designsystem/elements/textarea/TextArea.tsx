@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import './Textarea.css';
+import './TextArea.css';
 
 export type TextareaProps = {
     name: string;
@@ -20,6 +20,6 @@ export default function Textarea(props: TextareaProps)
         name={props.name}
         placeholder={props.placeholder}
         defaultValue={props.value}
-        onChange={props.changeHandler} >
+        onChange={props.changeHandler}>
     </textarea>;
 }
