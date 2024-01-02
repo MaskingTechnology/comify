@@ -11,7 +11,7 @@ export type TextareaProps = {
     changeHandler?: React.ChangeEventHandler<HTMLTextAreaElement>;
 };
 
-export default function Textarea(props: TextareaProps)
+export default function TextArea(props: TextareaProps)
 {
     const size = props.size ?? 'medium'; // Unused in CSS
 

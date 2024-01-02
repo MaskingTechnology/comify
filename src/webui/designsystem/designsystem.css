@@ -11,6 +11,7 @@
     --font-weight-bold: 700;
 
     --color-background: #ffffff;
+    --color-background-hover: #efefef;
     --color-foreground: #000000;
     --color-border: #b7b7b7;
 
@@ -34,6 +35,8 @@
 
     --color-success-background: #efefef;
     --color-success-foreground: #666666;
+
+    --margin-container: 0 0 1.2em 0;
 
     --width-border: 0.05em;
 }

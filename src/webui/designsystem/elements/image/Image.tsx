@@ -6,12 +6,20 @@ import './Image.css';
 export type ImageProps = {
     size?: 'large' | 'medium' | 'small';
     source: string;
-    /* Needs an alt and title? */
+    title?: string;
+    alt?: string;
+    width?: number;
+    height?: number;
 };
 
 export default function Image(props: ImageProps)
 {
-    const size = props.size ?? 'medium';
-
-    return <img className={'ds-image ds-image-size-' + size} src={props.source} />;
+    return <img
+        className={'ds-image ds-image-size-' + props.size}
+        title={props.title}
+        alt={props.alt}
+        width={props.width}
+        height={props.height}
+        src={props.source}
+    />;
 }

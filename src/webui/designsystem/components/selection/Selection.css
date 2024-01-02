@@ -1,8 +1,10 @@
 .ds-selection
 {
-    /* No margin? */
-    --background-color-selection: var(--color-background);
-    --color-selection-arrow: var(--color-alert-foreground);
+    --background-color: transparent;
+    --background-color-options: var(--color-background);
+    --background-color-options-hover: var(--color-background-hover);
+    --arrow-color: var(--color-alert-foreground);
+    --border-color: var(--color-border);
 }
 
 .ds-selection
@@ -15,25 +17,24 @@
 
 .ds-selection-text
 {
-    background-color: var(--background-color-selection);
+    background-color: var(--background-color);
     padding: 0.8em 2em 0.8em 0em;
 }
 
-.ds-selection-text::after
+.ds-selection-text:after
 {
-    /* No px */
     content: "";
     position: absolute;
-    right: 10px;
+    right: 0.7em;
     top: 1em;
-    border: 7px solid transparent;
-    border-color: var(--color-selection-arrow) transparent transparent transparent;
+    border: 0.45em solid transparent;
+    border-color: var(--arrow-color) transparent transparent transparent;
 }
 
-.ds-selection-text.active::after
+.ds-selection-text.ds-selection-active:after
 {
     top: 0.9em;
-    border-color: transparent transparent var(--color-selection-arrow) transparent;
+    border-color: transparent transparent var(--arrow-color) transparent;
 }
 
 .ds-selection-options
@@ -42,7 +43,8 @@
     min-width: fit-content;
     white-space: nowrap;
     text-align: left;
-    border: 1px solid var(--color-selection-arrow);
+    background-color: var(--background-color-options);
+    border: 0.1em solid var(--border-color);
 }
 
 .ds-selection-option
@@ -54,5 +56,5 @@
 
 .ds-selection-option:hover
 {
-    background-color: color-mix(in srgb, black 5%, var(--background-color-selection));
+    background-color: var(--background-color-options-hover);
 }

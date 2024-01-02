@@ -4,63 +4,62 @@ import React, { useState } from 'react';
 import './Selection.css';
 
 export type SelectionProps = {
-    defaultText?: string;
-    optionsList: SelectionOptions[]; // optionList OR options
-    // How to handle a selection change from outside this component?
-};
-
-/* SelectionOption (single) */
-/* Should be above the props */
-export type SelectionOptions = {
-    id: number;
-    name: string;
+    options: Map<string, string>;
+    selected?: string; // Key of the selected option
+    changeHandler?: (oldKey: string, newKey: string) => void;
 };
 
 export default function Selection(props: SelectionProps)
 {
-    const optionsList = props.optionsList;
-    const defaultText = props.defaultText ?? optionsList[0].name;
+    const options = props.options;
 
-    const [showOptionsList, setShowOptionsList] = useState(false);
-    const [defaultSelectText, setDefaultSelectText] = useState(defaultText);
+    const defaultKey = props.selected ?? [...options.keys()][0];
+    const defaultText = options.get(defaultKey) ?? '';
 
-    const toggleListDisplay = () =>
+    const [selectedKey, setSelectedKey] = useState(defaultKey);
+    const [selectedText, setSelectedText] = useState(defaultText);
+    const [showOptions, setShowOptions] = useState(false);
+
+    const toggleOptions = () =>
     {
-        setShowOptionsList(!showOptionsList);
+        setShowOptions(!showOptions);
     };
 
     const handleOptionClick = (event: React.MouseEvent) =>
     {
         const target = event.target as HTMLElement;
-        const selectedText = target.getAttribute("data-name") ?? defaultText;
 
-        setDefaultSelectText(selectedText);
-        setShowOptionsList(false);
+        const oldKey = selectedKey;
+        const newKey = target.getAttribute('data-key') ?? defaultKey;
+        const newText = options.get(newKey) ?? defaultText;
+
+        setSelectedKey(newKey);
+        setSelectedText(newText);
+        setShowOptions(false);
+
+        if (props.changeHandler)
+        {
+            props.changeHandler(oldKey, newKey);
+        }
     };
 
     return (
-        <div className="ds-selection">
-            <div
-                className={showOptionsList ? "ds-selection-text active" : "ds-selection-text"}
-                onClick={toggleListDisplay}
-            >
-                {defaultSelectText}
+        <div className='ds-selection'>
+            <div className={showOptions ? 'ds-selection-text ds-selection-active' : 'ds-selection-text'} onClick={toggleOptions}>
+                {selectedText}
             </div>
-            {showOptionsList && (
-                <div className="ds-selection-options">
-                    {optionsList.map(option =>
+            {showOptions && (
+                <div className='ds-selection-options'>
                     {
-                        return (
-                            <div
-                                className="ds-selection-option"
-                                data-name={option.name}
-                                key={option.id}
-                                onClick={handleOptionClick}
-                            >
-                                {option.name}
-                            </div>
-                        );
-                    })}
+                        Array.from(props.options).map(([key, value]) =>
+                        {
+                            return (
+                                <div className='ds-selection-option' data-key={key} key={key} onClick={handleOptionClick}>
+                                    {value}
+                                </div>
+                            );
+                        })
+                    }
                 </div>
             )}
         </div>

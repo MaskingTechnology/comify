@@ -1,52 +1,57 @@
-.ds-tab
+.ds-tabs
 {
-    /* No px */
-    --margin: 0;
-    --padding-nav-item: 0.5em 1em;
+    --margin: var(--margin-container);
 
     --foreground-color: var(--color-foreground);
-    --background-color: color-mix(in srgb, black 10%, var(--color-secondary-background));
-    --border-color: var(--color-border);
-    --border-width: 5px;
-    --border-style: solid;
 
-    --font-size: 1.5em;
+    --font-size-nav: 1.1em;
+
+    --background-color-nav-item: transparent;
+    --background-color-nav-item-active: var(--background-color-nav-item);
+    --background-color-nav-item-hover: var(--color-background-hover);
+    --padding-nav-item: 0.5em 1em;
+
+    --margin-separator: 0.2em 0 1em 0;
 }
 
-.ds-tab
+.ds-tabs
 {
+    display: flex;
+    flex-direction: column;
     margin: var(--margin);
 }
 
-.ds-tab-nav
+.ds-tabs-nav
 {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     color: var(--foreground-color);
-    font-size: var(--font-size);
+    font-size: var(--font-size-nav);
 }
 
-.ds-tab-nav-item
+.ds-tabs-nav-item
 {
+    background: var(--background-color-nav-item);
     cursor: pointer;
     padding: var(--padding-nav-item);
     width: 100%;
     text-align: center;
 }
 
-.ds-tab-nav-item:hover
+.ds-tabs-nav-item:hover,
+.ds-tabs-nav-item.active:hover
 {
-    /* Why is the background color used for the hover? */
-    background: var(--background-color);
+    background: var(--background-color-nav-item-hover);
 }
 
-.ds-tab-nav-item.active
+.ds-tabs-nav-item.active
 {
-    /* Should this be more configurable? */
+    background: var(--background-color-nav-item-active);
     font-weight: var(--font-weight-bold);
 }
 
-.ds-tab-nav-item.inactive
+.ds-tabs-separator
 {
-    font-weight: var(--font-weight-light);
+    margin: var(--margin-separator);
 }

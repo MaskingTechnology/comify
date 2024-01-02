@@ -1,54 +1,85 @@
-// Missing empty line
+
 import React from 'react';
 
-import Avatar from './designsystem/elements/avatar/Avatar';
-import Button from './designsystem/elements/button/Button';
-// import Column from './designsystem/elements/column/Column';
-import Form from './designsystem/elements/form/Form';
-import Icon from './designsystem/elements/icon/Icon';
-// import Image from './designsystem/elements/image/Image';
-import Input from './designsystem/elements/input/Input';
-import Label from './designsystem/elements/label/Label';
-import Link from './designsystem/elements/link/Link';
-import Panel from './designsystem/elements/panel/Panel';
-import Paragraph from './designsystem/elements/paragraph/Paragraph';
-import Row from './designsystem/elements/row/Row';
-import Ruler from './designsystem/elements/ruler/Ruler.js';
-import Select from './designsystem/elements/select/Select';
-import Textarea from './designsystem/elements/textarea/TextArea';
-import TextBox from './designsystem/elements/textbox/TextBox';
-import Title from './designsystem/elements/title/Title';
+import
+{
+    Tabs, Tab, Selection,
+    Avatar, Button, Column, Form, Icon, Image, Input, Label, Link, Panel, Paragraph, Row, Ruler, Select, TextArea, TextBox, Title
+} from './designsystem/designsystem';
 
 const lastNameOptions = new Map<string, string>();
 lastNameOptions.set('vanvliet', 'van Vliet');
 lastNameOptions.set('other', 'Other (specify in the description)');
 
+const storyOptions = new Map<string, string>();
+storyOptions.set('lorem', 'Lorem Ipsum');
+storyOptions.set('other', 'Other, not better');
+
+function handleFormSubmit(event: React.FormEvent<HTMLFormElement>)
+{
+    event.preventDefault();
+    console.log('Form submitted');
+}
+
+function handleFormCancel(event: React.MouseEvent<HTMLInputElement, MouseEvent>)
+{
+    event.preventDefault();
+    console.log('Form canceled');
+}
+
+function handleSelectionChange(oldKey: string, newKey: string)
+{
+    console.log('Selection changed to ' + newKey);
+}
+
 export default function App()
 {
     return <>
-        <Panel>
-            <Title>
-                Hello World <Avatar source="https://masking.tech/images/peter.jpg" size="small" />
-            </Title>
-            <Paragraph>
-                This is a beautiful design system made by <Link url="https://masking.tech" target="_blank">Masking Technology</Link>
-            </Paragraph>
-            <Panel type="warning">
-                <Icon type="warning" /> Only fill this form if your first name is Peter
-            </Panel>
-            <Form>
-                <Input label={<Label value="First name" />} element={<TextBox name="firstname" value="Peter" />} />
-                <Input label={<Label value="Last name" />} element={<Select name="lastname" values={lastNameOptions} />} />
-                <Input label={<Label value="Description" />} element={<Textarea name="description" placeholder="Juicy details are accepted..." />} />
-                <Row align="right" gap="small">
-                    <Button type="secondary" text="Cancel" />
-                    <Button type="submit" text="Submit" />
-                </Row>
-            </Form>
-            <Ruler type="horizontal" />
-            <Paragraph size="small">
-                By submitting this form you agree that this form is useless.
-            </Paragraph>
-        </Panel>
+        <Tabs separator={<Ruler type="horizontal" />}>
+            <Tab title="Useless form">
+                <Panel>
+                    <Title>
+                        Hello World <Avatar source="https://masking.tech/images/peter.jpg" size="small" />
+                    </Title>
+                    <Paragraph>
+                        This is a beautiful design system made by <Link url="https://masking.tech" target="_blank">Masking Technology</Link>
+                    </Paragraph>
+                    <Panel type="warning">
+                        <Icon type="warning" /> Only fill this form if your first name is Peter
+                    </Panel>
+                    <Form submitHandler={handleFormSubmit}>
+                        <Input label={<Label value="First name" />} element={<TextBox name="firstname" value="Peter" />} />
+                        <Input label={<Label value="Last name" />} element={<Select name="lastname" options={lastNameOptions} />} />
+                        <Input label={<Label value="Description" />} element={<TextArea name="description" placeholder="Juicy details are accepted..." />} />
+                        <Row align="right" gap="small">
+                            <Button type="secondary" text="Cancel" clickHandler={handleFormCancel} />
+                            <Button type="submit" text="Submit" />
+                        </Row>
+                    </Form>
+                    <Ruler type="horizontal" />
+                    <Paragraph size="small">
+                        By submitting this form you agree that this form is useless.
+                    </Paragraph>
+                </Panel>
+            </Tab>
+            <Tab title="Boring story">
+                <Selection options={storyOptions} changeHandler={handleSelectionChange}></Selection>
+                <Column gap="none" align="center">
+                    <Title>Lorem Ipsum</Title>
+                    <Row gap="large">
+                        <Paragraph>
+                            <b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry.<br />
+                            Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,<br />
+                            when an unknown printer took a galley of type and scrambled it to make a type specimen book.<br />
+                            It has survived not only five centuries, but also the leap into electronic typesetting,<br />
+                            remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset<br />
+                            sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like<br />
+                            Aldus PageMaker including versions of Lorem Ipsum.
+                        </Paragraph>
+                        <Image source="https://masking.tech/images/peter.jpg" width={200} />
+                    </Row>
+                </Column>
+            </Tab>
+        </Tabs>
     </>;
 }

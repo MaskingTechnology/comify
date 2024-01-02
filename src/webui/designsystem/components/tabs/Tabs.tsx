@@ -3,35 +3,24 @@ import React, { useState } from 'react';
 
 import './Tabs.css';
 
-export type TabsProps = {
-    children: React.ReactElement | React.ReactElement[];
+export type TabProps = {
+    title: React.ReactNode;
+    children: React.ReactNode;
 };
 
-// Why is this a function, and does this nog exist in the selection?
-function constructNavigation(elements: React.ReactElement[], selected: number, setSelected: (index: number) => void)
+export function Tab(props: TabProps)
 {
-    return elements.map((element, index) =>
-    {
-        const handleClick = () =>
-        {
-            setSelected(index);
-        };
-
-        const style = index === selected ? "active" : "inactive"; // Single quotes
-
-        return (
-            <div
-                key={index}
-                className={'ds-tab-nav-item ' + style}
-                onClick={handleClick}
-            >
-                {element.props.title}
-            </div>
-        );
-    });
+    return (
+        <div className='ds-tabs-tab'>{props.children}</div>
+    );
 }
 
-export default function Tabs(props: TabsProps)
+export type TabsProps = {
+    separator?: React.ReactNode;
+    children: React.ReactElement<TabProps> | React.ReactElement<TabProps>[];
+};
+
+export function Tabs(props: TabsProps)
 {
     const [selected, setSelected] = useState(0);
 
@@ -39,12 +28,29 @@ export default function Tabs(props: TabsProps)
         ? props.children
         : [props.children];
 
-    return (
-        <div className='ds-tab'>
-            <div className='ds-tab-nav'>
-                {constructNavigation(children, selected, setSelected)}
+    return <>
+        <div className='ds-tabs'>
+            <div className='ds-tabs-nav'>
+                {
+                    children.map((element, index) =>
+                    {
+                        const style = index === selected ? 'active' : 'inactive';
+                        const handleClick = () => setSelected(index);
+
+                        return (
+                            <div key={index} className={'ds-tabs-nav-item ' + style} onClick={handleClick}>
+                                {element.props.title}
+                            </div>
+                        );
+                    })
+                }
             </div>
-            <div className="ds-tab-content">{children[selected]}</div>
+            {
+                props.separator !== undefined
+                    ? <div className='ds-tabs-separator'>{props.separator}</div>
+                    : null
+            }
+            <div className="ds-tabs-content">{children[selected]}</div>
         </div>
-    );
+    </>;
 }
