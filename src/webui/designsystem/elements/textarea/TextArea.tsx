@@ -13,10 +13,10 @@ export type TextareaProps = {
 
 export default function TextArea(props: TextareaProps)
 {
-    const size = props.size ?? 'medium'; // Unused in CSS
+    const size = props.size ?? 'medium';
 
     return <textarea
-        className={'ds-textarea ds-textarea-size' + size}
+        className={'ds-textarea ds-textarea-size-' + size}
         name={props.name}
         placeholder={props.placeholder}
         defaultValue={props.value}

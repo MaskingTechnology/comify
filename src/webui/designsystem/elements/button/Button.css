@@ -35,6 +35,7 @@
 {
     background-color: var(--primary-background-color);
     color: var(--primary-foreground-color);
+
     font-weight: var(--font-weight-bold);
 }
 
@@ -53,6 +54,7 @@
 {
     background-color: var(--secondary-background-color);
     color: var(--secondary-foreground-color);
+
     font-weight: var(--font-weight-normal);
 }
 

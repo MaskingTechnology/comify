@@ -9,5 +9,7 @@ export type LabelProps = {
 
 export default function Label(props: LabelProps)
 {
-    return <label className="ds-label"> {props.value} </label>;
+    return <label className="ds-label">
+        {props.value}
+    </label>;
 }

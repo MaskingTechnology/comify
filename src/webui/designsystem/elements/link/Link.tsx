@@ -11,5 +11,7 @@ export type LinkProps = {
 
 export default function Link(props: LinkProps)
 {
-    return <a className="ds-link" href={props.url} target={props.target}>{props.children}</a>;
+    return <a className="ds-link" href={props.url} target={props.target}>
+        {props.children}
+    </a>;
 }

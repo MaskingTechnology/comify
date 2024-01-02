@@ -10,9 +10,9 @@ export type TabProps = {
 
 export function Tab(props: TabProps)
 {
-    return (
-        <div className='ds-tabs-tab'>{props.children}</div>
-    );
+    return <div className='ds-tabs-tab'>
+        {props.children}
+    </div>;
 }
 
 export type TabsProps = {

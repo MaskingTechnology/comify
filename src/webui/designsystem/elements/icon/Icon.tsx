@@ -13,5 +13,5 @@ export default function Icon(props: IconProps)
 {
     const type = props.type;
 
-    return <span className={'ds-icon ds-icon-' + type}></span>;
+    return <span className={'ds-icon ds-icon-' + type} />;
 }

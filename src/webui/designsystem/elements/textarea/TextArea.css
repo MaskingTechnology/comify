@@ -24,7 +24,21 @@
     box-sizing: border-box;
     resize: vertical;
     width: 100%;
+}
+
+.ds-textarea.ds-textarea-size-small
+{
+    height: 3em;
+}
+
+.ds-textarea.ds-textarea-size-medium
+{
     height: 6em;
+}
+
+.ds-textarea.ds-textarea-size-large
+{
+    height: 9em;
 }
 
 .ds-textarea:focus-visible

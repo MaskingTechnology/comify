@@ -12,5 +12,7 @@ export default function Paragraph(props: ParagraphProps)
 {
     const size = props.size ?? 'medium';
 
-    return <p className={'ds-paragraph ds-paragraph-size-' + size}>{props.children}</p>;
+    return <p className={'ds-paragraph ds-paragraph-size-' + size}>
+        {props.children}
+    </p>;
 }

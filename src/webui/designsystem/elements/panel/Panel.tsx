@@ -13,5 +13,7 @@ export default function Panel(props: PanelProps)
 {
     const type = props.type ?? 'normal';
 
-    return <div className={'ds-panel ds-panel-' + type}>{props.children}</div>;
+    return <div className={'ds-panel ds-panel-' + type}>
+        {props.children}
+    </div>;
 }

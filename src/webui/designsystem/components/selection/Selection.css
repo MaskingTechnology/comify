@@ -10,23 +10,28 @@
 .ds-selection
 {
     display: inline-block;
-    min-width: fit-content;
     position: relative;
+
+    min-width: fit-content;
+
     cursor: pointer;
 }
 
 .ds-selection-text
 {
     background-color: var(--background-color);
+
     padding: 0.8em 2em 0.8em 0em;
 }
 
 .ds-selection-text:after
 {
     content: "";
+
     position: absolute;
     right: 0.7em;
     top: 1em;
+
     border: 0.45em solid transparent;
     border-color: var(--arrow-color) transparent transparent transparent;
 }
@@ -34,15 +39,18 @@
 .ds-selection-text.ds-selection-active:after
 {
     top: 0.9em;
+
     border-color: transparent transparent var(--arrow-color) transparent;
 }
 
 .ds-selection-options
 {
     position: absolute;
+
     min-width: fit-content;
     white-space: nowrap;
     text-align: left;
+
     background-color: var(--background-color-options);
     border: 0.1em solid var(--border-color);
 }
@@ -50,6 +58,7 @@
 .ds-selection-option
 {
     padding: 0.8em 2em 0.8em 0.8em;
+
     background: var(--color-background);
     cursor: pointer;
 }

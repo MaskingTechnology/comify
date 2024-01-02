@@ -6,10 +6,11 @@
 
 .ds-input
 {
-    margin: var(--margin);
     display: flex;
-    gap: var(--gap);
     flex-direction: column;
+
+    gap: var(--gap);
+    margin: var(--margin);
 }
 
 .ds-input .ds-label
