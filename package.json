@@ -30,17 +30,17 @@
   },
   "devDependencies": {
     "@jitar/plugin-vite": "^0.5.0",
-    "@types/react": "^18.2.40",
+    "@types/react": "^18.2.46",
     "@types/react-dom": "^18.2.17",
-    "@typescript-eslint/eslint-plugin": "^6.9.1",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
     "@vitejs/plugin-react": "^4.1.0",
-    "@vitest/coverage-v8": "^0.34.6",
+    "@vitest/coverage-v8": "^1.1.1",
     "auto-changelog": "^2.4.0",
-    "eslint": "^8.55.0",
+    "eslint": "^8.56.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-sonarjs": "^0.23.0",
-    "typescript": "5.2.2",
+    "typescript": "5.3.3",
     "vite": "^4.5.0",
-    "vitest": "^0.34.6"
+    "vitest": "^1.1.1"
   }
 }
