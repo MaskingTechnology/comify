@@ -3,6 +3,8 @@
     "editor.indentSize": "tabSize",
     "editor.tabSize": 4,
     "json.format.enable": false,
+    "css.format.braceStyle": "expand",
+    "css.format.spaceAroundSelectorSeparator": true,
     "javascript.format.placeOpenBraceOnNewLineForControlBlocks": true,
     "javascript.format.placeOpenBraceOnNewLineForFunctions": true,
     "typescript.format.placeOpenBraceOnNewLineForControlBlocks": true,

@@ -1,0 +1,34 @@
+.ds-avatar
+{
+    --small-width: 1em;
+    --small-height: 1em;
+
+    --medium-width: 2em;
+    --medium-height: 2em;
+
+    --large-width: 4em;
+    --large-height: 4em;
+}
+
+.ds-avatar
+{
+    border-radius: 50%;
+}
+
+.ds-avatar.ds-avatar-size-small
+{
+    width: var(--small-width);
+    height: var(--small-height);
+}
+
+.ds-avatar.ds-avatar-size-medium
+{
+    width: var(--medium-width);
+    height: var(--medium-height);
+}
+
+.ds-avatar.ds-avatar-size-large
+{
+    width: var(--large-width);
+    height: var(--large-height);
+}

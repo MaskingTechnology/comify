@@ -1,0 +1,20 @@
+.ds-link
+{
+    --color: var(--color-primary-foreground);
+    --color-hover: var(--color-primary-foreground);
+
+    --text-decoration: dotted underline;
+    --text-decoration-hover: underline;
+}
+
+.ds-link
+{
+    color: var(--color);
+    text-decoration: var(--text-decoration);
+}
+
+.ds-link:hover
+{
+    color: var(--color-hover);
+    text-decoration: var(--text-decoration-hover);
+}
