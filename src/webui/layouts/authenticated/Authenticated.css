@@ -1,0 +1,27 @@
+.authenticated-container
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.authenticated-sidebar
+{
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.authenticated-sidebar-header
+{
+    align-self: flex-start;
+}
+
+.authenticated-sidebar-navigation
+{
+    flex-grow: 1;
+}
+
+.authenticated-sidebar-footer
+{
+    align-self: flex-end;
+}
