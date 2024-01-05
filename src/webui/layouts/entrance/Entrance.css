@@ -1,0 +1,29 @@
+.entrance-container
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.ds .entrance-container:is(:last-child)
+{
+    margin: 5rem;
+}
+
+.entrance-side
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: stretch;
+    gap: 1rem;
+}
+
+.entrance-side-header
+{
+    align-self: stretch;
+}
+
+.entrance-side-content
+{
+    flex-grow: 1;
+}
