@@ -25,7 +25,7 @@ const LOGICAL_OPERATORS =
 export default class MemoryDb implements Database
 {
     #memory?: Map<string, RecordData[]>;
-    recId: number = 0;
+    recordId: number = 0;
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async connect(connectionString: string, databaseName: string): Promise<void>
@@ -43,12 +43,13 @@ export default class MemoryDb implements Database
         const collection = this.#getCollection(type);
         const id = this.#createId();
         const record = {'id' : id, ...data};
+
         collection.push(record);
 
         return id; 
     }
 
-    async readRecord(type: string, id: string, fields?: string[] | undefined): Promise<RecordData>
+    async readRecord(type: string, id: string, fields?: string[]): Promise<RecordData>
     {
         const collection = this.#getCollection(type);
         const record = collection.find(object => object.id === id);
@@ -97,7 +98,7 @@ export default class MemoryDb implements Database
         return result[0];
     }
 
-    async searchRecords(type: string, query: QueryStatement, fields?: string[] | undefined, sort?: RecordSort | undefined, limit?: number | undefined, offset?: number | undefined): Promise<RecordData[]>
+    async searchRecords(type: string, query: QueryStatement, fields?: string[], sort?: RecordSort, limit?: number, offset?: number): Promise<RecordData[]>
     {
         const collection = this.#getCollection(type); 
         const filterFunction = this.#buildFilterFunction(query);
@@ -231,7 +232,7 @@ export default class MemoryDb implements Database
     #createId(): string
     {
 
-        return (this.recId++).toString().padStart(8,'0');
+        return (this.recordId++).toString().padStart(8,'0');
     }
 
     #getCollection(type: string): RecordData[]
@@ -255,13 +256,12 @@ export default class MemoryDb implements Database
 
     #buildRecordData(data: RecordData, fields?: RecordField[]) : RecordData
     { 
-        let result: RecordData = {};
+        const result: RecordData = {};
 
         if (fields === undefined)
         {
-            result = { ...data };
 
-            return result;
+            return { ...data };
         }
 
         for (const field of fields)
@@ -271,5 +271,4 @@ export default class MemoryDb implements Database
 
         return result;
     }
-
 }
