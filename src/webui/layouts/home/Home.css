@@ -1,0 +1,30 @@
+.home-container
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.home-main
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.home-header
+{
+    align-self: flex-start;
+}
+
+.home-content
+{
+    flex-grow: 1;
+}
+
+.home-side
+{
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
