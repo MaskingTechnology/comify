@@ -54,6 +54,17 @@ const FIRST_PIZZA = PIZZAS.MARGHERITA;
 const QUERY_RESULTS = {
     BASED_ON_EQUAL: [calzone, hawai],
     BASED_ON_NOT_EQUAL: [calzone, vegetario],
+    BASED_ON_LESS_THAN_OR_EQUAL: [vegetario, hawai],
+    BASED_ON_GREATER_THAN_OR_EQUAL: [margherita, pepperoni],
+    BASED_ON_IN_CONDITION: [calzone, hawai],
+    BASED_ON_OR_CONDITION: [pepperoni, vegetario],
+    BASED_ON_OR_WITH_NESTED_AND: [margherita, pepperoni],
+    SORTED_ASCENDING: [calzone, hawai, margherita, pepperoni, vegetario],
+    SORTED_DESCENDING: [vegetario, calzone, hawai, pepperoni, margherita],
+    SORTED_BY_MULTIPLE_FIELDS_SAME_DIRECTION: [vegetario, hawai, calzone, pepperoni, margherita],
+    SORTED_BY_MULTIPLE_FIELDS_DIFFERENT_DIRECTION: [vegetario, calzone, hawai, pepperoni, margherita],
+    LIMITED_BY_NUMBER: [margherita, calzone],
+    LIMITED_BY_OFFSET: [pepperoni, vegetario, hawai]
 };
 
 export {

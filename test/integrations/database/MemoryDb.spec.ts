@@ -22,7 +22,7 @@ describe('implementations/MemoryDb', () =>
 
         it('should only give the fields specified', async () =>
         {
-            const result = await database.readRecord(RECORD_TYPE_PIZZA, IDS.MARGHERITAID, [ 'id', 'folded' ]);
+            const result = await database.readRecord(RECORD_TYPE_PIZZA, IDS.MARGHERITAID, [ ID, 'folded' ]);
 
             expect(Object.keys(result).length).toBe(2);
             expect(result?.id).toBe(IDS.MARGHERITAID);
@@ -128,8 +128,7 @@ describe('implementations/MemoryDb', () =>
             const result = await database.searchRecords(RECORD_TYPE_PIZZA, query);
 
             expect(result.length).toBe(2);
-            expect(result[0]).toEqual(expect.objectContaining(PIZZAS.VEGETARIO));
-            expect(result[1]).toEqual(expect.objectContaining(PIZZAS.HAWAI));
+            expect(result).toMatchObject(QUERY_RESULTS.BASED_ON_LESS_THAN_OR_EQUAL);
         });
 
         it('should find records based on GREATER THAN condition', async () =>
@@ -147,8 +146,7 @@ describe('implementations/MemoryDb', () =>
             const result = await database.searchRecords(RECORD_TYPE_PIZZA, query);
 
             expect(result.length).toBe(2);
-            expect(result[0]).toEqual(expect.objectContaining(PIZZAS.MARGHERITA));
-            expect(result[1]).toEqual(expect.objectContaining(PIZZAS.PEPPERONI));
+            expect(result).toMatchObject(QUERY_RESULTS.BASED_ON_GREATER_THAN_OR_EQUAL);
         });
 
         it('should find records based on IN condition', async () =>
@@ -157,8 +155,7 @@ describe('implementations/MemoryDb', () =>
             const result = await database.searchRecords(RECORD_TYPE_PIZZA, query);
 
             expect(result.length).toBe(2);
-            expect(result[0]).toEqual(expect.objectContaining(PIZZAS.CALZONE));
-            expect(result[1]).toEqual(expect.objectContaining(PIZZAS.HAWAI));
+            expect(result).toMatchObject(QUERY_RESULTS.BASED_ON_IN_CONDITION);
         });
 
         it('should find records based on NOT IN condition', async () =>
@@ -204,7 +201,7 @@ describe('implementations/MemoryDb', () =>
                 'AND':
                 [
                     { 
-                        'name': { EQUALS: 'Hawai' },
+                        'name': { EQUALS: PIZZAS.HAWAI.name },
                         'size': { NOT_EQUALS: 30 }                                                
                     }
                 ]
@@ -222,7 +219,7 @@ describe('implementations/MemoryDb', () =>
             {
                 'OR':
                 [
-                    { 'name': { EQUALS: 'Vegetario' } }, 
+                    { 'name': { EQUALS: PIZZAS.VEGETARIO.name } }, 
                     { 'size': { EQUALS: 18 } }
                 ]
             };
@@ -230,8 +227,7 @@ describe('implementations/MemoryDb', () =>
             const result = await database.searchRecords(RECORD_TYPE_PIZZA, query);
  
             expect(result.length).toBe(2);
-            expect(result[0]).toEqual(expect.objectContaining(PIZZAS.PEPPERONI));
-            expect(result[1]).toEqual(expect.objectContaining(PIZZAS.VEGETARIO));
+            expect(result).toMatchObject(QUERY_RESULTS.BASED_ON_OR_CONDITION);
         });
 
         it('should find records based on AND with nested OR condition', async () =>
@@ -240,7 +236,7 @@ describe('implementations/MemoryDb', () =>
             {
                 'AND':
                 [
-                    { 'name': { EQUALS: 'Calzone' }},
+                    { 'name': { EQUALS: PIZZAS.CALZONE.name }},
                     {
                         'OR':
                         [
@@ -278,8 +274,8 @@ describe('implementations/MemoryDb', () =>
             const result = await database.searchRecords(RECORD_TYPE_PIZZA, query);
 
             expect(result.length).toBe(2);
-            expect(result[0]).toEqual(expect.objectContaining(PIZZAS.MARGHERITA));
-            expect(result[1]).toEqual(expect.objectContaining(PIZZAS.PEPPERONI));
+            expect(result).toMatchObject(QUERY_RESULTS.BASED_ON_OR_WITH_NESTED_AND);
+
         });
 
         it('should find no records that match the AND condition', async () =>
@@ -289,7 +285,7 @@ describe('implementations/MemoryDb', () =>
                 'AND':
                 [
                     {
-                        'name': { EQUALS: 'Hawai' },
+                        'name': { EQUALS: PIZZAS.HAWAI.name },
                         'size': { NOT_EQUALS: 20 }
                     }
                 ]
@@ -306,7 +302,7 @@ describe('implementations/MemoryDb', () =>
             {
                 'OR':
                 [
-                    { 'name': { EQUALS: 'Romanos' } }, 
+                    { 'name': { EQUALS: INVALID_PIZZA_NAME } }, 
                     { 'size': { EQUALS: 21 } }
                 ]
             };
@@ -326,11 +322,7 @@ describe('implementations/MemoryDb', () =>
             const result = await database.searchRecords(RECORD_TYPE_PIZZA, query, undefined, sort);
 
             expect(result.length).toBe(5);
-            expect(result[0]).toEqual(expect.objectContaining(PIZZAS.CALZONE));
-            expect(result[1]).toEqual(expect.objectContaining(PIZZAS.HAWAI));
-            expect(result[2]).toEqual(expect.objectContaining(PIZZAS.MARGHERITA));
-            expect(result[3]).toEqual(expect.objectContaining(PIZZAS.PEPPERONI));
-            expect(result[4]).toEqual(expect.objectContaining(PIZZAS.VEGETARIO));
+            expect(result).toMatchObject(QUERY_RESULTS.SORTED_ASCENDING);
         });
 
         it('should sort the records descending', async () =>
@@ -340,11 +332,7 @@ describe('implementations/MemoryDb', () =>
             const result = await database.searchRecords(RECORD_TYPE_PIZZA, query, undefined, sort);
             
             expect(result.length).toBe(5);
-            expect(result[0]).toEqual(expect.objectContaining(PIZZAS.VEGETARIO));
-            expect(result[1]).toEqual(expect.objectContaining(PIZZAS.CALZONE));
-            expect(result[2]).toEqual(expect.objectContaining(PIZZAS.HAWAI));
-            expect(result[3]).toEqual(expect.objectContaining(PIZZAS.PEPPERONI));
-            expect(result[4]).toEqual(expect.objectContaining(PIZZAS.MARGHERITA));
+            expect(result).toMatchObject(QUERY_RESULTS.SORTED_DESCENDING);
         });
 
         it('should sort the records by multiple fields same direction', async () =>
@@ -354,11 +342,7 @@ describe('implementations/MemoryDb', () =>
             const result = await database.searchRecords(RECORD_TYPE_PIZZA, query, undefined, sort );
 
             expect(result.length).toBe(5);
-            expect(result[0]).toEqual(expect.objectContaining(PIZZAS.VEGETARIO));
-            expect(result[1]).toEqual(expect.objectContaining(PIZZAS.HAWAI));
-            expect(result[2]).toEqual(expect.objectContaining(PIZZAS.CALZONE));
-            expect(result[3]).toEqual(expect.objectContaining(PIZZAS.PEPPERONI));
-            expect(result[4]).toEqual(expect.objectContaining(PIZZAS.MARGHERITA));
+            expect(result).toMatchObject(QUERY_RESULTS.SORTED_BY_MULTIPLE_FIELDS_SAME_DIRECTION);
         });    
 
         it('should sort the records by multiple fields different direction', async () =>
@@ -368,11 +352,7 @@ describe('implementations/MemoryDb', () =>
             const result = await database.searchRecords(RECORD_TYPE_PIZZA, query, undefined, sort );
 
             expect(result.length).toBe(5);
-            expect(result[0]).toEqual(expect.objectContaining(PIZZAS.VEGETARIO));
-            expect(result[1]).toEqual(expect.objectContaining(PIZZAS.CALZONE));
-            expect(result[2]).toEqual(expect.objectContaining(PIZZAS.HAWAI));
-            expect(result[3]).toEqual(expect.objectContaining(PIZZAS.PEPPERONI));
-            expect(result[4]).toEqual(expect.objectContaining(PIZZAS.MARGHERITA));
+            expect(result).toMatchObject(QUERY_RESULTS.SORTED_BY_MULTIPLE_FIELDS_DIFFERENT_DIRECTION);
         });
 
         describe('.limitNumberOfRecords', () =>
@@ -383,18 +363,17 @@ describe('implementations/MemoryDb', () =>
                 const result = await database.searchRecords(RECORD_TYPE_PIZZA, query, undefined, undefined, 2);
                 
                 expect(result.length).toBe(2);
-                expect(result[0]).toEqual(expect.objectContaining(PIZZAS.MARGHERITA));
+                expect(result).toMatchObject(QUERY_RESULTS.LIMITED_BY_NUMBER);
                 expect(result[1]).toEqual(expect.objectContaining(PIZZAS.CALZONE));
             });
     
             it('should give the result starting an offset', async () =>
             {
                 const query: RecordQuery = { };
-                const result = await database.searchRecords(RECORD_TYPE_PIZZA, query, undefined, undefined, undefined, 3);
+                const result = await database.searchRecords(RECORD_TYPE_PIZZA, query, undefined, undefined, undefined, 2);
                 
-                expect(result.length).toBe(2);
-                expect(result[0]).toEqual(expect.objectContaining(PIZZAS.VEGETARIO));
-                expect(result[1]).toEqual(expect.objectContaining(PIZZAS.HAWAI));
+                expect(result.length).toBe(3);
+                expect(result).toMatchObject(QUERY_RESULTS.LIMITED_BY_OFFSET);
             });
         });
     });
