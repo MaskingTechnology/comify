@@ -26,6 +26,11 @@
     justify-content: flex-end;
 }
 
+.ds-column.ds-column-align-justify
+{
+    justify-content: space-between;
+}
+
 .ds-column.ds-column-gap-small
 {
     gap: var(--gap-small);

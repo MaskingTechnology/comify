@@ -4,7 +4,7 @@ import React from 'react';
 import './Row.css';
 
 export type RowProps = {
-    align?: 'left' | 'center' | 'right';
+    align?: 'left' | 'center' | 'right' | 'justify';
     gap?: 'large' | 'medium' | 'small' | 'none';
     wrap?: 'wrap' | 'nowrap';
     children: React.ReactNode;

@@ -4,7 +4,7 @@ import React from 'react';
 import './Column.css';
 
 export type ColumnProps = {
-    align?: 'top' | 'center' | 'bottom';
+    align?: 'top' | 'center' | 'bottom' | 'justify';
     gap?: 'large' | 'medium' | 'small' | 'none';
     wrap?: 'wrap' | 'nowrap';
     children: React.ReactNode;
