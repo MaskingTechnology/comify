@@ -1,0 +1,5 @@
+.creatorcard
+{
+    display: flex;
+    flex-direction: row;
+}
