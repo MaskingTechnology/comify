@@ -11,7 +11,7 @@ export type AuthenticatedProps = {
 
 export default function Authenticated(props: AuthenticatedProps)
 {
-    return <div className='ds authenticated-container'>
+    return <div className='ds authenticated-layout'>
         <nav>
             {props.navigation}
         </nav>

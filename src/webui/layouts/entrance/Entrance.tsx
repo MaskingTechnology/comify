@@ -11,7 +11,7 @@ export type EntranceProps = {
 
 export default function Entrance(props: EntranceProps)
 {
-    return <div className='ds entrance-container'>
+    return <div className='ds entrance-layout'>
         <aside>
             {props.aside}
         </aside>

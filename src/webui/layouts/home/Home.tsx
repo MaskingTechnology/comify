@@ -11,7 +11,7 @@ export type HomeProps = {
 
 export default function Home(props: HomeProps)
 {
-    return <div className='ds home-container'>
+    return <div className='ds home-layout'>
         <main>
             {props.main}
         </main>

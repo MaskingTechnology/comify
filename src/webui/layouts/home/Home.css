@@ -1,23 +1,20 @@
-.home-container
+.home-layout
 {
     display: flex;
     flex-direction: row;
     gap: 2rem;
-    margin: 3em;
+    padding: 3em;
+    box-sizing: border-box;
 }
 
-.home-container main
+.home-layout main
 {
-    display: flex;
-    flex-direction: column;
     flex-grow: 1;
     flex-shrink: 1;
 }
 
-.home-container aside
+.home-layout aside
 {
-    display: flex;
-    flex-direction: column;
     flex-grow: 0;
     flex-shrink: 0;
 }

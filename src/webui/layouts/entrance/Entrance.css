@@ -1,23 +1,20 @@
-.entrance-container
+.entrance-layout
 {
     display: flex;
     flex-direction: row;
     gap: 2rem;
-    margin: 3em;
+    padding: 3em;
+    box-sizing: border-box;
 }
 
-.entrance-container main
+.entrance-layout aside
 {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    flex-shrink: 1;
-}
-
-.entrance-container aside
-{
-    display: flex;
-    flex-direction: column;
     flex-grow: 0;
     flex-shrink: 0;
+}
+
+.entrance-layout main
+{
+    flex-grow: 1;
+    flex-shrink: 1;
 }

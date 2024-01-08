@@ -1,24 +1,21 @@
-.authenticated-container
+.authenticated-layout
 {
     display: flex;
     flex-direction: row;
     gap: 2rem;
-    margin: 1em;
+    padding: 1em;
     height: 100vh;
+    box-sizing: border-box;
 }
 
-.authenticated-container main
+.authenticated-layout nav
 {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    flex-shrink: 1;
-}
-
-.authenticated-container nav
-{
-    display: flex;
-    flex-direction: column;
     flex-grow: 0;
     flex-shrink: 0;
+}
+
+.authenticated-layout main
+{
+    flex-grow: 1;
+    flex-shrink: 1;
 }
