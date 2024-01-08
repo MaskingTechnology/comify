@@ -125,7 +125,7 @@ const SEARCH_QUERIES: Record<string, RecordQuery> = {
     },
     FIND_BASED_ON_USING_ALL_SEARCH_PARAMETERS: { folded: { EQUALS: false } },
 
-}
+};
 
 const QUERY_RESULTS = {
     BASED_ON_EQUAL: [calzone, hawai],
