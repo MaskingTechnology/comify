@@ -1,0 +1,20 @@
+.home-layout
+{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding: 3em;
+    box-sizing: border-box;
+}
+
+.home-layout main
+{
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.home-layout aside
+{
+    flex-grow: 0;
+    flex-shrink: 0;
+}

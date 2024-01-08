@@ -1,0 +1,21 @@
+.authenticated-layout
+{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding: 1em;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.authenticated-layout nav
+{
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.authenticated-layout main
+{
+    flex-grow: 1;
+    flex-shrink: 1;
+}
