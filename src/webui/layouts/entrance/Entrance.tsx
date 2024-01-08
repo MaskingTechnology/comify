@@ -5,8 +5,8 @@ import './Entrance.css';
 import { Ruler } from '../../designsystem/designsystem.js';
 
 export type EntranceProps = {
-    main: React.ReactNode;
     aside: React.ReactNode;
+    main: React.ReactNode;
 };
 
 export default function Entrance(props: EntranceProps)

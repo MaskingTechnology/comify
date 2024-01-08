@@ -5,8 +5,8 @@ import './Authenticated.css';
 import { Ruler } from '../../designsystem/designsystem.js';
 
 export type AuthenticatedProps = {
-    main: React.ReactNode;
     navigation: React.ReactNode;
+    main: React.ReactNode;
 };
 
 export default function Authenticated(props: AuthenticatedProps)
