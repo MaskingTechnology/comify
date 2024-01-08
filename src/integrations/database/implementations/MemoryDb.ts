@@ -25,7 +25,7 @@ const LOGICAL_OPERATORS =
 export default class MemoryDb implements Database
 {
     #memory?: Map<string, RecordData[]>;
-    recordId: number = 0;
+    recordId = 0;
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async connect(connectionString: string, databaseName: string): Promise<void>
@@ -91,7 +91,7 @@ export default class MemoryDb implements Database
         collection.splice(index, 1);
     }
 
-    async findRecord(type: string, query: QueryStatement, fields?: string[] | undefined, sort?: RecordSort | undefined): Promise<RecordData | undefined>
+    async findRecord(type: string, query: QueryStatement, fields?: string[] | undefined, sort?: RecordSort): Promise<RecordData | undefined>
     {
         const result = await this.searchRecords(type, query, fields, sort, 1, 0);
 

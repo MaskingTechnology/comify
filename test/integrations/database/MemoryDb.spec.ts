@@ -3,11 +3,10 @@ import { describe, expect, it } from 'vitest';
 
 import { 
     database,
-    RECORD_TYPE_PIZZA, RECORD_TYPE_FRUIT, INVALID_PIZZA_NAME, INVALID_ID, UPDATE_DATA,
-    PIZZAS, IDS, FIRST_PIZZA, QUERY_RESULTS,
-    SortDirections, RecordNotFound, RecordNotUpdated, RecordData, RecordQuery, RecordSort
+    RECORD_TYPE_PIZZA, RECORD_TYPE_FRUIT, INVALID_ID, UPDATE_COUNTRY,
+    PIZZAS, IDS, ID, FIRST_PIZZA, QUERY_RESULTS, SEARCH_QUERIES,
+    SortDirections, RecordNotFound, RecordNotUpdated, RecordData, RecordSort
 } from './_fixtures/MemoryDb.fixture';
-import { ID } from '../../../src/integrations/database/definitions/constants';
 
 describe('implementations/MemoryDb', () =>
 {
@@ -15,17 +14,18 @@ describe('implementations/MemoryDb', () =>
     {
         it('should give all fields when no fields are specified', async () =>
         {
-            const result = await database.readRecord(RECORD_TYPE_PIZZA, IDS.MARGHERITAID);
+            const result = await database.readRecord(RECORD_TYPE_PIZZA, IDS.MARGHERITA);
 
             expect(result).toEqual(expect.objectContaining(PIZZAS.MARGHERITA));
         });
 
         it('should only give the fields specified', async () =>
         {
-            const result = await database.readRecord(RECORD_TYPE_PIZZA, IDS.MARGHERITAID, [ ID, 'folded' ]);
+            const fields: string[] = [ ID, 'folded' ];
+            const result = await database.readRecord(RECORD_TYPE_PIZZA, IDS.MARGHERITA, fields);
 
             expect(Object.keys(result).length).toBe(2);
-            expect(result?.id).toBe(IDS.MARGHERITAID);
+            expect(result?.id).toBe(IDS.MARGHERITA);
             expect(result?.folded).toBe(false);
         });
 
@@ -41,8 +41,8 @@ describe('implementations/MemoryDb', () =>
     {
         it('should delete the record', async() =>
         {
-            await database.deleteRecord(RECORD_TYPE_FRUIT, IDS.APPLEID);
-            const result = database.readRecord(RECORD_TYPE_FRUIT, IDS.APPLEID);
+            await database.deleteRecord(RECORD_TYPE_FRUIT, IDS.APPLE);
+            const result = database.readRecord(RECORD_TYPE_FRUIT, IDS.APPLE);
 
             expect(result).rejects.toStrictEqual(new RecordNotFound());   
         });
@@ -59,11 +59,11 @@ describe('implementations/MemoryDb', () =>
     {
         it('should update the record', async () =>
         {
-            const updateData: RecordData = { country: UPDATE_DATA };
-            await database.updateRecord(RECORD_TYPE_FRUIT, IDS.PEERID , updateData);
-            const result = await database.readRecord(RECORD_TYPE_FRUIT, IDS.PEERID);
+            const updateData: RecordData = { country: UPDATE_COUNTRY };
+            await database.updateRecord(RECORD_TYPE_FRUIT, IDS.PEAR , updateData);
+            const result = await database.readRecord(RECORD_TYPE_FRUIT, IDS.PEAR);
 
-            expect(result?.country).toBe(UPDATE_DATA);
+            expect(result?.country).toBe(UPDATE_COUNTRY);
         });
 
         it('should throw an error when record cannot be updated', async () =>
@@ -78,16 +78,14 @@ describe('implementations/MemoryDb', () =>
     {
         it('should give only the first record found', async () =>
         {
-            const query: RecordQuery = { };
-            const result = await database.findRecord(RECORD_TYPE_PIZZA, query);
+            const result = await database.findRecord(RECORD_TYPE_PIZZA, SEARCH_QUERIES.EMPTY_QUERY);
 
             expect(result).toEqual(expect.objectContaining(FIRST_PIZZA));
         });
 
         it('should find no record', async () =>
         {
-            const query: RecordQuery = { name: { EQUALS: INVALID_PIZZA_NAME } }; 
-            const result = await database.findRecord(RECORD_TYPE_PIZZA, query);
+            const result = await database.findRecord(RECORD_TYPE_PIZZA, SEARCH_QUERIES.FIND_NO_RECORD_QUERY);
 
             expect(result).toBe(undefined);
         });
@@ -97,8 +95,7 @@ describe('implementations/MemoryDb', () =>
     {
         it('should find records based on EQUAL condition', async () =>
         {
-            const query: RecordQuery = { size: { EQUALS: 20 } };
-            const result = await database.searchRecords(RECORD_TYPE_PIZZA, query);
+            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.FIND_BASED_ON_EQUAL_CONDITION);
 
             expect(result.length).toBe(2);
             expect(result).toMatchObject(QUERY_RESULTS.BASED_ON_EQUAL);
@@ -106,8 +103,7 @@ describe('implementations/MemoryDb', () =>
 
         it('should find records based on NOT EQUAL condition', async () =>
         {
-            const query: RecordQuery = { folded: { NOT_EQUALS: false }};
-            const result = await database.searchRecords(RECORD_TYPE_PIZZA, query);
+            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.FIND_BASED_ON_NOT_EQUAL_CONDITION);
 
             expect(result.length).toBe(2);
             expect(result).toMatchObject(QUERY_RESULTS.BASED_ON_NOT_EQUAL);
@@ -115,8 +111,7 @@ describe('implementations/MemoryDb', () =>
 
         it('should find records based on LESS THAN condition', async () =>
         {
-            const query: RecordQuery = { price: { LESS_THAN: 10 }};
-            const result = await database.searchRecords(RECORD_TYPE_PIZZA, query);
+            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.FIND_BASED_ON_LESS_THAN_CONDITION);
 
             expect(result.length).toBe(1);
             expect(result[0]).toEqual(expect.objectContaining(PIZZAS.VEGETARIO));
@@ -124,8 +119,7 @@ describe('implementations/MemoryDb', () =>
 
         it('should find records based on LESS THAN OR EQUAL condition', async () =>
         {
-            const query: RecordQuery = { price: { LESS_THAN_OR_EQUALS: 10 }};
-            const result = await database.searchRecords(RECORD_TYPE_PIZZA, query);
+            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.FIND_BASED_ON_LESS_THAN_OR_EQUAL_CONDITION);
 
             expect(result.length).toBe(2);
             expect(result).toMatchObject(QUERY_RESULTS.BASED_ON_LESS_THAN_OR_EQUAL);
@@ -133,8 +127,7 @@ describe('implementations/MemoryDb', () =>
 
         it('should find records based on GREATER THAN condition', async () =>
         {
-            const query: RecordQuery = { price: { GREATER_THAN: 12 }};
-            const result = await database.searchRecords(RECORD_TYPE_PIZZA, query);
+            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.FIND_BASED_ON_GREATER_THAN_CONDITION);
 
             expect(result.length).toBe(1);
             expect(result[0]).toEqual(expect.objectContaining(PIZZAS.PEPPERONI));
@@ -142,8 +135,7 @@ describe('implementations/MemoryDb', () =>
 
         it('should find records based on GREATER THAN OR EQUAL condition', async () =>
         {
-            const query: RecordQuery = { price: { GREATER_THAN_OR_EQUALS: 12 }};
-            const result = await database.searchRecords(RECORD_TYPE_PIZZA, query);
+            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.FIND_BASED_ON_GREATER_THAN_OR_EQUAL_CONDITION);
 
             expect(result.length).toBe(2);
             expect(result).toMatchObject(QUERY_RESULTS.BASED_ON_GREATER_THAN_OR_EQUAL);
@@ -151,8 +143,7 @@ describe('implementations/MemoryDb', () =>
 
         it('should find records based on IN condition', async () =>
         {
-            const query: RecordQuery = { size: { IN: [ 16, 20, 25 ]}};
-            const result = await database.searchRecords(RECORD_TYPE_PIZZA, query);
+            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.FIND_BASED_ON_IN_CONDITION);
 
             expect(result.length).toBe(2);
             expect(result).toMatchObject(QUERY_RESULTS.BASED_ON_IN_CONDITION);
@@ -160,8 +151,7 @@ describe('implementations/MemoryDb', () =>
 
         it('should find records based on NOT IN condition', async () =>
         {
-            const query: RecordQuery = { size: { NOT_IN: [ 15, 16, 20, 30 ]}};
-            const result = await database.searchRecords(RECORD_TYPE_PIZZA, query);
+            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.FIND_BASED_ON_NOT_IN_CONDITION);
 
             expect(result.length).toBe(1);
             expect(result[0]).toEqual(expect.objectContaining(PIZZAS.PEPPERONI));
@@ -169,8 +159,7 @@ describe('implementations/MemoryDb', () =>
 
         it('should find records based on CONTAINS condition', async () =>
         {
-            const query: RecordQuery = { name: { CONTAINS: 'her' }};
-            const result = await database.searchRecords(RECORD_TYPE_PIZZA, query);
+            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.FIND_BASED_ON_CONTAINS_CONDITION);
 
             expect(result.length).toBe(1);
             expect(result[0]).toEqual(expect.objectContaining(PIZZAS.MARGHERITA));
@@ -178,8 +167,7 @@ describe('implementations/MemoryDb', () =>
 
         it('should find records based on STARTS_WITH condition', async () =>
         {
-            const query: RecordQuery = { name: { STARTS_WITH: 'Ha' }};
-            const result = await database.searchRecords(RECORD_TYPE_PIZZA, query);
+            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.FIND_BASED_ON_STARTS_WITH_CONDITION);
 
             expect(result.length).toBe(1);
             expect(result[0]).toEqual(expect.objectContaining(PIZZAS.HAWAI));
@@ -187,8 +175,7 @@ describe('implementations/MemoryDb', () =>
 
         it('should find records based on ENDS_WITH condition', async () =>
         {
-            const query: RecordQuery = { name: { ENDS_WITH: 'one' }};
-            const result = await database.searchRecords(RECORD_TYPE_PIZZA, query);
+            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.FIND_BASED_ON_ENDS_WITH_CODITION);
 
             expect(result.length).toBe(1);
             expect(result[0]).toEqual(expect.objectContaining(PIZZAS.CALZONE));
@@ -196,18 +183,7 @@ describe('implementations/MemoryDb', () =>
 
         it('should find records based on AND condition', async () =>
         {
-            const query: RecordQuery = 
-            {
-                'AND':
-                [
-                    { 
-                        'name': { EQUALS: PIZZAS.HAWAI.name },
-                        'size': { NOT_EQUALS: 30 }                                                
-                    }
-                ]
-            };
-
-            const result = await database.searchRecords(RECORD_TYPE_PIZZA, query);
+            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.FIND_BASED_ON_AND_CONDITION);
 
             expect(result.length).toBe(1);
             expect(result[0]).toEqual(expect.objectContaining(PIZZAS.HAWAI));
@@ -215,39 +191,15 @@ describe('implementations/MemoryDb', () =>
 
         it('should find records based on OR condition', async () =>
         {
-            const query: RecordQuery = 
-            {
-                'OR':
-                [
-                    { 'name': { EQUALS: PIZZAS.VEGETARIO.name } }, 
-                    { 'size': { EQUALS: 18 } }
-                ]
-            };
-
-            const result = await database.searchRecords(RECORD_TYPE_PIZZA, query);
+            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.FIND_BASED_ON_OR_CONDITION);
  
             expect(result.length).toBe(2);
             expect(result).toMatchObject(QUERY_RESULTS.BASED_ON_OR_CONDITION);
         });
 
         it('should find records based on AND with nested OR condition', async () =>
-        {
-            const query: RecordQuery = 
-            {
-                'AND':
-                [
-                    { 'name': { EQUALS: PIZZAS.CALZONE.name }},
-                    {
-                        'OR':
-                        [
-                            { 'size': { EQUALS: 2 }},
-                            { 'folded': { EQUALS: true }}
-                        ]
-                    }
-                ]
-            };
-            
-            const result = await database.searchRecords(RECORD_TYPE_PIZZA, query);
+        {      
+            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.FIND_BASED_ON_AND_WITH_NESTED_OR_CONDITION);
 
             expect(result.length).toBe(1);
             expect(result[0]).toEqual(expect.objectContaining(PIZZAS.CALZONE));
@@ -255,23 +207,7 @@ describe('implementations/MemoryDb', () =>
 
         it('should find records based on OR with nested AND condition', async () =>
         {
-            const query: RecordQuery =
-            {
-                'OR': 
-                [
-                    { 'size': { EQUALS: 18 }},
-                    {
-                        'AND': 
-                        [
-                            { 'folded': { EQUALS: false }},
-                            { 'price': { GREATER_THAN: 11 }},
-                            { 'price': { LESS_THAN: 13 }}
-                        ]
-                    }
-                ]
-            };
-
-            const result = await database.searchRecords(RECORD_TYPE_PIZZA, query);
+            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.FIND_BASED_ON_OR_WITH_NESTED_AND_CONDITION);
 
             expect(result.length).toBe(2);
             expect(result).toMatchObject(QUERY_RESULTS.BASED_ON_OR_WITH_NESTED_AND);
@@ -280,36 +216,27 @@ describe('implementations/MemoryDb', () =>
 
         it('should find no records that match the AND condition', async () =>
         {
-            const query: RecordQuery = 
-            {
-                'AND':
-                [
-                    {
-                        'name': { EQUALS: PIZZAS.HAWAI.name },
-                        'size': { NOT_EQUALS: 20 }
-                    }
-                ]
-            };
-
-            const result = await database.searchRecords(RECORD_TYPE_PIZZA, query);
+            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.FIND_NO_RECORDS_BASED_ON_AND_CONDITION);
 
             expect(result[0]).toBe(undefined);
         });
 
         it('should find no records that match the OR condition', async () =>
         {
-            const query: RecordQuery = 
-            {
-                'OR':
-                [
-                    { 'name': { EQUALS: INVALID_PIZZA_NAME } }, 
-                    { 'size': { EQUALS: 21 } }
-                ]
-            };
-
-            const result = await database.searchRecords(RECORD_TYPE_PIZZA, query);
+            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.FIND_NO_RECORDS_BASED_ON_OR_CONDITION);
  
             expect(result[0]).toBe(undefined);
+        });
+
+        it('should find records by using all parameters', async () =>
+        {
+            const fields: string[] = [ 'name', 'size' ];
+            const sort: RecordSort = { 'name': SortDirections.DESCENDING };
+            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.FIND_BASED_ON_USING_ALL_SEARCH_PARAMETERS, fields, sort, 1, 1);
+
+            expect(result.length).toBe(1);
+            expect(result[0].name).toEqual('Margherita');
+            expect(result[0].size).toEqual(15);
         });
     });
 
@@ -317,9 +244,8 @@ describe('implementations/MemoryDb', () =>
     {
         it('should sort records ascending', async () =>
         {
-            const query: RecordQuery = { };
             const sort: RecordSort = { 'name': SortDirections.ASCENDING };
-            const result = await database.searchRecords(RECORD_TYPE_PIZZA, query, undefined, sort);
+            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.EMPTY_QUERY, undefined, sort);
 
             expect(result.length).toBe(5);
             expect(result).toMatchObject(QUERY_RESULTS.SORTED_ASCENDING);
@@ -327,9 +253,8 @@ describe('implementations/MemoryDb', () =>
 
         it('should sort the records descending', async () =>
         {
-            const query: RecordQuery = { };
             const sort: RecordSort = { 'size': SortDirections.DESCENDING };
-            const result = await database.searchRecords(RECORD_TYPE_PIZZA, query, undefined, sort);
+            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.EMPTY_QUERY, undefined, sort);
             
             expect(result.length).toBe(5);
             expect(result).toMatchObject(QUERY_RESULTS.SORTED_DESCENDING);
@@ -337,9 +262,8 @@ describe('implementations/MemoryDb', () =>
 
         it('should sort the records by multiple fields same direction', async () =>
         {
-            const query: RecordQuery = { };
             const sort: RecordSort = { 'size': SortDirections.DESCENDING, 'name': SortDirections.DESCENDING };
-            const result = await database.searchRecords(RECORD_TYPE_PIZZA, query, undefined, sort );
+            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.EMPTY_QUERY, undefined, sort );
 
             expect(result.length).toBe(5);
             expect(result).toMatchObject(QUERY_RESULTS.SORTED_BY_MULTIPLE_FIELDS_SAME_DIRECTION);
@@ -347,9 +271,8 @@ describe('implementations/MemoryDb', () =>
 
         it('should sort the records by multiple fields different direction', async () =>
         {
-            const query: RecordQuery = { };
             const sort: RecordSort = { 'size': SortDirections.DESCENDING, 'name': SortDirections.ASCENDING };
-            const result = await database.searchRecords(RECORD_TYPE_PIZZA, query, undefined, sort );
+            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.EMPTY_QUERY, undefined, sort );
 
             expect(result.length).toBe(5);
             expect(result).toMatchObject(QUERY_RESULTS.SORTED_BY_MULTIPLE_FIELDS_DIFFERENT_DIRECTION);
@@ -359,18 +282,15 @@ describe('implementations/MemoryDb', () =>
         {
             it('should limit the result', async () =>
             {
-                const query: RecordQuery = { };
-                const result = await database.searchRecords(RECORD_TYPE_PIZZA, query, undefined, undefined, 2);
+                const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.EMPTY_QUERY, undefined, undefined, 2);
                 
                 expect(result.length).toBe(2);
                 expect(result).toMatchObject(QUERY_RESULTS.LIMITED_BY_NUMBER);
-                expect(result[1]).toEqual(expect.objectContaining(PIZZAS.CALZONE));
             });
     
             it('should give the result starting an offset', async () =>
             {
-                const query: RecordQuery = { };
-                const result = await database.searchRecords(RECORD_TYPE_PIZZA, query, undefined, undefined, undefined, 2);
+                const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.EMPTY_QUERY, undefined, undefined, undefined, 2);
                 
                 expect(result.length).toBe(3);
                 expect(result).toMatchObject(QUERY_RESULTS.LIMITED_BY_OFFSET);
