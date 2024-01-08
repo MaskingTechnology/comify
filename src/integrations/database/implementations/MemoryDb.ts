@@ -91,7 +91,7 @@ export default class MemoryDb implements Database
         collection.splice(index, 1);
     }
 
-    async findRecord(type: string, query: QueryStatement, fields?: string[] | undefined, sort?: RecordSort): Promise<RecordData | undefined>
+    async findRecord(type: string, query: QueryStatement, fields?: string[], sort?: RecordSort): Promise<RecordData | undefined>
     {
         const result = await this.searchRecords(type, query, fields, sort, 1, 0);
 
@@ -256,14 +256,14 @@ export default class MemoryDb implements Database
 
     #buildRecordData(data: RecordData, fields?: RecordField[]) : RecordData
     { 
-        const result: RecordData = {};
-
         if (fields === undefined)
         {
 
             return { ...data };
         }
 
+        const result: RecordData = {};
+        
         for (const field of fields)
         {
             result[field] = data[field];
