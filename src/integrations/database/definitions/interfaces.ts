@@ -6,7 +6,7 @@ export interface Database
     connect(connectionString: string, databaseName: string): Promise<void>;
     disconnect(): Promise<void>;
     createRecord(type: RecordType, data: RecordData): Promise<RecordId>;
-    readRecord(type: RecordType, id: RecordId, fields?: RecordField[]): Promise<RecordData | undefined>;
+    readRecord(type: RecordType, id: RecordId, fields?: RecordField[]): Promise<RecordData>;
     updateRecord(type: RecordType, id: RecordId, data: RecordData): Promise<void>;
     deleteRecord(type: RecordType, id: RecordId): Promise<void>;
     findRecord(type: RecordType, query: RecordQuery, fields?: RecordField[], sort?: RecordSort): Promise<RecordData | undefined>;
