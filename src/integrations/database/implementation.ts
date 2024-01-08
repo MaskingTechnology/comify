@@ -9,4 +9,4 @@ MongoDB or Mock implementation be provided.
 
 *************************************************************************************/
 
-export { default } from './implementations/mongodb.js';
+export { default } from './implementations/MemoryDb.js';

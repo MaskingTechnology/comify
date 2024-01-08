@@ -1,0 +1,64 @@
+.ds-panel
+{
+    --border-radius: 0;
+    --padding: 2em 2em;
+    --padding-nested: 0.7em 1em;
+    --margin: 0 0 1.5em 0;
+
+    --alert-background-color: var(--color-alert-background);
+    --alert-foreground-color: var(--color-alert-foreground);
+
+    --error-background-color: var(--color-error-background);
+    --error-foreground-color: var(--color-error-foreground);
+
+    --normal-background-color: var(--color-secondary-background);
+    --normal-foreground-color: var(--color-secondary-foreground);
+
+    --success-background-color: var(--color-success-background);
+    --success-foreground-color: var(--color-success-foreground);
+
+    --warning-background-color: var(--color-warning-background);
+    --warning-foreground-color: var(--color-warning-foreground);
+}
+
+.ds-panel
+{
+    border-radius: var(--border-radius);
+    padding: var(--padding);
+    margin: var(--margin);
+}
+
+.ds-panel .ds-panel
+{
+    padding: var(--padding-nested);
+}
+
+.ds-panel.ds-panel-alert
+{
+    background-color: var(--alert-background-color);
+    color: var(--alert-foreground-color);
+}
+
+.ds-panel.ds-panel-error
+{
+    background-color: var(--error-background-color);
+    color: var(--error-foreground-color);
+}
+
+.ds-panel.ds-panel-normal
+{
+    background-color: var(--normal-background-color);
+    color: var(--normal-foreground-color);
+}
+
+.ds-panel.ds-panel-success
+{
+    background-color: var(--success-background-color);
+    color: var(--success-foreground-color);
+}
+
+.ds-panel.ds-panel-warning
+{
+    background-color: var(--warning-background-color);
+    color: var(--warning-foreground-color);
+}

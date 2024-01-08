@@ -1,0 +1,19 @@
+.ds-input
+{
+    --margin: 0 0 1em 0;
+    --gap: 0.5em;
+}
+
+.ds-input
+{
+    display: flex;
+    flex-direction: column;
+
+    gap: var(--gap);
+    margin: var(--margin);
+}
+
+.ds-input .ds-label
+{
+    font-weight: var(--font-weight-medium);
+}
