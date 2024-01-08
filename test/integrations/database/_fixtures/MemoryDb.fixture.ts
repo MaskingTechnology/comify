@@ -16,8 +16,8 @@ await database.connect('', 'test');
 const apple: RecordData = { name: 'Apple', country: 'Belgium', sprayed: false }; 
 const appleId = await database.createRecord(RECORD_TYPE_FRUIT, apple);
 
-const peer: RecordData = { name: 'Pear', country: 'Netherlands', sprayed: true };
-const peerId = await database.createRecord(RECORD_TYPE_FRUIT, peer);
+const pear: RecordData = { name: 'Pear', country: 'Netherlands', sprayed: true };
+const pearId = await database.createRecord(RECORD_TYPE_FRUIT, pear);
 
 const margherita: RecordData = { name: 'Margherita', size: 15, price: 12.00, folded: false };
 const margheritaId = await database.createRecord(RECORD_TYPE_PIZZA,  margherita);
@@ -45,7 +45,7 @@ const PIZZAS = {
 const IDS = {
     MARGHERITA: margheritaId,
     APPLE: appleId,
-    PEAR: peerId
+    PEAR: pearId
 };
 
 const FIRST_PIZZA = PIZZAS.MARGHERITA;
@@ -123,8 +123,7 @@ const SEARCH_QUERIES: Record<string, RecordQuery> = {
             { 'size': { EQUALS: 21 } }
         ]
     },
-    FIND_BASED_ON_USING_ALL_SEARCH_PARAMETERS: { folded: { EQUALS: false } },
-
+    FIND_BASED_ON_USING_ALL_SEARCH_PARAMETERS: { folded: { EQUALS: false } }
 };
 
 const QUERY_RESULTS = {
