@@ -1,0 +1,30 @@
+.ds-image
+{
+    --small-width: 1em;
+    --small-height: 1em;
+
+    --medium-width: 2em;
+    --medium-height: 2em;
+
+    --large-width: 4em;
+    --large-height: 4em;
+}
+
+.ds-image.ds-image-size-small
+{
+    width: var(--small-width);
+    height: var(--small-height);
+
+}
+
+.ds-image.ds-image-size-medium
+{
+    width: var(--medium-width);
+    height: var(--medium-height);
+}
+
+.ds-image.ds-image-size-large
+{
+    width: var(--large-width);
+    height: var(--large-height);
+}

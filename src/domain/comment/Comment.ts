@@ -7,7 +7,7 @@ export default class Comment
     constructor(id: string, comment: string)
     {
         this.#id = id;
-        this.#comment = comment; 
+        this.#comment = comment;
     }
 
     get id() { return this.#id; }

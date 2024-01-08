@@ -10,7 +10,7 @@ export default class Relation
         this.#id = id;
         this.#followerId = followerId;
         this.#followeeId = followeeId;
-    } 
+    }
 
     get id() { return this.#id; }
 

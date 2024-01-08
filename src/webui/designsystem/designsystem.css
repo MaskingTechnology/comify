@@ -1,0 +1,56 @@
+.ds
+{
+    --font-family: sans-serif;
+    --font-size: 16px;
+
+    --font-weight-extra-light: 200;
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semi-bold: 600;
+    --font-weight-bold: 700;
+
+    --color-background: #ffffff;
+    --color-background-hover: #efefef;
+    --color-foreground: #000000;
+    --color-border: #b7b7b7;
+
+    --color-primary-background: #cccccc;
+    --color-primary-foreground: #000000;
+
+    --color-secondary-background: #f3f3f3;
+    --color-secondary-foreground: #000000;
+
+    --color-input-background: #ffffff;
+    --color-input-foreground: #000000;
+
+    --color-alert-background: #d9d9d9;
+    --color-alert-foreground: #666666;
+
+    --color-error-background: #666666;
+    --color-error-foreground: #f3f3f3;
+
+    --color-warning-background: #999999;
+    --color-warning-foreground: #f3f3f3;
+
+    --color-success-background: #efefef;
+    --color-success-foreground: #666666;
+
+    --margin-container: 0 0 1.2em 0;
+
+    --width-border: 0.05em;
+}
+
+.ds
+{
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+
+    background-color: var(--color-background);
+    font-weight: var(--font-weight-light);
+}
+
+.ds *:is(:last-child)
+{
+    margin-bottom: 0;
+}

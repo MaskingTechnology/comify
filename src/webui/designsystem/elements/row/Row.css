@@ -1,0 +1,52 @@
+.ds-row
+{
+    --gap-small: 0.5em;
+    --gap-medium: 1em;
+    --gap-large: 2em;
+}
+
+.ds-row
+{
+    display: flex;
+    flex-direction: row;
+}
+
+.ds-row.ds-row-align-left
+{
+    justify-content: flex-start;
+}
+
+.ds-row.ds-row-align-center
+{
+    justify-content: center;
+}
+
+.ds-row.ds-row-align-right
+{
+    justify-content: flex-end;
+}
+
+.ds-row.ds-row-gap-small
+{
+    gap: var(--gap-small);
+}
+
+.ds-row.ds-row-gap-medium
+{
+    gap: var(--gap-medium);
+}
+
+.ds-row.ds-row-gap-large
+{
+    gap: var(--gap-large);
+}
+
+.ds-row.ds-row-wrap-nowrap
+{
+    flex-wrap: wrap;
+}
+
+.ds-row.ds-row-wrap-wrap
+{
+    flex-wrap: wrap;
+}

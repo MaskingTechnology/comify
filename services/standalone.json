@@ -1,5 +1,8 @@
 {
     "url": "http://127.0.0.1:3000",
+    "setUp": "./integrations/jitar/setUpNode",
+    "tearDown": "./integrations/jitar/tearDownNode",
+    "healthChecks": [ "./integrations/jitar/fileStorageHealthCheck" ],
     "standalone":
     {
         "assets": ["index.html", "main.js", "App.js", "vite.svg", "assets/**/*"]

@@ -1,0 +1,22 @@
+.ds-ruler
+{
+    --border-width: 0.3rem;
+    --color: var(--color-border);
+}
+
+.ds-ruler
+{
+    background-color: var(--color);
+}
+
+.ds-ruler.ds-ruler-horizontal
+{
+    width: 100%;
+    height: var(--border-width);
+}
+
+.ds-ruler.ds-ruler-vertical
+{
+    height: 100%;
+    width: var(--border-width);
+}
