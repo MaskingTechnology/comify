@@ -2,28 +2,22 @@
 {
     display: flex;
     flex-direction: row;
+    gap: 2rem;
+    margin: 3em;
 }
 
-.ds .entrance-container:is(:last-child)
-{
-    margin: 5rem;
-}
-
-.entrance-side
+.entrance-container main
 {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: stretch;
-    gap: 1rem;
-}
-
-.entrance-side-header
-{
-    align-self: stretch;
-}
-
-.entrance-side-content
-{
     flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.entrance-container aside
+{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0;
+    flex-shrink: 0;
 }

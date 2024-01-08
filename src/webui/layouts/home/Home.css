@@ -2,29 +2,22 @@
 {
     display: flex;
     flex-direction: row;
+    gap: 2rem;
+    margin: 3em;
 }
 
-.home-main
+.home-container main
 {
     display: flex;
     flex-direction: column;
-}
-
-.home-header
-{
-    align-self: flex-start;
-}
-
-.home-content
-{
     flex-grow: 1;
+    flex-shrink: 1;
 }
 
-.home-side
+.home-container aside
 {
-    width: 20rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    flex-grow: 0;
+    flex-shrink: 0;
 }

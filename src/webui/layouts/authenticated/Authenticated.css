@@ -2,26 +2,23 @@
 {
     display: flex;
     flex-direction: row;
+    gap: 2rem;
+    margin: 1em;
+    height: 100vh;
 }
 
-.authenticated-sidebar
+.authenticated-container main
 {
-    width: 20rem;
     display: flex;
     flex-direction: column;
-}
-
-.authenticated-sidebar-header
-{
-    align-self: flex-start;
-}
-
-.authenticated-sidebar-navigation
-{
     flex-grow: 1;
+    flex-shrink: 1;
 }
 
-.authenticated-sidebar-footer
+.authenticated-container nav
 {
-    align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0;
+    flex-shrink: 0;
 }
