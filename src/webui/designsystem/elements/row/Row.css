@@ -48,7 +48,7 @@
 
 .ds-row.ds-row-wrap-nowrap
 {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .ds-row.ds-row-wrap-wrap
