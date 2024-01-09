@@ -1,9 +1,10 @@
 
-import Authentication from './Authentication.js';
+import Implementation from './implementation';
 
-export * from './definitions/types.js';
-export * from './definitions/errors.js';
+export * from './definitions/types';
+export * from './definitions/interfaces';
+export * from './definitions/errors';
 
-const authentication = new Authentication();
+const implementation = new Implementation();
 
-export default authentication;
+export default implementation;

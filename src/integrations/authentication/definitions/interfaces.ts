@@ -1,5 +1,5 @@
 
-import { Identity } from './types.js';
+import { Session } from './types.js';
 
 export interface IdentityProvider
 {
@@ -11,5 +11,9 @@ export interface IdentityProvider
 
     getLoginUrl(): Promise<string>;
 
-    login(data: unknown): Promise<Identity>;
+    login(data: Record<string, unknown>): Promise<Session>;
+
+    refresh(session: Session): Promise<Session>;
+
+    logout(session: Session): Promise<void>;
 }
