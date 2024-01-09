@@ -13,7 +13,7 @@ export type ProfileProps = {
 
 export default function Profile(props: ProfileProps)
 {
-    return <Row>
+    return <Row gap='small'>
         {props.avatar}
         <CreatorNames username={props.username} nickname={props.nickname} />
     </Row>;
