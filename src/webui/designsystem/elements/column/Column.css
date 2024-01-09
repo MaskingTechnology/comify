@@ -55,3 +55,8 @@
 {
     flex-wrap: wrap;
 }
+
+.ds-column.ds-column-stretch
+{
+    flex-grow: 1;
+}

@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import { Text } from '../../designsystem/designsystem.js';
+import { Text } from '../designsystem/designsystem.js';
 
 export type QuantifierProps = {
     value: number;

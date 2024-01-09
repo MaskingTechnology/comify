@@ -1,13 +1,12 @@
 
 import React from 'react';
 
-import './CreatorCard.css';
 import Quantifier from './Quantifier.js';
-import CreatorNames from '../creatornames/CreatorNames.js';
+import CreatorNames from './CreatorNames.js';
 
-import { AvatarProps } from '../../designsystem/elements/avatar/Avatar.js';
-import { ButtonProps } from '../../designsystem/elements/button/Button.js';
-import { Column, Row } from '../../designsystem/designsystem.js';
+import { AvatarProps } from '../designsystem/elements/avatar/Avatar.js';
+import { ButtonProps } from '../designsystem/elements/button/Button.js';
+import { Column, Row } from '../designsystem/designsystem.js';
 
 export type CreatorCardProps = {
     avatar: React.ReactElement<AvatarProps>;
@@ -23,7 +22,7 @@ export default function CreatorCard(props: CreatorCardProps)
 {
     return <Row>
         {props.avatar}
-        <Column gap='small' align='justify'>
+        <Column gap='small' align='justify' stretch={true}>
             <Row align='justify'>
                 <CreatorNames username={props.username} nickname={props.nickname} />
                 {props.button}

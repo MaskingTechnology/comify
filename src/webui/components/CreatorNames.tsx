@@ -1,9 +1,7 @@
 
 import React from 'react';
 
-import './CreatorNames.css';
-
-import { Column, Text } from '../../designsystem/designsystem.js';
+import { Column, Text } from '../designsystem/designsystem.js';
 
 export type CreatorNamesProps = {
     username: string;
