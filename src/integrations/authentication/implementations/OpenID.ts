@@ -1,18 +1,9 @@
 
-import { Issuer, generators, BaseClient, ClientMetadata, AuthorizationParameters } from 'openid-client';
-import jwt from 'jsonwebtoken';
+import { Issuer, BaseClient, ClientMetadata, AuthorizationParameters } from 'openid-client';
 
 import { IdentityProvider } from '../definitions/interfaces.js';
-import { Identity } from '../definitions/types.js';
+import { Identity, Session } from '../definitions/types.js';
 import { NotConnected } from '../definitions/errors.js';
-
-export const Issuers =
-{
-    GOOGLE: 'https://accounts.google.com',
-    MICROSOFT: 'https://login.microsoftonline.com/common/v2.0'
-};
-
-Object.freeze(Issuers);
 
 export type OpenIDConfiguration = {
     issuer: string;
@@ -23,6 +14,7 @@ export type OpenIDConfiguration = {
 
 export default class OpenID implements IdentityProvider
 {
+    #configuration?: OpenIDConfiguration;
     #client?: BaseClient;
 
     get connected(): boolean
@@ -37,10 +29,12 @@ export default class OpenID implements IdentityProvider
             client_id: configuration.clientId,
             client_secret: configuration.clientSecret,
             redirect_uris: [configuration.redirectUri],
-            response_types: ['id_token']
+            response_types: ['code']
         };
 
         const issuer = await Issuer.discover(configuration.issuer);
+
+        this.#configuration = configuration;
         this.#client = new issuer.Client(metaData);
     }
 
@@ -52,29 +46,58 @@ export default class OpenID implements IdentityProvider
     async getLoginUrl(): Promise<string>
     {
         const client = this.#getClient();
-        const nonce = generators.nonce();
         const parameters: AuthorizationParameters =
         {
-            scope: 'openid email profile',
-            response_mode: 'form_post',
-            nonce: nonce
+            scope: 'openid profile',
+            response_mode: 'form_post'
         };
 
         return client.authorizationUrl(parameters);
     }
 
-    async login(data: Record<string, unknown>): Promise<Identity>
+    async login(data: Record<string, unknown>): Promise<Session>
     {
-        const token = data.id_token as string;
-        const decoded = jwt.decode(token) as Record<string, unknown>;
+        const client = this.#getClient();
+        const redirectUri = this.#configuration?.redirectUri;
+
+        const tokenSet = await client.callback(redirectUri, data);
+        const userinfo = await client.userinfo(tokenSet.access_token as string);
+
+        const identity: Identity = {
+            name: userinfo.name as string,
+            nickname: userinfo.nickname as string,
+            picture: userinfo.picture as string,
+            email: userinfo.email as string,
+            email_verified: userinfo.email_verified as boolean
+        };
+
+        const expires = tokenSet.expires_at as number * 1000;
 
         return {
-            name: decoded.name as string,
-            nickname: decoded.nickname as string,
-            picture: decoded.picture as string,
-            email: decoded.email as string,
-            email_verified: decoded.email_verified as boolean
+            identity: identity,
+            accessToken: tokenSet.access_token as string,
+            refreshToken: tokenSet.refresh_token as string,
+            expires: new Date(expires)
         };
+    }
+
+    async refresh(session: Session): Promise<Session>
+    {
+        const client = this.#getClient();
+
+        const tokenSet = await client.refresh(session.refreshToken);
+
+        session.accessToken = tokenSet.access_token as string;
+        session.refreshToken = tokenSet.refresh_token as string;
+
+        return session;
+    }
+
+    logout(session: Session): Promise<void>
+    {
+        const client = this.#getClient();
+
+        return client.revoke(session.accessToken);
     }
 
     #getClient(): BaseClient
