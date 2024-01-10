@@ -10,12 +10,16 @@
 
 .authenticated-layout nav
 {
+    display: flex;
     flex-grow: 0;
     flex-shrink: 0;
+    width: 15rem;
 }
 
 .authenticated-layout main
 {
     flex-grow: 1;
     flex-shrink: 1;
+
+    overflow: scroll;
 }
