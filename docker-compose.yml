@@ -20,6 +20,8 @@ services:
   mongo-express:
     image: mongo-express
     restart: always
+    depends_on:
+      - mongo
     ports:
       - 8081:8081
     environment:
@@ -39,3 +41,15 @@ services:
       MINIO_ACCESS_KEY: development
       MINIO_SECRET_KEY: development
     command: server --console-address ":9001" /data
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    restart: always
+    volumes:
+      - ./docker/keycloak:/opt/keycloak/data/import
+    ports:
+      - 8080:8080
+    environment:
+      KEYCLOAK_ADMIN: development
+      KEYCLOAK_ADMIN_PASSWORD: development
+    command: start-dev --import-realm

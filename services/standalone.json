@@ -5,6 +5,7 @@
     "healthChecks": [ "./integrations/jitar/fileStorageHealthCheck" ],
     "standalone":
     {
-        "assets": ["index.html", "main.js", "App.js", "vite.svg", "assets/**/*"]
+        "assets": ["index.html", "main.js", "App.js", "vite.svg", "assets/**/*"],
+        "middlewares": ["./integrations/jitar/authenticationMiddleware"]
     }
 }
