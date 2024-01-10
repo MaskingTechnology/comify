@@ -11,6 +11,9 @@
 .ds-text.ds-text-size-large
 {
     font-size: 1.2em;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .ds-text.ds-text-weight-light
