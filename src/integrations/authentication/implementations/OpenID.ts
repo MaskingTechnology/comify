@@ -48,7 +48,7 @@ export default class OpenID implements IdentityProvider
         const client = this.#getClient();
         const parameters: AuthorizationParameters =
         {
-            scope: 'openid profile',
+            scope: 'openid',
             response_mode: 'form_post'
         };
 
@@ -74,6 +74,7 @@ export default class OpenID implements IdentityProvider
         const expires = tokenSet.expires_at as number * 1000;
 
         return {
+            requester: undefined,
             identity: identity,
             accessToken: tokenSet.access_token as string,
             refreshToken: tokenSet.refresh_token as string,
@@ -84,13 +85,17 @@ export default class OpenID implements IdentityProvider
     async refresh(session: Session): Promise<Session>
     {
         const client = this.#getClient();
-
         const tokenSet = await client.refresh(session.refreshToken);
 
-        session.accessToken = tokenSet.access_token as string;
-        session.refreshToken = tokenSet.refresh_token as string;
+        const expires = tokenSet.expires_at as number * 1000;
 
-        return session;
+        return {
+            requester: session.requester,
+            identity: session.identity,
+            accessToken: tokenSet.access_token as string,
+            refreshToken: tokenSet.refresh_token as string,
+            expires: new Date(expires)
+        };
     }
 
     logout(session: Session): Promise<void>

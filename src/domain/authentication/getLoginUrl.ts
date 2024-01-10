@@ -1,7 +1,8 @@
 
-import identityProvider from '../../integrations/authentication/module';
-
 export default async function getLoginUrl(): Promise<string>
 {
-    return identityProvider.getLoginUrl();
+    // This is a dummy function.
+    // The authentication middleware will provide the login url.
+
+    return '';
 }

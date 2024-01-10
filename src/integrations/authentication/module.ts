@@ -1,9 +1,9 @@
 
-import Implementation from './implementation';
+import Implementation from './implementation.js';
 
-export * from './definitions/types';
-export * from './definitions/interfaces';
-export * from './definitions/errors';
+export * from './definitions/types.js';
+export * from './definitions/interfaces.js';
+export * from './definitions/errors.js';
 
 const implementation = new Implementation();
 

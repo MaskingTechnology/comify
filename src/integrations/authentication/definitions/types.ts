@@ -10,6 +10,7 @@ export type Identity = {
 export type Token = string;
 
 export type Session = {
+    requester: unknown;
     identity: Identity;
     accessToken: Token;
     refreshToken: Token;
