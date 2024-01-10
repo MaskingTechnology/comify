@@ -1,7 +1,7 @@
 
 export type Identity = {
     name: string;
-    nickname: string;
+    nickname: string | undefined;
     picture: string | undefined;
     email: string;
     email_verified: boolean;

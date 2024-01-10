@@ -662,8 +662,7 @@
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "https://www.keycloak.org/app/*",
-        "http://localhost:3000/cb"
+        "http://localhost:3000/rpc/domain/authentication/login"
       ],
       "webOrigins": [
         "https://www.keycloak.org"
