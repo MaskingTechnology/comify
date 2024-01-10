@@ -48,7 +48,7 @@ export default class OpenID implements IdentityProvider
         const client = this.#getClient();
         const parameters: AuthorizationParameters =
         {
-            scope: 'openid',
+            scope: 'openid profile email',
             response_mode: 'form_post'
         };
 

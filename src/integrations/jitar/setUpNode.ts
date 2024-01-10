@@ -1,8 +1,8 @@
 
-import authentication from '../authentication/module';
+import identityProvider from '../authentication/module';
 import fileStorage from '../filestorage/module';
 
-await authentication.connect({
+await identityProvider.connect({
     issuer: 'http://localhost:8080/realms/comify',
     clientId: 'openid',
     clientSecret: '',
