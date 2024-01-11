@@ -3,6 +3,8 @@ import { RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType 
 
 export interface Database
 {
+    get connected(): boolean;
+
     connect(connectionString: string, databaseName: string): Promise<void>;
     disconnect(): Promise<void>;
     createRecord(type: RecordType, data: RecordData): Promise<RecordId>;
