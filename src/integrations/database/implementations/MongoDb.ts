@@ -77,7 +77,7 @@ export default class MongoDB implements Database
         }
         catch (error: unknown)
         {
-            throw new DatabaseError('Disconnectin failed');
+            throw new DatabaseError('Disconnection failed');
         }
     }
 
