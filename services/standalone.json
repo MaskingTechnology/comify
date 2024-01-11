@@ -9,6 +9,9 @@
     "standalone":
     {
         "assets": ["index.html", "main.js", "App.js", "vite.svg", "assets/**/*"],
+        "middlewares": [
+            "./integrations/jitar/authenticationMiddleware"
+        ],
         "overrides": {
             "./integrations/database/implementation": "./integrations/database/implementations/MongoDb"
         }
