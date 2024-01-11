@@ -6,7 +6,7 @@ import { NotConnected, RecordNotFound, RecordNotUpdated } from '../definitions/e
 
 type FilterFunction = (record: RecordData) => boolean;
 
-const OPERATORS = 
+const OPERATORS =
 {
     [QueryOperators.EQUALS]: '==',
     [QueryOperators.GREATER_THAN]: '>',
@@ -19,7 +19,7 @@ const OPERATORS =
 const LOGICAL_OPERATORS =
 {
     [LogicalOperators.AND]: '&&',
-    [LogicalOperators.OR]: '||' 
+    [LogicalOperators.OR]: '||'
 };
 
 export default class MemoryDb implements Database
@@ -27,10 +27,15 @@ export default class MemoryDb implements Database
     #memory?: Map<string, RecordData[]>;
     recordId = 0;
 
+    get connected()
+    {
+        return this.#memory !== undefined;
+    }
+
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async connect(connectionString: string, databaseName: string): Promise<void>
     {
-        this.#memory = new Map(); 
+        this.#memory = new Map();
     }
 
     async disconnect(): Promise<void>
@@ -42,11 +47,11 @@ export default class MemoryDb implements Database
     {
         const collection = this.#getCollection(type);
         const id = this.#createId();
-        const record = {'id' : id, ...data};
+        const record = { 'id': id, ...data };
 
         collection.push(record);
 
-        return id; 
+        return id;
     }
 
     async readRecord(type: string, id: string, fields?: string[]): Promise<RecordData>
@@ -57,7 +62,7 @@ export default class MemoryDb implements Database
         if (record === undefined)
         {
             throw new RecordNotFound();
-        } 
+        }
 
         return this.#buildRecordData(record, fields);
     }
@@ -71,7 +76,7 @@ export default class MemoryDb implements Database
         {
             throw new RecordNotUpdated();
         }
-        
+
         for (const key of Object.keys(data))
         {
             record[key] = data[key];
@@ -100,13 +105,13 @@ export default class MemoryDb implements Database
 
     async searchRecords(type: string, query: QueryStatement, fields?: string[], sort?: RecordSort, limit?: number, offset?: number): Promise<RecordData[]>
     {
-        const collection = this.#getCollection(type); 
+        const collection = this.#getCollection(type);
         const filterFunction = this.#buildFilterFunction(query);
         const result = collection.filter(filterFunction);
 
         const sortedResult = this.#sortRecords(result, sort);
         const limitedResult = this.#limitNumberOfRecords(sortedResult, offset, limit);
-        
+
         return limitedResult.map(records => this.#buildRecordData(records, fields));
     }
 
@@ -119,7 +124,7 @@ export default class MemoryDb implements Database
 
         const first = offset === undefined ? 0 : offset;
         const last = limit === undefined ? undefined : first + limit;
-        
+
         return result.slice(first, last);
     }
 
@@ -174,7 +179,7 @@ export default class MemoryDb implements Database
                 : this.#buildExpressionCode(key, singleStatements[key]);
 
             statementCodes.push(code);
-        }   
+        }
 
         return statementCodes.join(' && ');
     }
@@ -196,7 +201,7 @@ export default class MemoryDb implements Database
         return `(${code})`;
     }
 
-    #buildExpressionCode(key:string, expression: QueryExpression)
+    #buildExpressionCode(key: string, expression: QueryExpression)
     {
         const expressionCodes = [];
 
@@ -232,7 +237,7 @@ export default class MemoryDb implements Database
     #createId(): string
     {
 
-        return (this.recordId++).toString().padStart(8,'0');
+        return (this.recordId++).toString().padStart(8, '0');
     }
 
     #getCollection(type: string): RecordData[]
@@ -254,8 +259,8 @@ export default class MemoryDb implements Database
         return collection;
     }
 
-    #buildRecordData(data: RecordData, fields?: RecordField[]) : RecordData
-    { 
+    #buildRecordData(data: RecordData, fields?: RecordField[]): RecordData
+    {
         if (fields === undefined)
         {
 
@@ -263,7 +268,7 @@ export default class MemoryDb implements Database
         }
 
         const result: RecordData = {};
-        
+
         for (const field of fields)
         {
             result[field] = data[field];

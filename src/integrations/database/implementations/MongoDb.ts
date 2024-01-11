@@ -4,7 +4,7 @@ import { ObjectId, MongoClient, Document, Collection, Db, Filter, Sort } from 'm
 import { Database } from '../definitions/interfaces.js';
 import { ID, LogicalOperators, SortDirections, QueryOperators } from '../definitions/constants.js';
 import { QueryOperator, QueryMultiExpressionStatement, QuerySingleExpressionStatement, RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType, RecordValue } from '../definitions/types.js';
-import { NotConnected, RecordNotCreated, RecordNotUpdated, RecordNotDeleted, RecordNotFound } from '../definitions/errors.js';
+import { NotConnected, RecordNotCreated, RecordNotUpdated, RecordNotDeleted, RecordNotFound, DatabaseError } from '../definitions/errors.js';
 
 const OPERATORS =
 {
@@ -33,11 +33,31 @@ export default class MongoDB implements Database
 {
     #client?: MongoClient;
     #database?: Db;
+    #connected = false;
+
+    get connected()
+    {
+        return this.#connected;
+    }
 
     async connect(connectionString: string, databaseName: string): Promise<void>
     {
-        this.#client = await this.#createClient(connectionString);
-        this.#database = this.#getDatabase(databaseName);
+        try
+        {
+            this.#client = await this.#createClient(connectionString);
+
+            this.#client.on('open', () => { this.#connected = true; });
+            this.#client.on('close', () => { this.#connected = false; });
+
+            this.#client.on('serverHeartbeatSucceeded', () => { this.#connected = true; });
+            this.#client.on('serverHeartbeatFailed', () => { this.#connected = false; });
+
+            this.#database = this.#getDatabase(databaseName);
+        }
+        catch (error: unknown)
+        {
+            throw new DatabaseError('Connection failed');
+        }
     }
 
     async disconnect(): Promise<void>
@@ -47,7 +67,18 @@ export default class MongoDB implements Database
             throw new NotConnected();
         }
 
-        return this.#client.close(true);
+        try
+        {
+            await this.#client.close();
+
+            this.#connected = false;
+            this.#client = undefined;
+            this.#database = undefined;
+        }
+        catch (error: unknown)
+        {
+            throw new DatabaseError('Disconnectin failed');
+        }
     }
 
     async createRecord(type: RecordType, data: RecordData): Promise<RecordId>
