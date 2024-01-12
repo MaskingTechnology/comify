@@ -1,7 +1,17 @@
 {
     "url": "http://127.0.0.1:3000",
-    "setUp": "./integrations/jitar/setUpStandalone",
-    "tearDown": "./integrations/jitar/tearDownStandalone",
+    "setUp": [
+        "./integrations/jitar/setUpMongoDatabase",
+        "./integrations/jitar/setUpMinioFileStorage",
+        "./integrations/jitar/setUpOpenIdAuthentication",
+        "./integrations/jitar/setUpWebPushNotifications"
+    ],
+    "tearDown": [
+        "./integrations/jitar/tearDownNotifications",
+        "./integrations/jitar/tearDownAuthentication",
+        "./integrations/jitar/tearDownFileStorage",
+        "./integrations/jitar/tearDownDatabase"
+    ],
     "healthChecks": [
         "./integrations/jitar/notificationHealthCheck",
         "./integrations/jitar/fileStorageHealthCheck",
@@ -14,7 +24,10 @@
             "./integrations/jitar/authenticationMiddleware"
         ],
         "overrides": {
-            "./integrations/database/implementation": "./integrations/database/implementations/MongoDb"
+            "./integrations/database/implementation": "./integrations/database/implementations/MongoDb",
+            "./integrations/filestorage/implementation": "./integrations/filestorage/implementations/MinioFS",
+            "./integrations/authentication/implementation": "./integrations/authentication/implementations/OpenId",
+            "./integrations/notifications/implementation": "./integrations/notifications/implementations/WebPushNotifications"
         }
     }
 }

@@ -22,7 +22,7 @@ const LOGICAL_OPERATORS =
     [LogicalOperators.OR]: '||'
 };
 
-export default class MemoryDb implements Database
+class MemoryDb implements Database
 {
     #memory?: Map<string, RecordData[]>;
     recordId = 0;
@@ -277,3 +277,5 @@ export default class MemoryDb implements Database
         return result;
     }
 }
+
+export default new MemoryDb();

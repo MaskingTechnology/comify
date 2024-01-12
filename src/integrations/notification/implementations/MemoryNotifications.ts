@@ -7,7 +7,7 @@ export type Notification = {
     body: string;
 };
 
-export default class MemoryNotifications implements NotificationService
+class MemoryNotifications implements NotificationService
 {
     #subscriptions?: Map<string, Notification[]>;
 
@@ -80,3 +80,5 @@ export default class MemoryNotifications implements NotificationService
         return subscription;
     }
 }
+
+export default new MemoryNotifications();

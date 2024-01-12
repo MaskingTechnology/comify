@@ -2,7 +2,7 @@
 import { FileStorage } from '../definitions/interfaces.js';
 import { NotConnected, FileNotFound } from '../definitions/errors.js';
 
-export default class MemoryFS implements FileStorage
+class MemoryFS implements FileStorage
 {
     #files?: Map<string, Buffer>;
 
@@ -69,3 +69,5 @@ export default class MemoryFS implements FileStorage
         return this.#files;
     }
 }
+
+export default new MemoryFS();

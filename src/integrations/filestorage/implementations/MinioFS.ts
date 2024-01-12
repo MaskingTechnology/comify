@@ -6,7 +6,7 @@ import { NotConnected, FileNotFound } from '../definitions/errors.js';
 
 const BUCKET_NAME = 'comify';
 
-export default class MinioFS implements FileStorage
+class MinioFS implements FileStorage
 {
     #client?: Client;
 
@@ -100,3 +100,5 @@ export default class MinioFS implements FileStorage
         return error;
     }
 }
+
+export default new MinioFS();

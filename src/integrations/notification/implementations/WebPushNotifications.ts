@@ -10,7 +10,7 @@ type VapidDetails = {
     privateKey: string;
 };
 
-export default class WebPushNotifications implements NotificationService
+class WebPushNotifications implements NotificationService
 {
     #subscriptions?: Map<string, PushSubscription>;
 
@@ -85,3 +85,5 @@ export default class WebPushNotifications implements NotificationService
         return subscription;
     }
 }
+
+export default new WebPushNotifications();

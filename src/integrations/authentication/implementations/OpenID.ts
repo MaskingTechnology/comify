@@ -12,7 +12,7 @@ export type OpenIDConfiguration = {
     redirectUri: string;
 };
 
-export default class OpenID implements IdentityProvider
+class OpenID implements IdentityProvider
 {
     #configuration?: OpenIDConfiguration;
     #client?: BaseClient;
@@ -115,3 +115,5 @@ export default class OpenID implements IdentityProvider
         return this.#client;
     }
 }
+
+export default new OpenID();

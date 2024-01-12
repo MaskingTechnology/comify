@@ -29,7 +29,7 @@ const LOGICAL_OPERATORS =
 
 const MONGO_ID = '_id';
 
-export default class MongoDB implements Database
+class MongoDB implements Database
 {
     #client?: MongoClient;
     #database?: Db;
@@ -56,7 +56,9 @@ export default class MongoDB implements Database
         }
         catch (error: unknown)
         {
-            throw new DatabaseError('Connection failed');
+            const message = error instanceof Error ? error.message : 'Unknown error';
+
+            throw new DatabaseError('Connection failed: ' + message);
         }
     }
 
@@ -77,7 +79,9 @@ export default class MongoDB implements Database
         }
         catch (error: unknown)
         {
-            throw new DatabaseError('Disconnection failed');
+            const message = error instanceof Error ? error.message : 'Unknown error';
+
+            throw new DatabaseError('Disconnection failed: ' + message);
         }
     }
 
@@ -92,7 +96,7 @@ export default class MongoDB implements Database
         }
         catch (error: unknown)
         {
-            const message = error instanceof Error ? error.message : undefined;
+            const message = error instanceof Error ? error.message : 'Unknown error';
 
             throw new RecordNotCreated(message);
         }
@@ -299,3 +303,5 @@ export default class MongoDB implements Database
         return value;
     }
 }
+
+export default new MongoDB();
