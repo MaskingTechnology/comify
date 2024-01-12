@@ -2,7 +2,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import './components.css';
+import './Link.css';
 
 export type LinkProps = {
     to: string;

@@ -8,7 +8,7 @@
     box-sizing: border-box;
 }
 
-.authenticated-layout nav
+.authenticated-layout aside
 {
     display: flex;
     flex-grow: 0;

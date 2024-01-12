@@ -1,9 +1,9 @@
 
 import React from 'react';
 
-import Link from './Link.js';
-import { Text, Row, Paragraph } from '../designsystem/designsystem.js';
-import { ImageProps } from '../designsystem/elements/image/Image.js';
+import { Row, Text, ImageProps } from '../designsystem/designsystem.js';
+
+import Link from '../elements/Link.js';
 
 export type NavigationItemProps = {
     icon: React.ReactElement<ImageProps>;
@@ -14,9 +14,9 @@ export type NavigationItemProps = {
 export default function NavigationItem(props: NavigationItemProps)
 {
     return <Link to={props.to}>
-        <Paragraph>
-            {props.icon} &nbsp;
+        <Row gap='medium'>
+            {props.icon}
             <Text value={props.text} size='large' weight='bold' />
-        </Paragraph>
+        </Row>
     </Link>;
 }

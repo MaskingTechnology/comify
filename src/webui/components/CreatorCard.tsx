@@ -1,25 +1,23 @@
 
 import React from 'react';
 
-import Quantifier from './Quantifier.js';
-import CreatorNames from './CreatorNames.js';
+import { Row, Column, Text, AvatarProps, ButtonProps } from '../designsystem/designsystem.js';
 
-import { AvatarProps } from '../designsystem/elements/avatar/Avatar.js';
-import { ButtonProps } from '../designsystem/elements/button/Button.js';
-import { Column, Row } from '../designsystem/designsystem.js';
+import CreatorNames from './CreatorNames.js';
 
 export type CreatorCardProps = {
     avatar: React.ReactElement<AvatarProps>;
     button: React.ReactElement<ButtonProps>;
     username: string;
     nickname: string;
-    comics: number;
-    followers: number;
-    following: number;
+    joined: Date;
 };
 
 export default function CreatorCard(props: CreatorCardProps)
 {
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    const joinedText = 'Joined ' + props.joined.toLocaleDateString('en-GB', options);
+
     return <Row>
         {props.avatar}
         <Column gap='small' align='justify' stretch={true}>
@@ -28,9 +26,7 @@ export default function CreatorCard(props: CreatorCardProps)
                 {props.button}
             </Row>
             <Row>
-                <Quantifier value={props.comics} text='comics' />
-                <Quantifier value={props.followers} text='followers' />
-                <Quantifier value={props.following} text='following' />
+                <Text value={joinedText} size='small' />
             </Row>
         </Column>
     </Row>;
