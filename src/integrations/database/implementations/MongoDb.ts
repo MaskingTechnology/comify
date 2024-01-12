@@ -6,6 +6,8 @@ import { ID, LogicalOperators, SortDirections, QueryOperators } from '../definit
 import { QueryOperator, QueryMultiExpressionStatement, QuerySingleExpressionStatement, RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType, RecordValue } from '../definitions/types.js';
 import { NotConnected, RecordNotCreated, RecordNotUpdated, RecordNotDeleted, RecordNotFound, DatabaseError } from '../definitions/errors.js';
 
+const UNKNOWN_ERROR = 'Unknown error';
+
 const OPERATORS =
 {
     [QueryOperators.EQUALS]: '$eq',
@@ -56,7 +58,7 @@ class MongoDB implements Database
         }
         catch (error: unknown)
         {
-            const message = error instanceof Error ? error.message : 'Unknown error';
+            const message = error instanceof Error ? error.message : UNKNOWN_ERROR;
 
             throw new DatabaseError('Connection failed: ' + message);
         }
@@ -79,7 +81,7 @@ class MongoDB implements Database
         }
         catch (error: unknown)
         {
-            const message = error instanceof Error ? error.message : 'Unknown error';
+            const message = error instanceof Error ? error.message : UNKNOWN_ERROR;
 
             throw new DatabaseError('Disconnection failed: ' + message);
         }
@@ -96,7 +98,7 @@ class MongoDB implements Database
         }
         catch (error: unknown)
         {
-            const message = error instanceof Error ? error.message : 'Unknown error';
+            const message = error instanceof Error ? error.message : UNKNOWN_ERROR;
 
             throw new RecordNotCreated(message);
         }
