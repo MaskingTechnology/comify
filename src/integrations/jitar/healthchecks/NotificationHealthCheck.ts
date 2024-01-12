@@ -7,9 +7,9 @@ export default class FileStorageHealthCheck implements HealthCheck
 {
     #notificationService: NotificationService;
 
-    constructor(fileStorage: NotificationService)
+    constructor(notificationService: NotificationService)
     {
-        this.#notificationService = fileStorage;
+        this.#notificationService = notificationService;
     }
 
     get name() { return 'notifications'; }
