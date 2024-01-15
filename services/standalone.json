@@ -1,16 +1,16 @@
 {
     "url": "http://127.0.0.1:3000",
     "setUp": [
-        "./integrations/jitar/setUpMongoDatabase",
-        "./integrations/jitar/setUpMinioFileStorage",
-        "./integrations/jitar/setUpOpenIdAuthentication",
-        "./integrations/jitar/setUpWebPushNotifications"
+        "./integrations/database/setUpMongoDb",
+        "./integrations/filestorage/setUpMinioFS",
+        "./integrations/authentication/setUpOpenId",
+        "./integrations/notification/setUpMemory"
     ],
     "tearDown": [
-        "./integrations/jitar/tearDownNotifications",
-        "./integrations/jitar/tearDownAuthentication",
-        "./integrations/jitar/tearDownFileStorage",
-        "./integrations/jitar/tearDownDatabase"
+        "./integrations/notification/tearDown",
+        "./integrations/authentication/tearDown",
+        "./integrations/filestorage/tearDown",
+        "./integrations/database/tearDown"
     ],
     "healthChecks": [
         "./integrations/jitar/notificationHealthCheck",
@@ -27,7 +27,7 @@
             "./integrations/database/implementation": "./integrations/database/implementations/MongoDb",
             "./integrations/filestorage/implementation": "./integrations/filestorage/implementations/MinioFS",
             "./integrations/authentication/implementation": "./integrations/authentication/implementations/OpenId",
-            "./integrations/notifications/implementation": "./integrations/notifications/implementations/WebPushNotifications"
+            "./integrations/notifications/implementation": "./integrations/notifications/implementations/MemoryNotifications"
         }
     }
 }

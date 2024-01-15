@@ -1,5 +1,5 @@
 
-import database from '../database/module';
+import database from './module';
 
 if (database.connected)
 {

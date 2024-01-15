@@ -1,5 +1,5 @@
 
-import identityProvider from '../authentication/module';
+import identityProvider from './module';
 
 if (identityProvider.connected)
 {

@@ -1,5 +1,5 @@
 
-import fileStorage from '../filestorage/module';
+import fileStorage from './module';
 
 if (fileStorage.connected)
 {
