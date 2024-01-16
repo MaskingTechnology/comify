@@ -20,15 +20,17 @@
     "CHANGELOG.md",
     "README.md",
     "dist"
-  ],
+    ],
   "dependencies": {
     "dayjs": "^1.11.10",
     "jitar": "^0.5.1",
     "minio": "^7.1.3",
     "mongodb": "^6.0.0",
+    "openid-client": "^5.6.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.21.1"
+    "react-router-dom": "^6.21.1",
+    "web-push": "^3.6.6"
   },
   "devDependencies": {
     "@jitar/plugin-vite": "^0.5.1",
@@ -37,6 +39,7 @@
     "@typescript-eslint/eslint-plugin": "^6.17.0",
     "@vitejs/plugin-react": "^4.1.0",
     "@vitest/coverage-v8": "^1.1.1",
+    "@types/web-push": "^3.6.3",
     "auto-changelog": "^2.4.0",
     "eslint": "^8.56.0",
     "eslint-plugin-react": "^7.33.2",
