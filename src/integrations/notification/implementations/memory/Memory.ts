@@ -1,34 +1,29 @@
 
-import webpush, { PushSubscription } from 'web-push';
+import { NotificationService } from '../../definitions/interfaces';
+import { NotConnected, SubscriptionNotFound } from '../../definitions/errors.js';
 
-import { NotificationService } from '../definitions/interfaces';
-import { NotConnected, SubscriptionNotFound } from '../definitions/errors.js';
-
-type VapidDetails = {
-    subject: string;
-    publicKey: string;
-    privateKey: string;
+export type Notification = {
+    title: string;
+    body: string;
 };
 
-class WebPushNotifications implements NotificationService
+export default class Memory implements NotificationService
 {
-    #subscriptions?: Map<string, PushSubscription>;
+    #subscriptions?: Map<string, Notification[]>;
 
     get connected(): boolean
     {
         return this.#subscriptions !== undefined;
     }
 
-    get subscriptions(): Map<string, PushSubscription>
+    get subscriptions(): Map<string, Notification[]>
     {
         return this.#getSubscriptions();
     }
 
-    async connect(configuration: VapidDetails): Promise<void>
+    async connect(): Promise<void>
     {
         this.#subscriptions = new Map();
-
-        webpush.setVapidDetails(configuration.subject, configuration.publicKey, configuration.privateKey);
     }
 
     async disconnect(): Promise<void>
@@ -36,11 +31,11 @@ class WebPushNotifications implements NotificationService
         this.#subscriptions = undefined;
     }
 
-    async subscribe(recipientId: string, subscription: PushSubscription): Promise<void>
+    async subscribe(recipientId: string): Promise<void>
     {
         const subscriptions = this.#getSubscriptions();
 
-        subscriptions.set(recipientId, subscription);
+        subscriptions.set(recipientId, []);
     }
 
     async unsubscribe(recipientId: string): Promise<void>
@@ -59,10 +54,10 @@ class WebPushNotifications implements NotificationService
     {
         const subscription = this.#getSubscription(recipientId);
 
-        await webpush.sendNotification(subscription, JSON.stringify({ title, body }));
+        subscription.push({ title, body });
     }
 
-    #getSubscriptions(): Map<string, PushSubscription>
+    #getSubscriptions(): Map<string, Notification[]>
     {
         if (this.#subscriptions === undefined)
         {
@@ -72,7 +67,7 @@ class WebPushNotifications implements NotificationService
         return this.#subscriptions;
     }
 
-    #getSubscription(recipientId: string): PushSubscription
+    #getSubscription(recipientId: string): Notification[]
     {
         const subscriptions = this.#getSubscriptions();
         const subscription = subscriptions.get(recipientId);
@@ -85,5 +80,3 @@ class WebPushNotifications implements NotificationService
         return subscription;
     }
 }
-
-export default new WebPushNotifications();

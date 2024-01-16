@@ -1,16 +1,12 @@
 {
     "url": "http://127.0.0.1:3000",
     "setUp": [
-        "./integrations/database/setUpMongoDb",
-        "./integrations/filestorage/setUpMinioFS",
-        "./integrations/authentication/setUpOpenId",
-        "./integrations/notification/setUpMemory"
+        "./integrations/jitar/setUpNode",
+        "./integrations/jitar/setUpGateway"
     ],
     "tearDown": [
-        "./integrations/notification/tearDown",
-        "./integrations/authentication/tearDown",
-        "./integrations/filestorage/tearDown",
-        "./integrations/database/tearDown"
+        "./integrations/jitar/tearDownGateway",
+        "./integrations/jitar/tearDownNode"
     ],
     "healthChecks": [
         "./integrations/jitar/notificationHealthCheck",
@@ -22,12 +18,6 @@
         "assets": ["index.html", "main.js", "App.js", "vite.svg", "assets/**/*"],
         "middlewares": [
             "./integrations/jitar/authenticationMiddleware"
-        ],
-        "overrides": {
-            "./integrations/database/implementation": "./integrations/database/implementations/MongoDb",
-            "./integrations/filestorage/implementation": "./integrations/filestorage/implementations/MinioFS",
-            "./integrations/authentication/implementation": "./integrations/authentication/implementations/OpenId",
-            "./integrations/notifications/implementation": "./integrations/notifications/implementations/MemoryNotifications"
-        }
+        ]
     }
 }

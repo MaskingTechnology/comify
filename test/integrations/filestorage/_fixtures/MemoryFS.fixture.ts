@@ -1,5 +1,5 @@
 
-import fileStorage from '../../../../src/integrations/filestorage/implementations/MemoryFS';
+import MemoryFS from '../../../../src/integrations/filestorage/implementations/memory/MemoryFS';
 import { FileStorage } from '../../../../src/integrations/filestorage/definitions/interfaces';
 import { FileNotFound } from '../../../../src/integrations/filestorage/definitions/errors';
 
@@ -13,6 +13,7 @@ const GOODBYE_FILE_BUFFER = Buffer.from(GOODBYE_FILE_CONTENT);
 
 const UNKNOWN_FILE_NAME = 'unknown.txt';
 
+const fileStorage = new MemoryFS();
 await fileStorage.connect();
 
 async function setUpMemoryFS(): Promise<FileStorage>

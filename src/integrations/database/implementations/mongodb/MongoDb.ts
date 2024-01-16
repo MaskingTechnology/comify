@@ -1,10 +1,10 @@
 
 import { ObjectId, MongoClient, Document, Collection, Db, Filter, Sort } from 'mongodb';
 
-import { Database } from '../definitions/interfaces.js';
-import { ID, LogicalOperators, SortDirections, QueryOperators } from '../definitions/constants.js';
-import { QueryOperator, QueryMultiExpressionStatement, QuerySingleExpressionStatement, RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType, RecordValue } from '../definitions/types.js';
-import { NotConnected, RecordNotCreated, RecordNotUpdated, RecordNotDeleted, RecordNotFound, DatabaseError } from '../definitions/errors.js';
+import { Database } from '../../definitions/interfaces.js';
+import { ID, LogicalOperators, SortDirections, QueryOperators } from '../../definitions/constants.js';
+import { QueryOperator, QueryMultiExpressionStatement, QuerySingleExpressionStatement, RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType, RecordValue } from '../../definitions/types.js';
+import { NotConnected, RecordNotCreated, RecordNotUpdated, RecordNotDeleted, RecordNotFound, DatabaseError } from '../../definitions/errors.js';
 
 const UNKNOWN_ERROR = 'Unknown error';
 
@@ -31,22 +31,31 @@ const LOGICAL_OPERATORS =
 
 const MONGO_ID = '_id';
 
-class MongoDB implements Database
+export default class MongoDB implements Database
 {
+    #connectionString: string;
+    #databaseName: string;
+
     #client?: MongoClient;
     #database?: Db;
     #connected = false;
+
+    constructor(connectionString: string, databaseName: string)
+    {
+        this.#connectionString = connectionString;
+        this.#databaseName = databaseName;
+    }
 
     get connected()
     {
         return this.#connected;
     }
 
-    async connect(connectionString: string, databaseName: string): Promise<void>
+    async connect(): Promise<void>
     {
         try
         {
-            this.#client = await this.#createClient(connectionString);
+            this.#client = await this.#createClient(this.#connectionString);
 
             this.#client.on('open', () => { this.#connected = true; });
             this.#client.on('close', () => { this.#connected = false; });
@@ -54,7 +63,7 @@ class MongoDB implements Database
             this.#client.on('serverHeartbeatSucceeded', () => { this.#connected = true; });
             this.#client.on('serverHeartbeatFailed', () => { this.#connected = false; });
 
-            this.#database = this.#getDatabase(databaseName);
+            this.#database = this.#getDatabase(this.#databaseName);
         }
         catch (error: unknown)
         {
@@ -305,5 +314,3 @@ class MongoDB implements Database
         return value;
     }
 }
-
-export default new MongoDB();
