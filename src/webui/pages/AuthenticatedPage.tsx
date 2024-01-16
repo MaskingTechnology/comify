@@ -3,15 +3,14 @@ import React from 'react';
 
 import
 {
-    Tabs, Tab, Selection,
-    Avatar, Button, Column, Form, Icon, Image, Input, Label, Panel,
-    Paragraph, Row, Ruler, Select, TextArea, TextBox, Title
+    Avatar, Button, Column, Image,
+    Paragraph
 } from '../designsystem/module';
 
 import
 {
     CreatorPanel, CreatorCard, PostLarge, PostSmall, NotificationPanel,
-    Identity, Link, Navigation, NavigationItem, Logo, Reaction, Comment
+    Identity, Navigation, NavigationItem, Logo, Reaction, Comment
 } from '../components/module';
 
 import iconImage from '../../assets/icon.svg';
