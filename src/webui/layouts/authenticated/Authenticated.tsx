@@ -12,10 +12,12 @@ export type AuthenticatedProps = {
 export default function Authenticated(props: AuthenticatedProps)
 {
     return <div className='ds authenticated-layout'>
-        <aside>
-            {props.aside}
-        </aside>
-        <div><Ruler type='vertical' /></div>
+        <div className='aside-container'>
+            <aside>
+                {props.aside}
+            </aside>
+            <Ruler type='vertical' />
+        </div>
         <main>
             {props.main}
         </main>
