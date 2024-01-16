@@ -1,11 +1,13 @@
 
 import React from 'react';
 
+import { Image } from '../../designsystem/module';
+
 export type ComicProps = {
     source: string;
 };
 
 export default function Comic(props: ComicProps)
 {
-    return <img src={props.source} />;
+    return <Image source={props.source} />;
 }

@@ -1,9 +1,9 @@
 
 import React from 'react';
 
-import { Row, Column, Text, AvatarProps, ButtonProps } from '../designsystem/designsystem.js';
+import { Row, Column, Text, AvatarProps, ButtonProps } from '../../designsystem/module';
 
-import CreatorNames from './CreatorNames.js';
+import CreatorNames from '../creatornames/CreatorNames';
 
 export type CreatorCardProps = {
     avatar: React.ReactElement<AvatarProps>;

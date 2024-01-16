@@ -1,9 +1,9 @@
 
 import React from 'react';
 
-import { Image } from '../designsystem/designsystem.js';
+import { Image } from '../../designsystem/module';
 
-import logoImage from '../../assets/logo.png';
+import logoImage from '../../../assets/logo.png';
 
 export default function Logo()
 {

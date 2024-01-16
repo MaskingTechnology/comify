@@ -1,9 +1,9 @@
 
 import React from 'react';
 
-import { Row, Text, ImageProps } from '../designsystem/designsystem.js';
+import { Row, Text, ImageProps } from '../../designsystem/module';
 
-import Link from '../elements/Link.js';
+import Link from '../link/Link';
 
 export type NavigationItemProps = {
     icon: React.ReactElement<ImageProps>;

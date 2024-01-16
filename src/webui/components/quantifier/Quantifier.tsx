@@ -1,9 +1,9 @@
 
 import React from 'react';
 
-import { Text } from '../designsystem/designsystem.js';
+import { Text } from '../../designsystem/module';
 
-import CompactNumber from '../elements/CompactNumber.js';
+import CompactNumber from '../compactnumber/CompactNumber';
 
 export type QuantifierProps = {
     value: number;

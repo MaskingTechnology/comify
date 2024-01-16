@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import { Row, Column } from '../designsystem/designsystem.js';
+import { Row, Column } from '../../designsystem/module';
 
 export type FixedDynamicTwoColumnProps = {
     left: React.ReactNode;

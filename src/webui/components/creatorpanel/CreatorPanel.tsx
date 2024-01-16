@@ -1,11 +1,11 @@
 
 import React from 'react';
 
-import { Panel, Row, AvatarProps, ButtonProps } from '../designsystem/designsystem.js';
+import { Panel, Row, AvatarProps, ButtonProps } from '../../designsystem/module';
 
-import FixedDynamicTwoColumn from '../elements/FixedDynamicTwoColumn.js';
-import Quantifier from './Quantifier.js';
-import CreatorNames from './CreatorNames.js';
+import FixedDynamicTwoColumn from '../fixeddynamictwocolumn/FixedDynamicTwoColumn';
+import Quantifier from '../quantifier/Quantifier';
+import CreatorNames from '../creatornames/CreatorNames';
 
 
 export type CreatorPanelProps = {
@@ -23,10 +23,11 @@ export default function CreatorPanel(props: CreatorPanelProps)
     return <Panel>
         <FixedDynamicTwoColumn
             left={props.avatar}
-            right={<><Row align='justify'>
-                <CreatorNames username={props.username} nickname={props.nickname} />
-                {props.button}
-            </Row>
+            right={<>
+                <Row align='justify'>
+                    <CreatorNames username={props.username} nickname={props.nickname} />
+                    {props.button}
+                </Row>
                 <Row>
                     <Quantifier value={props.comics} text='comics' />
                     <Quantifier value={props.followers} text='followers' />

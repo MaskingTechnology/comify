@@ -1,20 +1,20 @@
 
 import React from 'react';
 
-import { Column, Panel, Paragraph, Row, AvatarProps } from '../designsystem/designsystem.js';
+import { Column, Panel, Row, AvatarProps, ParagraphProps, ButtonProps } from '../../designsystem/module';
 
-import CreatorResponse from './CreatorResponse.js';
-import FixedDynamicTwoColumn from '../elements/FixedDynamicTwoColumn.js';
+import CreatorResponse from '../creatorresponse/CreatorResponse';
+import FixedDynamicTwoColumn from '../fixeddynamictwocolumn/FixedDynamicTwoColumn';
 
-export type NotificationProps = {
+export type NotificationPanelProps = {
     avatar: React.ReactElement<AvatarProps>;
     username: string;
     responded: Date;
-    button: React.ReactElement;
-    text: string;
+    button: React.ReactElement<ButtonProps>;
+    message: React.ReactElement<ParagraphProps>;
 };
 
-export default function Notification(props: NotificationProps)
+export default function NotificationPanel(props: NotificationPanelProps)
 {
     return <Panel>
         <Column gap='medium' align='justify'>
@@ -28,9 +28,7 @@ export default function Notification(props: NotificationProps)
                 }
             />
             <Row>
-                <Paragraph>
-                    {props.text}
-                </Paragraph>
+                {props.message}
             </Row>
         </Column>
     </Panel>;

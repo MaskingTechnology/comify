@@ -1,13 +1,13 @@
 
 import React from 'react';
 
-import { Column, Icon, Row, Panel, AvatarProps, ButtonProps } from '../designsystem/designsystem.js';
+import { Column, Icon, Row, Panel, AvatarProps, ButtonProps } from '../../designsystem/module';
 
-import Comic from '../elements/Comic.js';
-import CreatorResponse from './CreatorResponse.js';
-import Reactions from './Reactions.js';
-import Reaction from '../elements/Rating.js';
-import FixedDynamicTwoColumn from '../elements/FixedDynamicTwoColumn.js';
+import Comic from '../comic/Comic';
+import CreatorResponse from '../creatorresponse/CreatorResponse';
+import Engagements from '../engagements/Engagements';
+import Engagement from '../engagement/Engagement';
+import FixedDynamicTwoColumn from '../fixeddynamictwocolumn/FixedDynamicTwoColumn';
 
 export type PostLargeProps = {
     avatar: React.ReactElement<AvatarProps>;
@@ -36,10 +36,10 @@ export default function PostLarge(props: PostLargeProps)
                 <Comic source={props.image} />
             </Row>
             <Row>
-                <Reactions>
-                    <Reaction icon={<Icon type='heart' />} number={props.likes} />
-                    <Reaction icon={<Icon type='comment' />} number={props.comments} />
-                </Reactions>
+                <Engagements>
+                    <Engagement icon={<Icon type='heart' />} number={props.likes} />
+                    <Engagement icon={<Icon type='comment' />} number={props.comments} />
+                </Engagements>
             </Row>
         </Column>
     </Panel>;

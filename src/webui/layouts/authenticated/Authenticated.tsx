@@ -2,7 +2,7 @@
 import React from 'react';
 
 import './Authenticated.css';
-import { Ruler } from '../../designsystem/designsystem.js';
+import { Ruler } from '../../designsystem/module.js';
 
 export type AuthenticatedProps = {
     aside: React.ReactNode;

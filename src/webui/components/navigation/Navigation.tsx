@@ -1,10 +1,9 @@
 
 import React from 'react';
 
-import { Column } from '../designsystem/designsystem.js';
+import { Column } from '../../designsystem/module';
 
 import './navigation.css';
-
 
 export type NavigationProps = {
     children?: React.ReactNode;

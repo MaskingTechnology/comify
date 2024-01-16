@@ -1,9 +1,9 @@
 
 import React from 'react';
 
-import { Column, Text } from '../designsystem/designsystem.js';
+import { Column, Text } from '../../designsystem/module';
 
-import TimeElapsed from '../elements/TimeElapsed.js';
+import TimeElapsed from '../timeelapsed/TimeElapsed';
 
 export type CreatorResponseProps = {
     username: string;

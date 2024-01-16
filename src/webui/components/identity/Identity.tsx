@@ -1,10 +1,10 @@
 
 import React from 'react';
 
-import { AvatarProps } from '../designsystem/elements/avatar/Avatar.js';
+import { AvatarProps } from '../../designsystem/module';
 
-import CreatorNames from './CreatorNames.js';
-import FixedDynamicTwoColumn from '../elements/FixedDynamicTwoColumn.js';
+import CreatorNames from '../creatornames/CreatorNames';
+import FixedDynamicTwoColumn from '../fixeddynamictwocolumn/FixedDynamicTwoColumn';
 
 export type IdentityProps = {
     avatar: React.ReactElement<AvatarProps>;
