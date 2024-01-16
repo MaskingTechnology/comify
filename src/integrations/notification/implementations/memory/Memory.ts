@@ -1,13 +1,13 @@
 
-import { NotificationService } from '../definitions/interfaces';
-import { NotConnected, SubscriptionNotFound } from '../definitions/errors.js';
+import { NotificationService } from '../../definitions/interfaces';
+import { NotConnected, SubscriptionNotFound } from '../../definitions/errors.js';
 
 export type Notification = {
     title: string;
     body: string;
 };
 
-export default class MemoryNotifications implements NotificationService
+export default class Memory implements NotificationService
 {
     #subscriptions?: Map<string, Notification[]>;
 

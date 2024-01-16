@@ -1,11 +1,12 @@
 
 import { describe, expect, it } from 'vitest';
 
-import {
+import
+{
     HELLO_FILE_NAME, HELLO_FILE_CONTENT,
     GOODBYE_FILE_NAME, GOODBYE_FILE_BUFFER,
     UNKNOWN_FILE_NAME,
-    createMemoryFS, FileNotFound
+    setUpMemoryFS, FileNotFound
 } from './_fixtures/MemoryFS.fixture.js';
 
 describe('MemoryFS', () =>
@@ -14,7 +15,7 @@ describe('MemoryFS', () =>
     {
         it('should read existing files', async () =>
         {
-            const fileStorage = await createMemoryFS();
+            const fileStorage = await setUpMemoryFS();
 
             const buffer = await fileStorage.readFile(HELLO_FILE_NAME);
 
@@ -23,7 +24,7 @@ describe('MemoryFS', () =>
 
         it('should not read non-existing files', async () =>
         {
-            const fileStorage = await createMemoryFS();
+            const fileStorage = await setUpMemoryFS();
 
             const readFile = async () => fileStorage.readFile(UNKNOWN_FILE_NAME);
 
@@ -35,7 +36,7 @@ describe('MemoryFS', () =>
     {
         it('should write files', async () =>
         {
-            const fileStorage = await createMemoryFS();
+            const fileStorage = await setUpMemoryFS();
 
             await fileStorage.writeFile(GOODBYE_FILE_NAME, GOODBYE_FILE_BUFFER);
 
@@ -46,7 +47,7 @@ describe('MemoryFS', () =>
 
         it('should overwrite files', async () =>
         {
-            const fileStorage = await createMemoryFS();
+            const fileStorage = await setUpMemoryFS();
 
             await fileStorage.writeFile(HELLO_FILE_NAME, GOODBYE_FILE_BUFFER);
 
@@ -60,7 +61,7 @@ describe('MemoryFS', () =>
     {
         it('should delete existing files', async () =>
         {
-            const fileStorage = await createMemoryFS();
+            const fileStorage = await setUpMemoryFS();
 
             await fileStorage.deleteFile(HELLO_FILE_NAME);
 
@@ -71,7 +72,7 @@ describe('MemoryFS', () =>
 
         it('should not delete non-existing files', async () =>
         {
-            const fileStorage = await createMemoryFS();
+            const fileStorage = await setUpMemoryFS();
 
             const deleteFile = async () => fileStorage.deleteFile(UNKNOWN_FILE_NAME);
 

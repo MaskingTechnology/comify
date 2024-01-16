@@ -1,7 +1,8 @@
 
 import { describe, expect, it } from 'vitest';
 
-import { 
+import
+{
     database,
     RECORD_TYPE_PIZZA, RECORD_TYPE_FRUIT, INVALID_ID, UPDATE_COUNTRY,
     PIZZAS, IDS, ID, FIRST_PIZZA, QUERY_RESULTS, SEARCH_QUERIES,
@@ -21,7 +22,7 @@ describe('implementations/MemoryDb', () =>
 
         it('should only give the fields specified', async () =>
         {
-            const fields: string[] = [ ID, 'folded' ];
+            const fields: string[] = [ID, 'folded'];
             const result = await database.readRecord(RECORD_TYPE_PIZZA, IDS.MARGHERITA, fields);
 
             expect(Object.keys(result).length).toBe(2);
@@ -35,16 +36,16 @@ describe('implementations/MemoryDb', () =>
 
             expect(result).rejects.toStrictEqual(new RecordNotFound());
         });
-     });
+    });
 
     describe('.deleteRecord', () =>
     {
-        it('should delete the record', async() =>
+        it('should delete the record', async () =>
         {
             await database.deleteRecord(RECORD_TYPE_FRUIT, IDS.APPLE);
             const result = database.readRecord(RECORD_TYPE_FRUIT, IDS.APPLE);
 
-            expect(result).rejects.toStrictEqual(new RecordNotFound());   
+            expect(result).rejects.toStrictEqual(new RecordNotFound());
         });
 
         it('should throw an error when the record cannot be deleted', async () =>
@@ -60,7 +61,7 @@ describe('implementations/MemoryDb', () =>
         it('should update the record', async () =>
         {
             const updateData: RecordData = { country: UPDATE_COUNTRY };
-            await database.updateRecord(RECORD_TYPE_FRUIT, IDS.PEAR , updateData);
+            await database.updateRecord(RECORD_TYPE_FRUIT, IDS.PEAR, updateData);
             const result = await database.readRecord(RECORD_TYPE_FRUIT, IDS.PEAR);
 
             expect(result?.country).toBe(UPDATE_COUNTRY);
@@ -73,7 +74,7 @@ describe('implementations/MemoryDb', () =>
             expect(result).rejects.toStrictEqual(new RecordNotUpdated());
         });
     });
-    
+
     describe('.findRecord', () =>
     {
         it('should give only the first record found', async () =>
@@ -192,13 +193,13 @@ describe('implementations/MemoryDb', () =>
         it('should find records based on OR condition', async () =>
         {
             const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.FIND_BASED_ON_OR_CONDITION);
- 
+
             expect(result.length).toBe(2);
             expect(result).toMatchObject(QUERY_RESULTS.BASED_ON_OR_CONDITION);
         });
 
         it('should find records based on AND with nested OR condition', async () =>
-        {      
+        {
             const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.FIND_BASED_ON_AND_WITH_NESTED_OR_CONDITION);
 
             expect(result.length).toBe(1);
@@ -224,13 +225,13 @@ describe('implementations/MemoryDb', () =>
         it('should find no records that match the OR condition', async () =>
         {
             const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.FIND_NO_RECORDS_BASED_ON_OR_CONDITION);
- 
+
             expect(result[0]).toBe(undefined);
         });
 
         it('should find records by using all parameters', async () =>
         {
-            const fields: string[] = [ 'name', 'size' ];
+            const fields: string[] = ['name', 'size'];
             const sort: RecordSort = { 'name': SortDirections.DESCENDING };
             const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.FIND_BASED_ON_USING_ALL_SEARCH_PARAMETERS, fields, sort, 1, 1);
 
@@ -255,7 +256,7 @@ describe('implementations/MemoryDb', () =>
         {
             const sort: RecordSort = { 'size': SortDirections.DESCENDING };
             const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.EMPTY_QUERY, undefined, sort);
-            
+
             expect(result.length).toBe(5);
             expect(result).toMatchObject(QUERY_RESULTS.SORTED_DESCENDING);
         });
@@ -263,16 +264,16 @@ describe('implementations/MemoryDb', () =>
         it('should sort the records by multiple fields same direction', async () =>
         {
             const sort: RecordSort = { 'size': SortDirections.DESCENDING, 'name': SortDirections.DESCENDING };
-            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.EMPTY_QUERY, undefined, sort );
+            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.EMPTY_QUERY, undefined, sort);
 
             expect(result.length).toBe(5);
             expect(result).toMatchObject(QUERY_RESULTS.SORTED_BY_MULTIPLE_FIELDS_SAME_DIRECTION);
-        });    
+        });
 
         it('should sort the records by multiple fields different direction', async () =>
         {
             const sort: RecordSort = { 'size': SortDirections.DESCENDING, 'name': SortDirections.ASCENDING };
-            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.EMPTY_QUERY, undefined, sort );
+            const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.EMPTY_QUERY, undefined, sort);
 
             expect(result.length).toBe(5);
             expect(result).toMatchObject(QUERY_RESULTS.SORTED_BY_MULTIPLE_FIELDS_DIFFERENT_DIRECTION);
@@ -283,15 +284,15 @@ describe('implementations/MemoryDb', () =>
             it('should limit the result', async () =>
             {
                 const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.EMPTY_QUERY, undefined, undefined, 2);
-                
+
                 expect(result.length).toBe(2);
                 expect(result).toMatchObject(QUERY_RESULTS.LIMITED_BY_NUMBER);
             });
-    
+
             it('should give the result starting an offset', async () =>
             {
                 const result = await database.searchRecords(RECORD_TYPE_PIZZA, SEARCH_QUERIES.EMPTY_QUERY, undefined, undefined, undefined, 2);
-                
+
                 expect(result.length).toBe(3);
                 expect(result).toMatchObject(QUERY_RESULTS.LIMITED_BY_OFFSET);
             });

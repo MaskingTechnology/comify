@@ -1,8 +1,23 @@
-/*************************************************************************************
 
-This file is the entry point for the chosen file system implementation.
-Its intend is to decouple the actual implementation from the file system module file.
+import { FileStorage } from './definitions/interfaces.js';
+import { UnknownImplementation } from './definitions/errors.js';
 
-*************************************************************************************/
+import createMemoryFS from './implementations/memory/create.js';
+import createMinioFS from './implementations/minio/create.js';
 
-export { default } from './implementations/MemoryFS.js';
+const implementations = new Map<string, () => FileStorage>([
+    ['memory', createMemoryFS],
+    ['minio', createMinioFS],
+]);
+
+const DEFAULT_FILE_STORAGE_IMPLEMENTATION = 'memory';
+
+const implementationName = process.env.FILE_STORAGE_IMPLEMENTATION ?? DEFAULT_FILE_STORAGE_IMPLEMENTATION;
+const creator = implementations.get(implementationName.toLowerCase());
+
+if (creator === undefined)
+{
+    throw new UnknownImplementation(implementationName);
+}
+
+export default creator();

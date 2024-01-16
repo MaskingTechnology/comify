@@ -1,23 +1,29 @@
 
 import { Client, ClientOptions } from 'minio';
 
-import { FileStorage } from '../definitions/interfaces.js';
-import { NotConnected, FileNotFound } from '../definitions/errors.js';
+import { FileStorage } from '../../definitions/interfaces.js';
+import { NotConnected, FileNotFound } from '../../definitions/errors.js';
 
 const BUCKET_NAME = 'comify';
 
 export default class MinioFS implements FileStorage
 {
+    #configuration: ClientOptions;
     #client?: Client;
+
+    constructor(configuration: ClientOptions)
+    {
+        this.#configuration = configuration;
+    }
 
     get connected()
     {
         return this.#client !== undefined;
     }
 
-    async connect(configuration: ClientOptions): Promise<void>
+    async connect(): Promise<void>
     {
-        this.#client = new Client(configuration);
+        this.#client = new Client(this.#configuration);
 
         if (await this.#client.bucketExists(BUCKET_NAME) === false)
         {

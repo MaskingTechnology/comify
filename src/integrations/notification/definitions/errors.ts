@@ -7,6 +7,14 @@ export class NotificationError extends Error
     }
 }
 
+export class UnknownImplementation extends NotificationError
+{
+    constructor(name?: string)
+    {
+        super(`Unknown notification implementation: ${name}`);
+    }
+}
+
 export class NotConnected extends NotificationError
 {
     constructor(message?: string)

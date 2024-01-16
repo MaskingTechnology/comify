@@ -1,6 +1,7 @@
 
-import MemoryFS from '../../../../src/integrations/filestorage/implementations/MemoryFS.js';
-import { FileNotFound } from '../../../../src/integrations/filestorage/definitions/errors.js';
+import MemoryFS from '../../../../src/integrations/filestorage/implementations/memory/MemoryFS';
+import { FileStorage } from '../../../../src/integrations/filestorage/definitions/interfaces';
+import { FileNotFound } from '../../../../src/integrations/filestorage/definitions/errors';
 
 const HELLO_FILE_NAME = 'hello.txt';
 const HELLO_FILE_CONTENT = 'Hello, world!';
@@ -15,19 +16,19 @@ const UNKNOWN_FILE_NAME = 'unknown.txt';
 const fileStorage = new MemoryFS();
 await fileStorage.connect();
 
-async function createMemoryFS(): Promise<MemoryFS>
+async function setUpMemoryFS(): Promise<FileStorage>
 {
-    const fileStorage = new MemoryFS();
-
+    await fileStorage.disconnect();
     await fileStorage.connect();
     await fileStorage.writeFile(HELLO_FILE_NAME, HELLO_FILE_BUFFER);
 
     return fileStorage;
 }
 
-export {
+export
+{
     HELLO_FILE_NAME, HELLO_FILE_CONTENT,
     GOODBYE_FILE_NAME, GOODBYE_FILE_BUFFER,
     UNKNOWN_FILE_NAME,
-    createMemoryFS, FileNotFound
+    setUpMemoryFS, FileNotFound
 };

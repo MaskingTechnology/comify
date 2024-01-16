@@ -5,7 +5,7 @@ export interface NotificationService
 
     get subscriptions(): Map<string, unknown>;
 
-    connect(configuration: unknown): Promise<void>;
+    connect(): Promise<void>;
 
     disconnect(): Promise<void>;
 

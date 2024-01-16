@@ -1,8 +1,8 @@
 
-import { Database } from '../definitions/interfaces.js';
-import { RecordData, RecordField, RecordValue, QueryOperator, QueryStatement, QueryMultiExpressionStatement, QuerySingleExpressionStatement, RecordSort, RecordQuery, QueryExpression } from '../definitions/types.js';
-import { LogicalOperators, QueryOperators, SortDirections } from '../definitions/constants.js';
-import { NotConnected, RecordNotFound, RecordNotUpdated } from '../definitions/errors.js';
+import { Database } from '../../definitions/interfaces.js';
+import { RecordData, RecordField, RecordValue, QueryOperator, QueryStatement, QueryMultiExpressionStatement, QuerySingleExpressionStatement, RecordSort, RecordQuery, QueryExpression } from '../../definitions/types.js';
+import { LogicalOperators, QueryOperators, SortDirections } from '../../definitions/constants.js';
+import { NotConnected, RecordNotFound, RecordNotUpdated } from '../../definitions/errors.js';
 
 type FilterFunction = (record: RecordData) => boolean;
 
@@ -32,8 +32,7 @@ export default class MemoryDb implements Database
         return this.#memory !== undefined;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    async connect(connectionString: string, databaseName: string): Promise<void>
+    async connect(): Promise<void>
     {
         this.#memory = new Map();
     }
