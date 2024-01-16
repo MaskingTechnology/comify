@@ -54,13 +54,13 @@ export default function HomePage()
     const notification = <NotificationPanel
         avatar={avatarSmall}
         username='Peter van Vliet'
-        responded={new Date('1984-01-01')}
+        responded={new Date('1984-05-01')}
         button={<Button text='Following' type='disabled' />}
         message={message}
     />;
 
     const postSmall = <PostSmall
-        responded={new Date('1984-01-01')}
+        responded={new Date('1984-07-01')}
         button={<Button text='Following' type='disabled' />}
         source='https://pbs.twimg.com/media/BYP9VB1CIAAP57m?format=jpg&name=small'
         likes={7456}
@@ -70,7 +70,7 @@ export default function HomePage()
     const textComment = <Reaction
         avatar={avatarMedium}
         username='Peter van Vliet'
-        responded={new Date('1984-01-01')}
+        responded={new Date('1984-03-01')}
         button={<Button text='Following' type='disabled' />}
         likes={0}
         reaction={<Comment text='Comments cannot only be a comic, but can also contain text.' />}
