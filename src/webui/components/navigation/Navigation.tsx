@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Column } from '../../designsystem/module';
 
-import './navigation.css';
+import './Navigation.css';
 
 export type NavigationProps = {
     children?: React.ReactNode;
