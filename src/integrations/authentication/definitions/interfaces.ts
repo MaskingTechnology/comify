@@ -5,7 +5,7 @@ export interface IdentityProvider
 {
     get connected(): boolean;
 
-    connect(configuration?: unknown): Promise<void>;
+    connect(): Promise<void>;
 
     disconnect(): Promise<void>;
 

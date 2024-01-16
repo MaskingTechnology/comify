@@ -7,6 +7,14 @@ export class DatabaseError extends Error
     }
 }
 
+export class UnknownImplementation extends DatabaseError
+{
+    constructor(name?: string)
+    {
+        super(`Unknown database implementation: ${name}`);
+    }
+}
+
 export class NotConnected extends DatabaseError
 {
     constructor(message?: string)

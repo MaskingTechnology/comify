@@ -1,5 +1,6 @@
 
-import MemoryNotifications from '../../../../src/integrations/notification/implementations/MemoryNotifications';
+import Memory from '../../../../src/integrations/notification/implementations/memory/Memory';
+import { NotificationService } from '../../../../src/integrations/notification/definitions/interfaces';
 import { SubscriptionNotFound } from '../../../../src/integrations/notification/definitions/errors';
 
 const FIRST_SUBSCRIPTION_ID = 'first';
@@ -9,19 +10,21 @@ const UNKNOWN_RECIPIENT_ID = 'unknown';
 const NOTIFICATION_TITLE = 'Hello, world!';
 const NOTIFICATION_BODY = 'This is a test notification.';
 
-async function createMemoryNotifications(): Promise<MemoryNotifications>
+const notificationService = new Memory();
+await notificationService.connect();
+
+async function setUpMemoryNotifications(): Promise<NotificationService>
 {
-    const service = new MemoryNotifications();
+    await notificationService.disconnect();
+    await notificationService.connect();
+    await notificationService.subscribe(FIRST_SUBSCRIPTION_ID);
 
-    await service.connect();
-    await service.subscribe(FIRST_SUBSCRIPTION_ID);
-
-    return service;
+    return notificationService;
 }
 
 export
 {
     FIRST_SUBSCRIPTION_ID, SECOND_SUBSCRIPTION_ID, UNKNOWN_RECIPIENT_ID,
     NOTIFICATION_TITLE, NOTIFICATION_BODY,
-    createMemoryNotifications, SubscriptionNotFound
+    setUpMemoryNotifications, SubscriptionNotFound
 };

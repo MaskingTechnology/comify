@@ -1,6 +1,6 @@
 
-import { FileStorage } from '../definitions/interfaces.js';
-import { NotConnected, FileNotFound } from '../definitions/errors.js';
+import { FileStorage } from '../../definitions/interfaces.js';
+import { NotConnected, FileNotFound } from '../../definitions/errors.js';
 
 export default class MemoryFS implements FileStorage
 {

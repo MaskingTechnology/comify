@@ -1,9 +1,9 @@
 
 import { Issuer, BaseClient, ClientMetadata, AuthorizationParameters } from 'openid-client';
 
-import { IdentityProvider } from '../definitions/interfaces.js';
-import { Identity, Session } from '../definitions/types.js';
-import { NotConnected } from '../definitions/errors.js';
+import { IdentityProvider } from '../../definitions/interfaces.js';
+import { Identity, Session } from '../../definitions/types.js';
+import { NotConnected } from '../../definitions/errors.js';
 
 export type OpenIDConfiguration = {
     issuer: string;
@@ -14,27 +14,31 @@ export type OpenIDConfiguration = {
 
 export default class OpenID implements IdentityProvider
 {
-    #configuration?: OpenIDConfiguration;
+    #configuration: OpenIDConfiguration;
     #client?: BaseClient;
+
+    constructor(configuration: OpenIDConfiguration)
+    {
+        this.#configuration = configuration;
+    }
 
     get connected(): boolean
     {
         return this.#client !== undefined;
     }
 
-    async connect(configuration: OpenIDConfiguration): Promise<void>
+    async connect(): Promise<void>
     {
         const metaData: ClientMetadata =
         {
-            client_id: configuration.clientId,
-            client_secret: configuration.clientSecret,
-            redirect_uris: [configuration.redirectUri],
+            client_id: this.#configuration.clientId,
+            client_secret: this.#configuration.clientSecret,
+            redirect_uris: [this.#configuration.redirectUri],
             response_types: ['code']
         };
 
-        const issuer = await Issuer.discover(configuration.issuer);
+        const issuer = await Issuer.discover(this.#configuration.issuer);
 
-        this.#configuration = configuration;
         this.#client = new issuer.Client(metaData);
     }
 

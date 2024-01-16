@@ -5,7 +5,7 @@ export interface Database
 {
     get connected(): boolean;
 
-    connect(connectionString: string, databaseName: string): Promise<void>;
+    connect(): Promise<void>;
     disconnect(): Promise<void>;
     createRecord(type: RecordType, data: RecordData): Promise<RecordId>;
     readRecord(type: RecordType, id: RecordId, fields?: RecordField[]): Promise<RecordData>;

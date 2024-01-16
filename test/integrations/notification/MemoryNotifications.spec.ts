@@ -5,7 +5,7 @@ import
 {
     FIRST_SUBSCRIPTION_ID, SECOND_SUBSCRIPTION_ID, UNKNOWN_RECIPIENT_ID,
     NOTIFICATION_TITLE, NOTIFICATION_BODY,
-    createMemoryNotifications, SubscriptionNotFound
+    setUpMemoryNotifications, SubscriptionNotFound
 } from './_fixtures/MemoryNotifications.fixture.js';
 
 describe('MemoryNotifications', () =>
@@ -14,20 +14,20 @@ describe('MemoryNotifications', () =>
     {
         it('should create a new subscription', async () =>
         {
-            const notificationService = await createMemoryNotifications();
+            const notificationService = await setUpMemoryNotifications();
             const subscriptions = notificationService.subscriptions;
 
-            await notificationService.subscribe(SECOND_SUBSCRIPTION_ID);
+            await notificationService.subscribe(SECOND_SUBSCRIPTION_ID, undefined);
 
             expect(subscriptions.has(SECOND_SUBSCRIPTION_ID)).toBe(true);
         });
 
         it('should override an existing subscription', async () =>
         {
-            const notificationService = await createMemoryNotifications();
+            const notificationService = await setUpMemoryNotifications();
             const subscriptions = notificationService.subscriptions;
 
-            await notificationService.subscribe(FIRST_SUBSCRIPTION_ID);
+            await notificationService.subscribe(FIRST_SUBSCRIPTION_ID, undefined);
 
             expect(subscriptions.has(FIRST_SUBSCRIPTION_ID)).toBe(true);
         });
@@ -37,7 +37,7 @@ describe('MemoryNotifications', () =>
     {
         it('should remove an existing subscription', async () =>
         {
-            const notificationService = await createMemoryNotifications();
+            const notificationService = await setUpMemoryNotifications();
             const subscriptions = notificationService.subscriptions;
 
             await notificationService.unsubscribe(FIRST_SUBSCRIPTION_ID);
@@ -47,7 +47,7 @@ describe('MemoryNotifications', () =>
 
         it('should not remove a non-existing subscription', async () =>
         {
-            const notificationService = await createMemoryNotifications();
+            const notificationService = await setUpMemoryNotifications();
 
             const result = notificationService.unsubscribe(UNKNOWN_RECIPIENT_ID);
 
@@ -59,8 +59,8 @@ describe('MemoryNotifications', () =>
     {
         it('should send a notification to an existing subscription', async () =>
         {
-            const notificationService = await createMemoryNotifications();
-            const notifications = notificationService.subscriptions.get(FIRST_SUBSCRIPTION_ID);
+            const notificationService = await setUpMemoryNotifications();
+            const notifications = notificationService.subscriptions.get(FIRST_SUBSCRIPTION_ID) as Array<unknown>;
 
             await notificationService.sendNotification(FIRST_SUBSCRIPTION_ID, NOTIFICATION_TITLE, NOTIFICATION_BODY);
 
@@ -69,7 +69,7 @@ describe('MemoryNotifications', () =>
 
         it('should not send a notification to a non-existing subscription', async () =>
         {
-            const notificationService = await createMemoryNotifications();
+            const notificationService = await setUpMemoryNotifications();
 
             const result = notificationService.sendNotification(UNKNOWN_RECIPIENT_ID, NOTIFICATION_TITLE, NOTIFICATION_BODY);
 

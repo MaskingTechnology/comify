@@ -1,8 +1,23 @@
-/*************************************************************************************
 
-This file is the entry point for the chosen notification service implementation.
-Its intend is to decouple the actual implementation from the notification module file.
+import { NotificationService } from './definitions/interfaces.js';
+import { UnknownImplementation } from './definitions/errors.js';
 
-*************************************************************************************/
+import createMemory from './implementations/memory/create.js';
+import createWebPush from './implementations/webpush/create.js';
 
-export { default } from './implementations/MemoryNotifications.js';
+const implementations = new Map<string, () => NotificationService>([
+    ['memory', createMemory],
+    ['webpush', createWebPush],
+]);
+
+const DEFAULT_NOTIFICATION_IMPLEMENTATION = 'memory';
+
+const implementationName = process.env.NOTIFICATION_IMPLEMENTATION ?? DEFAULT_NOTIFICATION_IMPLEMENTATION;
+const creator = implementations.get(implementationName.toLowerCase());
+
+if (creator === undefined)
+{
+    throw new UnknownImplementation(implementationName);
+}
+
+export default creator();

@@ -1,8 +1,8 @@
 
 import webpush, { PushSubscription } from 'web-push';
 
-import { NotificationService } from '../definitions/interfaces';
-import { NotConnected, SubscriptionNotFound } from '../definitions/errors.js';
+import { NotificationService } from '../../definitions/interfaces';
+import { NotConnected, SubscriptionNotFound } from '../../definitions/errors.js';
 
 type VapidDetails = {
     subject: string;
@@ -10,9 +10,15 @@ type VapidDetails = {
     privateKey: string;
 };
 
-export default class WebPushNotifications implements NotificationService
+export default class WebPush implements NotificationService
 {
+    #configuration: VapidDetails;
     #subscriptions?: Map<string, PushSubscription>;
+
+    constructor(configuration: VapidDetails)
+    {
+        this.#configuration = configuration;
+    }
 
     get connected(): boolean
     {
@@ -24,11 +30,11 @@ export default class WebPushNotifications implements NotificationService
         return this.#getSubscriptions();
     }
 
-    async connect(configuration: VapidDetails): Promise<void>
+    async connect(): Promise<void>
     {
         this.#subscriptions = new Map();
 
-        webpush.setVapidDetails(configuration.subject, configuration.publicKey, configuration.privateKey);
+        webpush.setVapidDetails(this.#configuration.subject, this.#configuration.publicKey, this.#configuration.privateKey);
     }
 
     async disconnect(): Promise<void>
