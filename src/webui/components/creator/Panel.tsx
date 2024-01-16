@@ -1,14 +1,14 @@
 
 import React from 'react';
 
-import { Panel, Row, AvatarProps, ButtonProps } from '../../designsystem/module';
+import { Panel as DSPanel, Row, AvatarProps, ButtonProps } from '../../designsystem/module';
 
-import FixedDynamicTwoColumn from '../fixeddynamictwocolumn/FixedDynamicTwoColumn';
-import Quantifier from '../quantifier/Quantifier';
-import CreatorNames from '../creatornames/CreatorNames';
+import AvatarWithContentRight from './AvatarWithContentRight';
+import Quantifier from '../common/Quantifier';
+import Names from './Names';
 
 
-export type CreatorPanelProps = {
+export type PanelProps = {
     avatar: React.ReactElement<AvatarProps>;
     button: React.ReactElement<ButtonProps>;
     username: string;
@@ -18,14 +18,14 @@ export type CreatorPanelProps = {
     following: number;
 };
 
-export default function CreatorPanel(props: CreatorPanelProps)
+export default function Panel(props: PanelProps)
 {
-    return <Panel>
-        <FixedDynamicTwoColumn
-            left={props.avatar}
+    return <DSPanel>
+        <AvatarWithContentRight
+            avatar={props.avatar}
             right={<>
                 <Row align='justify'>
-                    <CreatorNames username={props.username} nickname={props.nickname} />
+                    <Names username={props.username} nickname={props.nickname} />
                     {props.button}
                 </Row>
                 <Row>
@@ -35,5 +35,5 @@ export default function CreatorPanel(props: CreatorPanelProps)
                 </Row>
             </>}
         />
-    </Panel>;
+    </DSPanel>;
 }

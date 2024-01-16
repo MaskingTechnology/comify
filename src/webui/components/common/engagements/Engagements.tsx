@@ -1,10 +1,11 @@
 
 import React from 'react';
 
-import { Row } from '../../designsystem/module';
+import { Row } from '../../../designsystem/module';
+import { ReactionProps } from '../../module.js';
 
 export type EngagementsProps = {
-    children?: React.ReactNode;
+    children?: React.ReactElement<ReactionProps>[] | React.ReactElement<ReactionProps>;
 };
 
 export default function Engagements(props: EngagementsProps)

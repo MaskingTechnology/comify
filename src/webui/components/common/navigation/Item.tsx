@@ -1,17 +1,17 @@
 
 import React from 'react';
 
-import { Row, Text, ImageProps } from '../../designsystem/module';
+import { Row, Text, ImageProps } from '../../../designsystem/module';
 
 import Link from '../link/Link';
 
-export type NavigationItemProps = {
+export type ItemProps = {
     icon: React.ReactElement<ImageProps>;
     text: string;
     to: string;
 };
 
-export default function NavigationItem(props: NavigationItemProps)
+export default function Item(props: ItemProps)
 {
     return <Link to={props.to}>
         <Row gap='medium'>

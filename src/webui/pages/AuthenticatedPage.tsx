@@ -10,7 +10,7 @@ import
 import
 {
     CreatorPanel, CreatorCard, PostLarge, PostSmall, NotificationPanel,
-    Identity, Navigation, NavigationItem, Logo, Reaction, Comment
+    CreatorIdentity, Navigation, NavigationItem, Logo, ReactionPanel, Comment
 } from '../components/module';
 
 import iconImage from '../../assets/icon.svg';
@@ -67,7 +67,7 @@ export default function HomePage()
         comments={2}
     />;
 
-    const textComment = <Reaction
+    const textComment = <ReactionPanel
         avatar={avatarMedium}
         username='Peter van Vliet'
         responded={new Date('1984-03-01')}
@@ -76,7 +76,7 @@ export default function HomePage()
         reaction={<Comment text='Comments cannot only be a comic, but can also contain text.' />}
     />;
 
-    const comicComment = <Reaction
+    const comicComment = <ReactionPanel
         avatar={avatarMedium}
         username='Peter van Vliet'
         responded={new Date('1984-01-01')}
@@ -103,7 +103,7 @@ export default function HomePage()
             <NavigationItem icon={<Image source={iconImage} width='13px' />} text='Home' to='/' />
             <NavigationItem icon={<Image source={iconImage} width='13px' />} text='Error' to='/error' />
         </Navigation>
-        <Identity
+        <CreatorIdentity
             avatar={avatarMedium}
             username='Peter van Vliet'
             nickname='ErrorA'

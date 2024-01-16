@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Text } from '../../designsystem/module';
 
-import CompactNumber from '../compactnumber/CompactNumber';
+import CompactNumber from './CompactNumber';
 
 export type QuantifierProps = {
     value: number;

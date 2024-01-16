@@ -5,11 +5,11 @@ import { Column, Icon, Panel, Row, Text, ButtonProps } from '../../designsystem/
 
 import DateFormat from '../../../integrations/dateformat/DateFormat';
 
-import Engagements from '../engagements/Engagements';
-import Engagement from '../engagement/Engagement';
+import Engagements from '../common/engagements/Engagements';
+import Engagement from '../common/engagements/Engagement';
 import Comic from '../comic/Comic';
 
-export type PostSmallProps = {
+export type SmallPanelProps = {
     responded: Date;
     button: React.ReactElement<ButtonProps>;
     source: string;
@@ -17,7 +17,7 @@ export type PostSmallProps = {
     comments: number;
 };
 
-export default function PostSmall(props: PostSmallProps)
+export default function SmallPanel(props: SmallPanelProps)
 {
     const respondedText = DateFormat.fromNow(props.responded);
 

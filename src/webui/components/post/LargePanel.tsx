@@ -4,12 +4,12 @@ import React from 'react';
 import { Column, Icon, Row, Panel, AvatarProps, ButtonProps } from '../../designsystem/module';
 
 import Comic from '../comic/Comic';
-import CreatorResponse from '../creatorresponse/CreatorResponse';
-import Engagements from '../engagements/Engagements';
-import Engagement from '../engagement/Engagement';
-import FixedDynamicTwoColumn from '../fixeddynamictwocolumn/FixedDynamicTwoColumn';
+import Response from '../creator/Response';
+import Engagements from '../common/engagements/Engagements';
+import Engagement from '../common/engagements/Engagement';
+import AvatarWithContentRight from '../creator/AvatarWithContentRight';
 
-export type PostLargeProps = {
+export type LargePanelProps = {
     avatar: React.ReactElement<AvatarProps>;
     username: string;
     responded: Date;
@@ -19,15 +19,15 @@ export type PostLargeProps = {
     comments: number;
 };
 
-export default function PostLarge(props: PostLargeProps)
+export default function LargePanel(props: LargePanelProps)
 {
     return <Panel>
         <Column gap='medium' align='justify'>
-            <FixedDynamicTwoColumn
-                left={props.avatar}
+            <AvatarWithContentRight
+                avatar={props.avatar}
                 right={<>
                     <Row align='justify'>
-                        <CreatorResponse username={props.username} date={props.responded} />
+                        <Response username={props.username} date={props.responded} />
                         {props.button}
                     </Row>
                 </>}

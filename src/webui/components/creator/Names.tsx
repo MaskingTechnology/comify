@@ -3,12 +3,12 @@ import React from 'react';
 
 import { Column, Text } from '../../designsystem/module';
 
-export type CreatorNamesProps = {
+export type NamesProps = {
     username: string;
     nickname: string;
 };
 
-export default function CreatorNames(props: CreatorNamesProps)
+export default function Names(props: NamesProps)
 {
     return <Column gap='none'>
         <Text value={props.username} size='large' weight='bold' />

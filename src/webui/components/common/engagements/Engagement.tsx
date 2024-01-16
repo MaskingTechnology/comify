@@ -1,9 +1,9 @@
 
 import React from 'react';
 
-import { Row, IconProps } from '../../designsystem/module';
+import { Row, IconProps } from '../../../designsystem/module';
 
-import CompactNumber from '../compactnumber/CompactNumber';
+import CompactNumber from '../CompactNumber';
 
 export type EngagementProps = {
     icon: React.ReactElement<IconProps>;

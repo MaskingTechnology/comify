@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Row, Column, Text, AvatarProps, ButtonProps } from '../../designsystem/module';
 
-import CreatorNames from '../creatornames/CreatorNames';
+import Names from './Names';
 
 export type CreatorCardProps = {
     avatar: React.ReactElement<AvatarProps>;
@@ -22,7 +22,7 @@ export default function CreatorCard(props: CreatorCardProps)
         {props.avatar}
         <Column gap='small' align='justify' stretch={true}>
             <Row align='justify'>
-                <CreatorNames username={props.username} nickname={props.nickname} />
+                <Names username={props.username} nickname={props.nickname} />
                 {props.button}
             </Row>
             <Row>

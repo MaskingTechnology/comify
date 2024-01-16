@@ -1,16 +1,16 @@
 
 import React from 'react';
 
-import { Column, Icon, Row, Panel, AvatarProps, ButtonProps } from '../../designsystem/module';
+import { Column, Icon, Row, Panel as DSPanel, AvatarProps, ButtonProps } from '../../designsystem/module';
 
-import CreatorResponse from '../creatorresponse/CreatorResponse';
-import Engagements from '../engagements/Engagements';
-import Engagement from '../engagement/Engagement';
-import FixedDynamicTwoColumn from '../fixeddynamictwocolumn/FixedDynamicTwoColumn';
+import Response from '../creator/Response';
+import Engagements from '../common/engagements/Engagements';
+import Engagement from '../common/engagements/Engagement';
+import AvatarWithContentRight from '../creator/AvatarWithContentRight';
 import { CommentProps } from '../comment/Comment';
 import { ComicProps } from '../comic/Comic';
 
-export type ReactionProps = {
+export type PanelProps = {
     avatar: React.ReactElement<AvatarProps>;
     username: string;
     responded: Date;
@@ -19,14 +19,14 @@ export type ReactionProps = {
     reaction: React.ReactElement<CommentProps | ComicProps>;
 };
 
-export default function Reaction(props: ReactionProps)
+export default function Panel(props: PanelProps)
 {
-    return <Panel>
+    return <DSPanel>
         <Column gap='medium' align='justify'>
-            <FixedDynamicTwoColumn
-                left={props.avatar}
+            <AvatarWithContentRight
+                avatar={props.avatar}
                 right={<Row align='justify'>
-                    <CreatorResponse username={props.username} date={props.responded} />
+                    <Response username={props.username} date={props.responded} />
                     {props.button}
                 </Row>}
             />
@@ -41,5 +41,5 @@ export default function Reaction(props: ReactionProps)
                 </Row>
             </Column>
         </Column>
-    </Panel>;
+    </DSPanel>;
 }
