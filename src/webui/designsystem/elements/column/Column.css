@@ -26,6 +26,11 @@
     justify-content: flex-end;
 }
 
+.ds-column.ds-column-align-justify
+{
+    justify-content: space-between;
+}
+
 .ds-column.ds-column-gap-small
 {
     gap: var(--gap-small);
@@ -43,10 +48,15 @@
 
 .ds-column.ds-column-wrap-nowrap
 {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .ds-column.ds-column-wrap-wrap
 {
     flex-wrap: wrap;
+}
+
+.ds-column.ds-column-stretch
+{
+    flex-grow: 1;
 }

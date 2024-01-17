@@ -1,0 +1,32 @@
+.ds-text.ds-text-size-small
+{
+    font-size: 0.9em;
+}
+
+.ds-text.ds-text-size-medium
+{
+    font-size: 1em;
+}
+
+.ds-text.ds-text-size-large
+{
+    font-size: 1.2em;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ds-text.ds-text-weight-light
+{
+    font-weight: var(--font-weight-light);
+}
+
+.ds-text.ds-text-weight-normal
+{
+    font-weight: var(--font-weight-normal);
+}
+
+.ds-text.ds-text-weight-bold
+{
+    font-weight: var(--font-weight-bold);
+}

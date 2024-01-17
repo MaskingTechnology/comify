@@ -1,7 +1,9 @@
 .ds-button
 {
     --margin: 0em;
-    --padding: 0.9em 2.2em;
+    --padding-small: 0.2em 2.2em;
+    --padding-medium: 0.5em 2.2em;
+    --padding-large: 0.9em 2.2em;
 
     --border-radius: 2em;
     --border-style: solid;
@@ -22,12 +24,26 @@
 
     cursor: pointer;
     margin: var(--margin);
-    padding: var(--padding);
     text-align: center;
     width: fit-content;
 
     font-family: inherit;
     font-size: inherit;
+}
+
+.ds-button.ds-button-size-small
+{
+    padding: var(--padding-small);
+}
+
+.ds-button.ds-button-size-medium
+{
+    padding: var(--padding-medium);
+}
+
+.ds-button.ds-button-size-large
+{
+    padding: var(--padding-large);
 }
 
 .ds-button.ds-button-primary,

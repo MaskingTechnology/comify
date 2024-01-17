@@ -2,7 +2,7 @@
 import React from 'react';
 
 import './Home.css';
-import { Ruler } from '../../designsystem/designsystem.js';
+import { Ruler } from '../../designsystem/module.js';
 
 export type HomeProps = {
     main: React.ReactNode;

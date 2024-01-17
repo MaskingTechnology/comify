@@ -2,20 +2,38 @@
 {
     display: flex;
     flex-direction: row;
-    gap: 2rem;
     padding: 1em;
     height: 100vh;
     box-sizing: border-box;
 }
 
-.authenticated-layout nav
+.authenticated-layout .aside-container
 {
+    display: flex;
+    position: fixed;
+    top: 1rem;
+
+    flex-grow: 0;
+    align-items: flex-end;
+    gap: 2rem;
+
+    height: calc(100% - 2rem);
+}
+
+.authenticated-layout aside
+{
+    display: flex;
     flex-grow: 0;
     flex-shrink: 0;
+
+    width: 15rem;
+    height: 100%;
 }
 
 .authenticated-layout main
 {
     flex-grow: 1;
     flex-shrink: 1;
+
+    margin-left: 19.3rem;
 }

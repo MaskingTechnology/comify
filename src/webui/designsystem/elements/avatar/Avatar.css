@@ -1,10 +1,10 @@
 .ds-avatar
 {
-    --small-width: 1em;
-    --small-height: 1em;
+    --small-width: 2em;
+    --small-height: 2em;
 
-    --medium-width: 2em;
-    --medium-height: 2em;
+    --medium-width: 3em;
+    --medium-height: 3em;
 
     --large-width: 4em;
     --large-height: 4em;

@@ -2,20 +2,22 @@
 import React from 'react';
 
 import './Authenticated.css';
-import { Ruler } from '../../designsystem/designsystem.js';
+import { Ruler } from '../../designsystem/module.js';
 
 export type AuthenticatedProps = {
-    navigation: React.ReactNode;
+    aside: React.ReactNode;
     main: React.ReactNode;
 };
 
 export default function Authenticated(props: AuthenticatedProps)
 {
     return <div className='ds authenticated-layout'>
-        <nav>
-            {props.navigation}
-        </nav>
-        <div><Ruler type='vertical' /></div>
+        <div className='aside-container'>
+            <aside>
+                {props.aside}
+            </aside>
+            <Ruler type='vertical' />
+        </div>
         <main>
             {props.main}
         </main>

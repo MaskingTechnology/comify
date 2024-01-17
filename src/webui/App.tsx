@@ -4,8 +4,8 @@ import React from 'react';
 import
 {
     Tabs, Tab, Selection,
-    Avatar, Button, Column, Form, Icon, Image, Input, Label, Link, Panel, Paragraph, Row, Ruler, Select, TextArea, TextBox, Title
-} from './designsystem/designsystem';
+    Avatar, Button, Column, Form, Icon, Input, Label, Link, Panel, Paragraph, Row, Ruler, Select, TextArea, TextBox, Title
+} from './designsystem/module';
 
 const lastNameOptions = new Map<string, string>();
 lastNameOptions.set('vanvliet', 'van Vliet');
@@ -34,7 +34,7 @@ function handleSelectionChange(oldKey: string, newKey: string)
 
 export default function App()
 {
-    return <>
+    return <div className='ds'>
         <Tabs separator={<Ruler type="horizontal" />}>
             <Tab title="Useless form">
                 <Panel>
@@ -76,10 +76,10 @@ export default function App()
                             sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like<br />
                             Aldus PageMaker including versions of Lorem Ipsum.
                         </Paragraph>
-                        <Image source="https://masking.tech/images/peter.jpg" width={200} />
+                        <Avatar source="https://masking.tech/images/peter.jpg" size='large' />
                     </Row>
                 </Column>
             </Tab>
         </Tabs>
-    </>;
+    </div>;
 }
