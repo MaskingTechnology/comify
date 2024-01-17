@@ -1,8 +1,8 @@
 
-import { SortDirections, ID } from '../../../../src/integrations/database/definitions/constants.js';
-import { RecordNotFound, RecordNotUpdated } from '../../../../src/integrations/database/definitions/errors.js';
-import { RecordData, RecordQuery, RecordSort } from '../../../../src/integrations/database/definitions/types.js';
-import Memory from '../../../../src/integrations/database/implementations/memory/Memory.js';
+import { SortDirections, ID } from '../../../../src/integrations/database/definitions/constants';
+import { RecordNotFound, RecordNotUpdated } from '../../../../src/integrations/database/definitions/errors';
+import { RecordData, RecordQuery, RecordSort } from '../../../../src/integrations/database/definitions/types';
+import Memory from '../../../../src/integrations/database/implementations/memory/Memory';
 
 const RECORD_TYPE_PIZZA = 'pizza';
 const RECORD_TYPE_FRUIT = 'fruit';

@@ -5,7 +5,7 @@ import notificationService from '../notification/module';
 
 try
 {
-    await Promise.all([
+    await Promise.allSettled([
         database.connect(),
         fileStorage.connect(),
         notificationService.connect()
