@@ -1,7 +1,7 @@
 
-import MemoryDb from './Memory.js';
+import Memory from './Memory.js';
 
-export default function create(): MemoryDb
+export default function create(): Memory
 {
-    return new MemoryDb();
+    return new Memory();
 }
