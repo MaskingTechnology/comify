@@ -2,7 +2,7 @@
 import { FileStorage } from '../../definitions/interfaces.js';
 import { NotConnected, FileNotFound } from '../../definitions/errors.js';
 
-export default class MemoryFS implements FileStorage
+export default class Memory implements FileStorage
 {
     #files?: Map<string, Buffer>;
 

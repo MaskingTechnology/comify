@@ -7,7 +7,7 @@ import
     RECORD_TYPE_PIZZA, RECORD_TYPE_FRUIT, INVALID_ID, UPDATE_COUNTRY,
     PIZZAS, IDS, ID, FIRST_PIZZA, QUERY_RESULTS, SEARCH_QUERIES,
     SortDirections, RecordNotFound, RecordNotUpdated, RecordData, RecordSort
-} from './_fixtures/MemoryDb.fixture';
+} from './_fixtures/Memory.fixture';
 
 describe('implementations/MemoryDb', () =>
 {

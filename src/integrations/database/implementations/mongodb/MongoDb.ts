@@ -69,7 +69,7 @@ export default class MongoDB implements Database
         {
             const message = error instanceof Error ? error.message : UNKNOWN_ERROR;
 
-            throw new DatabaseError('Connection failed: ' + message);
+            throw new DatabaseError('MongoDb connection failed: ' + message);
         }
     }
 
@@ -92,7 +92,7 @@ export default class MongoDB implements Database
         {
             const message = error instanceof Error ? error.message : UNKNOWN_ERROR;
 
-            throw new DatabaseError('Disconnection failed: ' + message);
+            throw new DatabaseError('Database disconnection failed: ' + message);
         }
     }
 

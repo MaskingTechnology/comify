@@ -1,5 +1,5 @@
 
-import MemoryDb from './MemoryDb.js';
+import MemoryDb from './Memory.js';
 
 export default function create(): MemoryDb
 {
