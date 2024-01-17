@@ -7,7 +7,7 @@ import
     GOODBYE_FILE_NAME, GOODBYE_FILE_BUFFER,
     UNKNOWN_FILE_NAME,
     setUpMemoryFS, FileNotFound
-} from './_fixtures/MemoryFS.fixture.js';
+} from './_fixtures/Memory.fixture.js';
 
 describe('MemoryFS', () =>
 {

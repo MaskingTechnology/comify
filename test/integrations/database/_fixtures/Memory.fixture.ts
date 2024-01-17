@@ -2,14 +2,14 @@
 import { SortDirections, ID } from '../../../../src/integrations/database/definitions/constants';
 import { RecordNotFound, RecordNotUpdated } from '../../../../src/integrations/database/definitions/errors';
 import { RecordData, RecordQuery, RecordSort } from '../../../../src/integrations/database/definitions/types';
-import MemoryDb from '../../../../src/integrations/database/implementations/memory/MemoryDb.js';
+import Memory from '../../../../src/integrations/database/implementations/memory/Memory';
 
 const RECORD_TYPE_PIZZA = 'pizza';
 const RECORD_TYPE_FRUIT = 'fruit';
 const INVALID_ID = '12345678';
 const UPDATE_COUNTRY = 'France';
 
-const database = new MemoryDb();
+const database = new Memory();
 await database.connect();
 
 const apple: RecordData = { name: 'Apple', country: 'Belgium', sprayed: false };

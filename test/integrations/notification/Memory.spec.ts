@@ -6,7 +6,7 @@ import
     FIRST_SUBSCRIPTION_ID, SECOND_SUBSCRIPTION_ID, UNKNOWN_RECIPIENT_ID,
     NOTIFICATION_TITLE, NOTIFICATION_BODY,
     setUpMemoryNotifications, SubscriptionNotFound
-} from './_fixtures/MemoryNotifications.fixture.js';
+} from './_fixtures/Memory.fixture.js';
 
 describe('MemoryNotifications', () =>
 {

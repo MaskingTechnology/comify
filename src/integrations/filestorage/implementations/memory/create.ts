@@ -1,7 +1,7 @@
 
-import MemoryFS from './MemoryFS.js';
+import Memory from './Memory.js';
 
-export default function create(): MemoryFS
+export default function create(): Memory
 {
-    return new MemoryFS();
+    return new Memory();
 }
