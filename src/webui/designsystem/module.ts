@@ -1,6 +1,7 @@
 
 export { default as Selection } from './components/selection/Selection';
-export { Tabs, Tab } from './components/tabs/Tabs';
+export { default as Tabs } from './components/tabs/Tabs';
+export { default as Tab } from './components/tabs/Tab';
 
 export { default as Avatar, type AvatarProps } from './elements/avatar/Avatar';
 export { default as Button, type ButtonProps } from './elements/button/Button';

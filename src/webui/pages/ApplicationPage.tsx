@@ -9,13 +9,20 @@ import
 
 import
 {
+    ApplicationSidebar,
     CreatorPanel, CreatorCard, PostLarge, PostSmall, NotificationPanel,
-    CreatorIdentity, Navigation, NavigationItem, Logo, ReactionPanel, Comment
+    ReactionPanel, Comment
 } from '../components/module';
 
 import { ApplicationLayout } from '../layouts/module';
 
-import iconImage from '../../assets/icon.svg';
+const navigation = [
+    { icon: '/assets/icon.svg', title: 'Timeline', to: '/' },
+    { icon: '/assets/icon.svg', title: 'Explore', to: '/explore' },
+    { icon: '/assets/icon.svg', title: 'Notifications', to: '/notifications' },
+    { icon: '/assets/icon.svg', title: 'Create', to: '/create' },
+    { icon: '/assets/icon.svg', title: 'Profile', to: '/profile' }
+];
 
 export default function AuthenticatedPage()
 {
@@ -86,7 +93,7 @@ export default function AuthenticatedPage()
         reaction={<Image width='533px' source='https://www.geluksroute.nu/storage/app/uploads/public/632/5d7/f3e/thumb_14184_600_600_0_0_auto.jpeg' />}
     />;
 
-    const main = <Column gap='medium' align='justify'>
+    const main = <Column gap='medium'>
         {card}
         {profileCard}
         {notification}
@@ -96,20 +103,7 @@ export default function AuthenticatedPage()
         {comicComment}
     </Column>;
 
-    const sidebar = <Column gap='large' align='top'>
-        <Logo />
-        <Navigation>
-            <NavigationItem icon={<Image source={iconImage} width='13px' />} text='Diamond' to='/diamond' />
-            <NavigationItem icon={<Image source={iconImage} width='13px' />} text='Profile' to='/profile' />
-            <NavigationItem icon={<Image source={iconImage} width='13px' />} text='Home' to='/' />
-            <NavigationItem icon={<Image source={iconImage} width='13px' />} text='Error' to='/error' />
-        </Navigation>
-        <CreatorIdentity
-            avatar={avatarMedium}
-            username='Peter van Vliet'
-            nickname='ErrorA'
-        />
-    </Column>;
+    const sidebar = <ApplicationSidebar navigation={navigation} />;
 
     return <ApplicationLayout main={main} aside={sidebar} />;
 }
