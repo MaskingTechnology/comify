@@ -16,7 +16,7 @@ import
 import iconImage from '../../assets/icon.svg';
 import Authenticated from '../layouts/authenticated/Authenticated.js';
 
-export default function HomePage()
+export default function AuthenticatedPage()
 {
     const avatarLarge = <Avatar source='https://masking.tech/images/peter.jpg' size='large' />;
     const avatarMedium = <Avatar source='https://masking.tech/images/peter.jpg' size='medium' />;

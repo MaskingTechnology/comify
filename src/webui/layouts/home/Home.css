@@ -3,18 +3,21 @@
     display: flex;
     flex-direction: row;
     gap: 2rem;
-    padding: 3em;
+    padding: 10em;
     box-sizing: border-box;
 }
 
 .home-layout main
 {
+    display: flex;
     flex-grow: 1;
     flex-shrink: 1;
 }
 
 .home-layout aside
 {
+    display: flex;
     flex-grow: 0;
     flex-shrink: 0;
+    width: 20rem;
 }
