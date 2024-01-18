@@ -17,6 +17,22 @@ const router = createBrowserRouter([
   {
     path: '/application',
     element: <ApplicationPage />
+  },
+  {
+    path: '/explore',
+    element: <ApplicationPage />
+  },
+  {
+    path: '/notifications',
+    element: <ApplicationPage />
+  },
+  {
+    path: '/create',
+    element: <ApplicationPage />
+  },
+  {
+    path: '/profile',
+    element: <ApplicationPage />
   }
 ]);
 
