@@ -13,8 +13,9 @@ import
     CreatorIdentity, Navigation, NavigationItem, Logo, ReactionPanel, Comment
 } from '../components/module';
 
+import { ApplicationLayout } from '../layouts/module';
+
 import iconImage from '../../assets/icon.svg';
-import Authenticated from '../layouts/authenticated/Authenticated.js';
 
 export default function AuthenticatedPage()
 {
@@ -110,5 +111,5 @@ export default function AuthenticatedPage()
         />
     </Column>;
 
-    return <Authenticated main={main} aside={sidebar} />;
+    return <ApplicationLayout main={main} aside={sidebar} />;
 }

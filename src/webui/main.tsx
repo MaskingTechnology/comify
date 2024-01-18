@@ -3,28 +3,25 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import AuthenticatedPage from './pages/AuthenticatedPage';
-//import App from './App';
+import HomePage from './pages/HomePage.js';
+import ApplicationPage from './pages/ApplicationPage.js';
 
 import './designsystem/designsystem.css';
-import './index.css';
-import HomePage from './pages/HomePage.js';
+import './main.css';
 
-const router = createBrowserRouter(
-  [
-    {
-      path: '/',
-      element: <HomePage />
-    },
-    {
-      path: '/authenticated',
-      element: <AuthenticatedPage />
-    }
-  ]);
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <HomePage />
+  },
+  {
+    path: '/application',
+    element: <ApplicationPage />
+  }
+]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-    {/* <App /> */}
   </React.StrictMode>
 );
