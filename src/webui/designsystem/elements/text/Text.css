@@ -1,3 +1,8 @@
+.ds-text
+{
+    display: inline-block;
+}
+
 .ds-text.ds-text-size-small
 {
     font-size: 0.9em;
@@ -11,9 +16,6 @@
 .ds-text.ds-text-size-large
 {
     font-size: 1.2em;
-
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .ds-text.ds-text-weight-light
@@ -29,4 +31,21 @@
 .ds-text.ds-text-weight-bold
 {
     font-weight: var(--font-weight-bold);
+}
+
+.ds-text.ds-text-wrap-none
+{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.ds-text.ds-text-wrap-normal
+{
+    white-space: normal;
+}
+
+.ds-text.ds-text-wrap-break-word
+{
+    word-wrap: break-word;
 }

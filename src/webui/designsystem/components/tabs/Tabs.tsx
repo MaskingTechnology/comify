@@ -1,26 +1,16 @@
 
 import React, { useState } from 'react';
 
+import { TabProps } from './Tab';
+
 import './Tabs.css';
-
-export type TabProps = {
-    title: React.ReactNode;
-    children: React.ReactNode;
-};
-
-export function Tab(props: TabProps)
-{
-    return <div className='ds-tabs-tab'>
-        {props.children}
-    </div>;
-}
 
 export type TabsProps = {
     separator?: React.ReactNode;
     children: React.ReactElement<TabProps> | React.ReactElement<TabProps>[];
 };
 
-export function Tabs(props: TabsProps)
+export default function Tabs(props: TabsProps)
 {
     const [selected, setSelected] = useState(0);
 

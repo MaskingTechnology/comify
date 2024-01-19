@@ -6,4 +6,5 @@
 .ds-form
 {
     margin: var(--margin);
+    min-width: 0;
 }

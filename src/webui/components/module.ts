@@ -1,15 +1,16 @@
 
+export { default as Link, type LinkProps } from './application/link/Link';
+export { default as Navigation, type NavigationProps } from './application/navigation/Navigation';
+export { default as NavigationItem, type ItemProps as NavigationItemProps } from './application/navigation/Item';
+export { default as ApplicationSidebar, type SidebarProps as ApplicationSidebarProps } from './application/sidebar/Sidebar';
+export { default as Logo } from './application/Logo';
 export { default as Comic, type ComicProps } from './comic/Comic';
 export { default as Comment, type CommentProps } from './comment/Comment';
-export { default as CompactNumber, type CompactNumberProps } from './common/CompactNumber';
-export { default as Logo } from './common/Logo';
-export { default as Quantifier, type QuantifierProps } from './common/Quantifier';
-export { default as TimeElapsed, type TimeElapsedProps } from './common/TimeElapsed';
 export { default as Engagement, type EngagementProps } from './common/engagements/Engagement';
 export { default as Engagements, type EngagementsProps } from './common/engagements/Engagements';
-export { default as Link, type LinkProps } from './common/link/Link';
-export { default as Navigation, type NavigationProps } from './common/navigation/Navigation';
-export { default as NavigationItem, type ItemProps as NavigationItemProps } from './common/navigation/Item';
+export { default as CompactNumber, type CompactNumberProps } from './common/CompactNumber';
+export { default as Quantifier, type QuantifierProps } from './common/Quantifier';
+export { default as TimeElapsed, type TimeElapsedProps } from './common/TimeElapsed';
 export { default as CreatorCard, type CreatorCardProps } from './creator/Card';
 export { default as CreatorIdentity, type IdentityProps as CreatorIdentityProps } from './creator/Identity';
 export { default as CreatorNames, type NamesProps as CreatorNamesProps } from './creator/Names';

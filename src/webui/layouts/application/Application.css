@@ -1,0 +1,51 @@
+.application-layout
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 2rem;
+}
+
+.application-layout .left
+{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 0;
+    flex-shrink: 0;
+    gap: 2rem;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+}
+
+.application-layout .left aside
+{
+    flex-grow: 1;
+    flex-shrink: 1;
+    box-sizing: border-box;
+    padding: 1rem 0;
+    width: 230px;
+}
+
+.application-layout .left .ds-ruler
+{
+    height: calc(100% - 2rem);
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin: 1rem 0;
+}
+
+.application-layout .right
+{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-height: 100vh;
+}
+
+.application-layout .right main
+{
+    box-sizing: border-box;
+    padding: 1rem 0;
+}

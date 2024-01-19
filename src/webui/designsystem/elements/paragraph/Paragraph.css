@@ -12,6 +12,7 @@
 {
     margin: var(--margin);
     line-height: var(--line-height);
+    min-width: 0;
 }
 
 .ds-paragraph.ds-paragraph-size-large

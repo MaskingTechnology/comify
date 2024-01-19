@@ -9,14 +9,22 @@ import
 
 import
 {
+    ApplicationSidebar,
     CreatorPanel, CreatorCard, PostLarge, PostSmall, NotificationPanel,
-    CreatorIdentity, Navigation, NavigationItem, Logo, ReactionPanel, Comment
+    ReactionPanel, Comment
 } from '../components/module';
 
-import iconImage from '../../assets/icon.svg';
-import Authenticated from '../layouts/authenticated/Authenticated.js';
+import { ApplicationLayout } from '../layouts/module';
 
-export default function HomePage()
+const navigation = [
+    { icon: '/assets/icon1.svg', title: 'Timeline', to: '/' },
+    { icon: '/assets/icon2.svg', title: 'Explore', to: '/explore' },
+    { icon: '/assets/icon3.svg', title: 'Notifications', to: '/notifications' },
+    { icon: '/assets/icon4.svg', title: 'Create', to: '/create' },
+    { icon: '/assets/icon5.svg', title: 'Profile', to: '/profile' }
+];
+
+export default function AuthenticatedPage()
 {
     const avatarLarge = <Avatar source='https://masking.tech/images/peter.jpg' size='large' />;
     const avatarMedium = <Avatar source='https://masking.tech/images/peter.jpg' size='medium' />;
@@ -85,7 +93,7 @@ export default function HomePage()
         reaction={<Image width='533px' source='https://www.geluksroute.nu/storage/app/uploads/public/632/5d7/f3e/thumb_14184_600_600_0_0_auto.jpeg' />}
     />;
 
-    const main = <Column gap='medium' align='justify'>
+    const main = <Column gap='medium'>
         {card}
         {profileCard}
         {notification}
@@ -95,20 +103,7 @@ export default function HomePage()
         {comicComment}
     </Column>;
 
-    const sidebar = <Column gap='large' align='top'>
-        <Logo />
-        <Navigation>
-            <NavigationItem icon={<Image source={iconImage} width='13px' />} text='Diamond' to='/diamond' />
-            <NavigationItem icon={<Image source={iconImage} width='13px' />} text='Profile' to='/profile' />
-            <NavigationItem icon={<Image source={iconImage} width='13px' />} text='Home' to='/' />
-            <NavigationItem icon={<Image source={iconImage} width='13px' />} text='Error' to='/error' />
-        </Navigation>
-        <CreatorIdentity
-            avatar={avatarMedium}
-            username='Peter van Vliet'
-            nickname='ErrorA'
-        />
-    </Column>;
+    const sidebar = <ApplicationSidebar navigation={navigation} />;
 
-    return <Authenticated main={main} aside={sidebar} />;
+    return <ApplicationLayout main={main} aside={sidebar} />;
 }
