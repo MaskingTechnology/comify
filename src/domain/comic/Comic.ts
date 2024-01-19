@@ -1,24 +1,18 @@
 
-export default class Comic 
-{
-    #id: string;
-    #parentId: string;
-    #imageId: string;
-    #structure: string;
+import Image from '../image/Image';
 
-    constructor(id: string, parentId: string, imageId: string, structure: string)
+import ComicData from './ComicData';
+
+export default class Comic extends ComicData
+{
+    #image: Image;
+
+    constructor(data: ComicData, image: Image)
     {
-        this.#id = id;
-        this.#parentId = parentId;
-        this.#imageId = imageId;
-        this.#structure = structure;
+        super(data.id, data.imageId, data.structure);
+
+        this.#image = image;
     }
 
-    get id() { return this.#id; }
-
-    get parentId() { return this.#parentId; }
-
-    get imageId() { return this.#imageId; }
-
-    get structure() { return this.#structure; }
+    get image() { return this.#image; }
 }
