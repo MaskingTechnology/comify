@@ -9,6 +9,7 @@ export { default as Comment, type CommentProps } from './comment/Comment';
 export { default as Engagement, type EngagementProps } from './common/engagements/Engagement';
 export { default as Engagements, type EngagementsProps } from './common/engagements/Engagements';
 export { default as CompactNumber, type CompactNumberProps } from './common/CompactNumber';
+export { default as OrderSelection, type OrderSelectionProps } from './common/OrderSelection';
 export { default as Quantifier, type QuantifierProps } from './common/Quantifier';
 export { default as TimeElapsed, type TimeElapsedProps } from './common/TimeElapsed';
 export { default as CreatorCard, type CreatorCardProps } from './creator/Card';
@@ -17,6 +18,7 @@ export { default as CreatorNames, type NamesProps as CreatorNamesProps } from '.
 export { default as CreatorPanel, type PanelProps as CreatorPanelProps } from './creator/Panel';
 export { default as CreatorResponse, type ResponseProps as CreatorResponseProps } from './creator/Response';
 export { default as NotificationPanel, type PanelProps as NotificationPanelProps } from './notification/Panel';
+export { default as PostList, type ListProps as PostListProps } from './post/List';
 export { default as PostSmall, type SmallPanelProps as PostSmallProps } from './post/SmallPanel';
 export { default as PostLarge, type LargePanelProps as PostLargeProps } from './post/LargePanel';
 export { default as ReactionPanel, type PanelProps as ReactionProps } from './reaction/Panel';
