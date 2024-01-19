@@ -2,10 +2,11 @@
 import React from 'react';
 
 import { Row } from '../../../designsystem/module';
-import { ReactionProps } from '../../module.js';
+
+import { PanelProps as ReactionPanelProps } from '../../reaction/Panel';
 
 export type EngagementsProps = {
-    children?: React.ReactElement<ReactionProps>[] | React.ReactElement<ReactionProps>;
+    children?: React.ReactElement<ReactionPanelProps>[] | React.ReactElement<ReactionPanelProps>;
 };
 
 export default function Engagements(props: EngagementsProps)

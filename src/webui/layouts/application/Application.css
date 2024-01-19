@@ -14,7 +14,6 @@
     flex-shrink: 0;
     gap: 2rem;
     height: 100vh;
-    width: 250px;
     position: sticky;
     top: 0;
 }
@@ -25,6 +24,7 @@
     flex-shrink: 1;
     box-sizing: border-box;
     padding: 1rem 0;
+    width: 230px;
 }
 
 .application-layout .left .ds-ruler
