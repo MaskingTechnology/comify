@@ -3,8 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import HomePage from './pages/HomePage.js';
-import ApplicationPage from './pages/ApplicationPage.js';
+import HomePage from './pages/HomePage';
+import ApplicationPage from './pages/ApplicationPage';
 
 import './designsystem/designsystem.css';
 import './main.css';

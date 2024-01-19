@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import { Ruler } from '../../designsystem/module.js';
+import { Ruler } from '../../designsystem/module';
 
 import './Application.css';
 

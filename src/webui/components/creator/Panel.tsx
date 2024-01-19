@@ -7,7 +7,6 @@ import AvatarWithContentRight from './AvatarWithContentRight';
 import Quantifier from '../common/Quantifier';
 import Names from './Names';
 
-
 export type PanelProps = {
     avatar: React.ReactElement<AvatarProps>;
     button: React.ReactElement<ButtonProps>;
