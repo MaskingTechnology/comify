@@ -1,15 +1,15 @@
 
 import React, { useState } from 'react';
 
-import './Selection.css';
+import './Dropdown.css';
 
-export type SelectionProps = {
+export type DropdownProps = {
     options: Map<string, string>;
     selected?: string; // Key of the selected option
     changeHandler?: (oldKey: string, newKey: string) => void;
 };
 
-export default function Selection(props: SelectionProps)
+export default function Dropdown(props: DropdownProps)
 {
     const options = props.options;
 

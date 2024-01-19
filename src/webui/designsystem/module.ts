@@ -1,5 +1,5 @@
 
-export { default as Selection } from './components/selection/Selection';
+export { default as Dropdown } from './components/dropdown/Dropdown';
 export { default as Tabs } from './components/tabs/Tabs';
 export { default as Tab } from './components/tabs/Tab';
 
