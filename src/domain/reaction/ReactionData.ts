@@ -9,7 +9,9 @@ export default class ReactionData
 
     #ratingCount: number;
 
-    constructor(id: string, creatorId: string, comicId: string | undefined, commentId: string | undefined, ratingCount = 0)
+    #createdAt: Date;
+
+    constructor(id: string, creatorId: string, comicId: string | undefined, commentId: string | undefined, ratingCount = 0, createdAt = new Date())
     {
         this.#id = id;
         this.#creatorId = creatorId;
@@ -18,6 +20,8 @@ export default class ReactionData
         this.#commentId = commentId;
 
         this.#ratingCount = ratingCount;
+
+        this.#createdAt = createdAt;
     }
 
     get id() { return this.#id; }
@@ -29,4 +33,6 @@ export default class ReactionData
     get commentId() { return this.#commentId; }
 
     get ratingCount() { return this.#ratingCount; }
+
+    get createdAt() { return this.#createdAt; }
 }

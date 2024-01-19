@@ -11,7 +11,7 @@ export default class Rating extends ReactionData
 
     constructor(data: ReactionData, comic: Comic | undefined, comment: Comment | undefined)
     {
-        super(data.id, data.creatorId, data.comicId, data.commentId);
+        super(data.id, data.creatorId, data.comicId, data.commentId, data.createdAt);
 
         this.#comic = comic;
         this.#comment = comment;
