@@ -17,11 +17,11 @@ import
 import { ApplicationLayout } from '../layouts/module';
 
 const navigation = [
-    { icon: '/assets/icon.svg', title: 'Timeline', to: '/' },
-    { icon: '/assets/icon.svg', title: 'Explore', to: '/explore' },
-    { icon: '/assets/icon.svg', title: 'Notifications', to: '/notifications' },
-    { icon: '/assets/icon.svg', title: 'Create', to: '/create' },
-    { icon: '/assets/icon.svg', title: 'Profile', to: '/profile' }
+    { icon: '/assets/icon1.svg', title: 'Timeline', to: '/' },
+    { icon: '/assets/icon2.svg', title: 'Explore', to: '/explore' },
+    { icon: '/assets/icon3.svg', title: 'Notifications', to: '/notifications' },
+    { icon: '/assets/icon4.svg', title: 'Create', to: '/create' },
+    { icon: '/assets/icon5.svg', title: 'Profile', to: '/profile' }
 ];
 
 export default function AuthenticatedPage()
