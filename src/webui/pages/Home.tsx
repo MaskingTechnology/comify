@@ -24,7 +24,7 @@ const aside = <Column>
     {login}
 </Column>;
 
-export default function HomePage()
+export default function Home()
 {
     return <HomeLayout main={main} aside={aside} />;
 }
