@@ -1,28 +1,18 @@
 
-export default class Creator
-{
-    #id: string;
-    #fullName: string;
-    #nickName: string;
-    #portrait: string;
-    #email: string;
+import Image from '../image/Image';
 
-    constructor(id: string, fullName: string, nickName: string, portrait: string, email: string)
+import CreatorData from './CreatorData';
+
+export default class Creator extends CreatorData
+{
+    #portrait: Image;
+
+    constructor(data: CreatorData, portrait: Image)
     {
-        this.#id = id;
-        this.#fullName = fullName;
-        this.#nickName = nickName;
+        super(data.id, data.fullName, data.nickName, data.email, data.portraitId, data.joinedAt, data.popularity, data.comicCount, data.followerCount, data.followingCount);
+
         this.#portrait = portrait;
-        this.#email = email;
     }
 
-    get id() { return this.#id; }
-
-    get fullName() { return this.#fullName; }
-
-    get nickName() { return this.#nickName; }
-
     get portrait() { return this.#portrait; }
-
-    get email() { return this.#email; }
 }

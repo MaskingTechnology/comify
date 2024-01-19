@@ -1,24 +1,23 @@
 
-export default class Post
-{
-    #id: string;
-    #creatorId: string;
-    #title: string;
-    #comic: string;
+import Creator from '../creator/Creator';
+import Comic from '../comic/Comic';
 
-    constructor(id: string, creatorId: string, title: string, comic: string)
+import PostData from './PostData';
+
+export default class Post extends PostData
+{
+    #creator: Creator;
+    #comic: Comic;
+
+    constructor(data: PostData, creator: Creator, comic: Comic)
     {
-        this.#id = id;
-        this.#creatorId = creatorId;
-        this.#title = title;
+        super(data.id, data.creatorId, data.comicId, data.createdAt, data.ratingCount, data.reactionCount);
+
+        this.#creator = creator;
         this.#comic = comic;
     }
 
-    get id() { return this.#id; }
-
-    get creatorId() { return this.#creatorId; }
-
-    get title() { return this.#title; }
+    get creator() { return this.#creator; }
 
     get comic() { return this.#comic; }
 }
