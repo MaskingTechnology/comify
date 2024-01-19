@@ -1,24 +1,16 @@
 
-export default class image
-{
-    #storageKey: string;
-    #fileName: string;
-    #mimeType: string;
-    #size: number;
+import ImageData from './ImageData';
 
-    constructor(storageKey: string, fileName: string, mimeType: string, size: number)
+export default class Image extends ImageData
+{
+    #dataUrl: string;
+
+    constructor(data: ImageData, dataUrl: string)
     {
-        this.#storageKey = storageKey;
-        this.#fileName = fileName;
-        this.#mimeType = mimeType;
-        this.#size = size;
+        super(data.storageKey, data.fileName, data.mimeType, data.size);
+
+        this.#dataUrl = dataUrl;
     }
 
-    get storageKey() { return this.#storageKey; }
-
-    get fileName() { return this.#fileName; }
-
-    get mimeType() { return this.#mimeType; }
-
-    get size() { return this.#size; }
+    get dataUrl() { return this.#dataUrl; }
 }

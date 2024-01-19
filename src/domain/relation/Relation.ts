@@ -1,20 +1,22 @@
 
-export default class Relation
-{
-    #id: string;
-    #followerId: string;  //CreatorId
-    #followeeId: string;  //CreatorId  
+import Creator from '../creator/Creator';
 
-    constructor(id: string, followerId: string, followeeId: string)
+import RelationData from './RelationData';
+
+export default class Relation extends RelationData
+{
+    #follower: Creator;
+    #following: Creator;
+
+    constructor(data: RelationData, follower: Creator, following: Creator)
     {
-        this.#id = id;
-        this.#followerId = followerId;
-        this.#followeeId = followeeId;
+        super(data.id, data.followerId, data.followingId);
+
+        this.#follower = follower;
+        this.#following = following;
     }
 
-    get id() { return this.#id; }
+    get follower() { return this.#follower; }
 
-    get follower() { return this.#followerId; }
-
-    get followee() { return this.#followeeId; }
+    get following() { return this.#following; }
 }

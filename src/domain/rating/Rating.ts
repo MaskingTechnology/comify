@@ -1,24 +1,23 @@
 
-export default class Rating
-{
-    #id: string;
-    #creatorId: string;
-    #comicId: string;
-    #commentId: string;
+import Comic from '../comic/Comic';
+import Comment from '../comment/Comment';
 
-    constructor(id: string, creatorId: string, comicId: string, commentId: string)
+import ReactionData from './RatingData';
+
+export default class Rating extends ReactionData
+{
+    #comic: Comic | undefined;
+    #comment: Comment | undefined;
+
+    constructor(data: ReactionData, comic: Comic | undefined, comment: Comment | undefined)
     {
-        this.#id = id;
-        this.#creatorId = creatorId;
-        this.#comicId = comicId;
-        this.#commentId = commentId;
+        super(data.id, data.creatorId, data.comicId, data.commentId);
+
+        this.#comic = comic;
+        this.#comment = comment;
     }
 
-    get id() { return this.#id; }
+    get comic() { return this.#comic; }
 
-    get creatorId() { return this.#creatorId; }
-
-    get comicId() { return this.#comicId; }
-
-    get commentId() { return this.#commentId; }
+    get comment() { return this.#comment; }
 }

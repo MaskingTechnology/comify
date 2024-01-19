@@ -1,24 +1,28 @@
 
-export default class Reaction
-{
-    #id: string;
-    #creatorId: string;
-    #comicId: string;
-    #commentId: string;
+import Creator from '../creator/Creator';
+import Comic from '../comic/Comic';
+import Comment from '../comment/Comment';
 
-    constructor(id: string, creatorId: string, comicId: string, commentId: string)
+import ReactionData from './ReactionData';
+
+export default class Reaction extends ReactionData
+{
+    #creator: Creator;
+    #comic: Comic | undefined;
+    #comment: Comment | undefined;
+
+    constructor(data: ReactionData, creator: Creator, comic: Comic | undefined, comment: Comment | undefined)
     {
-        this.#id = id;
-        this.#creatorId = creatorId;
-        this.#comicId = comicId;
-        this.#commentId = commentId;
+        super(data.id, data.creatorId, data.comicId, data.commentId, data.ratingCount);
+
+        this.#creator = creator;
+        this.#comic = comic;
+        this.#comment = comment;
     }
 
-    get id() { return this.#id; }
+    get creator() { return this.#creator; }
 
-    get creatorId() { return this.#creatorId; }
+    get comic() { return this.#comic; }
 
-    get comicId() { return this.#comicId; }
-
-    get commentId() { return this.#commentId; }
+    get comment() { return this.#comment; }
 }

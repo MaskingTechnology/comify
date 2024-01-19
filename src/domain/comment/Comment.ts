@@ -1,16 +1,10 @@
 
-export default class Comment
+import CommentData from './CommentData';
+
+export default class Comment extends CommentData
 {
-    #id: string;
-    #comment: string;
-
-    constructor(id: string, comment: string)
+    constructor(data: CommentData)
     {
-        this.#id = id;
-        this.#comment = comment;
+        super(data.id, data.message);
     }
-
-    get id() { return this.#id; }
-
-    get comment() { return this.#comment; }
 }
