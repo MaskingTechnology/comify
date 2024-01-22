@@ -1,17 +1,15 @@
 
 import React from 'react';
 
-import { Avatar } from '../../../designsystem/module';
+import type Creator from '../../../../domain/client/views/Creator';
 
-import CreatorIdentity from '../../creator/Identity';
-
-import Logo from '../Logo';
+import IdentityRow from '../../creator/IdentityRow';
 import Navigation from '../navigation/Navigation';
 import NavigationItem from '../navigation/Item';
 
-import './Sidebar.css';
+import Logo from '../Logo';
 
-const avatarMedium = <Avatar source='https://masking.tech/images/peter.jpg' size='medium' />;
+import './Sidebar.css';
 
 export type NavigationItem = {
     icon: string;
@@ -19,24 +17,28 @@ export type NavigationItem = {
     to: string;
 };
 
-export type SidebarProps = {
+export type Props = {
     navigation: NavigationItem[];
+    identity: Creator;
 };
 
-export default function Sidebar(props: SidebarProps)
+export default function Component(props: Props)
 {
+    const navigation = props.navigation;
+    const identity = props.identity;
+
     return <div className='application-sidebar'>
         <header>
             <Logo />
         </header>
         <Navigation>
-            {props.navigation.map(item =>
+            {navigation.map(item =>
             {
                 return <NavigationItem key={item.to} icon={item.icon} title={item.title} to={item.to} />;
             })}
         </Navigation>
         <footer>
-            <CreatorIdentity avatar={avatarMedium} username='Peter van Vliet' nickname='ErrorA' />
+            <IdentityRow creator={identity} />
         </footer>
     </div>;
 }

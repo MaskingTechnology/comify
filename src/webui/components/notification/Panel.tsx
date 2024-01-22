@@ -3,8 +3,8 @@ import React from 'react';
 
 import { Column, Panel as DSPanel, Row, AvatarProps, ParagraphProps, ButtonProps } from '../../designsystem/module';
 
-import Response from '../creator/Response';
-import AvatarWithContentRight from '../creator/AvatarWithContentRight';
+// import Response from '../common/TitledTimeElapsed';
+// import AvatarWithContentRight from '../creator/AvatarRow';
 
 export type PanelProps = {
     avatar: React.ReactElement<AvatarProps>;
@@ -17,7 +17,7 @@ export type PanelProps = {
 export default function Panel(props: PanelProps)
 {
     return <DSPanel>
-        <Column gap='medium' align='justify'>
+        {/* <Column gap='medium' align='justify'>
             <AvatarWithContentRight
                 avatar={props.avatar}
                 right={<>
@@ -30,6 +30,6 @@ export default function Panel(props: PanelProps)
             <Row>
                 {props.message}
             </Row>
-        </Column>
+        </Column> */}
     </DSPanel>;
 }

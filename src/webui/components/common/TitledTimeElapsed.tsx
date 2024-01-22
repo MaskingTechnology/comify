@@ -3,17 +3,17 @@ import React from 'react';
 
 import { Column, Text } from '../../designsystem/module';
 
-import TimeElapsed from '../common/TimeElapsed';
+import TimeElapsed from './TimeElapsed';
 
-export type ResponseProps = {
-    username: string;
+export type Props = {
+    title: string;
     date: Date;
 };
 
-export default function Response(props: ResponseProps)
+export default function Component(props: Props)
 {
     return <Column align='justify' gap='none'>
-        <Text value={props.username} size='large' weight='bold' />
+        <Text value={props.title} size='large' weight='bold' />
         <TimeElapsed date={props.date} size='small' />
     </Column>;
 }

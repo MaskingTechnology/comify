@@ -3,10 +3,10 @@ import React from 'react';
 
 import { Column, Icon, Row, Panel as DSPanel, AvatarProps, ButtonProps } from '../../designsystem/module';
 
-import Response from '../creator/Response';
-import Engagements from '../common/engagements/Engagements';
-import Engagement from '../common/engagements/Engagement';
-import AvatarWithContentRight from '../creator/AvatarWithContentRight';
+// import Response from '../common/TitledTimeElapsed';
+// import Engagements from '../common/engagements/Engagements';
+// import Engagement from '../common/engagements/Engagement';
+// import AvatarWithContentRight from '../creator/AvatarRow';
 import { CommentProps } from '../comment/Comment';
 import { ComicProps } from '../comic/Comic';
 
@@ -22,7 +22,7 @@ export type PanelProps = {
 export default function Panel(props: PanelProps)
 {
     return <DSPanel>
-        <Column gap='medium' align='justify'>
+        {/* <Column gap='medium' align='justify'>
             <AvatarWithContentRight
                 avatar={props.avatar}
                 right={<Row align='justify'>
@@ -40,6 +40,6 @@ export default function Panel(props: PanelProps)
                     </Engagements>
                 </Row>
             </Column>
-        </Column>
+        </Column> */}
     </DSPanel>;
 }

@@ -1,46 +1,32 @@
 
 import React from 'react';
 
-import { Column, Icon, Row, Panel, AvatarProps, ButtonProps } from '../../designsystem/module';
+import type Creator from '../../../domain/client/views/Creator';
+import type Post from '../../../domain/client/views/Post';
+
+import { Column, Panel } from '../../designsystem/module';
 
 import Comic from '../comic/Comic';
-import Response from '../creator/Response';
-import Engagements from '../common/engagements/Engagements';
-import Engagement from '../common/engagements/Engagement';
-import AvatarWithContentRight from '../creator/AvatarWithContentRight';
+import TimeElapsedRow from '../creator/TimeElapsedRow';
+import EngagementsRow from './EngagementsRow';
 
-export type LargePanelProps = {
-    avatar: React.ReactElement<AvatarProps>;
-    username: string;
-    responded: Date;
-    button: React.ReactElement<ButtonProps>;
-    image: string;
-    likes: number;
-    comments: number;
+export type Props = {
+    post: Post;
+    followHandler: (creator: Creator) => void;
 };
 
-export default function LargePanel(props: LargePanelProps)
+export default function Component(props: Props)
 {
+    const post = props.post;
+    const creator = post.creator;
+    const comic = post.comic;
+    const followHandler = props.followHandler;
+
     return <Panel>
-        <Column gap='medium' align='justify'>
-            <AvatarWithContentRight
-                avatar={props.avatar}
-                right={<>
-                    <Row align='justify'>
-                        <Response username={props.username} date={props.responded} />
-                        {props.button}
-                    </Row>
-                </>}
-            />
-            <Row>
-                <Comic source={props.image} />
-            </Row>
-            <Row>
-                <Engagements>
-                    <Engagement icon={<Icon type='heart' />} number={props.likes} />
-                    <Engagement icon={<Icon type='comment' />} number={props.comments} />
-                </Engagements>
-            </Row>
+        <Column gap='medium'>
+            <TimeElapsedRow creator={creator} date={post.createdAt} followHandler={followHandler} />
+            <Comic comic={comic} />
+            <EngagementsRow post={post} />
         </Column>
     </Panel>;
 }
