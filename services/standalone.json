@@ -1,8 +1,15 @@
 {
     "url": "http://127.0.0.1:3000",
-    "setUp": "./integrations/jitar/setUpNode",
-    "tearDown": "./integrations/jitar/tearDownNode",
+    "setUp": [
+        "./integrations/jitar/setUpNode",
+        "./integrations/jitar/setUpGateway"
+    ],
+    "tearDown": [
+        "./integrations/jitar/tearDownGateway",
+        "./integrations/jitar/tearDownNode"
+    ],
     "healthChecks": [
+        "./integrations/jitar/notificationHealthCheck",
         "./integrations/jitar/fileStorageHealthCheck",
         "./integrations/jitar/databaseHealthCheck"
     ],
@@ -11,9 +18,6 @@
         "assets": ["index.html", "main.js", "App.js", "vite.svg", "assets/**/*"],
         "middlewares": [
             "./integrations/jitar/authenticationMiddleware"
-        ],
-        "overrides": {
-            "./integrations/database/implementation": "./integrations/database/implementations/MongoDb"
-        }
+        ]
     }
 }

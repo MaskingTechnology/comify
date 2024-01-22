@@ -3,7 +3,7 @@ import React from 'react';
 
 import './TextArea.css';
 
-export type TextareaProps = {
+export type TextAreaProps = {
     name: string;
     size?: 'large' | 'medium' | 'small';
     placeholder?: string;
@@ -11,7 +11,7 @@ export type TextareaProps = {
     changeHandler?: React.ChangeEventHandler<HTMLTextAreaElement>;
 };
 
-export default function TextArea(props: TextareaProps)
+export default function TextArea(props: TextAreaProps)
 {
     const size = props.size ?? 'medium';
 

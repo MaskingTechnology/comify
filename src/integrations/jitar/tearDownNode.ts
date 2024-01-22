@@ -1,15 +1,12 @@
 
-import fileStorage from '../filestorage/module';
 import database from '../database/module';
+import fileStorage from '../filestorage/module';
+import notificationService from '../notification/module';
 
-if (fileStorage.connected)
-{
-    await fileStorage.disconnect();
-}
+const disconnections = [];
 
-if (database.connected)
-{
-    await database.disconnect();
-}
+if (database.connected) disconnections.push(database.disconnect());
+if (fileStorage.connected) disconnections.push(fileStorage.disconnect());
+if (notificationService.connected) disconnections.push(notificationService.disconnect());
 
-console.log('Node teardown complete');
+await Promise.allSettled(disconnections);

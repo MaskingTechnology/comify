@@ -1,16 +1,25 @@
 
-import identityProvider from '../authentication/module';
-import fileStorage from '../filestorage/module';
 import database from '../database/module';
+import fileStorage from '../filestorage/module';
+import notificationService from '../notification/module';
 
-await identityProvider.connect({
-    issuer: 'http://localhost:8080/realms/comify',
-    clientId: 'openid',
-    clientSecret: '',
-    redirectUri: 'http://localhost:3000/rpc/domain/authentication/login'
-});
+try
+{
+    await Promise.allSettled([
+        database.connect(),
+        fileStorage.connect(),
+        notificationService.connect()
+    ]);
+}
+catch (error: unknown)
+{
+    const disconnections = [];
 
-await fileStorage.connect();
-await database.connect('mongodb://development:development@localhost:27017', 'comify');
+    if (database.connected) disconnections.push(database.disconnect());
+    if (fileStorage.connected) disconnections.push(fileStorage.disconnect());
+    if (notificationService.connected) disconnections.push(notificationService.disconnect());
 
-console.log('Node setup complete');
+    await Promise.allSettled(disconnections);
+
+    throw error;
+}

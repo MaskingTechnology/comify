@@ -9,6 +9,7 @@
 {
     display: flex;
     flex-direction: row;
+    min-width: 0;
 }
 
 .ds-row.ds-row-align-left
@@ -24,6 +25,11 @@
 .ds-row.ds-row-align-right
 {
     justify-content: flex-end;
+}
+
+.ds-row.ds-row-align-justify
+{
+    justify-content: space-between;
 }
 
 .ds-row.ds-row-gap-small
@@ -43,7 +49,7 @@
 
 .ds-row.ds-row-wrap-nowrap
 {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .ds-row.ds-row-wrap-wrap
