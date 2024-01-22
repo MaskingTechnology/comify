@@ -1,6 +1,9 @@
 
 import React from 'react';
 
+import Image from '../../../domain/client/views/Image';
+import Creator from '../../../domain/client/views/Creator';
+
 import { ApplicationSidebar } from '../../components/module';
 import { ApplicationLayout } from '../../layouts/module';
 
@@ -16,9 +19,14 @@ export type ApplicationProperties = {
     children: React.ReactNode;
 };
 
-const sidebar = <ApplicationSidebar navigation={navigation} />;
+const portrait = new Image('https://masking.tech/images/peter.jpg');
+const identity = new Creator('0', 'Peter van Vliet', 'Peterrrr', portrait, new Date(), 0, 0, 0);
 
 export default function Application(props: ApplicationProperties)
 {
-    return <ApplicationLayout main={props.children} aside={sidebar} />;
+    const children = props.children;
+
+    const sidebar = <ApplicationSidebar navigation={navigation} identity={identity} />;
+
+    return <ApplicationLayout main={children} aside={sidebar} />;
 }
