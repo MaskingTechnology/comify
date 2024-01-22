@@ -56,3 +56,8 @@
 {
     flex-wrap: wrap;
 }
+
+.ds-row.ds-row-stretch
+{
+    flex-grow: 1;
+}
