@@ -1,14 +1,14 @@
 
 import React from 'react';
 
-import type Post from '../../../domain/client/views/Post';
+import type PostView from '../../../domain/post/PostView';
 
 import { Icon, Row } from '../../designsystem/module';
 
 import CompactNumber from '../common/CompactNumber';
 
 export type Props = {
-    post: Post;
+    post: PostView;
 };
 
 export default function Component(props: Props)

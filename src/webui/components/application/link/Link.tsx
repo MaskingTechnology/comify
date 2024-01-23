@@ -4,12 +4,12 @@ import { NavLink, useLocation } from 'react-router-dom';
 
 import './Link.css';
 
-export type LinkProps = {
+export type Props = {
     to: string;
     children?: React.ReactNode;
 };
 
-export default function Link(props: LinkProps)
+export default function Component(props: Props)
 {
     const location = useLocation();
     const isActive = location.pathname === props.to;

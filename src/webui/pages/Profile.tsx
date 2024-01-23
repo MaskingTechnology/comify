@@ -3,7 +3,7 @@ import React from 'react';
 
 import Application from './templates/Application';
 
-export default function Profile()
+export default function Page()
 {
     return <Application>
         Profile

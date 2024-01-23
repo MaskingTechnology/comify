@@ -3,7 +3,7 @@ import React from 'react';
 
 import Application from './templates/Application';
 
-export default function Notifications()
+export default function Page()
 {
     return <Application>
         Notifications

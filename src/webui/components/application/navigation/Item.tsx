@@ -5,13 +5,13 @@ import { Row, Text, Image } from '../../../designsystem/module';
 
 import Link from '../link/Link';
 
-export type ItemProps = {
+export type Props = {
     icon: string;
     title: string;
     to: string;
 };
 
-export default function Item(props: ItemProps)
+export default function Component(props: Props)
 {
     return <Link to={props.to}>
         <Row gap='medium'>

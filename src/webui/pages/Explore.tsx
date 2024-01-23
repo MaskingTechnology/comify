@@ -14,7 +14,7 @@ import Application from './templates/Application';
 
 import { OrderSelection, PostLargePanelList, CreatorPropertiesPanelList } from '../components/module';
 
-export default function Explore()
+export default function Page()
 {
     const [posts, setPosts] = useState<Post[]>([]);
     const [creators, setCreators] = useState<Creator[]>([]);
