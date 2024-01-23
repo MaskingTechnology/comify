@@ -12,6 +12,20 @@
     min-width: 0;
 }
 
+.ds-row > div,
+.ds-row > h1,
+.ds-row > h2,
+.ds-row > h3,
+.ds-row > p,
+.ds-row > form,
+.ds-row > label,
+.ds-row > input,
+.ds-row > textarea,
+.ds-row > select
+{
+    margin: 0;
+}
+
 .ds-row.ds-row-align-left
 {
     justify-content: flex-start;

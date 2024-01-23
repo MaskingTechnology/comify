@@ -12,6 +12,20 @@
     min-width: 0;
 }
 
+.ds-column > div,
+.ds-column > h1,
+.ds-column > h2,
+.ds-column > h3,
+.ds-column > p,
+.ds-column > form,
+.ds-column > label,
+.ds-column > input,
+.ds-column > textarea,
+.ds-column > select
+{
+    margin: 0;
+}
+
 .ds-column.ds-column-align-top
 {
     justify-content: flex-start;
