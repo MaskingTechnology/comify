@@ -1,5 +1,5 @@
 
-import CreatorView from '../creator/CreatorView';
+import type CreatorView from '../creator/CreatorView';
 
 export default class NotificationView
 {

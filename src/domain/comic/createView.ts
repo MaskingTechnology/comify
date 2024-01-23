@@ -2,7 +2,7 @@
 import retrieveImageData from '../image/retrieveData';
 import createImageView from '../image/createView';
 
-import ComicData from './ComicData';
+import type ComicData from './ComicData';
 import ComicView from './ComicView';
 
 export default async function createView(data: ComicData): Promise<ComicView>

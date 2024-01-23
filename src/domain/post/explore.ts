@@ -1,5 +1,5 @@
 
-import PostView from './PostView';
+import type PostView from './PostView';
 import createView from './createView';
 
 import { posts } from '../dummydata';

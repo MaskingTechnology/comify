@@ -1,5 +1,5 @@
 
-import ComicData from './ComicData';
+import type ComicData from './ComicData';
 
 import { comics } from '../dummydata';
 

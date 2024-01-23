@@ -2,7 +2,7 @@
 import retrieveCreatorData from '../creator/retrieveData';
 import createCreatorView from '../creator/createView';
 
-import RelationData from './RelationData';
+import type RelationData from './RelationData';
 import RelationView from './RelationView';
 
 export default async function createView(data: RelationData): Promise<RelationView>

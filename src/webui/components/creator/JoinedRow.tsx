@@ -10,13 +10,11 @@ import NamesRow from './NamesRow';
 
 export type Props = {
     creator: CreatorView;
-    followHandler: (creator: CreatorView) => void;
 };
 
 export default function Component(props: Props)
 {
     const creator = props.creator;
-    const followHandler = props.followHandler;
 
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
     const joinedAt = creator.joinedAt ?? new Date();
@@ -24,7 +22,7 @@ export default function Component(props: Props)
 
     return <AvatarRow avatarSize='small' creator={creator}>
         <Column gap='small' align='justify' stretch={true}>
-            <NamesRow creator={creator} followHandler={followHandler} />
+            <NamesRow creator={creator} />
             <Text value={joinedText} size='small' />
         </Column>
     </AvatarRow>;

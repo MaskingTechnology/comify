@@ -1,21 +1,20 @@
 
-import CreatorView from '../creator/CreatorView';
+import type CreatorView from '../creator/CreatorView';
 
 export default class RelationView
 {
-    // Relations are always requested by the follower id.
-    // This means we don't need to add the follower as a field.
+    #id: string | undefined;
+    #creator: CreatorView;
 
-    #id: string;
-    #following: CreatorView;
-
-    constructor(id: string, following: CreatorView)
+    constructor(id: string | undefined, creator: CreatorView)
     {
         this.#id = id;
-        this.#following = following;
+        this.#creator = creator;
     }
 
     get id() { return this.#id; }
 
-    get following() { return this.#following; }
+    get creator() { return this.#creator; }
+
+    get hasRelation() { return this.#id !== undefined; }
 }

@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 
-import type CreatorView from '../../domain/creator/CreatorView';
+import type RelationView from '../../domain/relation/RelationView';
 import type PostView from '../../domain/post/PostView';
 
 import getTimelinePosts from '../../domain/post/getTimeline';
@@ -25,9 +25,9 @@ export default function Page()
         console.log(`Order changed from ${oldKey} to ${newKey}`);
     };
 
-    const handleFollow = (creator: CreatorView) =>
+    const handleFollow = (relation: RelationView) =>
     {
-        console.log(`Followed ${creator.fullName}`);
+        console.log(`Followed ${relation.creator.fullName}`);
     };
 
     useEffect(() => { getPosts(); }, []);

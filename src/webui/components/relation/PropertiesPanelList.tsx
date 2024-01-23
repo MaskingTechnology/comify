@@ -2,23 +2,22 @@
 import React from 'react';
 
 import type RelationView from '../../../domain/relation/RelationView';
-import type PostView from '../../../domain/post/PostView';
 
 import { Column } from '../../designsystem/module';
 
-import LargePanel from './LargePanel';
+import PropertiesPanel from './PropertiesPanel.js';
 
 export type Props = {
-    posts: PostView[];
+    relations: RelationView[];
     followHandler: (relation: RelationView) => void;
 };
 
 export default function Component(props: Props)
 {
-    const posts = props.posts;
+    const relations = props.relations;
     const followHandler = props.followHandler;
 
     return <Column gap='medium'>
-        {posts.map(post => <LargePanel key={post.id} post={post} followHandler={followHandler} />)}
+        {relations.map(relation => <PropertiesPanel key={relation.creator.id} relation={relation} followHandler={followHandler} />)}
     </Column>;
 }

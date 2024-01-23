@@ -2,7 +2,7 @@
 import retrieveImageData from '../image/retrieveData';
 import createImageView from '../image/createView';
 
-import CreatorData from './CreatorData.js';
+import type CreatorData from './CreatorData.js';
 import CreatorView from './CreatorView.js';
 
 export default async function createView(data: CreatorData): Promise<CreatorView>

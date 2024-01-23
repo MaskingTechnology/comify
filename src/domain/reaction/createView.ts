@@ -2,7 +2,7 @@
 import retrieveCreatorData from '../creator/retrieveData';
 import createCreatorView from '../creator/createView';
 
-import ReactionData from './ReactionData';
+import type ReactionData from './ReactionData';
 import ReactionView from './ReactionView';
 
 export default async function createView(data: ReactionData): Promise<ReactionView>

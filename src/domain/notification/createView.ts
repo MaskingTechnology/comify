@@ -2,7 +2,7 @@
 import retrieveCreatorData from '../creator/retrieveData';
 import createCreatorView from '../creator/createView';
 
-import NotificationData from './NotificationData';
+import type NotificationData from './NotificationData';
 import NotificationView from './NotificationView';
 
 export default async function createView(data: NotificationData): Promise<NotificationView>

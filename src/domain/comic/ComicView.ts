@@ -1,5 +1,5 @@
 
-import ImageView from '../image/ImageView';
+import type ImageView from '../image/ImageView';
 
 export default class ComicView
 {

@@ -1,7 +1,7 @@
 
-import ComicView from '../comic/ComicView';
-import CommentView from '../comment/CommentView';
-import CreatorView from '../creator/CreatorView';
+import type ComicView from '../comic/ComicView';
+import type CommentView from '../comment/CommentView';
+import type CreatorView from '../creator/CreatorView';
 
 export default class RatingView
 {

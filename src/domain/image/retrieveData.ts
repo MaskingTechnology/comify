@@ -1,5 +1,5 @@
 
-import ImageData from './ImageData';
+import type ImageData from './ImageData';
 
 import { images } from '../dummydata';
 

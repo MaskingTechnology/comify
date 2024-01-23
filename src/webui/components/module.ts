@@ -18,7 +18,6 @@ export { default as OrderSelection, type OrderSelectionProps } from './common/Or
 // export { default as CreatorIdentityRow } from './creator/IdentityRow';
 // export { default as CreatorPropertiesPanel } from './creator/PropertiesPanel';
 // export { default as CreatorTimeElapsedRow } from './creator/TimeElapsedRow';
-export { default as CreatorPropertiesPanelList } from './creator/PropertiesPanelList';
 
 // export { default as CreatorResponse } from './common/TitledTimeElapsed';
 // export { default as NotificationPanel } from './notification/Panel';
@@ -26,3 +25,5 @@ export { default as PostLargePanelList } from './post/LargePanelList';
 // export { default as PostSmall } from './post/SmallPanel';
 // export { default as PostLarge } from './post/LargePanel';
 // export { default as ReactionPanel } from './reaction/Panel';
+
+export { default as RelationPropertiesPanelList } from './relation/PropertiesPanelList';

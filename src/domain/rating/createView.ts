@@ -2,7 +2,7 @@
 import retrieveCreatorData from '../creator/retrieveData';
 import createCreatorView from '../creator/createView';
 
-import RatingData from './RatingData';
+import type RatingData from './RatingData';
 import RatingView from './RatingView';
 
 export default async function createView(data: RatingData): Promise<RatingView>

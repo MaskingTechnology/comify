@@ -1,5 +1,5 @@
 
-import CommentData from './CommentData';
+import type CommentData from './CommentData';
 import CommentView from './CommentView';
 
 export default async function createView(data: CommentData): Promise<CommentView>

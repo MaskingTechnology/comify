@@ -2,22 +2,22 @@
 
 import React, { useState, useEffect } from 'react';
 
-import type CreatorView from '../../domain/creator/CreatorView';
 import type PostView from '../../domain/post/PostView';
+import type RelationView from '../../domain/relation/RelationView';
 
 import explorePosts from '../../domain/post/explore';
-import exploreCreators from '../../domain/creator/explore';
+import exploreRelations from '../../domain/relation/explore';
 
 import { Tabs, Tab, Ruler } from '../designsystem/module';
 
 import Application from './templates/Application';
 
-import { OrderSelection, PostLargePanelList, CreatorPropertiesPanelList } from '../components/module';
+import { OrderSelection, PostLargePanelList, RelationPropertiesPanelList } from '../components/module';
 
 export default function Page()
 {
     const [posts, setPosts] = useState<PostView[]>([]);
-    const [creators, setCreators] = useState<CreatorView[]>([]);
+    const [relations, setRelations] = useState<RelationView[]>([]);
 
     const getPosts = async () =>
     {
@@ -25,10 +25,10 @@ export default function Page()
         setPosts(posts);
     };
 
-    const getCreators = async () =>
+    const getRelations = async () =>
     {
-        const creators = await exploreCreators();
-        setCreators(creators);
+        const relations = await exploreRelations();
+        setRelations(relations);
     };
 
     const handleTabChange = (oldIndex: number, newIndex: number) =>
@@ -38,7 +38,7 @@ export default function Page()
         switch (newIndex)
         {
             case 0: return getPosts();
-            case 1: return getCreators();
+            case 1: return getRelations();
         }
     };
 
@@ -47,9 +47,9 @@ export default function Page()
         console.log(`Order changed from ${oldKey} to ${newKey}`);
     };
 
-    const handleFollow = (creator: CreatorView) =>
+    const handleFollow = (relation: RelationView) =>
     {
-        console.log(`Followed ${creator.fullName}`);
+        console.log(`Followed ${relation.creator.fullName}`);
     };
 
     useEffect(() => { getPosts(); }, []);
@@ -60,9 +60,9 @@ export default function Page()
                 <OrderSelection key='comics' selected='popular' changeHandler={handleOrderChange} />
                 <PostLargePanelList posts={posts} followHandler={handleFollow} />
             </Tab>
-            <Tab title='Creators'>
+            <Tab title='Relations'>
                 <OrderSelection key='creators' selected='popular' changeHandler={handleOrderChange} />
-                <CreatorPropertiesPanelList creators={creators} followHandler={handleFollow} />
+                <RelationPropertiesPanelList relations={relations} followHandler={handleFollow} />
             </Tab>
         </Tabs>
     </Application>;

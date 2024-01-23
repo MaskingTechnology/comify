@@ -1,11 +1,11 @@
 
 export default class RelationData
 {
-    #id: string;
+    #id: string | undefined;
     #followerId: string;
     #followingId: string;
 
-    constructor(id: string, followerId: string, followingId: string)
+    constructor(id: string | undefined, followerId: string, followingId: string)
     {
         this.#id = id;
         this.#followerId = followerId;

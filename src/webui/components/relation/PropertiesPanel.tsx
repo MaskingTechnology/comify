@@ -1,23 +1,23 @@
 
 import React from 'react';
 
-import type CreatorView from '../../../domain/creator/CreatorView';
+import type RelationView from '../../../domain/relation/RelationView';
 
 import { Panel } from '../../designsystem/module';
 
 import PropertiesRow from './PropertiesRow';
 
 export type Props = {
-    creator: CreatorView;
-    followHandler: (creator: CreatorView) => void;
+    relation: RelationView;
+    followHandler: (relation: RelationView) => void;
 };
 
 export default function Component(props: Props)
 {
-    const creator = props.creator;
+    const relation = props.relation;
     const followHandler = props.followHandler;
 
     return <Panel>
-        <PropertiesRow creator={creator} followHandler={followHandler} />
+        <PropertiesRow relation={relation} followHandler={followHandler} />
     </Panel>;
 }

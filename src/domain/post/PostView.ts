@@ -1,21 +1,21 @@
 
-import CreatorView from '../creator/CreatorView';
-import ComicView from '../comic/ComicView';
+import type ComicView from '../comic/ComicView';
+import type RelationView from '../relation/RelationView';
 
 export default class PostView
 {
     #id: string;
     #createdAt: Date;
-    #creator: CreatorView;
+    #relation: RelationView;
     #comic: ComicView;
     #ratingCount: number;
     #reactionCount: number;
 
-    constructor(id: string, createdAt: Date, creator: CreatorView, comic: ComicView, ratingCount: number, reactionCount: number)
+    constructor(id: string, createdAt: Date, relation: RelationView, comic: ComicView, ratingCount: number, reactionCount: number)
     {
         this.#id = id;
         this.#createdAt = createdAt;
-        this.#creator = creator;
+        this.#relation = relation;
         this.#comic = comic;
         this.#ratingCount = ratingCount;
         this.#reactionCount = reactionCount;
@@ -25,7 +25,7 @@ export default class PostView
 
     get createdAt() { return this.#createdAt; }
 
-    get creator() { return this.#creator; }
+    get relation() { return this.#relation; }
 
     get comic() { return this.#comic; }
 

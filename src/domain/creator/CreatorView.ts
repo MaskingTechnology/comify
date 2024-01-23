@@ -1,8 +1,6 @@
 
 import ImageView from '../image/ImageView';
 
-import RelationView from '../relation/RelationView.js';
-
 export default class CreatorView
 {
     #id: string;
@@ -14,9 +12,8 @@ export default class CreatorView
     #comicCount?: number;
     #followerCount?: number;
     #followingCount?: number;
-    #relation?: RelationView;
 
-    constructor(id: string, fullName: string, nickName: string, portrait: ImageView, joinedAt?: Date, comicCount?: number, followerCount?: number, followingCount?: number, relation?: RelationView)
+    constructor(id: string, fullName: string, nickName: string, portrait: ImageView, joinedAt?: Date, comicCount?: number, followerCount?: number, followingCount?: number)
     {
         this.#id = id;
         this.#fullName = fullName;
@@ -27,7 +24,6 @@ export default class CreatorView
         this.#comicCount = comicCount;
         this.#followerCount = followerCount;
         this.#followingCount = followingCount;
-        this.#relation = relation;
     }
 
     get id() { return this.#id; }
@@ -45,6 +41,4 @@ export default class CreatorView
     get followerCount() { return this.#followerCount; }
 
     get followingCount() { return this.#followingCount; }
-
-    get relation() { return this.#relation; }
 }
