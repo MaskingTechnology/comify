@@ -1,13 +1,13 @@
 
-import Creator from './Creator';
+import CreatorView from '../creator/CreatorView';
 
-export default class Notification
+export default class NotificationView
 {
     #id: string;
-    #sender: Creator;
-    #receiver?: Creator;
+    #sender: CreatorView;
+    #receiver?: CreatorView;
 
-    constructor(id: string, sender: Creator, receiver?: Creator)
+    constructor(id: string, sender: CreatorView, receiver?: CreatorView)
     {
         this.#id = id;
         this.#sender = sender;

@@ -1,22 +1,22 @@
 
-import Image from './Image';
+import ImageView from '../image/ImageView';
 
-import Relation from './Relation.js';
+import RelationView from '../relation/RelationView.js';
 
-export default class Creator
+export default class CreatorView
 {
     #id: string;
     #fullName: string;
     #nickName: string;
-    #portrait: Image;
+    #portrait: ImageView;
 
     #joinedAt?: Date;
     #comicCount?: number;
     #followerCount?: number;
     #followingCount?: number;
-    #relation?: Relation;
+    #relation?: RelationView;
 
-    constructor(id: string, fullName: string, nickName: string, portrait: Image, joinedAt?: Date, comicCount?: number, followerCount?: number, followingCount?: number, relation?: Relation)
+    constructor(id: string, fullName: string, nickName: string, portrait: ImageView, joinedAt?: Date, comicCount?: number, followerCount?: number, followingCount?: number, relation?: RelationView)
     {
         this.#id = id;
         this.#fullName = fullName;

@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import type Creator from '../../../domain/client/views/Creator';
+import type CreatorView from '../../../domain/creator/CreatorView';
 
 import { Column } from '../../designsystem/module';
 
@@ -10,8 +10,8 @@ import NamesRow from './NamesRow';
 import CountersRow from './CountersRow';
 
 export type Props = {
-    creator: Creator;
-    followHandler: (creator: Creator) => void;
+    creator: CreatorView;
+    followHandler: (creator: CreatorView) => void;
 };
 
 export default function Component(props: Props)

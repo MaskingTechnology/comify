@@ -1,12 +1,12 @@
 
 import React from 'react';
 
-import type Creator from '../../../domain/client/views/Creator';
+import type CreatorView from '../../../domain/creator/CreatorView';
 
 import { Column, Text } from '../../designsystem/module';
 
 export type Props = {
-    creator: Creator;
+    creator: CreatorView;
 };
 
 export default function Component(props: Props)

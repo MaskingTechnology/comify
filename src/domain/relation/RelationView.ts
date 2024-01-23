@@ -1,15 +1,15 @@
 
-import Creator from './Creator';
+import CreatorView from '../creator/CreatorView';
 
-export default class Relation
+export default class RelationView
 {
     // Relations are always requested by the follower id.
     // This means we don't need to add the follower as a field.
 
     #id: string;
-    #following: Creator;
+    #following: CreatorView;
 
-    constructor(id: string, following: Creator)
+    constructor(id: string, following: CreatorView)
     {
         this.#id = id;
         this.#following = following;

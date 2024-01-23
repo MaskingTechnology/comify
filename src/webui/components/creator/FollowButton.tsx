@@ -1,13 +1,13 @@
 
 import React from 'react';
 
-import type Creator from '../../../domain/client/views/Creator';
+import type CreatorView from '../../../domain/creator/CreatorView';
 
 import { Button } from '../../designsystem/module';
 
 export type Props = {
-    creator: Creator;
-    followHandler: (creator: Creator) => void;
+    creator: CreatorView;
+    followHandler: (creator: CreatorView) => void;
 };
 
 export default function Component(props: Props)

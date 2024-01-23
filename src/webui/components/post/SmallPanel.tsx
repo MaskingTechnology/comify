@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import type Post from '../../../domain/client/views/Post';
+import type PostView from '../../../domain/post/PostView';
 
 import DateFormat from '../../../integrations/dateformat/DateFormat';
 
@@ -12,7 +12,7 @@ import Comic from '../comic/Comic';
 import EngagementsRow from './EngagementsRow';
 
 export type Props = {
-    post: Post;
+    post: PostView;
 };
 
 export default function Component(props: Props)

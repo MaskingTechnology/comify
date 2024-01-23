@@ -1,8 +1,8 @@
 
 import React from 'react';
 
-import Image from '../../../domain/client/views/Image';
-import Creator from '../../../domain/client/views/Creator';
+import ImageView from '../../../domain/image/ImageView';
+import CreatorView from '../../../domain/creator/CreatorView';
 
 import { ApplicationSidebar } from '../../components/module';
 import { ApplicationLayout } from '../../layouts/module';
@@ -19,8 +19,8 @@ export type ApplicationProperties = {
     children: React.ReactNode;
 };
 
-const portrait = new Image('https://masking.tech/images/peter.jpg');
-const identity = new Creator('0', 'Peter van Vliet', 'Peterrrr', portrait, new Date(), 0, 0, 0);
+const portrait = new ImageView('https://masking.tech/images/peter.jpg');
+const identity = new CreatorView('0', 'Peter van Vliet', 'Peterrrr', portrait, new Date(), 0, 0, 0);
 
 export default function Application(props: ApplicationProperties)
 {

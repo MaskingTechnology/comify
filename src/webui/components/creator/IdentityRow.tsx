@@ -1,13 +1,13 @@
 
 import React from 'react';
 
-import type Creator from '../../../domain/client/views/Creator';
+import type CreatorView from '../../../domain/creator/CreatorView';
 
 import AvatarRow from './AvatarRow';
 import NamesColumn from './NamesColumn';
 
 export type Props = {
-    creator: Creator;
+    creator: CreatorView;
 };
 
 export default function Component(props: Props)

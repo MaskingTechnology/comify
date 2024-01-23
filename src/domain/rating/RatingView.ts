@@ -1,17 +1,17 @@
 
-import Comic from './Comic';
-import Comment from './Comment';
-import Creator from './Creator';
+import ComicView from '../comic/ComicView';
+import CommentView from '../comment/CommentView';
+import CreatorView from '../creator/CreatorView';
 
-export default class Rating
+export default class RatingView
 {
     #id: string;
     #createdAt: Date;
-    #creator: Creator;
-    #comic: Comic | undefined;
-    #comment: Comment | undefined;
+    #creator: CreatorView;
+    #comic: ComicView | undefined;
+    #comment: CommentView | undefined;
 
-    constructor(id: string, createdAt: Date, creator: Creator, comic?: Comic, comment?: Comment)
+    constructor(id: string, createdAt: Date, creator: CreatorView, comic?: ComicView, comment?: CommentView)
     {
         this.#id = id;
         this.#createdAt = createdAt;

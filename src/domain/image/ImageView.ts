@@ -1,5 +1,5 @@
 
-export default class Image
+export default class ImageView
 {
     #dataUrl: string;
 

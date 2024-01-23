@@ -1,8 +1,8 @@
 
 import React from 'react';
 
-import type Creator from '../../../domain/client/views/Creator';
-import type Post from '../../../domain/client/views/Post';
+import type CreatorView from '../../../domain/creator/CreatorView';
+import type PostView from '../../../domain/post/PostView';
 
 import { Column, Panel } from '../../designsystem/module';
 
@@ -11,8 +11,8 @@ import TimeElapsedRow from '../creator/TimeElapsedRow';
 import EngagementsRow from './EngagementsRow';
 
 export type Props = {
-    post: Post;
-    followHandler: (creator: Creator) => void;
+    post: PostView;
+    followHandler: (creator: CreatorView) => void;
 };
 
 export default function Component(props: Props)

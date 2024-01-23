@@ -1,5 +1,5 @@
 
-export default class Comment
+export default class CommentView
 {
     #id: string;
     #message: string;

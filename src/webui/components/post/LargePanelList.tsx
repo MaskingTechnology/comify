@@ -1,16 +1,16 @@
 
 import React from 'react';
 
-import type Creator from '../../../domain/client/views/Creator';
-import type Post from '../../../domain/client/views/Post';
+import type CreatorView from '../../../domain/creator/CreatorView';
+import type PostView from '../../../domain/post/PostView';
 
 import { Column } from '../../designsystem/module';
 
 import LargePanel from './LargePanel';
 
 export type Props = {
-    posts: Post[];
-    followHandler: (creator: Creator) => void;
+    posts: PostView[];
+    followHandler: (creator: CreatorView) => void;
 };
 
 export default function Component(props: Props)

@@ -1,15 +1,15 @@
 
 import React from 'react';
 
-import type Creator from '../../../domain/client/views/Creator';
+import type CreatorView from '../../../domain/creator/CreatorView';
 
 import { Column } from '../../designsystem/module';
 
 import PropertiesPanel from './PropertiesPanel.js';
 
 export type Props = {
-    creators: Creator[];
-    followHandler: (creator: Creator) => void;
+    creators: CreatorView[];
+    followHandler: (creator: CreatorView) => void;
 };
 
 export default function Component(props: Props)

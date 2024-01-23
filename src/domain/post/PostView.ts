@@ -1,17 +1,17 @@
 
-import Creator from './Creator';
-import Comic from './Comic';
+import CreatorView from '../creator/CreatorView';
+import ComicView from '../comic/ComicView';
 
-export default class Post
+export default class PostView
 {
     #id: string;
     #createdAt: Date;
-    #creator: Creator;
-    #comic: Comic;
+    #creator: CreatorView;
+    #comic: ComicView;
     #ratingCount: number;
     #reactionCount: number;
 
-    constructor(id: string, createdAt: Date, creator: Creator, comic: Comic, ratingCount: number, reactionCount: number)
+    constructor(id: string, createdAt: Date, creator: CreatorView, comic: ComicView, ratingCount: number, reactionCount: number)
     {
         this.#id = id;
         this.#createdAt = createdAt;

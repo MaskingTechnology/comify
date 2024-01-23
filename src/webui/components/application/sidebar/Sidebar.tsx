@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import type Creator from '../../../../domain/client/views/Creator';
+import type CreatorView from '../../../../domain/creator/CreatorView';
 
 import IdentityRow from '../../creator/IdentityRow';
 import Navigation from '../navigation/Navigation';
@@ -19,7 +19,7 @@ export type NavigationItem = {
 
 export type Props = {
     navigation: NavigationItem[];
-    identity: Creator;
+    identity: CreatorView;
 };
 
 export default function Component(props: Props)

@@ -1,13 +1,13 @@
 
 import React from 'react';
 
-import type Creator from '../../../domain/client/views/Creator';
+import type CreatorView from '../../../domain/creator/CreatorView';
 
 import { Row, Avatar, AvatarProps } from '../../designsystem/module';
 
 export type Props = {
     avatarSize: AvatarProps['size'];
-    creator: Creator;
+    creator: CreatorView;
     children: React.ReactNode;
 };
 

@@ -1,12 +1,12 @@
 
-import Image from './Image';
+import ImageView from '../image/ImageView';
 
-export default class Comic
+export default class ComicView
 {
     #id: string;
-    #image: Image;
+    #image: ImageView;
 
-    constructor(id: string, image: Image)
+    constructor(id: string, image: ImageView)
     {
         this.#id = id;
         this.#image = image;

@@ -2,11 +2,11 @@
 
 import React, { useState, useEffect } from 'react';
 
-import type Creator from '../../domain/client/views/Creator';
-import type Post from '../../domain/client/views/Post';
+import type CreatorView from '../../domain/creator/CreatorView';
+import type PostView from '../../domain/post/PostView';
 
-import explorePosts from '../../domain/client/explorePosts';
-import exploreCreators from '../../domain/client/exploreCreators';
+import explorePosts from '../../domain/post/explore';
+import exploreCreators from '../../domain/creator/explore';
 
 import { Tabs, Tab, Ruler } from '../designsystem/module';
 
@@ -16,8 +16,8 @@ import { OrderSelection, PostLargePanelList, CreatorPropertiesPanelList } from '
 
 export default function Page()
 {
-    const [posts, setPosts] = useState<Post[]>([]);
-    const [creators, setCreators] = useState<Creator[]>([]);
+    const [posts, setPosts] = useState<PostView[]>([]);
+    const [creators, setCreators] = useState<CreatorView[]>([]);
 
     const getPosts = async () =>
     {
@@ -47,7 +47,7 @@ export default function Page()
         console.log(`Order changed from ${oldKey} to ${newKey}`);
     };
 
-    const handleFollow = (creator: Creator) =>
+    const handleFollow = (creator: CreatorView) =>
     {
         console.log(`Followed ${creator.fullName}`);
     };

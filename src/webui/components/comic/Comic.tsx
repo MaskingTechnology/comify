@@ -3,10 +3,10 @@ import React from 'react';
 
 import { Image } from '../../designsystem/module';
 
-import type Comic from '../../../domain/client/views/Comic';
+import type ComicView from '../../../domain/comic/ComicView';
 
 export type ComicProps = {
-    comic: Comic;
+    comic: ComicView;
 };
 
 export default function Component(props: ComicProps)
