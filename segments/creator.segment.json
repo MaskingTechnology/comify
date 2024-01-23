@@ -1,0 +1,3 @@
+{
+    "./domain/creator/retrieveData": { "default": {  "access": "public" } }
+}

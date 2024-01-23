@@ -1,0 +1,3 @@
+{
+    "./domain/post/retrieveData": { "default": {  "access": "public" } }
+}

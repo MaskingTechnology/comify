@@ -1,0 +1,3 @@
+{
+    "./domain/comment/retrieveData": { "default": {  "access": "public" } }
+}

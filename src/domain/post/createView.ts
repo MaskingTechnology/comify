@@ -1,8 +1,8 @@
 
-import retrieveComic from '../comic/retrieve';
+import retrieveComicData from '../comic/retrieveData';
 import createComicView from '../comic/createView';
 
-import retrieveCreator from '../creator/retrieve';
+import retrieveCreatorData from '../creator/retrieveData';
 import createCreatorView from '../creator/createView';
 
 import PostView from './PostView';
@@ -10,14 +10,14 @@ import PostData from './PostData';
 
 export default async function createView(data: PostData): Promise<PostView>
 {
-    const [creator, comic] = await Promise.all([
-        retrieveCreator(data.creatorId),
-        retrieveComic(data.comicId)
+    const [creatorData, comicData] = await Promise.all([
+        retrieveCreatorData(data.creatorId),
+        retrieveComicData(data.comicId)
     ]);
 
     const [creatorView, comicView] = await Promise.all([
-        createCreatorView(creator),
-        createComicView(comic)
+        createCreatorView(creatorData),
+        createComicView(comicData)
     ]);
 
     return new PostView(data.id, data.createdAt, creatorView, comicView, data.ratingCount, data.reactionCount);
