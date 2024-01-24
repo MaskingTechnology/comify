@@ -6,9 +6,10 @@ import type PostView from '../../../domain/post/PostView';
 
 import { Column, Panel } from '../../designsystem/module';
 
-import Comic from '../comic/Comic';
-import TimeElapsedRow from '../relation/TimeElapsedRow';
-import EngagementsRow from './EngagementsRow';
+import ComicImage from '../comic/Image';
+import RelationTimeElapsed from '../relation/TimeElapsed';
+
+import EngagementsRow from './elements/EngagementsRow';
 
 export type Props = {
     post: PostView;
@@ -17,16 +18,11 @@ export type Props = {
 
 export default function Component(props: Props)
 {
-    const post = props.post;
-    const relation = post.relation;
-    const comic = post.comic;
-    const followHandler = props.followHandler;
-
     return <Panel>
         <Column gap='medium'>
-            <TimeElapsedRow relation={relation} date={post.createdAt} followHandler={followHandler} />
-            <Comic comic={comic} />
-            <EngagementsRow post={post} />
+            <RelationTimeElapsed relation={props.post.relation} date={props.post.createdAt} followHandler={props.followHandler} />
+            <ComicImage comic={props.post.comic} />
+            <EngagementsRow post={props.post} />
         </Column>
     </Panel>;
 }

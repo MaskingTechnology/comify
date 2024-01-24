@@ -5,7 +5,7 @@ import type RelationView from '../../../domain/relation/RelationView';
 
 import { Column } from '../../designsystem/module';
 
-import PropertiesPanel from './PropertiesPanel.js';
+import Panel from './Panel.js';
 
 export type Props = {
     relations: RelationView[];
@@ -14,10 +14,7 @@ export type Props = {
 
 export default function Component(props: Props)
 {
-    const relations = props.relations;
-    const followHandler = props.followHandler;
-
     return <Column gap='medium'>
-        {relations.map(relation => <PropertiesPanel key={relation.creator.id} relation={relation} followHandler={followHandler} />)}
+        {props.relations.map(relation => <Panel key={relation.creator.id} relation={relation} followHandler={props.followHandler} />)}
     </Column>;
 }

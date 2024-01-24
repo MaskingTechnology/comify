@@ -8,12 +8,12 @@ export default class CreatorView
     #nickName: string;
     #portrait: ImageView;
 
-    #joinedAt?: Date;
-    #comicCount?: number;
-    #followerCount?: number;
-    #followingCount?: number;
+    #joinedAt: Date;
+    #comicCount: number;
+    #followerCount: number;
+    #followingCount: number;
 
-    constructor(id: string, fullName: string, nickName: string, portrait: ImageView, joinedAt?: Date, comicCount?: number, followerCount?: number, followingCount?: number)
+    constructor(id: string, fullName: string, nickName: string, portrait: ImageView, joinedAt: Date, comicCount: number, followerCount: number, followingCount: number)
     {
         this.#id = id;
         this.#fullName = fullName;

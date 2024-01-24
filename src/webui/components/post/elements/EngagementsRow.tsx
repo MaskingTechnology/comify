@@ -1,11 +1,11 @@
 
 import React from 'react';
 
-import type PostView from '../../../domain/post/PostView';
+import type PostView from '../../../../domain/post/PostView';
 
-import { Icon, Row } from '../../designsystem/module';
+import { Icon, Row } from '../../../designsystem/module';
 
-import CompactNumber from '../common/CompactNumber';
+import CompactNumber from '../../common/CompactNumber';
 
 export type Props = {
     post: PostView;

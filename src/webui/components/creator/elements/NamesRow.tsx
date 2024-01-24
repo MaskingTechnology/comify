@@ -1,9 +1,10 @@
 
 import React from 'react';
 
-import type CreatorView from '../../../domain/creator/CreatorView';
+import type CreatorView from '../../../../domain/creator/CreatorView';
 
-import AvatarRow from './AvatarRow';
+import { Row } from '../../../designsystem/module';
+
 import NamesColumn from './NamesColumn';
 
 export type Props = {
@@ -14,7 +15,7 @@ export default function Component(props: Props)
 {
     const creator = props.creator;
 
-    return <AvatarRow avatarSize='small' creator={creator}>
+    return <Row align='justify'>
         <NamesColumn creator={creator} />
-    </AvatarRow>;
+    </Row>;
 }

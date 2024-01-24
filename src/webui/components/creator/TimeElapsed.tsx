@@ -4,7 +4,7 @@ import React from 'react';
 import type CreatorView from '../../../domain/creator/CreatorView';
 
 import TitledTimeElapsed from '../common/TitledTimeElapsed';
-import AvatarRow from './AvatarRow';
+import AvatarRow from './elements/AvatarRow';
 
 export type Props = {
     creator: CreatorView;
@@ -13,10 +13,7 @@ export type Props = {
 
 export default function Component(props: Props)
 {
-    const creator = props.creator;
-    const date = props.date;
-
-    return <AvatarRow avatarSize='small' creator={creator}>
-        <TitledTimeElapsed title={creator.fullName} date={date} />
+    return <AvatarRow avatarSize='small' creator={props.creator}>
+        <TitledTimeElapsed title={props.creator.fullName} date={props.date} />
     </AvatarRow>;
 }

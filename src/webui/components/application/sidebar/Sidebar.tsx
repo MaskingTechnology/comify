@@ -3,7 +3,7 @@ import React from 'react';
 
 import type CreatorView from '../../../../domain/creator/CreatorView';
 
-import IdentityRow from '../../creator/IdentityRow';
+import CreatorIdentity from '../../creator/Identity';
 import Navigation from '../navigation/Navigation';
 import NavigationItem from '../navigation/Item';
 
@@ -38,7 +38,7 @@ export default function Component(props: Props)
             })}
         </Navigation>
         <footer>
-            <IdentityRow creator={identity} />
+            <CreatorIdentity creator={identity} />
         </footer>
     </div>;
 }

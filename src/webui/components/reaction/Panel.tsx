@@ -8,7 +8,7 @@ import { Column, Icon, Row, Panel as DSPanel, AvatarProps, ButtonProps } from '.
 // import Engagement from '../common/engagements/Engagement';
 // import AvatarWithContentRight from '../creator/AvatarRow';
 import { CommentProps } from '../comment/Comment';
-import { ComicProps } from '../comic/Comic';
+import { ComicProps } from '../comic/Image';
 
 export type PanelProps = {
     avatar: React.ReactElement<AvatarProps>;

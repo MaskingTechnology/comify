@@ -7,9 +7,9 @@ import DateFormat from '../../../integrations/dateformat/DateFormat';
 
 import { Column, Panel, Row, Text } from '../../designsystem/module';
 
-import Comic from '../comic/Comic';
+import Comic from '../comic/Image';
 
-import EngagementsRow from './EngagementsRow';
+import EngagementsRow from './elements/EngagementsRow';
 
 export type Props = {
     post: PostView;
