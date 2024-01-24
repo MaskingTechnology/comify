@@ -1,14 +1,12 @@
 
-import retrieveCreatorData from '../creator/retrieveData';
-import createCreatorView from '../creator/createView';
+import retrieveCreatorView from '../creator/retrieveView';
 
 import type NotificationData from './NotificationData';
 import NotificationView from './NotificationView';
 
 export default async function createView(data: NotificationData): Promise<NotificationView>
 {
-    const senderData = await retrieveCreatorData(data.senderId);
-    const senderView = await createCreatorView(senderData);
+    const senderView = await retrieveCreatorView(data.senderId);
 
     return new NotificationView(data.id, senderView);
 }

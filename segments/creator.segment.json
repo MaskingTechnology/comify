@@ -1,4 +1,4 @@
 {
-    "./domain/creator/retrieveData": { "default": {  "access": "public" } },
-    "./domain/creator/filterData": { "default": {  "access": "public" } }
+    "./domain/creator/filterData": { "default": {  "access": "public" } },
+    "./domain/creator/retrieveData": { "default": {  "access": "public" } }
 }
