@@ -13,7 +13,9 @@ export type Props = {
 
 export default function Component(props: Props)
 {
-    return <Row gap='small'>
+    const gapSize = props.avatarSize === 'small' ? 'small' : 'medium';
+
+    return <Row gap={gapSize}>
         <Avatar size={props.avatarSize} source={props.creator.portrait.dataUrl} />
         {props.children}
     </Row>;

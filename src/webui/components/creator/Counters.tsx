@@ -12,7 +12,7 @@ export type Props = {
 
 export default function Component(props: Props)
 {
-    return <AvatarRow avatarSize='small' creator={props.creator}>
+    return <AvatarRow avatarSize='large' creator={props.creator}>
         <CountersColumn creator={props.creator} />
     </AvatarRow>;
 }
