@@ -17,7 +17,7 @@ export default function Application(props: ApplicationProps)
             <aside>
                 {props.aside}
             </aside>
-            <Ruler type='vertical' />
+            <Ruler type='vertical' size='medium' />
         </div>
         <div className='right'>
             <main>

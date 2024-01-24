@@ -55,12 +55,12 @@ export default function Page()
     useEffect(() => { getPosts(); }, []);
 
     return <Application>
-        <Tabs separator={<Ruler type='horizontal' />} changeHandler={handleTabChange}>
+        <Tabs separator={<Ruler type='horizontal' size='small' />} changeHandler={handleTabChange}>
             <Tab title='Comics'>
                 <OrderSelection key='comics' selected='popular' changeHandler={handleOrderChange} />
                 <PostLargePanelList posts={posts} followHandler={handleFollow} />
             </Tab>
-            <Tab title='Relations'>
+            <Tab title='Creators'>
                 <OrderSelection key='creators' selected='popular' changeHandler={handleOrderChange} />
                 <RelationPanelList relations={relations} followHandler={handleFollow} />
             </Tab>

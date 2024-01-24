@@ -1,6 +1,9 @@
 .ds-ruler
 {
-    --border-width: 0.3rem;
+    --border-width-small: 0.1rem;
+    --border-width-medium: 0.2rem;
+    --border-width-large: 0.3rem;
+
     --color: var(--color-border);
 }
 
@@ -12,11 +15,39 @@
 .ds-ruler.ds-ruler-horizontal
 {
     width: 100%;
-    height: var(--border-width);
+}
+
+.ds-ruler.ds-ruler-horizontal.ds-ruler-small
+{
+    height: var(--border-width-small);
+}
+
+.ds-ruler.ds-ruler-horizontal.ds-ruler-medium
+{
+    height: var(--border-width-medium);
+}
+
+.ds-ruler.ds-ruler-horizontal.ds-ruler-large
+{
+    height: var(--border-width-large);
 }
 
 .ds-ruler.ds-ruler-vertical
 {
     height: 100%;
-    width: var(--border-width);
+}
+
+.ds-ruler.ds-ruler-vertical.ds-ruler-small
+{
+    width: var(--border-width-small);
+}
+
+.ds-ruler.ds-ruler-vertical.ds-ruler-medium
+{
+    width: var(--border-width-medium);
+}
+
+.ds-ruler.ds-ruler-vertical.ds-ruler-large
+{
+    width: var(--border-width-large);
 }
