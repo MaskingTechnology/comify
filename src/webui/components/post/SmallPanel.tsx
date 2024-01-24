@@ -23,9 +23,9 @@ export default function Component(props: Props)
     const respondedText = DateFormat.fromNow(post.createdAt);
 
     return <Panel>
-        <Column gap='small' align='justify'>
+        <Column gap='small' alignY='justify'>
             <Comic comic={comic} />
-            <Row align='justify'>
+            <Row alignX='justify'>
                 <EngagementsRow post={post} />
                 <Text value={respondedText} />
             </Row>

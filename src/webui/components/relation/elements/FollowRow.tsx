@@ -13,7 +13,7 @@ export type Props = {
 
 export default function Component(props: Props)
 {
-    return <Row align='justify' stretch={true}>
+    return <Row alignX='justify' alignY='top'>
         {props.children}
         <FollowButton relation={props.relation} followHandler={props.followHandler} />
     </Row>;

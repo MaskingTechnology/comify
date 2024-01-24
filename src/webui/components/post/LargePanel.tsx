@@ -19,7 +19,7 @@ export type Props = {
 export default function Component(props: Props)
 {
     return <Panel>
-        <Column gap='medium'>
+        <Column gap='medium' alignX='stretch'>
             <RelationTimeElapsed relation={props.post.relation} date={props.post.createdAt} followHandler={props.followHandler} />
             <ComicImage comic={props.post.comic} />
             <EngagementsRow post={props.post} />

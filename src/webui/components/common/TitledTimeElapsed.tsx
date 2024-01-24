@@ -12,7 +12,7 @@ export type Props = {
 
 export default function Component(props: Props)
 {
-    return <Column align='justify' gap='none'>
+    return <Column alignY='justify' gap='none'>
         <Text value={props.title} size='large' weight='bold' />
         <TimeElapsed date={props.date} size='small' />
     </Column>;

@@ -15,7 +15,7 @@ export default function Component(props: Props)
 {
     const creator = props.creator;
 
-    return <Row align='justify'>
+    return <Row alignX='justify'>
         <NamesColumn creator={creator} />
     </Row>;
 }

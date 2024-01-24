@@ -4,24 +4,25 @@ import React from 'react';
 import './Column.css';
 
 export type ColumnProps = {
-    align?: 'top' | 'center' | 'bottom' | 'justify';
+    alignX?: 'left' | 'center' | 'right' | 'stretch';
+    alignY?: 'top' | 'center' | 'bottom' | 'justify';
     gap?: 'large' | 'medium' | 'small' | 'none';
     wrap?: 'wrap' | 'nowrap';
-    stretch?: boolean;
     children: React.ReactNode;
 };
 
 export default function Column(props: ColumnProps)
 {
-    const align = props.align ?? 'top';
+    const alignX = props.alignX ?? 'left';
+    const alignY = props.alignY ?? 'top';
     const gap = props.gap ?? 'medium';
     const wrap = props.wrap ?? 'nowrap';
-    const stretch = props.stretch ?? false;
 
-    const className = 'ds-column ds-column-align-' + align
+    const className = 'ds-column'
+        + ' ds-column-align-x-' + alignX
+        + ' ds-column-align-y-' + alignY
         + ' ds-column-gap-' + gap
-        + ' ds-column-wrap-' + wrap
-        + (stretch ? ' ds-column-stretch' : '');
+        + ' ds-column-wrap-' + wrap;
 
     return <div className={className}>
         {props.children}

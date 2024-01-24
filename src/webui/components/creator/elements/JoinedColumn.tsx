@@ -16,7 +16,7 @@ export default function Component(props: Props)
     const joinedAt = creator.joinedAt ?? new Date();
     const joinedText = 'Joined ' + joinedAt.toLocaleDateString('en-GB', options);
 
-    return <Column gap='small' align='justify' stretch={true}>
+    return <Column gap='small' alignY='justify' alignX='stretch'>
         <NamesRow creator={creator} />
         <Text value={joinedText} size='small' />
     </Column>;

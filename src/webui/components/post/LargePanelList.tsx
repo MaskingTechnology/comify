@@ -18,7 +18,7 @@ export default function Component(props: Props)
     const posts = props.posts;
     const followHandler = props.followHandler;
 
-    return <Column gap='medium'>
+    return <Column gap='medium' alignX='stretch'>
         {posts.map(post => <LargePanel key={post.id} post={post} followHandler={followHandler} />)}
     </Column>;
 }

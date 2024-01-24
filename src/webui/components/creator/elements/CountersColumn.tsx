@@ -14,7 +14,7 @@ export type Props = {
 
 export default function Component(props: Props)
 {
-    return <Column gap='small' align='justify' stretch={true}>
+    return <Column gap='small' alignY='justify' alignX='stretch'>
         <NamesRow creator={props.creator} />
         <CountersRow creator={props.creator} />
     </Column>;

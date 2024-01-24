@@ -12,7 +12,7 @@ export type Props = {
 export default function Component(props: Props)
 {
     return <nav>
-        <Column gap='medium' align='top'>
+        <Column gap='medium'>
             {props.children}
         </Column>
     </nav>;
