@@ -12,7 +12,7 @@ import { Tabs, Tab, Ruler } from '../designsystem/module';
 
 import Application from './templates/Application';
 
-import { OrderSelection, PostLargePanelList, RelationPropertiesPanelList } from '../components/module';
+import { OrderSelection, PostLargePanelList, RelationPanelList } from '../components/module';
 
 export default function Page()
 {
@@ -62,7 +62,7 @@ export default function Page()
             </Tab>
             <Tab title='Relations'>
                 <OrderSelection key='creators' selected='popular' changeHandler={handleOrderChange} />
-                <RelationPropertiesPanelList relations={relations} followHandler={handleFollow} />
+                <RelationPanelList relations={relations} followHandler={handleFollow} />
             </Tab>
         </Tabs>
     </Application>;
