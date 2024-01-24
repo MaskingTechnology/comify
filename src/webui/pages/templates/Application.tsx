@@ -8,11 +8,11 @@ import { ApplicationSidebar } from '../../components/module';
 import { ApplicationLayout } from '../../layouts/module';
 
 const navigation = [
-    { icon: '/assets/icon1.svg', title: 'Timeline', to: '/timeline' },
-    { icon: '/assets/icon2.svg', title: 'Explore', to: '/explore' },
-    { icon: '/assets/icon3.svg', title: 'Notifications', to: '/notifications' },
-    { icon: '/assets/icon4.svg', title: 'Create', to: '/create' },
-    { icon: '/assets/icon5.svg', title: 'Profile', to: '/profile' }
+    { icon: 'https://masking.tech/images/peter.jpg', title: 'Timeline', to: '/timeline' },
+    { icon: 'https://masking.tech/images/peter.jpg', title: 'Explore', to: '/explore' },
+    { icon: 'https://masking.tech/images/peter.jpg', title: 'Notifications', to: '/notifications' },
+    { icon: 'https://masking.tech/images/peter.jpg', title: 'Create', to: '/create' },
+    { icon: 'https://masking.tech/images/peter.jpg', title: 'Profile', to: '/profile' }
 ];
 
 export type ApplicationProperties = {
