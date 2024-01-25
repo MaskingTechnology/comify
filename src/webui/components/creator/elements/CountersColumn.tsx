@@ -1,21 +1,23 @@
 
 import React from 'react';
 
-import type CreatorView from '../../../../domain/creator/CreatorView';
-
 import { Column } from '../../../designsystem/module';
 
 import NamesRow from './NamesRow';
 import CountersRow from './CountersRow';
 
 export type Props = {
-    creator: CreatorView;
+    fullName: string;
+    nickName: string;
+    postCount: number;
+    followerCount: number;
+    followingCount: number;
 };
 
 export default function Component(props: Props)
 {
     return <Column gap='small' alignY='justify' alignX='stretch'>
-        <NamesRow creator={props.creator} />
-        <CountersRow creator={props.creator} />
+        <NamesRow fullName={props.fullName} nickName={props.nickName} />
+        <CountersRow postCount={props.postCount} followerCount={props.followerCount} followingCount={props.followingCount} />
     </Column>;
 }

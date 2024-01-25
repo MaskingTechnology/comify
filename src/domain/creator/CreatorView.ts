@@ -9,11 +9,11 @@ export default class CreatorView
     #portrait: ImageView;
 
     #joinedAt: Date;
-    #comicCount: number;
+    #postCount: number;
     #followerCount: number;
     #followingCount: number;
 
-    constructor(id: string, fullName: string, nickName: string, portrait: ImageView, joinedAt: Date, comicCount: number, followerCount: number, followingCount: number)
+    constructor(id: string, fullName: string, nickName: string, portrait: ImageView, joinedAt: Date, postCount: number, followerCount: number, followingCount: number)
     {
         this.#id = id;
         this.#fullName = fullName;
@@ -21,7 +21,7 @@ export default class CreatorView
         this.#portrait = portrait;
 
         this.#joinedAt = joinedAt;
-        this.#comicCount = comicCount;
+        this.#postCount = postCount;
         this.#followerCount = followerCount;
         this.#followingCount = followingCount;
     }
@@ -36,7 +36,7 @@ export default class CreatorView
 
     get joinedAt() { return this.#joinedAt; }
 
-    get comicCount() { return this.#comicCount; }
+    get postCount() { return this.#postCount; }
 
     get followerCount() { return this.#followerCount; }
 

@@ -9,10 +9,11 @@ import { Column, Panel, Row, Text } from '../../designsystem/module';
 
 import Comic from '../comic/Image';
 
-import EngagementsRow from './elements/EngagementsRow';
+import EngagementsRow from './elements/EngagementRow';
 
 export type Props = {
     post: PostView;
+    rateHandler: () => void;
 };
 
 export default function Component(props: Props)
@@ -26,7 +27,7 @@ export default function Component(props: Props)
         <Column gap='small' alignY='justify'>
             <Comic comic={comic} />
             <Row alignX='justify'>
-                <EngagementsRow post={post} />
+                <EngagementsRow ratingCount={post.ratingCount} reactionCount={post.reactionCount} rateHandler={props.rateHandler} />
                 <Text value={respondedText} />
             </Row>
         </Column>

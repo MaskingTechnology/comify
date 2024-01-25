@@ -4,17 +4,17 @@ import type CreatorView from '../creator/CreatorView';
 export default class RelationView
 {
     #id: string | undefined;
-    #creator: CreatorView;
+    #following: CreatorView;
 
-    constructor(id: string | undefined, creator: CreatorView)
+    constructor(id: string | undefined, following: CreatorView)
     {
         this.#id = id;
-        this.#creator = creator;
+        this.#following = following;
     }
 
     get id() { return this.#id; }
 
-    get creator() { return this.#creator; }
+    get following() { return this.#following; }
 
-    get hasRelation() { return this.#id !== undefined; }
+    get exists() { return this.#id !== undefined; }
 }

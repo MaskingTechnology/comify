@@ -9,12 +9,12 @@ import FollowRow from './elements/FollowRow';
 
 export type Props = {
     relation: RelationView;
-    followHandler: (relation: RelationView) => void;
+    followHandler: () => void;
 };
 
 export default function Component(props: Props)
 {
-    return <FollowRow relation={props.relation} followHandler={props.followHandler}>
-        <CreatorCounters creator={props.relation.creator} />
+    return <FollowRow isFollowing={props.relation.exists} followHandler={props.followHandler}>
+        <CreatorCounters creator={props.relation.following} />
     </FollowRow>;
 }

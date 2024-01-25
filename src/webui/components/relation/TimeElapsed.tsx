@@ -1,5 +1,5 @@
 
-import { Row } from '../../designsystem/module';
+import React from 'react';
 
 import type RelationView from '../../../domain/relation/RelationView';
 
@@ -10,12 +10,12 @@ import FollowRow from './elements/FollowRow';
 export type Props = {
     relation: RelationView;
     date: Date;
-    followHandler: (relation: RelationView) => void;
+    followHandler: () => void;
 };
 
 export default function Component(props: Props)
 {
-    return <FollowRow relation={props.relation} followHandler={props.followHandler}>
-        <CreatorTimeElapsed creator={props.relation.creator} date={props.date} />
+    return <FollowRow isFollowing={props.relation.exists} followHandler={props.followHandler}>
+        <CreatorTimeElapsed creator={props.relation.following} date={props.date} />
     </FollowRow>;
 }

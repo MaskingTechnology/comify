@@ -1,5 +1,5 @@
 {
-    "./domain/post/explore": { "default": {  "access": "public" } },
-    "./domain/post/getTimeline": { "default": {  "access": "public" } },
-    "./domain/relation/explore": { "default": {  "access": "public" } }
+    "./domain/explore/posts": { "default": {  "access": "public" } },
+    "./domain/explore/relations": { "default": {  "access": "public" } },
+    "./domain/post/getTimeline": { "default": {  "access": "public" } }
 }

@@ -4,17 +4,17 @@ export default class RatingData
     #id: string;
     #creatorId: string;
 
-    #comicId: string | undefined;
-    #commentId: string | undefined;
+    #postId: string | undefined;
+    #reactionId: string | undefined;
 
     #createdAt: Date;
 
-    constructor(id: string, creatorId: string, comicId: string | undefined, commentId: string | undefined, createdAt = new Date())
+    constructor(id: string, creatorId: string, postId: string | undefined, reactionId: string | undefined, createdAt = new Date())
     {
         this.#id = id;
         this.#creatorId = creatorId;
-        this.#comicId = comicId;
-        this.#commentId = commentId;
+        this.#postId = postId;
+        this.#reactionId = reactionId;
 
         this.#createdAt = createdAt;
     }
@@ -23,9 +23,9 @@ export default class RatingData
 
     get creatorId() { return this.#creatorId; }
 
-    get comicId() { return this.#comicId; }
+    get postId() { return this.#postId; }
 
-    get commentId() { return this.#commentId; }
+    get reactionId() { return this.#reactionId; }
 
     get createdAt() { return this.#createdAt; }
 }

@@ -1,23 +1,23 @@
 
-import type ComicView from '../comic/ComicView';
-import type CommentView from '../comment/CommentView';
 import type CreatorView from '../creator/CreatorView';
+import type PostView from '../post/PostView';
+import type ReactionView from '../reaction/ReactionView';
 
 export default class RatingView
 {
     #id: string;
     #createdAt: Date;
     #creator: CreatorView;
-    #comic: ComicView | undefined;
-    #comment: CommentView | undefined;
+    #post: PostView | undefined;
+    #reaction: ReactionView | undefined;
 
-    constructor(id: string, createdAt: Date, creator: CreatorView, comic?: ComicView, comment?: CommentView)
+    constructor(id: string, createdAt: Date, creator: CreatorView, post: PostView | undefined, reaction: ReactionView | undefined)
     {
         this.#id = id;
         this.#createdAt = createdAt;
         this.#creator = creator;
-        this.#comic = comic;
-        this.#comment = comment;
+        this.#post = post;
+        this.#reaction = reaction;
     }
 
     get id() { return this.#id; }
@@ -26,7 +26,7 @@ export default class RatingView
 
     get createdAt() { return this.#createdAt; }
 
-    get comic() { return this.#comic; }
+    get post() { return this.#post; }
 
-    get comment() { return this.#comment; }
+    get reaction() { return this.#reaction; }
 }

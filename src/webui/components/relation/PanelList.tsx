@@ -15,6 +15,14 @@ export type Props = {
 export default function Component(props: Props)
 {
     return <Column gap='medium' alignX='stretch'>
-        {props.relations.map(relation => <Panel key={relation.creator.id} relation={relation} followHandler={props.followHandler} />)}
+        {
+            props.relations.map(relation =>
+                <Panel
+                    key={relation.following.id}
+                    relation={relation}
+                    followHandler={() => props.followHandler(relation)}
+                />
+            )
+        }
     </Column>;
 }

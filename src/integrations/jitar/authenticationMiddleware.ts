@@ -9,9 +9,9 @@ const authProcedures = {
 };
 
 const whiteList: string[] = [
-    'domain/post/explore',
-    'domain/post/getTimeline',
-    'domain/relation/explore'
+    'domain/explore/posts',
+    'domain/explore/relations',
+    'domain/post/getTimeline'
 ];
 
 export default new AuthenticationMiddleware(identityProvider, authProcedures, whiteList);

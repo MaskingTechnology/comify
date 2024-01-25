@@ -27,13 +27,18 @@ export default function Page()
 
     const handleFollow = (relation: RelationView) =>
     {
-        console.log(`Followed ${relation.creator.fullName}`);
+        console.log(`Followed ${relation.following.fullName}`);
+    };
+
+    const handleRate = (post: PostView) =>
+    {
+        console.log(`Rated ${post.id}`);
     };
 
     useEffect(() => { getPosts(); }, []);
 
     return <Application>
         <OrderSelection selected='recent' changeHandler={handleOrderChange} />
-        <PostLargePanelList posts={posts} followHandler={handleFollow} />
+        <PostLargePanelList posts={posts} followHandler={handleFollow} rateHandler={handleRate} />
     </Application>;
 }

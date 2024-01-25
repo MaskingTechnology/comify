@@ -11,11 +11,11 @@ export default class CreatorData
     #joinedAt: Date;
 
     #popularity: number;
-    #comicCount: number;
+    #postCount: number;
     #followerCount: number;
     #followingCount: number;
 
-    constructor(id: string, fullName: string, nickName: string, email: string, portraitId: string, joinedAt = new Date(), popularity = 0, comicCount = 0, followerCount = 0, followingCount = 0)
+    constructor(id: string, fullName: string, nickName: string, email: string, portraitId: string, joinedAt = new Date(), popularity = 0, postCount = 0, followerCount = 0, followingCount = 0)
     {
         this.#id = id;
         this.#fullName = fullName;
@@ -26,7 +26,7 @@ export default class CreatorData
         this.#joinedAt = joinedAt;
 
         this.#popularity = popularity;
-        this.#comicCount = comicCount;
+        this.#postCount = postCount;
         this.#followerCount = followerCount;
         this.#followingCount = followingCount;
     }
@@ -45,7 +45,7 @@ export default class CreatorData
 
     get popularity() { return this.#popularity; }
 
-    get comicCount() { return this.#comicCount; }
+    get postCount() { return this.#postCount; }
 
     get followerCount() { return this.#followerCount; }
 

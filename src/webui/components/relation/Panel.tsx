@@ -5,19 +5,16 @@ import type RelationView from '../../../domain/relation/RelationView';
 
 import { Panel } from '../../designsystem/module';
 
-import PropertiesRow from './Counters';
+import Counters from './Counters';
 
 export type Props = {
     relation: RelationView;
-    followHandler: (relation: RelationView) => void;
+    followHandler: () => void;
 };
 
 export default function Component(props: Props)
 {
-    const relation = props.relation;
-    const followHandler = props.followHandler;
-
     return <Panel>
-        <PropertiesRow relation={relation} followHandler={followHandler} />
+        <Counters relation={props.relation} followHandler={props.followHandler} />
     </Panel>;
 }

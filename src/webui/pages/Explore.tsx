@@ -5,8 +5,8 @@ import React, { useState, useEffect } from 'react';
 import type PostView from '../../domain/post/PostView';
 import type RelationView from '../../domain/relation/RelationView';
 
-import explorePosts from '../../domain/post/explore';
-import exploreRelations from '../../domain/relation/explore';
+import explorePosts from '../../domain/explore/posts';
+import exploreRelations from '../../domain/explore/relations';
 
 import { Tabs, Tab, Ruler } from '../designsystem/module';
 
@@ -49,7 +49,12 @@ export default function Page()
 
     const handleFollow = (relation: RelationView) =>
     {
-        console.log(`Followed ${relation.creator.fullName}`);
+        console.log(`Followed ${relation.following.fullName}`);
+    };
+
+    const handleRate = (post: PostView) =>
+    {
+        console.log(`Rated ${post.id}`);
     };
 
     useEffect(() => { getPosts(); }, []);
@@ -58,7 +63,7 @@ export default function Page()
         <Tabs separator={<Ruler type='horizontal' size='small' />} changeHandler={handleTabChange}>
             <Tab title='Comics'>
                 <OrderSelection key='comics' selected='popular' changeHandler={handleOrderChange} />
-                <PostLargePanelList posts={posts} followHandler={handleFollow} />
+                <PostLargePanelList posts={posts} followHandler={handleFollow} rateHandler={handleRate} />
             </Tab>
             <Tab title='Creators'>
                 <OrderSelection key='creators' selected='popular' changeHandler={handleOrderChange} />

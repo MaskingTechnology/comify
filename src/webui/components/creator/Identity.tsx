@@ -12,7 +12,10 @@ export type Props = {
 
 export default function Component(props: Props)
 {
-    return <AvatarRow avatarSize='small' creator={props.creator}>
-        <NamesColumn creator={props.creator} />
+    return <AvatarRow avatarSize='small' avatarUrl={props.creator.portrait.dataUrl}>
+        <NamesColumn
+            fullName={props.creator.fullName}
+            nickName={props.creator.nickName}
+        />
     </AvatarRow>;
 }

@@ -8,5 +8,5 @@ export default async function createView(data: CreatorData): Promise<CreatorView
 {
     const portraitView = await retrieveImageView(data.portraitId);
 
-    return new CreatorView(data.id, data.fullName, data.nickName, portraitView, data.joinedAt, data.comicCount, data.followerCount, data.followingCount);
+    return new CreatorView(data.id, data.fullName, data.nickName, portraitView, data.joinedAt, data.postCount, data.followerCount, data.followingCount);
 }
