@@ -4,11 +4,10 @@ import React, { useState, useEffect } from 'react';
 
 import type PostView from '../../domain/post/PostView';
 import type RelationView from '../../domain/relation/RelationView';
+import explorePosts from '../../domain/post/explore';
+import exploreRelations from '../../domain/relation/explore';
 
-import explorePosts from '../../domain/explore/posts';
-import exploreRelations from '../../domain/explore/relations';
-
-import { Tabs, Tab, Ruler } from '../designsystem/module';
+import { Column, Row, TextBox, Tabs, Tab, Ruler } from '../designsystem/module';
 
 import Application from './templates/Application';
 
@@ -62,12 +61,21 @@ export default function Page()
     return <Application>
         <Tabs separator={<Ruler type='horizontal' size='small' />} changeHandler={handleTabChange}>
             <Tab title='Comics'>
-                <OrderSelection key='comics' selected='popular' changeHandler={handleOrderChange} />
-                <PostLargePanelList posts={posts} followHandler={handleFollow} rateHandler={handleRate} />
+                <Column gap='small' alignX='stretch'>
+                    <Row alignX='justify'>
+                        <OrderSelection key='comics' selected='popular' changeHandler={handleOrderChange} />
+                    </Row>
+                    <PostLargePanelList posts={posts} followHandler={handleFollow} rateHandler={handleRate} />
+                </Column>
             </Tab>
             <Tab title='Creators'>
-                <OrderSelection key='creators' selected='popular' changeHandler={handleOrderChange} />
-                <RelationPanelList relations={relations} followHandler={handleFollow} />
+                <Column gap='small' alignX='stretch'>
+                    <Row alignX='justify'>
+                        <OrderSelection key='creators' selected='popular' changeHandler={handleOrderChange} />
+                        <TextBox name='search' placeholder='Search' />
+                    </Row>
+                    <RelationPanelList relations={relations} followHandler={handleFollow} />
+                </Column>
             </Tab>
         </Tabs>
     </Application>;

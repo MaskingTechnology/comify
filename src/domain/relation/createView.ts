@@ -1,12 +1,12 @@
 
-import retrieveCreatorView from '../creator/retrieveView';
+import getCreatorView from '../creator/get';
 
-import type RelationData from './RelationData';
+import type RelationData from './data/RelationData';
 import RelationView from './RelationView';
 
 export default async function createView(data: RelationData): Promise<RelationView>
 {
-    const followingView = await retrieveCreatorView(data.followingId);
+    const followingView = await getCreatorView(data.followingId);
 
     return new RelationView(data.id, followingView);
 }

@@ -1,8 +1,8 @@
 
-import ImageData from './image/ImageData';
-import CreatorData from './creator/CreatorData';
-import ComicData from './comic/ComicData';
-import PostData from './post/PostData';
+import ImageData from './image/data/ImageData';
+import CreatorData from './creator/data/CreatorData';
+import ComicData from './comic/data/ComicData';
+import PostData from './post/data/PostData';
 
 const creators = new Map<string, CreatorData>();
 creators.set('0', new CreatorData('0', 'Peter van Vliet', 'peterrrr', 'peter@masking.tech', '0', new Date(), 0, 0, 0));

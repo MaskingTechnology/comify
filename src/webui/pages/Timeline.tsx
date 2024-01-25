@@ -3,8 +3,9 @@ import React, { useState, useEffect } from 'react';
 
 import type RelationView from '../../domain/relation/RelationView';
 import type PostView from '../../domain/post/PostView';
-
 import getTimelinePosts from '../../domain/post/getTimeline';
+
+import { Column } from '../designsystem/module';
 
 import { OrderSelection, PostLargePanelList } from '../components/module';
 
@@ -38,7 +39,9 @@ export default function Page()
     useEffect(() => { getPosts(); }, []);
 
     return <Application>
-        <OrderSelection selected='recent' changeHandler={handleOrderChange} />
-        <PostLargePanelList posts={posts} followHandler={handleFollow} rateHandler={handleRate} />
+        <Column gap='small'>
+            <OrderSelection selected='recent' changeHandler={handleOrderChange} />
+            <PostLargePanelList posts={posts} followHandler={handleFollow} rateHandler={handleRate} />
+        </Column>
     </Application>;
 }

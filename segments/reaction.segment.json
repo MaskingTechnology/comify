@@ -1,3 +1,3 @@
 {
-    "./domain/reaction/retrieveData": { "default": {  "access": "public" } }
+    "./domain/reaction/data/retrieve": { "default": {  "access": "public" } }
 }
