@@ -4,9 +4,9 @@ import React, { useState, useEffect } from 'react';
 import type RelationView from '../../domain/relation/RelationView';
 import getFollowers from '../../domain/relation/getFollowers';
 
-import { Column, Row, TextBox } from '../designsystem/module';
+import { Column } from '../designsystem/module';
 
-import { OrderSelection, RelationPanelList } from '../components/module';
+import { OrderAndSearchRow, RelationPanelList } from '../components/module';
 
 export default function Feature()
 {
@@ -31,10 +31,7 @@ export default function Feature()
     useEffect(() => { getRelations(); }, []);
 
     return <Column gap='small' alignX='stretch'>
-        <Row alignX='justify'>
-            <OrderSelection key='creators' selected='popular' changeHandler={handleOrderChange} />
-            <TextBox name='search' placeholder='Search' />
-        </Row>
+        <OrderAndSearchRow selected='recent' orderChangeHandler={handleOrderChange} />
         <RelationPanelList relations={relations} followHandler={handleFollow} />
     </Column>;
 }

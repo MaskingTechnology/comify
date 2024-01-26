@@ -9,7 +9,7 @@ export type Props = {
     children: React.ReactNode;
 };
 
-export default function Component(props: Props)
+export default function Element(props: Props)
 {
     return <Row alignX='justify' alignY='top'>
         {props.children}

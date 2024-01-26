@@ -8,7 +8,7 @@ export type Props = {
     nickName: string;
 };
 
-export default function Component(props: Props)
+export default function Element(props: Props)
 {
     return <Column gap='none'>
         <Text value={props.fullName} size='large' weight='bold' />

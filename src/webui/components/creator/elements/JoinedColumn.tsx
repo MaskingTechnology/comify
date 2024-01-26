@@ -11,7 +11,7 @@ export type Props = {
     joinedAt: Date;
 };
 
-export default function Component(props: Props)
+export default function Element(props: Props)
 {
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
     const joinedAt = props.joinedAt ?? new Date();

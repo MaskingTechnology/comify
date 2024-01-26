@@ -8,7 +8,7 @@ import explorePosts from '../../domain/post/explore';
 
 import { Column, Row } from '../designsystem/module';
 
-import { OrderSelection, PostPanelList } from '../components/module';
+import { OrderRow, PostPanelList } from '../components/module';
 
 export default function Feature()
 {
@@ -38,9 +38,7 @@ export default function Feature()
     useEffect(() => { getPosts(); }, []);
 
     return <Column gap='small' alignX='stretch'>
-        <Row alignX='justify'>
-            <OrderSelection key='comics' selected='popular' changeHandler={handleOrderChange} />
-        </Row>
+        <OrderRow selected='popular' orderChangeHandler={handleOrderChange} />
         <PostPanelList posts={posts} followHandler={handleFollow} rateHandler={handleRate} />
     </Column>;
 }

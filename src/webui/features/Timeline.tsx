@@ -5,9 +5,9 @@ import type RelationView from '../../domain/relation/RelationView';
 import type PostView from '../../domain/post/PostView';
 import getTimelinePosts from '../../domain/post/getTimeline';
 
-import { Column, Row } from '../designsystem/module';
+import { Column } from '../designsystem/module';
 
-import { OrderSelection, PostPanelList } from '../components/module';
+import { OrderRow, PostPanelList } from '../components/module';
 
 export default function Feature()
 {
@@ -37,9 +37,7 @@ export default function Feature()
     useEffect(() => { getPosts(); }, []);
 
     return <Column gap='small' alignX='stretch'>
-        <Row>
-            <OrderSelection selected='recent' changeHandler={handleOrderChange} />
-        </Row>
+        <OrderRow selected='recent' orderChangeHandler={handleOrderChange} />
         <PostPanelList posts={posts} followHandler={handleFollow} rateHandler={handleRate} />
     </Column>;
 }

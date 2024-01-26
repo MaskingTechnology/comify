@@ -14,7 +14,7 @@ export type Props = {
     followingCount: number;
 };
 
-export default function Component(props: Props)
+export default function Element(props: Props)
 {
     return <Column gap='small' alignY='justify' alignX='stretch'>
         <NamesRow fullName={props.fullName} nickName={props.nickName} />
