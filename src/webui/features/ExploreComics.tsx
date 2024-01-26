@@ -27,7 +27,7 @@ export default function Feature()
 
     const handleFollow = (relation: RelationView) =>
     {
-        console.log(`Followed ${relation.following.fullName}`);
+        console.log(`Followed ${relation.creator.fullName}`);
     };
 
     const handleRate = (post: PostView) =>

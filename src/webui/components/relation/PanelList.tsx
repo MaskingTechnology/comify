@@ -18,7 +18,7 @@ export default function Component(props: Props)
         {
             props.relations.map(relation =>
                 <Panel
-                    key={relation.following.id}
+                    key={relation.creator.id}
                     relation={relation}
                     followHandler={() => props.followHandler(relation)}
                 />

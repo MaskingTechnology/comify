@@ -15,6 +15,6 @@ export type Props = {
 export default function Component(props: Props)
 {
     return <FollowRow isFollowing={props.relation.exists} followHandler={props.followHandler}>
-        <CreatorCounters creator={props.relation.following} />
+        <CreatorCounters creator={props.relation.creator} />
     </FollowRow>;
 }

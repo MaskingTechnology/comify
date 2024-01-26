@@ -12,7 +12,7 @@ import CreatorFollowing from '../features/CreatorFollowing';
 import Application from './templates/Application';
 
 const relations = await exploreRelations();
-const creator = relations[0].following;
+const creator = relations[0].creator;
 
 export default function Page()
 {

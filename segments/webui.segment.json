@@ -4,6 +4,6 @@
     "./domain/post/getTimeline": { "default": {  "access": "public" } },
 
     "./domain/relation/explore": { "default": {  "access": "public" } },
-    "./domain/relation/getByFollower": { "default": {  "access": "public" } },
-    "./domain/relation/getByFollowing": { "default": {  "access": "public" } }
+    "./domain/relation/getFollowers": { "default": {  "access": "public" } },
+    "./domain/relation/getFollowing": { "default": {  "access": "public" } }
 }

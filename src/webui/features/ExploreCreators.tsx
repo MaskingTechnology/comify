@@ -1,12 +1,10 @@
 
-
 import React, { useState, useEffect } from 'react';
 
 import type RelationView from '../../domain/relation/RelationView';
 import exploreRelations from '../../domain/relation/explore';
 
 import { Column, Row, TextBox } from '../designsystem/module';
-
 
 import { OrderSelection, RelationPanelList } from '../components/module';
 
@@ -27,7 +25,7 @@ export default function Feature()
 
     const handleFollow = (relation: RelationView) =>
     {
-        console.log(`Followed ${relation.following.fullName}`);
+        console.log(`Followed ${relation.creator.fullName}`);
     };
 
     useEffect(() => { getRelations(); }, []);

@@ -13,5 +13,5 @@ export default async function explore(): Promise<RelationView[]>
     const creatorData = await retrieveCreatorsWithout(...followingIds);
     const creatorViews = await Promise.all(creatorData.map(data => createCreatorView(data)));
 
-    return creatorViews.map(creatorView => new RelationView(undefined, creatorView));
+    return creatorViews.map(creatorView => new RelationView(undefined, undefined, creatorView));
 }
