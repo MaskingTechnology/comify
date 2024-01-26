@@ -3,10 +3,12 @@ import React from 'react';
 
 import exploreRelations from '../../domain/relation/explore';
 
-import { Column, Row, TextBox, Tabs, Tab, Ruler } from '../designsystem/module';
+import { Column, Tabs, Tab, Ruler } from '../designsystem/module';
 
-import CreatorJoined from '../components/creator/Joined';
-
+import CreatorProfile from '../features/CreatorProfile';
+import CreatorComics from '../features/CreatorComics';
+import CreatorFollowers from '../features/CreatorFollowers';
+import CreatorFollowing from '../features/CreatorFollowing';
 import Application from './templates/Application';
 
 const relations = await exploreRelations();
@@ -14,28 +16,18 @@ const creator = relations[0].following;
 
 export default function Page()
 {
-    const handleTabChange = (oldIndex: number, newIndex: number) =>
-    {
-        console.log(`Tab changed from ${oldIndex} to ${newIndex}`);
-
-        switch (newIndex)
-        {
-
-        }
-    };
-
     return <Application>
         <Column gap='medium' alignX='stretch'>
-            <CreatorJoined creator={creator} />
-            <Tabs separator={<Ruler type='horizontal' size='small' />} changeHandler={handleTabChange}>
+            <CreatorProfile />
+            <Tabs separator={<Ruler type='horizontal' size='small' />}>
                 <Tab title={`Comics (${creator.postCount})`}>
-                    Comics
+                    <CreatorComics />
                 </Tab>
                 <Tab title={`Followers (${creator.followerCount})`}>
-                    Followers
+                    <CreatorFollowers />
                 </Tab>
                 <Tab title={`Following (${creator.followingCount})`}>
-                    Following
+                    <CreatorFollowing />
                 </Tab>
             </Tabs>
         </Column>
