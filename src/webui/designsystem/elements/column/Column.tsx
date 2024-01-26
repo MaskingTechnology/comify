@@ -3,7 +3,7 @@ import React from 'react';
 
 import './Column.css';
 
-export type ColumnProps = {
+export type Props = {
     alignX?: 'left' | 'center' | 'right' | 'stretch';
     alignY?: 'top' | 'center' | 'bottom' | 'justify';
     gap?: 'large' | 'medium' | 'small' | 'none';
@@ -11,20 +11,15 @@ export type ColumnProps = {
     children: React.ReactNode;
 };
 
-export default function Column(props: ColumnProps)
+export default function Element({ alignX, alignY, gap, wrap, children }: Props)
 {
-    const alignX = props.alignX ?? 'left';
-    const alignY = props.alignY ?? 'top';
-    const gap = props.gap ?? 'medium';
-    const wrap = props.wrap ?? 'nowrap';
-
     const className = 'ds-column'
-        + ' ds-column-align-x-' + alignX
-        + ' ds-column-align-y-' + alignY
-        + ' ds-column-gap-' + gap
-        + ' ds-column-wrap-' + wrap;
+        + ' ds-column-align-x-' + (alignX ?? 'left')
+        + ' ds-column-align-y-' + (alignY ?? 'top')
+        + ' ds-column-gap-' + (gap ?? 'medium')
+        + ' ds-column-wrap-' + (wrap ?? 'nowrap');
 
     return <div className={className}>
-        {props.children}
+        {children}
     </div>;
 }

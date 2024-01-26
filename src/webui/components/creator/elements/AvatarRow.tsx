@@ -1,10 +1,10 @@
 
 import React from 'react';
 
-import { Row, Avatar, AvatarProps } from '../../../designsystem/module';
+import { Row, Avatar } from '../../../designsystem/module';
 
 export type Props = {
-    avatarSize: AvatarProps['size'];
+    avatarSize: 'small' | 'medium' | 'large';
     avatarUrl: string;
     children: React.ReactNode;
 };

@@ -3,7 +3,7 @@ import React from 'react';
 
 import './Image.css';
 
-export type ImageProps = {
+export type Props = {
     source: string;
     title?: string;
     alt?: string;
@@ -11,13 +11,13 @@ export type ImageProps = {
     height?: string;
 };
 
-export default function Image(props: ImageProps)
+export default function Element({ source, title, alt, width, height }: Props)
 {
     return <img
-        title={props.title}
-        alt={props.alt}
-        width={props.width}
-        height={props.height}
-        src={props.source}
+        title={title}
+        alt={alt}
+        width={width}
+        height={height}
+        src={source}
     />;
 }

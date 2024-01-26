@@ -3,17 +3,15 @@ import React, { useState } from 'react';
 
 import './Dropdown.css';
 
-export type DropdownProps = {
+export type Props = {
     options: Map<string, string>;
     selected?: string; // Key of the selected option
     changeHandler?: (oldKey: string, newKey: string) => void;
 };
 
-export default function Dropdown(props: DropdownProps)
+export default function Component({ options, selected, changeHandler }: Props)
 {
-    const options = props.options;
-
-    const defaultKey = props.selected ?? [...options.keys()][0];
+    const defaultKey = selected ?? [...options.keys()][0];
     const defaultText = options.get(defaultKey) ?? '';
 
     const [selectedKey, setSelectedKey] = useState(defaultKey);
@@ -37,9 +35,9 @@ export default function Dropdown(props: DropdownProps)
         setSelectedText(newText);
         setShowOptions(false);
 
-        if (props.changeHandler)
+        if (changeHandler)
         {
-            props.changeHandler(oldKey, newKey);
+            changeHandler(oldKey, newKey);
         }
     };
 
@@ -51,7 +49,7 @@ export default function Dropdown(props: DropdownProps)
             {showOptions && (
                 <div className='ds-selection-options'>
                     {
-                        Array.from(props.options).map(([key, value]) =>
+                        Array.from(options).map(([key, value]) =>
                         {
                             return (
                                 <div className='ds-selection-option' data-key={key} key={key} onClick={handleOptionClick}>

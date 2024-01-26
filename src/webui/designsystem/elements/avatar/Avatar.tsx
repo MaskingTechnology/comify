@@ -3,14 +3,15 @@ import React from 'react';
 
 import './Avatar.css';
 
-export type AvatarProps = {
+export type Props = {
     size?: 'large' | 'medium' | 'small';
     source: string;
 };
 
-export default function Avatar(props: AvatarProps)
+export default function Element({ size, source }: Props)
 {
-    const size = props.size ?? 'medium';
+    const className = 'ds-avatar'
+        + ' ds-avatar-size-' + (size ?? 'medium');
 
-    return <img className={'ds-avatar ds-avatar-size-' + size} src={props.source} />;
+    return <img className={className} src={source} />;
 }

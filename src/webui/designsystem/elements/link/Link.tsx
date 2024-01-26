@@ -3,15 +3,15 @@ import React from 'react';
 
 import './Link.css';
 
-export type LinkProps = {
+export type Props = {
     url?: string;
     target?: string;
     children: React.ReactNode;
 };
 
-export default function Link(props: LinkProps)
+export default function Element({ url, target, children }: Props)
 {
-    return <a className="ds-link" href={props.url} target={props.target}>
-        {props.children}
+    return <a className="ds-link" href={url} target={target}>
+        {children}
     </a>;
 }
