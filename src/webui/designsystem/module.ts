@@ -7,6 +7,7 @@ export { default as Avatar, type AvatarProps } from './elements/avatar/Avatar';
 export { default as Button, type ButtonProps } from './elements/button/Button';
 export { default as Column, type ColumnProps } from './elements/column/Column';
 export { default as Form, type FormProps } from './elements/form/Form';
+export { default as Grid, type GridProps } from './elements/grid/Grid';
 export { default as Icon, type IconProps } from './elements/icon/Icon';
 export { default as Image, type ImageProps } from './elements/image/Image';
 export { default as Input, type InputProps } from './elements/input/Input';

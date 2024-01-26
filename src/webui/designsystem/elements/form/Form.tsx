@@ -8,7 +8,7 @@ export type FormProps = {
     submitHandler?: React.FormEventHandler<HTMLFormElement>;
 };
 
-export default function Submit(props: FormProps)
+export default function Form(props: FormProps)
 {
     return <form onSubmit={props.submitHandler} className='ds-form'>
         {props.children}
