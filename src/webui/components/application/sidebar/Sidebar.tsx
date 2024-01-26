@@ -22,11 +22,8 @@ export type Props = {
     identity: CreatorView;
 };
 
-export default function Component(props: Props)
+export default function Component({ navigation, identity }: Props)
 {
-    const navigation = props.navigation;
-    const identity = props.identity;
-
     return <div className='application-sidebar'>
         <header>
             <Logo />

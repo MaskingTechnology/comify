@@ -3,13 +3,13 @@ import React from 'react';
 
 import { Paragraph } from '../../designsystem/module';
 
-export type CommentProps = {
+export type Props = {
     text: string;
 };
 
-export default function Comment(props: CommentProps)
+export default function Component({ text }: Props)
 {
     return <Paragraph>
-        {props.text}
+        {text}
     </Paragraph>;
 }

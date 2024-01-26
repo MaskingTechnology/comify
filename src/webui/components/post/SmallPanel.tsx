@@ -15,15 +15,15 @@ export type Props = {
     post: PostView;
 };
 
-export default function Component(props: Props)
+export default function Component({ post }: Props)
 {
-    const createdText = DateFormat.fromNow(props.post.createdAt);
+    const createdText = DateFormat.fromNow(post.createdAt);
 
     return <Panel padding='small'>
         <Column gap='small' alignX='stretch'>
-            <Comic comic={props.post.comic} />
+            <Comic comic={post.comic} />
             <Row alignX='justify'>
-                <EngagementsRow ratingCount={props.post.ratingCount} reactionCount={props.post.reactionCount} />
+                <EngagementsRow ratingCount={post.ratingCount} reactionCount={post.reactionCount} />
                 <Text value={createdText} />
             </Row>
         </Column>

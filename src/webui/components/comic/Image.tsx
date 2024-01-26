@@ -9,9 +9,7 @@ export type ComicProps = {
     comic: ComicView;
 };
 
-export default function Component(props: ComicProps)
+export default function Component({ comic }: ComicProps)
 {
-    const image = props.comic.image;
-
-    return <Image source={image.dataUrl} />;
+    return <Image source={comic.image.dataUrl} />;
 }

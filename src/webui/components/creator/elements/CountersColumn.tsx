@@ -14,10 +14,10 @@ export type Props = {
     followingCount: number;
 };
 
-export default function Element(props: Props)
+export default function Element({ fullName, nickName, postCount, followerCount, followingCount }: Props)
 {
     return <Column gap='small' alignY='justify' alignX='stretch'>
-        <NamesRow fullName={props.fullName} nickName={props.nickName} />
-        <CountersRow postCount={props.postCount} followerCount={props.followerCount} followingCount={props.followingCount} />
+        <NamesRow fullName={fullName} nickName={nickName} />
+        <CountersRow postCount={postCount} followerCount={followerCount} followingCount={followingCount} />
     </Column>;
 }

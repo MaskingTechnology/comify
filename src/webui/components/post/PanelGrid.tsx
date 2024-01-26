@@ -11,11 +11,11 @@ export type Props = {
     posts: PostView[];
 };
 
-export default function Component(props: Props)
+export default function Component({ posts }: Props)
 {
     return <Grid layout='two-columns' gap='medium'>
         {
-            props.posts.map(post => <SmallPanel key={post.id} post={post} />)
+            posts.map(post => <SmallPanel key={post.id} post={post} />)
         }
     </Grid>;
 }

@@ -10,15 +10,15 @@ export type Props = {
     creator: CreatorView;
 };
 
-export default function Component(props: Props)
+export default function Component({ creator }: Props)
 {
-    return <AvatarRow avatarSize='large' avatarUrl={props.creator.portrait.dataUrl}>
+    return <AvatarRow avatarSize='large' avatarUrl={creator.portrait.dataUrl}>
         <CountersColumn
-            fullName={props.creator.fullName}
-            nickName={props.creator.nickName}
-            postCount={props.creator.postCount}
-            followerCount={props.creator.followerCount}
-            followingCount={props.creator.followingCount}
+            fullName={creator.fullName}
+            nickName={creator.nickName}
+            postCount={creator.postCount}
+            followerCount={creator.followerCount}
+            followingCount={creator.followingCount}
         />
     </AvatarRow>;
 }

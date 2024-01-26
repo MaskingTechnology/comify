@@ -9,12 +9,12 @@ export type Props = {
     children?: React.ReactNode;
 };
 
-export default function Component(props: Props)
+export default function Component({ to, children }: Props)
 {
     const location = useLocation();
-    const isActive = location.pathname === props.to;
+    const isActive = location.pathname === to;
 
-    return <NavLink className={'application-link' + (isActive ? ' active' : '')} to={props.to}>
-        {props.children}
+    return <NavLink className={'application-link' + (isActive ? ' active' : '')} to={to}>
+        {children}
     </NavLink>;
 }

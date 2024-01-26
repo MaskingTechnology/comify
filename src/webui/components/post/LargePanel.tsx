@@ -16,13 +16,13 @@ export type Props = {
     rateHandler: () => void;
 };
 
-export default function Component(props: Props)
+export default function Component({ post, followHandler, rateHandler }: Props)
 {
     return <Panel>
         <Column gap='medium' alignX='stretch'>
-            <TimeElapsed date={props.post.createdAt} relation={props.post.creator} followHandler={props.followHandler} />
-            <ComicImage comic={props.post.comic} />
-            <EngagementsRow ratingCount={props.post.ratingCount} reactionCount={props.post.reactionCount} rateHandler={props.rateHandler} />
+            <TimeElapsed date={post.createdAt} relation={post.creator} followHandler={followHandler} />
+            <ComicImage comic={post.comic} />
+            <EngagementsRow ratingCount={post.ratingCount} reactionCount={post.reactionCount} rateHandler={rateHandler} />
         </Column>
     </Panel>;
 }

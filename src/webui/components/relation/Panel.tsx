@@ -12,9 +12,9 @@ export type Props = {
     followHandler: () => void;
 };
 
-export default function Component(props: Props)
+export default function Component({ relation, followHandler }: Props)
 {
     return <Panel>
-        <Counters relation={props.relation} followHandler={props.followHandler} />
+        <Counters relation={relation} followHandler={followHandler} />
     </Panel>;
 }

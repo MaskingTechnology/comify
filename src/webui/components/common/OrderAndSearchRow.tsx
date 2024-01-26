@@ -11,10 +11,10 @@ export type Props = {
     searchChangeHandler?: (oldValue: string, newValue: string) => void;
 };
 
-export default function Component(props: Props)
+export default function Component({ selected, orderChangeHandler, searchChangeHandler }: Props)
 {
     return <Row alignX='justify'>
-        <OrderSelection key='creators' selected={props.selected} changeHandler={props.orderChangeHandler} />
+        <OrderSelection key='creators' selected={selected} changeHandler={orderChangeHandler} />
         <TextBox name='search' placeholder='Search' />
     </Row>;
 }

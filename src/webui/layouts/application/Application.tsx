@@ -10,18 +10,18 @@ export type ApplicationProps = {
     main: React.ReactNode;
 };
 
-export default function Application(props: ApplicationProps)
+export default function Application({ aside, main }: ApplicationProps)
 {
     return <div className='ds application-layout'>
         <div className='left'>
             <aside>
-                {props.aside}
+                {aside}
             </aside>
             <Ruler type='vertical' size='medium' />
         </div>
         <div className='right'>
             <main>
-                {props.main}
+                {main}
             </main>
         </div>
     </div>;

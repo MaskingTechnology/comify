@@ -22,10 +22,8 @@ export type ApplicationProperties = {
 const portrait = new ImageView('https://masking.tech/images/peter.jpg');
 const identity = new CreatorView('0', 'Peter van Vliet', 'Peterrrr', portrait, new Date(), 0, 0, 0);
 
-export default function Application(props: ApplicationProperties)
+export default function Application({ children }: ApplicationProperties)
 {
-    const children = props.children;
-
     const sidebar = <ApplicationSidebar navigation={navigation} identity={identity} />;
 
     return <ApplicationLayout main={children} aside={sidebar} />;

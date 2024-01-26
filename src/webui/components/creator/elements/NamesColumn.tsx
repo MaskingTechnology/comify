@@ -8,10 +8,10 @@ export type Props = {
     nickName: string;
 };
 
-export default function Element(props: Props)
+export default function Element({ fullName, nickName }: Props)
 {
     return <Column gap='none'>
-        <Text value={props.fullName} size='large' weight='bold' />
-        <Text value={'@' + props.nickName} size='medium' />
+        <Text value={fullName} size='large' weight='bold' />
+        <Text value={'@' + nickName} size='medium' />
     </Column>;
 }

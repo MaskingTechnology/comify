@@ -11,13 +11,13 @@ export type TimeElapsedProps = {
     weight?: 'light' | 'normal' | 'bold';
 };
 
-export default function TimeElapsed(props: TimeElapsedProps)
+export default function TimeElapsed({ date, size, weight }: TimeElapsedProps)
 {
-    const size = props.size ?? 'medium';
-    const weight = props.weight ?? 'normal';
+    size ??= 'medium';
+    weight ??= 'normal';
 
     return <Text
-        value={DateFormat.fromNow(props.date)}
+        value={DateFormat.fromNow(date)}
         size={size}
         weight={weight}
     />;

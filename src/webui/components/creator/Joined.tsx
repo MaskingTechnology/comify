@@ -10,13 +10,13 @@ export type Props = {
     creator: CreatorView;
 };
 
-export default function Component(props: Props)
+export default function Component({ creator }: Props)
 {
-    return <AvatarRow avatarSize='large' avatarUrl={props.creator.portrait.dataUrl}>
+    return <AvatarRow avatarSize='large' avatarUrl={creator.portrait.dataUrl}>
         <JoinedColumn
-            fullName={props.creator.fullName}
-            nickName={props.creator.nickName}
-            joinedAt={props.creator.joinedAt}
+            fullName={creator.fullName}
+            nickName={creator.nickName}
+            joinedAt={creator.joinedAt}
         />
     </AvatarRow>;
 }

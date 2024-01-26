@@ -11,16 +11,16 @@ export type Props = {
     rateHandler?: () => void;
 };
 
-export default function Element(props: Props)
+export default function Element({ ratingCount, reactionCount, rateHandler }: Props)
 {
     return <Row gap='medium' alignY='center'>
         <Row gap='small' alignY='center'>
             <Icon type='heart' />
-            <CompactNumber value={props.ratingCount} />
+            <CompactNumber value={ratingCount} />
         </Row>
         <Row gap='small' alignY='center'>
             <Icon type='comment' />
-            <CompactNumber value={props.reactionCount} />
+            <CompactNumber value={reactionCount} />
         </Row>
     </Row>;
 }

@@ -10,9 +10,13 @@ export type Props = {
     orderChangeHandler?: (oldKey: string, newKey: string) => void;
 };
 
-export default function Component(props: Props)
+export default function Component({ selected, orderChangeHandler }: Props)
 {
     return <Row alignX='justify'>
-        <OrderSelection key='creators' selected={props.selected} changeHandler={props.orderChangeHandler} />
+        <OrderSelection
+            key='creators'
+            selected={selected}
+            changeHandler={orderChangeHandler}
+        />
     </Row>;
 }

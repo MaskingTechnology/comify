@@ -9,11 +9,11 @@ export type Props = {
     children: React.ReactElement<ItemProps> | React.ReactElement<ItemProps>[];
 };
 
-export default function Component(props: Props)
+export default function Component({ children }: Props)
 {
     return <nav>
         <Column gap='medium'>
-            {props.children}
+            {children}
         </Column>
     </nav>;
 }

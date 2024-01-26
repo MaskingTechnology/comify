@@ -13,9 +13,9 @@ export type Props = {
     followHandler: () => void;
 };
 
-export default function Component(props: Props)
+export default function Component({ relation, date, followHandler }: Props)
 {
-    return <FollowRow isFollowing={props.relation.exists} followHandler={props.followHandler}>
-        <CreatorTimeElapsed creator={props.relation.creator} date={props.date} />
+    return <FollowRow isFollowing={relation.exists} followHandler={followHandler}>
+        <CreatorTimeElapsed creator={relation.creator} date={date} />
     </FollowRow>;
 }

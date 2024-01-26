@@ -10,11 +10,11 @@ export type QuantifierProps = {
     text: string;
 };
 
-export default function Quantifier(props: QuantifierProps)
+export default function Quantifier({ value, text }: QuantifierProps)
 {
     return <span>
-        <CompactNumber value={props.value} weight='bold' />
+        <CompactNumber value={value} weight='bold' />
         &nbsp;
-        <Text value={props.text} size='small' />
+        <Text value={text} size='small' />
     </span>;
 }

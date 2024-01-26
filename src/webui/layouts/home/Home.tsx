@@ -10,18 +10,18 @@ export type HomeProps = {
     aside: React.ReactNode;
 };
 
-export default function Home(props: HomeProps)
+export default function Home({ main, aside }: HomeProps)
 {
     return <div className='ds home-layout'>
         <div className='left'>
             <main>
-                {props.main}
+                {main}
             </main>
         </div>
         <div className='right'>
             <Ruler type='vertical' />
             <aside>
-                {props.aside}
+                {aside}
             </aside>
         </div>
     </div>;

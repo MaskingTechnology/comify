@@ -11,14 +11,15 @@ export type Props = {
     joinedAt: Date;
 };
 
-export default function Element(props: Props)
+export default function Element({ fullName, nickName, joinedAt }: Props)
 {
+    joinedAt ??= new Date();
+
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-    const joinedAt = props.joinedAt ?? new Date();
     const joinedText = 'Joined ' + joinedAt.toLocaleDateString('en-GB', options);
 
     return <Column gap='small' alignY='justify' alignX='stretch'>
-        <NamesRow fullName={props.fullName} nickName={props.nickName} />
+        <NamesRow fullName={fullName} nickName={nickName} />
         <Text value={joinedText} size='small' />
     </Column>;
 }

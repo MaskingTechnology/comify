@@ -12,15 +12,15 @@ export type Props = {
     followHandler: (relation: RelationView) => void;
 };
 
-export default function Component(props: Props)
+export default function Component({ relations, followHandler }: Props)
 {
     return <Column gap='medium' alignX='stretch'>
         {
-            props.relations.map(relation =>
+            relations.map(relation =>
                 <Panel
                     key={relation.creator.id}
                     relation={relation}
-                    followHandler={() => props.followHandler(relation)}
+                    followHandler={() => followHandler(relation)}
                 />
             )
         }

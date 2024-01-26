@@ -11,12 +11,12 @@ export type Props = {
     to: string;
 };
 
-export default function Component(props: Props)
+export default function Component({ icon, title, to }: Props)
 {
-    return <Link to={props.to}>
+    return <Link to={to}>
         <Row gap='medium' alignY='center'>
-            <Image source={props.icon} width='13px' />
-            <Text value={props.title} size='large' weight='bold' />
+            <Image source={icon} width='13px' />
+            <Text value={title} size='large' weight='bold' />
         </Row>
     </Link>;
 }

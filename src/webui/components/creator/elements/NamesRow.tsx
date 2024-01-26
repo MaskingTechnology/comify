@@ -10,9 +10,9 @@ export type Props = {
     nickName: string;
 };
 
-export default function Element(props: Props)
+export default function Element({ fullName, nickName }: Props)
 {
     return <Row alignX='justify'>
-        <NamesColumn fullName={props.fullName} nickName={props.nickName} />
+        <NamesColumn fullName={fullName} nickName={nickName} />
     </Row>;
 }

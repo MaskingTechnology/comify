@@ -14,16 +14,16 @@ export type Props = {
     rateHandler: (post: PostView) => void;
 };
 
-export default function Component(props: Props)
+export default function Component({ posts, followHandler, rateHandler }: Props)
 {
     return <Column gap='medium' alignX='stretch'>
         {
-            props.posts.map(post =>
+            posts.map(post =>
                 <LargePanel
                     key={post.id}
                     post={post}
-                    followHandler={() => props.followHandler(post.creator)}
-                    rateHandler={() => props.rateHandler(post)}
+                    followHandler={() => followHandler(post.creator)}
+                    rateHandler={() => rateHandler(post)}
                 />
             )
         }

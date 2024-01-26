@@ -10,10 +10,10 @@ export type Props = {
     date: Date;
 };
 
-export default function Component(props: Props)
+export default function Component({ title, date }: Props)
 {
     return <Column alignY='justify' gap='none'>
-        <Text value={props.title} size='large' weight='bold' />
-        <TimeElapsed date={props.date} size='small' />
+        <Text value={title} size='large' weight='bold' />
+        <TimeElapsed date={date} size='small' />
     </Column>;
 }

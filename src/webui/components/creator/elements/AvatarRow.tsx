@@ -9,12 +9,12 @@ export type Props = {
     children: React.ReactNode;
 };
 
-export default function Element(props: Props)
+export default function Element({ avatarSize, avatarUrl, children }: Props)
 {
-    const gapSize = props.avatarSize === 'small' ? 'small' : 'medium';
+    const gapSize = avatarSize === 'small' ? 'small' : 'medium';
 
     return <Row gap={gapSize}>
-        <Avatar size={props.avatarSize} source={props.avatarUrl} />
-        {props.children}
+        <Avatar size={avatarSize} source={avatarUrl} />
+        {children}
     </Row>;
 }
