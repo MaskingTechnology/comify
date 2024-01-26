@@ -1,5 +1,6 @@
 
 export { default as ApplicationSidebar } from './application/sidebar/Sidebar';
+export { default as Logo } from './application/Logo';
 
 export { default as OrderRow } from './common/OrderRow';
 export { default as OrderAndSearchRow } from './common/OrderAndSearchRow';
