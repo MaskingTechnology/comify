@@ -11,7 +11,7 @@ export type Props = {
     followingCount: number;
 };
 
-export default function Element({ postCount, followerCount, followingCount }: Props)
+export default function Component({ postCount, followerCount, followingCount }: Props)
 {
     return <Row>
         <Quantifier value={postCount} text='comics' />

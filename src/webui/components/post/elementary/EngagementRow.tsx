@@ -11,7 +11,7 @@ export type Props = {
     rateHandler?: () => void;
 };
 
-export default function Element({ ratingCount, reactionCount, rateHandler }: Props)
+export default function Component({ ratingCount, reactionCount, rateHandler }: Props)
 {
     return <Row gap='medium' alignY='center'>
         <Row gap='small' alignY='center'>

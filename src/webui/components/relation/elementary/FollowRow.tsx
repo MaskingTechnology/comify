@@ -9,7 +9,7 @@ export type Props = {
     children: React.ReactNode;
 };
 
-export default function Element({ isFollowing, followHandler, children }: Props)
+export default function Component({ isFollowing, followHandler, children }: Props)
 {
     return <Row alignX='justify' alignY='top'>
         {children}

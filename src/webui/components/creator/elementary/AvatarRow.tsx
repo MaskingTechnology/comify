@@ -9,7 +9,7 @@ export type Props = {
     children: React.ReactNode;
 };
 
-export default function Element({ avatarSize, avatarUrl, children }: Props)
+export default function Component({ avatarSize, avatarUrl, children }: Props)
 {
     const gapSize = avatarSize === 'small' ? 'small' : 'medium';
 

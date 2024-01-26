@@ -5,7 +5,7 @@ import type RelationView from '../../../domain/relation/RelationView';
 
 import CreatorTimeElapsed from '../creator/TimeElapsed';
 
-import FollowRow from './elements/FollowRow';
+import FollowRow from './elementary/FollowRow';
 
 export type Props = {
     relation: RelationView;

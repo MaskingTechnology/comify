@@ -4,7 +4,7 @@ import React from 'react';
 import type CreatorView from '../../../domain/creator/CreatorView';
 
 import TitledTimeElapsed from '../common/TitledTimeElapsed';
-import AvatarRow from './elements/AvatarRow';
+import AvatarRow from './elementary/AvatarRow';
 
 export type Props = {
     creator: CreatorView;

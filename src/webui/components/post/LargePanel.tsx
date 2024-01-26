@@ -8,7 +8,7 @@ import { Column, Panel } from '../../designsystem/module';
 import ComicImage from '../comic/Image';
 import TimeElapsed from '../relation/TimeElapsed.js';
 
-import EngagementsRow from './elements/EngagementRow';
+import EngagementsRow from './elementary/EngagementRow';
 
 export type Props = {
     post: PostView;

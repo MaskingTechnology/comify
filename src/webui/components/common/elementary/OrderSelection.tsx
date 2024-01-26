@@ -12,7 +12,7 @@ const options = new Map<string, string>();
 options.set('recent', 'Most recent');
 options.set('popular', 'Most popular');
 
-export default function Element({ selected, changeHandler }: Props)
+export default function Component({ selected, changeHandler }: Props)
 {
     return <Dropdown
         options={options}

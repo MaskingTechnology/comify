@@ -3,8 +3,8 @@ import React from 'react';
 
 import type CreatorView from '../../../domain/creator/CreatorView';
 
-import AvatarRow from './elements/AvatarRow';
-import JoinedColumn from './elements/JoinedColumn';
+import AvatarRow from './elementary/AvatarRow';
+import JoinedColumn from './elementary/JoinedColumn';
 
 export type Props = {
     creator: CreatorView;

@@ -8,7 +8,7 @@ export type Props = {
     followHandler: () => void;
 };
 
-export default function Element({ isFollowing, followHandler }: Props)
+export default function Component({ isFollowing, followHandler }: Props)
 {
     return <Button
         type={isFollowing ? 'disabled' : 'primary'}

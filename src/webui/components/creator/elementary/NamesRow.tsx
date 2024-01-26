@@ -10,7 +10,7 @@ export type Props = {
     nickName: string;
 };
 
-export default function Element({ fullName, nickName }: Props)
+export default function Component({ fullName, nickName }: Props)
 {
     return <Row alignX='justify'>
         <NamesColumn fullName={fullName} nickName={nickName} />

@@ -14,7 +14,7 @@ export type Props = {
     followingCount: number;
 };
 
-export default function Element({ fullName, nickName, postCount, followerCount, followingCount }: Props)
+export default function Component({ fullName, nickName, postCount, followerCount, followingCount }: Props)
 {
     return <Column gap='small' alignY='justify' alignX='stretch'>
         <NamesRow fullName={fullName} nickName={nickName} />

@@ -9,7 +9,7 @@ import { Column, Panel, Row, Text } from '../../designsystem/module';
 
 import Comic from '../comic/Image';
 
-import EngagementsRow from './elements/EngagementRow';
+import EngagementsRow from './elementary/EngagementRow';
 
 export type Props = {
     post: PostView;

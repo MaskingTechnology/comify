@@ -11,7 +11,7 @@ export type Props = {
     joinedAt: Date;
 };
 
-export default function Element({ fullName, nickName, joinedAt }: Props)
+export default function Component({ fullName, nickName, joinedAt }: Props)
 {
     joinedAt ??= new Date();
 

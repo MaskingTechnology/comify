@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Row, TextBox } from '../../designsystem/module';
 
-import OrderSelection from './elements/OrderSelection';
+import OrderSelection from './elementary/OrderSelection';
 
 export type Props = {
     selected?: 'recent' | 'popular';
