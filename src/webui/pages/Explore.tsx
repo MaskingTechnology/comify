@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 
 import { Tabs, Tab, Ruler } from '../designsystem/module';

@@ -8,10 +8,10 @@ import CompactNumber from '../../common/CompactNumber';
 export type Props = {
     ratingCount: number;
     reactionCount: number;
-    rateHandler: () => void;
+    rateHandler?: () => void;
 };
 
-export default function Component(props: Props)
+export default function Element(props: Props)
 {
     return <Row gap='medium' alignY='center'>
         <Row gap='small' alignY='center'>

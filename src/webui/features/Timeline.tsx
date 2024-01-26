@@ -7,7 +7,7 @@ import getTimelinePosts from '../../domain/post/getTimeline';
 
 import { Column, Row } from '../designsystem/module';
 
-import { OrderSelection, PostLargePanelList } from '../components/module';
+import { OrderSelection, PostPanelList } from '../components/module';
 
 export default function Feature()
 {
@@ -40,6 +40,6 @@ export default function Feature()
         <Row>
             <OrderSelection selected='recent' changeHandler={handleOrderChange} />
         </Row>
-        <PostLargePanelList posts={posts} followHandler={handleFollow} rateHandler={handleRate} />
+        <PostPanelList posts={posts} followHandler={handleFollow} rateHandler={handleRate} />
     </Column>;
 }

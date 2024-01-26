@@ -13,22 +13,18 @@ import EngagementsRow from './elements/EngagementRow';
 
 export type Props = {
     post: PostView;
-    rateHandler: () => void;
 };
 
 export default function Component(props: Props)
 {
-    const post = props.post;
-    const comic = post.comic;
+    const createdText = DateFormat.fromNow(props.post.createdAt);
 
-    const respondedText = DateFormat.fromNow(post.createdAt);
-
-    return <Panel>
-        <Column gap='small' alignY='justify'>
-            <Comic comic={comic} />
+    return <Panel padding='small'>
+        <Column gap='small' alignX='stretch'>
+            <Comic comic={props.post.comic} />
             <Row alignX='justify'>
-                <EngagementsRow ratingCount={post.ratingCount} reactionCount={post.reactionCount} rateHandler={props.rateHandler} />
-                <Text value={respondedText} />
+                <EngagementsRow ratingCount={props.post.ratingCount} reactionCount={props.post.reactionCount} />
+                <Text value={createdText} />
             </Row>
         </Column>
     </Panel>;
