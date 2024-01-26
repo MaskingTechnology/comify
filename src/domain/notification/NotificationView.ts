@@ -1,22 +1,36 @@
 
-import type CreatorView from '../creator/CreatorView';
+import type PostView from '../post/PostView';
+import type ReactionView from '../reaction/ReactionView';
+import type RelationView from '../relation/RelationView';
 
 export default class NotificationView
 {
     #id: string;
-    #sender: CreatorView;
-    #receiver?: CreatorView;
+    #type: string;
+    #relation: RelationView;
+    #post: PostView | undefined;
+    #reaction: ReactionView | undefined;
+    #createdAt: Date;
 
-    constructor(id: string, sender: CreatorView, receiver?: CreatorView)
+    constructor(id: string, type: string, relation: RelationView, post: PostView | undefined, reaction: ReactionView | undefined, createdAt: Date)
     {
         this.#id = id;
-        this.#sender = sender;
-        this.#receiver = receiver;
+        this.#type = type;
+        this.#relation = relation;
+        this.#post = post;
+        this.#reaction = reaction;
+        this.#createdAt = createdAt;
     }
 
     get id() { return this.#id; }
 
-    get sender() { return this.#sender; }
+    get type() { return this.#type; }
 
-    get receiver() { return this.#receiver; }
+    get relation() { return this.#relation; }
+
+    get post() { return this.#post; }
+
+    get reaction() { return this.#reaction; }
+
+    get createdAt() { return this.#createdAt; }
 }

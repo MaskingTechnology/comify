@@ -5,7 +5,7 @@ import createView from './createView';
 
 export default async function getByCreator(creatorId: string): Promise<PostView[]>
 {
-    const postData = await filterDataByCreator(creatorId);
+    const data = await filterDataByCreator(creatorId);
 
-    return Promise.all(postData.map((data) => createView(data)));
+    return Promise.all(data.map(createView));
 }

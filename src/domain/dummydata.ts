@@ -3,6 +3,7 @@ import ImageData from './image/data/ImageData';
 import CreatorData from './creator/data/CreatorData';
 import ComicData from './comic/data/ComicData';
 import PostData from './post/data/PostData';
+import NotificationData from './notification/data/NotificationData';
 
 const creators = new Map<string, CreatorData>();
 creators.set('0', new CreatorData('0', 'Peter van Vliet', 'peterrrr', 'peter@masking.tech', '0', new Date(), 0, 0, 0));
@@ -20,4 +21,8 @@ const posts = new Map<string, PostData>();
 posts.set('0', new PostData('0', '0', '0', new Date(), 0, 0));
 posts.set('1', new PostData('1', '1', '0', new Date(), 0, 0));
 
-export { creators, images, comics, posts };
+const notifications = new Map<string, NotificationData>();
+notifications.set('0', new NotificationData('0', 'started-following', '1', '0', undefined, undefined, new Date()));
+notifications.set('1', new NotificationData('1', 'rated-post', '1', '0', '0', undefined, new Date()));
+
+export { creators, images, comics, posts, notifications };

@@ -5,7 +5,7 @@ import retrieveByFollower from './data/retrieveByFollower';
 
 export default async function getFollowing(followerId: string): Promise<RelationView[]>
 {
-    const relationData = await retrieveByFollower(followerId);
+    const data = await retrieveByFollower(followerId);
 
-    return Promise.all(relationData.map(data => createFollowingView(data)));
+    return Promise.all(data.map(createFollowingView));
 }

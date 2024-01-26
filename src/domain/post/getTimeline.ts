@@ -11,5 +11,5 @@ export default async function getTimeline(): Promise<PostView[]>
     const followingIds = followerData.map(data => data.followingId);
     const postData = await filterDataByCreator(...followingIds);
 
-    return Promise.all(postData.map((data) => createView(data)));
+    return Promise.all(postData.map(createView));
 }

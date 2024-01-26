@@ -9,6 +9,7 @@ const authProcedures = {
 };
 
 const whiteList: string[] = [
+    'domain/notification/getRecent',
     'domain/post/explore',
     'domain/post/getTimeline',
     'domain/relation/explore',
