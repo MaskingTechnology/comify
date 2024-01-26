@@ -7,19 +7,21 @@ import CreatorView from '../../../domain/creator/CreatorView';
 import { ApplicationSidebar } from '../../components/module';
 import { ApplicationLayout } from '../../layouts/module';
 
+const IMAGE_URL = 'https://masking.tech/images/peter.jpg';
+
 const navigation = [
-    { icon: 'https://masking.tech/images/peter.jpg', title: 'Timeline', to: '/timeline' },
-    { icon: 'https://masking.tech/images/peter.jpg', title: 'Explore', to: '/explore' },
-    { icon: 'https://masking.tech/images/peter.jpg', title: 'Notifications', to: '/notifications' },
-    { icon: 'https://masking.tech/images/peter.jpg', title: 'Create', to: '/create' },
-    { icon: 'https://masking.tech/images/peter.jpg', title: 'Profile', to: '/profile' }
+    { icon: IMAGE_URL, title: 'Timeline', to: '/timeline' },
+    { icon: IMAGE_URL, title: 'Explore', to: '/explore' },
+    { icon: IMAGE_URL, title: 'Notifications', to: '/notifications' },
+    { icon: IMAGE_URL, title: 'Create', to: '/create' },
+    { icon: IMAGE_URL, title: 'Profile', to: '/profile' }
 ];
 
 export type ApplicationProperties = {
     children: React.ReactNode;
 };
 
-const portrait = new ImageView('https://masking.tech/images/peter.jpg');
+const portrait = new ImageView(IMAGE_URL);
 const identity = new CreatorView('0', 'Peter van Vliet', 'Peterrrr', portrait, new Date(), 0, 0, 0);
 
 export default function Application({ children }: ApplicationProperties)

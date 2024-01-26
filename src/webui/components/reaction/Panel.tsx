@@ -1,11 +1,7 @@
 
 import React from 'react';
 
-export type Props = {
-
-};
-
-export default function Panel({ }: Props)
+export default function Panel()
 {
     return <></>;
 }

@@ -1,4 +1,6 @@
 
+import React from 'react';
+
 import { Row } from '../../../designsystem/module';
 
 import FollowButton from './FollowButton';

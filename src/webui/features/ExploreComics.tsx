@@ -6,7 +6,7 @@ import type PostView from '../../domain/post/PostView';
 import type RelationView from '../../domain/relation/RelationView';
 import explorePosts from '../../domain/post/explore';
 
-import { Column, Row } from '../designsystem/module';
+import { Column } from '../designsystem/module';
 
 import { OrderRow, PostPanelList } from '../components/module';
 

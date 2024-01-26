@@ -1,5 +1,5 @@
 
-import { Row } from '../../designsystem/module';
+import React from 'react';
 
 import type RelationView from '../../../domain/relation/RelationView';
 

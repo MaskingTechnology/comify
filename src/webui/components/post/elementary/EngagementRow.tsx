@@ -11,6 +11,7 @@ export type Props = {
     rateHandler?: () => void;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function Component({ ratingCount, reactionCount, rateHandler }: Props)
 {
     return <Row gap='medium' alignY='center'>
