@@ -5,19 +5,19 @@ import { Text } from '../../designsystem/module';
 
 import DateFormat from '../../../integrations/dateformat/DateFormat';
 
-export type TimeElapsedProps = {
+export type Props = {
     date: Date;
     size?: 'large' | 'medium' | 'small';
     weight?: 'light' | 'normal' | 'bold';
 };
 
-export default function TimeElapsed(props: TimeElapsedProps)
+export default function Component({ date, size, weight }: Props)
 {
-    const size = props.size ?? 'medium';
-    const weight = props.weight ?? 'normal';
+    size ??= 'medium';
+    weight ??= 'normal';
 
     return <Text
-        value={DateFormat.fromNow(props.date)}
+        value={DateFormat.fromNow(date)}
         size={size}
         weight={weight}
     />;

@@ -1,35 +1,39 @@
 
 import React from 'react';
 
-import { Column, Panel as DSPanel, Row, AvatarProps, ParagraphProps, ButtonProps } from '../../designsystem/module';
+import type NotificationView from '../../../domain/notification/NotificationView';
 
-import Response from '../creator/Response';
-import AvatarWithContentRight from '../creator/AvatarWithContentRight';
+import { Column, Panel } from '../../designsystem/module';
 
-export type PanelProps = {
-    avatar: React.ReactElement<AvatarProps>;
-    username: string;
-    responded: Date;
-    button: React.ReactElement<ButtonProps>;
-    message: React.ReactElement<ParagraphProps>;
+import TimeElapsed from '../relation/TimeElapsed';
+
+import StartedFollowing from './elementary/StartedFollowing';
+import RatedPost from './elementary/RatedPost';
+import RatedReaction from './elementary/RatedReaction';
+
+export type Props = {
+    notification: NotificationView;
+    followHandler: () => void;
 };
 
-export default function Panel(props: PanelProps)
+function getContent(notification: NotificationView)
 {
-    return <DSPanel>
-        <Column gap='medium' align='justify'>
-            <AvatarWithContentRight
-                avatar={props.avatar}
-                right={<>
-                    <Row align='justify'>
-                        <Response username={props.username} date={props.responded} />
-                        {props.button}
-                    </Row></>
-                }
-            />
-            <Row>
-                {props.message}
-            </Row>
+    switch (notification.type)
+    {
+        case 'started-following': return <StartedFollowing isFollowing={notification.relation.exists} />;
+        case 'rated-post': return <RatedPost comicDataUrl={notification.post?.comic.image.dataUrl as string} />;
+        case 'rated-reaction': return <RatedReaction />;
+    }
+}
+
+export default function Component({ notification, followHandler }: Props)
+{
+    return <Panel>
+        <Column gap='medium' alignX='stretch'>
+            <TimeElapsed date={notification.createdAt} relation={notification.relation} followHandler={followHandler} />
+            <Panel type='success' padding='small'>
+                {getContent(notification)}
+            </Panel>
         </Column>
-    </DSPanel>;
+    </Panel>;
 }

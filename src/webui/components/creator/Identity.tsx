@@ -1,21 +1,21 @@
 
 import React from 'react';
 
-import { AvatarProps } from '../../designsystem/module';
+import type CreatorView from '../../../domain/creator/CreatorView';
 
-import Names from './Names';
-import AvatarWithContentRight from './AvatarWithContentRight';
+import AvatarRow from './elementary/AvatarRow';
+import NamesColumn from './elementary/NamesColumn';
 
-export type IdentityProps = {
-    avatar: React.ReactElement<AvatarProps>;
-    username: string;
-    nickname: string;
+export type Props = {
+    creator: CreatorView;
 };
 
-export default function Identity(props: IdentityProps)
+export default function Component({ creator }: Props)
 {
-    return <AvatarWithContentRight
-        avatar={props.avatar}
-        right={<Names username={props.username} nickname={props.nickname} />}
-    />;
+    return <AvatarRow avatarSize='small' avatarUrl={creator.portrait.dataUrl}>
+        <NamesColumn
+            fullName={creator.fullName}
+            nickName={creator.nickName}
+        />
+    </AvatarRow>;
 }

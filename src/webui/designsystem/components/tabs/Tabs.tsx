@@ -1,31 +1,42 @@
 
 import React, { useState } from 'react';
 
-import { TabProps } from './Tab';
+import { Props as TabProps } from './Tab';
 
 import './Tabs.css';
 
-export type TabsProps = {
+export type Props = {
     separator?: React.ReactNode;
     children: React.ReactElement<TabProps> | React.ReactElement<TabProps>[];
+    changeHandler?: (oldIndex: number, newIndex: number) => void;
 };
 
-export default function Tabs(props: TabsProps)
+export default function Component({ separator, children, changeHandler }: Props)
 {
     const [selected, setSelected] = useState(0);
 
-    const children = Array.isArray(props.children)
-        ? props.children
-        : [props.children];
+    const handleChange = (index: number) =>
+    {
+        if (changeHandler !== undefined)
+        {
+            changeHandler(selected, index);
+        }
+
+        setSelected(index);
+    };
+
+    const tabs = Array.isArray(children)
+        ? children
+        : [children];
 
     return <>
         <div className='ds-tabs'>
             <div className='ds-tabs-nav'>
                 {
-                    children.map((element, index) =>
+                    tabs.map((element, index) =>
                     {
                         const style = index === selected ? 'active' : 'inactive';
-                        const handleClick = () => setSelected(index);
+                        const handleClick = () => handleChange(index);
 
                         return (
                             <div key={index} className={'ds-tabs-nav-item ' + style} onClick={handleClick}>
@@ -36,11 +47,11 @@ export default function Tabs(props: TabsProps)
                 }
             </div>
             {
-                props.separator !== undefined
-                    ? <div className='ds-tabs-separator'>{props.separator}</div>
+                separator !== undefined
+                    ? <div className='ds-tabs-separator'>{separator}</div>
                     : null
             }
-            <div className="ds-tabs-content">{children[selected]}</div>
+            <div className="ds-tabs-content">{tabs[selected]}</div>
         </div>
     </>;
 }

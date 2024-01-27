@@ -1,0 +1,3 @@
+{
+    "./domain/notification/data/retrieve": { "default": {  "access": "public" } }
+}

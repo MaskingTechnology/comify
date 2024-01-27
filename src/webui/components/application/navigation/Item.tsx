@@ -5,18 +5,18 @@ import { Row, Text, Image } from '../../../designsystem/module';
 
 import Link from '../link/Link';
 
-export type ItemProps = {
+export type Props = {
     icon: string;
     title: string;
     to: string;
 };
 
-export default function Item(props: ItemProps)
+export default function Component({ icon, title, to }: Props)
 {
-    return <Link to={props.to}>
-        <Row gap='medium'>
-            <Image source={props.icon} width='13px' />
-            <Text value={props.title} size='large' weight='bold' />
+    return <Link to={to}>
+        <Row gap='medium' alignY='center'>
+            <Image source={icon} width='13px' />
+            <Text value={title} size='large' weight='bold' />
         </Row>
     </Link>;
 }

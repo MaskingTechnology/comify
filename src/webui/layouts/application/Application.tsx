@@ -5,23 +5,23 @@ import { Ruler } from '../../designsystem/module';
 
 import './Application.css';
 
-export type ApplicationProps = {
+export type Props = {
     aside: React.ReactNode;
     main: React.ReactNode;
 };
 
-export default function Application(props: ApplicationProps)
+export default function Layout({ aside, main }: Props)
 {
     return <div className='ds application-layout'>
         <div className='left'>
             <aside>
-                {props.aside}
+                {aside}
             </aside>
-            <Ruler type='vertical' />
+            <Ruler type='vertical' size='medium' />
         </div>
         <div className='right'>
             <main>
-                {props.main}
+                {main}
             </main>
         </div>
     </div>;

@@ -4,17 +4,17 @@ import { NavLink, useLocation } from 'react-router-dom';
 
 import './Link.css';
 
-export type LinkProps = {
+export type Props = {
     to: string;
     children?: React.ReactNode;
 };
 
-export default function Link(props: LinkProps)
+export default function Component({ to, children }: Props)
 {
     const location = useLocation();
-    const isActive = location.pathname === props.to;
+    const isActive = location.pathname === to;
 
-    return <NavLink className={'application-link' + (isActive ? ' active' : '')} to={props.to}>
-        {props.children}
+    return <NavLink className={'application-link' + (isActive ? ' active' : '')} to={to}>
+        {children}
     </NavLink>;
 }

@@ -1,0 +1,3 @@
+{
+    "./domain/image/data/retrieve": { "default": {  "access": "public" } }
+}

@@ -3,20 +3,24 @@ import React from 'react';
 
 import './Button.css';
 
-export type ButtonProps = {
+export type Props = {
     type?: 'submit' | 'primary' | 'secondary' | 'disabled';
     size?: 'large' | 'medium' | 'small';
     text: string;
     clickHandler?: React.MouseEventHandler<HTMLInputElement>;
 };
 
-export default function Button(props: ButtonProps)
+export default function Element({ type, size, text, clickHandler }: Props)
 {
-    const type = props.type ?? 'primary';
-    const size = props.size ?? 'medium';
-    const className = 'ds-button ds-button-' + type + ' ds-button-size-' + size;
-    const disabled = props.type === 'disabled';
-    const inputType = props.type === 'submit' ? 'submit' : 'button';
+    type ??= 'primary';
+    size ??= 'medium';
 
-    return <input type={inputType} onClick={props.clickHandler} className={className} disabled={disabled} value={props.text} />;
+    const className = 'ds-button'
+        + ' ds-button-' + type
+        + ' ds-button-size-' + size;
+
+    const disabled = type === 'disabled';
+    const inputType = type === 'submit' ? 'submit' : 'button';
+
+    return <input type={inputType} onClick={clickHandler} className={className} disabled={disabled} value={text} />;
 }
