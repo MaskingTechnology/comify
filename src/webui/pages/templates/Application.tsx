@@ -17,14 +17,14 @@ const navigation = [
     { icon: IMAGE_URL, title: 'Profile', to: '/profile' }
 ];
 
-export type ApplicationProperties = {
+export type Props = {
     children: React.ReactNode;
 };
 
 const portrait = new ImageView(IMAGE_URL);
 const identity = new CreatorView('0', 'Peter van Vliet', 'Peterrrr', portrait, new Date(), 0, 0, 0);
 
-export default function Application({ children }: ApplicationProperties)
+export default function Template({ children }: Props)
 {
     const sidebar = <ApplicationSidebar navigation={navigation} identity={identity} />;
 

@@ -1,11 +1,11 @@
 
 import type PostView from './PostView';
-import filterDataByCreator from './data/retrieveByCreator';
+import retrieveByCreator from './data/retrieveByCreator';
 import createView from './createView';
 
 export default async function getByCreator(creatorId: string): Promise<PostView[]>
 {
-    const data = await filterDataByCreator(creatorId);
+    const data = await retrieveByCreator(creatorId);
 
     return Promise.all(data.map(createView));
 }

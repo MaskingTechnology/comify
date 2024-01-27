@@ -5,13 +5,13 @@ import { Text } from '../../designsystem/module';
 
 import DateFormat from '../../../integrations/dateformat/DateFormat';
 
-export type TimeElapsedProps = {
+export type Props = {
     date: Date;
     size?: 'large' | 'medium' | 'small';
     weight?: 'light' | 'normal' | 'bold';
 };
 
-export default function TimeElapsed({ date, size, weight }: TimeElapsedProps)
+export default function Component({ date, size, weight }: Props)
 {
     size ??= 'medium';
     weight ??= 'normal';

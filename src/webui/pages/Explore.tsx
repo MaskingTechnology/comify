@@ -5,11 +5,11 @@ import { Tabs, Tab, Ruler } from '../designsystem/module';
 
 import ExploreComics from '../features/ExploreComics';
 import ExploreCreators from '../features/ExploreCreators';
-import Application from './templates/Application';
+import ApplicationTemplate from './templates/Application';
 
 export default function Page()
 {
-    return <Application>
+    return <ApplicationTemplate>
         <Tabs separator={<Ruler type='horizontal' size='small' />}>
             <Tab title='Comics'>
                 <ExploreComics />
@@ -18,5 +18,5 @@ export default function Page()
                 <ExploreCreators />
             </Tab>
         </Tabs>
-    </Application>;
+    </ApplicationTemplate>;
 }

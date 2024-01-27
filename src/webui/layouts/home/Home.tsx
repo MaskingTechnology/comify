@@ -5,12 +5,12 @@ import { Ruler } from '../../designsystem/module';
 
 import './Home.css';
 
-export type HomeProps = {
+export type Props = {
     main: React.ReactNode;
     aside: React.ReactNode;
 };
 
-export default function Home({ main, aside }: HomeProps)
+export default function Layout({ main, aside }: Props)
 {
     return <div className='ds home-layout'>
         <div className='left'>

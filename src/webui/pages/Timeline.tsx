@@ -2,11 +2,11 @@
 import React from 'react';
 
 import Timeline from '../features/Timeline';
-import Application from './templates/Application';
+import ApplicationTemplate from './templates/Application';
 
 export default function Page()
 {
-    return <Application>
+    return <ApplicationTemplate>
         <Timeline />
-    </Application>;
+    </ApplicationTemplate>;
 }

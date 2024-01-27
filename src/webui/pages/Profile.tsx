@@ -9,14 +9,14 @@ import CreatorProfile from '../features/CreatorProfile';
 import CreatorComics from '../features/CreatorComics';
 import CreatorFollowers from '../features/CreatorFollowers';
 import CreatorFollowing from '../features/CreatorFollowing';
-import Application from './templates/Application';
+import ApplicationTemplate from './templates/Application';
 
 const relations = await exploreRelations();
 const creator = relations[0].creator;
 
 export default function Page()
 {
-    return <Application>
+    return <ApplicationTemplate>
         <Column gap='medium' alignX='stretch'>
             <CreatorProfile />
             <Tabs separator={<Ruler type='horizontal' size='small' />}>
@@ -31,5 +31,5 @@ export default function Page()
                 </Tab>
             </Tabs>
         </Column>
-    </Application>;
+    </ApplicationTemplate>;
 }

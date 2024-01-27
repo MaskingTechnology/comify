@@ -5,12 +5,12 @@ import { Text } from '../../designsystem/module';
 
 import CompactNumber from './CompactNumber';
 
-export type QuantifierProps = {
+export type Props = {
     value: number;
     text: string;
 };
 
-export default function Quantifier({ value, text }: QuantifierProps)
+export default function Component({ value, text }: Props)
 {
     return <span>
         <CompactNumber value={value} weight='bold' />

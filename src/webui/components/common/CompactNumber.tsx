@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Text } from '../../designsystem/module';
 
-export type CompactNumberProps = {
+export type Props = {
     value: number;
     size?: 'large' | 'medium' | 'small';
     weight?: 'light' | 'normal' | 'bold';
@@ -11,7 +11,7 @@ export type CompactNumberProps = {
 
 const formatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
-export default function CompactNumber({ value, size, weight }: CompactNumberProps)
+export default function Component({ value, size, weight }: Props)
 {
     size ??= 'medium';
     weight ??= 'normal';
