@@ -11,5 +11,5 @@ export type Props = {
 
 export default function Component({ comic }: Props)
 {
-    return <Image source={comic.image.dataUrl} />;
+    return <Image source={comic.image.dataUrl} width='600px' />;
 }

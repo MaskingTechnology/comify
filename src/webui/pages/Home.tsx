@@ -1,30 +1,34 @@
 
 import React from 'react';
 
-import { Button, Column, Title, Panel, Paragraph, Link, Image } from '../designsystem/module';
+import { Button, Column, Row, Panel, Image, Text, Paragraph, Link } from '../designsystem/module';
+
 import { HomeLayout } from '../layouts/module';
+
 import { Logo } from '../components/module';
 
-const main = <Column>
-    <Logo />
-    <Image source='https://masking.tech/images/peter.jpg' width='200px' />
-    <Paragraph>Comify is a web application that allows you to add text to your images.<br />
-        It is a simple tool that allows you to create comics, memes, and other fun stuff.</Paragraph>
-</Column >;
-
-const login = <Panel>
-    <Column gap='medium'>
-        <Title size='medium'>Let us go!</Title>
-        <Button text='Get in' size='large' />
-        <Paragraph>Legal disclaimers with <Link url='https://masking.tech' target='_blank'>terms of service</Link> and <Link url='https://masking.tech' target='_blank'>privacy policy</Link>.</Paragraph>
-    </Column>
-</Panel>;
-
-const aside = <Column>
-    {login}
-</Column>;
+import introductionImage from '../../assets/images/introduction.png';
 
 export default function Page()
 {
-    return <HomeLayout main={main} aside={aside} />;
+    return <HomeLayout>
+        <Column gap='medium' alignX='stretch' alignY='top'>
+            <Panel>
+                <Column gap='medium' alignX='stretch'>
+                    <Row alignX='justify' alignY='top'>
+                        <Logo />
+                        <Button type='primary' text='Get in' />
+                    </Row>
+                    <Image source={introductionImage} width='600px' />
+                    <Text size='large' value='Take or upload a picture. Add speech bubbles. Share with friends.' />
+                </Column>
+            </Panel>
+            <Row alignX='center'>
+                <Paragraph size='small'>
+                    By getting in, you agree to our <Link url='#' target='_blank'>terms of service</Link> and <Link url='#' target='_blank'>privacy policy</Link>.
+                    Copyright © 2024 - <Link url='#' target='_blank'>Masking Technology</Link>.
+                </Paragraph>
+            </Row>
+        </Column>
+    </HomeLayout>;
 }
