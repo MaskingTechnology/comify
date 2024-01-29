@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import { Button, Column, Row, Panel, Image, Text, Paragraph, Link } from '../designsystem/module';
+import { Button, Column, Image, Link, Panel, Paragraph, Row, Text } from '../designsystem/module';
 
 import { HomeLayout } from '../layouts/module';
 
@@ -24,10 +24,14 @@ export default function Page()
                 </Column>
             </Panel>
             <Row alignX='center'>
-                <Paragraph size='small'>
-                    By getting in, you agree to our <Link url='#' target='_blank'>terms of service</Link> and <Link url='#' target='_blank'>privacy policy</Link>.
-                    Copyright © 2024 - <Link url='#' target='_blank'>Masking Technology</Link>.
-                </Paragraph>
+                <Column gap='none' alignX='center'>
+                    <Paragraph size='small'>
+                        By getting in, you agree to our <Link url='#' target='_blank'>terms of service</Link> and <Link url='#' target='_blank'>privacy policy</Link>.
+                    </Paragraph>
+                    <Paragraph size='small'>
+                        Copyright © 2024 - <Link url='#' target='_blank'>Masking Technology</Link>.
+                    </Paragraph>
+                </Column>
             </Row>
         </Column>
     </HomeLayout>;
