@@ -13,9 +13,9 @@ function getActualSize(size: string): string
 {
     switch (size)
     {
-        case 'small': return '40px';
-        case 'medium': return '55ps';
-        case 'large': return '70px';
+        case 'small': return '36px';
+        case 'medium': return '50ps';
+        case 'large': return '62px';
         default: return '';
     }
 }

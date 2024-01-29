@@ -11,7 +11,7 @@ export type Props = {
 export default function Component({ fullName, nickName }: Props)
 {
     return <Column gap='none'>
-        <Text value={fullName} size='large' weight='bold' />
-        <Text value={'@' + nickName} size='medium' />
+        <Text value={fullName} size='medium' weight='bold' />
+        <Text value={'@' + nickName} size='small' />
     </Column>;
 }
