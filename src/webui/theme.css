@@ -11,3 +11,8 @@
     --primary-foreground-color: #ffffff;
     --secondary-background-color: #cccccc;
 }
+
+.ds-ruler
+{
+    --color: #f3f3f3;
+}
