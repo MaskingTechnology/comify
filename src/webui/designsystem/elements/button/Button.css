@@ -11,10 +11,10 @@
     --border-color: var(--color-border);
     --border-width: var(--width-border);
 
-    --primary-background-color: var(--color-primary-background);
-    --primary-foreground-color: var(--color-primary-foreground);
-    --secondary-background-color: var(--color-secondary-background);
-    --secondary-foreground-color: var(--color-secondary-foreground);
+    --primary-background-color: var(--color-primary-action-background);
+    --primary-foreground-color: var(--color-primary-action-foreground);
+    --secondary-background-color: var(--color-secondary-action-background);
+    --secondary-foreground-color: var(--color-secondary-action-foreground);
     --disabled-background-color: transparent;
 }
 

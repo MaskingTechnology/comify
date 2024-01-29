@@ -15,7 +15,7 @@
     --error-foreground-color: var(--color-error-foreground);
 
     --normal-background-color: var(--color-secondary-background);
-    --normal-foreground-color: var(--color-secondary-foreground);
+    --normal-foreground-color: var(--color-primary-foreground);
 
     --success-background-color: var(--color-success-background);
     --success-foreground-color: var(--color-success-foreground);
