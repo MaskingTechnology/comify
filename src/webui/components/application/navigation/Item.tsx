@@ -20,7 +20,7 @@ export default function Component({ title, to, activeIcon, inactiveIcon }: Props
 
     return <Link to={to}>
         <Row gap='medium' alignY='center'>
-            <Image source={isActive ? activeIcon : inactiveIcon} width='25em' />
+            <Image source={isActive ? activeIcon : inactiveIcon} width='26px' />
             <Text value={title} size='large' weight={isActive ? 'bold' : 'normal'} />
         </Row>
     </Link>;
