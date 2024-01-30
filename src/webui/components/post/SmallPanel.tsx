@@ -23,7 +23,7 @@ export default function Component({ post }: Props)
         <Column gap='small' alignX='stretch'>
             <Comic comic={post.comic} />
             <Row alignX='justify'>
-                <EngagementsRow ratingCount={post.ratingCount} reactionCount={post.reactionCount} />
+                <EngagementsRow isRated={post.hasRated} ratingCount={post.ratingCount} reactionCount={post.reactionCount} />
                 <Text value={createdText} />
             </Row>
         </Column>
