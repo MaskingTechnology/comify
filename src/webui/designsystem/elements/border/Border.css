@@ -1,0 +1,67 @@
+.ds-border
+{
+    --border-radius: 0;
+    --margin: 0;
+    --color: var(--color-border);
+
+    --size-large: 0.3em;
+    --size-medium: 0.2em;
+    --size-small: 0.1em;
+
+    --padding-large: 2em;
+    --padding-medium: 1.5em;
+    --padding-small: 1em;
+}
+
+.ds-border
+{
+    border-color: var(--color);
+    border-radius: var(--border-radius);
+    margin: var(--margin);
+    min-width: 0;
+}
+
+.ds-border.ds-border-normal
+{
+    border-style: solid;
+}
+
+.ds-border.ds-border-dashed
+{
+    border-style: dashed;
+}
+
+.ds-border.ds-border-dotted
+{
+    border-style: dotted;
+}
+
+.ds-border.ds-border-size-large
+{
+    border-width: var(--size-large);
+}
+
+.ds-border.ds-border-size-medium
+{
+    border-width: var(--size-medium);
+}
+
+.ds-border.ds-border-size-small
+{
+    border-width: var(--size-small);
+}
+
+.ds-border.ds-border-padding-small
+{
+    padding: var(--padding-small);
+}
+
+.ds-border.ds-border-padding-medium
+{
+    padding: var(--padding-medium);
+}
+
+.ds-border.ds-border-padding-large
+{
+    padding: var(--padding-large);
+}
