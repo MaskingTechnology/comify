@@ -1,15 +1,18 @@
 
 import { Identity } from '../../integrations/authentication/module';
 
-import Creator from '../creator/Creator';
-import findByEmail from '../creator/findByEmail';
-import createCreator from '../creator/createCreator';
+import CreatorData from '../creator/CreatorData';
+import createCreator from '../creator/create';
+import findCreatorByEmail from '../creator/findByEmail';
 
-export default async function login(identity: Identity): Promise<Creator>
+export default async function login(identity: Identity): Promise<CreatorData>
 {
-    const creator = await findByEmail(identity.email);
+    const creator = await findCreatorByEmail(identity.email);
 
-    return creator === undefined
-        ? createCreator(identity.email, identity.name, identity.nickname, identity.picture)
-        : creator;
+    if (creator !== undefined)
+    {
+        return creator;
+    }
+
+    return createCreator(identity.email, identity.name, identity.nickname);
 }

@@ -7,7 +7,7 @@ export default class Image extends ImageData
 
     constructor(data: ImageData, dataUrl: string)
     {
-        super(data.storageKey, data.fileName, data.mimeType, data.size);
+        super(data.id, data.storageKey, data.fileName, data.mimeType, data.size);
 
         this.#dataUrl = dataUrl;
     }

@@ -1,10 +1,10 @@
 
 import { RecordData } from '../../integrations/database/module';
-import Creator from './Creator';
+import CreatorData from './CreatorData';
 
-export default function mapCreator(record: RecordData): Creator
+export default function mapCreator(record: RecordData): CreatorData
 {
-    return new Creator(
+    return new CreatorData(
         record.id as string,
         record.fullName as string,
         record.nickName as string,

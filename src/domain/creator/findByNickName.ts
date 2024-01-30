@@ -1,15 +1,15 @@
 
 import database from '../../integrations/database/module';
 
-import Creator from './Creator';
+import CreatorData from './CreatorData';
 import { RECORD_TYPE } from './constants';
-import mapCreator from './mapCreator';
+import createData from './createData';
 
-export default async function findByNickName(nickname: string): Promise<Creator | undefined>
+export default async function findByNickName(nickname: string): Promise<CreatorData | undefined>
 {
-    const record = await database.findRecord(RECORD_TYPE, { nickname: { EQUALS: nickname } });
+    const record = await database.findRecord(RECORD_TYPE, { nickName: { EQUALS: nickname } });
 
     return record !== undefined
-        ? mapCreator(record)
+        ? createData(record)
         : undefined;
 }

@@ -1,18 +1,21 @@
 
 export default class ImageData
 {
+    #id: string;
     #storageKey: string;
     #fileName: string;
     #mimeType: string;
     #size: number;
 
-    constructor(storageKey: string, fileName: string, mimeType: string, size: number)
+    constructor(id: string, storageKey: string, fileName: string, mimeType: string, size: number)
     {
+        this.#id = id;
         this.#storageKey = storageKey;
         this.#fileName = fileName;
         this.#mimeType = mimeType;
         this.#size = size;
     }
+    get id() { return this.#id; }
 
     get storageKey() { return this.#storageKey; }
 

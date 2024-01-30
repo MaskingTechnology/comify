@@ -1,19 +1,21 @@
 
-import { DatabaseError } from '../../integrations/database/module.js';
+import { TooManySimilarNickNames } from './errors';
 import findByNickName from './findByNickName';
 import searchByStartNickName from './searchByStartNickName';
 
 export default async function generateNickname(nickname: string): Promise<string>
 {
     const strippedName: string = nickname.trim();
-    const noSpacesNickName: string = strippedName.replace(' ', '');
-    const cleanNickName: string = noSpacesNickName.replace('_', '');
+    const noSpacesNickName: string = strippedName.replaceAll(' ', '');
+    const cleanNickName: string = noSpacesNickName.replaceAll('_', '');
+
     const record = await findByNickName(cleanNickName);
 
     if (record === undefined)
     {
         return cleanNickName;
     }
+
     const foundNickName = await searchByStartNickName(`${record.nickName}_`);
 
     if (foundNickName === undefined)
@@ -21,12 +23,12 @@ export default async function generateNickname(nickname: string): Promise<string
         return `${record.nickName}_001`;
     }
 
-    const oldNumber = parseInt(foundNickName.substring(cleanNickName.length));
+    const oldNumber = parseInt(foundNickName.substring(cleanNickName.length + 1));
     const newNumber = oldNumber + 1;
 
     if (newNumber === 1000)
     {
-        throw new DatabaseError('Too many similar nicknames');
+        throw new TooManySimilarNickNames();
     }
 
     const stringNumber = newNumber.toString().padStart(3, '0');

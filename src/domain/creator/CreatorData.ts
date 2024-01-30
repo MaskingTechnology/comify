@@ -6,7 +6,7 @@ export default class CreatorData
     #fullName: string;
     #nickName: string;
     #email: string;
-    #portraitId: string;
+    #portraitId: string | undefined;
 
     #joinedAt: Date;
 
@@ -15,7 +15,7 @@ export default class CreatorData
     #followerCount: number;
     #followingCount: number;
 
-    constructor(id: string, fullName: string, nickName: string, email: string, portraitId: string, joinedAt = new Date(), popularity = 0, comicCount = 0, followerCount = 0, followingCount = 0)
+    constructor(id: string, fullName: string, nickName: string, email: string, portraitId: string | undefined, joinedAt = new Date(), popularity = 0, comicCount = 0, followerCount = 0, followingCount = 0)
     {
         this.#id = id;
         this.#fullName = fullName;
