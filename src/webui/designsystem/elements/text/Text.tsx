@@ -3,20 +3,23 @@ import React from 'react';
 
 import './Text.css';
 
-export type TextProps = {
+export type Props = {
     value: string;
+    type?: 'primary' | 'secondary';
     size?: 'large' | 'medium' | 'small';
     weight?: 'light' | 'normal' | 'bold';
     wrap?: 'none' | 'normal' | 'break-word';
 };
 
-export default function Text(props: TextProps)
+export default function Element({ value, type, size, weight, wrap }: Props)
 {
-    const size = props.size ?? 'medium';
-    const weight = props.weight ?? 'normal';
-    const wrap = props.wrap ?? 'none';
+    const className = 'ds-text'
+        + ' ds-text-' + (type ?? 'primary')
+        + ' ds-text-size-' + (size ?? 'medium')
+        + ' ds-text-weight-' + (weight ?? 'normal')
+        + ' ds-text-wrap-' + (wrap ?? 'none');
 
-    return <span className={'ds-text ds-text-size-' + size + ' ds-text-weight-' + weight + ' ds-text-wrap-' + wrap} >
-        {props.value}
+    return <span className={className}>
+        {value}
     </span>;
 }

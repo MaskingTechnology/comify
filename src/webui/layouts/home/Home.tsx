@@ -1,28 +1,15 @@
 
 import React from 'react';
 
-import { Ruler } from '../../designsystem/module';
-
 import './Home.css';
 
-export type HomeProps = {
-    main: React.ReactNode;
-    aside: React.ReactNode;
+export type Props = {
+    children?: React.ReactNode;
 };
 
-export default function Home(props: HomeProps)
+export default function Layout({ children }: Props)
 {
-    return <div className='ds home-layout'>
-        <div className='left'>
-            <main>
-                {props.main}
-            </main>
-        </div>
-        <div className='right'>
-            <Ruler type='vertical' />
-            <aside>
-                {props.aside}
-            </aside>
-        </div>
-    </div>;
+    return <main className='ds home-layout'>
+        {children}
+    </main>;
 }

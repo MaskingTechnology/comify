@@ -3,13 +3,13 @@ import React from 'react';
 
 import './Label.css';
 
-export type LabelProps = {
+export type Props = {
     value: string;
 };
 
-export default function Label(props: LabelProps)
+export default function Element({ value }: Props)
 {
     return <label className="ds-label">
-        {props.value}
+        {value}
     </label>;
 }

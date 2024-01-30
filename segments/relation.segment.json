@@ -1,0 +1,5 @@
+{
+    "./domain/relation/data/retrieve": { "default": {  "access": "public" } },
+    "./domain/relation/data/retrieveByFollower": { "default": {  "access": "public" } },
+    "./domain/relation/data/retrieveByFollowing": { "default": {  "access": "public" } }
+}

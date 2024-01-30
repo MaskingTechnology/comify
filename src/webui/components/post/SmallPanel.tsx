@@ -1,37 +1,30 @@
 
 import React from 'react';
 
-import { Column, Icon, Panel, Row, Text, ButtonProps } from '../../designsystem/module';
+import type PostView from '../../../domain/post/PostView';
 
 import DateFormat from '../../../integrations/dateformat/DateFormat';
 
-import Engagements from '../common/engagements/Engagements';
-import Engagement from '../common/engagements/Engagement';
-import Comic from '../comic/Comic';
+import { Column, Panel, Row, Text } from '../../designsystem/module';
 
-export type SmallPanelProps = {
-    responded: Date;
-    button: React.ReactElement<ButtonProps>;
-    source: string;
-    likes: number;
-    comments: number;
+import Comic from '../comic/Image';
+
+import EngagementsRow from './elementary/EngagementRow';
+
+export type Props = {
+    post: PostView;
 };
 
-export default function SmallPanel(props: SmallPanelProps)
+export default function Component({ post }: Props)
 {
-    const respondedText = DateFormat.fromNow(props.responded);
+    const createdText = DateFormat.fromNow(post.createdAt);
 
-    return <Panel>
-        <Column gap='small' align='justify'>
-            <Row>
-                <Comic source={props.source} />
-            </Row>
-            <Row align='justify'>
-                <Engagements>
-                    <Engagement icon={<Icon type='heart' />} number={props.likes} />
-                    <Engagement icon={<Icon type='comment' />} number={props.comments} />
-                </Engagements>
-                <Text value={respondedText} />
+    return <Panel padding='small'>
+        <Column gap='small' alignX='stretch'>
+            <Comic comic={post.comic} />
+            <Row alignX='justify'>
+                <EngagementsRow isRated={post.hasRated} ratingCount={post.ratingCount} reactionCount={post.reactionCount} />
+                <Text value={createdText} />
             </Row>
         </Column>
     </Panel>;

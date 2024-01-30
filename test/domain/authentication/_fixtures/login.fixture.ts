@@ -1,9 +1,8 @@
 
-import database from '../../../../src/integrations/database/module';
-
-import { RecordData } from '../../../../src/integrations/database/module';
+import database, { RecordData } from '../../../../src/integrations/database/module';
 import { Identity } from '../../../../src/integrations/authentication/module';
-import { RECORD_TYPE } from '../../../../src/domain/creator/constants';
+
+import { RECORD_TYPE } from '../../../../src/domain/creator/data/constants';
 
 const NICKNAMES: Record<string, string> = {
     EXISTING_NICKNAME: 'ExistingNickName',

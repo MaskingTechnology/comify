@@ -3,23 +3,26 @@ import React from 'react';
 
 import './TextArea.css';
 
-export type TextAreaProps = {
+export type Props = {
     name: string;
-    size?: 'large' | 'medium' | 'small';
     placeholder?: string;
     value?: string;
+    size?: 'large' | 'medium' | 'small';
+    rows?: number;
     changeHandler?: React.ChangeEventHandler<HTMLTextAreaElement>;
 };
 
-export default function TextArea(props: TextAreaProps)
+export default function Element({ name, placeholder, value, size, rows, changeHandler }: Props)
 {
-    const size = props.size ?? 'medium';
+    const className = 'ds-textarea'
+        + ' ds-textarea-size-' + (size ?? 'medium');
 
     return <textarea
-        className={'ds-textarea ds-textarea-size-' + size}
-        name={props.name}
-        placeholder={props.placeholder}
-        defaultValue={props.value}
-        onChange={props.changeHandler}>
+        className={className}
+        name={name}
+        placeholder={placeholder}
+        defaultValue={value}
+        rows={rows}
+        onChange={changeHandler}>
     </textarea>;
 }

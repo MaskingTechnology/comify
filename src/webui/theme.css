@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap');
+
+.ds
+{
+    --font-family: 'Inter', sans-serif;
+}
+
+.ds-button
+{
+    --primary-background-color: #e06666;
+    --primary-foreground-color: #ffffff;
+    --secondary-background-color: #cccccc;
+}
+
+.ds-ruler
+{
+    --color: #f3f3f3;
+}

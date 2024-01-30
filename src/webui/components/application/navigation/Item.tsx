@@ -1,22 +1,27 @@
 
 import React from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 
 import { Row, Text, Image } from '../../../designsystem/module';
 
-import Link from '../link/Link';
+import './Item.css';
 
-export type ItemProps = {
-    icon: string;
+export type Props = {
     title: string;
     to: string;
+    activeIcon: string;
+    inactiveIcon: string;
 };
 
-export default function Item(props: ItemProps)
+export default function Component({ title, to, activeIcon, inactiveIcon }: Props)
 {
-    return <Link to={props.to}>
-        <Row gap='medium'>
-            <Image source={props.icon} width='13px' />
-            <Text value={props.title} size='large' weight='bold' />
+    const location = useLocation();
+    const isActive = location.pathname === to;
+
+    return <NavLink className='navigation-item' to={to}>
+        <Row gap='medium' alignY='center'>
+            <Image source={isActive ? activeIcon : inactiveIcon} width='26px' />
+            <Text value={title} type={isActive ? 'primary' : 'secondary'} size='large' weight={isActive ? 'bold' : 'normal'} />
         </Row>
-    </Link>;
+    </NavLink>;
 }

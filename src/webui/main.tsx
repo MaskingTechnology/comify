@@ -3,8 +3,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import HomePage from './pages/HomePage';
-import ApplicationPage from './pages/ApplicationPage';
+import HomePage from './pages/Home';
+import TimelinePage from './pages/Timeline';
+import ExplorePage from './pages/Explore';
+import NotificationsPage from './pages/Notifications';
+import CreatePage from './pages/Create';
+import ProfilePage from './pages/Profile';
 
 import './designsystem/designsystem.css';
 import './main.css';
@@ -15,24 +19,24 @@ const router = createBrowserRouter([
     element: <HomePage />
   },
   {
-    path: '/application',
-    element: <ApplicationPage />
+    path: '/timeline',
+    element: <TimelinePage />
   },
   {
     path: '/explore',
-    element: <ApplicationPage />
+    element: <ExplorePage />
   },
   {
     path: '/notifications',
-    element: <ApplicationPage />
+    element: <NotificationsPage />
   },
   {
     path: '/create',
-    element: <ApplicationPage />
+    element: <CreatePage />
   },
   {
     path: '/profile',
-    element: <ApplicationPage />
+    element: <ProfilePage />
   }
 ]);
 

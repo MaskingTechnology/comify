@@ -3,20 +3,23 @@ import React from 'react';
 
 import './Row.css';
 
-export type RowProps = {
-    align?: 'left' | 'center' | 'right' | 'justify';
+export type Props = {
+    alignX?: 'left' | 'center' | 'right' | 'justify';
+    alignY?: 'top' | 'center' | 'bottom' | 'stretch';
     gap?: 'large' | 'medium' | 'small' | 'none';
     wrap?: 'wrap' | 'nowrap';
     children: React.ReactNode;
 };
 
-export default function Row(props: RowProps)
+export default function Element({ alignX, alignY, gap, wrap, children }: Props)
 {
-    const align = props.align ?? 'left';
-    const gap = props.gap ?? 'medium';
-    const wrap = props.wrap ?? 'nowrap';
+    const className = 'ds-row'
+        + ' ds-row-align-x-' + (alignX ?? 'left')
+        + ' ds-row-align-y-' + (alignY ?? 'top')
+        + ' ds-row-gap-' + (gap ?? 'medium')
+        + ' ds-row-wrap-' + (wrap ?? 'nowrap');
 
-    return <div className={'ds-row ds-row-align-' + align + ' ds-row-gap-' + gap + ' ds-row-wrap-' + wrap}>
-        {props.children}
+    return <div className={className}>
+        {children}
     </div>;
 }

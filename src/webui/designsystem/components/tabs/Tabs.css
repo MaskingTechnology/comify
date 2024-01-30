@@ -2,7 +2,7 @@
 {
     --margin: var(--margin-container);
 
-    --foreground-color: var(--color-foreground);
+    --foreground-color: var(--color-primary-foreground);
 
     --font-size-nav: 1.1em;
 

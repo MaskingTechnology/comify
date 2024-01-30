@@ -1,7 +1,10 @@
 .ds-select
 {
     --margin: 0;
-    --padding: 0.8em;
+
+    --padding-small: 0.4em;
+    --padding-medium: 0.8em;
+    --padding-large: 1.2em;
 
     --border-style: solid;
     --border-color: var(--color-border);
@@ -26,4 +29,19 @@
 .ds-select:focus-visible
 {
     outline-color: color-mix(in srgb, black 10%, var(--border-color));
+}
+
+.ds-select.ds-select-size-small
+{
+    padding: var(--padding-small);
+}
+
+.ds-select.ds-select-size-medium
+{
+    padding: var(--padding-medium);
+}
+
+.ds-select.ds-select-size-large
+{
+    padding: var(--padding-large);
 }

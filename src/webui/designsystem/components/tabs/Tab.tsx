@@ -1,14 +1,14 @@
 
 import React from 'react';
 
-export type TabProps = {
+export type Props = {
     title: React.ReactNode;
     children: React.ReactNode;
 };
 
-export default function Tab(props: TabProps)
+export default function Component({ children }: Props)
 {
     return <div className='ds-tabs-tab'>
-        {props.children}
+        {children}
     </div>;
 }

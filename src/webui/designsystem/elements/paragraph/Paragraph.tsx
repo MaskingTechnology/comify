@@ -3,16 +3,17 @@ import React from 'react';
 
 import './Paragraph.css';
 
-export type ParagraphProps = {
+export type Props = {
     size?: 'large' | 'medium' | 'small';
     children: React.ReactNode;
 };
 
-export default function Paragraph(props: ParagraphProps)
+export default function Element({ size, children }: Props)
 {
-    const size = props.size ?? 'medium';
+    const className = 'ds-paragraph'
+        + ' ds-paragraph-size-' + (size ?? 'medium');
 
-    return <p className={'ds-paragraph ds-paragraph-size-' + size}>
-        {props.children}
+    return <p className={className}>
+        {children}
     </p>;
 }

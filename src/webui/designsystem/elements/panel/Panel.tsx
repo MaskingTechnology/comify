@@ -3,16 +3,19 @@ import React from 'react';
 
 import './Panel.css';
 
-export type PanelProps = {
+export type Props = {
     type?: 'normal' | 'alert' | 'warning' | 'success' | 'error';
+    padding?: 'large' | 'medium' | 'small';
     children?: React.ReactNode;
 };
 
-export default function Panel(props: PanelProps)
+export default function Element({ type, padding, children }: Props)
 {
-    const type = props.type ?? 'normal';
+    const className = 'ds-panel'
+        + ' ds-panel-' + (type ?? 'normal')
+        + ' ds-panel-padding-' + (padding ?? 'large');
 
-    return <div className={'ds-panel ds-panel-' + type}>
-        {props.children}
+    return <div className={className}>
+        {children}
     </div>;
 }

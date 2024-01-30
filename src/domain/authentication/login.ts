@@ -1,9 +1,10 @@
 
 import { Identity } from '../../integrations/authentication/module';
 
-import CreatorData from '../creator/CreatorData';
-import createCreator from '../creator/create';
-import findCreatorByEmail from '../creator/findByEmail';
+import type CreatorData from '../creator/data/CreatorData';
+import generateCreatorNickname from '../creator/generateNickname';
+import createCreator from '../creator/data/create';
+import findCreatorByEmail from '../creator/data/findByEmail';
 
 export default async function login(identity: Identity): Promise<CreatorData>
 {
@@ -14,5 +15,7 @@ export default async function login(identity: Identity): Promise<CreatorData>
         return creator;
     }
 
-    return createCreator(identity.email, identity.name, identity.nickname);
+    const nickName = await generateCreatorNickname(identity.nickname ?? identity.name);
+
+    return createCreator(identity.email, identity.name, nickName);
 }
