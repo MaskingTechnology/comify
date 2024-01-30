@@ -1,7 +1,7 @@
 .ds-selection
 {
     --background-color: transparent;
-    --background-color-options: var(--color-background);
+    --background-color-options: var(--color-primary-background);
     --background-color-options-hover: var(--color-background-hover);
     --arrow-color: var(--color-alert-foreground);
     --border-color: var(--color-border);
@@ -59,7 +59,7 @@
 {
     padding: 0.8em 2em 0.8em 0.8em;
 
-    background: var(--color-background);
+    background: var(--color-primary-background);
     cursor: pointer;
 }
 

@@ -1,12 +1,11 @@
 .ds-panel
 {
     --border-radius: 0;
-    --padding-nested: 0.7em 1em;
     --margin: 0 0 1.5em 0;
 
-    --padding-large: 2em 2em;
-    --padding-medium: 1.5em 1.5em;
-    --padding-small: 1em 1em;
+    --padding-large: 2em;
+    --padding-medium: 1.5em;
+    --padding-small: 1em;
 
     --alert-background-color: var(--color-alert-background);
     --alert-foreground-color: var(--color-alert-foreground);
@@ -15,7 +14,7 @@
     --error-foreground-color: var(--color-error-foreground);
 
     --normal-background-color: var(--color-secondary-background);
-    --normal-foreground-color: var(--color-secondary-foreground);
+    --normal-foreground-color: var(--color-primary-foreground);
 
     --success-background-color: var(--color-success-background);
     --success-foreground-color: var(--color-success-foreground);
@@ -30,11 +29,6 @@
     padding: var(--padding);
     margin: var(--margin);
     min-width: 0;
-}
-
-.ds-panel .ds-panel
-{
-    padding: var(--padding-nested);
 }
 
 .ds-panel.ds-panel-alert

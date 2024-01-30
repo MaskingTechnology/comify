@@ -21,8 +21,8 @@ export default function Component({ selected, orderChangeHandler, searchChangeHa
         }
     }
 
-    return <Row alignX='justify'>
+    return <Row alignX='justify' alignY='center'>
         <OrderSelection key='creators' selected={selected} changeHandler={orderChangeHandler} />
-        <TextBox name='search' placeholder='Search' changeHandler={(event) => handleSearchChange(event.target.value)} />
+        <TextBox name='search' placeholder='Search' size='small' changeHandler={(event) => handleSearchChange(event.target.value)} />
     </Row>;
 }

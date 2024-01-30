@@ -9,12 +9,24 @@ export type Props = {
     children: React.ReactNode;
 };
 
+function getActualSize(size: string): string
+{
+    switch (size)
+    {
+        case 'small': return '36px';
+        case 'medium': return '50px';
+        case 'large': return '62px';
+        default: return '';
+    }
+}
+
 export default function Component({ avatarSize, avatarUrl, children }: Props)
 {
     const gapSize = avatarSize === 'small' ? 'small' : 'medium';
+    const actualSize = getActualSize(avatarSize);
 
     return <Row gap={gapSize}>
-        <Avatar size={avatarSize} source={avatarUrl} />
+        <Avatar size={actualSize} source={avatarUrl} />
         {children}
     </Row>;
 }

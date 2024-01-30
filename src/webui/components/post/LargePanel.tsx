@@ -22,7 +22,7 @@ export default function Component({ post, followHandler, rateHandler }: Props)
         <Column gap='medium' alignX='stretch'>
             <TimeElapsed date={post.createdAt} relation={post.creator} followHandler={followHandler} />
             <ComicImage comic={post.comic} />
-            <EngagementsRow ratingCount={post.ratingCount} reactionCount={post.reactionCount} rateHandler={rateHandler} />
+            <EngagementsRow isRated={post.hasRated} ratingCount={post.ratingCount} reactionCount={post.reactionCount} rateHandler={rateHandler} />
         </Column>
     </Panel>;
 }

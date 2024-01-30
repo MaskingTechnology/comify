@@ -16,9 +16,7 @@ export default function Component({ date, size, weight }: Props)
     size ??= 'medium';
     weight ??= 'normal';
 
-    return <Text
-        value={DateFormat.fromNow(date)}
-        size={size}
-        weight={weight}
-    />;
+    const value = DateFormat.fromNow(date);
+
+    return <Text value={value} type='secondary' size={size} weight={weight} />;
 }

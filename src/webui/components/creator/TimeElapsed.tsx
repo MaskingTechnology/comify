@@ -3,7 +3,7 @@ import React from 'react';
 
 import type CreatorView from '../../../domain/creator/CreatorView';
 
-import TitledTimeElapsed from '../common/TitledTimeElapsed';
+import TimeElapsedColumn from './elementary/TimeElapsedColumn';
 import AvatarRow from './elementary/AvatarRow';
 
 export type Props = {
@@ -14,8 +14,8 @@ export type Props = {
 export default function Component({ creator, date }: Props)
 {
     return <AvatarRow avatarSize='small' avatarUrl={creator.portrait.dataUrl}>
-        <TitledTimeElapsed
-            title={creator.fullName}
+        <TimeElapsedColumn
+            fullName={creator.fullName}
             date={date}
         />
     </AvatarRow>;

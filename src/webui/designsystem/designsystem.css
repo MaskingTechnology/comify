@@ -10,16 +10,22 @@
     --font-weight-semi-bold: 600;
     --font-weight-bold: 700;
 
-    --color-background: #ffffff;
+    --color-background: transparent;
     --color-background-hover: #efefef;
     --color-foreground: #000000;
     --color-border: #b7b7b7;
 
-    --color-primary-background: #cccccc;
+    --color-primary-background: #ffffff;
     --color-primary-foreground: #000000;
 
     --color-secondary-background: #f3f3f3;
-    --color-secondary-foreground: #000000;
+    --color-secondary-foreground: #666666;
+
+    --color-primary-action-background: #cccccc;
+    --color-primary-action-foreground: #000000;
+
+    --color-secondary-action-background: #f3f3f3;
+    --color-secondary-action-foreground: #000000;
 
     --color-input-background: #ffffff;
     --color-input-foreground: #000000;
@@ -47,6 +53,7 @@
     font-size: var(--font-size);
 
     background-color: var(--color-background);
+    color: var(--color-foreground);
     font-weight: var(--font-weight-light);
 }
 

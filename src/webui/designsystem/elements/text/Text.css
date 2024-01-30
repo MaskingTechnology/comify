@@ -1,6 +1,22 @@
 .ds-text
 {
+    --primary-color: var(--color-primary-foreground);
+    --secondary-color: var(--color-secondary-foreground);
+}
+
+.ds-text
+{
     display: inline-block;
+}
+
+.ds-text.ds-text-primary
+{
+    color: var(--primary-color);
+}
+
+.ds-text.ds-text-secondary
+{
+    color: var(--secondary-color);
 }
 
 .ds-text.ds-text-size-small

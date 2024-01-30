@@ -4,6 +4,7 @@ export { default as Tabs } from './components/tabs/Tabs';
 export { default as Tab } from './components/tabs/Tab';
 
 export { default as Avatar } from './elements/avatar/Avatar';
+export { default as Border } from './elements/border/Border';
 export { default as Button } from './elements/button/Button';
 export { default as Column } from './elements/column/Column';
 export { default as Form } from './elements/form/Form';

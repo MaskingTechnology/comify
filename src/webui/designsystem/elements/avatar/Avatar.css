@@ -1,34 +1,4 @@
 .ds-avatar
 {
-    --small-width: 2em;
-    --small-height: 2em;
-
-    --medium-width: 3em;
-    --medium-height: 3em;
-
-    --large-width: 4em;
-    --large-height: 4em;
-}
-
-.ds-avatar
-{
     border-radius: 50%;
-}
-
-.ds-avatar.ds-avatar-size-small
-{
-    width: var(--small-width);
-    height: var(--small-height);
-}
-
-.ds-avatar.ds-avatar-size-medium
-{
-    width: var(--medium-width);
-    height: var(--medium-height);
-}
-
-.ds-avatar.ds-avatar-size-large
-{
-    width: var(--large-width);
-    height: var(--large-height);
 }
