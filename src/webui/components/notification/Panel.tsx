@@ -31,9 +31,7 @@ export default function Component({ notification, followHandler }: Props)
     return <Panel>
         <Column gap='medium' alignX='stretch'>
             <TimeElapsed date={notification.createdAt} relation={notification.relation} followHandler={followHandler} />
-            <Panel type='success' padding='small'>
-                {getContent(notification)}
-            </Panel>
+            {getContent(notification)}
         </Column>
     </Panel>;
 }

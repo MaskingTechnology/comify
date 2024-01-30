@@ -9,8 +9,8 @@ export type Props = {
 
 export default function Component({ isFollowing }: Props)
 {
-    const message = 'Started following you!'
-        + (isFollowing ? '' : 'Hit the Follow button to follow back.');
+    const message = 'I started following you.'
+        + (isFollowing ? '' : 'Hit the Follow button to follow me back.');
 
     return <Paragraph>
         <Text value={message} />
