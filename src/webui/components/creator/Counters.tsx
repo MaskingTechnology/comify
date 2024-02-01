@@ -12,7 +12,7 @@ export type Props = {
 
 export default function Component({ creator }: Props)
 {
-    return <AvatarRow avatarSize='large' avatarUrl={creator.portrait.dataUrl}>
+    return <AvatarRow avatarSize='large' avatarUrl={creator.portrait?.dataUrl}>
         <CountersColumn
             fullName={creator.fullName}
             nickName={creator.nickName}

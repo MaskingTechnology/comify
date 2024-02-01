@@ -5,7 +5,7 @@ import { Row, Avatar } from '../../../designsystem/module';
 
 export type Props = {
     avatarSize: 'small' | 'medium' | 'large';
-    avatarUrl: string;
+    avatarUrl?: string;
     children: React.ReactNode;
 };
 
@@ -24,9 +24,10 @@ export default function Component({ avatarSize, avatarUrl, children }: Props)
 {
     const gapSize = avatarSize === 'small' ? 'small' : 'medium';
     const actualSize = getActualSize(avatarSize);
+    const source = avatarUrl ?? 'https://via.placeholder.com/62x62';
 
     return <Row gap={gapSize}>
-        <Avatar size={actualSize} source={avatarUrl} />
+        <Avatar size={actualSize} source={source} />
         {children}
     </Row>;
 }

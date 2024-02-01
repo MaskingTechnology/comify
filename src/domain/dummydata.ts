@@ -11,8 +11,8 @@ creators.set('1', new CreatorData('1', 'Bas Meeuwissen', 'bassie', 'bas@masking.
 creators.set('2', new CreatorData('2', 'John Meeuwssen', 'herehecomes', 'john@masking.tech', '0', new Date(), 0, 0, 0));
 
 const images = new Map<string, ImageData>();
-images.set('0', new ImageData('0', 'https://masking.tech/images/peter.jpg', 'image/jpeg', 100));
-images.set('1', new ImageData('1', 'https://live.staticflickr.com/7420/11306783734_227ae366a3.jpg', 'image/jpeg', 100));
+images.set('0', new ImageData('0', 'https://masking.tech/images/peter.jpg', 'a.jpg', 'image/jpeg', 100));
+images.set('1', new ImageData('1', 'https://live.staticflickr.com/7420/11306783734_227ae366a3.jpg', 'b.jpg', 'image/jpeg', 100));
 
 const comics = new Map<string, ComicData>();
 comics.set('0', new ComicData('0', '1', '',));

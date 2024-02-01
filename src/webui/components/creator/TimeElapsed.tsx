@@ -13,7 +13,7 @@ export type Props = {
 
 export default function Component({ creator, date }: Props)
 {
-    return <AvatarRow avatarSize='small' avatarUrl={creator.portrait.dataUrl}>
+    return <AvatarRow avatarSize='small' avatarUrl={creator.portrait?.dataUrl}>
         <TimeElapsedColumn
             fullName={creator.fullName}
             date={date}
