@@ -1,0 +1,16 @@
+
+import database, { RecordSort, SortDirections } from '../../../integrations/database/module';
+
+import { RECORD_TYPE } from './constants';
+import CreatorData from './CreatorData';
+import createData from './createData';
+
+export default async function retrieveByStartNickName(nickname: string): Promise<CreatorData | undefined>
+{
+    const sort: RecordSort = { 'nickName': SortDirections.DESCENDING };
+    const result = await database.findRecord(RECORD_TYPE, { nickName: { STARTS_WITH: nickname } }, undefined, sort);
+
+    return result !== undefined
+        ? createData(result)
+        : undefined;
+}

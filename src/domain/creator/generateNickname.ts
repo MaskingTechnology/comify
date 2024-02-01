@@ -1,7 +1,7 @@
 
 import { TooManySimilarNickNames } from './errors';
-import findByNickName from './data/findByNickName';
-import searchByStartNickName from './data/searchByStartNickName';
+import retrieveByNickName from './data/retrieveByNickName';
+import retrieveByStartNickName from './data/retrieveByStartNickName';
 
 export default async function generateNickname(nickname: string): Promise<string>
 {
@@ -9,21 +9,21 @@ export default async function generateNickname(nickname: string): Promise<string
     const noSpacesNickName: string = strippedName.replaceAll(' ', '');
     const cleanNickName: string = noSpacesNickName.replaceAll('_', '');
 
-    const record = await findByNickName(cleanNickName);
+    const existingData = await retrieveByNickName(cleanNickName);
 
-    if (record === undefined)
+    if (existingData === undefined)
     {
         return cleanNickName;
     }
 
-    const foundNickName = await searchByStartNickName(`${record.nickName}_`);
+    const foundNickName = await retrieveByStartNickName(`${existingData.nickName}_`);
 
     if (foundNickName === undefined)
     {
-        return `${record.nickName}_001`;
+        return `${existingData.nickName}_001`;
     }
 
-    const oldNumber = parseInt(foundNickName.substring(cleanNickName.length + 1));
+    const oldNumber = parseInt(foundNickName.nickName.substring(cleanNickName.length + 1));
     const newNumber = oldNumber + 1;
 
     if (newNumber === 1000)
