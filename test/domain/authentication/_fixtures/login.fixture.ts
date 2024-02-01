@@ -1,10 +1,9 @@
 
 import database, { RecordData } from '../../../../src/integrations/database/module';
+import { Identity } from '../../../../src/integrations/authentication/module';
 
 import { TooManySimilarNickNames } from '../../../../src/domain/creator/errors';
 import login from '../../../../src/domain/authentication/login';
-import { Identity } from '../../../../src/integrations/authentication/module';
-
 import { RECORD_TYPE } from '../../../../src/domain/creator/data/constants';
 
 const NICKNAMES: Record<string, string> = {

@@ -16,14 +16,14 @@ export default async function generateNickname(nickname: string): Promise<string
         return cleanNickName;
     }
 
-    const foundNickName = await retrieveByStartNickName(`${existingData.nickName}_`);
+    const foundData = await retrieveByStartNickName(`${existingData.nickName}_`);
 
-    if (foundNickName === undefined)
+    if (foundData === undefined)
     {
         return `${existingData.nickName}_001`;
     }
 
-    const oldNumber = parseInt(foundNickName.nickName.substring(cleanNickName.length + 1));
+    const oldNumber = parseInt(foundData.nickName.substring(cleanNickName.length + 1));
     const newNumber = oldNumber + 1;
 
     if (newNumber === 1000)
