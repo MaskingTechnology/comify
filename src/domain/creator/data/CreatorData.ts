@@ -4,7 +4,7 @@ export default class CreatorData
     #id: string;
 
     #fullName: string;
-    #nickName: string;
+    #nickname: string;
     #email: string;
 
     #portraitId: string | undefined;
@@ -15,11 +15,11 @@ export default class CreatorData
     #followerCount: number;
     #followingCount: number;
 
-    constructor(id: string, fullName: string, nickName: string, email: string, portraitId: string | undefined, joinedAt = new Date(), popularity = 0, postCount = 0, followerCount = 0, followingCount = 0)
+    constructor(id: string, fullName: string, nickname: string, email: string, portraitId: string | undefined, joinedAt = new Date(), popularity = 0, postCount = 0, followerCount = 0, followingCount = 0)
     {
         this.#id = id;
         this.#fullName = fullName;
-        this.#nickName = nickName;
+        this.#nickname = nickname;
         this.#email = email;
 
         this.#portraitId = portraitId;
@@ -35,7 +35,7 @@ export default class CreatorData
 
     get fullName() { return this.#fullName; }
 
-    get nickName() { return this.#nickName; }
+    get nickname() { return this.#nickname; }
 
     get email() { return this.#email; }
 

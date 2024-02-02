@@ -15,7 +15,7 @@ export default function Component({ creator }: Props)
     return <AvatarRow avatarSize='large' avatarUrl={creator.portrait?.dataUrl}>
         <JoinedColumn
             fullName={creator.fullName}
-            nickName={creator.nickName}
+            nickname={creator.nickname}
             joinedAt={creator.joinedAt}
         />
     </AvatarRow>;

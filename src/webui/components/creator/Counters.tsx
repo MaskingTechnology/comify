@@ -15,7 +15,7 @@ export default function Component({ creator }: Props)
     return <AvatarRow avatarSize='large' avatarUrl={creator.portrait?.dataUrl}>
         <CountersColumn
             fullName={creator.fullName}
-            nickName={creator.nickName}
+            nickname={creator.nickname}
             postCount={creator.postCount}
             followerCount={creator.followerCount}
             followingCount={creator.followingCount}

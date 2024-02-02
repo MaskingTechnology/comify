@@ -15,7 +15,7 @@ export default function Component({ creator }: Props)
     return <AvatarRow avatarSize='small' avatarUrl={creator.portrait?.dataUrl}>
         <NamesColumn
             fullName={creator.fullName}
-            nickName={creator.nickName}
+            nickname={creator.nickname}
         />
     </AvatarRow>;
 }

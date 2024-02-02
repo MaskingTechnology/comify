@@ -5,13 +5,13 @@ import { Column, Text } from '../../../designsystem/module';
 
 export type Props = {
     fullName: string;
-    nickName: string;
+    nickname: string;
 };
 
-export default function Component({ fullName, nickName }: Props)
+export default function Component({ fullName, nickname }: Props)
 {
     return <Column gap='none'>
         <Text value={fullName} size='medium' weight='bold' />
-        <Text value={'@' + nickName} type='secondary' size='small' />
+        <Text value={'@' + nickname} type='secondary' size='small' />
     </Column>;
 }

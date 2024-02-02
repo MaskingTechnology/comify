@@ -1,5 +1,5 @@
 
-export class TooManySimilarNickNames extends Error
+export class TooManySimilarNicknames extends Error
 {
     constructor(message?: string)
     {

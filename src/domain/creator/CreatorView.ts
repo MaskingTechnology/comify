@@ -5,7 +5,7 @@ export default class CreatorView
 {
     #id: string;
     #fullName: string;
-    #nickName: string;
+    #nickname: string;
     #portrait: ImageView | undefined;
 
     #joinedAt: Date;
@@ -13,11 +13,11 @@ export default class CreatorView
     #followerCount: number;
     #followingCount: number;
 
-    constructor(id: string, fullName: string, nickName: string, portrait: ImageView | undefined, joinedAt: Date, postCount: number, followerCount: number, followingCount: number)
+    constructor(id: string, fullName: string, nickname: string, portrait: ImageView | undefined, joinedAt: Date, postCount: number, followerCount: number, followingCount: number)
     {
         this.#id = id;
         this.#fullName = fullName;
-        this.#nickName = nickName;
+        this.#nickname = nickname;
         this.#portrait = portrait;
 
         this.#joinedAt = joinedAt;
@@ -30,7 +30,7 @@ export default class CreatorView
 
     get fullName() { return this.#fullName; }
 
-    get nickName() { return this.#nickName; }
+    get nickname() { return this.#nickname; }
 
     get portrait() { return this.#portrait; }
 
