@@ -78,7 +78,6 @@ export default class OpenID implements IdentityProvider
         const expires = tokenSet.expires_at as number * 1000;
 
         return {
-            requester: undefined,
             identity: identity,
             accessToken: tokenSet.access_token as string,
             refreshToken: tokenSet.refresh_token as string,
