@@ -117,7 +117,6 @@ export default class MongoDB implements Database
 
     async readRecord(type: RecordType, id: RecordId, fields?: RecordField[]): Promise<RecordData>
     {
-
         const collection = await this.#getCollection(type);
         const mongoId = this.#createId(id);
         const entry = await collection.findOne({ _id: mongoId });
@@ -284,18 +283,20 @@ export default class MongoDB implements Database
 
         if (fields === undefined)
         {
-            result = { ...data };
+            const recordData = { ...data };
+            fields = Object.keys(recordData) as RecordField[];
 
-            result[ID] = result[MONGO_ID];
-            delete result[MONGO_ID];
-
-            return result;
+            const idIndex = fields.indexOf(MONGO_ID);
+            fields[idIndex] = ID;
         }
 
         for (const field of fields)
         {
-            const mongoField = field === ID ? MONGO_ID : field;
-            result[field] = data[mongoField];
+            const value = field === ID
+                ? data[MONGO_ID].toHexString()
+                : data[field];
+
+            result[field] = value ?? undefined;
         }
 
         return result;
