@@ -1,7 +1,7 @@
 
 import { TooManySimilarNicknames } from './errors';
-import retrieveByNickname from './data/retrieveByNickname2';
-import retrieveByStartNickname from './data/retrieveByStartNickname2';
+import retrieveByNickname from './data/retrieveByNickname';
+import retrieveByStartNickname from './data/retrieveByStartNickname';
 
 export default async function generateNickname(nickname: string): Promise<string>
 {

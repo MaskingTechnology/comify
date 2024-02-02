@@ -2,7 +2,7 @@
 import { Identity } from '../../integrations/authentication/module';
 
 import type CreatorData from '../creator/data/CreatorData';
-import generateCreatorNickname from '../creator/generateNickname2';
+import generateCreatorNickname from '../creator/generateNickname';
 import createCreator from '../creator/data/create';
 import retrieveCreatorByEmail from '../creator/data/retrieveByEmail';
 
