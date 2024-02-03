@@ -5,7 +5,6 @@ export type ValidationType = keyof typeof FieldTypes;
 
 type Properties = {
     required: boolean;
-    message?: string;
 };
 
 export type StringProperties = Properties & {
@@ -41,6 +40,10 @@ export type ArrayProperties = Properties & {
     validations: Partial<Validations>;
 };
 
+export type Message = {
+    message: string;
+};
+
 export type Validations = {
     STRING: StringProperties;
     NUMBER: NumberProperties;
@@ -51,4 +54,4 @@ export type Validations = {
     ARRAY: ArrayProperties;
 };
 
-export type ValidationSchema = Record<string, Partial<Validations>>;
+export type ValidationSchema = Record<string, Partial<Validations | Message>>;

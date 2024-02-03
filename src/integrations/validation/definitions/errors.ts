@@ -9,8 +9,14 @@ export class InvalidValidator extends Error
 
 export class ValidationError extends Error
 {
-    constructor(message?: string)
+    #messages: Map<string, string>;
+
+    constructor(messages: Map<string, string> = new Map())
     {
-        super(message ?? 'Validation error');
+        super('Validation error');
+
+        this.#messages = messages;
     }
+
+    get messages() { return this.#messages; }
 }

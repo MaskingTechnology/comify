@@ -1,8 +1,8 @@
 
-import { ZodError, z } from 'zod';
+import { ZodError, ZodIssue, z } from 'zod';
 
 import { Validation } from '../../definitions/interfaces';
-import { ValidationSchema, Validations } from '../../definitions/types';
+import { Message, ValidationSchema, Validations } from '../../definitions/types';
 import { FieldTypes } from '../../definitions/constants';
 import { InvalidValidator, ValidationError } from '../../definitions/errors.js';
 
@@ -41,19 +41,23 @@ export default class Zod implements Validation
         {
             if (error instanceof ZodError)
             {
-                const message = error.errors[0]?.message;
+                const issues = error.issues;
 
-                throw new ValidationError(message);
+                const messages = this.#getMessage(issues, schema);
+
+                throw new ValidationError(messages);
             }
 
             throw error;
         }
     }
 
-    #getValidation(schema: Partial<Validations>): z.ZodType<any, any>
+    #getValidation(schema: Partial<Validations | Message>): z.ZodType<any, any>
     {
         for (const [key, validation] of Object.entries(schema))
         {
+            if (key === 'message') continue;
+
             const validator = this.#validations.get(key.toLocaleLowerCase());
 
             if (validator === undefined)
@@ -62,7 +66,6 @@ export default class Zod implements Validation
             }
 
             return validator(validation);
-
         }
 
         throw new InvalidValidator();
@@ -72,9 +75,9 @@ export default class Zod implements Validation
     {
         let result = z.string();
 
-        if (value.minLength !== undefined) result = result.min(value.minLength, { message: value.message });
-        if (value.maxLength !== undefined) result = result.max(value.maxLength, { message: value.message });
-        if (value.pattern !== undefined) result = result.regex(new RegExp(value.pattern), { message: value.message });
+        if (value.minLength !== undefined) result = result.min(value.minLength);
+        if (value.maxLength !== undefined) result = result.max(value.maxLength);
+        if (value.pattern !== undefined) result = result.regex(new RegExp(value.pattern));
 
         return value.required
             ? result
@@ -131,5 +134,27 @@ export default class Zod implements Validation
         return value.required
             ? result
             : result.optional();
+    }
+
+    #getMessage(issues: ZodIssue[], scheme: ValidationSchema)
+    {
+        const messages = new Map<string, string>();
+
+        for (const issue of issues)
+        {
+            const path = String(issue.path[0]);
+            const message = this.#getMessageByField(path, scheme);
+
+            messages.set(path, message);
+        }
+
+        return messages;
+    }
+
+    #getMessageByField(path: string, scheme: ValidationSchema)
+    {
+        const field = scheme[path] as Message;
+
+        return field?.message ?? 'Invalid field';
     }
 }
