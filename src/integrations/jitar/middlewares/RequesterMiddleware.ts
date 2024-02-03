@@ -5,6 +5,11 @@ export default class RequesterMiddleware implements Middleware
 {
     #authorization?: string;
 
+    constructor(authorization?: string)
+    {
+        this.#authorization = authorization;
+    }
+
     async handle(request: Request, next: NextHandler): Promise<Response>
     {
         if (this.#authorization !== undefined)
