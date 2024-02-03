@@ -11,18 +11,18 @@ import introductionImage from '../../assets/images/introduction.png';
 
 export default function Feature()
 {
-    async function getIn()
+    const getMeIn = async () =>
     {
         const loginUrl = await getLoginUrl();
 
         location.href = loginUrl;
-    }
+    };
 
     return <Panel>
         <Column gap='medium' alignX='stretch'>
             <Row alignX='justify' alignY='top'>
                 <Logo />
-                <Button type='primary' text='Get in' clickHandler={() => getIn()} />
+                <Button type='primary' text='Get in' clickHandler={() => getMeIn()} />
             </Row>
             <Image source={introductionImage} width='600px' />
             <Text size='large' value='Take or upload a picture. Add speech bubbles. Share with friends.' />
