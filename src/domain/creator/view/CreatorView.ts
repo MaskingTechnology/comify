@@ -1,5 +1,5 @@
 
-import ImageView from '../image/ImageView';
+import ImageView from '../../image/view/ImageView';
 
 export default class CreatorView
 {

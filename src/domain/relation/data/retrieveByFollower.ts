@@ -1,9 +1,9 @@
 
-import RelationData from './RelationData';
+import type Requester from '../../authentication/Requester';
 
-export default async function retrieveByFollower(followerId: string): Promise<RelationData[]>
+import type RelationData from './RelationData';
+
+export default async function retrieveByFollower(followerId: string, requester?: Requester): Promise<RelationData[]>
 {
-    return [
-        new RelationData('0', followerId, '1')
-    ];
+    return [];
 }

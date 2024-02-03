@@ -1,13 +1,13 @@
 
 import Requester from '../authentication/Requester';
 
-import type CreatorView from './CreatorView';
-import createView from './createView';
+import type CreatorView from './view/CreatorView';
+import createView from './view/createView';
 import retrieve from './data/retrieve';
 
 export default async function getMe(requester: Requester): Promise<CreatorView>
 {
-    const data = await retrieve(requester.id, requester);
+    const data = await retrieve(requester.id);
 
     return createView(data);
 }

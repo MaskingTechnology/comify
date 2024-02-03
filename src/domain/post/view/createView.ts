@@ -1,10 +1,10 @@
 
-import getComicView from '../comic/get';
-import getRelationView from '../relation/get';
+import getComicView from '../../comic/get';
+import getRelationView from '../../relation/get';
 
-import ratingExists from '../rating/exists';
+import ratingExists from '../../rating/exists';
 
-import type PostData from './data/PostData';
+import type PostData from '../data/PostData';
 import PostView from './PostView';
 
 export default async function createView(data: PostData): Promise<PostView>

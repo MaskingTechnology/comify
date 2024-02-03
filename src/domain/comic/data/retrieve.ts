@@ -1,9 +1,9 @@
 
-import type ComicData from './ComicData';
+import type Requester from '../../authentication/Requester';
 
-import { comics } from '../../dummydata';
+import ComicData from './ComicData';
 
-export default async function retrieve(id: string): Promise<ComicData>
+export default async function retrieve(id: string, requester?: Requester): Promise<ComicData>
 {
-    return comics.get(id) as ComicData;
+    return new ComicData(id, 'imageId');
 }

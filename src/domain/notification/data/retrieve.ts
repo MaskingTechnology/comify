@@ -1,9 +1,9 @@
 
+import type Requester from '../../authentication/Requester';
+
 import NotificationData from './NotificationData.js';
 
-import { notifications } from '../../dummydata';
-
-export default async function retrieve(id: string): Promise<NotificationData>
+export default async function retrieve(id: string, requester?: Requester): Promise<NotificationData>
 {
-    return notifications.get(id) as NotificationData;
+    return new NotificationData(id, 'type', 'senderId', 'receiverId', undefined, undefined);
 }

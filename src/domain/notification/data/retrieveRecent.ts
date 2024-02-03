@@ -1,10 +1,10 @@
 
-import NotificationData from './NotificationData';
+import type Requester from '../../authentication/Requester';
 
-import { notifications } from '../../dummydata';
+import type NotificationData from './NotificationData';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default async function retrieveRecent(recipientId: string): Promise<NotificationData[]>
+export default async function retrieveRecent(recipientId: string, requester?: Requester): Promise<NotificationData[]>
 {
-    return Array.from(notifications.values());
+    return [];
 }

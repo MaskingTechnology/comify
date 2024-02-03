@@ -1,16 +1,18 @@
 
+import type Requester from '../authentication/Requester';
+
 import retrieveRelationsByFollower from '../relation/data/retrieveByFollower';
 
-import type PostView from './PostView';
-import createView from './createView';
+import type PostView from './view/PostView';
+import createView from './view/createView';
 
-import retrieveWithoutCreator from './data/retrieveWithoutCreator';
+import retrieveWithoutCreators from './data/retrieveWithoutCreators';
 
-export default async function explore(): Promise<PostView[]>
+export default async function explore(requester: Requester): Promise<PostView[]>
 {
     const relationsData = await retrieveRelationsByFollower('0');
     const followingIds = relationsData.map(data => data.followingId);
-    const postData = await retrieveWithoutCreator(...followingIds);
+    const postData = await retrieveWithoutCreators(followingIds);
 
     return Promise.all(postData.map(createView));
 }

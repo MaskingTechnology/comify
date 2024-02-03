@@ -1,5 +1,5 @@
 
-import type CreatorView from '../creator/CreatorView';
+import type CreatorView from '../../creator/view/CreatorView';
 
 export default class RelationView
 {

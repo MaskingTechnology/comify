@@ -2,7 +2,7 @@
 import { Middleware, Request, Response, NextHandler, Unauthorized } from 'jitar';
 
 import { IdentityProvider, Session } from '../../authentication/module';
-import { generateKey } from '../../utilities/keys';
+import { generateKey } from '../../utilities/crypto';
 
 type AuthProcedures = {
     loginUrl: string;

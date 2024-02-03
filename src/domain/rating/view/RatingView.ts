@@ -1,7 +1,7 @@
 
-import type CreatorView from '../creator/CreatorView';
-import type PostView from '../post/PostView';
-import type ReactionView from '../reaction/ReactionView';
+import type CreatorView from '../../creator/view/CreatorView';
+import type PostView from '../../post/view/PostView';
+import type ReactionView from '../../reaction/view/ReactionView';
 
 export default class RatingView
 {

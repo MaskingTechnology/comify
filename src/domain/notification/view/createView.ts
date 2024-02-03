@@ -1,9 +1,9 @@
 
-import getRelationView from '../relation/get';
-import getPostView from '../post/get';
-import getReactionView from '../reaction/get';
+import getRelationView from '../../relation/get';
+import getPostView from '../../post/get';
+import getReactionView from '../../reaction/get';
 
-import type NotificationData from './data/NotificationData';
+import type NotificationData from '../data/NotificationData';
 import NotificationView from './NotificationView';
 
 export default async function createView(data: NotificationData): Promise<NotificationView>

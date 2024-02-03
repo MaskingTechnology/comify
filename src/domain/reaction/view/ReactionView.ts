@@ -1,7 +1,7 @@
 
-import type CreatorView from '../creator/CreatorView';
-import type ComicView from '../comic/ComicView';
-import type CommentView from '../comment/CommentView';
+import type CreatorView from '../../creator/view/CreatorView';
+import type ComicView from '../../comic/view/ComicView';
+import type CommentView from '../../comment/view/CommentView';
 
 export default class ReactionView
 {

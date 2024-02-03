@@ -1,13 +1,13 @@
 
-import CreatorData from './CreatorData';
+import type Requester from '../../authentication/Requester';
 
-import { creators } from '../../dummydata';
+import type CreatorData from './CreatorData';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default async function retrieveWithout(...ids: string[]): Promise<CreatorData[]>
+export default async function retrieveWithout(ids: string[], requester?: Requester): Promise<CreatorData[]>
 {
     // This function will filter creators by the given list of ids.
     // Additionally a sort and limit can be applied.
 
-    return Array.from(creators.values());
+    return [];
 }

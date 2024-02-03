@@ -1,5 +1,5 @@
 
-import { TooManySimilarNicknames } from './errors';
+import TooManySimilarNicknames from './errors/TooManySimilarNicknames';
 import retrieveByNickname from './data/retrieveByNickname';
 import retrieveByStartNickname from './data/retrieveByStartNickname';
 
