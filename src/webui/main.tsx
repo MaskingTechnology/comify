@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import HomePage from './pages/Home';
+import Login from './pages/Login';
 import TimelinePage from './pages/Timeline';
 import ExplorePage from './pages/Explore';
 import NotificationsPage from './pages/Notifications';
@@ -19,13 +20,17 @@ const router = createBrowserRouter([
     element: <HomePage />
   },
   {
+    path: '/login',
+    element: <Login />
+  },
+  {
     path: '/timeline',
     element: <TimelinePage />
   },
-  {
-    path: '/explore',
-    element: <ExplorePage />
-  },
+  // {
+  //   path: '/explore',
+  //   element: <ExplorePage />
+  // },
   {
     path: '/notifications',
     element: <NotificationsPage />
@@ -34,10 +39,10 @@ const router = createBrowserRouter([
     path: '/create',
     element: <CreatePage />
   },
-  {
-    path: '/profile',
-    element: <ProfilePage />
-  }
+  // {
+  //   path: '/profile',
+  //   element: <ProfilePage />
+  // }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
