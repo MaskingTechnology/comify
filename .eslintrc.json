@@ -19,6 +19,9 @@
     "rules":
     {
         "@typescript-eslint/ban-types": "off",
+        "@typescript-eslint/no-unused-vars": [ "error", {
+            "argsIgnorePattern": "requester"
+        }],
         "no-return-await": "error",
         "semi": ["error", "always"],
         "eol-last": ["error", "always"],
