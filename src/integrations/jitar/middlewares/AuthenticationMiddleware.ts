@@ -18,12 +18,14 @@ export default class AuthenticationMiddleware implements Middleware
 {
     #identityProvider: IdentityProvider;
     #authProcedures: AuthProcedures;
+    #redirectUrl: string;
     #whiteList: string[];
 
-    constructor(identityProvider: IdentityProvider, authProcedures: AuthProcedures, whiteList: string[])
+    constructor(identityProvider: IdentityProvider, authProcedures: AuthProcedures, redirectUrl: string, whiteList: string[])
     {
         this.#identityProvider = identityProvider;
         this.#authProcedures = authProcedures;
+        this.#redirectUrl = redirectUrl;
         this.#whiteList = whiteList;
     }
 
@@ -110,6 +112,7 @@ export default class AuthenticationMiddleware implements Middleware
         sessions.set(session.key, session);
 
         this.#setAuthorizationHeader(response, session);
+        this.#setRedirectHeader(response, session.key);
 
         return response;
     }
@@ -190,5 +193,10 @@ export default class AuthenticationMiddleware implements Middleware
     #setAuthorizationHeader(response: Response, session: Session): void
     {
         response.setHeader('Authorization', `Bearer ${session.key}`);
+    }
+
+    #setRedirectHeader(response: Response, key: string): void
+    {
+        response.setHeader('Location', `${this.#redirectUrl}?key=${key}`);
     }
 }

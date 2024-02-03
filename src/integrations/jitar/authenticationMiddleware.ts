@@ -8,6 +8,8 @@ const authProcedures = {
     logout: 'domain/authentication/logout'
 };
 
+const redirectUrl = 'http://localhost:5173/login';
+
 const whiteList: string[] = [];
 
-export default new AuthenticationMiddleware(identityProvider, authProcedures, whiteList);
+export default new AuthenticationMiddleware(identityProvider, authProcedures, redirectUrl, whiteList);
