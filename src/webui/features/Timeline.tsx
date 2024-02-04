@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 
-import type RelationView from '../../domain/relation/RelationView';
-import type PostView from '../../domain/post/PostView';
+import type RelationView from '../../domain/relation/view/RelationView';
+import type PostView from '../../domain/post/view/PostView';
 import getTimelinePosts from '../../domain/post/getTimeline';
 
 import { Column } from '../designsystem/module';

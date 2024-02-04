@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import type CreatorView from '../../../../domain/creator/CreatorView';
+import type CreatorView from '../../../../domain/creator/view/CreatorView';
 
 import CreatorIdentity from '../../creator/Identity';
 import Navigation from '../navigation/Navigation';

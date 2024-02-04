@@ -1,5 +1,5 @@
 {
     "./domain/post/data/retrieve": { "default": {  "access": "protected" } },
-    "./domain/post/data/retrieveByCreator": { "default": {  "access": "protected" } },
-    "./domain/post/data/retrieveWithoutCreator": { "default": {  "access": "protected" } }
+    "./domain/post/data/retrieveByCreators": { "default": {  "access": "protected" } },
+    "./domain/post/data/retrieveWithoutCreators": { "default": {  "access": "protected" } }
 }

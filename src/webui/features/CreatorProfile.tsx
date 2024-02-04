@@ -1,12 +1,16 @@
 
 import React from 'react';
 
-import exploreRelations from '../../domain/relation/explore';
-
+import ImageView from '../../domain/image/view/ImageView';
+import CreatorView from '../../domain/creator/view/CreatorView';
+import RelationView from '../../domain/relation/view/RelationView';
 import CreatorProfile from '../components/relation/Profile';
 
-const relations = await exploreRelations();
-const relation = relations[0];
+const IMAGE_URL = 'https://masking.tech/images/peter.jpg';
+
+const portrait = new ImageView(IMAGE_URL);
+const identity = new CreatorView('0', 'Peter van Vliet', 'petermasking', portrait, new Date(), 0, 0, 0);
+const relation = new RelationView('0', identity, undefined);
 
 export default function Feature()
 {

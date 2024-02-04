@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import type RelationView from '../../../domain/relation/RelationView';
+import type RelationView from '../../../domain/relation/view/RelationView';
 
 import { Panel } from '../../designsystem/module';
 

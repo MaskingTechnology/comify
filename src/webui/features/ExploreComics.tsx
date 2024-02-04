@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 
-import type PostView from '../../domain/post/PostView';
-import type RelationView from '../../domain/relation/RelationView';
+import type PostView from '../../domain/post/view/PostView';
+import type RelationView from '../../domain/relation/view/RelationView';
 import explorePosts from '../../domain/post/explore';
 
 import { Column } from '../designsystem/module';

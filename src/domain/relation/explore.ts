@@ -7,7 +7,7 @@ import createCreatorView from '../creator/view/createView';
 import RelationView from './view/RelationView';
 import retrieveDataByFollower from './data/retrieveByFollower';
 
-export default async function explore(requester: Requester): Promise<RelationView[]>
+export default async function explore(requester?: Requester): Promise<RelationView[]>
 {
     const followerData = await retrieveDataByFollower('0');
     const followingIds = followerData.map(data => data.followingId);

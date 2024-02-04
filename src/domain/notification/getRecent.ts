@@ -5,9 +5,9 @@ import retrieveRecent from './data/retrieveRecent';
 import type NotificationView from './view/NotificationView';
 import createView from './view/createView';
 
-export default async function getRecent(requester: Requester): Promise<NotificationView[]>
+export default async function getRecent(requester?: Requester): Promise<NotificationView[]>
 {
-    const data = await retrieveRecent(requester.id);
+    const data = await retrieveRecent(requester?.id ?? '0');
 
     return Promise.all(data.map(createView));
 }

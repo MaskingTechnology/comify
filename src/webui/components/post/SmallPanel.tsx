@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import type PostView from '../../../domain/post/PostView';
+import type PostView from '../../../domain/post/view/PostView';
 
 import { Column, Panel, Row } from '../../designsystem/module';
 

@@ -8,9 +8,9 @@ import createView from './view/createView';
 
 import retrieveWithoutCreators from './data/retrieveWithoutCreators';
 
-export default async function explore(requester: Requester): Promise<PostView[]>
+export default async function explore(requester?: Requester): Promise<PostView[]>
 {
-    const relationsData = await retrieveRelationsByFollower('0');
+    const relationsData = await retrieveRelationsByFollower(requester?.id ?? '0');
     const followingIds = relationsData.map(data => data.followingId);
     const postData = await retrieveWithoutCreators(followingIds);
 

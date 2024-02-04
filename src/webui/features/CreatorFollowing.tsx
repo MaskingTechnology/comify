@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 
-import type RelationView from '../../domain/relation/RelationView';
+import type RelationView from '../../domain/relation/view/RelationView';
 import getFollowing from '../../domain/relation/getFollowing';
 
 import { Column } from '../designsystem/module';
