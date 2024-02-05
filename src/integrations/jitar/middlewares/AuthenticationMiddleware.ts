@@ -138,14 +138,21 @@ export default class AuthenticationMiddleware implements Middleware
 
     async #refreshSession(session: Session): Promise<Session>
     {
-        const newSession = await this.#identityProvider.refresh(session);
+        try
+        {
+            const newSession = await this.#identityProvider.refresh(session);
 
-        newSession.key = generateKey();
+            newSession.key = generateKey();
 
-        sessions.delete(session.key as string);
-        sessions.set(newSession.key, newSession);
+            sessions.delete(session.key as string);
+            sessions.set(newSession.key, newSession);
 
-        return newSession;
+            return newSession;
+        }
+        catch (error)
+        {
+            throw new Unauthorized('Session expired');
+        }
     }
 
     async #destroySession(request: Request, next: NextHandler): Promise<Response>
