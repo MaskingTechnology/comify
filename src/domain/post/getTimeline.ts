@@ -7,9 +7,9 @@ import type PostView from './view/PostView';
 import retrieveByCreators from './data/retrieveByCreators';
 import createView from './view/createView';
 
-export default async function getTimeline(requester?: Requester): Promise<PostView[]>
+export default async function getTimeline(requester: Requester): Promise<PostView[]>
 {
-    const followerData = await retrieveFollowerData(requester?.id ?? '0', requester);
+    const followerData = await retrieveFollowerData(requester?.id);
     const followingIds = followerData.map(data => data.followingId);
     const postData = await retrieveByCreators(followingIds);
 
