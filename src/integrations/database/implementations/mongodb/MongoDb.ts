@@ -279,7 +279,7 @@ export default class MongoDB implements Database
 
     #buildRecordData(data: Document, fields?: RecordField[]): RecordData
     {
-        let result: RecordData = {};
+        const result: RecordData = {};
 
         if (fields === undefined)
         {

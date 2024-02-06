@@ -22,4 +22,4 @@ export default function AppContextProvider({ children }: Props)
     return <AppContext.Provider value={{ identity, setIdentity }}>
         {children}
     </AppContext.Provider>;
-};
+}
