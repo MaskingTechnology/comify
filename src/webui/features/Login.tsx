@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import johnDoe from '../../domain/authentication/johnDoe';
 import getMe from '../../domain/creator/getMe';
 
 import { useAppContext } from '../AppContext';
@@ -13,7 +14,7 @@ export default function Feature()
 
     const logMeIn = async () =>
     {
-        const me = await getMe();
+        const me = await getMe(johnDoe);
 
         context.setIdentity(me);
 

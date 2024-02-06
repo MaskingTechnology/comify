@@ -7,7 +7,7 @@ import createData from './createData';
 
 export default async function retrieveByNickname(nickname: string): Promise<CreatorData | undefined>
 {
-    const record = await database.findRecord(RECORD_TYPE, { nickName: { EQUALS: nickname } });
+    const record = await database.findRecord(RECORD_TYPE, { nickname: { EQUALS: nickname } });
 
     return record !== undefined
         ? createData(record)
