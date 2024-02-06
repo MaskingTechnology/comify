@@ -1,4 +1,21 @@
 
-import zodCreator from './implementations/zod/create';
+import { Validation } from './definitions/interfaces.js';
+import { UnknownImplementation } from './definitions/errors.js';
 
-export default zodCreator();
+import createZod from './implementations/zod/create.js';
+
+const implementations = new Map<string, () => Validation>([
+    ['zod', createZod]
+]);
+
+const DEFAULT_VALIDATION_IMPLEMENTATION = 'zod';
+
+const implementationName = process.env.VALIDATION_IMPLEMENTATION ?? DEFAULT_VALIDATION_IMPLEMENTATION;
+const creator = implementations.get(implementationName.toLowerCase());
+
+if (creator === undefined)
+{
+    throw new UnknownImplementation(implementationName);
+}
+
+export default creator();

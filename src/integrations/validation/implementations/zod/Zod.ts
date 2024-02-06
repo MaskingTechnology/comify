@@ -4,18 +4,20 @@ import { ZodError, ZodIssue, z } from 'zod';
 import { Validation } from '../../definitions/interfaces';
 import { Message, ValidationSchema, Validations } from '../../definitions/types';
 import { FieldTypes } from '../../definitions/constants';
-import { InvalidValidator, ValidationError } from '../../definitions/errors.js';
+import { UnknownValidator, InvalidObject } from '../../definitions/errors.js';
+
+const MAX_EMAIL_LENGTH = 320;
 
 export default class Zod implements Validation
 {
-    #validations: Map<string, any> = new Map();
+    #validations: Map<string, Function> = new Map();
 
     constructor()
     {
         this.#validations.set(FieldTypes.STRING, (value: Validations['STRING']) => this.#validateString(value));
         this.#validations.set(FieldTypes.NUMBER, (value: Validations['NUMBER']) => this.#validateNumber(value));
         this.#validations.set(FieldTypes.BOOLEAN, (value: Validations['BOOLEAN']) => this.#validateBoolean(value));
-        this.#validations.set(FieldTypes.DATE, (value: Validations['BOOLEAN']) => this.#validateDate(value));
+        this.#validations.set(FieldTypes.DATE, (value: Validations['DATE']) => this.#validateDate(value));
         this.#validations.set(FieldTypes.UUID, (value: Validations['UUID']) => this.#validateUuid(value));
         this.#validations.set(FieldTypes.EMAIL, (value: Validations['EMAIL']) => this.#validateEmail(value));
         this.#validations.set(FieldTypes.ARRAY, (value: Validations['ARRAY']) => this.#validateArray(value));
@@ -31,7 +33,7 @@ export default class Zod implements Validation
                 return partialSchema.extend({ [key]: fieldValidation });
             },
                 z.object({})
-            );
+            ).strict();
 
         try
         {
@@ -43,16 +45,16 @@ export default class Zod implements Validation
             {
                 const issues = error.issues;
 
-                const messages = this.#getMessage(issues, schema);
+                const messages = this.#getMessages(issues, schema);
 
-                throw new ValidationError(messages);
+                throw new InvalidObject(messages);
             }
 
             throw error;
         }
     }
 
-    #getValidation(schema: Partial<Validations | Message>): z.ZodType<any, any>
+    #getValidation(schema: Partial<Validations | Message>): z.ZodType<unknown, z.ZodTypeDef>
     {
         for (const [key, validation] of Object.entries(schema))
         {
@@ -62,38 +64,38 @@ export default class Zod implements Validation
 
             if (validator === undefined)
             {
-                throw new InvalidValidator(key);
+                throw new UnknownValidator(key);
             }
 
             return validator(validation);
         }
 
-        throw new InvalidValidator();
+        return z.never();
     }
 
     #validateString(value: Validations['STRING'])
     {
-        let result = z.string();
+        let validation = z.string();
 
-        if (value.minLength !== undefined) result = result.min(value.minLength);
-        if (value.maxLength !== undefined) result = result.max(value.maxLength);
-        if (value.pattern !== undefined) result = result.regex(new RegExp(value.pattern));
+        if (value.minLength !== undefined) validation = validation.min(value.minLength);
+        if (value.maxLength !== undefined) validation = validation.max(value.maxLength);
+        if (value.pattern !== undefined) validation = validation.regex(new RegExp(value.pattern));
 
         return value.required
-            ? result
-            : result.optional();
+            ? validation
+            : validation.optional();
     }
 
     #validateNumber(value: Validations['NUMBER'])
     {
-        let result = z.number();
+        let validation = z.number();
 
-        if (value.minValue !== undefined) result = result.min(value.minValue);
-        if (value.maxValue !== undefined) result = result.max(value.maxValue);
+        if (value.minValue !== undefined) validation = validation.min(value.minValue);
+        if (value.maxValue !== undefined) validation = validation.max(value.maxValue);
 
         return value.required
-            ? result
-            : result.optional();
+            ? validation
+            : validation.optional();
     }
 
     #validateBoolean(value: Validations['BOOLEAN'])
@@ -120,32 +122,35 @@ export default class Zod implements Validation
     #validateEmail(value: Validations['EMAIL'])
     {
         return value.required
-            ? z.string().email()
-            : z.string().email().optional();
+            ? z.string().email().max(MAX_EMAIL_LENGTH)
+            : z.string().email().max(MAX_EMAIL_LENGTH).optional();
     }
 
     #validateArray(value: Validations['ARRAY'])
     {
-        let result = z.array(this.#getValidation(value.validations));
+        let validation = z.array(this.#getValidation(value.validations));
 
-        if (value.minLength !== undefined) result = result.min(value.minLength);
-        if (value.maxLength !== undefined) result = result.max(value.maxLength);
+        if (value.minLength !== undefined) validation = validation.min(value.minLength);
+        if (value.maxLength !== undefined) validation = validation.max(value.maxLength);
 
         return value.required
-            ? result
-            : result.optional();
+            ? validation
+            : validation.optional();
     }
 
-    #getMessage(issues: ZodIssue[], scheme: ValidationSchema)
+    #getMessages(issues: ZodIssue[], scheme: ValidationSchema)
     {
         const messages = new Map<string, string>();
 
         for (const issue of issues)
         {
-            const path = String(issue.path[0]);
-            const message = this.#getMessageByField(path, scheme);
+            const field = issue.code === 'unrecognized_keys'
+                ? issue.keys.join(', ')
+                : String(issue.path[0]);
 
-            messages.set(path, message);
+            const message = this.#getMessageByField(field, scheme);
+
+            messages.set(field, message);
         }
 
         return messages;
@@ -155,6 +160,11 @@ export default class Zod implements Validation
     {
         const field = scheme[path] as Message;
 
-        return field?.message ?? 'Invalid field';
+        if (field === undefined)
+        {
+            return 'Unrecognized field(s)';
+        }
+
+        return field.message ?? 'Invalid field';
     }
 }

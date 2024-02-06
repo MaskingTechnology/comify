@@ -1,5 +1,7 @@
 
+import { ValidationSchema } from './types';
+
 export interface Validation
 {
-    validate(data: unknown, schema: unknown): void;
+    validate(data: unknown, schema: ValidationSchema): void;
 }

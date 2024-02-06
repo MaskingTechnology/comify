@@ -1,19 +1,37 @@
 
-export class InvalidValidator extends Error
+export class ValidationError extends Error
 {
-    constructor(name?: string) 
+    constructor(message?: string)
     {
-        super(`The validator ${name} is not valid`);
+        super(message ?? 'Validation error');
     }
 }
 
-export class ValidationError extends Error
+export class UnknownImplementation extends ValidationError
+{
+    constructor(name?: string) 
+    {
+        super(`Unknown validation implementation: ${name}`);
+    }
+}
+
+export class UnknownValidator extends ValidationError
+{
+    constructor(name?: string) 
+    {
+        super(`Unknown validator: ${name}`);
+    }
+}
+
+export class InvalidObject extends ValidationError
 {
     #messages: Map<string, string>;
 
     constructor(messages: Map<string, string> = new Map())
     {
-        super('Validation error');
+        const keys = [...messages.keys()].join(', ');
+
+        super(`Invalid field(s): ${keys}`);
 
         this.#messages = messages;
     }
