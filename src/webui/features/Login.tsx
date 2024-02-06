@@ -4,22 +4,23 @@ import { useNavigate } from 'react-router-dom';
 
 import getMe from '../../domain/creator/getMe';
 
+import { useAppContext } from '../AppContext';
+
 export default function Feature()
 {
     const navigate = useNavigate();
+    const context = useAppContext();
 
     const logMeIn = async () =>
     {
         const me = await getMe();
-        console.log(me);
+
+        context.setIdentity(me);
 
         navigate('/timeline');
     };
 
-    useEffect(() =>
-    {
-        logMeIn();
-    }, []);
+    useEffect(() => { logMeIn(); }, []);
 
     return <>Logging in...</>;
 }
