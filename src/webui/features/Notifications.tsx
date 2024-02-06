@@ -5,8 +5,6 @@ import type RelationView from '../../domain/relation/view/RelationView';
 import type NotificationView from '../../domain/notification/view/NotificationView';
 import getRecentNotifications from '../../domain/notification/getRecent';
 
-import ensureLogin from '../utils/ensureLogin';
-
 import { Column } from '../designsystem/module';
 
 import { NotificationPanelList } from '../components/module';
@@ -17,7 +15,7 @@ export default function Feature()
 
     const getNotifications = async () =>
     {
-        const notifications = await ensureLogin(getRecentNotifications());
+        const notifications = await getRecentNotifications();
         setNotifications(notifications);
     };
 

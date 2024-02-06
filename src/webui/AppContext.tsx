@@ -3,12 +3,12 @@ import React, { useContext, useState } from 'react';
 
 import type CreatorView from '../domain/creator/view/CreatorView';
 
-type ContextProps = {
+type Context = {
     identity: CreatorView | undefined;
     setIdentity: (requester: CreatorView | undefined) => void;
 };
 
-export const AppContext = React.createContext({} as ContextProps);
+export const AppContext = React.createContext({} as Context);
 export const useAppContext = () => useContext(AppContext);
 
 export type Props = {

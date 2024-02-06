@@ -4,8 +4,6 @@ import React, { useState, useEffect } from 'react';
 import type RelationView from '../../domain/relation/view/RelationView';
 import getFollowing from '../../domain/relation/getFollowing';
 
-import ensureLogin from '../utils/ensureLogin';
-
 import { Column } from '../designsystem/module';
 
 import { OrderAndSearchRow, RelationPanelList } from '../components/module';
@@ -16,7 +14,7 @@ export default function Feature()
 
     const getRelations = async () =>
     {
-        const relations = await ensureLogin(getFollowing('0'));
+        const relations = await getFollowing('0');
         setRelations(relations);
     };
 

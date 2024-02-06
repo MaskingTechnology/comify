@@ -5,8 +5,6 @@ import type RelationView from '../../domain/relation/view/RelationView';
 import exploreRelations from '../../domain/relation/explore';
 import johnDoe from '../../domain/authentication/johnDoe';
 
-import ensureLogin from '../utils/ensureLogin';
-
 import { Column } from '../designsystem/module';
 
 import { OrderAndSearchRow, RelationPanelList } from '../components/module';
@@ -17,7 +15,7 @@ export default function Feature()
 
     const getRelations = async () =>
     {
-        const relations = await ensureLogin(exploreRelations(johnDoe));
+        const relations = await exploreRelations(johnDoe);
         setRelations(relations);
     };
 

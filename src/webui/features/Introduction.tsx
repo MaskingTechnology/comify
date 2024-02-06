@@ -1,7 +1,6 @@
 
 import React from 'react';
-
-import getLoginUrl from '../../domain/authentication/getLoginUrl';
+import { useNavigate } from 'react-router-dom';
 
 import { Button, Column, Image, Panel, Row, Text } from '../designsystem/module';
 
@@ -11,18 +10,13 @@ import introductionImage from '../../assets/images/introduction.png';
 
 export default function Feature()
 {
-    const getMeIn = async () =>
-    {
-        const loginUrl = await getLoginUrl();
-
-        location.href = loginUrl;
-    };
+    const navigate = useNavigate();
 
     return <Panel>
         <Column gap='medium' alignX='stretch'>
             <Row alignX='justify' alignY='top'>
                 <Logo />
-                <Button type='primary' text='Get in' clickHandler={() => getMeIn()} />
+                <Button type='primary' text='Get in' clickHandler={() => navigate('/getin')} />
             </Row>
             <Image source={introductionImage} width='600px' />
             <Text size='large' value='Take or upload a picture. Add speech bubbles. Share with friends.' />

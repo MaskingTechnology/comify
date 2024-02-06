@@ -3,6 +3,7 @@ import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import HomePage from './pages/Home';
+import GetIn from './pages/GetIn';
 import Login from './pages/Login';
 import TimelinePage from './pages/Timeline';
 import ExplorePage from './pages/Explore';
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <HomePage />
+    },
+    {
+        path: '/getin',
+        element: <GetIn />
     },
     {
         path: '/login',
