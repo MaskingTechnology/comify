@@ -7,6 +7,8 @@ import type RelationView from '../../domain/relation/view/RelationView';
 import explorePosts from '../../domain/post/explore';
 import johnDoe from '../../domain/authentication/johnDoe';
 
+import ensureLogin from '../utils/ensureLogin';
+
 import { Column } from '../designsystem/module';
 
 import { OrderRow, PostPanelList } from '../components/module';
@@ -17,7 +19,7 @@ export default function Feature()
 
     const getPosts = async () =>
     {
-        const posts = await explorePosts(johnDoe);
+        const posts = await ensureLogin(explorePosts(johnDoe));
         setPosts(posts);
     };
 

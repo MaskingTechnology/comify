@@ -6,6 +6,8 @@ import type PostView from '../../domain/post/view/PostView';
 import getTimelinePosts from '../../domain/post/getTimeline';
 import johnDoe from '../../domain/authentication/johnDoe';
 
+import ensureLogin from '../utils/ensureLogin';
+
 import { Column } from '../designsystem/module';
 
 import { OrderRow, PostPanelList } from '../components/module';
@@ -16,7 +18,8 @@ export default function Feature()
 
     const getPosts = async () =>
     {
-        const posts = await getTimelinePosts(johnDoe);
+        const posts = await ensureLogin(getTimelinePosts(johnDoe));
+
         setPosts(posts);
     };
 
