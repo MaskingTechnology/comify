@@ -23,7 +23,7 @@ export class UnknownValidator extends ValidationError
     }
 }
 
-export class InvalidObject extends ValidationError
+export class InvalidData extends ValidationError
 {
     #messages: Map<string, string>;
 

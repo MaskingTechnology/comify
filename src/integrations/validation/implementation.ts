@@ -1,10 +1,10 @@
 
-import { Validation } from './definitions/interfaces.js';
-import { UnknownImplementation } from './definitions/errors.js';
+import { Validator } from './definitions/interfaces';
+import { UnknownImplementation } from './definitions/errors';
 
-import createZod from './implementations/zod/create.js';
+import createZod from './implementations/zod/create';
 
-const implementations = new Map<string, () => Validation>([
+const implementations = new Map<string, () => Validator>([
     ['zod', createZod]
 ]);
 

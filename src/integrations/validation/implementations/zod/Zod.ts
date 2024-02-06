@@ -1,16 +1,21 @@
 
-import { ZodError, ZodIssue, z } from 'zod';
+import { ZodError, ZodIssue, ZodType, z } from 'zod';
 
-import { Validation } from '../../definitions/interfaces';
+import { Validator } from '../../definitions/interfaces';
 import { Message, ValidationSchema, Validations } from '../../definitions/types';
 import { FieldTypes } from '../../definitions/constants';
-import { UnknownValidator, InvalidObject } from '../../definitions/errors.js';
+import { UnknownValidator, InvalidData } from '../../definitions/errors';
+
+type ValidatorFunction = (value: Validations[keyof Validations]) => z.ZodType<unknown, z.ZodTypeDef> | z.ZodArray<z.ZodType<unknown, z.ZodTypeDef>>;
 
 const MAX_EMAIL_LENGTH = 320;
 
-export default class Zod implements Validation
+// Zod is so type heavy that we've chosen for inferred types to be used.
+// This is a trade-off between readability and verbosity.
+
+export default class Zod implements Validator
 {
-    #validations: Map<string, Function> = new Map();
+    #validations: Map<string, ValidatorFunction> = new Map();
 
     constructor()
     {
@@ -25,19 +30,11 @@ export default class Zod implements Validation
 
     validate(data: unknown, schema: ValidationSchema): void
     {
-        const result = Object.entries(schema)
-            .reduce((partialSchema, [key, value]) => 
-            {
-                const fieldValidation = this.#getValidation(value);
-
-                return partialSchema.extend({ [key]: fieldValidation });
-            },
-                z.object({})
-            ).strict();
-
         try
         {
-            result.parse(data);
+            const validator = this.#buildValidator(schema);
+
+            validator.parse(data);
         }
         catch (error: unknown)
         {
@@ -47,14 +44,27 @@ export default class Zod implements Validation
 
                 const messages = this.#getMessages(issues, schema);
 
-                throw new InvalidObject(messages);
+                throw new InvalidData(messages);
             }
 
             throw error;
         }
     }
 
-    #getValidation(schema: Partial<Validations | Message>): z.ZodType<unknown, z.ZodTypeDef>
+    #buildValidator(schema: ValidationSchema)
+    {
+        return Object.entries(schema)
+            .reduce((partialSchema, [key, value]) => 
+            {
+                const fieldValidation = this.#getValidation(value);
+
+                return partialSchema.extend({ [key]: fieldValidation });
+            },
+                z.object({})
+            ).strict();
+    }
+
+    #getValidation(schema: Partial<Validations | Message>)
     {
         for (const [key, validation] of Object.entries(schema))
         {
@@ -81,9 +91,7 @@ export default class Zod implements Validation
         if (value.maxLength !== undefined) validation = validation.max(value.maxLength);
         if (value.pattern !== undefined) validation = validation.regex(new RegExp(value.pattern));
 
-        return value.required
-            ? validation
-            : validation.optional();
+        return this.#checkRequired(value, validation);
     }
 
     #validateNumber(value: Validations['NUMBER'])
@@ -93,46 +101,51 @@ export default class Zod implements Validation
         if (value.minValue !== undefined) validation = validation.min(value.minValue);
         if (value.maxValue !== undefined) validation = validation.max(value.maxValue);
 
-        return value.required
-            ? validation
-            : validation.optional();
+        return this.#checkRequired(value, validation);
     }
 
     #validateBoolean(value: Validations['BOOLEAN'])
     {
-        return value.required
-            ? z.boolean()
-            : z.boolean().optional();
+        const validation = z.boolean();
+
+        return this.#checkRequired(value, validation);
     }
 
     #validateDate(value: Validations['DATE'])
     {
-        return value.required
-            ? z.date()
-            : z.date().optional();
+        const validation = z.date();
+
+        return this.#checkRequired(value, validation);
     }
 
     #validateUuid(value: Validations['UUID'])
     {
-        return value.required
-            ? z.string().uuid()
-            : z.string().uuid().optional();
+        const validation = z.string().uuid();
+
+        return this.#checkRequired(value, validation);
     }
 
     #validateEmail(value: Validations['EMAIL'])
     {
-        return value.required
-            ? z.string().email().max(MAX_EMAIL_LENGTH)
-            : z.string().email().max(MAX_EMAIL_LENGTH).optional();
+        const validation = z.string().email().max(MAX_EMAIL_LENGTH);
+
+        return this.#checkRequired(value, validation);
     }
 
     #validateArray(value: Validations['ARRAY'])
     {
-        let validation = z.array(this.#getValidation(value.validations));
+        let validation = value.validations === undefined
+            ? z.array(z.unknown())
+            : z.array(this.#getValidation(value.validations));
 
         if (value.minLength !== undefined) validation = validation.min(value.minLength);
         if (value.maxLength !== undefined) validation = validation.max(value.maxLength);
 
+        return this.#checkRequired(value, validation);
+    }
+
+    #checkRequired(value: Validations[keyof Validations], validation: ZodType)
+    {
         return value.required
             ? validation
             : validation.optional();

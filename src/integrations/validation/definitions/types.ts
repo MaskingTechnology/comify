@@ -3,42 +3,31 @@ import { FieldTypes } from './constants';
 
 export type ValidationType = keyof typeof FieldTypes;
 
-type Properties = {
+type DefaultProperties = {
     required: boolean;
 };
 
-export type StringProperties = Properties & {
+export type StringProperties = DefaultProperties & {
     minLength?: number,
     maxLength?: number;
     pattern?: string;
 };
 
-export type NumberProperties = Properties & {
+export type NumberProperties = DefaultProperties & {
     minValue?: number,
     maxValue?: number;
 };
 
-export type BooleanProperties = Properties & {
-
-};
-
-export type DateProperties = Properties & {
-
-};
-
-export type UUIDProperties = Properties & {
-
-};
-
-export type EmailProperties = Properties & {
-
-};
-
-export type ArrayProperties = Properties & {
+export type ArrayProperties = DefaultProperties & {
     minLength?: number;
     maxLength?: number;
-    validations: Partial<Validations>;
+    validations?: Partial<Validations>;
 };
+
+export type BooleanProperties = DefaultProperties;
+export type DateProperties = DefaultProperties;
+export type UUIDProperties = DefaultProperties;
+export type EmailProperties = DefaultProperties;
 
 export type Message = {
     message: string;
