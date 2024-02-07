@@ -1,3 +1,3 @@
 
-export { default as HomeLayout } from './home/Home';
-export { default as ApplicationLayout } from './application/Application';
+export { default as CenteredLayout } from './centered/Centered';
+export { default as SidebarLayout } from './sidebar/Sidebar';

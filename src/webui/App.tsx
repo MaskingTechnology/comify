@@ -1,12 +1,18 @@
 
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
-import AppContext from './AppContext';
-import Routes from './Routes';
+import Guest from './pages/Guest';
+import Application from './pages/Application';
+
+import { useAppContext } from './AppContext';
 
 export default function App()
 {
-    return <AppContext>
-        <Routes />
-    </AppContext>;
+    const context = useAppContext();
+    const page = context.identity ? <Application /> : <Guest />;
+
+    return <BrowserRouter>
+        {page}
+    </BrowserRouter>;
 }

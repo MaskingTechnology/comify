@@ -6,7 +6,7 @@ type ViewProps = {
 };
 
 export type Props = {
-    view: React.ComponentType<ViewProps>;
+    element: React.ComponentType<ViewProps>;
     children: React.ReactNode;
 };
 
@@ -49,9 +49,9 @@ export default class Component extends React.Component<Props, State>
     {
         if (this.state.error !== undefined)
         {
-            const View = this.props.view;
+            const Element = this.props.element;
 
-            return <View error={this.state.error} />;
+            return <Element error={this.state.error} />;
         }
 
         return this.props.children;

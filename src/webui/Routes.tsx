@@ -1,52 +1,31 @@
 
 import React from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
-import HomePage from './pages/Home';
-import GetIn from './pages/GetIn';
-import Login from './pages/Login';
-import TimelinePage from './pages/Timeline';
-import ExplorePage from './pages/Explore';
-import NotificationsPage from './pages/Notifications';
-import CreatePage from './pages/Create';
-import ProfilePage from './pages/Profile';
+import { ErrorBoundary } from './components/module';
 
-const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <HomePage />
-    },
-    {
-        path: '/getin',
-        element: <GetIn />
-    },
-    {
-        path: '/login',
-        element: <Login />
-    },
-    {
-        path: '/timeline',
-        element: <TimelinePage />
-    },
-    {
-        path: '/explore',
-        element: <ExplorePage />
-    },
-    {
-        path: '/notifications',
-        element: <NotificationsPage />
-    },
-    {
-        path: '/create',
-        element: <CreatePage />
-    },
-    {
-        path: '/profile',
-        element: <ProfilePage />
-    }
-]);
+import ErrorHandler from './features/ErrorHandler';
+import Introduction from './features/Introduction';
+import GetIn from './features/GetIn';
+import Login from './features/Login';
+import Timeline from './features/Timeline';
+import Explore from './features/Explore';
+import Notifications from './features/Notifications';
+import CreateComic from './features/CreateComic';
+import Profile from './features/Profile';
 
-export default function Routes()
+export default function Component()
 {
-    return <RouterProvider router={router} />;
+    return <ErrorBoundary element={ErrorHandler}>
+        <Routes>
+            <Route path="/" element={<Introduction />} />
+            <Route path="/getin" element={<GetIn />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/timeline" element={<Timeline />} />
+            <Route path="/explore" element={<Explore />} />
+            <Route path="/notifications" element={<Notifications />} />
+            <Route path="/create" element={<CreateComic />} />
+            <Route path="/profile" element={<Profile />} />
+        </Routes>
+    </ErrorBoundary>;
 }
