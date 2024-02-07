@@ -1,9 +1,11 @@
 
-import type PostView from './PostView';
-import retrieve from './data/retrieve';
-import createView from './createView';
+import type Requester from '../authentication/Requester';
 
-export default async function get(id: string): Promise<PostView>
+import type PostView from './view/PostView';
+import retrieve from './data/retrieve';
+import createView from './view/createView';
+
+export default async function get(id: string, requester?: Requester): Promise<PostView>
 {
     const data = await retrieve(id);
 

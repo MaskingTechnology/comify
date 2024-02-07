@@ -1,8 +1,8 @@
 
 import React from 'react';
 
-import type RelationView from '../../../domain/relation/RelationView';
-import type NotificationView from '../../../domain/notification/NotificationView';
+import type RelationView from '../../../domain/relation/view/RelationView';
+import type NotificationView from '../../../domain/notification/view/NotificationView';
 
 import { Column } from '../../designsystem/module';
 

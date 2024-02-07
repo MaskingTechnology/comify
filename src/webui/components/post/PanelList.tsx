@@ -1,8 +1,8 @@
 
 import React from 'react';
 
-import type PostView from '../../../domain/post/PostView';
-import type RelationView from '../../../domain/relation/RelationView';
+import type PostView from '../../../domain/post/view/PostView';
+import type RelationView from '../../../domain/relation/view/RelationView';
 
 import { Column } from '../../designsystem/module';
 

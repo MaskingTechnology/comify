@@ -1,9 +1,10 @@
 
 import React, { useState, useEffect } from 'react';
 
-import type RelationView from '../../domain/relation/RelationView';
-import type PostView from '../../domain/post/PostView';
+import type RelationView from '../../domain/relation/view/RelationView';
+import type PostView from '../../domain/post/view/PostView';
 import getTimelinePosts from '../../domain/post/getTimeline';
+import johnDoe from '../../domain/authentication/johnDoe';
 
 import { Column } from '../designsystem/module';
 
@@ -15,7 +16,8 @@ export default function Feature()
 
     const getPosts = async () =>
     {
-        const posts = await getTimelinePosts();
+        const posts = await getTimelinePosts(johnDoe);
+
         setPosts(posts);
     };
 

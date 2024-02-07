@@ -1,68 +1,66 @@
 
 import { describe, it, expect } from 'vitest';
 
-import { TooManySimilarNickNames, login, NICKNAMES, SIGNUPS } from './_fixtures/login.fixture';
+import { TooManySimilarNicknames, login, NICKNAMES, LOGINS } from './_fixtures/login.fixture';
 
 describe('domain/authentication', () =>
 {
-    describe('.login', () =>
+    describe('.login(identity)', () =>
     {
-        it('.login with an existing nickname', async () =>
+        it('should login with an existing email', async () =>
         {
-            const creator = await login(SIGNUPS.NAME_NICKNAME_EXISTING);
+            const requester = await login(LOGINS.LOGIN_WITH_EXISTING_EMAIL);
 
-            expect(creator.nickName).toBe(NICKNAMES.EXISTING_NICKNAME);
-
+            expect(requester.nickname).toBe(NICKNAMES.EXISTING_NICKNAME);
         });
 
-        it('.login with a non existing nickname', async () =>
+        it('should register with an unknown nickname', async () =>
         {
-            const creator = await login(SIGNUPS.NAME_NICKNAME_NOT_EXISTING);
+            const requester = await login(LOGINS.REGISTER_WITH_UNKNOWN_NICKNAME);
 
-            expect(creator.nickName).toBe(NICKNAMES.NON_EXISTING_NICKNAME);
-
+            expect(requester.nickname).toBe(NICKNAMES.CREATED_FROM_FULL_NAME);
         });
 
-        it('.login with a duplicate nickname', async () =>
+        it('should register with a duplicate nickname', async () =>
         {
-            const creator = await login(SIGNUPS.NAME_DUPLICATE_NICKNAME);
+            const requester = await login(LOGINS.REGISTER_WITH_DUPLICATE_NICKNAME);
 
-            expect(creator.nickName).toBe(NICKNAMES.NAME_DUPLICATE_NICKNAME);
+            expect(requester.nickname).toBe(NICKNAMES.DEDUPLICATED_NICKNAME);
         });
 
-        it('.login with spaces in nickname', async () =>
+        it('should register with multiple occurrences of nickname', async () =>
         {
-            const creator = await login(SIGNUPS.NAME_WITH_SPACES_NICKNAME);
+            const requester = await login(LOGINS.REGISTER_WITH_MULTIPLE_OCCURRENCES_NICKNAME);
 
-            expect(creator.nickName).toBe(NICKNAMES.NAME_SPACED_NICKNAME);
+            expect(requester.nickname).toBe(NICKNAMES.NEXT_OCCURRED_NICKNAME);
         });
 
-        it('.login with underscores in nickname', async () =>
+        it('should NOT register with too many occurrences nickname', async () =>
         {
-            const creator = await login(SIGNUPS.NAME_WITH_UNDERSCORES_NICKNAME);
+            const promise = login(LOGINS.REGISTER_WITH_TOO_MANY_SIMILAR_NICKNAME);
 
-            expect(creator.nickName).toBe(NICKNAMES.NAME_UNDERSCORE_NICKNAME);
+            expect(promise).rejects.toStrictEqual(new TooManySimilarNicknames());
         });
 
-        it('.login with spaces & underscores in nickname', async () =>
+        it('should register with spaces in nickname', async () =>
         {
-            const creator = await login(SIGNUPS.NAME_WITH_SPACES_UNDERSCORES_NICKNAME);
+            const requester = await login(LOGINS.REGISTER_WITH_SPACED_NICKNAME);
 
-            expect(creator.nickName).toBe(NICKNAMES.NAME_SPACES_UNDERSCORES_NICKNAME);
+            expect(requester.nickname).toBe(NICKNAMES.DESPACED_NICKNAME);
         });
 
-        it('.login with multiple occurences of nickname', async () =>
+        it('should register with underscores in nickname', async () =>
         {
-            const creator = await login(SIGNUPS.NAME_WITH_MULTIPLE_OCCURENCES_NICKNAME);
+            const requester = await login(LOGINS.REGISTER_WITH_UNDERSCORED_NICKNAME);
 
-            expect(creator.nickName).toBe(NICKNAMES.NAME_MULTIPLE_OCCURENCES_NICKNAME);
+            expect(requester.nickname).toBe(NICKNAMES.DEUNDERSCORED_NICKNAME);
         });
 
-        it('.login with too many occurences of similar nickname', async () =>
+        it('should register with spaces and underscores in nickname', async () =>
         {
-            const creator = login(SIGNUPS.NAME_WITH_TOO_MANY_SIMILAR_NICKNAME);
+            const requester = await login(LOGINS.REGISTER_WITH_SPACED_UNDERSCORED_NICKNAME);
 
-            expect(creator).rejects.toStrictEqual(new TooManySimilarNickNames());
+            expect(requester.nickname).toBe(NICKNAMES.DESPACED_DEUNDERSCORED_NICKNAME);
         });
     });
 });

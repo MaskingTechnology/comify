@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Image } from '../../designsystem/module';
 
-import type ComicView from '../../../domain/comic/ComicView';
+import type ComicView from '../../../domain/comic/view/ComicView';
 
 import dummyDataUrl from '../../../assets/images/introduction.png';
 
