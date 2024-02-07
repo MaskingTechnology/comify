@@ -1,8 +1,8 @@
 
 export { default as ApplicationSidebar } from './application/sidebar/Sidebar';
-export { default as ErrorCatcher } from './application/ErrorCatcher';
-export { default as Logo } from './application/Logo';
+export { default as ApplicationLogo } from './application/Logo';
 
+export { default as ErrorBoundary } from './common/ErrorBoundary';
 export { default as OrderRow } from './common/OrderRow';
 export { default as OrderAndSearchRow } from './common/OrderAndSearchRow';
 

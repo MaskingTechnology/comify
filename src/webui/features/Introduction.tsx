@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button, Column, Image, Panel, Row, Text } from '../designsystem/module';
 
-import { Logo } from '../components/module';
+import { ApplicationLogo } from '../components/module';
 
 import introductionImage from '../../assets/images/introduction.png';
 
@@ -15,7 +15,7 @@ export default function Feature()
     return <Panel>
         <Column gap='medium' alignX='stretch'>
             <Row alignX='justify' alignY='top'>
-                <Logo />
+                <ApplicationLogo />
                 <Button type='primary' text='Get in' clickHandler={() => navigate('/getin')} />
             </Row>
             <Image source={introductionImage} width='600px' />

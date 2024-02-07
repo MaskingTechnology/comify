@@ -3,7 +3,7 @@ import React from 'react';
 
 import type CreatorView from '../../../domain/creator/view/CreatorView';
 
-import { ApplicationSidebar, ErrorCatcher } from '../../components/module';
+import { ApplicationSidebar, ErrorBoundary } from '../../components/module';
 import { ApplicationLayout } from '../../layouts/module';
 import ErrorHandler from '../../features/ErrorHandler';
 
@@ -18,7 +18,7 @@ export default function Template({ children }: Props)
     const context = useAppContext();
     const identity = context.identity as CreatorView;
 
-    const main = <ErrorCatcher view={ErrorHandler}>{children}</ErrorCatcher>;
+    const main = <ErrorBoundary view={ErrorHandler}>{children}</ErrorBoundary>;
     const sidebar = <ApplicationSidebar identity={identity} />;
 
     return <ApplicationLayout main={main} aside={sidebar} />;
