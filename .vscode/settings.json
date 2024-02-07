@@ -15,4 +15,7 @@
     "typescript.preferences.quoteStyle": "single",
     "javascript.format.semicolons": "insert",
     "typescript.format.semicolons": "insert",
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    }
 }
