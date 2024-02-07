@@ -3,11 +3,13 @@ import React from 'react';
 
 import { CenteredLayout } from '../layouts/module';
 
-import Routes from '../Routes';
+export type Props = {
+    children?: React.ReactNode;
+};
 
-export default function Page()
+export default function Page({ children }: Props)
 {
     return <CenteredLayout>
-        <Routes />
+        {children}
     </CenteredLayout>;
 }

@@ -7,9 +7,12 @@ import { ApplicationSidebar } from '../components/module';
 import { SidebarLayout } from '../layouts/module';
 
 import { useAppContext } from '../AppContext';
-import Routes from '../Routes';
 
-export default function Page()
+export type Props = {
+    children?: React.ReactNode;
+};
+
+export default function Page({ children }: Props)
 {
     const context = useAppContext();
     const identity = context.identity as CreatorView;
@@ -17,6 +20,6 @@ export default function Page()
     const sidebar = <ApplicationSidebar identity={identity} />;
 
     return <SidebarLayout sidebar={sidebar}>
-        <Routes />
+        {children}
     </SidebarLayout>;
 }
