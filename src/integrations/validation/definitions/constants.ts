@@ -11,4 +11,6 @@ const FieldTypes = {
 
 Object.freeze(FieldTypes);
 
-export { FieldTypes };
+const MAX_EMAIL_LENGTH = 320;
+
+export { FieldTypes, MAX_EMAIL_LENGTH };

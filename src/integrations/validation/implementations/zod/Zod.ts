@@ -3,12 +3,10 @@ import { ZodError, ZodIssue, ZodType, z } from 'zod';
 
 import { Validator } from '../../definitions/interfaces';
 import { Message, ValidationSchema, Validations } from '../../definitions/types';
-import { FieldTypes } from '../../definitions/constants';
+import { FieldTypes, MAX_EMAIL_LENGTH } from '../../definitions/constants';
 import { UnknownValidator, InvalidData } from '../../definitions/errors';
 
 type ValidatorFunction = (value: Validations[keyof Validations]) => z.ZodType<unknown, z.ZodTypeDef> | z.ZodArray<z.ZodType<unknown, z.ZodTypeDef>>;
-
-const MAX_EMAIL_LENGTH = 320;
 
 // Zod is so type heavy that we've chosen for inferred types to be used.
 // This is a trade-off between readability and verbosity.
