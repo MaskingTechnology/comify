@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import type CreatorView from '../../../domain/creator/CreatorView';
+import type CreatorView from '../../../domain/creator/view/CreatorView';
 
 import TimeElapsedColumn from './elementary/TimeElapsedColumn';
 import AvatarRow from './elementary/AvatarRow';

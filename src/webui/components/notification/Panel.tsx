@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import type NotificationView from '../../../domain/notification/NotificationView';
+import type NotificationView from '../../../domain/notification/view/NotificationView';
 
 import { Column, Panel } from '../../designsystem/module';
 

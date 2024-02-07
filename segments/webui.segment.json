@@ -1,4 +1,6 @@
 {
+    "./domain/creator/getMe": { "default": {  "access": "public" } },
+
     "./domain/notification/getRecent": { "default": {  "access": "public" } },
     
     "./domain/post/explore": { "default": {  "access": "public" } },

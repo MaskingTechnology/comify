@@ -1,8 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 
-import type PostView from '../../domain/post/PostView';
-import getTimelinePosts from '../../domain/post/getTimeline';
+import type PostView from '../../domain/post/view/PostView';
 
 import { Column } from '../designsystem/module';
 
@@ -14,7 +13,7 @@ export default function Feature()
 
     const getPosts = async () =>
     {
-        const posts = await getTimelinePosts();
+        const posts: PostView[] = [];
         setPosts(posts);
     };
 

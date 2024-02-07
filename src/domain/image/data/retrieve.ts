@@ -1,9 +1,7 @@
 
-import type ImageData from './ImageData';
-
-import { images } from '../../dummydata';
+import ImageData from './ImageData';
 
 export default async function retrieve(id: string): Promise<ImageData>
 {
-    return images.get(id) as ImageData;
+    return new ImageData(id, 'storageKey', 'filename', 'mimetype', 0);
 }
