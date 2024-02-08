@@ -25,7 +25,9 @@
         "no-return-await": "error",
         "semi": ["error", "always"],
         "eol-last": ["error", "always"],
-        "brace-style": ["error", "allman", { "allowSingleLine": true }]
+        "brace-style": ["error", "allman", { "allowSingleLine": true }],
+        "react/jsx-uses-react": "off",
+        "react/react-in-jsx-scope": "off"
     },
     "settings":
     {
