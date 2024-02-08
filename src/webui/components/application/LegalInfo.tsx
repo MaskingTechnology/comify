@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import { Column, Link, Paragraph } from '../designsystem/module';
+import { Column, Link, Paragraph } from '../../designsystem/module';
 
 export default function Feature()
 {

@@ -20,7 +20,7 @@ export default function Component({ identity }: Props)
         <header>
             <Logo />
         </header>
-        <Navigation />
+        <Navigation identity={identity} />
         <footer>
             <CreatorIdentity creator={identity} />
         </footer>

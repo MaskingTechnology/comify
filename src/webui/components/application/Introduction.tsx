@@ -2,11 +2,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Button, Column, Image, Panel, Row, Text } from '../designsystem/module';
+import { Button, Column, Image, Panel, Row, Text } from '../../designsystem/module';
 
-import { ApplicationLogo } from '../components/module';
+import { ApplicationLogo } from '../module';
 
-import introductionImage from '../../assets/images/introduction.png';
+import introductionImage from '../../../assets/images/introduction.png';
 
 export default function Feature()
 {

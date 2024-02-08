@@ -3,25 +3,25 @@ import React from 'react';
 
 import { Ruler } from '../../designsystem/module';
 
-import './Application.css';
+import './Sidebar.css';
 
 export type Props = {
-    aside: React.ReactNode;
-    main: React.ReactNode;
+    sidebar: React.ReactNode;
+    children: React.ReactNode;
 };
 
-export default function Layout({ aside, main }: Props)
+export default function Layout({ sidebar, children }: Props)
 {
-    return <div className='ds application-layout'>
+    return <div className='ds sidebar-layout'>
         <div className='left'>
             <aside>
-                {aside}
+                {sidebar}
             </aside>
             <Ruler type='vertical' size='medium' />
         </div>
         <div className='right'>
             <main>
-                {main}
+                {children}
             </main>
         </div>
     </div>;

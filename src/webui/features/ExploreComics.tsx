@@ -13,11 +13,12 @@ import { OrderRow, PostPanelList } from '../components/module';
 
 export default function Feature()
 {
-    const [posts, setPosts] = useState<PostView[]>([]);
+    const [posts, setPosts] = useState<PostView[] | undefined>(undefined);
 
     const getPosts = async () =>
     {
         const posts = await explorePosts(johnDoe);
+
         setPosts(posts);
     };
 
@@ -37,6 +38,11 @@ export default function Feature()
     };
 
     useEffect(() => { getPosts(); }, []);
+
+    if (posts === undefined)
+    {
+        return <>Loading...</>;
+    }
 
     return <Column gap='small' alignX='stretch'>
         <OrderRow selected='popular' orderChangeHandler={handleOrderChange} />
