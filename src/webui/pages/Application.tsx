@@ -1,12 +1,10 @@
 
 import React from 'react';
 
-import type CreatorView from '../../domain/creator/view/CreatorView';
-
 import { ApplicationSidebar } from '../components/module';
 import { SidebarLayout } from '../layouts/module';
 
-import { useAppContext } from '../AppContext';
+import { useAppContext } from '../contexts/AppContext';
 
 export type Props = {
     children?: React.ReactNode;
@@ -14,8 +12,12 @@ export type Props = {
 
 export default function Page({ children }: Props)
 {
-    const context = useAppContext();
-    const identity = context.identity as CreatorView;
+    const { identity } = useAppContext();
+
+    if (identity === undefined)
+    {
+        return null;
+    }
 
     const sidebar = <ApplicationSidebar identity={identity} />;
 

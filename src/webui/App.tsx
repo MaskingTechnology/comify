@@ -8,13 +8,14 @@ import ErrorHandler from './features/ErrorHandler';
 import Guest from './pages/Guest';
 import Application from './pages/Application';
 
-import { useAppContext } from './AppContext';
+import { useAppContext } from './contexts/AppContext';
 import Routes from './Routes';
 
 export default function App()
 {
-    const context = useAppContext();
-    const Page = context.identity ? Application : Guest;
+    const { identity } = useAppContext();
+
+    const Page = identity ? Application : Guest;
 
     return <BrowserRouter>
         <Page>

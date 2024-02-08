@@ -11,11 +11,12 @@ import { NotificationPanelList } from '../components/module';
 
 export default function Feature()
 {
-    const [notifications, setNotifications] = useState<NotificationView[]>([]);
+    const [notifications, setNotifications] = useState<NotificationView[] | undefined>(undefined);
 
     const getNotifications = async () =>
     {
         const notifications = await getRecentNotifications();
+
         setNotifications(notifications);
     };
 
@@ -25,6 +26,11 @@ export default function Feature()
     };
 
     useEffect(() => { getNotifications(); }, []);
+
+    if (notifications === undefined)
+    {
+        return <>Loading...</>;
+    }
 
     return <Column gap='small' alignX='stretch'>
         <NotificationPanelList notifications={notifications} followHandler={handleFollow} />

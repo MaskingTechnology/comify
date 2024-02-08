@@ -16,7 +16,13 @@ import createInactiveIcon from '../../../../assets/images/navigation/create-inac
 import profileActiveIcon from '../../../../assets/images/navigation/profile-active.svg';
 import profileInactiveIcon from '../../../../assets/images/navigation/profile-inactive.svg';
 
-export default function Component()
+export type Props = {
+    identity: {
+        nickname: string;
+    };
+};
+
+export default function Component({ identity }: Props)
 {
     return <nav>
         <Column gap='medium'>
@@ -24,7 +30,7 @@ export default function Component()
             <Item title='Explore' to='/explore' activeIcon={exploreActiveIcon} inactiveIcon={exploreInactiveIcon} />
             <Item title='Notifications' to='/notifications' activeIcon={notificationsActiveIcon} inactiveIcon={notificationsInactiveIcon} />
             <Item title='Create' to='/create' activeIcon={createActiveIcon} inactiveIcon={createInactiveIcon} />
-            <Item title='Profile' to='/profile' activeIcon={profileActiveIcon} inactiveIcon={profileInactiveIcon} />
+            <Item title='Profile' to={`/profile/${identity.nickname}`} activeIcon={profileActiveIcon} inactiveIcon={profileInactiveIcon} />
         </Column>
     </nav>;
 }

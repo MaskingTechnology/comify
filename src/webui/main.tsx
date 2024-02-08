@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import AppContext from './AppContext';
+import AppContext from './contexts/AppContext';
 import App from './App';
 
 import './designsystem/designsystem.css';

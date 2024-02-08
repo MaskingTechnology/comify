@@ -11,11 +11,12 @@ import { OrderAndSearchRow, RelationPanelList } from '../components/module';
 
 export default function Feature()
 {
-    const [relations, setRelations] = useState<RelationView[]>([]);
+    const [relations, setRelations] = useState<RelationView[] | undefined>(undefined);
 
     const getRelations = async () =>
     {
         const relations = await exploreRelations(johnDoe);
+
         setRelations(relations);
     };
 
@@ -30,6 +31,11 @@ export default function Feature()
     };
 
     useEffect(() => { getRelations(); }, []);
+
+    if (relations === undefined)
+    {
+        return <>Loading...</>;
+    }
 
     return <Column gap='small' alignX='stretch'>
         <OrderAndSearchRow selected='popular' orderChangeHandler={handleOrderChange} />

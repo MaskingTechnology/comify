@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import johnDoe from '../../domain/authentication/johnDoe';
 import getMe from '../../domain/creator/getMe';
 
-import { useAppContext } from '../AppContext';
+import { useAppContext } from '../contexts/AppContext';
 
 export default function Feature()
 {

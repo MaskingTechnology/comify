@@ -1,4 +1,5 @@
 {
+    "./domain/creator/getByNickname": { "default": {  "access": "public" } },
     "./domain/creator/getMe": { "default": {  "access": "public" } },
 
     "./domain/notification/getRecent": { "default": {  "access": "public" } },
@@ -8,6 +9,7 @@
     "./domain/post/getTimeline": { "default": {  "access": "public" } },
 
     "./domain/relation/explore": { "default": {  "access": "public" } },
+    "./domain/relation/get": { "default": {  "access": "public" } },
     "./domain/relation/getFollowers": { "default": {  "access": "public" } },
     "./domain/relation/getFollowing": { "default": {  "access": "public" } }
 }

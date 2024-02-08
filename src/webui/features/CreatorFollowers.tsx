@@ -5,16 +5,22 @@ import type RelationView from '../../domain/relation/view/RelationView';
 import getFollowers from '../../domain/relation/getFollowers';
 
 import { Column } from '../designsystem/module';
-
 import { OrderAndSearchRow, RelationPanelList } from '../components/module';
+import { useCreatorContext } from '../contexts/CreatorContext';
 
 export default function Feature()
 {
-    const [relations, setRelations] = useState<RelationView[]>([]);
+    const { creator } = useCreatorContext();
+    const [relations, setRelations] = useState<RelationView[] | undefined>(undefined);
+
+    if (creator === undefined)
+    {
+        return <>Nope...</>;
+    }
 
     const getRelations = async () =>
     {
-        const relations = await getFollowers('0');
+        const relations = await getFollowers(creator.id);
         setRelations(relations);
     };
 
@@ -29,6 +35,11 @@ export default function Feature()
     };
 
     useEffect(() => { getRelations(); }, []);
+
+    if (relations === undefined)
+    {
+        return <>Loading...</>;
+    }
 
     return <Column gap='small' alignX='stretch'>
         <OrderAndSearchRow selected='recent' orderChangeHandler={handleOrderChange} />
