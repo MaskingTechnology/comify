@@ -19,7 +19,7 @@ export default function Feature()
 
         context.setIdentity(me);
 
-        navigate(originLocation || '/timeline');
+        navigate(originLocation ?? '/timeline');
     };
 
     useEffect(() => { logMeIn(); }, []);
