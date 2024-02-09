@@ -33,8 +33,9 @@ export default async function download(picture: string, imageType: string): Prom
     const mimeType = response.headers.get('content-type') || '';
     const size = Number(response.headers.get('content-length')) || 0;
 
-    const fileName: string = generateHash(picture);
-    const storageKey: string = `${imageType}/${fileName}`;
+    const fileName = generateHash(picture);
+    const extension = mimeType.split('/')[1];
+    const storageKey = `${imageType}/${fileName}.${extension}`;
 
     return save(buffer, storageKey, fileName, mimeType, size);
 }
