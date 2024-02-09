@@ -1,7 +1,6 @@
 
 import { Panel, Row, Text } from '../../designsystem/module';
 
-
 export default function Component()
 {
     return <Panel type='transparent'>
