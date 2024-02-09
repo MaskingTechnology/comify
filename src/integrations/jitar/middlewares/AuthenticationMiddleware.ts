@@ -166,7 +166,7 @@ export default class AuthenticationMiddleware implements Middleware
 
         const session = this.#getSession(key);
 
-        this.#identityProvider.logout(session);
+        await this.#identityProvider.logout(session);
 
         sessions.delete(key);
 
