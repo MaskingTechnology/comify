@@ -1,7 +1,7 @@
 
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logout from '../../domain/authentication/logout';
+import { LogoutPanel } from '../components/module';
 import { useAppContext } from '../contexts/AppContext';
 
 export default function Feature()
@@ -9,7 +9,7 @@ export default function Feature()
     const navigate = useNavigate();
     const { setIdentity } = useAppContext();
 
-    const perform = async () =>
+    const doIt = async () =>
     {
         await logout();
 
@@ -18,7 +18,5 @@ export default function Feature()
         navigate('/');
     };
 
-    useEffect(() => { perform(); }, []);
-
-    return <>Logging out...</>;
+    return <LogoutPanel logoutHandler={doIt} />;
 }
