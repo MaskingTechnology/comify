@@ -1,15 +1,16 @@
 
 import type CreatorView from '../../../../domain/creator/view/CreatorView';
-import CreatorIdentity from '../../creator/Identity';
+import Identity from '../Identity';
 import Logo from '../Logo';
 import Navigation from '../navigation/Navigation';
 import './Sidebar.css';
 
 export type Props = {
     identity: CreatorView;
+    logoutHandler: () => void;
 };
 
-export default function Component({ identity }: Props)
+export default function Component({ identity, logoutHandler }: Props)
 {
     return <div className='application-sidebar'>
         <header>
@@ -17,7 +18,7 @@ export default function Component({ identity }: Props)
         </header>
         <Navigation identity={identity} />
         <footer>
-            <CreatorIdentity creator={identity} />
+            <Identity identity={identity} logoutHandler={logoutHandler} />
         </footer>
     </div>;
 }

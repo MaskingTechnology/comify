@@ -17,7 +17,12 @@ export default function Page({ children }: Props)
         return null;
     }
 
-    const sidebar = <ApplicationSidebar identity={identity} />;
+    const handleLogout = () =>
+    {
+        console.log('Logout');
+    };
+
+    const sidebar = <ApplicationSidebar identity={identity} logoutHandler={handleLogout} />;
 
     return <SidebarLayout sidebar={sidebar}>
         {children}
