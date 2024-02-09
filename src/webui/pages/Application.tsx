@@ -12,7 +12,7 @@ export type Props = {
 export default function Page({ children }: Props)
 {
     const navigate = useNavigate();
-    const { identity, setIdentity } = useAppContext();
+    const { identity } = useAppContext();
 
     if (identity === undefined)
     {
