@@ -16,7 +16,7 @@
     "standalone":
     {
         "trustKey": "${JITAR_TRUST_KEY}",
-        "assets": ["index.html", "main.js", "assets/**/*"],
+        "assets": ["index.html", "main.js", "assets/**/*", "webui/**/*"],
         "segments": ["authentication", "webui"],
         "middlewares": [
             "./integrations/jitar/authenticationMiddleware"
