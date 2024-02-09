@@ -11,6 +11,11 @@ function hashFast(input: string): string
     return crypto.createHash('sha512').update(input, 'utf8').digest('hex');
 }
 
+export function generateHash(input: string): string
+{
+    return hashFast(input);
+}
+
 export function generateId(): string
 {
     return generateUUID();

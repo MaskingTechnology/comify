@@ -1,4 +1,5 @@
 
+import { generateHash } from '../../integrations/utilities/crypto';
 import ImageData from './data/ImageData';
 import { UnsupportedContentSize, UnsupportedMimeType } from './errors';
 import save from './save';
@@ -32,7 +33,7 @@ export default async function download(picture: string, imageType: string): Prom
     const mimeType = response.headers.get('content-type') || '';
     const size = Number(response.headers.get('content-length')) || 0;
 
-    const fileName: string = picture;
+    const fileName: string = generateHash(picture);
     const storageKey: string = `${imageType}/${fileName}`;
 
     return save(buffer, storageKey, fileName, mimeType, size);
