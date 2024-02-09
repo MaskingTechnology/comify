@@ -1,5 +1,6 @@
 
 import React from 'react';
+import portraitImage from '../../../assets/images/portrait.svg';
 import { Avatar, Row } from '../../../designsystem/module';
 
 export type Props = {
@@ -23,7 +24,7 @@ export default function Component({ avatarSize, avatarUrl, children }: Props)
 {
     const gapSize = avatarSize === 'small' ? 'small' : 'medium';
     const actualSize = getActualSize(avatarSize);
-    const source = avatarUrl ?? 'https://via.placeholder.com/62x62';
+    const source = avatarUrl ?? portraitImage;
 
     return <Row gap={gapSize}>
         <Avatar size={actualSize} source={source} />
