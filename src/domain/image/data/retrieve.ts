@@ -1,9 +1,13 @@
 
+import database from '../../../integrations/database/module';
+
+import { RECORD_TYPE } from './constants.js';
 import type ImageData from './ImageData';
+import createData from './createData';
 
-import { images } from '../../dummydata';
-
-export default async function retrieve(id: string): Promise<ImageData>
+export default async function retrieve(imageId: string): Promise<ImageData>
 {
-    return images.get(id) as ImageData;
+    const record = await database.readRecord(RECORD_TYPE, imageId);
+
+    return createData(record);
 }

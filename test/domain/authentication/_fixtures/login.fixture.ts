@@ -1,8 +1,10 @@
 
 import database, { RecordData } from '../../../../src/integrations/database/module';
+import filestorage from '../../../../src/integrations/filestorage/module.ts';
 import { Identity } from '../../../../src/integrations/authentication/module';
 
 import { TooManySimilarNickNames } from '../../../../src/domain/creator/errors';
+import { UnsupportedContentSize, UnsupportedMimeType } from '../../../../src/domain/image/errors';
 import login from '../../../../src/domain/authentication/login';
 import { RECORD_TYPE } from '../../../../src/domain/creator/data/constants';
 
@@ -17,6 +19,7 @@ const NICKNAMES: Record<string, string> = {
 };
 
 await database.connect();
+await filestorage.connect();
 
 const creator0: RecordData = { fullName: 'ExistingName', nickName: NICKNAMES.EXISTING_NICKNAME, email: 'existing@mail.com', picture: undefined };
 const creator1: RecordData = { fullName: 'fullName', nickName: 'FullNickName', email: 'fullname@mail.com', picture: undefined };
@@ -88,7 +91,28 @@ const SIGNUPS: Record<string, Identity> = {
         picture: undefined,
         email: 'toomanynickname@mail.com',
         email_verified: false
+    },
+    NAME_WITH_A_VALID_PICTURE_URL: {
+        name: 'Peter van Vliet',
+        nickname: 'Lange',
+        picture: 'https://masking.tech/images/peter.jpg',
+        email: 'peter@masking.tech',
+        email_verified: false
+    },
+    NAME_WITH_PICTURE_INVALID_MIME_TYPE: {
+        name: 'InvalidPictureMimeType',
+        nickname: 'InvalidPictureMimeTypeNickName',
+        picture: 'https://www.blikoplisse.nl/images/familieberichten/240208_Bijnsdorp-Berg-1.jpg',
+        email: 'invalidmimetype@mail.com',
+        email_verified: false
+    },
+    NAME_WITH_PICTURE_INVALID_SIZE: {
+        name: 'InvalidPictureSize',
+        nickname: 'InvalidPictureSizeNickName',
+        picture: 'https://www.blikoplisse.nl/images/familieberichten/240208_Bijnsdorp-Berg-1.jpg',
+        email: 'invalidpicturesize@mail.com',
+        email_verified: false
     }
 };
 
-export { TooManySimilarNickNames, login, NICKNAMES, SIGNUPS };
+export { TooManySimilarNickNames, UnsupportedContentSize, UnsupportedMimeType, login, NICKNAMES, SIGNUPS };

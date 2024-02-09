@@ -1,9 +1,13 @@
 
+import database from '../../../integrations/database/module';
+
+import { RECORD_TYPE } from './constants';
+import createData from './createData';
 import CreatorData from './CreatorData';
 
-import { creators } from '../../dummydata';
-
-export default async function retrieve(id: string): Promise<CreatorData>
+export default async function retrieve(creatorId: string): Promise<CreatorData>
 {
-    return creators.get(id) as CreatorData;
+    const record = await database.readRecord(RECORD_TYPE, creatorId);
+
+    return createData(record);
 }
