@@ -1,7 +1,6 @@
 
-import { expect, describe, it } from 'vitest';
-
-import { SCHEMAS, ERRORS, validator } from './_fixtures/Validator.fixtures';
+import { describe, expect, it } from 'vitest';
+import { ERRORS, SCHEMAS, validator } from './_fixtures/Validator.fixtures';
 
 describe('Validator', () =>
 {

@@ -1,7 +1,7 @@
 
-import validator from '../../../../src/integrations/validation/module.ts';
 import { InvalidData } from '../../../../src/integrations/validation/definitions/errors.ts';
 import { ValidationSchema } from '../../../../src/integrations/validation/definitions/types.ts';
+import validator from '../../../../src/integrations/validation/module.ts';
 
 const INVALID_STRING = 'Invalid string';
 const INVALID_NUMBER = 'Invalid number';
@@ -196,4 +196,5 @@ const ERRORS = {
     MIXED_SCHEMA: INVALID_MIXED_SCHEMA_ERROR
 };
 
-export { SCHEMAS, ERRORS, validator };
+export { ERRORS, SCHEMAS, validator };
+

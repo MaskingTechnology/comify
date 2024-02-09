@@ -1,12 +1,14 @@
 
 import { describe, expect, it } from 'vitest';
-
 import
 {
-    HELLO_FILE_NAME, HELLO_FILE_CONTENT,
-    GOODBYE_FILE_NAME, GOODBYE_FILE_BUFFER,
+    FileNotFound,
+    GOODBYE_FILE_BUFFER,
+    GOODBYE_FILE_NAME,
+    HELLO_FILE_CONTENT,
+    HELLO_FILE_NAME,
     UNKNOWN_FILE_NAME,
-    setUpMemoryFS, FileNotFound
+    setUpMemoryFS
 } from './_fixtures/Memory.fixture.js';
 
 describe('MemoryFS', () =>
