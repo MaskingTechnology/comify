@@ -8,7 +8,7 @@ import { ApplicationLogo } from '../module';
 
 import introductionImage from '../../../assets/images/introduction.png';
 
-export default function Feature()
+export default function Component()
 {
     const navigate = useNavigate();
 

@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Column, Link, Paragraph } from '../../designsystem/module';
 
-export default function Feature()
+export default function Component()
 {
     return <Column gap='none' alignX='center'>
         <Paragraph size='small'>
