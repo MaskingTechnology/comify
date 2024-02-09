@@ -1,6 +1,5 @@
 
 import database from '../../../integrations/database/module';
-
 import { RECORD_TYPE } from './constants';
 import ImageData from './ImageData';
 

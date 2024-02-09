@@ -15,12 +15,12 @@ export default async function login(identity: Identity): Promise<Requester>
         return createRequester(existingCreator);
     }
 
+    const nickname = identity.nickname ?? identity.name;
     const portrait = identity.picture !== undefined
         ? await generateCreatorPortrait(identity.picture)
         : undefined;
 
-    const nickname = identity.nickname ?? identity.name;
-    const registeredCreator = await registerCreator(identity.email, identity.name, nickname, portrait?.id);
+    const registeredCreator = await registerCreator(identity.email, identity.name, nickname, portrait);
 
     return createRequester(registeredCreator);
 }
