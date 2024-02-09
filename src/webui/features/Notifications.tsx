@@ -1,21 +1,19 @@
 
-import React, { useState, useEffect } from 'react';
-
-import type RelationView from '../../domain/relation/RelationView';
-import type NotificationView from '../../domain/notification/NotificationView';
+import { useEffect, useState } from 'react';
 import getRecentNotifications from '../../domain/notification/getRecent';
-
+import type NotificationView from '../../domain/notification/view/NotificationView';
+import type RelationView from '../../domain/relation/view/RelationView';
+import { Loading, NotificationPanelList } from '../components/module';
 import { Column } from '../designsystem/module';
-
-import { NotificationPanelList } from '../components/module';
 
 export default function Feature()
 {
-    const [notifications, setNotifications] = useState<NotificationView[]>([]);
+    const [notifications, setNotifications] = useState<NotificationView[] | undefined>(undefined);
 
     const getNotifications = async () =>
     {
         const notifications = await getRecentNotifications();
+
         setNotifications(notifications);
     };
 
@@ -25,6 +23,11 @@ export default function Feature()
     };
 
     useEffect(() => { getNotifications(); }, []);
+
+    if (notifications === undefined)
+    {
+        return <Loading />;
+    }
 
     return <Column gap='small' alignX='stretch'>
         <NotificationPanelList notifications={notifications} followHandler={handleFollow} />

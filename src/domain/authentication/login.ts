@@ -1,26 +1,28 @@
 
 import { Identity } from '../../integrations/authentication/module';
 
-import CreatorData from '../creator/data/CreatorData';
-import generateCreatorNickname from '../creator/generateNickname';
 import createCreator from '../creator/data/create';
 import retrieveCreatorByEmail from '../creator/data/retrieveByEmail';
 import generateCreatorPortrait from '../creator/generatePortrait';
+import registerCreator from '../creator/register';
+import Requester from './Requester';
+import createRequester from './createRequester';
 
-export default async function login(identity: Identity): Promise<CreatorData>
+export default async function login(identity: Identity): Promise<Requester>
 {
-    const creator = await retrieveCreatorByEmail(identity.email);
+    const existingCreator = await retrieveCreatorByEmail(identity.email);
 
-    if (creator !== undefined)
+    if (existingCreator !== undefined)
     {
-        return creator;
+        return createRequester(existingCreator);
     }
 
     const portrait = identity.picture !== undefined
         ? await generateCreatorPortrait(identity.picture)
         : undefined;
 
-    const nickName = await generateCreatorNickname(identity.nickname ?? identity.name);
+    const nickname = identity.nickname ?? identity.name;
+    const registeredCreator = await registerCreator(identity.email, identity.name, nickname);
 
     return createCreator(identity.email, identity.name, nickName, portrait?.id);
 }

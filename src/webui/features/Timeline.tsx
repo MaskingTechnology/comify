@@ -1,21 +1,20 @@
 
-import React, { useState, useEffect } from 'react';
-
-import type RelationView from '../../domain/relation/RelationView';
-import type PostView from '../../domain/post/PostView';
+import { useEffect, useState } from 'react';
+import johnDoe from '../../domain/authentication/johnDoe';
 import getTimelinePosts from '../../domain/post/getTimeline';
-
+import type PostView from '../../domain/post/view/PostView';
+import type RelationView from '../../domain/relation/view/RelationView';
+import { Loading, OrderRow, PostPanelList } from '../components/module';
 import { Column } from '../designsystem/module';
-
-import { OrderRow, PostPanelList } from '../components/module';
 
 export default function Feature()
 {
-    const [posts, setPosts] = useState<PostView[]>([]);
+    const [posts, setPosts] = useState<PostView[] | undefined>(undefined);
 
     const getPosts = async () =>
     {
-        const posts = await getTimelinePosts();
+        const posts = await getTimelinePosts(johnDoe);
+
         setPosts(posts);
     };
 
@@ -38,6 +37,10 @@ export default function Feature()
 
     return <Column gap='small' alignX='stretch'>
         <OrderRow selected='recent' orderChangeHandler={handleOrderChange} />
-        <PostPanelList posts={posts} followHandler={handleFollow} rateHandler={handleRate} />
+        {
+            posts !== undefined
+                ? <PostPanelList posts={posts} followHandler={handleFollow} rateHandler={handleRate} />
+                : <Loading />
+        }
     </Column>;
 }

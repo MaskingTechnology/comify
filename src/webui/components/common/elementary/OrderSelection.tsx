@@ -1,6 +1,4 @@
 
-import React from 'react';
-
 import { Dropdown } from '../../../designsystem/module';
 
 export type Props = {

@@ -1,7 +1,6 @@
 
-import { FileStorage } from './definitions/interfaces.js';
 import { UnknownImplementation } from './definitions/errors.js';
-
+import { FileStorage } from './definitions/interfaces.js';
 import createMemoryFS from './implementations/memory/create.js';
 import createMinioFS from './implementations/minio/create.js';
 

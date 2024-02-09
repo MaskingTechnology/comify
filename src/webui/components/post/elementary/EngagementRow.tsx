@@ -1,8 +1,5 @@
 
-import React from 'react';
-
 import { Row } from '../../../designsystem/module';
-
 import CompactNumber from '../../common/CompactNumber';
 import RatingIcon from '../../rating/Icon';
 import ReactionIcon from '../../reaction/Icon';

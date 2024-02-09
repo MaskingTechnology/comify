@@ -1,20 +1,19 @@
 
-import React, { useState, useEffect } from 'react';
-
-import type RelationView from '../../domain/relation/RelationView';
+import { useEffect, useState } from 'react';
+import johnDoe from '../../domain/authentication/johnDoe';
 import exploreRelations from '../../domain/relation/explore';
-
+import type RelationView from '../../domain/relation/view/RelationView';
+import { Loading, OrderAndSearchRow, RelationPanelList } from '../components/module';
 import { Column } from '../designsystem/module';
-
-import { OrderAndSearchRow, RelationPanelList } from '../components/module';
 
 export default function Feature()
 {
-    const [relations, setRelations] = useState<RelationView[]>([]);
+    const [relations, setRelations] = useState<RelationView[] | undefined>(undefined);
 
     const getRelations = async () =>
     {
-        const relations = await exploreRelations();
+        const relations = await exploreRelations(johnDoe);
+
         setRelations(relations);
     };
 
@@ -32,6 +31,10 @@ export default function Feature()
 
     return <Column gap='small' alignX='stretch'>
         <OrderAndSearchRow selected='popular' orderChangeHandler={handleOrderChange} />
-        <RelationPanelList relations={relations} followHandler={handleFollow} />
+        {
+            relations !== undefined
+                ? <RelationPanelList relations={relations} followHandler={handleFollow} />
+                : <Loading />
+        }
     </Column>;
 }

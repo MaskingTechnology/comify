@@ -1,7 +1,7 @@
 
-import type RatingView from './RatingView';
-import createView from './createView';
 import retrieve from './data/retrieve';
+import type RatingView from './view/RatingView';
+import createView from './view/createView';
 
 export default async function retrieveView(id: string): Promise<RatingView>
 {

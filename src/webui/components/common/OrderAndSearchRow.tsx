@@ -1,8 +1,5 @@
 
-import React from 'react';
-
 import { Row, TextBox } from '../../designsystem/module';
-
 import OrderSelection from './elementary/OrderSelection';
 
 export type Props = {

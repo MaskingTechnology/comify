@@ -1,4 +1,8 @@
 {
-    "./domain/creator/data/retrieve": { "default": {  "access": "public" } },
-    "./domain/creator/data/retrieveWithout": { "default": {  "access": "public" } }
+    "./domain/creator/data/create": { "default": {  "access": "protected" } },
+    "./domain/creator/data/retrieve": { "default": {  "access": "protected" } },
+    "./domain/creator/data/retrieveByEmail": { "default": {  "access": "protected" } },
+    "./domain/creator/data/retrieveByNickname": { "default": {  "access": "protected" } },
+    "./domain/creator/data/retrieveByStartNickname": { "default": {  "access": "protected" } },
+    "./domain/creator/data/retrieveWithout": { "default": {  "access": "protected" } }
 }

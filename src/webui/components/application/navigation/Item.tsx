@@ -1,9 +1,6 @@
 
-import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-
-import { Row, Text, Image } from '../../../designsystem/module';
-
+import { Image, Row, Text } from '../../../designsystem/module';
 import './Item.css';
 
 export type Props = {

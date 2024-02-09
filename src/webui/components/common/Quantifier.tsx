@@ -1,8 +1,5 @@
 
-import React from 'react';
-
 import { Text } from '../../designsystem/module';
-
 import CompactNumber from './CompactNumber';
 
 export type Props = {

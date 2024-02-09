@@ -1,7 +1,7 @@
 
-import RelationView from './RelationView';
-import createFollowerView from './createFollowerView';
 import retrieveByFollowing from './data/retrieveByFollowing';
+import RelationView from './view/RelationView';
+import createFollowerView from './view/createFollowerView';
 
 export default async function getFollowers(followingId: string): Promise<RelationView[]>
 {

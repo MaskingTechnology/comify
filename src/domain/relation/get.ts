@@ -1,7 +1,7 @@
 
-import type RelationView from './RelationView';
-import createFollowingView from './createFollowingView';
 import retrieve from './data/retrieve';
+import type RelationView from './view/RelationView';
+import createFollowingView from './view/createFollowingView';
 
 export default async function get(followerId: string, followingId: string): Promise<RelationView>
 {

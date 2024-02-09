@@ -1,5 +1,5 @@
 
-import { SortDirections, ID } from '../../../../src/integrations/database/definitions/constants';
+import { ID, SortDirections } from '../../../../src/integrations/database/definitions/constants';
 import { RecordNotFound, RecordNotUpdated } from '../../../../src/integrations/database/definitions/errors';
 import { RecordData, RecordQuery, RecordSort } from '../../../../src/integrations/database/definitions/types';
 import Memory from '../../../../src/integrations/database/implementations/memory/Memory';
@@ -143,8 +143,7 @@ const QUERY_RESULTS = {
 
 export
 {
-    database,
-    RECORD_TYPE_PIZZA, RECORD_TYPE_FRUIT, INVALID_ID, UPDATE_COUNTRY,
-    PIZZAS, IDS, ID, FIRST_PIZZA, QUERY_RESULTS, SEARCH_QUERIES,
-    SortDirections, RecordNotFound, RecordNotUpdated, RecordData, RecordQuery, RecordSort
+    FIRST_PIZZA, ID, IDS, INVALID_ID, PIZZAS, QUERY_RESULTS, RECORD_TYPE_FRUIT, RECORD_TYPE_PIZZA, RecordData, RecordNotFound, RecordNotUpdated, RecordQuery, RecordSort, SEARCH_QUERIES,
+    SortDirections, UPDATE_COUNTRY, database
 };
+

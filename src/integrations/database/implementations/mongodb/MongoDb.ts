@@ -1,10 +1,9 @@
 
-import { ObjectId, MongoClient, Document, Collection, Db, Filter, Sort } from 'mongodb';
-
+import { Collection, Db, Document, Filter, MongoClient, ObjectId, Sort } from 'mongodb';
+import { ID, LogicalOperators, QueryOperators, SortDirections } from '../../definitions/constants.js';
+import { DatabaseError, NotConnected, RecordNotCreated, RecordNotDeleted, RecordNotFound, RecordNotUpdated } from '../../definitions/errors.js';
 import { Database } from '../../definitions/interfaces.js';
-import { ID, LogicalOperators, SortDirections, QueryOperators } from '../../definitions/constants.js';
-import { QueryOperator, QueryMultiExpressionStatement, QuerySingleExpressionStatement, RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType, RecordValue } from '../../definitions/types.js';
-import { NotConnected, RecordNotCreated, RecordNotUpdated, RecordNotDeleted, RecordNotFound, DatabaseError } from '../../definitions/errors.js';
+import { QueryMultiExpressionStatement, QueryOperator, QuerySingleExpressionStatement, RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType, RecordValue } from '../../definitions/types.js';
 
 const UNKNOWN_ERROR = 'Unknown error';
 
@@ -117,7 +116,6 @@ export default class MongoDB implements Database
 
     async readRecord(type: RecordType, id: RecordId, fields?: RecordField[]): Promise<RecordData>
     {
-
         const collection = await this.#getCollection(type);
         const mongoId = this.#createId(id);
         const entry = await collection.findOne({ _id: mongoId });
@@ -280,22 +278,24 @@ export default class MongoDB implements Database
 
     #buildRecordData(data: Document, fields?: RecordField[]): RecordData
     {
-        let result: RecordData = {};
+        const result: RecordData = {};
 
         if (fields === undefined)
         {
-            result = { ...data };
+            const recordData = { ...data };
+            fields = Object.keys(recordData) as RecordField[];
 
-            result[ID] = result[MONGO_ID];
-            delete result[MONGO_ID];
-
-            return result;
+            const idIndex = fields.indexOf(MONGO_ID);
+            fields[idIndex] = ID;
         }
 
         for (const field of fields)
         {
-            const mongoField = field === ID ? MONGO_ID : field;
-            result[field] = data[mongoField];
+            const value = field === ID
+                ? data[MONGO_ID].toHexString()
+                : data[field];
+
+            result[field] = value ?? undefined;
         }
 
         return result;

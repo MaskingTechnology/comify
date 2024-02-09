@@ -1,17 +1,14 @@
 
-import React from 'react';
-
 import { Column, Text } from '../../../designsystem/module';
-
 import NamesRow from './NamesRow';
 
 export type Props = {
     fullName: string;
-    nickName: string;
+    nickname: string;
     joinedAt: Date;
 };
 
-export default function Component({ fullName, nickName, joinedAt }: Props)
+export default function Component({ fullName, nickname, joinedAt }: Props)
 {
     joinedAt ??= new Date();
 
@@ -19,7 +16,7 @@ export default function Component({ fullName, nickName, joinedAt }: Props)
     const joinedText = 'Joined ' + joinedAt.toLocaleDateString('en-GB', options);
 
     return <Column gap='small' alignY='justify' alignX='stretch'>
-        <NamesRow fullName={fullName} nickName={nickName} />
+        <NamesRow fullName={fullName} nickname={nickname} />
         <Text value={joinedText} size='small' />
     </Column>;
 }

@@ -1,6 +1,4 @@
 
-import React from 'react';
-
 import { Paragraph, Text } from '../../../designsystem/module';
 
 export type Props = {

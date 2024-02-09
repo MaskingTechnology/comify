@@ -1,7 +1,7 @@
 
-import type CreatorView from './CreatorView';
-import createView from './createView';
 import retrieve from './data/retrieve';
+import type CreatorView from './view/CreatorView';
+import createView from './view/createView';
 
 export default async function get(id: string): Promise<CreatorView>
 {

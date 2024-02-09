@@ -1,10 +1,6 @@
 
-import React from 'react';
-
-import type RelationView from '../../../domain/relation/RelationView';
-
+import type RelationView from '../../../domain/relation/view/RelationView';
 import CreatorTimeElapsed from '../creator/TimeElapsed';
-
 import FollowRow from './elementary/FollowRow';
 
 export type Props = {

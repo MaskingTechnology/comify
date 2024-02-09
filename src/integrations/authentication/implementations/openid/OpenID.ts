@@ -1,9 +1,8 @@
 
-import { Issuer, BaseClient, ClientMetadata, AuthorizationParameters } from 'openid-client';
-
+import { AuthorizationParameters, BaseClient, ClientMetadata, Issuer } from 'openid-client';
+import { NotConnected } from '../../definitions/errors.js';
 import { IdentityProvider } from '../../definitions/interfaces.js';
 import { Identity, Session } from '../../definitions/types.js';
-import { NotConnected } from '../../definitions/errors.js';
 
 export type OpenIDConfiguration = {
     issuer: string;
@@ -78,7 +77,6 @@ export default class OpenID implements IdentityProvider
         const expires = tokenSet.expires_at as number * 1000;
 
         return {
-            requester: undefined,
             identity: identity,
             accessToken: tokenSet.access_token as string,
             refreshToken: tokenSet.refresh_token as string,

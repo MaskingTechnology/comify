@@ -1,6 +1,5 @@
 
 import React from 'react';
-
 import './Title.css';
 
 export type Props = {

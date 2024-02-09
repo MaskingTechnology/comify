@@ -1,7 +1,7 @@
 
-import type PostView from './PostView';
 import retrieve from './data/retrieve';
-import createView from './createView';
+import type PostView from './view/PostView';
+import createView from './view/createView';
 
 export default async function get(id: string): Promise<PostView>
 {

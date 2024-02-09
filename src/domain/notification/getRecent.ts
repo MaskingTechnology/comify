@@ -1,11 +1,12 @@
 
+import type Requester from '../authentication/Requester';
 import retrieveRecent from './data/retrieveRecent';
-import type NotificationView from './NotificationView';
-import createView from './createView';
+import type NotificationView from './view/NotificationView';
+import createView from './view/createView';
 
-export default async function getRecent(): Promise<NotificationView[]>
+export default async function getRecent(requester?: Requester): Promise<NotificationView[]>
 {
-    const data = await retrieveRecent('0');
+    const data = await retrieveRecent(requester?.id ?? '0');
 
     return Promise.all(data.map(createView));
 }

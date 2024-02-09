@@ -1,7 +1,7 @@
 
-import Memory from '../../../../src/integrations/filestorage/implementations/memory/Memory';
-import { FileStorage } from '../../../../src/integrations/filestorage/definitions/interfaces';
 import { FileNotFound } from '../../../../src/integrations/filestorage/definitions/errors';
+import { FileStorage } from '../../../../src/integrations/filestorage/definitions/interfaces';
+import Memory from '../../../../src/integrations/filestorage/implementations/memory/Memory';
 
 const HELLO_FILE_NAME = 'hello.txt';
 const HELLO_FILE_CONTENT = 'Hello, world!';
@@ -27,8 +27,7 @@ async function setUpMemoryFS(): Promise<FileStorage>
 
 export
 {
-    HELLO_FILE_NAME, HELLO_FILE_CONTENT,
-    GOODBYE_FILE_NAME, GOODBYE_FILE_BUFFER,
-    UNKNOWN_FILE_NAME,
-    setUpMemoryFS, FileNotFound
+    FileNotFound, GOODBYE_FILE_BUFFER, GOODBYE_FILE_NAME, HELLO_FILE_CONTENT, HELLO_FILE_NAME, UNKNOWN_FILE_NAME,
+    setUpMemoryFS
 };
+

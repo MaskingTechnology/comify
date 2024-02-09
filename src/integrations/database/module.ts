@@ -45,7 +45,7 @@ const records = await searchRecords(ITEM_COLLECTION, query, undefined, sort, lim
 *************************************************************************************/
 
 export * from './definitions/constants.js';
-export * from './definitions/types.js';
 export * from './definitions/errors.js';
-
+export * from './definitions/types.js';
 export { default } from './implementation.js';
+

@@ -1,8 +1,7 @@
 
 import webpush, { PushSubscription } from 'web-push';
-
-import { NotificationService } from '../../definitions/interfaces';
 import { NotConnected, SubscriptionNotFound } from '../../definitions/errors.js';
+import { NotificationService } from '../../definitions/interfaces';
 
 type VapidDetails = {
     subject: string;

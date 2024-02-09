@@ -1,6 +1,4 @@
 
-import React from 'react';
-
 import './Icon.css';
 
 export type Props = {

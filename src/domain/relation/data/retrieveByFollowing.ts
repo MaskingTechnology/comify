@@ -1,9 +1,8 @@
 
-import RelationData from './RelationData';
+import type RelationData from './RelationData';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default async function retrieveByFollowing(followingId: string): Promise<RelationData[]>
 {
-    return [
-        new RelationData('0', '1', followingId)
-    ];
+    return [];
 }

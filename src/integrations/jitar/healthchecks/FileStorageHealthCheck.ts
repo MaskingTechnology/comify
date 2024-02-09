@@ -1,6 +1,5 @@
 
 import { HealthCheck } from 'jitar';
-
 import { FileStorage } from '../../filestorage/definitions/interfaces';
 
 export default class FileStorageHealthCheck implements HealthCheck

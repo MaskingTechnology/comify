@@ -1,10 +1,9 @@
 
 import React from 'react';
-
 import './Panel.css';
 
 export type Props = {
-    type?: 'normal' | 'alert' | 'warning' | 'success' | 'error';
+    type?: 'normal' | 'alert' | 'warning' | 'success' | 'error' | 'transparent';
     padding?: 'large' | 'medium' | 'small';
     children?: React.ReactNode;
 };

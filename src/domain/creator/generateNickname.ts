@@ -1,37 +1,37 @@
 
-import { TooManySimilarNickNames } from './errors';
-import retrieveByNickName from './data/retrieveByNickName';
-import retrieveByStartNickName from './data/retrieveByStartNickName';
+import retrieveByNickname from './data/retrieveByNickname';
+import retrieveByStartNickname from './data/retrieveByStartNickname';
+import TooManySimilarNicknames from './errors/TooManySimilarNicknames';
 
 export default async function generateNickname(nickname: string): Promise<string>
 {
     const strippedName: string = nickname.trim();
-    const noSpacesNickName: string = strippedName.replaceAll(' ', '');
-    const cleanNickName: string = noSpacesNickName.replaceAll('_', '');
+    const noSpacesNickname: string = strippedName.replaceAll(' ', '');
+    const cleanNickname: string = noSpacesNickname.replaceAll('_', '');
 
-    const existingData = await retrieveByNickName(cleanNickName);
+    const existingData = await retrieveByNickname(cleanNickname);
 
     if (existingData === undefined)
     {
-        return cleanNickName;
+        return cleanNickname;
     }
 
-    const foundData = await retrieveByStartNickName(`${existingData.nickName}_`);
+    const foundData = await retrieveByStartNickname(`${existingData.nickname}_`);
 
     if (foundData === undefined)
     {
-        return `${existingData.nickName}_001`;
+        return `${existingData.nickname}_001`;
     }
 
-    const oldNumber = parseInt(foundData.nickName.substring(cleanNickName.length + 1));
+    const oldNumber = parseInt(foundData.nickname.substring(cleanNickname.length + 1));
     const newNumber = oldNumber + 1;
 
     if (newNumber === 1000)
     {
-        throw new TooManySimilarNickNames();
+        throw new TooManySimilarNicknames();
     }
 
     const stringNumber = newNumber.toString().padStart(3, '0');
 
-    return `${cleanNickName}_${stringNumber}`;
+    return `${cleanNickname}_${stringNumber}`;
 }

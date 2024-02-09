@@ -1,7 +1,7 @@
 
-import { Middleware, Request, Response, NextHandler, Unauthorized } from 'jitar';
-
-import { IdentityProvider, Session, Token } from '../../authentication/module';
+import { Middleware, NextHandler, Request, Response, Unauthorized } from 'jitar';
+import { IdentityProvider, Session } from '../../authentication/module';
+import { generateKey } from '../../utilities/crypto';
 
 type AuthProcedures = {
     loginUrl: string;
@@ -9,18 +9,23 @@ type AuthProcedures = {
     logout: string;
 };
 
+const IDENTITY_PARAMETER = 'identity';
+const REQUESTER_PARAMETER = '*requester';
+
 const sessions = new Map<string, Session>();
 
 export default class AuthenticationMiddleware implements Middleware
 {
     #identityProvider: IdentityProvider;
     #authProcedures: AuthProcedures;
+    #redirectUrl: string;
     #whiteList: string[];
 
-    constructor(identityProvider: IdentityProvider, authProcedures: AuthProcedures, whiteList: string[])
+    constructor(identityProvider: IdentityProvider, authProcedures: AuthProcedures, redirectUrl: string, whiteList: string[])
     {
         this.#identityProvider = identityProvider;
         this.#authProcedures = authProcedures;
+        this.#redirectUrl = redirectUrl;
         this.#whiteList = whiteList;
     }
 
@@ -48,7 +53,7 @@ export default class AuthenticationMiddleware implements Middleware
             ? await this.#refreshSession(storedSession)
             : storedSession;
 
-        request.setArgument('requester', activeSession.requester);
+        request.setArgument(REQUESTER_PARAMETER, activeSession.requester);
 
         const response = await next();
 
@@ -62,11 +67,11 @@ export default class AuthenticationMiddleware implements Middleware
 
     #authorize(request: Request): Session | undefined
     {
-        const token = this.#extractAuthorizationToken(request);
+        const key = this.#extractAuthorizationKey(request);
 
-        return token === undefined
+        return key === undefined
             ? this.#authorizePublic(request.fqn)
-            : this.#authorizeProtected(token);
+            : this.#authorizeProtected(key);
     }
 
     #authorizePublic(fqn: string): undefined
@@ -79,9 +84,9 @@ export default class AuthenticationMiddleware implements Middleware
         throw new Unauthorized('Unauthorized');
     }
 
-    #authorizeProtected(token: Token): Session
+    #authorizeProtected(key: string): Session
     {
-        return this.#getSession(token);
+        return this.#getSession(key);
     }
 
     async #getLoginUrl(): Promise<Response>
@@ -97,25 +102,28 @@ export default class AuthenticationMiddleware implements Middleware
         const session = await this.#identityProvider.login(data);
 
         request.args.clear();
-        request.setArgument('identity', session.identity);
+        request.setArgument(IDENTITY_PARAMETER, session.identity);
 
         const response = await next();
 
-        this.#setAuthorizationHeader(response, session);
-
+        session.key = generateKey();
         session.requester = response.result;
-        sessions.set(session.accessToken, session);
+
+        sessions.set(session.key, session);
+
+        this.#setAuthorizationHeader(response, session);
+        this.#setRedirectHeader(response, session.key);
 
         return response;
     }
 
-    #getSession(token: Token): Session
+    #getSession(key: string): Session
     {
-        const session = sessions.get(token);
+        const session = sessions.get(key);
 
         if (session === undefined)
         {
-            throw new Unauthorized('Invalid access token');
+            throw new Unauthorized('Invalid authorization key');
         }
 
         return session;
@@ -130,36 +138,42 @@ export default class AuthenticationMiddleware implements Middleware
 
     async #refreshSession(session: Session): Promise<Session>
     {
-        const newSession = await this.#identityProvider.refresh(session);
+        try
+        {
+            const newSession = await this.#identityProvider.refresh(session);
 
-        const oldToken = session.accessToken;
-        const newToken = newSession.accessToken;
+            newSession.key = generateKey();
 
-        sessions.delete(oldToken);
-        sessions.set(newToken, newSession);
+            sessions.delete(session.key as string);
+            sessions.set(newSession.key, newSession);
 
-        return newSession;
+            return newSession;
+        }
+        catch (error)
+        {
+            throw new Unauthorized('Session expired');
+        }
     }
 
     async #destroySession(request: Request, next: NextHandler): Promise<Response>
     {
-        const token = this.#extractAuthorizationToken(request);
+        const key = this.#extractAuthorizationKey(request);
 
-        if (token === undefined)
+        if (key === undefined)
         {
-            throw new Unauthorized('Invalid access token');
+            throw new Unauthorized('Invalid authorization key');
         }
 
-        const session = this.#getSession(token);
+        const session = this.#getSession(key);
 
         this.#identityProvider.logout(session);
 
-        sessions.delete(token);
+        sessions.delete(key);
 
         return next();
     }
 
-    #extractAuthorizationToken(request: Request): Token | undefined
+    #extractAuthorizationKey(request: Request): string | undefined
     {
         const authorization = this.#getAuthorizationHeader(request);
 
@@ -168,14 +182,14 @@ export default class AuthenticationMiddleware implements Middleware
             return;
         }
 
-        const [type, token] = authorization.split(' ');
+        const [type, key] = authorization.split(' ');
 
         if (type.toLowerCase() !== 'bearer')
         {
             throw new Unauthorized('Invalid authorization type');
         }
 
-        return token;
+        return key;
     }
 
     #getAuthorizationHeader(request: Request): string | undefined
@@ -185,6 +199,11 @@ export default class AuthenticationMiddleware implements Middleware
 
     #setAuthorizationHeader(response: Response, session: Session): void
     {
-        response.setHeader('Authorization', `Bearer ${session.accessToken}`);
+        response.setHeader('Authorization', `Bearer ${session.key}`);
+    }
+
+    #setRedirectHeader(response: Response, key: string): void
+    {
+        response.setHeader('Location', `${this.#redirectUrl}?key=${key}`);
     }
 }

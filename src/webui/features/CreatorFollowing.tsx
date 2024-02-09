@@ -1,20 +1,25 @@
 
-import React, { useState, useEffect } from 'react';
-
-import type RelationView from '../../domain/relation/RelationView';
+import { useEffect, useState } from 'react';
 import getFollowing from '../../domain/relation/getFollowing';
-
+import type RelationView from '../../domain/relation/view/RelationView';
+import { Loading, OrderAndSearchRow, RelationPanelList } from '../components/module';
+import { useCreatorContext } from '../contexts/CreatorContext';
 import { Column } from '../designsystem/module';
-
-import { OrderAndSearchRow, RelationPanelList } from '../components/module';
 
 export default function Feature()
 {
-    const [relations, setRelations] = useState<RelationView[]>([]);
+    const { creator } = useCreatorContext();
+    const [relations, setRelations] = useState<RelationView[] | undefined>(undefined);
+
+    if (creator === undefined)
+    {
+        return <>Nope...</>;
+    }
 
     const getRelations = async () =>
     {
-        const relations = await getFollowing('0');
+        const relations = await getFollowing(creator.id);
+
         setRelations(relations);
     };
 
@@ -32,6 +37,10 @@ export default function Feature()
 
     return <Column gap='small' alignX='stretch'>
         <OrderAndSearchRow selected='recent' orderChangeHandler={handleOrderChange} />
-        <RelationPanelList relations={relations} followHandler={handleFollow} />
+        {
+            relations !== undefined
+                ? <RelationPanelList relations={relations} followHandler={handleFollow} />
+                : <Loading />
+        }
     </Column>;
 }

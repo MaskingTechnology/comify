@@ -1,11 +1,7 @@
 
-import React from 'react';
-
+import type ComicView from '../../../domain/comic/view/ComicView';
+import dummyDataUrl from '../../assets/images/introduction.png';
 import { Image } from '../../designsystem/module';
-
-import type ComicView from '../../../domain/comic/ComicView';
-
-import dummyDataUrl from '../../../assets/images/introduction.png';
 
 export type Props = {
     comic: ComicView;

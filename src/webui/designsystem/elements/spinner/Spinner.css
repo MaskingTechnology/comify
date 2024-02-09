@@ -1,0 +1,39 @@
+.ds-spinner
+{
+    --color: var(--color-border);
+    --size: 2rem;
+    --speed: 1.2s;
+    --thickness: 0.3rem;
+}
+
+.ds-spinner
+{
+    display: inline-block;
+    width: var(--size);
+    height: var(--size);
+}
+
+.ds-spinner:after
+{
+    content: " ";
+    display: block;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    border: var(--thickness) solid var(--color);
+    border-color: var(--color) transparent var(--color) transparent;
+    animation: ds-spinner var(--speed) linear infinite;
+}
+
+@keyframes ds-spinner
+{
+    0%
+    {
+        transform: rotate(0deg);
+    }
+
+    100%
+    {
+        transform: rotate(360deg);
+    }
+}

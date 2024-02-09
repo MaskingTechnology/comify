@@ -1,6 +1,6 @@
 
-import { NotificationService } from '../../definitions/interfaces';
 import { NotConnected, SubscriptionNotFound } from '../../definitions/errors.js';
+import { NotificationService } from '../../definitions/interfaces';
 
 export type Notification = {
     title: string;

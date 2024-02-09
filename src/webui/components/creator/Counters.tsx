@@ -1,8 +1,5 @@
 
-import React from 'react';
-
-import type CreatorView from '../../../domain/creator/CreatorView';
-
+import type CreatorView from '../../../domain/creator/view/CreatorView';
 import AvatarRow from './elementary/AvatarRow';
 import CountersColumn from './elementary/CountersColumn';
 
@@ -15,7 +12,7 @@ export default function Component({ creator }: Props)
     return <AvatarRow avatarSize='large' avatarUrl={creator.portrait?.dataUrl}>
         <CountersColumn
             fullName={creator.fullName}
-            nickName={creator.nickName}
+            nickname={creator.nickname}
             postCount={creator.postCount}
             followerCount={creator.followerCount}
             followingCount={creator.followingCount}
