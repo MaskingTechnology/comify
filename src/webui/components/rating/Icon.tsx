@@ -1,10 +1,9 @@
 
-import React from 'react';
 
 import { Image } from '../../designsystem/module';
 
-import unratedIcon from '../../../assets/images/icons/unrated.svg';
-import ratedIcon from '../../../assets/images/icons/rated.svg';
+import ratedIcon from '../../assets/images/icons/rated.svg';
+import unratedIcon from '../../assets/images/icons/unrated.svg';
 
 export type Props = {
     isRated: boolean;
