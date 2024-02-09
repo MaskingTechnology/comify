@@ -1,6 +1,5 @@
 
 import type Requester from '../authentication/Requester';
-
 import retrieveByNickname from './data/retrieveByNickname';
 import CreatorNotFound from './errors/CreatorNotFound';
 import type CreatorView from './view/CreatorView';

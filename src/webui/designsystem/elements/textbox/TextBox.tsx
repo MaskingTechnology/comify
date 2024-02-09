@@ -1,6 +1,5 @@
 
 import React from 'react';
-
 import './TextBox.css';
 
 export type Props = {

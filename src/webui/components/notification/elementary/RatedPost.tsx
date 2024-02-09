@@ -1,7 +1,5 @@
 
-import React from 'react';
-
-import { Row, Image, Text } from '../../../designsystem/module';
+import { Image, Row, Text } from '../../../designsystem/module';
 
 export type Props = {
     comicDataUrl: string;

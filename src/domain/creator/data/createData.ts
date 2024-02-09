@@ -1,6 +1,5 @@
 
 import { RecordData } from '../../../integrations/database/module';
-
 import CreatorData from './CreatorData';
 
 export default function createData(record: RecordData): CreatorData

@@ -1,8 +1,8 @@
 
-import { Database } from '../../definitions/interfaces.js';
-import { RecordData, RecordField, RecordValue, QueryOperator, QueryStatement, QueryMultiExpressionStatement, QuerySingleExpressionStatement, RecordSort, RecordQuery, QueryExpression } from '../../definitions/types.js';
 import { LogicalOperators, QueryOperators, SortDirections } from '../../definitions/constants.js';
 import { NotConnected, RecordNotFound, RecordNotUpdated } from '../../definitions/errors.js';
+import { Database } from '../../definitions/interfaces.js';
+import { QueryExpression, QueryMultiExpressionStatement, QueryOperator, QuerySingleExpressionStatement, QueryStatement, RecordData, RecordField, RecordQuery, RecordSort, RecordValue } from '../../definitions/types.js';
 
 type FilterFunction = (record: RecordData) => boolean;
 

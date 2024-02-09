@@ -1,10 +1,6 @@
 
-import React from 'react';
-
 import type PostView from '../../../domain/post/view/PostView';
-
 import { Grid } from '../../designsystem/module';
-
 import SmallPanel from './SmallPanel';
 
 export type Props = {

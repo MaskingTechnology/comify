@@ -1,6 +1,5 @@
 
 import getImageView from '../../image/get';
-
 import type CreatorData from '../data/CreatorData';
 import CreatorView from './CreatorView';
 

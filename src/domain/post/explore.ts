@@ -1,8 +1,6 @@
 
 import type Requester from '../authentication/Requester';
-
 import retrieveRelationsByFollower from '../relation/data/retrieveByFollower';
-
 import type PostView from './view/PostView';
 import createView from './view/createView';
 

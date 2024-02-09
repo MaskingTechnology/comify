@@ -1,18 +1,16 @@
 
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-
+import { Route, Routes } from 'react-router-dom';
 import { useAppContext } from './contexts/AppContext';
-
-import Home from './features/Home';
-import Login from './features/Login';
-import Identify from './features/Identify';
-import Timeline from './features/Timeline';
-import Explore from './features/Explore';
-import Notifications from './features/Notifications';
 import CreateComic from './features/CreateComic';
-import Profile from './features/Profile';
+import Explore from './features/Explore';
+import Home from './features/Home';
+import Identify from './features/Identify';
+import Login from './features/Login';
 import NotFound from './features/NotFound';
+import Notifications from './features/Notifications';
+import Profile from './features/Profile';
+import Timeline from './features/Timeline';
 
 export default function Component()
 {

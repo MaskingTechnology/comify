@@ -1,6 +1,5 @@
 
 import React from 'react';
-
 import './Row.css';
 
 export type Props = {

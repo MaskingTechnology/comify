@@ -1,13 +1,10 @@
 
-import React, { useState, useEffect } from 'react';
-
-import type RelationView from '../../domain/relation/view/RelationView';
-import type NotificationView from '../../domain/notification/view/NotificationView';
+import { useEffect, useState } from 'react';
 import getRecentNotifications from '../../domain/notification/getRecent';
-
-import { Column } from '../designsystem/module';
-
+import type NotificationView from '../../domain/notification/view/NotificationView';
+import type RelationView from '../../domain/relation/view/RelationView';
 import { NotificationPanelList } from '../components/module';
+import { Column } from '../designsystem/module';
 
 export default function Feature()
 {

@@ -1,13 +1,10 @@
 
-import React, { useState, useEffect } from 'react';
-
-import type RelationView from '../../domain/relation/view/RelationView';
-import exploreRelations from '../../domain/relation/explore';
+import { useEffect, useState } from 'react';
 import johnDoe from '../../domain/authentication/johnDoe';
-
-import { Column } from '../designsystem/module';
-
+import exploreRelations from '../../domain/relation/explore';
+import type RelationView from '../../domain/relation/view/RelationView';
 import { OrderAndSearchRow, RelationPanelList } from '../components/module';
+import { Column } from '../designsystem/module';
 
 export default function Feature()
 {

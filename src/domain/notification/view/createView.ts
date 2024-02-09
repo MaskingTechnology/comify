@@ -1,8 +1,7 @@
 
-import getRelationView from '../../relation/get';
 import getPostView from '../../post/get';
 import getReactionView from '../../reaction/get';
-
+import getRelationView from '../../relation/get';
 import type NotificationData from '../data/NotificationData';
 import NotificationView from './NotificationView';
 

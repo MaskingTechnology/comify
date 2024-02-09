@@ -1,10 +1,6 @@
 
-import React from 'react';
-
 import type RelationView from '../../../domain/relation/view/RelationView';
-
 import { Column } from '../../designsystem/module';
-
 import Panel from './Panel.js';
 
 export type Props = {

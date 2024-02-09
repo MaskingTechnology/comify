@@ -1,8 +1,5 @@
 
-import React from 'react';
-
 import { Row } from '../../../designsystem/module';
-
 import NamesColumn from './NamesColumn';
 
 export type Props = {

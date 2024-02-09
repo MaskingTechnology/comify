@@ -1,7 +1,6 @@
 
-import { Validator } from './definitions/interfaces';
 import { UnknownImplementation } from './definitions/errors';
-
+import { Validator } from './definitions/interfaces';
 import createZod from './implementations/zod/create';
 
 const implementations = new Map<string, () => Validator>([

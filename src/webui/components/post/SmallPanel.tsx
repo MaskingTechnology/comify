@@ -1,12 +1,7 @@
 
-import React from 'react';
-
 import type PostView from '../../../domain/post/view/PostView';
-
 import { Column, Panel, Row } from '../../designsystem/module';
-
 import Comic from '../comic/Image';
-
 import TimeElapsed from '../common/TimeElapsed';
 import EngagementsRow from './elementary/EngagementRow';
 

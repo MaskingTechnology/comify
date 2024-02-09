@@ -1,6 +1,5 @@
 
 import getCreatorView from '../../creator/get';
-
 import type ReactionData from '../data/ReactionData';
 import ReactionView from './ReactionView';
 

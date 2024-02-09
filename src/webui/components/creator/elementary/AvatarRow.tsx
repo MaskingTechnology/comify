@@ -1,7 +1,6 @@
 
 import React from 'react';
-
-import { Row, Avatar } from '../../../designsystem/module';
+import { Avatar, Row } from '../../../designsystem/module';
 
 export type Props = {
     avatarSize: 'small' | 'medium' | 'large';

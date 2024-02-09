@@ -1,6 +1,4 @@
 
-import React from 'react';
-
 import './Ruler.css';
 
 export type Props = {

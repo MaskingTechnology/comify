@@ -1,10 +1,8 @@
 
 import React from 'react';
-
 import { ApplicationSidebar } from '../components/module';
-import { SidebarLayout } from '../layouts/module';
-
 import { useAppContext } from '../contexts/AppContext';
+import { SidebarLayout } from '../layouts/module';
 
 export type Props = {
     children?: React.ReactNode;

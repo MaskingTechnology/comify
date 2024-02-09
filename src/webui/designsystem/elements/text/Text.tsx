@@ -1,6 +1,4 @@
 
-import React from 'react';
-
 import './Text.css';
 
 export type Props = {
