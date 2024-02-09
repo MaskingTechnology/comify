@@ -9,7 +9,8 @@ type AuthProcedures = {
     logout: string;
 };
 
-const REQUESTER_PARAMETER = 'requester';
+const IDENTITY_PARAMETER = 'identity';
+const REQUESTER_PARAMETER = '*requester';
 
 const sessions = new Map<string, Session>();
 
@@ -101,7 +102,7 @@ export default class AuthenticationMiddleware implements Middleware
         const session = await this.#identityProvider.login(data);
 
         request.args.clear();
-        request.setArgument('identity', session.identity);
+        request.setArgument(IDENTITY_PARAMETER, session.identity);
 
         const response = await next();
 
