@@ -1,20 +1,19 @@
 
-import React from 'react';
 
 import { Column } from '../../../designsystem/module';
 
 import Item from './Item';
 
-import timelineActiveIcon from '../../../../assets/images/navigation/timeline-active.svg';
-import timelineInactiveIcon from '../../../../assets/images/navigation/timeline-inactive.svg';
-import exploreActiveIcon from '../../../../assets/images/navigation/explore-active.svg';
-import exploreInactiveIcon from '../../../../assets/images/navigation/explore-inactive.svg';
-import notificationsActiveIcon from '../../../../assets/images/navigation/notifications-active.svg';
-import notificationsInactiveIcon from '../../../../assets/images/navigation/notifications-inactive.svg';
-import createActiveIcon from '../../../../assets/images/navigation/create-active.svg';
-import createInactiveIcon from '../../../../assets/images/navigation/create-inactive.svg';
-import profileActiveIcon from '../../../../assets/images/navigation/profile-active.svg';
-import profileInactiveIcon from '../../../../assets/images/navigation/profile-inactive.svg';
+import createActiveIcon from '../../../assets/images/navigation/create-active.svg';
+import createInactiveIcon from '../../../assets/images/navigation/create-inactive.svg';
+import exploreActiveIcon from '../../../assets/images/navigation/explore-active.svg';
+import exploreInactiveIcon from '../../../assets/images/navigation/explore-inactive.svg';
+import notificationsActiveIcon from '../../../assets/images/navigation/notifications-active.svg';
+import notificationsInactiveIcon from '../../../assets/images/navigation/notifications-inactive.svg';
+import profileActiveIcon from '../../../assets/images/navigation/profile-active.svg';
+import profileInactiveIcon from '../../../assets/images/navigation/profile-inactive.svg';
+import timelineActiveIcon from '../../../assets/images/navigation/timeline-active.svg';
+import timelineInactiveIcon from '../../../assets/images/navigation/timeline-inactive.svg';
 
 export type Props = {
     identity: {
