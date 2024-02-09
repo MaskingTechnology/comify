@@ -61,6 +61,11 @@
     color: var(--warning-foreground-color);
 }
 
+.ds-panel.ds-panel-transparent
+{
+    background-color: transparent;
+}
+
 .ds-panel.ds-panel-padding-small
 {
     padding: var(--padding-small);
