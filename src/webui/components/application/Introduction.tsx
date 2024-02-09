@@ -1,5 +1,4 @@
 
-
 import introductionImage from '../../assets/images/introduction.png';
 import { Button, Column, Image, Panel, Row, Text } from '../../designsystem/module';
 import { ApplicationLogo } from '../module';

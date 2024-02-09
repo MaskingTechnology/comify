@@ -104,7 +104,7 @@ export default class OpenID implements IdentityProvider
     {
         const client = this.#getClient();
 
-        return client.revoke(session.accessToken);
+        return client.revoke(session.refreshToken);
     }
 
     #getClient(): BaseClient
