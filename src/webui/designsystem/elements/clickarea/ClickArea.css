@@ -1,0 +1,36 @@
+.ds-clickarea
+{
+    --margin: 0;
+
+    --padding-large: 2em;
+    --padding-medium: 1.5em;
+    --padding-small: 1em;
+    --padding-none: 0;
+}
+
+.ds-clickarea
+{
+    margin: var(--margin);
+    padding: var(--padding);
+    cursor: pointer;
+}
+
+.ds-clickarea.ds-clickarea-none
+{
+    padding: var(--padding-none);
+}
+
+.ds-clickarea.ds-clickarea-small
+{
+    padding: var(--padding-small);
+}
+
+.ds-clickarea.ds-clickarea-medium
+{
+    padding: var(--padding-medium);
+}
+
+.ds-clickarea.ds-clickarea-large
+{
+    padding: var(--padding-large);
+}
