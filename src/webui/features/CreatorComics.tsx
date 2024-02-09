@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import getCreatorPosts from '../../domain/post/getByCreator';
 import type PostView from '../../domain/post/view/PostView';
-import { PostPanelGrid } from '../components/module';
+import { Loading, PostPanelGrid } from '../components/module';
 import { useCreatorContext } from '../contexts/CreatorContext';
 import { Column } from '../designsystem/module';
 
@@ -27,7 +27,7 @@ export default function Feature()
 
     if (posts === undefined)
     {
-        return <>Loading...</>;
+        return <Loading />;
     }
 
     return <Column gap='small' alignX='stretch'>

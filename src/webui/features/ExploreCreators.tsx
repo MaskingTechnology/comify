@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import johnDoe from '../../domain/authentication/johnDoe';
 import exploreRelations from '../../domain/relation/explore';
 import type RelationView from '../../domain/relation/view/RelationView';
-import { OrderAndSearchRow, RelationPanelList } from '../components/module';
+import { Loading, OrderAndSearchRow, RelationPanelList } from '../components/module';
 import { Column } from '../designsystem/module';
 
 export default function Feature()
@@ -29,13 +29,12 @@ export default function Feature()
 
     useEffect(() => { getRelations(); }, []);
 
-    if (relations === undefined)
-    {
-        return <>Loading...</>;
-    }
-
     return <Column gap='small' alignX='stretch'>
         <OrderAndSearchRow selected='popular' orderChangeHandler={handleOrderChange} />
-        <RelationPanelList relations={relations} followHandler={handleFollow} />
+        {
+            relations !== undefined
+                ? <RelationPanelList relations={relations} followHandler={handleFollow} />
+                : <Loading />
+        }
     </Column>;
 }
