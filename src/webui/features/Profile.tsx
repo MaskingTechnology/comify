@@ -1,19 +1,13 @@
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
 import getCreator from '../../domain/creator/getByNickname';
-
-import type RelationView from '../../domain/relation/view/RelationView';
 import getRelation from '../../domain/relation/get';
-
-import { Column, Tabs, Tab, Ruler } from '../designsystem/module';
-
+import type RelationView from '../../domain/relation/view/RelationView';
 import { RelationProfile } from '../components/module';
-
 import { useAppContext } from '../contexts/AppContext';
 import CreatorContext from '../contexts/CreatorContext';
-
+import { Column, Ruler, Tab, Tabs } from '../designsystem/module';
 import CreatorComics from './CreatorComics';
 import CreatorFollowers from './CreatorFollowers';
 import CreatorFollowing from './CreatorFollowing';

@@ -1,6 +1,4 @@
 
-import React from 'react';
-
 import './Avatar.css';
 
 export type Props = {

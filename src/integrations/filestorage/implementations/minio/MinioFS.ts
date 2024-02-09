@@ -1,8 +1,7 @@
 
 import { Client, ClientOptions } from 'minio';
-
+import { FileNotFound, NotConnected } from '../../definitions/errors.js';
 import { FileStorage } from '../../definitions/interfaces.js';
-import { NotConnected, FileNotFound } from '../../definitions/errors.js';
 
 const BUCKET_NAME = 'comify';
 

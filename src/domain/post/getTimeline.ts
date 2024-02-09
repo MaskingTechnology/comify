@@ -1,10 +1,8 @@
 
 import type Requester from '../authentication/Requester';
-
 import retrieveFollowerData from '../relation/data/retrieveByFollower';
-
-import type PostView from './view/PostView';
 import retrieveByCreators from './data/retrieveByCreators';
+import type PostView from './view/PostView';
 import createView from './view/createView';
 
 export default async function getTimeline(requester: Requester): Promise<PostView[]>

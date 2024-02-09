@@ -1,6 +1,5 @@
 
 import React from 'react';
-
 import './Select.css';
 
 export type Props = {

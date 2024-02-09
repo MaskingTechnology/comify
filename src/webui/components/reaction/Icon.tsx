@@ -1,8 +1,7 @@
 
 
-import { Image } from '../../designsystem/module';
-
 import reactionsIcon from '../../assets/images/icons/reactions.svg';
+import { Image } from '../../designsystem/module';
 
 export default function Component()
 {

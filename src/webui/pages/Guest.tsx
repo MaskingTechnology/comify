@@ -1,6 +1,5 @@
 
 import React from 'react';
-
 import { CenteredLayout } from '../layouts/module';
 
 export type Props = {

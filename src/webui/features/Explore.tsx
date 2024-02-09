@@ -1,8 +1,5 @@
 
-import React from 'react';
-
-import { Tabs, Tab, Ruler } from '../designsystem/module';
-
+import { Ruler, Tab, Tabs } from '../designsystem/module';
 import ExploreComics from './ExploreComics';
 import ExploreCreators from './ExploreCreators';
 

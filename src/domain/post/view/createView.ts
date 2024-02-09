@@ -1,9 +1,7 @@
 
 import getComicView from '../../comic/get';
-import getRelationView from '../../relation/get';
-
 import ratingExists from '../../rating/exists';
-
+import getRelationView from '../../relation/get';
 import type PostData from '../data/PostData';
 import PostView from './PostView';
 

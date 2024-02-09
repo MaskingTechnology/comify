@@ -1,11 +1,14 @@
 
 import { describe, expect, it } from 'vitest';
-
 import
 {
-    FIRST_SUBSCRIPTION_ID, SECOND_SUBSCRIPTION_ID, UNKNOWN_RECIPIENT_ID,
-    NOTIFICATION_TITLE, NOTIFICATION_BODY,
-    setUpMemoryNotifications, SubscriptionNotFound
+    FIRST_SUBSCRIPTION_ID,
+    NOTIFICATION_BODY,
+    NOTIFICATION_TITLE,
+    SECOND_SUBSCRIPTION_ID,
+    SubscriptionNotFound,
+    UNKNOWN_RECIPIENT_ID,
+    setUpMemoryNotifications
 } from './_fixtures/Memory.fixture.js';
 
 describe('MemoryNotifications', () =>

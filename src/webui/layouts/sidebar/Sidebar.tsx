@@ -1,8 +1,6 @@
 
 import React from 'react';
-
 import { Ruler } from '../../designsystem/module';
-
 import './Sidebar.css';
 
 export type Props = {

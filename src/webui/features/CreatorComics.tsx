@@ -1,9 +1,7 @@
 
-import React, { useState, useEffect } from 'react';
-
-import type PostView from '../../domain/post/view/PostView';
+import { useEffect, useState } from 'react';
 import getCreatorPosts from '../../domain/post/getByCreator';
-
+import type PostView from '../../domain/post/view/PostView';
 import { PostPanelGrid } from '../components/module';
 import { useCreatorContext } from '../contexts/CreatorContext';
 import { Column } from '../designsystem/module';

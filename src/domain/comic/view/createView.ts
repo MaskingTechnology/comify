@@ -1,6 +1,5 @@
 
 import retrieveImageView from '../../image/get';
-
 import type ComicData from '../data/ComicData';
 import ComicView from './ComicView';
 

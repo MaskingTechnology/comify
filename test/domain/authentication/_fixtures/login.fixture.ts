@@ -1,10 +1,9 @@
 
-import database, { RecordData } from '../../../../src/integrations/database/module';
-import { Identity } from '../../../../src/integrations/authentication/module';
-
+import login from '../../../../src/domain/authentication/login';
 import { RECORD_TYPE } from '../../../../src/domain/creator/data/constants';
 import TooManySimilarNicknames from '../../../../src/domain/creator/errors/TooManySimilarNicknames';
-import login from '../../../../src/domain/authentication/login';
+import { Identity } from '../../../../src/integrations/authentication/module';
+import database, { RecordData } from '../../../../src/integrations/database/module';
 
 const NICKNAMES: Record<string, string> = {
     EXISTING_NICKNAME: 'ExistingNickname',
@@ -92,4 +91,5 @@ const LOGINS: Record<string, Identity> =
     }
 };
 
-export { TooManySimilarNicknames, login, NICKNAMES, LOGINS };
+export { LOGINS, NICKNAMES, TooManySimilarNicknames, login };
+

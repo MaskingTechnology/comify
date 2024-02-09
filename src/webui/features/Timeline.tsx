@@ -1,14 +1,11 @@
 
-import React, { useState, useEffect } from 'react';
-
-import type RelationView from '../../domain/relation/view/RelationView';
-import type PostView from '../../domain/post/view/PostView';
-import getTimelinePosts from '../../domain/post/getTimeline';
+import { useEffect, useState } from 'react';
 import johnDoe from '../../domain/authentication/johnDoe';
-
-import { Column } from '../designsystem/module';
-
+import getTimelinePosts from '../../domain/post/getTimeline';
+import type PostView from '../../domain/post/view/PostView';
+import type RelationView from '../../domain/relation/view/RelationView';
 import { OrderRow, PostPanelList } from '../components/module';
+import { Column } from '../designsystem/module';
 
 export default function Feature()
 {

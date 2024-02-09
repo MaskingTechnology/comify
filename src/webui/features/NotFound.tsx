@@ -1,7 +1,5 @@
 
-import React from 'react';
-
-import { Panel, Title, Paragraph } from '../designsystem/module';
+import { Panel, Paragraph, Title } from '../designsystem/module';
 
 export default function Feature()
 {

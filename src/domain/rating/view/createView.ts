@@ -2,7 +2,6 @@
 import getCreatorView from '../../creator/get';
 import getPostView from '../../post/get';
 import getReactionView from '../../reaction/get.js';
-
 import type RatingData from '../data/RatingData';
 import RatingView from './RatingView';
 

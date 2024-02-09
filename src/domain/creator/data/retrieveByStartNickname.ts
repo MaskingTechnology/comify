@@ -1,8 +1,7 @@
 
 import database, { RecordSort, SortDirections } from '../../../integrations/database/module';
-
-import { RECORD_TYPE } from './constants';
 import CreatorData from './CreatorData';
+import { RECORD_TYPE } from './constants';
 import createData from './createData';
 
 export default async function retrieveByStartNickname(nickname: string): Promise<CreatorData | undefined>

@@ -1,6 +1,5 @@
 
 import React from 'react';
-
 import './TextArea.css';
 
 export type Props = {

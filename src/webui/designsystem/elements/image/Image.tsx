@@ -1,6 +1,4 @@
 
-import React from 'react';
-
 import './Image.css';
 
 export type Props = {

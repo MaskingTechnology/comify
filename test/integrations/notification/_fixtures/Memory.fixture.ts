@@ -1,7 +1,7 @@
 
-import Memory from '../../../../src/integrations/notification/implementations/memory/Memory';
-import { NotificationService } from '../../../../src/integrations/notification/definitions/interfaces';
 import { SubscriptionNotFound } from '../../../../src/integrations/notification/definitions/errors';
+import { NotificationService } from '../../../../src/integrations/notification/definitions/interfaces';
+import Memory from '../../../../src/integrations/notification/implementations/memory/Memory';
 
 const FIRST_SUBSCRIPTION_ID = 'first';
 const SECOND_SUBSCRIPTION_ID = 'second';
@@ -24,7 +24,6 @@ async function setUpMemoryNotifications(): Promise<NotificationService>
 
 export
 {
-    FIRST_SUBSCRIPTION_ID, SECOND_SUBSCRIPTION_ID, UNKNOWN_RECIPIENT_ID,
-    NOTIFICATION_TITLE, NOTIFICATION_BODY,
-    setUpMemoryNotifications, SubscriptionNotFound
+    FIRST_SUBSCRIPTION_ID, NOTIFICATION_BODY, NOTIFICATION_TITLE, SECOND_SUBSCRIPTION_ID, SubscriptionNotFound, UNKNOWN_RECIPIENT_ID, setUpMemoryNotifications
 };
+

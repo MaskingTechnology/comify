@@ -1,6 +1,6 @@
 
-import AuthenticationMiddleware from './middlewares/AuthenticationMiddleware';
 import identityProvider from '../authentication/module';
+import AuthenticationMiddleware from './middlewares/AuthenticationMiddleware';
 
 const authProcedures = {
     loginUrl: 'domain/authentication/getLoginUrl',

@@ -1,10 +1,7 @@
 
-import React from 'react';
-
 import { Column } from '../../../designsystem/module';
-
-import NamesRow from './NamesRow';
 import CountersRow from './CountersRow';
+import NamesRow from './NamesRow';
 
 export type Props = {
     fullName: string;

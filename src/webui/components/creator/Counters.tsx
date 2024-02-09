@@ -1,8 +1,5 @@
 
-import React from 'react';
-
 import type CreatorView from '../../../domain/creator/view/CreatorView';
-
 import AvatarRow from './elementary/AvatarRow';
 import CountersColumn from './elementary/CountersColumn';
 

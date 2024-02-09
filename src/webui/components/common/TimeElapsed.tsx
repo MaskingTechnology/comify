@@ -1,8 +1,5 @@
 
-import React from 'react';
-
 import { timeElapsed } from '../../../integrations/utilities/dates';
-
 import { Text } from '../../designsystem/module';
 
 export type Props = {

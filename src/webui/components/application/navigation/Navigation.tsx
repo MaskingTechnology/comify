@@ -1,9 +1,5 @@
 
 
-import { Column } from '../../../designsystem/module';
-
-import Item from './Item';
-
 import createActiveIcon from '../../../assets/images/navigation/create-active.svg';
 import createInactiveIcon from '../../../assets/images/navigation/create-inactive.svg';
 import exploreActiveIcon from '../../../assets/images/navigation/explore-active.svg';
@@ -14,6 +10,8 @@ import profileActiveIcon from '../../../assets/images/navigation/profile-active.
 import profileInactiveIcon from '../../../assets/images/navigation/profile-inactive.svg';
 import timelineActiveIcon from '../../../assets/images/navigation/timeline-active.svg';
 import timelineInactiveIcon from '../../../assets/images/navigation/timeline-inactive.svg';
+import { Column } from '../../../designsystem/module';
+import Item from './Item';
 
 export type Props = {
     identity: {

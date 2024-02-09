@@ -1,6 +1,5 @@
 
 import React from 'react';
-
 import './Border.css';
 
 export type Props = {

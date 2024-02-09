@@ -1,6 +1,5 @@
 
 import React, { useContext, useState } from 'react';
-
 import type CreatorView from '../../domain/creator/view/CreatorView';
 
 type Context = {

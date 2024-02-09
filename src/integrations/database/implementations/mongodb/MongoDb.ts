@@ -1,10 +1,9 @@
 
-import { ObjectId, MongoClient, Document, Collection, Db, Filter, Sort } from 'mongodb';
-
+import { Collection, Db, Document, Filter, MongoClient, ObjectId, Sort } from 'mongodb';
+import { ID, LogicalOperators, QueryOperators, SortDirections } from '../../definitions/constants.js';
+import { DatabaseError, NotConnected, RecordNotCreated, RecordNotDeleted, RecordNotFound, RecordNotUpdated } from '../../definitions/errors.js';
 import { Database } from '../../definitions/interfaces.js';
-import { ID, LogicalOperators, SortDirections, QueryOperators } from '../../definitions/constants.js';
-import { QueryOperator, QueryMultiExpressionStatement, QuerySingleExpressionStatement, RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType, RecordValue } from '../../definitions/types.js';
-import { NotConnected, RecordNotCreated, RecordNotUpdated, RecordNotDeleted, RecordNotFound, DatabaseError } from '../../definitions/errors.js';
+import { QueryMultiExpressionStatement, QueryOperator, QuerySingleExpressionStatement, RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType, RecordValue } from '../../definitions/types.js';
 
 const UNKNOWN_ERROR = 'Unknown error';
 

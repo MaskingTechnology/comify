@@ -1,6 +1,5 @@
 
 import React from 'react';
-
 import './Paragraph.css';
 
 export type Props = {
