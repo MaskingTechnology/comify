@@ -4,7 +4,7 @@ import johnDoe from '../../domain/authentication/johnDoe';
 import getTimelinePosts from '../../domain/post/getTimeline';
 import type PostView from '../../domain/post/view/PostView';
 import type RelationView from '../../domain/relation/view/RelationView';
-import { OrderRow, PostPanelList } from '../components/module';
+import { Loading, OrderRow, PostPanelList } from '../components/module';
 import { Column } from '../designsystem/module';
 
 export default function Feature()
@@ -35,13 +35,12 @@ export default function Feature()
 
     useEffect(() => { getPosts(); }, []);
 
-    if (posts === undefined)
-    {
-        return <>Loading...</>;
-    }
-
     return <Column gap='small' alignX='stretch'>
         <OrderRow selected='recent' orderChangeHandler={handleOrderChange} />
-        <PostPanelList posts={posts} followHandler={handleFollow} rateHandler={handleRate} />
+        {
+            posts !== undefined
+                ? <PostPanelList posts={posts} followHandler={handleFollow} rateHandler={handleRate} />
+                : <Loading />
+        }
     </Column>;
 }

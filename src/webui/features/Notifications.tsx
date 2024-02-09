@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import getRecentNotifications from '../../domain/notification/getRecent';
 import type NotificationView from '../../domain/notification/view/NotificationView';
 import type RelationView from '../../domain/relation/view/RelationView';
-import { NotificationPanelList } from '../components/module';
+import { Loading, NotificationPanelList } from '../components/module';
 import { Column } from '../designsystem/module';
 
 export default function Feature()
@@ -26,7 +26,7 @@ export default function Feature()
 
     if (notifications === undefined)
     {
-        return <>Loading...</>;
+        return <Loading />;
     }
 
     return <Column gap='small' alignX='stretch'>

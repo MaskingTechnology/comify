@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import getFollowing from '../../domain/relation/getFollowing';
 import type RelationView from '../../domain/relation/view/RelationView';
-import { OrderAndSearchRow, RelationPanelList } from '../components/module';
+import { Loading, OrderAndSearchRow, RelationPanelList } from '../components/module';
 import { useCreatorContext } from '../contexts/CreatorContext';
 import { Column } from '../designsystem/module';
 
@@ -35,13 +35,12 @@ export default function Feature()
 
     useEffect(() => { getRelations(); }, []);
 
-    if (relations === undefined)
-    {
-        return <>Loading...</>;
-    }
-
     return <Column gap='small' alignX='stretch'>
         <OrderAndSearchRow selected='recent' orderChangeHandler={handleOrderChange} />
-        <RelationPanelList relations={relations} followHandler={handleFollow} />
+        {
+            relations !== undefined
+                ? <RelationPanelList relations={relations} followHandler={handleFollow} />
+                : <Loading />
+        }
     </Column>;
 }
