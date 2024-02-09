@@ -18,9 +18,9 @@ export default class Component extends React.Component<Props, State>
 {
     #promiseHandler = (event: PromiseRejectionEvent) =>
     {
-        event.preventDefault();
-
         this.setState({ error: event.reason });
+
+        event.preventDefault();
     };
 
     constructor(props: Props)
@@ -35,12 +35,12 @@ export default class Component extends React.Component<Props, State>
         return { error };
     }
 
-    componentDidMount()
+    componentDidMount(): void
     {
         window.addEventListener('unhandledrejection', this.#promiseHandler);
     }
 
-    componentWillUnmount()
+    componentWillUnmount(): void
     {
         window.removeEventListener('unhandledrejection', this.#promiseHandler);
     }

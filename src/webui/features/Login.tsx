@@ -1,27 +1,28 @@
 
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
-import johnDoe from '../../domain/authentication/johnDoe';
-import getMe from '../../domain/creator/getMe';
+import getLoginUrl from '../../domain/authentication/getLoginUrl';
 
-import { useAppContext } from '../contexts/AppContext';
+const IGNORE_PATHS = ['/', '/login', '/identify'];
 
 export default function Feature()
 {
-    const navigate = useNavigate();
-    const context = useAppContext();
-
-    const logMeIn = async () =>
+    const redirect = async () =>
     {
-        const me = await getMe(johnDoe);
+        const pathname = window.location.pathname;
+        const search = window.location.search;
+        const hash = window.location.hash;
 
-        context.setIdentity(me);
+        const currentLocation = pathname + search + hash;
 
-        navigate('/timeline');
+        IGNORE_PATHS.includes(pathname)
+            ? window.sessionStorage.removeItem('redirect')
+            : window.sessionStorage.setItem('redirect', currentLocation);
+
+        window.location.href = await getLoginUrl();
     };
 
-    useEffect(() => { logMeIn(); }, []);
+    useEffect(() => { redirect(); }, []);
 
-    return <>Logging in...</>;
+    return <>Redirecting...</>;
 }

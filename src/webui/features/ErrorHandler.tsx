@@ -1,8 +1,7 @@
 
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-
 import { Panel, Title, Paragraph } from '../designsystem/module';
+
+import Login from './Login';
 
 export type Props = {
     error: unknown;
@@ -10,20 +9,12 @@ export type Props = {
 
 export default function Feature({ error }: Props)
 {
-    const navigate = useNavigate();
+    const isUnauthorized = error?.constructor?.name === 'Unauthorized';
 
-    const handleError = () =>
-    {
-        if (error?.constructor?.name === 'Unauthorized')
-        {
-            navigate('/getin');
-        }
-    };
-
-    useEffect(() => { handleError(); }, [error]);
-
-    return <Panel type='normal'>
+    const ErrorPanel = <Panel type='normal'>
         <Title>Oops...</Title>
         <Paragraph>An unexpected error occurred. Please try again!</Paragraph>
     </Panel>;
+
+    return isUnauthorized ? <Login /> : ErrorPanel;
 }
