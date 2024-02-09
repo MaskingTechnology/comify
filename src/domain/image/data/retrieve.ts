@@ -1,6 +1,5 @@
 
 import database from '../../../integrations/database/module';
-
 import type ImageData from './ImageData';
 import { RECORD_TYPE } from './constants.js';
 import createData from './createData';

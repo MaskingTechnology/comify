@@ -1,16 +1,16 @@
 
 import ImageData from './data/ImageData';
 import create from './data/create';
+import download from './download';
 import { UnsupportedContentSize, UnsupportedMimeType } from './errors';
 import store from './files/store';
-import download from './download';
 
 export default async function generateImage(picture: string, imageType: string): Promise<ImageData>
 {
     const response = await fetch(picture, { method: 'HEAD' });
     const mimeType = response.headers.get('content-type');
 
-    if (mimeType === null || mimeType! in ['gif', 'jpeg', 'png'])
+    if (mimeType === null || ['image/gif', 'image/jpeg', 'image/png'].includes(mimeType) === false)
     {
         throw new UnsupportedMimeType;
     }
@@ -31,5 +31,4 @@ export default async function generateImage(picture: string, imageType: string):
     await store(storageKey, buffer);
 
     return create(storageKey, fileName, mimeType, size);
-
 }

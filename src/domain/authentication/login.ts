@@ -1,7 +1,5 @@
 
 import { Identity } from '../../integrations/authentication/module';
-
-import createCreator from '../creator/data/create';
 import retrieveCreatorByEmail from '../creator/data/retrieveByEmail';
 import generateCreatorPortrait from '../creator/generatePortrait';
 import registerCreator from '../creator/register';
@@ -22,7 +20,7 @@ export default async function login(identity: Identity): Promise<Requester>
         : undefined;
 
     const nickname = identity.nickname ?? identity.name;
-    const registeredCreator = await registerCreator(identity.email, identity.name, nickname);
+    const registeredCreator = await registerCreator(identity.email, identity.name, nickname, portrait?.id);
 
-    return createCreator(identity.email, identity.name, nickName, portrait?.id);
+    return createRequester(registeredCreator);
 }

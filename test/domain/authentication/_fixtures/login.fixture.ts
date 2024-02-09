@@ -1,12 +1,11 @@
 
+import login from '../../../../src/domain/authentication/login';
+import { RECORD_TYPE } from '../../../../src/domain/creator/data/constants';
+import TooManySimilarNicknames from '../../../../src/domain/creator/errors/TooManySimilarNicknames';
+import { UnsupportedContentSize, UnsupportedMimeType } from '../../../../src/domain/image/errors';
 import { Identity } from '../../../../src/integrations/authentication/module';
 import database, { RecordData } from '../../../../src/integrations/database/module';
 import filestorage from '../../../../src/integrations/filestorage/module.ts';
-
-import login from '../../../../src/domain/authentication/login';
-import { RECORD_TYPE } from '../../../../src/domain/creator/data/constants';
-import { TooManySimilarNickNames } from '../../../../src/domain/creator/errors';
-import { UnsupportedContentSize, UnsupportedMimeType } from '../../../../src/domain/image/errors';
 
 const NICKNAMES: Record<string, string> = {
     EXISTING_NICKNAME: 'ExistingNickname',
@@ -117,18 +116,17 @@ const LOGINS: Record<string, Identity> =
     NAME_WITH_PICTURE_INVALID_MIME_TYPE: {
         name: 'InvalidPictureMimeType',
         nickname: 'InvalidPictureMimeTypeNickName',
-        picture: 'https://www.blikoplisse.nl/images/familieberichten/240208_Bijnsdorp-Berg-1.jpg',
+        picture: 'https://oeffelt.net/nederland/Nieuwe%20afbeelding.bmp',
         email: 'invalidmimetype@mail.com',
         email_verified: false
     },
     NAME_WITH_PICTURE_INVALID_SIZE: {
         name: 'InvalidPictureSize',
         nickname: 'InvalidPictureSizeNickName',
-        picture: 'https://www.blikoplisse.nl/images/familieberichten/240208_Bijnsdorp-Berg-1.jpg',
+        picture: 'https://unsplash.com/photos/GW6ZgtQEwu4/download?ixid=M3wxMjA3fDB8MXxhbGx8OHx8fHx8fDJ8fDE3MDc0OTI2Mjd8&force=true',
         email: 'invalidpicturesize@mail.com',
         email_verified: false
     }
 };
 
-export { NICKNAMES, SIGNUPS, TooManySimilarNickNames, UnsupportedContentSize, UnsupportedMimeType, login };
-
+export { LOGINS, NICKNAMES, TooManySimilarNicknames, UnsupportedContentSize, UnsupportedMimeType, login };
