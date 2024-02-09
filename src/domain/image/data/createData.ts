@@ -1,6 +1,5 @@
 
 import { RecordData } from '../../../integrations/database/module';
-
 import ImageData from './ImageData';
 
 export default function createData(record: RecordData): ImageData
