@@ -155,7 +155,7 @@ export default class AuthenticationMiddleware implements Middleware
         }
     }
 
-    #destroySession(request: Request, next: NextHandler): Promise<Response>
+    async #destroySession(request: Request, next: NextHandler): Promise<Response>
     {
         const key = this.#extractAuthorizationKey(request);
 
@@ -166,7 +166,7 @@ export default class AuthenticationMiddleware implements Middleware
 
         const session = this.#getSession(key);
 
-        this.#identityProvider.logout(session);
+        await this.#identityProvider.logout(session);
 
         sessions.delete(key);
 
