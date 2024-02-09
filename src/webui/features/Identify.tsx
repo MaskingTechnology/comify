@@ -12,17 +12,17 @@ export default function Feature()
     const navigate = useNavigate();
     const context = useAppContext();
 
-    const logMeIn = async () =>
+    const identify = async () =>
     {
-        const originLocation = window.sessionStorage.getItem('loginOrigin');
+        const redirectLocation = window.sessionStorage.getItem('redirect');
         const me = await getMe(johnDoe);
 
         context.setIdentity(me);
 
-        navigate(originLocation ?? '/timeline');
+        navigate(redirectLocation ?? '/timeline');
     };
 
-    useEffect(() => { logMeIn(); }, []);
+    useEffect(() => { identify(); }, []);
 
     return <>Identifying...</>;
 }
