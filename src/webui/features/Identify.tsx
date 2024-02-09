@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import johnDoe from '../../domain/authentication/johnDoe';
@@ -23,5 +23,5 @@ export default function Feature()
 
     useEffect(() => { logMeIn(); }, []);
 
-    return <>Logging in...</>;
+    return <>Identifying...</>;
 }
