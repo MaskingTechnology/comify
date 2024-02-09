@@ -16,7 +16,7 @@ export default function Feature()
         <Column gap='medium' alignX='stretch'>
             <Row alignX='justify' alignY='top'>
                 <ApplicationLogo />
-                <Button type='primary' text='Get in' clickHandler={() => navigate('/getin')} />
+                <Button type='primary' text='Get in' clickHandler={() => navigate('/login')} />
             </Row>
             <Image source={introductionImage} width='600px' />
             <Text size='large' value='Take or upload a picture. Add speech bubbles. Share with friends.' />

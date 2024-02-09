@@ -8,7 +8,7 @@ const authProcedures = {
     logout: 'domain/authentication/logout'
 };
 
-const redirectUrl = 'http://localhost:5173/login';
+const redirectUrl = 'http://localhost:5173/identify';
 
 const whiteList: string[] = [];
 

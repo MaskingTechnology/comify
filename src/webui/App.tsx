@@ -15,7 +15,7 @@ export default function App()
 {
     const { identity } = useAppContext();
 
-    const Page = identity ? Application : Guest;
+    const Page = identity === undefined ? Guest : Application;
 
     return <BrowserRouter>
         <Page>
