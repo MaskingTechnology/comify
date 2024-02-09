@@ -7,6 +7,7 @@ import Explore from './features/Explore';
 import Home from './features/Home';
 import Identify from './features/Identify';
 import Login from './features/Login';
+import Logout from './features/Logout';
 import NotFound from './features/NotFound';
 import Notifications from './features/Notifications';
 import Profile from './features/Profile';
@@ -32,6 +33,7 @@ export default function Component()
         <Route path="/notifications" element={protect(<Notifications />)} />
         <Route path="/create" element={protect(<CreateComic />)} />
         <Route path="/profile/:nickname" element={protect(<Profile />)} />
+        <Route path="/logout" element={protect(<Logout />)} />
 
         <Route path="*" element={<NotFound />} />
 

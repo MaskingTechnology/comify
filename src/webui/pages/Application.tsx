@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import logout from '../../domain/authentication/logout';
 import { ApplicationSidebar } from '../components/module';
 import { useAppContext } from '../contexts/AppContext';
 import { SidebarLayout } from '../layouts/module';
@@ -20,16 +19,7 @@ export default function Page({ children }: Props)
         return null;
     }
 
-    const handleLogout = async () =>
-    {
-        await logout();
-
-        setIdentity(undefined);
-
-        navigate('/');
-    };
-
-    const sidebar = <ApplicationSidebar identity={identity} logoutHandler={handleLogout} />;
+    const sidebar = <ApplicationSidebar identity={identity} logoutHandler={() => navigate('/logout')} />;
 
     return <SidebarLayout sidebar={sidebar}>
         {children}
