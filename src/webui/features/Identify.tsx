@@ -14,11 +14,12 @@ export default function Feature()
 
     const logMeIn = async () =>
     {
+        const originLocation = window.sessionStorage.getItem('loginOrigin');
         const me = await getMe(johnDoe);
 
         context.setIdentity(me);
 
-        navigate('/timeline');
+        navigate(originLocation || '/timeline');
     };
 
     useEffect(() => { logMeIn(); }, []);
