@@ -5,6 +5,7 @@ export interface FileStorage
 
     connect(): Promise<void>;
     disconnect(): Promise<void>;
+    hasFile(path: string): Promise<boolean>;
     writeFile(path: string, data: Buffer): Promise<void>;
     readFile(path: string): Promise<Buffer>;
     deleteFile(path: string): Promise<void>;
