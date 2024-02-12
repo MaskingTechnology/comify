@@ -2,10 +2,11 @@
 import login from '../../../../src/domain/authentication/login';
 import { RECORD_TYPE } from '../../../../src/domain/creator/data/constants';
 import TooManySimilarNicknames from '../../../../src/domain/creator/errors/TooManySimilarNicknames';
-import { UnsupportedContentSize, UnsupportedMimeType } from '../../../../src/domain/image/errors';
+import { UnsupportedContentSize } from '../../../../src/domain/image/errors/UnsupportedContentSize';
+import { UnsupportedMimeType } from '../../../../src/domain/image/errors/UnsupportedMimeType';
 import { Identity } from '../../../../src/integrations/authentication/module';
 import database, { RecordData } from '../../../../src/integrations/database/module';
-import filestorage from '../../../../src/integrations/filestorage/module.ts';
+import filestorage from '../../../../src/integrations/filestorage/module';
 
 const NICKNAMES: Record<string, string> = {
     EXISTING_NICKNAME: 'ExistingNickname',
@@ -107,10 +108,10 @@ const LOGINS: Record<string, Identity> =
         email_verified: false
     },
     NAME_WITH_A_VALID_PICTURE_URL: {
-        name: 'Peter van Vliet',
-        nickname: 'Lange',
+        name: 'Peter de longOne',
+        nickname: 'LongOne',
         picture: 'https://masking.tech/images/peter.jpg',
-        email: 'peter@masking.tech',
+        email: 'peterlongone@mailing.com',
         email_verified: false
     },
     NAME_WITH_PICTURE_INVALID_MIME_TYPE: {

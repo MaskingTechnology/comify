@@ -1,7 +1,7 @@
 
-import create from './data/create.js';
+import create from './data/create';
 import ImageData from './data/ImageData';
-import store from './files/store.js';
+import store from './files/store';
 
 export default async function save(buffer: Buffer, storageKey: string, fileName: string, mimeType: string, size: number): Promise<ImageData>
 {

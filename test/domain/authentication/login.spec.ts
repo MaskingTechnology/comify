@@ -66,7 +66,7 @@ describe('domain/authentication', () =>
         {
             const requestor = await login(LOGINS.NAME_WITH_A_VALID_PICTURE_URL);
 
-            expect(requestor.nickname).toBe('Lange');
+            expect(requestor.nickname).toBe('LongOne');
         });
 
         it('should not register when a profile picture has an unsupported type', async () =>

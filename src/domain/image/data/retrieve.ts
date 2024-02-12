@@ -4,9 +4,9 @@ import type ImageData from './ImageData';
 import { RECORD_TYPE } from './constants.js';
 import createData from './createData';
 
-export default async function retrieve(imageId: string): Promise<ImageData>
+export default async function retrieve(id: string): Promise<ImageData>
 {
-    const record = await database.readRecord(RECORD_TYPE, imageId);
+    const record = await database.readRecord(RECORD_TYPE, id);
 
     return createData(record);
 }

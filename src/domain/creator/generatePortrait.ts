@@ -1,25 +1,27 @@
 
+import checkImage from '../image/check';
 import ImageData from '../image/data/ImageData';
-import download from '../image/download';
-//import check from '../image/check';
-//import save from '../image/save';
-//import generateKey from '../image/data/generateKey';
+import createImage from '../image/data/create';
+import downloadPicture from '../image/download';
+import checkImageInFs from '../image/files/check';
+import generateStorageKey from '../image/files/generate';
+import saveImage from '../image/save';
+
 import { IMAGE_TYPE } from './data/constants';
 
 export default async function generatePortrait(pictureUrl: string): Promise<ImageData>
 {
-    // check image: ImageData
+    const imageData = await checkImage(pictureUrl);
 
-    // download the picture from external source: Buffer
+    const imageBuffer = await downloadPicture(pictureUrl);
 
-    // generate the storage key: string
+    const storageKey = generateStorageKey(pictureUrl, imageData.mimeType, IMAGE_TYPE);
 
-    // if the ImageData doesn't exist, save the buffer: Promise<void>
+    if (await checkImageInFs(storageKey))
+    {
 
-    // return the ImageData: ImageData
+        return createImage(storageKey, imageData.fileName, imageData.mimeType, imageData.size);
+    }
 
-    return download(pictureUrl, IMAGE_TYPE);
+    return saveImage(imageBuffer, storageKey, imageData.fileName, imageData.mimeType, imageData.size);
 }
-
-// If the above implementation starts to look a lot like an Image 'manager', then it should be
-// stored over there
