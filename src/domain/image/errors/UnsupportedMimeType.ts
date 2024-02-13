@@ -1,5 +1,5 @@
 
-export class UnsupportedMimeType extends Error
+export default class UnsupportedMimeType extends Error
 {
     constructor(message?: string)
     {

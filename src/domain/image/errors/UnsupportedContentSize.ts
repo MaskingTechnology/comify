@@ -1,5 +1,5 @@
 
-export class UnsupportedContentSize extends Error
+export default class UnsupportedContentSize extends Error
 {
     constructor(message?: string)
     {

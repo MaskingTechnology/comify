@@ -1,11 +1,19 @@
 
+import generateStorageKey from './crypto/generateStorageKey';
+import type ImageData from './data/ImageData';
 import create from './data/create';
-import ImageData from './data/ImageData';
+import exists from './files/exists';
 import store from './files/store';
 
-export default async function save(buffer: Buffer, storageKey: string, fileName: string, mimeType: string, size: number): Promise<ImageData>
+export default async function save(type: string, information: ImageData, content: Buffer): Promise<ImageData>
 {
-    await store(storageKey, buffer);
+    const storageKey = generateStorageKey(type, content);
+    const fileExists = await exists(storageKey);
 
-    return create(storageKey, fileName, mimeType, size);
+    if (fileExists === false)
+    {
+        await store(storageKey, content);
+    }
+
+    return create(storageKey, information.filename, information.mimeType, information.size);
 }

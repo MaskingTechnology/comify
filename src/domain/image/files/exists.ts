@@ -1,7 +1,7 @@
 
 import filestorage from '../../../integrations/filestorage/module';
 
-export default async function check(storageKey: string): Promise<boolean>
+export default async function exists(storageKey: string): Promise<boolean>
 {
     return filestorage.hasFile(storageKey);
 }
