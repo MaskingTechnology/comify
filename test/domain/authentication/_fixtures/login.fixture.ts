@@ -2,8 +2,8 @@
 import login from '../../../../src/domain/authentication/login';
 import { RECORD_TYPE } from '../../../../src/domain/creator/data/constants';
 import TooManySimilarNicknames from '../../../../src/domain/creator/errors/TooManySimilarNicknames';
-import { UnsupportedContentSize } from '../../../../src/domain/image/errors/UnsupportedContentSize';
-import { UnsupportedMimeType } from '../../../../src/domain/image/errors/UnsupportedMimeType';
+import UnsupportedContentSize from '../../../../src/domain/image/errors/UnsupportedContentSize';
+import UnsupportedMimeType from '../../../../src/domain/image/errors/UnsupportedMimeType';
 import { Identity } from '../../../../src/integrations/authentication/module';
 import database, { RecordData } from '../../../../src/integrations/database/module';
 import filestorage from '../../../../src/integrations/filestorage/module';
