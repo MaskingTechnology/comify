@@ -5,24 +5,20 @@ import type NotificationView from '../../domain/notification/view/NotificationVi
 import type RelationView from '../../domain/relation/view/RelationView';
 import { Loading, NotificationPanelList } from '../components/module';
 import { Column } from '../designsystem/module';
+import loadData from '../utils/loadData';
 
 export default function Feature()
 {
     const [notifications, setNotifications] = useState<NotificationView[] | undefined>(undefined);
 
-    const getNotifications = async () =>
-    {
-        const notifications = await getRecentNotifications();
-
-        setNotifications(notifications);
-    };
+    const getNotifications = () => getRecentNotifications();
 
     const handleFollow = (relation: RelationView) =>
     {
         console.log(`Followed ${relation.creator.fullName}`);
     };
 
-    useEffect(() => { getNotifications(); }, []);
+    useEffect(() => loadData(getNotifications, setNotifications), []);
 
     if (notifications === undefined)
     {

@@ -5,17 +5,13 @@ import exploreRelations from '../../domain/relation/explore';
 import type RelationView from '../../domain/relation/view/RelationView';
 import { Loading, OrderAndSearchRow, RelationPanelList } from '../components/module';
 import { Column } from '../designsystem/module';
+import loadData from '../utils/loadData';
 
 export default function Feature()
 {
     const [relations, setRelations] = useState<RelationView[] | undefined>(undefined);
 
-    const getRelations = async () =>
-    {
-        const relations = await exploreRelations(johnDoe);
-
-        setRelations(relations);
-    };
+    const getRelations = () => exploreRelations(johnDoe);
 
     const handleOrderChange = (oldKey: string, newKey: string) =>
     {
@@ -27,7 +23,7 @@ export default function Feature()
         console.log(`Followed ${relation.creator.fullName}`);
     };
 
-    useEffect(() => { getRelations(); }, []);
+    useEffect(() => loadData(getRelations, setRelations), []);
 
     return <Column gap='small' alignX='stretch'>
         <OrderAndSearchRow selected='popular' orderChangeHandler={handleOrderChange} />
