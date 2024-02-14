@@ -21,7 +21,7 @@ export default async function getInformation(imageUrl: string): Promise<ImageDat
         throw new UnsupportedMimeType();
     }
 
-    if (length === null || size > MAX_SIZE)
+    if (size === 0 || size > MAX_SIZE)
     {
         throw new UnsupportedContentSize();
     }
