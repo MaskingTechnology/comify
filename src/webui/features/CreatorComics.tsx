@@ -5,25 +5,18 @@ import type PostView from '../../domain/post/view/PostView';
 import { Loading, PostPanelGrid } from '../components/module';
 import { useCreatorContext } from '../contexts/CreatorContext';
 import { Column } from '../designsystem/module';
+import awaitData from '../utils/awaitData';
 
 export default function Feature()
 {
     const { creator } = useCreatorContext();
     const [posts, setPosts] = useState<PostView[] | undefined>(undefined);
 
-    if (creator === undefined)
-    {
-        return <>Nope...</>;
-    }
+    if (creator === undefined) return null;
 
-    const getPosts = async () =>
-    {
-        const posts = await getCreatorPosts(creator.id);
+    const getPosts = () => getCreatorPosts(creator.id);
 
-        setPosts(posts);
-    };
-
-    useEffect(() => { getPosts(); }, []);
+    useEffect(() => awaitData(getPosts, setPosts), [creator]);
 
     if (posts === undefined)
     {

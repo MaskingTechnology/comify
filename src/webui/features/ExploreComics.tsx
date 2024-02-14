@@ -6,17 +6,13 @@ import type PostView from '../../domain/post/view/PostView';
 import type RelationView from '../../domain/relation/view/RelationView';
 import { Loading, OrderRow, PostPanelList } from '../components/module';
 import { Column } from '../designsystem/module';
+import awaitData from '../utils/awaitData';
 
 export default function Feature()
 {
     const [posts, setPosts] = useState<PostView[] | undefined>(undefined);
 
-    const getPosts = async () =>
-    {
-        const posts = await explorePosts(johnDoe);
-
-        setPosts(posts);
-    };
+    const getPosts = () => explorePosts(johnDoe);
 
     const handleOrderChange = (oldKey: string, newKey: string) =>
     {
@@ -33,7 +29,7 @@ export default function Feature()
         console.log(`Rated ${post.id}`);
     };
 
-    useEffect(() => { getPosts(); }, []);
+    useEffect(() => awaitData(getPosts, setPosts), []);
 
     return <Column gap='small' alignX='stretch'>
         <OrderRow selected='popular' orderChangeHandler={handleOrderChange} />
