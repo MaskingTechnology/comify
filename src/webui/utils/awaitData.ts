@@ -1,5 +1,5 @@
 
-export default function loadData<T>(getData: () => Promise<T>, setData: (data: T) => void): () => void
+export default function awaitData<T>(getData: () => Promise<T>, setData: (data: T) => void): () => void
 {
     let cancelled = false;
 

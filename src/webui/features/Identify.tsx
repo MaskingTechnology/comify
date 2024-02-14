@@ -5,7 +5,7 @@ import johnDoe from '../../domain/authentication/johnDoe';
 import getMe from '../../domain/creator/getMe';
 import type CreatorView from '../../domain/creator/view/CreatorView';
 import { useAppContext } from '../contexts/AppContext';
-import loadData from '../utils/loadData';
+import awaitData from '../utils/awaitData';
 
 export default function Feature()
 {
@@ -23,7 +23,7 @@ export default function Feature()
         navigate(redirectLocation ?? '/timeline');
     };
 
-    useEffect(() => loadData(getIdentity, setIdentity), []);
+    useEffect(() => awaitData(getIdentity, setIdentity), []);
 
     return <>Identifying...</>;
 }

@@ -1,7 +1,7 @@
 
 import { useEffect } from 'react';
 import getLoginUrl from '../../domain/authentication/getLoginUrl';
-import loadData from '../utils/loadData';
+import awaitData from '../utils/awaitData';
 
 const IGNORE_PATHS = ['/', '/login', '/identify'];
 
@@ -22,7 +22,7 @@ export default function Feature()
         window.location.href = loginUrl;
     };
 
-    useEffect(() => loadData(getLoginUrl, setLoginUrl), []);
+    useEffect(() => awaitData(getLoginUrl, setLoginUrl), []);
 
     return <>Redirecting...</>;
 }

@@ -5,7 +5,7 @@ import type RelationView from '../../domain/relation/view/RelationView';
 import { Loading, OrderAndSearchRow, RelationPanelList } from '../components/module';
 import { useCreatorContext } from '../contexts/CreatorContext';
 import { Column } from '../designsystem/module';
-import loadData from '../utils/loadData';
+import awaitData from '../utils/awaitData';
 
 export default function Feature()
 {
@@ -26,7 +26,7 @@ export default function Feature()
         console.log(`Followed ${relation.creator.fullName}`);
     };
 
-    useEffect(() => loadData(getRelations, setRelations), [creator]);
+    useEffect(() => awaitData(getRelations, setRelations), [creator]);
 
     return <Column gap='small' alignX='stretch'>
         <OrderAndSearchRow selected='recent' orderChangeHandler={handleOrderChange} />

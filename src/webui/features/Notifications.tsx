@@ -5,7 +5,7 @@ import type NotificationView from '../../domain/notification/view/NotificationVi
 import type RelationView from '../../domain/relation/view/RelationView';
 import { Loading, NotificationPanelList } from '../components/module';
 import { Column } from '../designsystem/module';
-import loadData from '../utils/loadData';
+import awaitData from '../utils/awaitData';
 
 export default function Feature()
 {
@@ -18,7 +18,7 @@ export default function Feature()
         console.log(`Followed ${relation.creator.fullName}`);
     };
 
-    useEffect(() => loadData(getNotifications, setNotifications), []);
+    useEffect(() => awaitData(getNotifications, setNotifications), []);
 
     if (notifications === undefined)
     {

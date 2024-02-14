@@ -9,7 +9,7 @@ import { Loading, RelationProfile } from '../components/module';
 import { useAppContext } from '../contexts/AppContext';
 import CreatorContext from '../contexts/CreatorContext';
 import { Column, Ruler, Tab, Tabs } from '../designsystem/module';
-import loadData from '../utils/loadData';
+import awaitData from '../utils/awaitData';
 import CreatorComics from './CreatorComics';
 import CreatorFollowers from './CreatorFollowers';
 import CreatorFollowing from './CreatorFollowing';
@@ -25,7 +25,7 @@ export default function Feature()
 
     const getCreatorRelation = () => getCreator(nickname).then((creator: CreatorView) => getRelation(identity.id, creator.id));
 
-    useEffect(() => loadData(getCreatorRelation, setRelation), [identity, nickname]);
+    useEffect(() => awaitData(getCreatorRelation, setRelation), [identity, nickname]);
 
     if (relation === undefined)
     {
