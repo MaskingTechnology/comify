@@ -26,6 +26,13 @@ export default class Memory implements FileStorage
         this.#files = undefined;
     }
 
+    async hasFile(path: string): Promise<boolean>
+    {
+        const files = this.#getFiles();
+
+        return files.has(path);
+    }
+
     async writeFile(path: string, data: Buffer): Promise<void>
     {
         const files = this.#getFiles();

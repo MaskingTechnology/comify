@@ -9,13 +9,12 @@ export default async function login(identity: Identity): Promise<Requester>
 {
     const existingCreator = await retrieveCreatorByEmail(identity.email);
 
-    if (existingCreator !== undefined)
-    {
-        return createRequester(existingCreator);
-    }
+    const loggedInCreator = existingCreator ?? await registerCreator(
+        identity.email,
+        identity.name,
+        identity.nickname ?? identity.name,
+        identity.picture
+    );
 
-    const nickname = identity.nickname ?? identity.name;
-    const registeredCreator = await registerCreator(identity.email, identity.name, nickname);
-
-    return createRequester(registeredCreator);
+    return createRequester(loggedInCreator);
 }

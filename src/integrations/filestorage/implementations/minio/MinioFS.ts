@@ -40,6 +40,29 @@ export default class MinioFS implements FileStorage
         this.#client = undefined;
     }
 
+    async hasFile(path: string): Promise<boolean>
+    {
+        const client = this.#getClient();
+
+        try
+        {
+            await client.statObject(BUCKET_NAME, path);
+
+            return true;
+        }
+        catch (error: unknown)
+        {
+            const customError = this.#handleError(error, path);
+
+            if (customError instanceof FileNotFound)
+            {
+                return false;
+            }
+
+            throw error;
+        }
+    }
+
     async writeFile(path: string, data: Buffer): Promise<void>
     {
         const client = this.#getClient();

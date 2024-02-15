@@ -13,6 +13,27 @@ import
 
 describe('MemoryFS', () =>
 {
+    describe('.hasFile(path)', () =>
+    {
+        it('should return true for existing files', async () =>
+        {
+            const fileStorage = await setUpMemoryFS();
+
+            const hasFile = await fileStorage.hasFile(HELLO_FILE_NAME);
+
+            expect(hasFile).toBe(true);
+        });
+
+        it('should return false for non-existing files', async () =>
+        {
+            const fileStorage = await setUpMemoryFS();
+
+            const hasFile = await fileStorage.hasFile(UNKNOWN_FILE_NAME);
+
+            expect(hasFile).toBe(false);
+        });
+    });
+
     describe('.readFile(path)', () =>
     {
         it('should read existing files', async () =>

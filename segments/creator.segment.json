@@ -1,5 +1,6 @@
 {
     "./domain/creator/data/create": { "default": {  "access": "protected" } },
+    "./domain/creator/data/generateNickname": { "default": {  "access": "protected" } },
     "./domain/creator/data/retrieve": { "default": {  "access": "protected" } },
     "./domain/creator/data/retrieveByEmail": { "default": {  "access": "protected" } },
     "./domain/creator/data/retrieveByNickname": { "default": {  "access": "protected" } },
