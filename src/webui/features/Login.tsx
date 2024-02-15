@@ -1,12 +1,13 @@
 
 import { useEffect } from 'react';
 import getLoginUrl from '../../domain/authentication/getLoginUrl';
+import awaitData from '../utils/awaitData';
 
 const IGNORE_PATHS = ['/', '/login', '/identify'];
 
 export default function Feature()
 {
-    const redirect = async () =>
+    const setLoginUrl = (loginUrl: string) =>
     {
         const pathname = window.location.pathname;
         const search = window.location.search;
@@ -18,10 +19,10 @@ export default function Feature()
             ? window.sessionStorage.removeItem('redirect')
             : window.sessionStorage.setItem('redirect', currentLocation);
 
-        window.location.href = await getLoginUrl();
+        window.location.href = loginUrl;
     };
 
-    useEffect(() => { redirect(); }, []);
+    useEffect(() => awaitData(getLoginUrl, setLoginUrl), []);
 
     return <>Redirecting...</>;
 }
