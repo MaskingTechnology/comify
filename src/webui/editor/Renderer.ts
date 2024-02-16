@@ -1,48 +1,86 @@
 
+import Model from './Model';
+
 export default class Renderer
 {
     #canvas: HTMLCanvasElement;
     #context: CanvasRenderingContext2D;
+    #model: Model;
+    #running: boolean;
 
-    constructor(canvas: HTMLCanvasElement)
+    constructor(canvas: HTMLCanvasElement, model: Model)
     {
         this.#canvas = canvas;
-        this.#context = canvas.getContext("2d");
+        this.#context = canvas.getContext("2d") as CanvasRenderingContext2D;
+        this.#model = model;
+        this.#running = false;
+
+        this.#context.imageSmoothingEnabled = false;
     }
 
-    render(comic: Comic)
+    start(): void
     {
-
+        this.#running = true;
+        this.#render();
     }
 
-    #renderImage(image: Image)
+    stop(): void
     {
-        const img = new HTMLImageElement();
-        img.src = image.source;
-        img.onload = () =>
+        this.#running = false;
+    }
+
+    #render()
+    {
+        if (this.#running === false)
         {
-            this.#context.drawImage(img, 0, 0);
-        };
+            return;
+        }
+
+        if (this.#model.dirty)
+        {
+            this.#model.makeClean();
+
+            this.#renderModel();
+        }
+
+        window.requestAnimationFrame(() =>
+        {
+            this.#render();
+        });
     }
 
-    #renderIntro(intro: Intro)
+    #renderModel(): void
     {
-        this.#context.fillText(intro.text, 0, 0);
+        this.#clearCanvas();
+
+        if (this.#model.image !== undefined)
+        {
+            this.#renderImage(this.#model.image);
+        }
     }
 
-    #renderOutro(outro: Outro)
+    #clearCanvas(): void
     {
-        this.#context.fillText(outro.text, 0, 0);
+        this.#context.clearRect(0, 0, this.#canvas.width, this.#canvas.height);
     }
 
-    #renderSpeechBubble(speechBubble: SpeechBubble)
+    #renderImage(image: HTMLImageElement): void
     {
-        this.#context.beginPath();
-        this.#context.moveTo(0, 0);
-        this.#context.lineTo(0, 100);
-        this.#context.lineTo(100, 100);
-        this.#context.lineTo(100, 0);
-        this.#context.lineTo(0, 0);
-        this.#context.stroke();
+        const widthRation = this.#canvas.width / image.width;
+        const heightRation = this.#canvas.height / image.height;
+        // const ratio = Math.min(widthRation, heightRation); // Fit image inside canvas
+        const ratio = Math.max(widthRation, heightRation); // Fill canvas with image
+
+        const sx = 0;
+        const sy = 0;
+        const sWidth = image.width;
+        const sHeight = image.height;
+
+        const dx = (this.#canvas.width - image.width * ratio) / 2;
+        const dy = (this.#canvas.height - image.height * ratio) / 2;
+        const dWidth = image.width * ratio;
+        const dHeight = image.height * ratio;
+
+        this.#context.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
     }
 }
