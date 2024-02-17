@@ -96,11 +96,10 @@ export default class Editor
         this.#pressed = true;
 
         const element = this.#getSelectedElement(event);
-        const handler = element?.pressHandler;
 
-        if (handler !== undefined)
+        if (element !== undefined)
         {
-            handler();
+            element.press();
         }
     }
 
@@ -114,11 +113,10 @@ export default class Editor
         }
 
         const element = this.#getSelectedElement(event);
-        const handler = element?.dragHandler;
 
-        if (handler !== undefined)
+        if (element !== undefined)
         {
-            handler();
+            element.drag();
         }
     }
 
@@ -129,11 +127,10 @@ export default class Editor
         this.#pressed = false;
 
         const element = this.#getSelectedElement(event);
-        const handler = element?.releaseHandler;
 
-        if (handler !== undefined)
+        if (element !== undefined)
         {
-            handler();
+            element.release();
         }
     }
 

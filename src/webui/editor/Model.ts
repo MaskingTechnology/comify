@@ -1,6 +1,7 @@
 
 import Background from './elements/Background';
 import Button from './elements/Button';
+import Caption from './elements/Caption';
 import Element from './elements/Element';
 import Intro from './elements/Intro';
 import Outro from './elements/Outro';
@@ -9,25 +10,27 @@ import SpeechBubble from './elements/SpeechBubble';
 export default class Model
 {
     #background: Background;
+    #captions: Caption[];
     #speechBubbles: SpeechBubble[];
-    #intro: Intro;
-    #outro: Outro;
     #buttons: Button[];
 
-    #elements: Element[];
+    #elements: Element[]; // Cache of all elements in render order
 
     constructor()
     {
         this.#background = new Background();
+        this.#captions = [new Intro(), new Outro()];
         this.#speechBubbles = [];
-        this.#intro = new Intro('');
-        this.#outro = new Outro('');
         this.#buttons = [];
 
-        this.#elements = [this.#background, this.#intro, this.#outro];
+        this.#elements = [this.#background, ...this.#captions];
     }
 
     get background() { return this.#background; }
+
+    get intro() { return this.#captions[0]; }
+
+    get outro() { return this.#captions[1]; }
 
     get speechBubbles() { return this.#speechBubbles; }
 
@@ -94,8 +97,7 @@ export default class Model
         this.#elements = [
             this.#background,
             ...this.#speechBubbles,
-            this.#intro,
-            this.#outro,
+            ...this.#captions,
             ...this.#buttons
         ];
     }

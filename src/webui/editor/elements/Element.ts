@@ -47,5 +47,30 @@ export default abstract class Element
         return Geometry.pointInArea({ x, y }, this.#area);
     }
 
+    press(): void
+    {
+        this.#execute(this.pressHandler);
+    }
+
+    drag(): void
+    {
+        this.#execute(this.dragHandler);
+    }
+
+    release(): void
+    {
+        this.#execute(this.releaseHandler);
+    }
+
+    #execute(handler?: () => void): void
+    {
+        if (handler === undefined)
+        {
+            return;
+        }
+
+        handler();
+    }
+
     abstract renderElement(context: CanvasRenderingContext2D): void;
 }
