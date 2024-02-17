@@ -50,4 +50,10 @@ export default class Geometry
 
         return x > y ? 'horizontal' : 'vertical';
     }
+
+    static pointInArea(point: Point, area: Area): boolean
+    {
+        return point.x >= area.x && point.x <= area.x + area.width
+            && point.y >= area.y && point.y <= area.y + area.height;
+    }
 }
