@@ -1,10 +1,9 @@
 
 import database, { RecordQuery } from '../../../integrations/database/module';
 
-import RelationData from './RelationData';
 import { RECORD_TYPE } from './constants';
 
-export default async function retrieve(followerId: string, followingId: string): Promise<RelationData>
+export default async function exists(followerId: string, followingId: string): Promise<boolean>
 {
     const query: RecordQuery = {
         'AND'
@@ -13,11 +12,7 @@ export default async function retrieve(followerId: string, followingId: string):
                 { followingid: { EQUALS: followingId } }
             ]
     };
-
     const relation = await database.findRecord(RECORD_TYPE, query);
-    const relationId = relation !== undefined
-        ? relation.id
-        : undefined;
 
-    return new RelationData(relationId as string, followerId, followingId);
+    return relation !== undefined;
 }
