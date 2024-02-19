@@ -1,11 +1,13 @@
 
-import Model from './Model';
 import Renderer from './Renderer';
-import Button from './elements/Button';
-import Element from './elements/Element';
-import SpeechBubble from './elements/SpeechBubble';
+import Worksheet from './Worksheet.js';
+import InputEvents from './definitions/InputEvents';
+import ModelEvents from './definitions/ModelEvents';
+import Model from './model/Model';
+import EventManager from './utils/EventManager';
 import FileDialog from './utils/FileDialog';
 import ImageLoader from './utils/ImageLoader';
+import InputManager from './utils/InputManager';
 
 const BACKGROUND_COLOR = 'white';
 
@@ -14,157 +16,86 @@ const COMIC_HEIGHT = 540;
 
 export default class Editor
 {
-    #canvas: HTMLCanvasElement;
-    #model: Model;
+    #worksheet: Worksheet;
     #renderer: Renderer;
-
-    #pressed = false;
-
-    #pressHandler = this.#handlePress.bind(this);
-    #moveHandler = this.#handleMove.bind(this);
-    #releaseHandler = this.#handleRelease.bind(this);
-    #dragoverHandler = this.#handleDragOver.bind(this);
-    #dropHandler = this.#handleDrop.bind(this);
+    #inputManager: InputManager;
 
     constructor(canvas: HTMLCanvasElement, model = new Model())
     {
-        this.#canvas = canvas;
-        this.#model = model;
-        this.#renderer = new Renderer(canvas, model);
+        this.#worksheet = new Worksheet(model);
+        this.#renderer = new Renderer(canvas, this.#worksheet);
+        this.#inputManager = new InputManager(canvas);
 
-        this.#initCanvas();
-        this.#initModel();
+        this.#initCanvas(canvas);
     }
 
     start(): void
     {
         this.#renderer.start();
+        this.#inputManager.bind();
         this.#bindEvents();
     }
 
     stop(): void
     {
         this.#renderer.stop();
+        this.#inputManager.unbind();
         this.#unbindEvents();
     }
 
-    #initCanvas(): void
+    #initCanvas(canvas: HTMLCanvasElement): void
     {
-        this.#canvas.style.backgroundColor = BACKGROUND_COLOR;
-        this.#canvas.style.width = '100%';
+        canvas.style.backgroundColor = BACKGROUND_COLOR;
+        canvas.style.width = '100%';
 
-        this.#canvas.width = COMIC_WIDTH;
-        this.#canvas.height = COMIC_HEIGHT;
-    }
-
-    #initModel(): void
-    {
-        const selectImage = new Button();
-        selectImage.setPosition(40, 480);
-        selectImage.releaseHandler = () => this.#selectImage();
-
-        const addBubble = new Button();
-        addBubble.setPosition(90, 480);
-        addBubble.releaseHandler = () => this.#addSpeechBubble();
-
-        this.#model.addButton(selectImage);
-        this.#model.addButton(addBubble);
+        canvas.width = COMIC_WIDTH;
+        canvas.height = COMIC_HEIGHT;
     }
 
     #bindEvents(): void
     {
-        this.#canvas.addEventListener('mousedown', this.#pressHandler);
-        this.#canvas.addEventListener('mousemove', this.#moveHandler);
-        this.#canvas.addEventListener('mouseup', this.#releaseHandler);
-        this.#canvas.addEventListener('dragover', this.#dragoverHandler);
-        this.#canvas.addEventListener('drop', this.#dropHandler);
+        EventManager.listen(InputEvents.PRESSED, this.#handlePressed.bind(this));
+        EventManager.listen(InputEvents.DRAGGED, this.#handleDragged.bind(this));
+        EventManager.listen(InputEvents.RELEASED, this.#handleReleased.bind(this));
+        EventManager.listen(InputEvents.DROPPED, this.#handleDropped.bind(this));
+
+        EventManager.listen(ModelEvents.SELECT_IMAGE, this.#selectImage.bind(this));
+        EventManager.listen(ModelEvents.ADD_SPEECH_BUBBLE, this.#addSpeechBubble.bind(this));
     }
 
     #unbindEvents(): void
     {
-        this.#canvas.removeEventListener('mousedown', this.#pressHandler);
-        this.#canvas.removeEventListener('mousemove', this.#moveHandler);
-        this.#canvas.removeEventListener('mouseup', this.#releaseHandler);
-        this.#canvas.removeEventListener('dragover', this.#dragoverHandler);
-        this.#canvas.removeEventListener('drop', this.#dropHandler);
+        EventManager.clear();
     }
 
-    #handlePress(event: MouseEvent): void
+    #handlePressed(x: number, y: number): void
     {
-        event.preventDefault();
-
-        this.#pressed = true;
-
-        const element = this.#getSelectedElement(event);
-
-        if (element !== undefined)
-        {
-            element.press();
-        }
+        this.#worksheet.press(x, y);
     }
 
-    #handleMove(event: MouseEvent): void
+    #handleDragged(x: number, y: number): void
     {
-        event.preventDefault();
-
-        if (this.#pressed === false)
-        {
-            return;
-        }
-
-        const element = this.#getSelectedElement(event);
-
-        if (element !== undefined)
-        {
-            element.drag();
-        }
+        this.#worksheet.drag(x, y);
     }
 
-    #handleRelease(event: MouseEvent): void
+    #handleReleased(x: number, y: number): void
     {
-        event.preventDefault();
-
-        this.#pressed = false;
-
-        const element = this.#getSelectedElement(event);
-
-        if (element !== undefined)
-        {
-            element.release();
-        }
+        this.#worksheet.release(x, y);
     }
 
-    #handleDragOver(event: DragEvent): void
+    #handleDropped(files?: File[]): void
     {
-        event.preventDefault();
-    }
-
-    #handleDrop(event: DragEvent): void
-    {
-        event.preventDefault();
-
-        const files = event.dataTransfer?.files;
-
         if (files === undefined || files.length === 0)
         {
             return;
         }
 
-        this.#setBackgroundImage(files[0]);
-    }
+        const file = files[0];
 
-    #getSelectedElement(event: MouseEvent): Element | undefined
-    {
-        const target = event.target as HTMLCanvasElement;
-        const rect = target.getBoundingClientRect();
-
-        const canvasX = event.clientX - rect.left;
-        const canvasY = event.clientY - rect.top;
-
-        const modelX = canvasX * (target.width / rect.width);
-        const modelY = canvasY * (target.height / rect.height);
-
-        return this.#model.getElementAt(modelX, modelY);
+        if (file.type.startsWith('image/'))
+        {
+            this.#setBackgroundImage(file);
+        }
     }
 
     async #selectImage(): Promise<void>
@@ -184,17 +115,11 @@ export default class Editor
         const source = URL.createObjectURL(file);
         const image = await ImageLoader.load(source);
 
-        this.#model.background.setImage(image);
+        this.#worksheet.setBackgroundImage(image);
     }
 
     #addSpeechBubble(): void
     {
-        const bubble = new SpeechBubble();
-        bubble.setPosition(100, 100);
-        bubble.setSize(200, 100);
-        bubble.setPointer(100, 0);
-        bubble.releaseHandler = () => console.log('bubble clicked');
-
-        this.#model.addSpeechBubble(bubble);
+        this.#worksheet.addSpeechBubble();
     }
 }

@@ -1,14 +1,16 @@
 
 import Geometry, { type Area } from '../utils/Geometry';
 
+type ActionHandler = (x: number, y: number) => void;
+
 export default abstract class Element
 {
     #area: Area = { x: 0, y: 0, width: 0, height: 0 };
     #dirty = true;
 
-    pressHandler?: () => void;
-    dragHandler?: () => void;
-    releaseHandler?: () => void;
+    pressHandler?: ActionHandler;
+    dragHandler?: ActionHandler;
+    releaseHandler?: ActionHandler;
 
     get area() { return this.#area; }
 
@@ -36,6 +38,16 @@ export default abstract class Element
         this.makeDirty();
     }
 
+    move(x: number, y: number): void
+    {
+        this.setPosition(this.#area.x + x, this.#area.y + y);
+    }
+
+    resize(width: number, height: number): void
+    {
+        this.setSize(this.#area.width + width, this.#area.height + height);
+    }
+
     render(context: CanvasRenderingContext2D)
     {
         this.renderElement(context);
@@ -47,29 +59,34 @@ export default abstract class Element
         return Geometry.pointInArea({ x, y }, this.#area);
     }
 
-    press(): void
+    press(x: number, y: number): boolean
     {
-        this.#execute(this.pressHandler);
+        return this.#execute(x, y, this.pressHandler);
     }
 
-    drag(): void
+    drag(x: number, y: number): boolean
     {
-        this.#execute(this.dragHandler);
+        return this.#execute(x, y, this.dragHandler);
     }
 
-    release(): void
+    release(x: number, y: number): boolean
     {
-        this.#execute(this.releaseHandler);
+        return this.#execute(x, y, this.releaseHandler);
     }
 
-    #execute(handler?: () => void): void
+    #execute(x: number, y: number, handler?: ActionHandler): boolean
     {
-        if (handler === undefined)
+        if (this.hit(x, y) === false)
         {
-            return;
+            return false;
         }
 
-        handler();
+        if (handler !== undefined)
+        {
+            handler(x, y);
+        }
+
+        return true;
     }
 
     abstract renderElement(context: CanvasRenderingContext2D): void;

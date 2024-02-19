@@ -1,16 +1,16 @@
 
-import Model from './Model';
+import Worksheet from './Worksheet';
 
 export default class Renderer
 {
     #context: CanvasRenderingContext2D;
-    #model: Model;
+    #worksheet: Worksheet;
     #running: boolean;
 
-    constructor(canvas: HTMLCanvasElement, model: Model)
+    constructor(canvas: HTMLCanvasElement, worksheet: Worksheet)
     {
         this.#context = canvas.getContext("2d") as CanvasRenderingContext2D;
-        this.#model = model;
+        this.#worksheet = worksheet;
         this.#running = false;
     }
 
@@ -32,9 +32,9 @@ export default class Renderer
             return;
         }
 
-        if (this.#model.dirty)
+        if (this.#worksheet.dirty)
         {
-            this.#model.render(this.#context);
+            this.#worksheet.render(this.#context);
         }
 
         window.requestAnimationFrame(() =>

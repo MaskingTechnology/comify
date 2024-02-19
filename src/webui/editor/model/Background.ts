@@ -1,5 +1,5 @@
 
-import Element from './Element';
+import Element from '../elements/Element';
 
 export default class Background extends Element
 {
