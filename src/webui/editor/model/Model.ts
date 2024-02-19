@@ -27,10 +27,13 @@ export default class Model extends Group
         this.addElement(this.#speechBubbles);
     }
 
-    setBackgroundImage(image: HTMLImageElement)
-    {
-        this.#background.setImage(image);
-    }
+    get background() { return this.#background; }
+
+    get intro() { return this.#intro; }
+
+    get outro() { return this.#outro; }
+
+    get speechBubbles() { return this.#speechBubbles; }
 
     addSpeechBubble(bubble: SpeechBubble)
     {

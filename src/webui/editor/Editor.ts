@@ -3,13 +3,12 @@ import Renderer from './Renderer';
 import Worksheet from './Worksheet.js';
 import InputEvents from './definitions/InputEvents';
 import ModelEvents from './definitions/ModelEvents';
+import Element from './elements/Element';
 import Model from './model/Model';
 import EventManager from './utils/EventManager';
 import FileDialog from './utils/FileDialog';
 import ImageLoader from './utils/ImageLoader';
 import InputManager from './utils/InputManager';
-
-const BACKGROUND_COLOR = 'white';
 
 const COMIC_WIDTH = 960;
 const COMIC_HEIGHT = 540;
@@ -19,6 +18,8 @@ export default class Editor
     #worksheet: Worksheet;
     #renderer: Renderer;
     #inputManager: InputManager;
+
+    #selectedElement?: Element;
 
     constructor(canvas: HTMLCanvasElement, model = new Model())
     {
@@ -45,7 +46,6 @@ export default class Editor
 
     #initCanvas(canvas: HTMLCanvasElement): void
     {
-        canvas.style.backgroundColor = BACKGROUND_COLOR;
         canvas.style.width = '100%';
 
         canvas.width = COMIC_WIDTH;
@@ -60,7 +60,7 @@ export default class Editor
         EventManager.listen(InputEvents.DROPPED, this.#handleDropped.bind(this));
 
         EventManager.listen(ModelEvents.SELECT_IMAGE, this.#selectImage.bind(this));
-        EventManager.listen(ModelEvents.ADD_SPEECH_BUBBLE, this.#addSpeechBubble.bind(this));
+        EventManager.listen(ModelEvents.ADD_BUBBLE, this.#addSpeechBubble.bind(this));
     }
 
     #unbindEvents(): void
@@ -70,17 +70,30 @@ export default class Editor
 
     #handlePressed(x: number, y: number): void
     {
-        this.#worksheet.press(x, y);
+        this.#selectedElement = this.#worksheet.getElementAt(x, y);
+
+        if (this.#selectedElement !== undefined)
+        {
+            this.#selectedElement.press(x, y);
+        }
     }
 
-    #handleDragged(x: number, y: number): void
+    #handleDragged(deltaX: number, deltaY: number): void
     {
-        this.#worksheet.drag(x, y);
+        if (this.#selectedElement !== undefined)
+        {
+            this.#selectedElement.drag(deltaX, deltaY);
+        }
     }
 
     #handleReleased(x: number, y: number): void
     {
-        this.#worksheet.release(x, y);
+        if (this.#selectedElement !== undefined)
+        {
+            this.#selectedElement.release(x, y);
+        }
+
+        this.#selectedElement = undefined;
     }
 
     #handleDropped(files?: File[]): void

@@ -17,11 +17,11 @@ export default class ButtonBar extends Group
     {
         const selectImage = new Button();
         selectImage.setPosition(40, 480);
-        selectImage.releaseHandler = () => this.#selectImage();
+        selectImage.releaseHandler = this.#selectImage.bind(this);
 
         const addBubble = new Button();
         addBubble.setPosition(90, 480);
-        addBubble.releaseHandler = () => this.#addSpeechBubble();
+        addBubble.releaseHandler = this.#addSpeechBubble.bind(this);
 
         this.addElement(selectImage);
         this.addElement(addBubble);
@@ -34,6 +34,6 @@ export default class ButtonBar extends Group
 
     #addSpeechBubble(): void
     {
-        EventManager.dispatch(ModelEvents.ADD_SPEECH_BUBBLE);
+        EventManager.dispatch(ModelEvents.ADD_BUBBLE);
     }
 }

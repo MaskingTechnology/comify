@@ -1,11 +1,14 @@
 
 import InputEvents from '../definitions/InputEvents';
 import EventManager from './EventManager';
-import { Point } from './Geometry';
+
+type Position = { x: number, y: number; deltaX: number, deltaY: number; };
 
 export default class InputManager
 {
     #canvas: HTMLCanvasElement;
+
+    #currentPosition: Position;
     #pressed: boolean;
 
     #pressHandler = this.#handlePress.bind(this);
@@ -17,6 +20,8 @@ export default class InputManager
     constructor(canvas: HTMLCanvasElement)
     {
         this.#canvas = canvas;
+
+        this.#currentPosition = { x: 0, y: 0, deltaX: 0, deltaY: 0 };
         this.#pressed = false;
     }
 
@@ -58,9 +63,9 @@ export default class InputManager
             return;
         }
 
-        const { x, y } = this.#extractPosition(event);
+        const { deltaX, deltaY } = this.#extractPosition(event);
 
-        EventManager.dispatch(InputEvents.DRAGGED, x, y);
+        EventManager.dispatch(InputEvents.DRAGGED, deltaX, deltaY);
     }
 
     #handleRelease(event: MouseEvent): void
@@ -86,7 +91,7 @@ export default class InputManager
         EventManager.dispatch(InputEvents.DROPPED, files);
     }
 
-    #extractPosition(event: MouseEvent): Point
+    #extractPosition(event: MouseEvent): Position
     {
         const target = event.target as HTMLCanvasElement;
         const rect = target.getBoundingClientRect();
@@ -94,9 +99,14 @@ export default class InputManager
         const canvasX = event.clientX - rect.left;
         const canvasY = event.clientY - rect.top;
 
-        const modelX = canvasX * (target.width / rect.width);
-        const modelY = canvasY * (target.height / rect.height);
+        const x = canvasX * (target.width / rect.width);
+        const y = canvasY * (target.height / rect.height);
 
-        return { x: modelX, y: modelY };
+        const deltaX = x - this.#currentPosition.x;
+        const deltaY = y - this.#currentPosition.y;
+
+        this.#currentPosition = { x, y, deltaX, deltaY };
+
+        return this.#currentPosition;
     }
 }

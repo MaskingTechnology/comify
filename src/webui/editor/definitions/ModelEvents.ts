@@ -1,9 +1,11 @@
 
 const ModelEvents = {
     SELECT_IMAGE: 'select-image',
-    ADD_SPEECH_BUBBLE: 'add-speech-bubble',
-    EDIT_SPEECH_BUBBLE: 'edit-speech-bubble',
-    DELETE_SPEECH_BUBBLE: 'delete-speech-bubble'
+    ADD_BUBBLE: 'add-bubble',
+    EDIT_BUBBLE: 'edit-bubble',
+    DELETE_BUBBLE: 'delete-bubble',
+    EDIT_INTRO: 'edit-intro',
+    EDIT_OUTRO: 'edit-outro',
 };
 
 Object.freeze(ModelEvents);

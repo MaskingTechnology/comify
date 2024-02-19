@@ -1,16 +1,18 @@
 
 import Geometry, { type Area } from '../utils/Geometry';
 
-type ActionHandler = (x: number, y: number) => void;
+type PressHandler = (x: number, y: number) => void;
+type DragHandler = (deltaX: number, deltaY: number) => void;
+type ReleaseHandler = (x: number, y: number) => void;
 
 export default abstract class Element
 {
     #area: Area = { x: 0, y: 0, width: 0, height: 0 };
     #dirty = true;
 
-    pressHandler?: ActionHandler;
-    dragHandler?: ActionHandler;
-    releaseHandler?: ActionHandler;
+    pressHandler?: PressHandler;
+    dragHandler?: DragHandler;
+    releaseHandler?: ReleaseHandler;
 
     get area() { return this.#area; }
 
@@ -40,12 +42,18 @@ export default abstract class Element
 
     move(x: number, y: number): void
     {
-        this.setPosition(this.#area.x + x, this.#area.y + y);
+        this.area.x += x;
+        this.area.y += y;
+
+        this.makeDirty();
     }
 
     resize(width: number, height: number): void
     {
-        this.setSize(this.#area.width + width, this.#area.height + height);
+        this.area.width += width;
+        this.area.height += height;
+
+        this.makeDirty();
     }
 
     render(context: CanvasRenderingContext2D)
@@ -59,34 +67,34 @@ export default abstract class Element
         return Geometry.pointInArea({ x, y }, this.#area);
     }
 
-    press(x: number, y: number): boolean
+    press(x: number, y: number): void
     {
-        return this.#execute(x, y, this.pressHandler);
-    }
-
-    drag(x: number, y: number): boolean
-    {
-        return this.#execute(x, y, this.dragHandler);
-    }
-
-    release(x: number, y: number): boolean
-    {
-        return this.#execute(x, y, this.releaseHandler);
-    }
-
-    #execute(x: number, y: number, handler?: ActionHandler): boolean
-    {
-        if (this.hit(x, y) === false)
+        if (this.pressHandler === undefined)
         {
-            return false;
+            return;
         }
 
-        if (handler !== undefined)
+        this.pressHandler(x, y);
+    }
+
+    drag(deltaX: number, deltaY: number): void
+    {
+        if (this.dragHandler === undefined)
         {
-            handler(x, y);
+            return;
         }
 
-        return true;
+        this.dragHandler(deltaX, deltaY);
+    }
+
+    release(x: number, y: number): void
+    {
+        if (this.releaseHandler === undefined)
+        {
+            return;
+        }
+
+        this.releaseHandler(x, y);
     }
 
     abstract renderElement(context: CanvasRenderingContext2D): void;

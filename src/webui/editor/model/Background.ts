@@ -1,6 +1,8 @@
 
 import Element from '../elements/Element';
 
+const BACKGROUND_COLOR = 'white';
+
 export default class Background extends Element
 {
     #image?: HTMLImageElement;
@@ -26,6 +28,19 @@ export default class Background extends Element
     }
 
     renderElement(context: CanvasRenderingContext2D): void
+    {
+        this.#image === undefined
+            ? this.#renderBackground(context)
+            : this.#renderImage(context);
+    }
+
+    #renderBackground(context: CanvasRenderingContext2D): void
+    {
+        context.fillStyle = BACKGROUND_COLOR;
+        context.fillRect(0, 0, context.canvas.width, context.canvas.height);
+    }
+
+    #renderImage(context: CanvasRenderingContext2D): void
     {
         const image = this.#image ?? new Image();
         const canvas = context.canvas;

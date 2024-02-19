@@ -35,6 +35,36 @@ export default class Group extends Element
         this.makeDirty();
     }
 
+    getElementAt(x: number, y: number): Element | undefined
+    {
+        for (const element of this.#reversedElements)
+        {
+            if (element instanceof Group)
+            {
+                const subElement = element.getElementAt(x, y);
+
+                if (subElement !== undefined)
+                {
+                    return subElement;
+                }
+
+                continue;
+            }
+
+            if (element.hit(x, y))
+            {
+                return element;
+            }
+        }
+
+        if (super.hit(x, y))
+        {
+            return this;
+        }
+
+        return undefined;
+    }
+
     setPosition(x: number, y: number): void
     {
         this.move(x - this.area.x, y - this.area.y);
@@ -73,23 +103,5 @@ export default class Group extends Element
     {
         return this.#reversedElements.some(element => element.hit(x, y))
             || super.hit(x, y);
-    }
-
-    press(x: number, y: number): boolean
-    {
-        return this.#reversedElements.some(element => element.press(x, y))
-            || super.press(x, y);
-    }
-
-    drag(x: number, y: number): boolean
-    {
-        return this.#reversedElements.some(element => element.drag(x, y))
-            || super.drag(x, y);
-    }
-
-    release(x: number, y: number): boolean
-    {
-        return this.#reversedElements.some(element => element.release(x, y))
-            || super.release(x, y);
     }
 }

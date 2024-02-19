@@ -1,13 +1,18 @@
 
-import ModelEvents from '../definitions/ModelEvents';
+// import ModelEvents from '../definitions/ModelEvents';
 import Button from '../elements/Button';
 import Group from '../elements/Group';
 import Bubble from '../model/Bubble';
-import EventManager from '../utils/EventManager';
+// import EventManager from '../utils/EventManager';
 
 export default class BubbleSelection extends Group
 {
     #bubble: Bubble;
+
+    #deleteButton: Button;
+    #editButton: Button;
+    #resizeButton: Button;
+    #pointerButton: Button;
 
     constructor(bubble: Bubble)
     {
@@ -15,68 +20,86 @@ export default class BubbleSelection extends Group
 
         this.#bubble = bubble;
 
+        this.#deleteButton = new Button();
+        this.#editButton = new Button();
+        this.#resizeButton = new Button();
+        this.#pointerButton = new Button();
+
         this.setPosition(bubble.area.x, bubble.area.y);
         this.setSize(bubble.area.width, bubble.area.height);
-        this.dragHandler = this.#dragBubble;
+        this.dragHandler = this.#dragBubble.bind(this);
 
-        this.#addButtons();
+        this.#initButtons();
+
+        this.addElement(this.#deleteButton);
+        this.addElement(this.#editButton);
+        this.addElement(this.#resizeButton);
+        this.addElement(this.#pointerButton);
     }
 
-    renderElement(context: CanvasRenderingContext2D): void
+    #initButtons(): void
     {
-        context.strokeStyle = 'black';
-        context.lineWidth = 2;
-        context.strokeRect(this.area.x, this.area.y, this.area.width, this.area.height);
-    }
-
-    #addButtons(): void
-    {
-        const deleteButton = new Button();
-        deleteButton.releaseHandler = this.#deleteBubble;
-        deleteButton.setPosition(
-            this.area.x - (deleteButton.area.width / 2),
-            this.area.y - (deleteButton.area.height / 2)
+        this.#deleteButton.releaseHandler = this.#deleteBubble.bind(this);
+        this.#deleteButton.setPosition(
+            this.area.x - (this.#deleteButton.area.width / 2),
+            this.area.y - (this.#deleteButton.area.height / 2)
         );
 
-        const editButton = new Button();
-        editButton.releaseHandler = this.#editBubble;
-        editButton.setPosition(
-            this.area.x + (this.area.width / 2) - (editButton.area.width / 2),
-            this.area.y - (editButton.area.height / 2)
+        this.#editButton.releaseHandler = this.#editBubble.bind(this);
+        this.#editButton.setPosition(
+            this.area.x + this.area.width - (this.#editButton.area.width / 2),
+            this.area.y - (this.#editButton.area.height / 2)
         );
 
-        const resizeButton = new Button();
-        resizeButton.dragHandler = this.#resizeBubble;
-        resizeButton.setPosition(
-            this.area.x + this.area.width - (resizeButton.area.width / 2),
-            this.area.y + this.area.height - (resizeButton.area.height / 2)
+        this.#resizeButton.dragHandler = this.#resizeBubble.bind(this);
+        this.#resizeButton.setPosition(
+            this.area.x + this.area.width - (this.#resizeButton.area.width / 2),
+            this.area.y + this.area.height - (this.#resizeButton.area.height / 2)
         );
 
-        this.addElement(deleteButton);
-        this.addElement(editButton);
-        this.addElement(resizeButton);
+        this.#pointerButton.dragHandler = this.#movePointer.bind(this);
+        this.#pointerButton.setPosition(
+            this.#bubble.pointerPosition.x - (this.#pointerButton.area.width / 2),
+            this.#bubble.pointerPosition.y - (this.#pointerButton.area.height / 2)
+        );
     }
 
-    #dragBubble(x: number, y: number): void
+    #dragBubble(deltaX: number, deltaY: number): void
     {
-        this.move(x, y);
-        this.#bubble.move(x, y);
+        this.move(deltaX, deltaY);
+        this.#bubble.move(deltaX, deltaY);
     }
 
-    #resizeBubble(x: number, y: number): void
+    #resizeBubble(deltaX: number, deltaY: number): void
     {
-        console.log('Resize bubble');
+        this.area.width += deltaX;
+        this.area.height += deltaY;
+
+        this.#editButton.move(deltaX, 0);
+        this.#resizeButton.move(deltaX, deltaY);
+
+        const pointerPosition = this.#bubble.pointerPosition;
+        const pointerX = pointerPosition.x - (this.#pointerButton.area.width / 2);
+        const pointerY = pointerPosition.y - (this.#pointerButton.area.height / 2);
+        this.#pointerButton.setPosition(pointerX, pointerY);
+
+        this.#bubble.resize(deltaX, deltaY);
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    #editBubble(x: number, y: number): void
+    #editBubble(): void
     {
-        EventManager.dispatch(ModelEvents.EDIT_SPEECH_BUBBLE, this.#bubble);
+        console.log('Edit bubble');
+        // EventManager.dispatch(ModelEvents.EDIT_BUBBLE, this.#bubble);
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    #deleteBubble(x: number, y: number): void
+    #deleteBubble(): void
     {
-        EventManager.dispatch(ModelEvents.DELETE_SPEECH_BUBBLE, this.#bubble);
+        console.log('Delete bubble');
+        // EventManager.dispatch(ModelEvents.DELETE_BUBBLE, this.#bubble);
+    }
+
+    #movePointer(): void
+    {
+        console.log('Move pointer');
     }
 }
