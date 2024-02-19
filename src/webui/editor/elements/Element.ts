@@ -16,6 +16,8 @@ export default abstract class Element
 
     get area() { return this.#area; }
 
+    get center() { return Geometry.getCenterPoint(this.#area); }
+
     get dirty() { return this.#dirty; }
 
     get clean() { return !this.#dirty; }

@@ -12,7 +12,12 @@ export default class Button extends Element
 
     renderElement(context: CanvasRenderingContext2D): void
     {
+        const x = Math.round(this.area.x);
+        const y = Math.round(this.area.y);
+        const width = Math.round(this.area.width);
+        const height = Math.round(this.area.height);
+
         context.fillStyle = 'blue';
-        context.fillRect(this.area.x, this.area.y, this.area.width, this.area.height);
+        context.fillRect(x, y, width, height);
     }
 }

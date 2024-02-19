@@ -1,33 +1,33 @@
 
 import Element from '../elements/Element';
-import Geometry, { type Direction, type Point, type Vector } from '../utils/Geometry';
+import { type Point } from '../utils/Geometry';
 
 const BUBBLE_COLOR = '#dddddd';
 
 export default abstract class Bubble extends Element
 {
-    #pointer: Vector = { magnitude: 0, angle: 0 };
+    #pointer: Point = { x: 0, y: 0 };
 
     get pointer() { return this.#pointer; }
 
-    get pointerPosition(): Point
+    setPointer(x: number, y: number): void
     {
-        const area = this.area;
-        const pointer = this.pointer;
-        const center = Geometry.getCenterPoint(area);
+        this.#pointer.x = x;
+        this.#pointer.y = y;
 
-        return Geometry.rotateAndTranslatePoint({ x: 0, y: pointer.magnitude }, center, pointer.angle);
+        this.makeDirty();
     }
 
-    get pointerDirection(): Direction
+    move(deltaX: number, deltaY: number): void
     {
-        return Geometry.getPointDirection(this.pointerPosition, this.area);
+        super.move(deltaX, deltaY);
+        this.movePointer(deltaX, deltaY);
     }
 
-    setPointer(magnitude: number, angle: number): void
+    movePointer(deltaX: number, deltaY: number): void
     {
-        this.#pointer.magnitude = magnitude;
-        this.#pointer.angle = angle;
+        this.#pointer.x += deltaX;
+        this.#pointer.y += deltaY;
 
         this.makeDirty();
     }

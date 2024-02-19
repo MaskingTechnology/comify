@@ -1,5 +1,4 @@
 
-export type Direction = 'vertical' | 'horizontal';
 export type Point = { x: number, y: number; };
 export type Size = { width: number, height: number; };
 export type Vector = { magnitude: number, angle: number; };
@@ -23,6 +22,17 @@ export default class Geometry
         };
     }
 
+    static calculateAngle = function (from: Point, to: Point): number
+    {
+        var length = Math.abs(from.x - to.x);
+        var height = Math.abs(from.y - to.y);
+
+        to = { x: to.x, y: to.y };
+        to.y = to.y - Math.sqrt(length * length + height * height);
+
+        return 2 * Math.atan2(from.y - to.y, from.x - to.x);
+    };
+
     static rotatePoint(point: Point, angle: number): Point
     {
         const cos = Math.cos(angle);
@@ -39,16 +49,6 @@ export default class Geometry
         const rotated = this.rotatePoint(point, angle);
 
         return this.translatePoint(rotated, base);
-    }
-
-    static getPointDirection(point: Point, area: Area): Direction
-    {
-        const center = this.getCenterPoint(area);
-
-        const x = Math.abs(point.x - center.x);
-        const y = Math.abs(point.y - center.y);
-
-        return x > y ? 'horizontal' : 'vertical';
     }
 
     static pointInArea(point: Point, area: Area): boolean

@@ -3,30 +3,28 @@ import Geometry from '../utils/Geometry';
 import Bubble from './Bubble';
 
 const BUBBLE_RADIUS = 10;
-const BUBBLE_POINTER_RATIO = 0.2;
+const BUBBLE_POINTER_RATIO = 0.3;
 
 export default class SpeechBubble extends Bubble
 {
     renderPointer(context: CanvasRenderingContext2D): void
     {
         const area = this.area;
-        const center = Geometry.getCenterPoint(area);
+        const center = this.center;
+        const angle = Geometry.calculateAngle(center, this.pointer);
 
         const pointer = this.pointer;
-        const pointerEnd = this.pointerPosition;
-        const pointerDirection = this.pointerDirection;
+        const bubbleSize = (area.width + area.height) / 2;
 
-        const bubbleSize = pointerDirection === 'vertical' ? area.width : area.height;
-
-        const baseSize = bubbleSize * BUBBLE_POINTER_RATIO;
-        const baseOffset = baseSize / 2;
-        const baseLeft = Geometry.rotateAndTranslatePoint({ x: -baseOffset, y: 0 }, center, pointer.angle);
-        const baseRight = Geometry.rotateAndTranslatePoint({ x: baseOffset, y: 0 }, center, pointer.angle);
+        const baseSize = Math.round(bubbleSize * BUBBLE_POINTER_RATIO);
+        const baseOffset = Math.round(baseSize / 2);
+        const baseLeft = Geometry.rotateAndTranslatePoint({ x: -baseOffset, y: 0 }, center, angle);
+        const baseRight = Geometry.rotateAndTranslatePoint({ x: baseOffset, y: 0 }, center, angle);
 
         context.beginPath();
-        context.moveTo(baseLeft.x, baseLeft.y);
-        context.lineTo(baseRight.x, baseRight.y);
-        context.lineTo(pointerEnd.x, pointerEnd.y);
+        context.moveTo(Math.round(baseLeft.x), Math.round(baseLeft.y));
+        context.lineTo(Math.round(baseRight.x), Math.round(baseRight.y));
+        context.lineTo(Math.round(pointer.x), Math.round(pointer.y));
         context.closePath();
         context.fill();
     }

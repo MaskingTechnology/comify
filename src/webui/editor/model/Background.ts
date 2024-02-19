@@ -55,10 +55,10 @@ export default class Background extends Element
         const sWidth = image.width;
         const sHeight = image.height;
 
-        const dx = (canvas.width - image.width * ratio) / 2;
-        const dy = (canvas.height - image.height * ratio) / 2;
-        const dWidth = image.width * ratio;
-        const dHeight = image.height * ratio;
+        const dx = Math.round((canvas.width - image.width * ratio) / 2);
+        const dy = Math.round((canvas.height - image.height * ratio) / 2);
+        const dWidth = Math.round(image.width * ratio);
+        const dHeight = Math.round(image.height * ratio);
 
         context.imageSmoothingEnabled = false;
         context.drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);

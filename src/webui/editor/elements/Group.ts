@@ -70,21 +70,10 @@ export default class Group extends Element
         this.move(x - this.area.x, y - this.area.y);
     }
 
-    setSize(width: number, height: number): void
-    {
-        this.resize(width - this.area.width, height - this.area.height);
-    }
-
     move(x: number, y: number): void
     {
         this.#elements.forEach(element => element.move(x, y));
         super.move(x, y);
-    }
-
-    resize(width: number, height: number): void
-    {
-        this.#elements.forEach(element => element.resize(width, height));
-        super.resize(width, height);
     }
 
     render(context: CanvasRenderingContext2D)

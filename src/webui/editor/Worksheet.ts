@@ -37,7 +37,7 @@ export default class Worksheet extends Group
         const bubble = new SpeechBubble();
         bubble.setPosition(100, 100);
         bubble.setSize(200, 100);
-        bubble.setPointer(100, 0);
+        bubble.setPointer(200, 300);
         bubble.releaseHandler = () => this.#selectBubble(bubble);
 
         this.#model.addSpeechBubble(bubble);
