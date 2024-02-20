@@ -28,8 +28,10 @@ export default class Background extends Element
 
     renderElement(context: CanvasRenderingContext2D): void
     {
+        this.#renderBackground(context);
+
         this.#image === undefined
-            ? this.#renderBackground(context)
+            ? this.#renderInstructions(context)
             : this.#renderImage(context);
     }
 
@@ -39,6 +41,11 @@ export default class Background extends Element
         context.fillRect(0, 0, context.canvas.width, context.canvas.height);
     }
 
+    #renderInstructions(context: CanvasRenderingContext2D): void
+    {
+
+    }
+
     #renderImage(context: CanvasRenderingContext2D): void
     {
         const image = this.#image ?? new Image();
@@ -46,8 +53,10 @@ export default class Background extends Element
 
         const widthRatio = canvas.width / image.width;
         const heightRatio = canvas.height / image.height;
-        // const ratio = Math.min(widthRatio, heightRatio); // Fit image inside canvas
-        const ratio = Math.max(widthRatio, heightRatio); // Fill canvas with image
+
+        const ratio = Styling.BACKGROUND_STYLE === 'fit'
+            ? Math.min(widthRatio, heightRatio)
+            : Math.max(widthRatio, heightRatio);
 
         const sx = 0;
         const sy = 0;

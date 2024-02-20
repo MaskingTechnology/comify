@@ -34,7 +34,9 @@ export default class BubbleSelection extends Group
 
         this.setPosition(bubble.area.x, bubble.area.y);
         this.setSize(bubble.area.width, bubble.area.height);
+
         this.dragHandler = this.#dragBubble.bind(this);
+        this.#bubble.dragHandler = this.#dragBubble.bind(this);
 
         this.#updateButtonPositions();
 

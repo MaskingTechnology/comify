@@ -15,9 +15,14 @@ export default class SpeechBubble extends Bubble
     renderElement(context: CanvasRenderingContext2D): void
     {
         const shape = this.#createShape();
-        const shadowShape = this.#createShadowShape(shape);
 
-        this.#renderShape(shadowShape, Styling.SHADOW_COLOR, context);
+        if (Styling.BUBBLE_SHADOW_ENABLED)
+        {
+            const shadowShape = this.#createShadowShape(shape);
+
+            this.#renderShape(shadowShape, Styling.SHADOW_COLOR, context);
+        }
+
         this.#renderShape(shape, Styling.BUBBLE_COLOR, context);
     }
 
