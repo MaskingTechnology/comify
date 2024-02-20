@@ -1,7 +1,6 @@
 
+import Colors from '../definitions/Colors';
 import Element from '../elements/Element';
-
-const BACKGROUND_COLOR = 'white';
 
 export default class Background extends Element
 {
@@ -36,7 +35,7 @@ export default class Background extends Element
 
     #renderBackground(context: CanvasRenderingContext2D): void
     {
-        context.fillStyle = BACKGROUND_COLOR;
+        context.fillStyle = Colors.BACKGROUND;
         context.fillRect(0, 0, context.canvas.width, context.canvas.height);
     }
 

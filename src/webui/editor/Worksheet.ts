@@ -43,11 +43,6 @@ export default class Worksheet extends Group
         this.#model.addSpeechBubble(bubble);
     }
 
-    #bindEvents(): void
-    {
-        // EventManager.listen(ModelEvents.ADD_BUBBLE, this.addSpeechBubble.bind(this));
-    }
-
     #bindHandlers(): void
     {
         this.#model.background.releaseHandler = this.#deselectBubble.bind(this);

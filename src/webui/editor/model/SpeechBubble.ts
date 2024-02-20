@@ -1,13 +1,30 @@
 
-import Geometry from '../utils/Geometry';
+import Colors from '../definitions/Colors';
+import Geometry, { Area, Point } from '../utils/Geometry';
 import Bubble from './Bubble';
+
+type Shape = {
+    area: Area;
+    baseLeft: Point;
+    baseRight: Point;
+    pointer: Point;
+};
 
 const BUBBLE_RADIUS = 10;
 const BUBBLE_POINTER_RATIO = 0.3;
 
 export default class SpeechBubble extends Bubble
 {
-    renderPointer(context: CanvasRenderingContext2D): void
+    renderElement(context: CanvasRenderingContext2D): void
+    {
+        const shape = this.#createShape();
+        const shadowShape = this.#createShadowShape(shape);
+
+        this.#renderShape(shadowShape, Colors.SHADOW, context);
+        this.#renderShape(shape, Colors.BUBBLE, context);
+    }
+
+    #createShape(): Shape
     {
         const area = this.area;
         const center = this.center;
@@ -21,20 +38,38 @@ export default class SpeechBubble extends Bubble
         const baseLeft = Geometry.rotateAndTranslatePoint({ x: -baseOffset, y: 0 }, center, angle);
         const baseRight = Geometry.rotateAndTranslatePoint({ x: baseOffset, y: 0 }, center, angle);
 
-        context.beginPath();
-        context.moveTo(Math.round(baseLeft.x), Math.round(baseLeft.y));
-        context.lineTo(Math.round(baseRight.x), Math.round(baseRight.y));
-        context.lineTo(Math.round(pointer.x), Math.round(pointer.y));
-        context.closePath();
-        context.fill();
+        return { area, baseLeft, baseRight, pointer };
     }
 
-    renderBubble(context: CanvasRenderingContext2D): void
+    #createShadowShape(shape: Shape): Shape
     {
-        const area = this.area;
+        const area = { ...shape.area };
+        area.x += 5;
+        area.y += 5;
+
+        const baseLeft = { ...shape.baseLeft };
+        baseLeft.x += 5;
+        baseLeft.y += 5;
+
+        const baseRight = { ...shape.baseRight };
+        baseRight.x += 5;
+        baseRight.y += 5;
+
+        const pointer = { ...shape.pointer };
+
+        return { area, baseLeft, baseRight, pointer };
+    }
+
+    #renderShape(shape: Shape, color: string, context: CanvasRenderingContext2D): void
+    {
+        context.fillStyle = color;
 
         context.beginPath();
-        context.roundRect(area.x, area.y, area.width, area.height, BUBBLE_RADIUS);
+        context.roundRect(shape.area.x, shape.area.y, shape.area.width, shape.area.height, BUBBLE_RADIUS);
+        context.moveTo(Math.round(shape.baseLeft.x), Math.round(shape.baseLeft.y));
+        context.lineTo(Math.round(shape.baseRight.x), Math.round(shape.baseRight.y));
+        context.lineTo(Math.round(shape.pointer.x), Math.round(shape.pointer.y));
+        context.closePath();
         context.fill();
     }
 }

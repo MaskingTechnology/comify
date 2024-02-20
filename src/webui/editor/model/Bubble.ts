@@ -2,8 +2,6 @@
 import Element from '../elements/Element';
 import { type Point } from '../utils/Geometry';
 
-const BUBBLE_COLOR = '#dddddd';
-
 export default abstract class Bubble extends Element
 {
     #pointer: Point = { x: 0, y: 0 };
@@ -31,16 +29,4 @@ export default abstract class Bubble extends Element
 
         this.makeDirty();
     }
-
-    renderElement(context: CanvasRenderingContext2D): void
-    {
-        context.fillStyle = BUBBLE_COLOR;
-
-        this.renderPointer(context);
-        this.renderBubble(context);
-    }
-
-    abstract renderPointer(context: CanvasRenderingContext2D): void;
-
-    abstract renderBubble(context: CanvasRenderingContext2D): void;
 }

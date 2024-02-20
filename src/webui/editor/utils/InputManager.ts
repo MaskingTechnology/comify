@@ -86,6 +86,8 @@ export default class InputManager
 
     #handleDrop(event: DragEvent): void
     {
+        event.preventDefault();
+
         const files = event.dataTransfer?.files;
 
         EventManager.dispatch(InputEvents.DROPPED, files);

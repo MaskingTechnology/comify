@@ -4,7 +4,7 @@ const InputEvents = {
     DRAGGED: 'dragged',
     RELEASED: 'released',
     DROPPED: 'dropped'
-};
+} as const;
 
 Object.freeze(InputEvents);
 

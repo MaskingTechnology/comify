@@ -6,7 +6,7 @@ const ModelEvents = {
     DELETE_BUBBLE: 'delete-bubble',
     EDIT_INTRO: 'edit-intro',
     EDIT_OUTRO: 'edit-outro',
-};
+} as const;
 
 Object.freeze(ModelEvents);
 
