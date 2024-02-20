@@ -84,6 +84,10 @@ export default class SpeechBubble extends Bubble
 
         context.beginPath();
 
+        context.moveTo(shape.baseLeft.x, shape.baseLeft.y);
+        context.lineTo(shape.baseRight.x, shape.baseRight.y);
+        context.lineTo(shape.pointer.x, shape.pointer.y);
+
         context.roundRect(
             shape.balloon.x,
             shape.balloon.y,
@@ -91,10 +95,6 @@ export default class SpeechBubble extends Bubble
             shape.balloon.height,
             Styling.BUBBLE_RADIUS
         );
-
-        context.moveTo(shape.baseLeft.x, shape.baseLeft.y);
-        context.lineTo(shape.baseRight.x, shape.baseRight.y);
-        context.lineTo(shape.pointer.x, shape.pointer.y);
 
         context.closePath();
         context.fill();
