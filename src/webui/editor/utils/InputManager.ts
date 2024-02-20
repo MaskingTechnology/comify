@@ -1,12 +1,17 @@
 
-import InputEvents from '../definitions/InputEvents';
-import EventManager from './EventManager';
-
 type Position = { x: number, y: number; deltaX: number, deltaY: number; };
+
+type Handler = {
+    press: (x: number, y: number) => void;
+    drag: (deltaX: number, deltaY: number) => void;
+    release: (x: number, y: number) => void;
+    drop: (files?: FileList) => void;
+};
 
 export default class InputManager
 {
     #canvas: HTMLCanvasElement;
+    #handler: Handler;
 
     #currentPosition: Position;
     #pressed: boolean;
@@ -17,9 +22,10 @@ export default class InputManager
     #dragoverHandler = this.#handleDragOver.bind(this);
     #dropHandler = this.#handleDrop.bind(this);
 
-    constructor(canvas: HTMLCanvasElement)
+    constructor(canvas: HTMLCanvasElement, handler: Handler)
     {
         this.#canvas = canvas;
+        this.#handler = handler;
 
         this.#currentPosition = { x: 0, y: 0, deltaX: 0, deltaY: 0 };
         this.#pressed = false;
@@ -51,7 +57,7 @@ export default class InputManager
 
         const { x, y } = this.#extractPosition(event);
 
-        EventManager.dispatch(InputEvents.PRESSED, x, y);
+        this.#handler.press(x, y);
     }
 
     #handleMove(event: MouseEvent): void
@@ -65,7 +71,7 @@ export default class InputManager
 
         const { deltaX, deltaY } = this.#extractPosition(event);
 
-        EventManager.dispatch(InputEvents.DRAGGED, deltaX, deltaY);
+        this.#handler.drag(deltaX, deltaY);
     }
 
     #handleRelease(event: MouseEvent): void
@@ -76,7 +82,7 @@ export default class InputManager
 
         const { x, y } = this.#extractPosition(event);
 
-        EventManager.dispatch(InputEvents.RELEASED, x, y);
+        this.#handler.release(x, y);
     }
 
     #handleDragOver(event: DragEvent): void
@@ -90,7 +96,7 @@ export default class InputManager
 
         const files = event.dataTransfer?.files;
 
-        EventManager.dispatch(InputEvents.DROPPED, files);
+        this.#handler.drop(files);
     }
 
     #extractPosition(event: MouseEvent): Position

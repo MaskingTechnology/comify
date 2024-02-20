@@ -4,13 +4,13 @@ import Workbench from './Workbench';
 export default class Renderer
 {
     #context: CanvasRenderingContext2D;
-    #worksheet: Workbench;
+    #workbench: Workbench;
     #running: boolean;
 
-    constructor(canvas: HTMLCanvasElement, worksheet: Workbench)
+    constructor(canvas: HTMLCanvasElement, workbench: Workbench)
     {
         this.#context = canvas.getContext("2d") as CanvasRenderingContext2D;
-        this.#worksheet = worksheet;
+        this.#workbench = workbench;
         this.#running = false;
     }
 
@@ -32,9 +32,9 @@ export default class Renderer
             return;
         }
 
-        if (this.#worksheet.dirty)
+        if (this.#workbench.dirty)
         {
-            this.#worksheet.render(this.#context);
+            this.#workbench.render(this.#context);
         }
 
         window.requestAnimationFrame(() =>

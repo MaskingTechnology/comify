@@ -36,6 +36,14 @@ export default class Workbench extends Group
         this.#bindHandlers();
     }
 
+    async setBackgroundImage(file: File): Promise<void>
+    {
+        const source = URL.createObjectURL(file);
+        const image = await ImageLoader.load(source);
+
+        this.#model.background.setImage(image);
+    }
+
     async #selectImage(): Promise<void>
     {
         const file = await FileDialog.open();
@@ -45,15 +53,7 @@ export default class Workbench extends Group
             return;
         }
 
-        this.#setBackgroundImage(file);
-    }
-
-    async #setBackgroundImage(file: File): Promise<void>
-    {
-        const source = URL.createObjectURL(file);
-        const image = await ImageLoader.load(source);
-
-        this.#model.background.setImage(image);
+        this.setBackgroundImage(file);
     }
 
     #addSpeechBubble()

@@ -1,10 +1,8 @@
 
 import Renderer from './Renderer';
 import Workbench from './Workbench.js';
-import InputEvents from './definitions/InputEvents';
 import Element from './elements/Element';
 import Model from './model/Model';
-import EventManager from './utils/EventManager';
 import InputManager from './utils/InputManager';
 
 const COMIC_WIDTH = 960;
@@ -12,7 +10,7 @@ const COMIC_HEIGHT = 540;
 
 export default class Editor
 {
-    #worksheet: Workbench;
+    #workbench: Workbench;
     #renderer: Renderer;
     #inputManager: InputManager;
 
@@ -20,9 +18,14 @@ export default class Editor
 
     constructor(canvas: HTMLCanvasElement, model = new Model())
     {
-        this.#worksheet = new Workbench(model);
-        this.#renderer = new Renderer(canvas, this.#worksheet);
-        this.#inputManager = new InputManager(canvas);
+        this.#workbench = new Workbench(model);
+        this.#renderer = new Renderer(canvas, this.#workbench);
+        this.#inputManager = new InputManager(canvas, {
+            press: this.#handlePress.bind(this),
+            drag: this.#handleDrag.bind(this),
+            release: this.#handleRelease.bind(this),
+            drop: this.#handleDrop.bind(this)
+        });
 
         this.#initCanvas(canvas);
     }
@@ -31,40 +34,24 @@ export default class Editor
     {
         this.#renderer.start();
         this.#inputManager.bind();
-        this.#bindEvents();
     }
 
     stop(): void
     {
         this.#renderer.stop();
         this.#inputManager.unbind();
-        this.#unbindEvents();
     }
 
     #initCanvas(canvas: HTMLCanvasElement): void
     {
         canvas.style.width = '100%';
-
         canvas.width = COMIC_WIDTH;
         canvas.height = COMIC_HEIGHT;
     }
 
-    #bindEvents(): void
+    #handlePress(x: number, y: number): void
     {
-        EventManager.listen(InputEvents.PRESSED, this.#handlePressed.bind(this));
-        EventManager.listen(InputEvents.DRAGGED, this.#handleDragged.bind(this));
-        EventManager.listen(InputEvents.RELEASED, this.#handleReleased.bind(this));
-        EventManager.listen(InputEvents.DROPPED, this.#handleDropped.bind(this));
-    }
-
-    #unbindEvents(): void
-    {
-        EventManager.clear();
-    }
-
-    #handlePressed(x: number, y: number): void
-    {
-        this.#selectedElement = this.#worksheet.getElementAt(x, y);
+        this.#selectedElement = this.#workbench.getElementAt(x, y);
 
         if (this.#selectedElement !== undefined)
         {
@@ -72,7 +59,7 @@ export default class Editor
         }
     }
 
-    #handleDragged(deltaX: number, deltaY: number): void
+    #handleDrag(deltaX: number, deltaY: number): void
     {
         if (this.#selectedElement !== undefined)
         {
@@ -80,7 +67,7 @@ export default class Editor
         }
     }
 
-    #handleReleased(x: number, y: number): void
+    #handleRelease(x: number, y: number): void
     {
         if (this.#selectedElement !== undefined)
         {
@@ -90,7 +77,7 @@ export default class Editor
         this.#selectedElement = undefined;
     }
 
-    #handleDropped(files?: File[]): void
+    #handleDrop(files?: FileList): void
     {
         if (files === undefined || files.length === 0)
         {
@@ -101,7 +88,7 @@ export default class Editor
 
         if (file.type.startsWith('image/'))
         {
-            //this.#setBackgroundImage(file);
+            this.#workbench.setBackgroundImage(file);
         }
     }
 }
