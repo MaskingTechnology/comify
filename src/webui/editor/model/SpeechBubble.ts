@@ -1,6 +1,7 @@
 
 import Styling from '../definitions/Styling';
 import Geometry, { Area, Point } from '../utils/Geometry';
+import TextProcessor from '../utils/TextProcessor';
 import Bubble from './Bubble';
 
 type Shape = {
@@ -24,6 +25,7 @@ export default class SpeechBubble extends Bubble
         }
 
         this.#renderShape(shape, Styling.BUBBLE_COLOR, context);
+        this.#renderText(context);
     }
 
     #createShape(): Shape
@@ -71,7 +73,7 @@ export default class SpeechBubble extends Bubble
         baseRight.x += offsetX;
         baseRight.y += offsetY;
 
-        const pointer = { ...shape.pointer };
+        const pointer = shape.pointer;
 
         return { balloon, baseLeft, baseRight, pointer };
     }
@@ -96,5 +98,35 @@ export default class SpeechBubble extends Bubble
 
         context.closePath();
         context.fill();
+    }
+
+    #renderText(context: CanvasRenderingContext2D): void
+    {
+        context.textAlign = 'center';
+        context.textBaseline = 'top';
+        context.fillStyle = Styling.BUBBLE_TEXT_COLOR;
+        context.font = Styling.BUBBLE_TEXT_FONT;
+
+        const textHeight = context.measureText('M').width;
+        const lineHeight = textHeight * Styling.BUBBLE_LINE_HEIGHT_RATIO;
+        const lineSpacing = lineHeight - textHeight;
+
+        const textArea = {
+            x: this.area.x,
+            y: this.area.y,
+            width: this.area.width * Styling.BUBBLE_TEXT_AREA_RATIO,
+            height: this.area.height * Styling.BUBBLE_TEXT_AREA_RATIO
+        };
+
+        const lines = TextProcessor.finInArea(this.text, lineHeight, textArea, context);
+        const totalHeight = textHeight * lines.length + (lines.length - 1) * lineSpacing;
+
+        const x = Math.round(this.center.x);
+        const y = Math.round(this.center.y - totalHeight / 2);
+
+        lines.forEach((line, index) =>
+        {
+            context.fillText(line, x, y + lineHeight * index);
+        });
     }
 }

@@ -5,13 +5,23 @@ import { type Point } from '../utils/Geometry';
 export default abstract class Bubble extends Element
 {
     #pointer: Point = { x: 0, y: 0 };
+    #text: string = '';
 
     get pointer() { return this.#pointer; }
+
+    get text() { return this.#text; }
 
     setPointer(x: number, y: number): void
     {
         this.#pointer.x = x;
         this.#pointer.y = y;
+
+        this.makeDirty();
+    }
+
+    setText(text: string): void
+    {
+        this.#text = text;
 
         this.makeDirty();
     }
