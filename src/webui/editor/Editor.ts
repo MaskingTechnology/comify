@@ -1,14 +1,10 @@
 
 import Renderer from './Renderer';
-import Worksheet from './Worksheet.js';
+import Workbench from './Workbench.js';
 import InputEvents from './definitions/InputEvents';
-import ModelEvents from './definitions/ModelEvents';
 import Element from './elements/Element';
 import Model from './model/Model';
 import EventManager from './utils/EventManager';
-import FileDialog from './utils/FileDialog';
-import ImageLoader from './utils/ImageLoader';
-import InputDialog from './utils/InputDialog';
 import InputManager from './utils/InputManager';
 
 const COMIC_WIDTH = 960;
@@ -16,7 +12,7 @@ const COMIC_HEIGHT = 540;
 
 export default class Editor
 {
-    #worksheet: Worksheet;
+    #worksheet: Workbench;
     #renderer: Renderer;
     #inputManager: InputManager;
 
@@ -24,7 +20,7 @@ export default class Editor
 
     constructor(canvas: HTMLCanvasElement, model = new Model())
     {
-        this.#worksheet = new Worksheet(model);
+        this.#worksheet = new Workbench(model);
         this.#renderer = new Renderer(canvas, this.#worksheet);
         this.#inputManager = new InputManager(canvas);
 
@@ -59,10 +55,6 @@ export default class Editor
         EventManager.listen(InputEvents.DRAGGED, this.#handleDragged.bind(this));
         EventManager.listen(InputEvents.RELEASED, this.#handleReleased.bind(this));
         EventManager.listen(InputEvents.DROPPED, this.#handleDropped.bind(this));
-
-        EventManager.listen(ModelEvents.SELECT_IMAGE, this.#selectImage.bind(this));
-        EventManager.listen(ModelEvents.ADD_BUBBLE, this.#addSpeechBubble.bind(this));
-        EventManager.listen(ModelEvents.EDIT_BUBBLE, this.#editSpeechBubble.bind(this));
     }
 
     #unbindEvents(): void
@@ -109,38 +101,7 @@ export default class Editor
 
         if (file.type.startsWith('image/'))
         {
-            this.#setBackgroundImage(file);
+            //this.#setBackgroundImage(file);
         }
-    }
-
-    async #selectImage(): Promise<void>
-    {
-        const file = await FileDialog.open();
-
-        if (file === undefined)
-        {
-            return;
-        }
-
-        this.#setBackgroundImage(file);
-    }
-
-    async #setBackgroundImage(file: File): Promise<void>
-    {
-        const source = URL.createObjectURL(file);
-        const image = await ImageLoader.load(source);
-
-        this.#worksheet.setBackgroundImage(image);
-    }
-
-    #addSpeechBubble(): void
-    {
-        this.#worksheet.addSpeechBubble();
-    }
-
-    async #editSpeechBubble(): Promise<void>
-    {
-        const text = await InputDialog.open('Edit speech bubble');
-        console.log(text);
     }
 }

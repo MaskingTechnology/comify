@@ -36,7 +36,7 @@ export default class InputDialog
         dialog.style.padding = '0';
 
         dialog.innerHTML = `<div class="ds">
-            <div class="ds-border ds-border-normal ds-border-size-medium">
+            <div class="ds-border ds-border-normal ds-border-size-large">
                 <div class="ds-panel ds-panel-normal ds-panel-padding-medium">
                     <form class="ds-form" method="dialog">
                         <div class="ds-column ds-column-gap-medium">

@@ -1,17 +1,18 @@
 
 import BubbleSelection from './components/BubbleSelection';
 import ButtonBar from './components/ButtonBar';
-import ModelEvents from './definitions/ModelEvents';
 import Group from './elements/Group';
 import type Bubble from './model/Bubble';
 import type Model from './model/Model';
 import SpeechBubble from './model/SpeechBubble';
-import EventManager from './utils/EventManager';
+import FileDialog from './utils/FileDialog';
+import ImageLoader from './utils/ImageLoader';
+import InputDialog from './utils/InputDialog';
 
-export default class Worksheet extends Group
+export default class Workbench extends Group
 {
     #model: Model;
-    #selection?: BubbleSelection;
+    #selection: BubbleSelection;
 
     constructor(model: Model)
     {
@@ -19,7 +20,15 @@ export default class Worksheet extends Group
 
         this.#model = model;
 
-        const buttonBar = new ButtonBar();
+        this.#selection = new BubbleSelection({
+            editBubble: this.#editBubble.bind(this),
+            deleteBubble: this.#deleteBubble.bind(this)
+        });
+
+        const buttonBar = new ButtonBar({
+            selectImage: this.#selectImage.bind(this),
+            addSpeechBubble: this.#addSpeechBubble.bind(this)
+        });
 
         this.addElement(model);
         this.addElement(buttonBar);
@@ -27,12 +36,27 @@ export default class Worksheet extends Group
         this.#bindHandlers();
     }
 
-    setBackgroundImage(image: HTMLImageElement)
+    async #selectImage(): Promise<void>
     {
+        const file = await FileDialog.open();
+
+        if (file === undefined)
+        {
+            return;
+        }
+
+        this.#setBackgroundImage(file);
+    }
+
+    async #setBackgroundImage(file: File): Promise<void>
+    {
+        const source = URL.createObjectURL(file);
+        const image = await ImageLoader.load(source);
+
         this.#model.background.setImage(image);
     }
 
-    addSpeechBubble()
+    #addSpeechBubble()
     {
         const bubble = new SpeechBubble();
         bubble.setPosition(100, 100);
@@ -41,6 +65,20 @@ export default class Worksheet extends Group
         bubble.pressHandler = () => this.#selectBubble(bubble);
 
         this.#model.addSpeechBubble(bubble);
+    }
+
+    async #editBubble(bubble: Bubble): Promise<void>
+    {
+        const text = await InputDialog.open(bubble.text);
+
+        bubble.setText(text);
+    }
+
+    #deleteBubble(bubble: Bubble): void
+    {
+        this.#model.removeSpeechBubble(bubble as SpeechBubble);
+
+        this.#deselectBubble(0, 0);
     }
 
     #bindHandlers(): void
@@ -53,32 +91,27 @@ export default class Worksheet extends Group
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     #editIntro(x: number, y: number): void
     {
-        EventManager.dispatch(ModelEvents.EDIT_INTRO);
+
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     #editOutro(x: number, y: number): void
     {
-        EventManager.dispatch(ModelEvents.EDIT_OUTRO);
+
     }
 
     #selectBubble(bubble: Bubble): void
     {
         this.#deselectBubble(0, 0);
 
-        this.#selection = new BubbleSelection(bubble);
+        this.#selection.bubble = bubble;
+
         this.addElement(this.#selection);
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     #deselectBubble(x: number, y: number): void
     {
-        if (this.#selection === undefined)
-        {
-            return;
-        }
-
         this.removeElement(this.#selection);
-        this.#selection = undefined;
     }
 }

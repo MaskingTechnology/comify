@@ -1,24 +1,28 @@
 
-import ModelEvents from '../definitions/ModelEvents';
 import Button from '../elements/Button';
 import Group from '../elements/Group';
 import Bubble from '../model/Bubble';
-import EventManager from '../utils/EventManager';
+
+type Handler = {
+    editBubble: (bubble: Bubble) => void;
+    deleteBubble: (bubble: Bubble) => void;
+};
 
 export default class BubbleSelection extends Group
 {
-    #bubble: Bubble;
+    #bubble?: Bubble;
+    #handler: Handler;
 
     #deleteButton: Button;
     #editButton: Button;
     #resizeButton: Button;
     #pointerButton: Button;
 
-    constructor(bubble: Bubble)
+    constructor(handler: Handler)
     {
         super();
 
-        this.#bubble = bubble;
+        this.#handler = handler;
 
         this.#deleteButton = new Button();
         this.#deleteButton.releaseHandler = this.#deleteBubble.bind(this);
@@ -32,6 +36,18 @@ export default class BubbleSelection extends Group
         this.#pointerButton = new Button();
         this.#pointerButton.dragHandler = this.#movePointer.bind(this);
 
+        this.addElement(this.#deleteButton);
+        this.addElement(this.#editButton);
+        this.addElement(this.#resizeButton);
+        this.addElement(this.#pointerButton);
+    }
+
+    get bubble() { return this.#bubble as Bubble; }
+
+    set bubble(bubble: Bubble)
+    {
+        this.#bubble = bubble;
+
         this.setPosition(bubble.area.x, bubble.area.y);
         this.setSize(bubble.area.width, bubble.area.height);
 
@@ -39,40 +55,35 @@ export default class BubbleSelection extends Group
         this.#bubble.dragHandler = this.#dragBubble.bind(this);
 
         this.#updateButtonPositions();
-
-        this.addElement(this.#deleteButton);
-        this.addElement(this.#editButton);
-        this.addElement(this.#resizeButton);
-        this.addElement(this.#pointerButton);
     }
 
     #dragBubble(deltaX: number, deltaY: number): void
     {
         this.move(deltaX, deltaY);
-        this.#bubble.move(deltaX, deltaY);
+        this.#bubble?.move(deltaX, deltaY);
     }
 
     #resizeBubble(deltaX: number, deltaY: number): void
     {
         this.resize(deltaX, deltaY);
-        this.#bubble.resize(deltaX, deltaY);
+        this.bubble.resize(deltaX, deltaY);
         this.#updateButtonPositions();
     }
 
     #movePointer(deltaX: number, deltaY: number): void
     {
-        this.#bubble.movePointer(deltaX, deltaY);
+        this.bubble.movePointer(deltaX, deltaY);
         this.#updateButtonPositions();
     }
 
     #editBubble(): void
     {
-        EventManager.dispatch(ModelEvents.EDIT_BUBBLE, this.#bubble);
+        this.#handler.editBubble(this.bubble);
     }
 
     #deleteBubble(): void
     {
-        EventManager.dispatch(ModelEvents.DELETE_BUBBLE, this.#bubble);
+        this.#handler.deleteBubble(this.bubble);
     }
 
     #updateButtonPositions(): void
@@ -93,8 +104,8 @@ export default class BubbleSelection extends Group
         );
 
         this.#pointerButton.setPosition(
-            this.#bubble.pointer.x - (this.#pointerButton.area.width / 2),
-            this.#bubble.pointer.y - (this.#pointerButton.area.height / 2)
+            this.bubble.pointer.x - (this.#pointerButton.area.width / 2),
+            this.bubble.pointer.y - (this.#pointerButton.area.height / 2)
         );
     }
 }

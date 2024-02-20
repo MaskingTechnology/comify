@@ -1,13 +1,13 @@
 
-import Worksheet from './Worksheet';
+import Workbench from './Workbench';
 
 export default class Renderer
 {
     #context: CanvasRenderingContext2D;
-    #worksheet: Worksheet;
+    #worksheet: Workbench;
     #running: boolean;
 
-    constructor(canvas: HTMLCanvasElement, worksheet: Worksheet)
+    constructor(canvas: HTMLCanvasElement, worksheet: Workbench)
     {
         this.#context = canvas.getContext("2d") as CanvasRenderingContext2D;
         this.#worksheet = worksheet;
