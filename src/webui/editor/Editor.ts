@@ -8,6 +8,7 @@ import Model from './model/Model';
 import EventManager from './utils/EventManager';
 import FileDialog from './utils/FileDialog';
 import ImageLoader from './utils/ImageLoader';
+import InputDialog from './utils/InputDialog';
 import InputManager from './utils/InputManager';
 
 const COMIC_WIDTH = 960;
@@ -61,6 +62,7 @@ export default class Editor
 
         EventManager.listen(ModelEvents.SELECT_IMAGE, this.#selectImage.bind(this));
         EventManager.listen(ModelEvents.ADD_BUBBLE, this.#addSpeechBubble.bind(this));
+        EventManager.listen(ModelEvents.EDIT_BUBBLE, this.#editSpeechBubble.bind(this));
     }
 
     #unbindEvents(): void
@@ -134,5 +136,11 @@ export default class Editor
     #addSpeechBubble(): void
     {
         this.#worksheet.addSpeechBubble();
+    }
+
+    async #editSpeechBubble(): Promise<void>
+    {
+        const text = await InputDialog.open('Edit speech bubble');
+        console.log(text);
     }
 }
