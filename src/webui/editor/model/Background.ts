@@ -1,5 +1,5 @@
 
-import Colors from '../definitions/Colors';
+import Styling from '../definitions/Styling';
 import Element from '../elements/Element';
 
 export default class Background extends Element
@@ -35,7 +35,7 @@ export default class Background extends Element
 
     #renderBackground(context: CanvasRenderingContext2D): void
     {
-        context.fillStyle = Colors.BACKGROUND;
+        context.fillStyle = Styling.BACKGROUND_COLOR;
         context.fillRect(0, 0, context.canvas.width, context.canvas.height);
     }
 

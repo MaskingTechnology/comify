@@ -1,5 +1,5 @@
 
-import Colors from '../definitions/Colors';
+import Styling from '../definitions/Styling';
 import Geometry, { Area, Point } from '../utils/Geometry';
 import Bubble from './Bubble';
 
@@ -10,10 +10,6 @@ type Shape = {
     pointer: Point;
 };
 
-const BUBBLE_RADIUS = 10;
-const POINTER_RATIO = 0.3;
-const SHADOW_OFFSET = 3;
-
 export default class SpeechBubble extends Bubble
 {
     renderElement(context: CanvasRenderingContext2D): void
@@ -21,8 +17,8 @@ export default class SpeechBubble extends Bubble
         const shape = this.#createShape();
         const shadowShape = this.#createShadowShape(shape);
 
-        this.#renderShape(shadowShape, Colors.SHADOW, context);
-        this.#renderShape(shape, Colors.BUBBLE, context);
+        this.#renderShape(shadowShape, Styling.SHADOW_COLOR, context);
+        this.#renderShape(shape, Styling.BUBBLE_COLOR, context);
     }
 
     #createShape(): Shape
@@ -40,7 +36,7 @@ export default class SpeechBubble extends Bubble
         const pointer = this.pointer;
         const bubbleSize = (balloon.width + balloon.height) / 2;
 
-        const baseSize = Math.round(bubbleSize * POINTER_RATIO);
+        const baseSize = Math.round(bubbleSize * Styling.BUBBLE_POINTER_RATIO);
         const baseOffset = Math.round(baseSize / 2);
         const baseLeft = Geometry.rotateAndTranslatePoint({ x: -baseOffset, y: 0 }, center, angle);
         const baseRight = Geometry.rotateAndTranslatePoint({ x: baseOffset, y: 0 }, center, angle);
@@ -55,17 +51,20 @@ export default class SpeechBubble extends Bubble
 
     #createShadowShape(shape: Shape): Shape
     {
+        const offset = { x: 0, y: Styling.BUBBLE_SHADOW_MAGNITUDE };
+        const { x: offsetX, y: offsetY } = Geometry.rotatePoint(offset, Styling.BUBBLE_SHADOW_ANGLE);
+
         const balloon = { ...shape.balloon };
-        balloon.x += SHADOW_OFFSET;
-        balloon.y += SHADOW_OFFSET;
+        balloon.x += offsetX;
+        balloon.y += offsetY;
 
         const baseLeft = { ...shape.baseLeft };
-        baseLeft.x += SHADOW_OFFSET;
-        baseLeft.y += SHADOW_OFFSET;
+        baseLeft.x += offsetX;
+        baseLeft.y += offsetY;
 
         const baseRight = { ...shape.baseRight };
-        baseRight.x += SHADOW_OFFSET;
-        baseRight.y += SHADOW_OFFSET;
+        baseRight.x += offsetX;
+        baseRight.y += offsetY;
 
         const pointer = { ...shape.pointer };
 
@@ -83,7 +82,7 @@ export default class SpeechBubble extends Bubble
             shape.balloon.y,
             shape.balloon.width,
             shape.balloon.height,
-            BUBBLE_RADIUS
+            Styling.BUBBLE_RADIUS
         );
 
         context.moveTo(shape.baseLeft.x, shape.baseLeft.y);
