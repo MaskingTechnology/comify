@@ -53,6 +53,7 @@ export default class SpeechBubble extends Bubble
     {
         context.shadowColor = Styling.SHADOW_COLOR;
         context.shadowBlur = Styling.SHADOW_BLUR;
+
         context.fillStyle = color;
 
         context.beginPath();
@@ -72,6 +73,7 @@ export default class SpeechBubble extends Bubble
         context.closePath();
         context.fill();
 
+        context.shadowColor = 'transparent';
         context.shadowBlur = 0;
     }
 

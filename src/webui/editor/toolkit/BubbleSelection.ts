@@ -1,7 +1,7 @@
 
 import Styling from '../definitions/Styling';
-import Button from '../elements/Button';
 import Group from '../elements/Group';
+import ImageElement from '../elements/ImageElement';
 import Bubble from '../model/Bubble';
 
 type Handler = {
@@ -16,10 +16,10 @@ export default class BubbleSelection extends Group
     #bubble?: Bubble;
     #handler: Handler;
 
-    #deleteButton: Button;
-    #editButton: Button;
-    #resizeButton: Button;
-    #pointerButton: Button;
+    #deleteImageElement: ImageElement;
+    #editImageElement: ImageElement;
+    #resizeImageElement: ImageElement;
+    #pointerImageElement: ImageElement;
 
     constructor(handler: Handler)
     {
@@ -27,30 +27,30 @@ export default class BubbleSelection extends Group
 
         this.#handler = handler;
 
-        this.#deleteButton = new Button();
-        this.#deleteButton.loadImage(Styling.ICON_DELETE);
-        this.#deleteButton.setSize(BUTTON_SIZE, BUTTON_SIZE);
-        this.#deleteButton.releaseHandler = this.#deleteBubble.bind(this);
+        this.#deleteImageElement = new ImageElement();
+        this.#deleteImageElement.loadImage(Styling.ICON_DELETE);
+        this.#deleteImageElement.setSize(BUTTON_SIZE, BUTTON_SIZE);
+        this.#deleteImageElement.releaseHandler = this.#deleteBubble.bind(this);
 
-        this.#editButton = new Button();
-        this.#editButton.loadImage(Styling.ICON_EDIT);
-        this.#editButton.setSize(BUTTON_SIZE, BUTTON_SIZE);
-        this.#editButton.releaseHandler = this.#editBubble.bind(this);
+        this.#editImageElement = new ImageElement();
+        this.#editImageElement.loadImage(Styling.ICON_EDIT);
+        this.#editImageElement.setSize(BUTTON_SIZE, BUTTON_SIZE);
+        this.#editImageElement.releaseHandler = this.#editBubble.bind(this);
 
-        this.#resizeButton = new Button();
-        this.#resizeButton.loadImage(Styling.ICON_RESIZE);
-        this.#resizeButton.setSize(BUTTON_SIZE, BUTTON_SIZE);
-        this.#resizeButton.dragHandler = this.#resizeBubble.bind(this);
+        this.#resizeImageElement = new ImageElement();
+        this.#resizeImageElement.loadImage(Styling.ICON_RESIZE);
+        this.#resizeImageElement.setSize(BUTTON_SIZE, BUTTON_SIZE);
+        this.#resizeImageElement.dragHandler = this.#resizeBubble.bind(this);
 
-        this.#pointerButton = new Button();
-        this.#pointerButton.loadImage(Styling.ICON_MOVE);
-        this.#pointerButton.setSize(BUTTON_SIZE, BUTTON_SIZE);
-        this.#pointerButton.dragHandler = this.#movePointer.bind(this);
+        this.#pointerImageElement = new ImageElement();
+        this.#pointerImageElement.loadImage(Styling.ICON_MOVE);
+        this.#pointerImageElement.setSize(BUTTON_SIZE, BUTTON_SIZE);
+        this.#pointerImageElement.dragHandler = this.#movePointer.bind(this);
 
-        this.addElement(this.#deleteButton);
-        this.addElement(this.#editButton);
-        this.addElement(this.#resizeButton);
-        this.addElement(this.#pointerButton);
+        this.addElement(this.#deleteImageElement);
+        this.addElement(this.#editImageElement);
+        this.addElement(this.#resizeImageElement);
+        this.addElement(this.#pointerImageElement);
     }
 
     get bubble() { return this.#bubble as Bubble; }
@@ -65,7 +65,18 @@ export default class BubbleSelection extends Group
         this.dragHandler = this.#dragBubble.bind(this);
         this.#bubble.dragHandler = this.#dragBubble.bind(this);
 
-        this.#updateButtonPositions();
+        this.#updateImageElementPositions();
+    }
+
+    render(context: CanvasRenderingContext2D): void
+    {
+        context.shadowColor = Styling.SHADOW_COLOR;
+        context.shadowBlur = Styling.SHADOW_BLUR;
+
+        super.render(context);
+
+        context.shadowColor = 'transparent';
+        context.shadowBlur = 0;
     }
 
     #dragBubble(deltaX: number, deltaY: number): void
@@ -78,13 +89,13 @@ export default class BubbleSelection extends Group
     {
         this.resize(deltaX, deltaY);
         this.bubble.resize(deltaX, deltaY);
-        this.#updateButtonPositions();
+        this.#updateImageElementPositions();
     }
 
     #movePointer(deltaX: number, deltaY: number): void
     {
         this.bubble.movePointer(deltaX, deltaY);
-        this.#updateButtonPositions();
+        this.#updateImageElementPositions();
     }
 
     #editBubble(): void
@@ -97,26 +108,26 @@ export default class BubbleSelection extends Group
         this.#handler.deleteBubble(this.bubble);
     }
 
-    #updateButtonPositions(): void
+    #updateImageElementPositions(): void
     {
-        this.#deleteButton.setPosition(
-            this.area.x - (this.#deleteButton.area.width / 2),
-            this.area.y - (this.#deleteButton.area.height / 2)
+        this.#deleteImageElement.setPosition(
+            this.area.x - (this.#deleteImageElement.area.width / 2),
+            this.area.y - (this.#deleteImageElement.area.height / 2)
         );
 
-        this.#editButton.setPosition(
-            this.area.x + this.area.width - (this.#editButton.area.width / 2),
-            this.area.y - (this.#editButton.area.height / 2)
+        this.#editImageElement.setPosition(
+            this.area.x + this.area.width - (this.#editImageElement.area.width / 2),
+            this.area.y - (this.#editImageElement.area.height / 2)
         );
 
-        this.#resizeButton.setPosition(
-            this.area.x + this.area.width - (this.#resizeButton.area.width / 2),
-            this.area.y + this.area.height - (this.#resizeButton.area.height / 2)
+        this.#resizeImageElement.setPosition(
+            this.area.x + this.area.width - (this.#resizeImageElement.area.width / 2),
+            this.area.y + this.area.height - (this.#resizeImageElement.area.height / 2)
         );
 
-        this.#pointerButton.setPosition(
-            this.bubble.pointer.x - (this.#pointerButton.area.width / 2),
-            this.bubble.pointer.y - (this.#pointerButton.area.height / 2)
+        this.#pointerImageElement.setPosition(
+            this.bubble.pointer.x - (this.#pointerImageElement.area.width / 2),
+            this.bubble.pointer.y - (this.#pointerImageElement.area.height / 2)
         );
     }
 }

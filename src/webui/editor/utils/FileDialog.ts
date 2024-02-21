@@ -17,8 +17,8 @@ export default class FileDialog
                 resolve(file);
             };
 
-            input.oncancel = () => { console.log('cancel'); resolve(undefined); };
-            input.onabort = () => { console.log('abort'); resolve(undefined); };
+            input.oncancel = () => { resolve(undefined); };
+            input.onabort = () => { resolve(undefined); };
 
             input.oninvalid = () => { reject(undefined); };
             input.onerror = () => { reject(undefined); };
