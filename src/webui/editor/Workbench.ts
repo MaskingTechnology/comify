@@ -1,17 +1,18 @@
 
-import BubbleSelection from './components/BubbleSelection';
-import ButtonBar from './components/ButtonBar';
+import Styling from './definitions/Styling';
 import Group from './elements/Group';
 import type Bubble from './model/Bubble';
 import type Model from './model/Model';
 import SpeechBubble from './model/SpeechBubble';
+import BubbleSelection from './toolkit/BubbleSelection';
+import Buttons from './toolkit/Buttons';
 import FileDialog from './utils/FileDialog';
 import InputDialog from './utils/InputDialog';
 
 export default class Workbench extends Group
 {
     #model: Model;
-    #buttonBar: ButtonBar;
+    #buttons: Buttons;
     #selection: BubbleSelection;
 
     constructor(model: Model)
@@ -20,7 +21,7 @@ export default class Workbench extends Group
 
         this.#model = model;
 
-        this.#buttonBar = new ButtonBar({
+        this.#buttons = new Buttons({
             selectImage: this.#selectImage.bind(this),
             addSpeechBubble: this.#addSpeechBubble.bind(this)
         });
@@ -31,7 +32,7 @@ export default class Workbench extends Group
         });
 
         this.addElement(model);
-        this.addElement(this.#buttonBar);
+        this.addElement(this.#buttons);
 
         this.#bindHandlers();
     }
@@ -43,15 +44,15 @@ export default class Workbench extends Group
         this.#model.background.loadImage(source);
     }
 
-    hideTools(): void
+    hideToolkit(): void
     {
-        this.removeElement(this.#buttonBar);
+        this.removeElement(this.#buttons);
         this.#deselectBubble();
     }
 
-    showTools(): void
+    showToolkit(): void
     {
-        this.addElement(this.#buttonBar);
+        this.addElement(this.#buttons);
     }
 
     #bindHandlers(): void
@@ -75,10 +76,19 @@ export default class Workbench extends Group
 
     #addSpeechBubble()
     {
+        const width = Styling.BUBBLE_INITIAL_WIDTH;
+        const height = Styling.BUBBLE_INITIAL_HEIGHT;
+
+        const positionX = (this.area.width - width) / 2;
+        const positionY = (this.area.height - height) / 2;
+
+        const pointerX = positionX + width / 2;
+        const pointerY = positionY + height * 2;
+
         const bubble = new SpeechBubble();
-        bubble.setPosition(100, 100);
-        bubble.setSize(200, 100);
-        bubble.setPointer(200, 300);
+        bubble.setSize(width, height);
+        bubble.setPosition(positionX, positionY);
+        bubble.setPointer(pointerX, pointerY);
         bubble.pressHandler = () => this.#selectBubble(bubble);
 
         this.#model.addSpeechBubble(bubble);

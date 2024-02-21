@@ -27,6 +27,8 @@ export default class Editor
             drop: this.#handleDrop.bind(this)
         });
 
+        this.#workbench.setSize(COMIC_WIDTH, COMIC_HEIGHT);
+
         this.#initCanvas(canvas);
     }
 
@@ -41,13 +43,14 @@ export default class Editor
         this.#renderer.stop();
         this.#inputManager.unbind();
     }
+
     export(): string
     {
-        this.#workbench.hideTools();
+        this.#workbench.hideToolkit();
 
         const data = this.#renderer.capture();
 
-        this.#workbench.showTools();
+        this.#workbench.showToolkit();
 
         return data;
     }
