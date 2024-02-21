@@ -17,15 +17,7 @@ export default class SpeechBubble extends Bubble
     {
         const shape = this.#createShape();
 
-        if (Styling.BUBBLE_SHADOW_ENABLED)
-        {
-            const shadowShape = this.#createShadowShape(shape);
-            const filter = `blur(${Styling.SHADOW_BLUR})`;
-
-            this.#renderShape(shadowShape, Styling.SHADOW_COLOR, context, filter);
-        }
-
-        this.#renderShape(shape, Styling.BUBBLE_COLOR, context, 'none');
+        this.#renderShape(shape, Styling.BUBBLE_COLOR, context);
         this.#renderText(context);
     }
 
@@ -44,7 +36,7 @@ export default class SpeechBubble extends Bubble
         const pointer = this.pointer;
         const bubbleSize = (balloon.width + balloon.height) / 2;
 
-        const baseSize = Math.round(bubbleSize * Styling.BUBBLE_POINTER_RATIO);
+        const baseSize = Math.round(bubbleSize * Styling.SPEECH_BUBBLE_POINTER_RATIO);
         const baseOffset = Math.round(baseSize / 2);
         const baseLeft = Geometry.rotateAndTranslatePoint({ x: -baseOffset, y: 0 }, center, angle);
         const baseRight = Geometry.rotateAndTranslatePoint({ x: baseOffset, y: 0 }, center, angle);
@@ -57,31 +49,10 @@ export default class SpeechBubble extends Bubble
         return { balloon, baseLeft, baseRight, pointer };
     }
 
-    #createShadowShape(shape: Shape): Shape
+    #renderShape(shape: Shape, color: string, context: CanvasRenderingContext2D): void
     {
-        const offset = { x: 0, y: Styling.BUBBLE_SHADOW_MAGNITUDE };
-        const { x: offsetX, y: offsetY } = Geometry.rotatePoint(offset, Styling.BUBBLE_SHADOW_ANGLE);
-
-        const balloon = { ...shape.balloon };
-        balloon.x += offsetX;
-        balloon.y += offsetY;
-
-        const baseLeft = { ...shape.baseLeft };
-        baseLeft.x += offsetX;
-        baseLeft.y += offsetY;
-
-        const baseRight = { ...shape.baseRight };
-        baseRight.x += offsetX;
-        baseRight.y += offsetY;
-
-        const pointer = shape.pointer;
-
-        return { balloon, baseLeft, baseRight, pointer };
-    }
-
-    #renderShape(shape: Shape, color: string, context: CanvasRenderingContext2D, filter: string): void
-    {
-        context.filter = filter;
+        context.shadowColor = Styling.SHADOW_COLOR;
+        context.shadowBlur = Styling.SHADOW_BLUR;
         context.fillStyle = color;
 
         context.beginPath();
@@ -100,6 +71,8 @@ export default class SpeechBubble extends Bubble
 
         context.closePath();
         context.fill();
+
+        context.shadowBlur = 0;
     }
 
     #renderText(context: CanvasRenderingContext2D): void
