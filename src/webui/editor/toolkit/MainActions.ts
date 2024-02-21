@@ -1,14 +1,14 @@
 
 import Styling from '../definitions/Styling';
 import Group from '../elements/Group';
-import ImageElement from '../elements/ImageElement';
+import Button from './Button';
 
 type Handler = {
     selectImage: () => void;
     addSpeechBubble: () => void;
 };
 
-export default class Buttons extends Group
+export default class MainActions extends Group
 {
     #handler: Handler;
 
@@ -21,26 +21,15 @@ export default class Buttons extends Group
         this.#initButtons();
     }
 
-    render(context: CanvasRenderingContext2D): void
-    {
-        context.shadowColor = Styling.SHADOW_COLOR;
-        context.shadowBlur = Styling.SHADOW_BLUR;
-
-        super.render(context);
-
-        context.shadowColor = 'transparent';
-        context.shadowBlur = 0;
-    }
-
     #initButtons(): void
     {
-        const addBubble = new ImageElement();
+        const addBubble = new Button();
         addBubble.loadImage(Styling.ICON_ADD_SPEECH_BUBBLE);
         addBubble.setSize(60, 70);
         addBubble.setPosition(880, 20);
         addBubble.releaseHandler = this.#handler.addSpeechBubble;
 
-        const selectImage = new ImageElement();
+        const selectImage = new Button();
         selectImage.loadImage(Styling.ICON_SELECT_IMAGE);
         selectImage.setSize(70, 60);
         selectImage.setPosition(20, 460);

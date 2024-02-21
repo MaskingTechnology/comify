@@ -5,14 +5,17 @@ import type Bubble from './model/Bubble';
 import type Model from './model/Model';
 import SpeechBubble from './model/SpeechBubble';
 import BubbleSelection from './toolkit/BubbleSelection';
-import Buttons from './toolkit/Buttons';
+import MainActions from './toolkit/MainActions';
 import FileDialog from './utils/FileDialog';
 import InputDialog from './utils/InputDialog';
+
+const POINTER_X_RATIO = 0.15;
+const POINTER_Y_RATIO = 1.5;
 
 export default class Workbench extends Group
 {
     #model: Model;
-    #buttons: Buttons;
+    mainActions: MainActions;
     #selection: BubbleSelection;
 
     constructor(model: Model)
@@ -21,7 +24,7 @@ export default class Workbench extends Group
 
         this.#model = model;
 
-        this.#buttons = new Buttons({
+        this.mainActions = new MainActions({
             selectImage: this.#selectImage.bind(this),
             addSpeechBubble: this.#addSpeechBubble.bind(this)
         });
@@ -32,7 +35,7 @@ export default class Workbench extends Group
         });
 
         this.addElement(model);
-        this.addElement(this.#buttons);
+        this.addElement(this.mainActions);
 
         this.#bindHandlers();
     }
@@ -46,13 +49,13 @@ export default class Workbench extends Group
 
     hideToolkit(): void
     {
-        this.removeElement(this.#buttons);
+        this.removeElement(this.mainActions);
         this.#deselectBubble();
     }
 
     showToolkit(): void
     {
-        this.addElement(this.#buttons);
+        this.addElement(this.mainActions);
     }
 
     #bindHandlers(): void
@@ -82,8 +85,8 @@ export default class Workbench extends Group
         const positionX = (this.area.width - width) / 2;
         const positionY = (this.area.height - height) / 2;
 
-        const pointerX = positionX + width / 2;
-        const pointerY = positionY + height * 2;
+        const pointerX = positionX + width * POINTER_X_RATIO;
+        const pointerY = positionY + height * POINTER_Y_RATIO;
 
         const bubble = new SpeechBubble();
         bubble.setSize(width, height);
