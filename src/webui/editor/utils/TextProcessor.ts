@@ -22,7 +22,12 @@ export default class TextProcessor
 
                 if (context.measureText(testLine).width > maxWidth)
                 {
-                    result.push(currentLine);
+                    currentLine = currentLine.trim();
+
+                    if (currentLine.length > 1)
+                    {
+                        result.push(currentLine);
+                    }
 
                     currentLine = word + ' ';
                 }
@@ -32,7 +37,7 @@ export default class TextProcessor
                 }
             }
 
-            result.push(currentLine);
+            result.push(currentLine.trim());
         }
 
         const lineFitCount = Math.floor(area.height / lineHeight);
