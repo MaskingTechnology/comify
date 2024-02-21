@@ -20,11 +20,12 @@ export default class SpeechBubble extends Bubble
         if (Styling.BUBBLE_SHADOW_ENABLED)
         {
             const shadowShape = this.#createShadowShape(shape);
+            const filter = `blur(${Styling.SHADOW_BLUR})`;
 
-            this.#renderShape(shadowShape, Styling.SHADOW_COLOR, context);
+            this.#renderShape(shadowShape, Styling.SHADOW_COLOR, context, filter);
         }
 
-        this.#renderShape(shape, Styling.BUBBLE_COLOR, context);
+        this.#renderShape(shape, Styling.BUBBLE_COLOR, context, 'none');
         this.#renderText(context);
     }
 
@@ -78,8 +79,9 @@ export default class SpeechBubble extends Bubble
         return { balloon, baseLeft, baseRight, pointer };
     }
 
-    #renderShape(shape: Shape, color: string, context: CanvasRenderingContext2D): void
+    #renderShape(shape: Shape, color: string, context: CanvasRenderingContext2D, filter: string): void
     {
+        context.filter = filter;
         context.fillStyle = color;
 
         context.beginPath();
@@ -93,7 +95,7 @@ export default class SpeechBubble extends Bubble
             shape.balloon.y,
             shape.balloon.width,
             shape.balloon.height,
-            Styling.BUBBLE_RADIUS
+            Styling.SPEECH_BUBBLE_RADIUS
         );
 
         context.closePath();

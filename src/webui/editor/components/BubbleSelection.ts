@@ -9,6 +9,8 @@ type Handler = {
     deleteBubble: (bubble: Bubble) => void;
 };
 
+const BUTTON_SIZE = 35;
+
 export default class BubbleSelection extends Group
 {
     #bubble?: Bubble;
@@ -27,22 +29,22 @@ export default class BubbleSelection extends Group
 
         this.#deleteButton = new Button();
         this.#deleteButton.loadImage(Styling.ICON_DELETE);
-        this.#deleteButton.setSize(30, 30);
+        this.#deleteButton.setSize(BUTTON_SIZE, BUTTON_SIZE);
         this.#deleteButton.releaseHandler = this.#deleteBubble.bind(this);
 
         this.#editButton = new Button();
         this.#editButton.loadImage(Styling.ICON_EDIT);
-        this.#editButton.setSize(30, 30);
+        this.#editButton.setSize(BUTTON_SIZE, BUTTON_SIZE);
         this.#editButton.releaseHandler = this.#editBubble.bind(this);
 
         this.#resizeButton = new Button();
         this.#resizeButton.loadImage(Styling.ICON_RESIZE);
-        this.#resizeButton.setSize(30, 30);
+        this.#resizeButton.setSize(BUTTON_SIZE, BUTTON_SIZE);
         this.#resizeButton.dragHandler = this.#resizeBubble.bind(this);
 
         this.#pointerButton = new Button();
         this.#pointerButton.loadImage(Styling.ICON_MOVE);
-        this.#pointerButton.setSize(30, 30);
+        this.#pointerButton.setSize(BUTTON_SIZE, BUTTON_SIZE);
         this.#pointerButton.dragHandler = this.#movePointer.bind(this);
 
         this.addElement(this.#deleteButton);
