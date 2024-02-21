@@ -23,8 +23,8 @@ export default class Geometry
 
     static calculateAngle = function (from: Point, to: Point): number
     {
-        var length = Math.abs(from.x - to.x);
-        var height = Math.abs(from.y - to.y);
+        const length = Math.abs(from.x - to.x);
+        const height = Math.abs(from.y - to.y);
 
         to = { x: to.x, y: to.y };
         to.y = to.y - Math.sqrt(length * length + height * height);

@@ -41,6 +41,16 @@ export default class Editor
         this.#renderer.stop();
         this.#inputManager.unbind();
     }
+    export(): string
+    {
+        this.#workbench.hideTools();
+
+        const data = this.#renderer.capture();
+
+        this.#workbench.showTools();
+
+        return data;
+    }
 
     #initCanvas(canvas: HTMLCanvasElement): void
     {

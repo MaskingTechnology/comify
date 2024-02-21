@@ -1,6 +1,8 @@
 
 import Workbench from './Workbench';
 
+const CAPTURE_IMAGE_TYPE = 'image/jpeg';
+
 export default class Renderer
 {
     #context: CanvasRenderingContext2D;
@@ -9,7 +11,7 @@ export default class Renderer
 
     constructor(canvas: HTMLCanvasElement, workbench: Workbench)
     {
-        this.#context = canvas.getContext("2d") as CanvasRenderingContext2D;
+        this.#context = canvas.getContext('2d') as CanvasRenderingContext2D;
         this.#workbench = workbench;
         this.#running = false;
     }
@@ -23,6 +25,19 @@ export default class Renderer
     stop(): void
     {
         this.#running = false;
+    }
+
+    capture(): string
+    {
+        this.stop();
+
+        this.#workbench.render(this.#context);
+
+        const data = this.#toDataURL();
+
+        this.start();
+
+        return data;
     }
 
     #render()
@@ -41,5 +56,10 @@ export default class Renderer
         {
             this.#render();
         });
+    }
+
+    #toDataURL(): string
+    {
+        return this.#context.canvas.toDataURL(CAPTURE_IMAGE_TYPE);
     }
 }

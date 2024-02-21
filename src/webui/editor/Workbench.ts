@@ -11,6 +11,7 @@ import InputDialog from './utils/InputDialog';
 export default class Workbench extends Group
 {
     #model: Model;
+    #buttonBar: ButtonBar;
     #selection: BubbleSelection;
 
     constructor(model: Model)
@@ -18,18 +19,19 @@ export default class Workbench extends Group
         super();
 
         this.#model = model;
+
+        this.#buttonBar = new ButtonBar({
+            selectImage: this.#selectImage.bind(this),
+            addSpeechBubble: this.#addSpeechBubble.bind(this)
+        });
+
         this.#selection = new BubbleSelection({
             editBubble: this.#editBubble.bind(this),
             deleteBubble: this.#deleteBubble.bind(this)
         });
 
-        const buttonBar = new ButtonBar({
-            selectImage: this.#selectImage.bind(this),
-            addSpeechBubble: this.#addSpeechBubble.bind(this)
-        });
-
         this.addElement(model);
-        this.addElement(buttonBar);
+        this.addElement(this.#buttonBar);
 
         this.#bindHandlers();
     }
@@ -39,6 +41,17 @@ export default class Workbench extends Group
         const source = URL.createObjectURL(file);
 
         this.#model.background.loadImage(source);
+    }
+
+    hideTools(): void
+    {
+        this.removeElement(this.#buttonBar);
+        this.#deselectBubble();
+    }
+
+    showTools(): void
+    {
+        this.addElement(this.#buttonBar);
     }
 
     #bindHandlers(): void

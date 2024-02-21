@@ -30,6 +30,7 @@ export default class Background extends Image
         context.fillRect(0, 0, this.area.width, this.area.height);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     #renderInstructions(context: CanvasRenderingContext2D): void
     {
 
