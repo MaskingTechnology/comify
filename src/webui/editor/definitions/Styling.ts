@@ -1,10 +1,21 @@
 
-export type BackgroundStyle = 'stretch' | 'fit';
+import addSpeechBubbleIcon from '../assets/add-speech-bubble.png';
+import deleteIcon from '../assets/delete.png';
+import editIcon from '../assets/edit.png';
+import moveIcon from '../assets/move.png';
+import resizeIcon from '../assets/resize.png';
+import selectImageIcon from '../assets/select-image.png';
 
 const Styling = {
 
+    ICON_ADD_SPEECH_BUBBLE: addSpeechBubbleIcon,
+    ICON_SELECT_IMAGE: selectImageIcon,
+    ICON_DELETE: deleteIcon,
+    ICON_EDIT: editIcon,
+    ICON_MOVE: moveIcon,
+    ICON_RESIZE: resizeIcon,
+
     BACKGROUND_COLOR: '#ffffff',
-    BACKGROUND_STYLE: 'fit' as BackgroundStyle,
 
     BUBBLE_COLOR: '#ffffff',
     BUBBLE_RADIUS: 10,

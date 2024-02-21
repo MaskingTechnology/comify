@@ -1,4 +1,5 @@
 
+import Styling from '../definitions/Styling';
 import Button from '../elements/Button';
 import Group from '../elements/Group';
 import Bubble from '../model/Bubble';
@@ -25,15 +26,23 @@ export default class BubbleSelection extends Group
         this.#handler = handler;
 
         this.#deleteButton = new Button();
+        this.#deleteButton.loadImage(Styling.ICON_DELETE);
+        this.#deleteButton.setSize(30, 30);
         this.#deleteButton.releaseHandler = this.#deleteBubble.bind(this);
 
         this.#editButton = new Button();
+        this.#editButton.loadImage(Styling.ICON_EDIT);
+        this.#editButton.setSize(30, 30);
         this.#editButton.releaseHandler = this.#editBubble.bind(this);
 
         this.#resizeButton = new Button();
+        this.#resizeButton.loadImage(Styling.ICON_RESIZE);
+        this.#resizeButton.setSize(30, 30);
         this.#resizeButton.dragHandler = this.#resizeBubble.bind(this);
 
         this.#pointerButton = new Button();
+        this.#pointerButton.loadImage(Styling.ICON_MOVE);
+        this.#pointerButton.setSize(30, 30);
         this.#pointerButton.dragHandler = this.#movePointer.bind(this);
 
         this.addElement(this.#deleteButton);

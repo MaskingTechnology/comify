@@ -6,7 +6,6 @@ import type Bubble from './model/Bubble';
 import type Model from './model/Model';
 import SpeechBubble from './model/SpeechBubble';
 import FileDialog from './utils/FileDialog';
-import ImageLoader from './utils/ImageLoader';
 import InputDialog from './utils/InputDialog';
 
 export default class Workbench extends Group
@@ -19,7 +18,6 @@ export default class Workbench extends Group
         super();
 
         this.#model = model;
-
         this.#selection = new BubbleSelection({
             editBubble: this.#editBubble.bind(this),
             deleteBubble: this.#deleteBubble.bind(this)
@@ -39,9 +37,15 @@ export default class Workbench extends Group
     async setBackgroundImage(file: File): Promise<void>
     {
         const source = URL.createObjectURL(file);
-        const image = await ImageLoader.load(source);
 
-        this.#model.background.setImage(image);
+        this.#model.background.loadImage(source);
+    }
+
+    #bindHandlers(): void
+    {
+        this.#model.background.releaseHandler = this.#deselectBubble.bind(this);
+        this.#model.intro.releaseHandler = this.#editIntro.bind(this);
+        this.#model.outro.releaseHandler = this.#editOutro.bind(this);
     }
 
     async #selectImage(): Promise<void>
@@ -78,39 +82,29 @@ export default class Workbench extends Group
     {
         this.#model.removeSpeechBubble(bubble as SpeechBubble);
 
-        this.#deselectBubble(0, 0);
+        this.#deselectBubble();
     }
 
-    #bindHandlers(): void
-    {
-        this.#model.background.releaseHandler = this.#deselectBubble.bind(this);
-        this.#model.intro.releaseHandler = this.#editIntro.bind(this);
-        this.#model.outro.releaseHandler = this.#editOutro.bind(this);
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    #editIntro(x: number, y: number): void
+    #editIntro(): void
     {
 
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    #editOutro(x: number, y: number): void
+    #editOutro(): void
     {
 
     }
 
     #selectBubble(bubble: Bubble): void
     {
-        this.#deselectBubble(0, 0);
+        this.#deselectBubble();
 
         this.#selection.bubble = bubble;
 
         this.addElement(this.#selection);
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    #deselectBubble(x: number, y: number): void
+    #deselectBubble(): void
     {
         this.removeElement(this.#selection);
     }
