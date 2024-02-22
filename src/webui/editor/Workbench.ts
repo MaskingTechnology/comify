@@ -6,6 +6,7 @@ import type Model from './model/Model';
 import SpeechBubble from './model/SpeechBubble';
 import BubbleSelection from './toolkit/BubbleSelection';
 import MainActions from './toolkit/MainActions';
+import CameraDialog from './utils/CameraDialog';
 import FileDialog from './utils/FileDialog';
 import InputDialog from './utils/InputDialog';
 
@@ -78,9 +79,16 @@ export default class Workbench extends Group
         this.setBackgroundImage(file);
     }
 
-    #takePicture(): void
+    async #takePicture(): Promise<void>
     {
+        const source = await CameraDialog.open(this.area.width, this.area.height);
 
+        if (source === undefined)
+        {
+            return;
+        }
+
+        this.#model.background.loadImage(source);
     }
 
     #addSpeechBubble()

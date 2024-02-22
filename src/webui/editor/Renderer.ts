@@ -33,11 +33,11 @@ export default class Renderer
 
         this.#workbench.render(this.#context);
 
-        const data = this.#toDataURL();
+        const image = this.#toDataURL();
 
         this.start();
 
-        return data;
+        return image;
     }
 
     #render()
