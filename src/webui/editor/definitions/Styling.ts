@@ -2,20 +2,23 @@
 import addSpeechBubbleIcon from '../assets/add-speech-bubble.png';
 import deleteIcon from '../assets/delete.png';
 import editIcon from '../assets/edit.png';
+import instructionsImage from '../assets/instructions.png';
 import moveIcon from '../assets/move.png';
 import resizeIcon from '../assets/resize.png';
 import selectImageIcon from '../assets/select-image.png';
+import takePictureIcon from '../assets/take-picture.png';
 
 const Styling = {
 
     ICON_ADD_SPEECH_BUBBLE: addSpeechBubbleIcon,
     ICON_SELECT_IMAGE: selectImageIcon,
+    ICON_TAKE_PICTURE: takePictureIcon,
     ICON_DELETE: deleteIcon,
     ICON_EDIT: editIcon,
     ICON_MOVE: moveIcon,
     ICON_RESIZE: resizeIcon,
 
-    BACKGROUND_COLOR: '#ffffff',
+    BACKGROUND_IMAGE: instructionsImage,
 
     BUBBLE_COLOR: '#ffffff',
     BUBBLE_TEXT_FONT: '24px Inter',

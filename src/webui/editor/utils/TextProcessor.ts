@@ -5,7 +5,7 @@ export default class TextProcessor
 {
     static finInArea(text: string, lineHeight: number, area: Area, context: CanvasRenderingContext2D): string[]
     {
-        const lines = text.split('\n');
+        const lines = text.trim().split('\n');
         const result: string[] = [];
 
         for (const line of lines)
@@ -22,12 +22,7 @@ export default class TextProcessor
 
                 if (context.measureText(testLine).width > maxWidth)
                 {
-                    currentLine = currentLine.trim();
-
-                    if (currentLine.length > 1)
-                    {
-                        result.push(currentLine);
-                    }
+                    result.push(currentLine.trim());
 
                     currentLine = word + ' ';
                 }

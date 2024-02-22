@@ -26,6 +26,7 @@ export default class Workbench extends Group
 
         this.mainActions = new MainActions({
             selectImage: this.#selectImage.bind(this),
+            takePicture: this.#takePicture.bind(this),
             addSpeechBubble: this.#addSpeechBubble.bind(this)
         });
 
@@ -77,7 +78,21 @@ export default class Workbench extends Group
         this.setBackgroundImage(file);
     }
 
+    #takePicture(): void
+    {
+
+    }
+
     #addSpeechBubble()
+    {
+        const bubble = this.#createSpeechBubble();
+
+        this.#model.addSpeechBubble(bubble);
+
+        this.#selectBubble(bubble);
+    }
+
+    #createSpeechBubble(): SpeechBubble
     {
         const width = Styling.BUBBLE_INITIAL_WIDTH;
         const height = Styling.BUBBLE_INITIAL_HEIGHT;
@@ -94,7 +109,7 @@ export default class Workbench extends Group
         bubble.setPointer(pointerX, pointerY);
         bubble.pressHandler = () => this.#selectBubble(bubble);
 
-        this.#model.addSpeechBubble(bubble);
+        return bubble;
     }
 
     async #editBubble(bubble: Bubble): Promise<void>

@@ -9,7 +9,7 @@ type Handler = {
     deleteBubble: (bubble: Bubble) => void;
 };
 
-const BUTTON_SIZE = 35;
+const BUTTON_SIZE = 40;
 
 export default class BubbleSelection extends Group
 {
