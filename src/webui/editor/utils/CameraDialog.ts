@@ -1,4 +1,6 @@
 
+const CAPTURE_IMAGE_TYPE = 'image/jpeg';
+
 export default class CameraDialog
 {
     static #dialog = this.#createDialog();
@@ -9,12 +11,10 @@ export default class CameraDialog
 
         const video = this.#getVideo(width, height);
 
-        await this.#createStream(video);
+        await this.#startStream(video);
 
         return new Promise((resolve) =>
         {
-            video.play();
-
             this.#dialog.onclose = () =>
             {
                 this.#dialog.onclose = null;
@@ -67,24 +67,27 @@ export default class CameraDialog
 
         video.style.width = '100%';
         video.style.height = 'auto';
+        video.style.objectFit = 'cover';
+        video.style.aspectRatio = `${width} / ${height}`;
+
         video.width = width;
         video.height = height;
+        video.autoplay = true;
 
         return video;
     }
 
-    static async #createStream(video: HTMLVideoElement): Promise<void>
+    static async #startStream(video: HTMLVideoElement): Promise<void>
     {
         const constraints = {
             width: video.width,
             height: video.height,
+            aspectRatio: video.width / video.height,
             resizeMode: 'crop-and-scale',
             facingMode: 'user'
         };
 
-        const stream = await navigator.mediaDevices.getUserMedia({ video: constraints, audio: false });
-
-        video.srcObject = stream;
+        video.srcObject = await navigator.mediaDevices.getUserMedia({ video: constraints, audio: false });
     }
 
     static #stopStream(video: HTMLVideoElement): void
@@ -99,13 +102,12 @@ export default class CameraDialog
         const canvas = document.createElement('canvas');
         const context = canvas.getContext('2d') as CanvasRenderingContext2D;
 
-        canvas.width = video.width;
-        canvas.height = video.height;
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
 
-        console.log(canvas.width, canvas.height);
+        context.imageSmoothingEnabled = true;
+        context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
 
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-        return canvas.toDataURL('image/jpeg');
+        return canvas.toDataURL(CAPTURE_IMAGE_TYPE);
     }
 }
