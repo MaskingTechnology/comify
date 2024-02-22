@@ -1,14 +1,28 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Column, Panel, Row } from '../../designsystem/module';
 import Editor from '../../editor/Editor';
 
 export type Props = {
-    createHandler: () => void;
+    createHandler: (imageData: string) => void;
 };
 
 export default function Component({ createHandler }: Props)
 {
+    const [editor, setEditor] = useState<Editor | undefined>(undefined);
+
+    const handleCreate = () =>
+    {
+        if (editor === undefined)
+        {
+            throw new Error('Editor not found');
+        }
+
+        const imageData = editor.export();
+
+        createHandler(imageData);
+    };
+
     useEffect(() =>
     {
         const canvas = document.getElementById('editor') as HTMLCanvasElement;
@@ -21,6 +35,8 @@ export default function Component({ createHandler }: Props)
         const editor = new Editor(canvas);
         editor.start();
 
+        setEditor(editor);
+
         return () => { editor.stop(); };
     }, []);
 
@@ -28,7 +44,7 @@ export default function Component({ createHandler }: Props)
         <Column alignX='stretch'>
             <canvas id="editor" />
             <Row alignX='right'>
-                <Button text="Create" clickHandler={createHandler} />
+                <Button text="Create" clickHandler={handleCreate} />
             </Row>
         </Column>
     </Panel>;
