@@ -63,8 +63,6 @@ export default class Workbench extends Group
     #bindHandlers(): void
     {
         this.#model.background.releaseHandler = this.#deselectBubble.bind(this);
-        this.#model.intro.releaseHandler = this.#editIntro.bind(this);
-        this.#model.outro.releaseHandler = this.#editOutro.bind(this);
     }
 
     async #selectImage(): Promise<void>
@@ -132,16 +130,6 @@ export default class Workbench extends Group
         this.#model.removeSpeechBubble(bubble as SpeechBubble);
 
         this.#deselectBubble();
-    }
-
-    #editIntro(): void
-    {
-
-    }
-
-    #editOutro(): void
-    {
-
     }
 
     #selectBubble(bubble: Bubble): void
