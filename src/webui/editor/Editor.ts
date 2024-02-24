@@ -1,6 +1,6 @@
 
 import Renderer from './Renderer';
-import Workbench from './Workbench.js';
+import Workbench from './Workbench';
 import Element from './elements/Element';
 import Model from './model/Model';
 import InputManager from './utils/InputManager';
