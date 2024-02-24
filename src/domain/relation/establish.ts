@@ -8,7 +8,7 @@ export default async function establish(followerId: string, followingId: string)
 {
     if (await exists(followerId, followingId))
     {
-        throw new RelationAlreadyExists();
+        throw new RelationAlreadyExists('Relation already exists');
     }
 
     return create(followerId, followingId);
