@@ -30,7 +30,7 @@ export default class Geometry
         to.y = to.y - Math.sqrt(length * length + height * height);
 
         return 2 * Math.atan2(from.y - to.y, from.x - to.x);
-    };
+    }
 
     static rotatePoint(point: Point, angle: number): Point
     {
