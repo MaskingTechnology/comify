@@ -2,7 +2,7 @@
 import type PostView from '../../../domain/post/view/PostView';
 import { Column, Panel } from '../../designsystem/module';
 import ComicImage from '../comic/Image';
-import TimeElapsed from '../relation/TimeElapsed.js';
+import TimeElapsed from '../relation/TimeElapsed';
 import EngagementsRow from './elementary/EngagementRow';
 
 export type Props = {
