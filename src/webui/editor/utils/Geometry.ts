@@ -21,7 +21,7 @@ export default class Geometry
         };
     }
 
-    static calculateAngle = function (from: Point, to: Point): number
+    static calculateAngle(from: Point, to: Point): number
     {
         const length = Math.abs(from.x - to.x);
         const height = Math.abs(from.y - to.y);

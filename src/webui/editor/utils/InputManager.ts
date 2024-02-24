@@ -19,7 +19,7 @@ export default class InputManager
     #pressHandler = this.#handlePress.bind(this);
     #moveHandler = this.#handleMove.bind(this);
     #releaseHandler = this.#handleRelease.bind(this);
-    #dragoverHandler = this.#handleDragOver.bind(this);
+    #dragOverHandler = this.#handleDragOver.bind(this);
     #dropHandler = this.#handleDrop.bind(this);
 
     constructor(canvas: HTMLCanvasElement, handler: Handler)
@@ -36,7 +36,7 @@ export default class InputManager
         this.#canvas.addEventListener('mousedown', this.#pressHandler);
         this.#canvas.addEventListener('mousemove', this.#moveHandler);
         this.#canvas.addEventListener('mouseup', this.#releaseHandler);
-        this.#canvas.addEventListener('dragover', this.#dragoverHandler);
+        this.#canvas.addEventListener('dragover', this.#dragOverHandler);
         this.#canvas.addEventListener('drop', this.#dropHandler);
     }
 
@@ -45,7 +45,7 @@ export default class InputManager
         this.#canvas.removeEventListener('mousedown', this.#pressHandler);
         this.#canvas.removeEventListener('mousemove', this.#moveHandler);
         this.#canvas.removeEventListener('mouseup', this.#releaseHandler);
-        this.#canvas.removeEventListener('dragover', this.#dragoverHandler);
+        this.#canvas.removeEventListener('dragover', this.#dragOverHandler);
         this.#canvas.removeEventListener('drop', this.#dropHandler);
     }
 
