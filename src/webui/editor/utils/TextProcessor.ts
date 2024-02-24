@@ -3,7 +3,7 @@ import { Area } from './Geometry';
 
 export default class TextProcessor
 {
-    static finInArea(text: string, lineHeight: number, area: Area, context: CanvasRenderingContext2D): string[]
+    static fitInInArea(text: string, lineHeight: number, area: Area, context: CanvasRenderingContext2D): string[]
     {
         const lines = text.trim().split('\n');
         const result: string[] = [];
@@ -14,15 +14,20 @@ export default class TextProcessor
             const maxWidth = area.width;
 
             let currentLine = '';
-            let testLine = '';
 
             for (const word of words)
             {
-                testLine = currentLine + word + ' ';
+                const testLine = currentLine + word + ' ';
+                const measurement = context.measureText(testLine);
 
-                if (context.measureText(testLine).width > maxWidth)
+                if (measurement.width > maxWidth)
                 {
-                    result.push(currentLine.trim());
+                    currentLine = currentLine.trim();
+
+                    if (currentLine.length > 0)
+                    {
+                        result.push(currentLine);
+                    }
 
                     currentLine = word + ' ';
                 }
