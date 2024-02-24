@@ -1,8 +1,8 @@
 
-export default class relationAlreadyExists extends Error
+export default class RelationAlreadyExists extends Error
 {
     constructor(message?: string)
     {
-        super(message ?? 'relation already exists');
+        super(message ?? 'Relation already exists');
     }
 }

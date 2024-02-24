@@ -9,7 +9,7 @@ export default async function exists(followerId: string, followingId: string): P
         'AND'
             : [
                 { followerId: { EQUALS: followerId } },
-                { followingid: { EQUALS: followingId } }
+                { followingId: { EQUALS: followingId } }
             ]
     };
     const relation = await database.findRecord(RECORD_TYPE, query);
