@@ -95,7 +95,7 @@ export default class SpeechBubble extends Bubble
             height: this.area.height * Styling.BUBBLE_TEXT_AREA_RATIO
         };
 
-        const lines = TextProcessor.fitInInArea(this.text, lineHeight, textArea, context);
+        const lines = TextProcessor.fitInArea(this.text, lineHeight, textArea, context);
         const totalHeight = textHeight * lines.length + (lines.length - 1) * lineSpacing;
 
         const x = Math.round(this.center.x);

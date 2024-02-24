@@ -3,7 +3,7 @@ import { Area } from './Geometry';
 
 export default class TextProcessor
 {
-    static fitInInArea(text: string, lineHeight: number, area: Area, context: CanvasRenderingContext2D): string[]
+    static fitInArea(text: string, lineHeight: number, area: Area, context: CanvasRenderingContext2D): string[]
     {
         const lines = text.trim().split('\n');
         const result: string[] = [];
