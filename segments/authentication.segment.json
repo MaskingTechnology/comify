@@ -1,5 +1,0 @@
-{
-    "./domain/authentication/getLoginUrl": { "default": {  "access": "public" } },
-    "./domain/authentication/login": { "default": {  "access": "public" } },
-    "./domain/authentication/logout": { "default": {  "access": "public" } }
-}

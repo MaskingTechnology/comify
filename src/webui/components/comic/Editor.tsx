@@ -4,14 +4,15 @@ import { Button, Column, Panel, Row } from '../../designsystem/module';
 import Editor from '../../editor/Editor';
 
 export type Props = {
-    createHandler: (imageData: string) => void;
+    createHandler: (imageData: string) => Promise<void>;
 };
 
 export default function Component({ createHandler }: Props)
 {
     const [editor, setEditor] = useState<Editor | undefined>(undefined);
+    const [creating, setCreating] = useState(false);
 
-    const handleCreate = () =>
+    const handleCreate = async () =>
     {
         if (editor === undefined)
         {
@@ -20,7 +21,11 @@ export default function Component({ createHandler }: Props)
 
         const imageData = editor.export();
 
-        createHandler(imageData);
+        setCreating(true);
+
+        await createHandler(imageData);
+
+        setCreating(false);
     };
 
     useEffect(() =>
@@ -44,7 +49,7 @@ export default function Component({ createHandler }: Props)
         <Column alignX='stretch'>
             <canvas id="editor" />
             <Row alignX='right'>
-                <Button text="Create" clickHandler={handleCreate} />
+                <Button type={creating ? 'disabled' : 'primary'} text={creating ? 'Creating' : 'Create'} clickHandler={handleCreate} />
             </Row>
         </Column>
     </Panel>;

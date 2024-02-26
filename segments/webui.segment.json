@@ -1,4 +1,8 @@
 {
+    "./domain/authentication/getLoginUrl": { "default": {  "access": "public" } },
+    "./domain/authentication/login": { "default": {  "access": "public" } },
+    "./domain/authentication/logout": { "default": {  "access": "public" } },
+
     "./domain/creator/getByNickname": { "default": {  "access": "public" } },
     "./domain/creator/getMe": { "default": {  "access": "public" } },
 
@@ -7,6 +11,7 @@
     "./domain/post/explore": { "default": {  "access": "public" } },
     "./domain/post/getByCreator": { "default": {  "access": "public" } },
     "./domain/post/getTimeline": { "default": {  "access": "public" } },
+    "./domain/post/make": { "default": {  "access": "public" } },
 
     "./domain/relation/explore": { "default": {  "access": "public" } },
     "./domain/relation/get": { "default": {  "access": "public" } },

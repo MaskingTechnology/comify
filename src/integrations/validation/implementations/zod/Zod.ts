@@ -1,9 +1,9 @@
 
 import { ZodError, ZodIssue, ZodType, z } from 'zod';
-import { FieldTypes, MAX_EMAIL_LENGTH } from '../../definitions/constants';
-import { InvalidData, UnknownValidator } from '../../definitions/errors';
-import { Validator } from '../../definitions/interfaces';
-import { Message, ValidationSchema, Validations } from '../../definitions/types';
+import { FieldTypes, MAX_EMAIL_LENGTH } from '../../definitions/constants.js';
+import { InvalidData, UnknownValidator } from '../../definitions/errors.js';
+import { Validator } from '../../definitions/interfaces.js';
+import { Message, ValidationSchema, Validations } from '../../definitions/types.js';
 
 type ValidatorFunction = (value: Validations[keyof Validations]) => z.ZodType<unknown, z.ZodTypeDef> | z.ZodArray<z.ZodType<unknown, z.ZodTypeDef>>;
 
