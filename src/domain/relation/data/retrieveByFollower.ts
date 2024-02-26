@@ -1,6 +1,6 @@
 
 import database, { RecordQuery } from '../../../integrations/database/module';
-import RelationData from './RelationData';
+import type RelationData from './RelationData';
 import { RECORD_TYPE } from './constants';
 import createRelationData from './createData';
 
@@ -8,7 +8,7 @@ export default async function retrieveByFollower(followerId: string): Promise<Re
 {
     const query: RecordQuery = { followerId: { EQUALS: followerId } };
 
-    const relations = await database.searchRecords(RECORD_TYPE, query);
+    const records = await database.searchRecords(RECORD_TYPE, query);
 
-    return Promise.all(relations.map(createRelationData));
+    return Promise.all(records.map(createRelationData));
 }

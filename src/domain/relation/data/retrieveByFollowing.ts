@@ -6,7 +6,7 @@ import createRelationData from './createData';
 
 export default async function retrieveByFollowing(followingId: string): Promise<RelationData[]>
 {
-    const relations = await database.searchRecords(RECORD_TYPE, { followingId: { EQUALS: followingId } });
+    const records = await database.searchRecords(RECORD_TYPE, { followingId: { EQUALS: followingId } });
 
-    return Promise.all(relations.map(createRelationData));
+    return Promise.all(records.map(createRelationData));
 }

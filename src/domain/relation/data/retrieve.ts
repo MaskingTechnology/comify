@@ -10,7 +10,7 @@ export default async function retrieve(followerId: string, followingId: string):
         followingid: { EQUALS: followingId }
     };
 
-    const relation = await database.findRecord(RECORD_TYPE, query);
+    const record = await database.findRecord(RECORD_TYPE, query);
 
-    return new RelationData(relation?.id as string, followerId, followingId);
+    return new RelationData(record?.id as string, followerId, followingId);
 }

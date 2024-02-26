@@ -7,7 +7,9 @@ import RelationAlreadyExists from './errors/RelationAlreadyExists';
 
 export default async function establish(requester: Requester, followingId: string): Promise<RelationData>
 {
-    if (await exists(requester.id, followingId))
+    const relationExists = await exists(requester.id, followingId);
+
+    if (relationExists)
     {
         throw new RelationAlreadyExists();
     }
