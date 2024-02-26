@@ -1,11 +1,9 @@
 
 import type Requester from '../authentication/Requester';
-
 import retrieveCreatorsWithout from '../creator/data/retrieveWithout';
 import createCreatorView from '../creator/view/createView';
-
-import RelationView from './view/RelationView';
 import retrieveDataByFollower from './data/retrieveByFollower';
+import RelationView from './view/RelationView';
 
 export default async function explore(requester: Requester): Promise<RelationView[]>
 {
