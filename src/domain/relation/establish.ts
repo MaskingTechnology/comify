@@ -1,15 +1,16 @@
 
-import RelationData from './data/RelationData';
+import type Requester from '../authentication/Requester';
+import type RelationData from './data/RelationData';
 import create from './data/create';
 import exists from './data/exists';
 import RelationAlreadyExists from './errors/RelationAlreadyExists';
 
-export default async function establish(followerId: string, followingId: string): Promise<RelationData>
+export default async function establish(requester: Requester, followingId: string): Promise<RelationData>
 {
-    if (await exists(followerId, followingId))
+    if (await exists(requester.id, followingId))
     {
-        throw new RelationAlreadyExists('Relation already exists');
+        throw new RelationAlreadyExists();
     }
 
-    return create(followerId, followingId);
+    return create(requester.id, followingId);
 }

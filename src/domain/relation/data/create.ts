@@ -1,6 +1,5 @@
 
 import database, { RecordData } from '../../../integrations/database/module';
-
 import RelationData from './RelationData';
 import { RECORD_TYPE } from './constants';
 
