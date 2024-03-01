@@ -47,7 +47,7 @@
     "cpx2": "^7.0.1",
     "eslint": "^8.56.0",
     "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-sonarjs": "^0.23.0",
+    "eslint-plugin-sonarjs": "^0.24.0",
     "typescript": "5.3.3",
     "vite": "^5.0.12",
     "vitest": "^1.2.2"
