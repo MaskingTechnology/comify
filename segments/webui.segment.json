@@ -8,10 +8,10 @@
 
     "./domain/notification/getRecent": { "default": {  "access": "public" } },
     
+    "./domain/post/create": { "default": {  "access": "public" } },
     "./domain/post/explore": { "default": {  "access": "public" } },
     "./domain/post/getByCreator": { "default": {  "access": "public" } },
     "./domain/post/getTimeline": { "default": {  "access": "public" } },
-    "./domain/post/make": { "default": {  "access": "public" } },
 
     "./domain/relation/explore": { "default": {  "access": "public" } },
     "./domain/relation/get": { "default": {  "access": "public" } },

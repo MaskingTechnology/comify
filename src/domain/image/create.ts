@@ -3,7 +3,7 @@ import ImageData from './data/ImageData';
 import importFromDataUrl from './import/fromDataUrl';
 import save from './save';
 
-export default async function make(type: string, dataUrl: string): Promise<ImageData>
+export default async function create(type: string, dataUrl: string): Promise<ImageData>
 {
     const image = await importFromDataUrl(dataUrl);
 

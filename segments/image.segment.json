@@ -1,3 +1,11 @@
 {
-    "./domain/image/data/retrieve": { "default": {  "access": "protected" } }
+    "./domain/image/create": { "default": {  "access": "protected" } },
+    "./domain/image/download": { "default": {  "access": "protected" } },
+    "./domain/image/get": { "default": {  "access": "protected" } },
+    "./domain/image/remove": { "default": {  "access": "protected" } },
+    
+    "./domain/image/save": { "default": {  "access": "private" } },
+    "./domain/image/data/create": { "default": {  "access": "private" } },
+    "./domain/image/data/remove": { "default": {  "access": "private" } },
+    "./domain/image/data/retrieve": { "default": {  "access": "private" } }
 }

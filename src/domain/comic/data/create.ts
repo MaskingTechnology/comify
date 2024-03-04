@@ -1,7 +1,7 @@
 
 import database, { RecordData } from '../../../integrations/database/module';
+import { RECORD_TYPE } from '../definitions/constants';
 import ComicData from './ComicData';
-import { RECORD_TYPE } from './constants';
 
 export default async function create(imageId: string, structure?: string): Promise<ComicData>
 {
