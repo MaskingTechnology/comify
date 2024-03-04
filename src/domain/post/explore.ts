@@ -12,5 +12,7 @@ export default async function explore(requester: Requester): Promise<PostView[]>
     const followingIds = relationsData.map(data => data.followingId);
     const postData = await retrieveWithoutCreators(followingIds);
 
-    return Promise.all(postData.map(createView));
+    const views = postData.map(item => createView(requester, item));
+
+    return Promise.all(views);
 }

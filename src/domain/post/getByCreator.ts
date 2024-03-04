@@ -1,11 +1,14 @@
 
+import Requester from '../authentication/Requester';
 import retrieveByCreators from './data/retrieveByCreators';
 import type PostView from './view/PostView';
 import createView from './view/createView';
 
-export default async function getByCreator(creatorId: string): Promise<PostView[]>
+export default async function getByCreator(requester: Requester, creatorId: string): Promise<PostView[]>
 {
     const data = await retrieveByCreators([creatorId]);
 
-    return Promise.all(data.map(createView));
+    const views = data.map(item => createView(requester, item));
+
+    return Promise.all(views);
 }

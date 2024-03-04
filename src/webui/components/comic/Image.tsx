@@ -1,6 +1,5 @@
 
 import type ComicView from '../../../domain/comic/view/ComicView';
-import dummyDataUrl from '../../assets/images/introduction.png';
 import { Image } from '../../designsystem/module';
 
 export type Props = {
@@ -11,5 +10,5 @@ export type Props = {
 export default function Component({ comic }: Props)
 {
     // return <Image source={comic.image.dataUrl} width='100%' />;
-    return <Image source={dummyDataUrl} width='100%' />;
+    return <Image source={comic.image.dataUrl} width='100%' />;
 }

@@ -2,7 +2,7 @@
 import { RecordData } from '../../../integrations/database/module';
 import ImageData from './ImageData';
 
-export default function createData(record: RecordData): ImageData
+export default function mapRecord(record: RecordData): ImageData
 {
     return new ImageData(
         record.id as string,

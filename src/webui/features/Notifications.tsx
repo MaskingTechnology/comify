@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from 'react';
+import johnDoe from '../../domain/authentication/johnDoe';
 import getRecentNotifications from '../../domain/notification/getRecent';
 import type NotificationView from '../../domain/notification/view/NotificationView';
 import type RelationView from '../../domain/relation/view/RelationView';
@@ -11,7 +12,7 @@ export default function Feature()
 {
     const [notifications, setNotifications] = useState<NotificationView[] | undefined>(undefined);
 
-    const getNotifications = () => getRecentNotifications();
+    const getNotifications = () => getRecentNotifications(johnDoe);
 
     const handleFollow = (relation: RelationView) =>
     {

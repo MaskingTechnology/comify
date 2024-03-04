@@ -1,6 +1,6 @@
 
 import database, { RecordData } from '../../../integrations/database/module';
-import { RECORD_TYPE } from './constants';
+import { RECORD_TYPE } from '../definitions/constants';
 import PostData from './PostData';
 
 export default async function create(creatorId: string, comicId: string,): Promise<PostData>

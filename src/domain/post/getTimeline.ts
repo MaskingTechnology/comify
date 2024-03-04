@@ -11,5 +11,7 @@ export default async function getTimeline(requester: Requester): Promise<PostVie
     const followingIds = followerData.map(data => data.followingId);
     const postData = await retrieveByCreators(followingIds);
 
-    return Promise.all(postData.map(createView));
+    const views = postData.map(item => createView(requester, item));
+
+    return Promise.all(views);
 }

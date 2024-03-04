@@ -2,7 +2,7 @@
 import { RecordData } from '../../../integrations/database/module';
 import PostData from './PostData';
 
-export default async function createData(record: RecordData): Promise<PostData>
+export default function mapRecord(record: RecordData): PostData
 {
     return new PostData(
         record.id as string,
