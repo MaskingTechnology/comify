@@ -1,7 +1,7 @@
 
 import database, { RecordQuery } from '../../../integrations/database/module';
+import { RECORD_TYPE } from '../definitions/constants';
 import RelationData from './RelationData';
-import { RECORD_TYPE } from './constants';
 
 export default async function retrieve(followerId: string, followingId: string): Promise<RelationData>
 {

@@ -1,8 +1,9 @@
 
 import Requester from '../../../../src/domain/authentication/Requester';
-import { RECORD_TYPE as RECORD_TYPE_CREATOR } from '../../../../src/domain/creator/data/constants';
+import { RECORD_TYPE as RECORD_TYPE_CREATOR } from '../../../../src/domain/creator/definitions/constants';
 import RelationData from '../../../../src/domain/relation/data/RelationData';
-import { RECORD_TYPE as RECORD_TYPE_RELATION, UiSortFields } from '../../../../src/domain/relation/data/constants';
+import { RECORD_TYPE as RECORD_TYPE_RELATION } from '../../../../src/domain/relation/definitions/constants';
+import SortOptions from '../../../../src/domain/relation/definitions/SortOptions';
 import RelationAlreadyExists from '../../../../src/domain/relation/errors/RelationAlreadyExists';
 import establish from '../../../../src/domain/relation/establish';
 import explore from '../../../../src/domain/relation/explore';
@@ -46,5 +47,5 @@ await database.createRecord(RECORD_TYPE_RELATION, relation5);
 await database.createRecord(RECORD_TYPE_RELATION, relation6);
 await database.createRecord(RECORD_TYPE_RELATION, relation7);
 
-export { CREATOR0, CREATOR1, CREATOR2, CREATOR3, CREATOR4, CREATOR5, RELATION1, RELATION2, REQUESTER1, REQUESTER2, RelationAlreadyExists, RelationData, UiSortFields, establish, explore, getFollowers, getFollowing };
+export { CREATOR0, CREATOR1, CREATOR2, CREATOR3, CREATOR4, CREATOR5, establish, explore, getFollowers, getFollowing, RELATION1, RELATION2, RelationAlreadyExists, RelationData, REQUESTER1, REQUESTER2, SortOptions };
 

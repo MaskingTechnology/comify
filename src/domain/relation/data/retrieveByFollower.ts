@@ -1,8 +1,8 @@
 
 import database, { RecordQuery } from '../../../integrations/database/module';
+import { RECORD_TYPE } from '../definitions/constants';
 import type RelationData from './RelationData';
-import { RECORD_TYPE } from './constants';
-import createRelationData from './createData';
+import createRelationData from './mapRecord';
 
 export default async function retrieveByFollower(followerId: string): Promise<RelationData[]>
 {

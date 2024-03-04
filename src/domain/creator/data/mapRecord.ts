@@ -2,7 +2,7 @@
 import { RecordData } from '../../../integrations/database/module';
 import CreatorData from './CreatorData';
 
-export default function createData(record: RecordData): CreatorData
+export default function mapRecord(record: RecordData): CreatorData
 {
     return new CreatorData(
         record.id as string,

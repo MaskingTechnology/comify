@@ -1,31 +1,29 @@
 
-import database, { RecordQuery, RecordSort, SortDirections } from '../../../integrations/database/module';
-import createCreatorData from '../data/createData';
+import database, { QueryStatement, RecordQuery, RecordSort, SortDirections } from '../../../integrations/database/module';
+import { RECORD_TYPE } from '../definitions/constants';
+import type SortFields from '../definitions/SortFields';
 import CreatorData from './CreatorData';
-import { RECORD_TYPE } from './constants';
+import createCreatorData from './mapRecord';
 
-export default async function retrieveWithout(ids: string[], sort: string, search?: string | undefined): Promise<CreatorData[]>
+export default async function retrieveWithout(ids: string[], sortField: SortFields, search?: string): Promise<CreatorData[]>
 {
     const defaultQuery: RecordQuery = { id: { NOT_IN: ids } };
     const searchQuery: RecordQuery = {
-        'AND':
-            [
-                { id: { NOT_IN: ids } },
-                {
-                    'OR':
-                        [
-                            { fullName: { CONTAINS: search } },
-                            { nickname: { CONTAINS: search } }
-                        ]
-                }
-            ]
+        'OR': [
+            { fullName: { CONTAINS: search } },
+            { nickname: { CONTAINS: search } }
+        ]
     };
-    const query: RecordQuery = search === undefined
-        ? defaultQuery
-        : searchQuery;
-    const recordSort: RecordSort = { [sort]: SortDirections.ASCENDING };
+
+    const query: QueryStatement = search !== undefined
+        ? { ...defaultQuery, ...searchQuery }
+        : defaultQuery;
+
+    const recordSort: RecordSort = { [sortField]: SortDirections.ASCENDING };
 
     const records = await database.searchRecords(RECORD_TYPE, query, undefined, recordSort, 10);
 
-    return Promise.all(records.map(data => createCreatorData(data)));
+    const data = records.map(data => createCreatorData(data));
+
+    return Promise.all(data);
 }
