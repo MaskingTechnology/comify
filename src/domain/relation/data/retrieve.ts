@@ -7,7 +7,7 @@ export default async function retrieve(followerId: string, followingId: string):
 {
     const query: RecordQuery = {
         followerId: { EQUALS: followerId },
-        followingid: { EQUALS: followingId }
+        followingId: { EQUALS: followingId }
     };
 
     const record = await database.findRecord(RECORD_TYPE, query);
