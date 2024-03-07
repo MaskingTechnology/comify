@@ -1,6 +1,6 @@
 
 import database, { RecordQuery } from '../../../integrations/database/module';
-import { RECORD_TYPE } from './constants';
+import { RECORD_TYPE } from '../definitions/constants';
 
 export default async function exists(followerId: string, followingId: string): Promise<boolean>
 {

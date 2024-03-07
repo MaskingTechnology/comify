@@ -1,6 +1,6 @@
 
 import login from '../../../../src/domain/authentication/login';
-import { RECORD_TYPE } from '../../../../src/domain/creator/data/constants';
+import { RECORD_TYPE } from '../../../../src/domain/creator/definitions/constants';
 import TooManySimilarNicknames from '../../../../src/domain/creator/errors/TooManySimilarNicknames';
 import UnsupportedContentSize from '../../../../src/domain/image/errors/UnsupportedContentSize';
 import UnsupportedMimeType from '../../../../src/domain/image/errors/UnsupportedMimeType';
