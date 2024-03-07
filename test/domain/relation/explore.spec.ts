@@ -15,7 +15,7 @@ describe('domain/relation/explore', () =>
         expect(relations[0].follower).toBeUndefined();
     });
 
-    it('should explore relations based on joindAt date', async () =>
+    it('should explore relations based on recent', async () =>
     {
         const relations = await explore(REQUESTER1, SortOptions.RECENT, undefined);
 
@@ -31,14 +31,14 @@ describe('domain/relation/explore', () =>
         expect(relations[0]).toBeUndefined();
     });
 
-    it('should explore relations based of fullname search hit', async () =>
+    it('should find relations based on search fullname', async () =>
     {
         const relations = await explore(REQUESTER1, SortOptions.POPULAR, 'Paul');
         expect(relations.length).toBe(1);
         expect(relations[0].following?.id).toBe(CREATOR4);
     });
 
-    it('should explore relations based of nickname search hit', async () =>
+    it('should find relations based on search nickname', async () =>
     {
         const relations = await explore(REQUESTER1, SortOptions.POPULAR, 'Pic');
         expect(relations.length).toBe(2);
@@ -46,7 +46,7 @@ describe('domain/relation/explore', () =>
         expect(relations[1].following?.id).toBe(CREATOR5);
     });
 
-    it('should explore relations based of fullname and nickname search hit', async () =>
+    it('should find relations based on search fullname and nickname', async () =>
     {
         const relations = await explore(REQUESTER1, SortOptions.POPULAR, 'Bas');
         expect(relations.length).toBe(2);
