@@ -171,9 +171,9 @@ export default class MongoDB implements Database
         return result.map(data => this.#buildRecordData(data, fields));
     }
 
-    #createIds(ids: string[]): ObjectId[]
+    #createIds(inputIds: string[]): ObjectId[]
     {
-        return ids.map(id => this.#createId(id));
+        return inputIds.map(id => this.#createId(id));
     }
 
     #createId(inputId?: string): ObjectId
@@ -181,7 +181,7 @@ export default class MongoDB implements Database
         return new ObjectId(inputId);
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any, sonarjs/cognitive-complexity
     #buildMongoQuery(query: RecordQuery): Filter<any> 
     {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
