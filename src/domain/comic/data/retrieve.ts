@@ -1,6 +1,6 @@
 
 import database from '../../../integrations/database/module';
-import { RECORD_TYPE } from '../definitions/constants.js';
+import { RECORD_TYPE } from '../definitions/constants';
 import ComicData from './ComicData';
 import mapRecord from './mapRecord';
 

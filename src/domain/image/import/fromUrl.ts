@@ -3,8 +3,8 @@ import ImageNotDownloaded from '../errors/ImageNotDownloaded';
 import ImageImport from './ImageImport';
 import validate from './validate';
 
-export const CONTENT_TYPE = 'Content-Type';
-export const CONTENT_LENGTH = 'Content-Length';
+const CONTENT_TYPE = 'Content-Type';
+const CONTENT_LENGTH = 'Content-Length';
 
 export default async function fromUrl(imageUrl: string): Promise<ImageImport>
 {

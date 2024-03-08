@@ -13,7 +13,9 @@ export default async function create(imageDataUrl: string, structure?: string): 
     {
         image = await createImage(IMAGE_TYPE, imageDataUrl);
 
-        return createData(image.id, structure);
+        const data = await createData(image.id, structure);
+
+        return data;
     }
     catch (error: unknown)
     {

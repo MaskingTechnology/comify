@@ -30,7 +30,6 @@ async function createDatabase()
     }
 
     await database.connect();
-
 }
 
 async function createFileStorage()
