@@ -9,7 +9,37 @@
     background-size: cover;
     height: 100%;
     font-family: 'Inter', sans-serif;
+    font-size: 16px;
     outline: none;
+}
+
+hr
+{
+    margin-top: 0;
+}
+
+#kc-form-buttons
+{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.pf-c-form__label
+{
+    --pf-c-form__label--FontSize: 1em;
+}
+
+.login-pf-page .login-pf-header h1
+{
+    text-align: left;
+    font-size: 2em;
+}
+
+.pf-c-button.pf-m-primary.pf-m-block
+{
+    padding: 0.9em 2.2em;
+    width: unset;
+    --pf-c-button--FontWeight: 700;
 }
 
 .pf-c-form-control
@@ -132,10 +162,14 @@ div.kc-logo-text span
     font-size: 29px;
     text-transform: uppercase;
     letter-spacing: 3px;
-    line-height: 1.2em;
-    padding: 62px 10px 20px;
+    line-height: 55px;
+    padding: 30px 10px 20px;
     white-space: normal;
-    color: black;
+    color: transparent;
+    background-image: url(../img/logo.svg);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: auto 55px;
 }
 
 #kc-content
@@ -210,14 +244,13 @@ div.kc-logo-text span
 
 #kc-info
 {
-    margin: 20px -40px -30px;
+    margin: 10px -40px -30px;
 }
 
 #kc-info-wrapper
 {
-    font-size: 13px;
     padding: 15px 35px;
-    background-color: #F0F0F0;
+    font-size: 1.1em;
 }
 
 #kc-form-options span
@@ -242,6 +275,12 @@ div.kc-logo-text span
     overflow-y: auto;
     overflow-x: hidden;
     margin: 5px;
+}
+
+#kc-registration-container
+{
+    border-top: 5px solid #b7b7b7;
+    padding: 20px 0 10px 0;
 }
 
 #kc-registration
@@ -354,7 +393,6 @@ ul#kc-totp-supported-apps
 .kc-social-item
 {
     margin-bottom: var(--pf-global--spacer--sm);
-    font-size: 15px;
     text-align: center;
 }
 
@@ -390,7 +428,7 @@ ul#kc-totp-supported-apps
 
 .kc-social-section
 {
-    text-align: center;
+    text-align: left;
 }
 
 .kc-social-section hr
@@ -479,7 +517,7 @@ ul#kc-totp-supported-apps
         font-size: 16px;
         font-weight: bold;
         padding: 20px 60px 0 0;
-        color: #72767b;
+        color: transparent;
         letter-spacing: 0;
     }
 
@@ -642,7 +680,7 @@ ul#kc-totp-supported-apps
 
 .login-pf-page .login-pf-signup
 {
-    font-size: 15px;
+    text-align: left;
     color: #72767b;
 }
 
