@@ -1386,7 +1386,7 @@
   "loginTheme": "comify",
   "accountTheme": "",
   "adminTheme": "",
-  "emailTheme": "comify",
+  "emailTheme": "",
   "eventsEnabled": false,
   "eventsListeners": [
     "jboss-logging"
