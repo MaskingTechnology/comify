@@ -15,7 +15,7 @@ export default async function create(requester: Requester, comicImageDataUrl: st
         comic = await createComic(comicImageDataUrl);
         post = await createPost(requester.id, comic.id);
 
-        await increaseCreatorComicCount(requester.id);
+        return increaseCreatorComicCount(requester.id);
     }
     catch (error: unknown)
     {

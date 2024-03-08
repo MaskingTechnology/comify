@@ -10,7 +10,7 @@
     "clean": "rm -rf dist",
     "docker-up": "docker compose --env-file development.env up",
     "docker-down": "docker compose --env-file development.env down",
-    "standalone": "node --experimental-network-imports --env-file=development.env dist/jitar.js --config=services/standalone.json",
+    "standalone": "node --experimental-network-imports --env-file=development.env dist/jitar.js --config=services/standalone.json --bodylimit=512000",
     "preview": "vite preview",
     "test": "vitest run",
     "test-coverage": "vitest run --coverage",

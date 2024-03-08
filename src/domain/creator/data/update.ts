@@ -1,6 +1,6 @@
 
 import database, { RecordData } from '../../../integrations/database/module';
-import { RECORD_TYPE } from './constants';
+import { RECORD_TYPE } from '../definitions/constants';
 import CreatorData from './CreatorData';
 
 export default async function update(data: CreatorData): Promise<void>
