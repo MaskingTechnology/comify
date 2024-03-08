@@ -47,8 +47,10 @@ p.instruction
 
 .pf-c-button.pf-m-primary
 {
+    --pf-c-button--m-primary--BackgroundColor: #e06666;
+    --pf-c-button--m-primary--hover--BackgroundColor: color-mix(in srgb, black 10%, #e06666);
+
     color: var(--pf-c-button--m-primary--Color);
-    background-color: #666666;
     border-radius: 2em;
 }
 
