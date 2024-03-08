@@ -7,13 +7,12 @@ import { IMAGE_TYPE } from './definitions/constants.js';
 
 export default async function create(imageDataUrl: string, structure?: string): Promise<ComicData>
 {
-    let image;
+    let image, data;
 
     try
     {
         image = await createImage(IMAGE_TYPE, imageDataUrl);
-
-        const data = await createData(image.id, structure);
+        data = await createData(image.id, structure);
 
         return data;
     }
