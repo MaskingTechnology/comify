@@ -1,11 +1,29 @@
 
-import type CreatorData from './CreatorData';
+import database, { QueryStatement, RecordQuery, RecordSort, SortDirections } from '../../../integrations/database/module';
+import { RECORD_TYPE } from '../definitions/constants';
+import type SortFields from '../definitions/SortFields';
+import CreatorData from './CreatorData';
+import createCreatorData from './mapRecord';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default async function retrieveWithout(ids: string[]): Promise<CreatorData[]>
+export default async function retrieveWithout(ids: string[], sortField: SortFields, search?: string): Promise<CreatorData[]>
 {
-    // This function will filter creators by the given list of ids.
-    // Additionally a sort and limit can be applied.
+    const defaultQuery: RecordQuery = { id: { NOT_IN: ids } };
+    const searchQuery: RecordQuery = {
+        'OR': [
+            { fullName: { CONTAINS: search } },
+            { nickname: { CONTAINS: search } }
+        ]
+    };
 
-    return [];
+    const query: QueryStatement = search !== undefined
+        ? { ...defaultQuery, ...searchQuery }
+        : defaultQuery;
+
+    const recordSort: RecordSort = { [sortField]: SortDirections.ASCENDING };
+
+    const records = await database.searchRecords(RECORD_TYPE, query, undefined, recordSort, 10);
+
+    const data = records.map(data => createCreatorData(data));
+
+    return Promise.all(data);
 }

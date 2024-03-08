@@ -1,6 +1,6 @@
 
 import { describe, expect, it } from 'vitest';
-import { LOGINS, NICKNAMES, TooManySimilarNicknames, UnsupportedContentSize, UnsupportedMimeType, login } from './_fixtures/login.fixture';
+import { LOGINS, NICKNAMES, TooManySimilarNicknames, UnsupportedContentSize, UnsupportedMimeType, login } from './_fixtures/authentication.fixture';
 
 describe('domain/authentication', () =>
 {

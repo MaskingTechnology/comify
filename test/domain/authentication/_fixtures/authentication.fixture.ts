@@ -1,6 +1,6 @@
 
 import login from '../../../../src/domain/authentication/login';
-import { RECORD_TYPE } from '../../../../src/domain/creator/data/constants';
+import { RECORD_TYPE } from '../../../../src/domain/creator/definitions/constants';
 import TooManySimilarNicknames from '../../../../src/domain/creator/errors/TooManySimilarNicknames';
 import UnsupportedContentSize from '../../../../src/domain/image/errors/UnsupportedContentSize';
 import UnsupportedMimeType from '../../../../src/domain/image/errors/UnsupportedMimeType';
@@ -21,12 +21,12 @@ const NICKNAMES: Record<string, string> = {
 await database.connect();
 await filestorage.connect();
 
-const creator0: RecordData = { fullName: 'ExistingName', nickname: NICKNAMES.EXISTING_NICKNAME, email: 'existing@mail.com', picture: undefined };
-const creator1: RecordData = { fullName: 'fullName', nickname: 'FullNickname', email: 'fullname@mail.com', picture: undefined };
-const creator2: RecordData = { fullName: 'fullName1', nickname: 'FullNickname_005', email: 'fullname1@mail.com', picture: undefined };
-const creator3: RecordData = { fullName: 'fullName2', nickname: 'FullNickname_006', email: 'fullname2@mail.com', picture: undefined };
-const creator4: RecordData = { fullName: 'fullNameTooMany', nickname: 'TooManyNickname', email: 'fullnametoomany@mail.com', picture: undefined };
-const creator5: RecordData = { fullName: 'fullName1', nickname: 'TooManyNickname_999', email: 'fullnametoomany1@mail.com', picture: undefined };
+const creator0: RecordData = { fullName: 'ExistingName', nickname: NICKNAMES.EXISTING_NICKNAME, email: 'existing@mail.com', portraitId: undefined, joinedAt: new Date(), popularity: 0, postCount: 0, followerCount: 0, followingCount: 0 };
+const creator1: RecordData = { fullName: 'fullName', nickname: 'FullNickname', email: 'fullname@mail.com', portraitId: undefined, joinedAt: new Date(), popularity: 0, postCount: 0, followerCount: 0, followingCount: 0 };
+const creator2: RecordData = { fullName: 'fullName1', nickname: 'FullNickname_005', email: 'fullname1@mail.com', portraitId: undefined, joinedAt: new Date(), popularity: 0, postCount: 0, followerCount: 0, followingCount: 0 };
+const creator3: RecordData = { fullName: 'fullName2', nickname: 'FullNickname_006', email: 'fullname2@mail.com', portraitId: undefined, joinedAt: new Date(), popularity: 0, postCount: 0, followerCount: 0, followingCount: 0 };
+const creator4: RecordData = { fullName: 'fullNameTooMany', nickname: 'TooManyNickname', email: 'fullnametoomany@mail.com', portraitId: undefined, joinedAt: new Date(), popularity: 0, postCount: 0, followerCount: 0, followingCount: 0 };
+const creator5: RecordData = { fullName: 'fullName1', nickname: 'TooManyNickname_999', email: 'fullnametoomany1@mail.com', portraitId: undefined, joinedAt: new Date(), popularity: 0, postCount: 0, followerCount: 0, followingCount: 0 };
 
 await database.createRecord(RECORD_TYPE, creator0);
 await database.createRecord(RECORD_TYPE, creator1);

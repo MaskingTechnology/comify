@@ -1,8 +1,12 @@
 
+import database from '../../../integrations/database/module';
+import { RECORD_TYPE } from '../definitions/constants';
 import type RelationData from './RelationData';
+import createRelationData from './mapRecord';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default async function retrieveByFollowing(followingId: string): Promise<RelationData[]>
 {
-    return [];
+    const records = await database.searchRecords(RECORD_TYPE, { followingId: { EQUALS: followingId } });
+
+    return Promise.all(records.map(createRelationData));
 }
