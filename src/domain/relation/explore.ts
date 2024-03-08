@@ -7,7 +7,7 @@ import retrieveDataByFollower from './data/retrieveByFollower';
 import SortOptions from './definitions/SortOptions';
 import RelationView from './view/RelationView';
 
-export default async function explore(requester: Requester, sortOption: SortOptions, search?: string): Promise<RelationView[]>
+export default async function explore(requester: Requester, sortOption: SortOptions, search: string | undefined = undefined): Promise<RelationView[]>
 {
     const followerData = await retrieveDataByFollower(requester.id);
     const followingIds = followerData.map(data => data.followingId);
