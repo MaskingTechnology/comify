@@ -1,5 +1,6 @@
 
 import validator, { ValidationSchema } from '../../../integrations/validation/module';
+import InvalidImage from '../errors/InvalidImage';
 
 const TEN_B = 10;
 const FIVE_MB = 1024 * 1024 * 5;
@@ -26,7 +27,16 @@ const schema: ValidationSchema = {
     }
 };
 
-export default async function validate(mimeType: string, size: number): Promise<void>
+export default function validate(mimeType: string, size: number): void
 {
-    validator.validate({ mimeType, size }, schema);
+    try
+    {
+        validator.validate({ mimeType, size }, schema);
+    }
+    catch (error: unknown)
+    {
+        const message = (error as Error).message;
+
+        throw new InvalidImage(message);
+    }
 }

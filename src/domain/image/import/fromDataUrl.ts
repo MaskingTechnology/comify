@@ -1,4 +1,5 @@
 
+import InvalidDataURL from '../errors/InvalidDataURL';
 import ImageImport from './ImageImport';
 import validate from './validate';
 
@@ -8,7 +9,7 @@ export default async function fromDataUrl(dataUrl: string): Promise<ImageImport>
 
     if (matches === null)
     {
-        throw new Error('Invalid data URL');
+        throw new InvalidDataURL();
     }
 
     const filename = 'dataUrl';
