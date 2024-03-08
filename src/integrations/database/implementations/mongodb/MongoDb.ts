@@ -171,6 +171,11 @@ export default class MongoDB implements Database
         return result.map(data => this.#buildRecordData(data, fields));
     }
 
+    #createIds(ids: string[]): ObjectId[]
+    {
+        return ids.map(id => this.#createId(id));
+    }
+
     #createId(inputId?: string): ObjectId
     {
         return new ObjectId(inputId);
@@ -211,7 +216,7 @@ export default class MongoDB implements Database
             for (const operator in expression)
             {
                 const value = this.#extractValue(expression as RecordData, operator as QueryOperator);
-                const mongoValue = key === ID ? this.#createId(value as string) : value;
+                const mongoValue = key === ID ? value instanceof Array ? this.#createIds(value) : this.#createId(value as string) : value;
                 const mongoOperator = OPERATORS[operator];
 
                 mongoExpression[mongoOperator] = mongoValue;
