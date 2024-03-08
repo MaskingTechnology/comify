@@ -120,11 +120,17 @@ export default class MinioFS implements FileStorage
 
     #handleError(error: unknown, path: string): unknown
     {
-        if (error instanceof Error && error.message.startsWith('The specified key does not exist'))
+        if (error instanceof Error && this.#isNotFoundError(error))
         {
             return new FileNotFound(path);
         }
 
         return error;
+    }
+
+    #isNotFoundError(error: Error): boolean
+    {
+        return error.message.startsWith('The specified key does not exist')
+            || error.message.startsWith('Not Found');
     }
 }

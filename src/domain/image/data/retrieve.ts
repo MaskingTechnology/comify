@@ -1,12 +1,12 @@
 
 import database from '../../../integrations/database/module';
+import { RECORD_TYPE } from '../definitions/constants';
 import type ImageData from './ImageData';
-import { RECORD_TYPE } from './constants.js';
-import createData from './createData';
+import mapRecord from './mapRecord';
 
 export default async function retrieve(id: string): Promise<ImageData>
 {
     const record = await database.readRecord(RECORD_TYPE, id);
 
-    return createData(record);
+    return mapRecord(record);
 }

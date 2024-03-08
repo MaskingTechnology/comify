@@ -1,8 +1,14 @@
 
 import type ImageData from '../data/ImageData';
+import getFile from '../files/get';
 import ImageView from './ImageView';
 
 export default async function createView(data: ImageData): Promise<ImageView>
 {
-    return new ImageView(data.filename);
+    const file = await getFile(data.storageKey);
+    const content = file.toString('base64');
+
+    const dataUrl = `data:${data.mimeType};base64,${content}`;
+
+    return new ImageView(dataUrl);
 }

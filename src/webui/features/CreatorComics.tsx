@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from 'react';
+import johnDoe from '../../domain/authentication/johnDoe';
 import getCreatorPosts from '../../domain/post/getByCreator';
 import type PostView from '../../domain/post/view/PostView';
 import { Loading, PostPanelGrid } from '../components/module';
@@ -14,7 +15,7 @@ export default function Feature()
 
     if (creator === undefined) return null;
 
-    const getPosts = () => getCreatorPosts(creator.id);
+    const getPosts = () => getCreatorPosts(johnDoe, creator.id);
 
     useEffect(() => awaitData(getPosts, setPosts), [creator]);
 

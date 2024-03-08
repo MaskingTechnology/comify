@@ -5,5 +5,6 @@
     "./domain/creator/data/retrieveByEmail": { "default": {  "access": "protected" } },
     "./domain/creator/data/retrieveByNickname": { "default": {  "access": "protected" } },
     "./domain/creator/data/retrieveByStartNickname": { "default": {  "access": "protected" } },
-    "./domain/creator/data/retrieveWithout": { "default": {  "access": "protected" } }
+    "./domain/creator/data/retrieveWithout": { "default": {  "access": "protected" } },
+    "./domain/creator/data/update": { "default": {  "access": "protected" } }
 }

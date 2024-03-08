@@ -1,9 +1,14 @@
 {
+    "./domain/authentication/getLoginUrl": { "default": {  "access": "public" } },
+    "./domain/authentication/login": { "default": {  "access": "public" } },
+    "./domain/authentication/logout": { "default": {  "access": "public" } },
+
     "./domain/creator/getByNickname": { "default": {  "access": "public" } },
     "./domain/creator/getMe": { "default": {  "access": "public" } },
 
     "./domain/notification/getRecent": { "default": {  "access": "public" } },
     
+    "./domain/post/create": { "default": {  "access": "public" } },
     "./domain/post/explore": { "default": {  "access": "public" } },
     "./domain/post/getByCreator": { "default": {  "access": "public" } },
     "./domain/post/getTimeline": { "default": {  "access": "public" } },

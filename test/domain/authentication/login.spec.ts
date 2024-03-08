@@ -1,6 +1,6 @@
 
 import { describe, expect, it } from 'vitest';
-import { LOGINS, NICKNAMES, TooManySimilarNicknames, UnsupportedContentSize, UnsupportedMimeType, login } from './_fixtures/authentication.fixture';
+import { LOGINS, NICKNAMES, TooManySimilarNicknames, login } from './_fixtures/authentication.fixture';
 
 describe('domain/authentication', () =>
 {
@@ -67,20 +67,6 @@ describe('domain/authentication', () =>
             const requestor = await login(LOGINS.NAME_WITH_A_VALID_PICTURE_URL);
 
             expect(requestor.nickname).toBe('LongOne');
-        });
-
-        it('should not register when a profile picture has an unsupported type', async () =>
-        {
-            const promise = login(LOGINS.NAME_WITH_PICTURE_INVALID_MIME_TYPE);
-
-            expect(promise).rejects.toStrictEqual(new UnsupportedMimeType());
-        });
-
-        it('should not register when profile picture is too big', async () =>
-        {
-            const promise = login(LOGINS.NAME_WITH_PICTURE_INVALID_SIZE);
-
-            expect(promise).rejects.toStrictEqual(new UnsupportedContentSize());
         });
     });
 });

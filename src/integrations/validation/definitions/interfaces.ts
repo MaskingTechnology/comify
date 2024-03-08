@@ -1,5 +1,5 @@
 
-import { ValidationSchema } from './types';
+import { ValidationSchema } from './types.js';
 
 export interface Validator
 {

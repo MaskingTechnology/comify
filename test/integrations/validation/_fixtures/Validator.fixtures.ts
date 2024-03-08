@@ -1,7 +1,7 @@
 
-import { InvalidData } from '../../../../src/integrations/validation/definitions/errors.ts';
-import { ValidationSchema } from '../../../../src/integrations/validation/definitions/types.ts';
-import validator from '../../../../src/integrations/validation/module.ts';
+import { InvalidData } from '../../../../src/integrations/validation/definitions/errors';
+import { ValidationSchema } from '../../../../src/integrations/validation/definitions/types';
+import validator from '../../../../src/integrations/validation/module';
 
 const INVALID_STRING = 'Invalid string';
 const INVALID_NUMBER = 'Invalid number';
