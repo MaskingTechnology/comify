@@ -119,6 +119,7 @@ const HTTP_URL_VALIDATION: ValidationSchema = {
         }
     }
 };
+
 const HTTPS_URL_VALIDATION: ValidationSchema = {
     url: {
         message: INVALID_URL,
