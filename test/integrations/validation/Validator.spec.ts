@@ -226,6 +226,75 @@ describe('Validator', () =>
         });
     });
 
+    describe('Url values', () =>
+    {
+        it('should reject an invalid url', () =>
+        {
+            const input = { url: 'this is an invalid url' };
+            const test = () => validator.validate(input, SCHEMAS.URLNO);
+
+            expect(test).toThrowError(ERRORS.URL);
+        });
+
+        it('should accept a valid url without protocol check', () =>
+        {
+            const input = { url: 'someprotocol://masking.tech/images/peter.jpg' };
+            validator.validate(input, SCHEMAS.URLNO);
+        });
+
+        it('should accept a valid http url', () =>
+        {
+            const input = { url: 'http://masking.tech/images/peter.jpg' };
+            validator.validate(input, SCHEMAS.URLHTTP);
+        });
+
+        it('should accept a valid https url', () =>
+        {
+            const input = { url: 'https://masking.tech/images/peter.jpg' };
+            validator.validate(input, SCHEMAS.URLHTTPS);
+        });
+
+        it('should reject a valid url without protocol', () =>
+        {
+            const input = { url: 'masking.tech/images/peter.jpg' };
+            const test = () => validator.validate(input, SCHEMAS.URLALL);
+
+            expect(test).toThrowError(ERRORS.URL);
+        });
+
+        it('should reject an url with ftp protocol', () =>
+        {
+            const input = { url: 'ftp://masking.tech/images/peter.jpg' };
+            const test = () => validator.validate(input, SCHEMAS.URLALL);
+
+            expect(test).toThrowError(ERRORS.URL);
+        });
+
+        it('should reject an url with http protocol', () =>
+        {
+            const input = { url: 'http://masking.tech/images/peter.jpg' };
+            const test = () => validator.validate(input, SCHEMAS.URLHTTPS);
+
+            expect(test).toThrowError(ERRORS.URL);
+        });
+
+        it('should reject an url with https protocol', () =>
+        {
+            const input = { url: 'https://masking.tech/images/peter.jpg' };
+            const test = () => validator.validate(input, SCHEMAS.URLHTTP);
+
+            expect(test).toThrowError(ERRORS.URL);
+        });
+
+        it('should reject a too long url', () =>
+        {
+            const input = { url: 'masking.tech/images/peter.jpg' };
+            const test = () => validator.validate(input, SCHEMAS.URLNO);
+
+            expect(test).toThrowError(ERRORS.URL);
+        });
+    });
+
     describe('Array values', () =>
     {
         it('should accept a valid array', () =>

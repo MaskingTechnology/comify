@@ -10,6 +10,7 @@ const INVALID_DATE = 'Invalid date';
 const INVALID_ID = 'Invalid id';
 const INVALID_EMAIL = 'Invalid email';
 const INVALID_LIST = 'Invalid list';
+const INVALID_URL = 'Invalid url';
 
 const STRING_VALIDATION: ValidationSchema = {
     string: {
@@ -86,6 +87,44 @@ const ARRAY_VALIDATION: ValidationSchema = {
                     maxLength: 5
                 }
             }
+        }
+    }
+};
+
+const ALL_PROTOCOLS_URL_VALIDATION: ValidationSchema = {
+    url: {
+        message: INVALID_URL,
+        URL: {
+            required: true,
+            protocols: ['http', 'https']
+        }
+    }
+};
+
+const NO_PROTOCOL_URL_VALIDATION: ValidationSchema = {
+    url: {
+        message: INVALID_URL,
+        URL: {
+            required: true
+        }
+    }
+};
+
+const HTTP_URL_VALIDATION: ValidationSchema = {
+    url: {
+        message: INVALID_URL,
+        URL: {
+            required: true,
+            protocols: ['http']
+        }
+    }
+};
+const HTTPS_URL_VALIDATION: ValidationSchema = {
+    url: {
+        message: INVALID_URL,
+        URL: {
+            required: true,
+            protocols: ['https']
         }
     }
 };
@@ -169,6 +208,7 @@ const INVALID_DATE_ERROR = new InvalidData(new Map().set('date', INVALID_DATE));
 const INVALID_UUID_ERROR = new InvalidData(new Map().set('id', INVALID_ID));
 const INVALID_EMAIL_ERROR = new InvalidData(new Map().set('email', INVALID_EMAIL));
 const INVALID_ARRAY_ERROR = new InvalidData(new Map().set('list', INVALID_LIST));
+const INVALID_URL_ERROR = new InvalidData(new Map().set('url', INVALID_URL));
 const ADDITIONAL_FIELDS_ERROR = new InvalidData(new Map().set('age, length', 'Invalid field(s)'));
 const INVALID_MIXED_SCHEMA_ERROR = new InvalidData(new Map().set('boolean', INVALID_BOOLEAN).set('list', INVALID_LIST));
 
@@ -180,6 +220,10 @@ const SCHEMAS = {
     UUID: UUID_VALIDATION,
     EMAIL: EMAIL_VALIDATION,
     ARRAY: ARRAY_VALIDATION,
+    URLNO: NO_PROTOCOL_URL_VALIDATION,
+    URLALL: ALL_PROTOCOLS_URL_VALIDATION,
+    URLHTTPS: HTTPS_URL_VALIDATION,
+    URLHTTP: HTTP_URL_VALIDATION,
     OPTIONAL: OPTIONAL_VALIDATION,
     MIXED_SCHEMA: MIXED_SCHEMA_VALIDATION
 };
@@ -192,6 +236,7 @@ const ERRORS = {
     UUID: INVALID_UUID_ERROR,
     EMAIL: INVALID_EMAIL_ERROR,
     ARRAY: INVALID_ARRAY_ERROR,
+    URL: INVALID_URL_ERROR,
     ADDITIONAL_FIELDS: ADDITIONAL_FIELDS_ERROR,
     MIXED_SCHEMA: INVALID_MIXED_SCHEMA_ERROR
 };

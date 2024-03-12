@@ -29,6 +29,10 @@ export type DateProperties = DefaultProperties;
 export type UUIDProperties = DefaultProperties;
 export type EmailProperties = DefaultProperties;
 
+export type URLProperties = DefaultProperties & {
+    protocols?: string[];
+};
+
 export type Message = {
     message: string;
 };
@@ -41,6 +45,7 @@ export type Validations = {
     UUID: UUIDProperties;
     EMAIL: EmailProperties;
     ARRAY: ArrayProperties;
+    URL: URLProperties;
 };
 
 export type ValidationSchema = Record<string, Partial<Validations | Message>>;
