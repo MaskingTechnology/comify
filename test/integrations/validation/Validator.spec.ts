@@ -228,68 +228,55 @@ describe('Validator', () =>
 
     describe('Url values', () =>
     {
-        it('should reject an invalid url', () =>
+        it('should reject an invalid url with protocol', () =>
         {
-            const input = { url: 'this is an invalid url' };
-            const test = () => validator.validate(input, SCHEMAS.URLNO);
+            const input = { url: 'http://this is an invalid url' };
+            const test = () => validator.validate(input, SCHEMAS.URL_HTTP_HTTPS);
 
             expect(test).toThrowError(ERRORS.URL);
         });
 
-        it('should accept a valid url without protocol check', () =>
+        it('should reject a url without protocol', () =>
         {
-            const input = { url: 'someprotocol://masking.tech/images/peter.jpg' };
-            validator.validate(input, SCHEMAS.URLNO);
+            const input = { url: 'masking.tech/images/peter.jpg' };
+            const test = () => validator.validate(input, SCHEMAS.URL_HTTP_HTTPS);
+
+            expect(test).toThrowError(ERRORS.URL);
         });
 
-        it('should accept a valid http url', () =>
+        it('should accept a valid url when no protocols are configured', () =>
         {
-            const input = { url: 'http://masking.tech/images/peter.jpg' };
-            validator.validate(input, SCHEMAS.URLHTTP);
+            const input = { url: 'someprotocol://masking.tech/images/peter.jpg' };
+            const result = validator.validate(input, SCHEMAS.URL_NO_PROTOCOL);
+
+            expect(result).toBeUndefined();
         });
 
         it('should accept a valid https url', () =>
         {
-            const input = { url: 'https://masking.tech/images/peter.jpg' };
-            validator.validate(input, SCHEMAS.URLHTTPS);
+            const httpInput = { url: 'https://masking.tech/images/peter.jpg' };
+            const httpsResult = validator.validate(httpInput, SCHEMAS.URL_HTTP_HTTPS);
+
+            expect(httpsResult).toBeUndefined();
         });
 
-        it('should reject a valid url without protocol', () =>
+        it('should reject an url with protocol not configured', () =>
         {
-            const input = { url: 'masking.tech/images/peter.jpg' };
-            const test = () => validator.validate(input, SCHEMAS.URLALL);
+            const FtpInput = { url: 'ftp://masking.tech/images/peter.jpg' };
+            const FtpTest = () => validator.validate(FtpInput, SCHEMAS.URL_HTTP_HTTPS);
 
-            expect(test).toThrowError(ERRORS.URL);
-        });
+            expect(FtpTest).toThrowError(ERRORS.URL);
 
-        it('should reject an url with ftp protocol', () =>
-        {
-            const input = { url: 'ftp://masking.tech/images/peter.jpg' };
-            const test = () => validator.validate(input, SCHEMAS.URLALL);
+            const HttpInput = { url: 'http://masking.tech/images/peter.jpg' };
+            const HttpTest = () => validator.validate(HttpInput, SCHEMAS.URL_HTTPS_FTP);
 
-            expect(test).toThrowError(ERRORS.URL);
-        });
-
-        it('should reject an url with http protocol', () =>
-        {
-            const input = { url: 'http://masking.tech/images/peter.jpg' };
-            const test = () => validator.validate(input, SCHEMAS.URLHTTPS);
-
-            expect(test).toThrowError(ERRORS.URL);
-        });
-
-        it('should reject an url with https protocol', () =>
-        {
-            const input = { url: 'https://masking.tech/images/peter.jpg' };
-            const test = () => validator.validate(input, SCHEMAS.URLHTTP);
-
-            expect(test).toThrowError(ERRORS.URL);
+            expect(HttpTest).toThrowError(ERRORS.URL);
         });
 
         it('should reject a too long url', () =>
         {
-            const input = { url: 'masking.tech/images/peter.jpg' };
-            const test = () => validator.validate(input, SCHEMAS.URLNO);
+            const input = { url: 'https://' + 'masking.tech/images'.repeat(110) + '/peter.jpg' };
+            const test = () => validator.validate(input, SCHEMAS.URL_NO_PROTOCOL);
 
             expect(test).toThrowError(ERRORS.URL);
         });
