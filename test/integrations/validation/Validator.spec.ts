@@ -1,6 +1,6 @@
 
 import { describe, expect, it } from 'vitest';
-import { ERRORS, SCHEMAS, validator } from './_fixtures/Validator.fixtures';
+import { ERRORS, SCHEMAS, TOO_LONG_URL, validator } from './_fixtures/Validator.fixtures';
 
 describe('Validator', () =>
 {
@@ -223,6 +223,62 @@ describe('Validator', () =>
             const test = () => validator.validate(input, SCHEMAS.EMAIL);
 
             expect(test).toThrowError(ERRORS.EMAIL);
+        });
+    });
+
+    describe('Url values', () =>
+    {
+        it('should reject an invalid url with protocol', () =>
+        {
+            const input = { url: 'https://this is an invalid url' };
+            const test = () => validator.validate(input, SCHEMAS.URL_HTTPS_FTP);
+
+            expect(test).toThrowError(ERRORS.URL);
+        });
+
+        it('should reject an url without protocol', () =>
+        {
+            const input = { url: 'example.com/folder/file.ext' };
+            const test = () => validator.validate(input, SCHEMAS.URL_HTTPS_FTP);
+
+            expect(test).toThrowError(ERRORS.URL);
+        });
+
+        it('should accept a valid url when no protocols are configured', () =>
+        {
+            const input = { url: 'someprotocol://example.com/folder/file.ext' };
+            const result = validator.validate(input, SCHEMAS.URL_NO_PROTOCOL);
+
+            expect(result).toBeUndefined();
+        });
+
+        it('should accept valid urls with configured protocols', () =>
+        {
+            const httpsInput = { url: 'https://example.com/folder/file.ext' };
+            const httpsResult = validator.validate(httpsInput, SCHEMAS.URL_HTTPS_FTP);
+
+            expect(httpsResult).toBeUndefined();
+
+            const ftpInput = { url: 'ftp://example.com/folder/file.ext' };
+            const ftpResult = validator.validate(ftpInput, SCHEMAS.URL_HTTPS_FTP);
+
+            expect(ftpResult).toBeUndefined();
+        });
+
+        it('should reject an url with a protocol that is not configured', () =>
+        {
+            const httpInput = { url: 'http://example.com/folder/file.ext' };
+            const test = () => validator.validate(httpInput, SCHEMAS.URL_HTTPS_FTP);
+
+            expect(test).toThrowError(ERRORS.URL);
+        });
+
+        it('should reject an url that is too long', () =>
+        {
+            const input = { url: TOO_LONG_URL };
+            const test = () => validator.validate(input, SCHEMAS.URL_NO_PROTOCOL);
+
+            expect(test).toThrowError(ERRORS.URL);
         });
     });
 
