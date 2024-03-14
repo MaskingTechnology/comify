@@ -1,6 +1,6 @@
 
 import { describe, expect, it } from 'vitest';
-import { ERRORS, SCHEMAS, validator } from './_fixtures/Validator.fixtures';
+import { ERRORS, SCHEMAS, TOO_LONG_URL, validator } from './_fixtures/Validator.fixtures';
 
 describe('Validator', () =>
 {
@@ -230,52 +230,52 @@ describe('Validator', () =>
     {
         it('should reject an invalid url with protocol', () =>
         {
-            const input = { url: 'http://this is an invalid url' };
-            const test = () => validator.validate(input, SCHEMAS.URL_HTTP_HTTPS);
+            const input = { url: 'https://this is an invalid url' };
+            const test = () => validator.validate(input, SCHEMAS.URL_HTTPS_FTP);
 
             expect(test).toThrowError(ERRORS.URL);
         });
 
-        it('should reject a url without protocol', () =>
+        it('should reject an url without protocol', () =>
         {
-            const input = { url: 'masking.tech/images/peter.jpg' };
-            const test = () => validator.validate(input, SCHEMAS.URL_HTTP_HTTPS);
+            const input = { url: 'example.com/folder/file.ext' };
+            const test = () => validator.validate(input, SCHEMAS.URL_HTTPS_FTP);
 
             expect(test).toThrowError(ERRORS.URL);
         });
 
         it('should accept a valid url when no protocols are configured', () =>
         {
-            const input = { url: 'someprotocol://masking.tech/images/peter.jpg' };
+            const input = { url: 'someprotocol://example.com/folder/file.ext' };
             const result = validator.validate(input, SCHEMAS.URL_NO_PROTOCOL);
 
             expect(result).toBeUndefined();
         });
 
-        it('should accept a valid https url', () =>
+        it('should accept valid urls with configured protocols', () =>
         {
-            const httpInput = { url: 'https://masking.tech/images/peter.jpg' };
-            const httpsResult = validator.validate(httpInput, SCHEMAS.URL_HTTP_HTTPS);
+            const httpsInput = { url: 'https://example.com/folder/file.ext' };
+            const httpsResult = validator.validate(httpsInput, SCHEMAS.URL_HTTPS_FTP);
 
             expect(httpsResult).toBeUndefined();
+
+            const ftpInput = { url: 'ftp://example.com/folder/file.ext' };
+            const ftpResult = validator.validate(ftpInput, SCHEMAS.URL_HTTPS_FTP);
+
+            expect(ftpResult).toBeUndefined();
         });
 
-        it('should reject an url with protocol not configured', () =>
+        it('should reject an url with a protocol that is not configured', () =>
         {
-            const FtpInput = { url: 'ftp://masking.tech/images/peter.jpg' };
-            const FtpTest = () => validator.validate(FtpInput, SCHEMAS.URL_HTTP_HTTPS);
+            const httpInput = { url: 'http://example.com/folder/file.ext' };
+            const test = () => validator.validate(httpInput, SCHEMAS.URL_HTTPS_FTP);
 
-            expect(FtpTest).toThrowError(ERRORS.URL);
-
-            const HttpInput = { url: 'http://masking.tech/images/peter.jpg' };
-            const HttpTest = () => validator.validate(HttpInput, SCHEMAS.URL_HTTPS_FTP);
-
-            expect(HttpTest).toThrowError(ERRORS.URL);
+            expect(test).toThrowError(ERRORS.URL);
         });
 
-        it('should reject a too long url', () =>
+        it('should reject an url that is too long', () =>
         {
-            const input = { url: 'https://' + 'masking.tech/images'.repeat(110) + '/peter.jpg' };
+            const input = { url: TOO_LONG_URL };
             const test = () => validator.validate(input, SCHEMAS.URL_NO_PROTOCOL);
 
             expect(test).toThrowError(ERRORS.URL);

@@ -11,6 +11,7 @@ const INVALID_ID = 'Invalid id';
 const INVALID_EMAIL = 'Invalid email';
 const INVALID_LIST = 'Invalid list';
 const INVALID_URL = 'Invalid url';
+const TOO_LONG_URL = 'https://' + 'example.com/images'.repeat(115) + '/peter.jpg';
 
 const STRING_VALIDATION: ValidationSchema = {
     string: {
@@ -91,16 +92,6 @@ const ARRAY_VALIDATION: ValidationSchema = {
     }
 };
 
-const HTTP_HTTPS_PROTOCOLS_URL_VALIDATION: ValidationSchema = {
-    url: {
-        message: INVALID_URL,
-        URL: {
-            required: true,
-            protocols: ['http', 'https']
-        }
-    }
-};
-
 const NO_PROTOCOL_URL_VALIDATION: ValidationSchema = {
     url: {
         message: INVALID_URL,
@@ -115,7 +106,7 @@ const HTTPS_FTP_URL_VALIDATION: ValidationSchema = {
         message: INVALID_URL,
         URL: {
             required: true,
-            protocols: ['https, ftp']
+            protocols: ['https', 'ftp']
         }
     }
 };
@@ -211,7 +202,6 @@ const SCHEMAS = {
     UUID: UUID_VALIDATION,
     EMAIL: EMAIL_VALIDATION,
     ARRAY: ARRAY_VALIDATION,
-    URL_HTTP_HTTPS: HTTP_HTTPS_PROTOCOLS_URL_VALIDATION,
     URL_HTTPS_FTP: HTTPS_FTP_URL_VALIDATION,
     URL_NO_PROTOCOL: NO_PROTOCOL_URL_VALIDATION,
     OPTIONAL: OPTIONAL_VALIDATION,
@@ -231,5 +221,5 @@ const ERRORS = {
     MIXED_SCHEMA: INVALID_MIXED_SCHEMA_ERROR
 };
 
-export { ERRORS, SCHEMAS, validator };
+export { ERRORS, SCHEMAS, TOO_LONG_URL, validator };
 
