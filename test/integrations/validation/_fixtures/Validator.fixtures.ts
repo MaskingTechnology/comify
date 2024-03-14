@@ -11,7 +11,7 @@ const INVALID_ID = 'Invalid id';
 const INVALID_EMAIL = 'Invalid email';
 const INVALID_LIST = 'Invalid list';
 const INVALID_URL = 'Invalid url';
-const TOO_LONG_URL = 'https://' + 'example.com/images'.repeat(115) + '/peter.jpg';
+const TOO_LONG_URL = 'https://example.com/' + 'very_long_folder_name/'.repeat(115);
 
 const STRING_VALIDATION: ValidationSchema = {
     string: {
