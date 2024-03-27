@@ -7,11 +7,11 @@ export type Props = {
     followHandler: () => Promise<void>;
 };
 
-type States = 'establish' | 'establishing' | 'established';
+type States = 'unestablished' | 'establishing' | 'established';
 
 export default function Component({ isFollowing, followHandler }: Props)
 {
-    const [status, setStatus] = useState<States>('establish');
+    const [status, setStatus] = useState<States>(isFollowing ? 'established' : 'unestablished');
 
     const handleClick = async () =>  
     {
@@ -22,7 +22,7 @@ export default function Component({ isFollowing, followHandler }: Props)
         setStatus('established');
     };
 
-    const state = status === 'established' || isFollowing ? 'disabled' : 'secondary';
+    const state = status !== 'unestablished' ? 'disabled' : 'secondary';
 
     let text: string;
 

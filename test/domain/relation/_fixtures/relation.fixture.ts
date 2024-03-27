@@ -48,17 +48,26 @@ await database.createRecord(RECORD_TYPE_RELATION, relation5);
 await database.createRecord(RECORD_TYPE_RELATION, relation6);
 await database.createRecord(RECORD_TYPE_RELATION, relation7);
 
-const QUERY0: RecordQuery = {
+const QUERY_EXISTING_RELATION: RecordQuery = {
     followerId: { EQUALS: REQUESTER2.id },
     followingId: { EQUALS: CREATOR0 }
 };
 
-const QUERY1: RecordQuery = {
+const QUERY_NON_EXISTING_RELATION: RecordQuery = {
     followerId: { EQUALS: johnDoe.id },
     followingId: { EQUALS: CREATOR1 }
 };
 
 const UNKNOWN_REQUESTER = johnDoe;
 
-export { CREATOR0, CREATOR1, CREATOR2, CREATOR3, CREATOR4, CREATOR5, QUERY0, QUERY1, RECORD_TYPE_CREATOR, RECORD_TYPE_RELATION, RELATION1, RELATION2, REQUESTER1, REQUESTER2, RelationAlreadyExists, RelationData, SortOptions, UNKNOWN_REQUESTER, database, establish, explore, getFollowers, getFollowing };
+export
+{
+    CREATOR0, CREATOR1, CREATOR2, CREATOR3, CREATOR4, CREATOR5,
+    QUERY_EXISTING_RELATION, QUERY_NON_EXISTING_RELATION,
+    RECORD_TYPE_CREATOR, RECORD_TYPE_RELATION,
+    RELATION1, RELATION2,
+    REQUESTER1, REQUESTER2,
+    RelationAlreadyExists, RelationData, SortOptions, UNKNOWN_REQUESTER,
+    database, establish, explore, getFollowers, getFollowing
+};
 

@@ -3,7 +3,7 @@ import CreatorData from './data/CreatorData';
 import retrieveData from './data/retrieve';
 import updateData from './data/update';
 
-export default async function increaseFollowingCount(creatorId: string): Promise<void>
+export default async function increaseFollowingCount(creatorId: string): Promise<number>
 {
     const creator = await retrieveData(creatorId);
 
@@ -20,5 +20,7 @@ export default async function increaseFollowingCount(creatorId: string): Promise
         creator.followingCount + 1
     );
 
-    return updateData(updatedCreator);
+    await updateData(updatedCreator);
+
+    return updatedCreator.followingCount;
 }

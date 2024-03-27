@@ -1,11 +1,10 @@
 
 import type Requester from '../authentication/Requester';
 import decreaseFollowerCount from '../creator/decreaseFollowerCount';
-import decreaseFollowingCount from '../creator/decreaseFollowingCount';
 import increaseFollowerCount from '../creator/increaseFollowerCount';
 import increaseFollowingCount from '../creator/increaseFollowingCount';
 import removeRelation from '../relation/data/remove';
-import create from './data/create';
+import createRelation from './data/create';
 import exists from './data/exists';
 import RelationAlreadyExists from './errors/RelationAlreadyExists';
 
@@ -18,23 +17,21 @@ export default async function establish(requester: Requester, followingId: strin
         throw new RelationAlreadyExists();
     }
 
-    let relation, followerCount, followingCount;
+    let relation, followerCount;
 
     try
     {
-        relation = await create(requester.id, followingId);
+        relation = await createRelation(requester.id, followingId);
         followerCount = await increaseFollowerCount(followingId);
-        followingCount = await increaseFollowingCount(requester.id);
-
+        await increaseFollowingCount(requester.id);
     }
     catch (error: unknown)
     {
         const relationId = relation?.id ?? '';
         const undoRelation = relation !== undefined ? removeRelation(relationId) : Promise.resolve();
         const undoFollowerCount = followerCount !== undefined ? decreaseFollowerCount(followingId) : Promise.resolve();
-        const undoFollowingCount = followingCount !== undefined ? decreaseFollowingCount(requester.id) : Promise.resolve();
 
-        await Promise.all([undoRelation, undoFollowerCount, undoFollowingCount]);
+        await Promise.all([undoRelation, undoFollowerCount]);
 
         throw error;
     }
