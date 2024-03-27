@@ -2,11 +2,13 @@
 import { useEffect, useState } from 'react';
 import johnDoe from '../../domain/authentication/johnDoe';
 import SortOptions from '../../domain/relation/definitions/SortOptions';
+import establishRelation from '../../domain/relation/establish';
 import exploreRelations from '../../domain/relation/explore';
 import type RelationView from '../../domain/relation/view/RelationView';
 import { Loading, OrderAndSearchRow, RelationPanelList } from '../components/module';
 import { Column } from '../designsystem/module';
 import awaitData from '../utils/awaitData';
+
 
 export default function Feature()
 {
@@ -19,9 +21,10 @@ export default function Feature()
         console.log(`Order changed from ${oldKey} to ${newKey}`);
     };
 
-    const handleFollow = (relation: RelationView) =>
+    const handleFollow = (relation: RelationView) => 
     {
-        console.log(`Followed ${relation.creator.fullName}`);
+
+        return establishRelation(johnDoe, relation.creator.id);
     };
 
     useEffect(() => awaitData(getRelations, setRelations), []);

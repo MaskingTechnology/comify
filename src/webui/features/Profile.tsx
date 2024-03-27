@@ -32,7 +32,7 @@ export default function Feature()
         return <Loading />;
     }
 
-    const handleFollow = () =>
+    const handleFollow = async () =>
     {
         console.log(`Followed ${relation.creator.fullName}`);
     };

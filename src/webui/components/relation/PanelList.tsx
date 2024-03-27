@@ -6,7 +6,7 @@ import Panel from './Panel';
 
 export type Props = {
     relations: RelationView[];
-    followHandler: (relation: RelationView) => void;
+    followHandler: (relation: RelationView) => Promise<void>;
 };
 
 export default function Component({ relations, followHandler }: Props)
