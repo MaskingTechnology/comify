@@ -16,19 +16,19 @@ describe('domain/relation/establish', () =>
     {
         const promise = establish(REQUESTER1, CREATOR1);
 
-        expect(promise).rejects.toStrictEqual(new RelationAlreadyExists);
+        expect(promise).rejects.toStrictEqual(new RelationAlreadyExists());
     });
 
     it('Should rollback created data after failure', async () =>
     {
+        // This should fail at the action when incrementing the creator's following count
         const promise = establish(UNKNOWN_REQUESTER, CREATOR1);
-
-        expect(promise).rejects.toThrow('Record not found');
+        await expect(promise).rejects.toThrow('Record not found');
 
         const creator = await database.readRecord(RECORD_TYPE_CREATOR, CREATOR0);
-        const relation = await database.findRecord(RECORD_TYPE_RELATION, QUERY_NON_EXISTING_RELATION);
-
-        expect(relation).toBeUndefined;
         expect(creator.followerCount).toBe(1);
+
+        const relation = await database.findRecord(RECORD_TYPE_RELATION, QUERY_NON_EXISTING_RELATION);
+        expect(relation).toBeUndefined();
     });
 });
