@@ -5,7 +5,7 @@ import Counters from './Counters';
 
 export type Props = {
     relation: RelationView;
-    followHandler: () => void;
+    followHandler: () => Promise<void>;
 };
 
 export default function Component({ relation, followHandler }: Props)

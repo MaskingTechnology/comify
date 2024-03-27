@@ -14,6 +14,7 @@
     "./domain/post/getTimeline": { "default": {  "access": "public" } },
 
     "./domain/relation/explore": { "default": {  "access": "public" } },
+    "./domain/relation/establish": { "default": { "access": "public" }},
     "./domain/relation/get": { "default": {  "access": "public" } },
     "./domain/relation/getFollowers": { "default": {  "access": "public" } },
     "./domain/relation/getFollowing": { "default": {  "access": "public" } }

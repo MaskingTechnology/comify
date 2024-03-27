@@ -6,7 +6,7 @@ import FollowRow from './elementary/FollowRow';
 export type Props = {
     relation: RelationView;
     date: Date;
-    followHandler: () => void;
+    followHandler: () => Promise<void>;
 };
 
 export default function Component({ relation, date, followHandler }: Props)

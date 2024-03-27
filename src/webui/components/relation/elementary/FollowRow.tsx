@@ -5,7 +5,7 @@ import FollowButton from './FollowButton';
 
 export type Props = {
     isFollowing: boolean;
-    followHandler: () => void;
+    followHandler: () => Promise<void>;
     children: React.ReactNode;
 };
 

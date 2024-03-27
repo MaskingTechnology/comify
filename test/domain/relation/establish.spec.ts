@@ -1,20 +1,34 @@
 
 import { describe, expect, it } from 'vitest';
-import { CREATOR0, CREATOR1, REQUESTER1, REQUESTER2, RelationAlreadyExists, establish } from './_fixtures/relation.fixture';
+import { CREATOR0, CREATOR1, QUERY_EXISTING_RELATION, QUERY_NON_EXISTING_RELATION, RECORD_TYPE_CREATOR, RECORD_TYPE_RELATION, REQUESTER1, REQUESTER2, RelationAlreadyExists, UNKNOWN_REQUESTER, database, establish } from './_fixtures/relation.fixture';
 
 describe('domain/relation/establish', () =>
 {
     it('should establish a relation', async () =>
     {
-        const relation = await establish(REQUESTER2, CREATOR0);
+        await establish(REQUESTER2, CREATOR0);
+        const relation = await database.findRecord(RECORD_TYPE_RELATION, QUERY_EXISTING_RELATION);
 
-        expect(relation.id).toBeDefined();
+        expect(relation?.id).toBeDefined();
     });
 
     it('should NOT establish a duplicate relation', async () =>
     {
         const promise = establish(REQUESTER1, CREATOR1);
 
-        expect(promise).rejects.toStrictEqual(new RelationAlreadyExists);
+        expect(promise).rejects.toStrictEqual(new RelationAlreadyExists());
+    });
+
+    it('Should rollback created data after failure', async () =>
+    {
+        // This should fail at the action when incrementing the creator's following count
+        const promise = establish(UNKNOWN_REQUESTER, CREATOR1);
+        await expect(promise).rejects.toThrow('Record not found');
+
+        const creator = await database.readRecord(RECORD_TYPE_CREATOR, CREATOR0);
+        expect(creator.followerCount).toBe(1);
+
+        const relation = await database.findRecord(RECORD_TYPE_RELATION, QUERY_NON_EXISTING_RELATION);
+        expect(relation).toBeUndefined();
     });
 });
