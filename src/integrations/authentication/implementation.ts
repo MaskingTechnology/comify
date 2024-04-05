@@ -1,6 +1,6 @@
 
-import { UnknownImplementation } from './definitions/errors.js';
 import { IdentityProvider } from './definitions/interfaces.js';
+import UnknownImplementation from './errors/UnknownImplementation.js';
 import createOpenID from './implementations/openid/create.js';
 
 const implementations = new Map<string, () => IdentityProvider>([
