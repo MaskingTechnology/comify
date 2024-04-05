@@ -1,6 +1,6 @@
 
-import { FileNotFound } from '../../../../src/integrations/filestorage/definitions/errors';
 import { FileStorage } from '../../../../src/integrations/filestorage/definitions/interfaces';
+import FileNotFound from '../../../../src/integrations/filestorage/errors/FileNotFound';
 import Memory from '../../../../src/integrations/filestorage/implementations/memory/Memory';
 
 const HELLO_FILE_NAME = 'hello.txt';

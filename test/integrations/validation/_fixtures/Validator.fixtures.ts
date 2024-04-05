@@ -1,6 +1,6 @@
 
-import { InvalidData } from '../../../../src/integrations/validation/definitions/errors';
 import { ValidationSchema } from '../../../../src/integrations/validation/definitions/types';
+import InvalidData from '../../../../src/integrations/validation/errors/InvalidData';
 import validator from '../../../../src/integrations/validation/module';
 
 const INVALID_STRING = 'Invalid string';
