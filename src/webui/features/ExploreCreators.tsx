@@ -23,7 +23,6 @@ export default function Feature()
 
     const handleFollow = (relation: RelationView) => 
     {
-
         return establishRelation(johnDoe, relation.creator.id);
     };
 

@@ -7,8 +7,8 @@ import EngagementsRow from './elementary/EngagementRow';
 
 export type Props = {
     post: PostView;
-    followHandler: () => void;
-    rateHandler: () => void;
+    followHandler: () => Promise<void>;
+    rateHandler: () => Promise<boolean>;
 };
 
 export default function Component({ post, followHandler, rateHandler }: Props)
