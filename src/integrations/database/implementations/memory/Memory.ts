@@ -1,8 +1,10 @@
 
 import { LogicalOperators, QueryOperators, SortDirections } from '../../definitions/constants.js';
-import { NotConnected, RecordNotFound, RecordNotUpdated } from '../../definitions/errors.js';
 import { Database } from '../../definitions/interfaces.js';
 import { QueryExpression, QueryMultiExpressionStatement, QueryOperator, QuerySingleExpressionStatement, QueryStatement, RecordData, RecordField, RecordQuery, RecordSort, RecordValue } from '../../definitions/types.js';
+import NotConnected from '../../errors/NotConnected.js';
+import RecordNotFound from '../../errors/RecordNotFound.js';
+import RecordNotUpdated from '../../errors/RecordNotUpdated.js';
 
 type FilterFunction = (record: RecordData) => boolean;
 
