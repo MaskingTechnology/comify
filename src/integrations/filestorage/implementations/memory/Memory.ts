@@ -1,6 +1,7 @@
 
-import { FileNotFound, NotConnected } from '../../definitions/errors.js';
 import { FileStorage } from '../../definitions/interfaces.js';
+import FileNotFound from '../../errors/FileNotFound.js';
+import NotConnected from '../../errors/NotConnected.js';
 
 export default class Memory implements FileStorage
 {
