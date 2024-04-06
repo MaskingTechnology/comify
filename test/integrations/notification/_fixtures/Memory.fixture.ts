@@ -1,6 +1,6 @@
 
-import { SubscriptionNotFound } from '../../../../src/integrations/notification/definitions/errors';
 import { NotificationService } from '../../../../src/integrations/notification/definitions/interfaces';
+import SubscriptionNotFound from '../../../../src/integrations/notification/errors/SubscriptionNotFound';
 import Memory from '../../../../src/integrations/notification/implementations/memory/Memory';
 
 const FIRST_SUBSCRIPTION_ID = 'first';

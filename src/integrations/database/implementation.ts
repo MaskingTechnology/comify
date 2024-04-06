@@ -1,6 +1,6 @@
 
-import { UnknownImplementation } from './definitions/errors.js';
 import { Database } from './definitions/interfaces.js';
+import UnknownImplementation from './errors/UnknownImplementation.js';
 import createMemoryDb from './implementations/memory/create.js';
 import createMongoDb from './implementations/mongodb/create.js';
 
