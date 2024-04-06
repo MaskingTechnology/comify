@@ -46,11 +46,10 @@ const records = await searchRecords(ITEM_COLLECTION, query, undefined, sort, lim
 
 export * from './definitions/constants.js';
 export * from './definitions/types.js';
-export * from './errors/DatabaseError.js';
-export * from './errors/NotConnected.js';
-export * from './errors/RecordNotCreated.js';
-export * from './errors/RecordNotDeleted.js';
-export * from './errors/RecordNotFound.js';
-export * from './errors/RecordNotUpdated.js';
+export { default as DatabaseError } from './errors/DatabaseError.js';
+export { default as NotConnected } from './errors/NotConnected.js';
+export { default as RecordNotCreated } from './errors/RecordNotCreated.js';
+export { default as RecordNotDeleted } from './errors/RecordNotDeleted.js';
+export { default as RecordNotFound } from './errors/RecordNotFound.js';
+export { default as RecordNotUpdated } from './errors/RecordNotUpdated.js';
 export { default } from './implementation.js';
-
