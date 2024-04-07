@@ -3,9 +3,9 @@ import type Requester from '../authentication/Requester';
 import decreaseFollowerCount from '../creator/decreaseFollowerCount';
 import increaseFollowerCount from '../creator/increaseFollowerCount';
 import increaseFollowingCount from '../creator/increaseFollowingCount';
-import removeRelation from '../relation/data/remove';
 import createRelation from './data/create';
 import exists from './data/exists';
+import removeRelation from './data/remove';
 import RelationAlreadyExists from './errors/RelationAlreadyExists';
 
 export default async function establish(requester: Requester, followingId: string): Promise<void>

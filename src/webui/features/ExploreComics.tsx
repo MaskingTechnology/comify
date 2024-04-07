@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import johnDoe from '../../domain/authentication/johnDoe';
 import explorePosts from '../../domain/post/explore';
+import toggleRating from '../../domain/post/toggleRating';
 import type PostView from '../../domain/post/view/PostView';
 import type RelationView from '../../domain/relation/view/RelationView';
 import { Loading, OrderRow, PostPanelList } from '../components/module';
@@ -22,11 +23,13 @@ export default function Feature()
     const handleFollow = (relation: RelationView) =>
     {
         console.log(`Followed ${relation.creator.fullName}`);
+
+        return Promise.resolve();
     };
 
     const handleRate = (post: PostView) =>
     {
-        console.log(`Rated ${post.id}`);
+        return toggleRating(johnDoe, post.id);
     };
 
     useEffect(() => awaitData(getPosts, setPosts), []);

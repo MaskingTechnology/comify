@@ -12,6 +12,7 @@
     "./domain/post/explore": { "default": {  "access": "public" } },
     "./domain/post/getByCreator": { "default": {  "access": "public" } },
     "./domain/post/getTimeline": { "default": {  "access": "public" } },
+    "./domain/post/toggleRating": { "default": {  "access": "public" } },
 
     "./domain/relation/explore": { "default": {  "access": "public" } },
     "./domain/relation/establish": { "default": { "access": "public" }},
