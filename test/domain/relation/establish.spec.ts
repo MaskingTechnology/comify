@@ -10,6 +10,12 @@ describe('domain/relation/establish', () =>
         const relation = await database.findRecord(RECORD_TYPE_RELATION, QUERY_EXISTING_RELATION);
 
         expect(relation?.id).toBeDefined();
+
+        const creator0 = await database.readRecord(RECORD_TYPE_CREATOR, REQUESTER2.id);
+        expect(creator0.followingCount).toBe(1);
+
+        const creator1 = await database.readRecord(RECORD_TYPE_CREATOR, CREATOR0);
+        expect(creator1.followerCount).toBe(1);
     });
 
     it('should NOT establish a duplicate relation', async () =>
