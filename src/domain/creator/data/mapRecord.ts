@@ -1,5 +1,5 @@
 
-import { RecordData } from '../../../integrations/database/module';
+import type { RecordData } from '../../../integrations/database/module';
 import CreatorData from './CreatorData';
 
 export default function mapRecord(record: RecordData): CreatorData

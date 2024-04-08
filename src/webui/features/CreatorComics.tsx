@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import johnDoe from '../../domain/authentication/johnDoe';
 import getCreatorPosts from '../../domain/post/getByCreator';
+import toggleRating from '../../domain/post/toggleRating';
 import type PostView from '../../domain/post/view/PostView';
 import { Loading, PostPanelGrid } from '../components/module';
 import { useCreatorContext } from '../contexts/CreatorContext';
@@ -17,6 +18,11 @@ export default function Feature()
 
     const getPosts = () => getCreatorPosts(johnDoe, creator.id);
 
+    const handleRate = (post: PostView) =>
+    {
+        return toggleRating(johnDoe, post.id);
+    };
+
     useEffect(() => awaitData(getPosts, setPosts), [creator]);
 
     if (posts === undefined)
@@ -25,6 +31,6 @@ export default function Feature()
     }
 
     return <Column gap='small' alignX='stretch'>
-        <PostPanelGrid posts={posts} />
+        <PostPanelGrid posts={posts} rateHandler={handleRate} />
     </Column>;
 }

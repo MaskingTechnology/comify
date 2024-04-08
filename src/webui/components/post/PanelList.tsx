@@ -7,8 +7,8 @@ import LargePanel from './LargePanel';
 
 export type Props = {
     posts: PostView[];
-    followHandler: (relation: RelationView) => void;
-    rateHandler: (post: PostView) => void;
+    followHandler: (relation: RelationView) => Promise<void>;
+    rateHandler: (post: PostView) => Promise<boolean>;
 };
 
 export default function Component({ posts, followHandler, rateHandler }: Props)
