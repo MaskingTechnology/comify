@@ -40,6 +40,7 @@
     "@types/react": "^18.2.73",
     "@types/react-dom": "^18.2.23",
     "@types/web-push": "^3.6.3",
+    "@types/node": "20.12.5",
     "@typescript-eslint/eslint-plugin": "^7.5.0",
     "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^1.4.0",
