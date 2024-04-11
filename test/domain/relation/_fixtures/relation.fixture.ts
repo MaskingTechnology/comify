@@ -65,9 +65,8 @@ export
     CREATOR0, CREATOR1, CREATOR2, CREATOR3, CREATOR4, CREATOR5,
     QUERY_EXISTING_RELATION, QUERY_NON_EXISTING_RELATION,
     RECORD_TYPE_CREATOR, RECORD_TYPE_RELATION,
-    RELATION1, RELATION2,
-    REQUESTER1, REQUESTER2,
+    RELATION1, RELATION2, REQUESTER1, REQUESTER2,
     RelationAlreadyExists, RelationData, SortOptions, UNKNOWN_REQUESTER,
-    database, establish, explore, getFollowers, getFollowing
+    database, establish, explore, getFollowers, getFollowing, relation2
 };
 
