@@ -17,7 +17,8 @@
     "lint": "eslint . --ext .ts,.tsx",
     "changelog": "auto-changelog --template changelog.hbs -p -u --commit-limit false --hide-empty-releases true",
     "changelog-debug": "auto-changelog --template changelog.hbs -p --template json --output changelog-data.json",
-    "prepublishOnly": "npm run clean && npm run build"
+    "review": "npm run build && npm run lint && npm run test",
+    "rebuild": "npm run clean && npm run build && npm run standalone"
   },
   "files": [
     "CHANGELOG.md",
@@ -40,6 +41,7 @@
     "@types/react": "^18.2.73",
     "@types/react-dom": "^18.2.23",
     "@types/web-push": "^3.6.3",
+    "@types/node": "20.12.5",
     "@typescript-eslint/eslint-plugin": "^7.5.0",
     "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^1.4.0",
