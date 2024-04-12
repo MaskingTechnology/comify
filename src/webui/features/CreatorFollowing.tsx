@@ -25,7 +25,7 @@ export default function Feature()
 
     const handleFollow = (relation: RelationView) =>
     {
-        console.log(`Followed ${relation.creator.fullName}`);
+
         return establishRelation(johnDoe, relation.creator.id);
     };
 

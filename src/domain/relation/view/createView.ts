@@ -3,7 +3,7 @@ import getCreatorView from '../../creator/get';
 import type RelationData from '../data/RelationData';
 import RelationView from './RelationView';
 
-export default async function createFollowingView(data: RelationData): Promise<RelationView>
+export default async function createView(data: RelationData): Promise<RelationView>
 {
     const followingView = await getCreatorView(data.followingId);
 
