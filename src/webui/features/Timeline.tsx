@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import johnDoe from '../../domain/authentication/johnDoe';
 import getTimelinePosts from '../../domain/post/getTimeline';
 import toggleRating from '../../domain/post/toggleRating';
@@ -14,6 +15,8 @@ export default function Feature()
     const [posts, setPosts] = useState<PostView[] | undefined>(undefined);
 
     const getPosts = () => getTimelinePosts(johnDoe);
+
+    const navigate = useNavigate();
 
     const handleOrderChange = (oldKey: string, newKey: string) =>
     {
@@ -32,13 +35,18 @@ export default function Feature()
         return toggleRating(johnDoe, post.id);
     };
 
+    const handleReaction = (post: PostView) =>
+    {
+        navigate(`/post/${post.id}`);
+    };
+
     useEffect(() => awaitData(getPosts, setPosts), []);
 
     return <Column gap='small' alignX='stretch'>
         <OrderRow selected='recent' orderChangeHandler={handleOrderChange} />
         {
             posts !== undefined
-                ? <PostPanelList posts={posts} followHandler={handleFollow} rateHandler={handleRate} />
+                ? <PostPanelList posts={posts} followHandler={handleFollow} rateHandler={handleRate} reactionHandler={handleReaction} />
                 : <Loading />
         }
     </Column>;

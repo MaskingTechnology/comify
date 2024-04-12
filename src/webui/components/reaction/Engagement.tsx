@@ -5,14 +5,14 @@ import Icon from './elementary/Icon';
 
 export type Props = {
     reactionCount: number;
-    reactionHandler?: () => Promise<void>;
+    reactionHandler: () => void;
 };
 
-export default function Component({ reactionCount }: Props)
+export default function Component({ reactionCount, reactionHandler }: Props)
 {
     const handleClick = async () =>
     {
-        console.log('Reaction clicked');
+        reactionHandler();
     };
 
     return <ClickArea clickHandler={handleClick}>
