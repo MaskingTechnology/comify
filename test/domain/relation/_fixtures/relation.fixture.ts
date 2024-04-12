@@ -13,12 +13,12 @@ import database, { RecordData, RecordQuery } from '../../../../src/integrations/
 
 await database.connect();
 
-const creator0: RecordData = { fullName: 'creator 0', nickname: 'creator0', email: 'creator0@mail.com', portraitId: undefined, joinedAt: new Date(), popularity: 0, followerCount: 0, followingCount: 0 };
-const creator1: RecordData = { fullName: 'creator 1', nickname: 'creator1', email: 'creator1@mail.com', portraitId: undefined, joinedAt: new Date(), popularity: 0, followerCount: 0, followingCount: 0 };
-const creator2: RecordData = { fullName: 'creator 2', nickname: 'creator2', email: 'creator2@mail.com', portraitId: undefined, joinedAt: new Date(2024, 1, 24), popularity: 0, followerCount: 0, followingCount: 0 };
-const creator3: RecordData = { fullName: 'creator 3', nickname: 'creatorbas3', email: 'creator3@mail.com', portraitId: undefined, joinedAt: new Date(2024, 2, 12), popularity: 2, followerCount: 0, followingCount: 0 };
-const creator4: RecordData = { fullName: 'creator 4', nickname: 'creatorpic4', email: 'creator4@mail.com', portraitId: undefined, joinedAt: new Date(2024, 4, 9), popularity: 1, followerCount: 0, followingCount: 0 };
-const creator5: RecordData = { fullName: 'creatorbas 5', nickname: 'creatorpic5', email: 'creator5@mail.com', portraitId: undefined, joinedAt: new Date(2024, 3, 18), popularity: 3, followerCount: 0, followingCount: 0 };
+const creator0: RecordData = { fullName: 'Creator 0', nickname: 'creator0', email: 'creator0@mail.com', portraitId: undefined, joinedAt: new Date(), popularity: 0, followerCount: 0, followingCount: 0 };
+const creator1: RecordData = { fullName: 'Creator 1', nickname: 'creator1', email: 'creator1@mail.com', portraitId: undefined, joinedAt: new Date(), popularity: 0, followerCount: 0, followingCount: 0 };
+const creator2: RecordData = { fullName: 'Creator 2', nickname: 'creator2', email: 'creator2@mail.com', portraitId: undefined, joinedAt: new Date(2024, 1, 24), popularity: 0, followerCount: 0, followingCount: 0 };
+const creator3: RecordData = { fullName: 'Creator_3', nickname: 'creator3', email: 'creator3@mail.com', portraitId: undefined, joinedAt: new Date(2024, 2, 12), popularity: 2, followerCount: 0, followingCount: 0 };
+const creator4: RecordData = { fullName: 'Creator 4', nickname: 'creator4', email: 'creator4@mail.com', portraitId: undefined, joinedAt: new Date(2024, 4, 9), popularity: 1, followerCount: 0, followingCount: 0 };
+const creator5: RecordData = { fullName: 'Creator 5', nickname: 'creator4_001', email: 'creator5@mail.com', portraitId: undefined, joinedAt: new Date(2024, 3, 18), popularity: 3, followerCount: 0, followingCount: 0 };
 
 const CREATOR0_ID = await database.createRecord(RECORD_TYPE_CREATOR, creator0);
 const CREATOR1_ID = await database.createRecord(RECORD_TYPE_CREATOR, creator1);

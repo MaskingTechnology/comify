@@ -40,7 +40,7 @@ describe('domain/relation/explore', () =>
 
     it('should find relations based on search nickname', async () =>
     {
-        const relations = await explore(REQUESTER1, SortOptions.POPULAR, 'pic');
+        const relations = await explore(REQUESTER1, SortOptions.POPULAR, 'creator4');
         expect(relations.length).toBe(2);
         expect(relations[0].following?.id).toBe(CREATOR4_ID);
         expect(relations[1].following?.id).toBe(CREATOR5_ID);
@@ -48,7 +48,7 @@ describe('domain/relation/explore', () =>
 
     it('should find relations based on search fullname and nickname', async () =>
     {
-        const relations = await explore(REQUESTER1, SortOptions.POPULAR, 'bas');
+        const relations = await explore(REQUESTER1, SortOptions.POPULAR, '_');
         expect(relations.length).toBe(2);
         expect(relations[0].following?.id).toBe(CREATOR3_ID);
         expect(relations[1].following?.id).toBe(CREATOR5_ID);
