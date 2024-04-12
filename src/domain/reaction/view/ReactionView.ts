@@ -11,8 +11,9 @@ export default class ReactionView
     #ratingCount: number;
     #comic: ComicView | undefined;
     #comment: CommentView | undefined;
+    #hasRated: boolean;
 
-    constructor(id: string, createdAt: Date, creator: CreatorView, ratingCount: number, comic?: ComicView, comment?: CommentView)
+    constructor(id: string, createdAt: Date, creator: CreatorView, ratingCount: number, hasRated: boolean, comic?: ComicView, comment?: CommentView)
     {
         this.#id = id;
         this.#createdAt = createdAt;
@@ -20,6 +21,7 @@ export default class ReactionView
         this.#ratingCount = ratingCount;
         this.#comic = comic;
         this.#comment = comment;
+        this.#hasRated = hasRated;
     }
 
     get id() { return this.#id; }
@@ -33,4 +35,6 @@ export default class ReactionView
     get comic() { return this.#comic; }
 
     get comment() { return this.#comment; }
+
+    get hasRated() { return this.#hasRated; }
 }
