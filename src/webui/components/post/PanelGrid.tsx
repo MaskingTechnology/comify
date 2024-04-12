@@ -6,11 +6,12 @@ import SmallPanel from './SmallPanel';
 
 export type Props = {
     posts: PostView[];
+    comicHandler: (post: PostView) => void;
     rateHandler: (post: PostView) => Promise<boolean>;
     reactionHandler: (post: PostView) => void;
 };
 
-export default function Component({ posts, rateHandler, reactionHandler }: Props)
+export default function Component({ posts, comicHandler, rateHandler, reactionHandler }: Props)
 {
     if (posts.length === 0)
     {
@@ -19,7 +20,13 @@ export default function Component({ posts, rateHandler, reactionHandler }: Props
 
     return <Grid layout='two-columns' gap='medium'>
         {
-            posts.map(post => <SmallPanel key={post.id} post={post} rateHandler={() => rateHandler(post)} reactionHandler={() => reactionHandler(post)} />)
+            posts.map(post => <SmallPanel
+                key={post.id}
+                post={post}
+                comicHandler={() => comicHandler(post)}
+                rateHandler={() => rateHandler(post)}
+                reactionHandler={() => reactionHandler(post)}
+            />)
         }
     </Grid>;
 }

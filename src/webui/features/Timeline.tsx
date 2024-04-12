@@ -23,6 +23,11 @@ export default function Feature()
         console.log(`Order changed from ${oldKey} to ${newKey}`);
     };
 
+    const handleComic = (post: PostView) =>
+    {
+        navigate(`/post/${post.id}`);
+    };
+
     const handleFollow = (relation: RelationView) =>
     {
         console.log(`Followed ${relation.creator.fullName}`);
@@ -46,7 +51,13 @@ export default function Feature()
         <OrderRow selected='recent' orderChangeHandler={handleOrderChange} />
         {
             posts !== undefined
-                ? <PostPanelList posts={posts} followHandler={handleFollow} rateHandler={handleRate} reactionHandler={handleReaction} />
+                ? <PostPanelList
+                    posts={posts}
+                    comicHandler={handleComic}
+                    followHandler={handleFollow}
+                    rateHandler={handleRate}
+                    reactionHandler={handleReaction}
+                />
                 : <Loading />
         }
     </Column>;

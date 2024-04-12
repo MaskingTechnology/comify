@@ -40,13 +40,24 @@ export default function Feature()
         navigate(`/post/${post.id}`);
     };
 
+    const handleComic = (post: PostView) =>
+    {
+        navigate(`/post/${post.id}`);
+    };
+
     useEffect(() => awaitData(getPosts, setPosts), []);
 
     return <Column gap='small' alignX='stretch'>
         <OrderRow selected='popular' orderChangeHandler={handleOrderChange} />
         {
             posts !== undefined
-                ? <PostPanelList posts={posts} followHandler={handleFollow} rateHandler={handleRate} reactionHandler={handleReaction} />
+                ? <PostPanelList
+                    posts={posts}
+                    comicHandler={handleComic}
+                    followHandler={handleFollow}
+                    rateHandler={handleRate}
+                    reactionHandler={handleReaction}
+                />
                 : <Loading />
         }
     </Column>;

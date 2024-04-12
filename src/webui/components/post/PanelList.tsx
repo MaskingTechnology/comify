@@ -7,12 +7,13 @@ import LargePanel from './LargePanel';
 
 export type Props = {
     posts: PostView[];
+    comicHandler: (post: PostView) => void;
     followHandler: (relation: RelationView) => Promise<void>;
     rateHandler: (post: PostView) => Promise<boolean>;
     reactionHandler: (post: PostView) => void;
 };
 
-export default function Component({ posts, followHandler, rateHandler, reactionHandler }: Props)
+export default function Component({ posts, followHandler, rateHandler, reactionHandler, comicHandler }: Props)
 {
     if (posts.length === 0)
     {
@@ -25,6 +26,7 @@ export default function Component({ posts, followHandler, rateHandler, reactionH
                 <LargePanel
                     key={post.id}
                     post={post}
+                    comicHandler={() => comicHandler(post)}
                     followHandler={() => followHandler(post.creator)}
                     rateHandler={() => rateHandler(post)}
                     reactionHandler={() => reactionHandler(post)}

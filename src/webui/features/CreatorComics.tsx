@@ -20,6 +20,11 @@ export default function Feature()
 
     const getPosts = () => getCreatorPosts(johnDoe, creator.id);
 
+    const handleComic = (post: PostView) =>
+    {
+        navigate(`/post/${post.id}`);
+    };
+
     const handleRate = (post: PostView) =>
     {
         return toggleRating(johnDoe, post.id);
@@ -38,6 +43,11 @@ export default function Feature()
     }
 
     return <Column gap='small' alignX='stretch'>
-        <PostPanelGrid posts={posts} rateHandler={handleRate} reactionHandler={handleReaction} />
+        <PostPanelGrid
+            posts={posts}
+            comicHandler={handleComic}
+            rateHandler={handleRate}
+            reactionHandler={handleReaction}
+        />
     </Column>;
 }
