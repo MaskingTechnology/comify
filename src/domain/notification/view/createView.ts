@@ -11,7 +11,7 @@ export default async function createView(requester: Requester, data: Notificatio
     const [relationView, postView, reactionView] = await Promise.all([
         getRelationView(data.receiverId, data.senderId),
         data.postId ? getPostView(requester, data.postId) : undefined,
-        data.reactionId ? getReactionView(data.reactionId) : undefined
+        data.reactionId ? getReactionView(requester, data.reactionId) : undefined
     ]);
 
     return new NotificationView(data.id, data.type, relationView, postView, reactionView, data.createdAt);
