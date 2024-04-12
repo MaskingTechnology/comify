@@ -16,5 +16,5 @@ export default async function createView(requester: Requester, data: ReactionDat
         data.commentId ? getCommentView(data.commentId) : Promise.resolve(undefined),
     ]);
 
-    return new ReactionView(data.id, new Date(), creatorView, data.ratingCount, hasRated, comicView, commentView);
+    return new ReactionView(data.id, data.createdAt, creatorView, data.ratingCount, hasRated, comicView, commentView);
 }

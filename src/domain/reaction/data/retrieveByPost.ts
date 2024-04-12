@@ -7,7 +7,7 @@ import createData from './mapRecord';
 export default async function retrieveByCreators(postId: string): Promise<ReactionData[]>
 {
     const query: RecordQuery = { postId: { 'EQUALS': postId } };
-    const sort: RecordSort = { createdAt: SortDirections.DESCENDING };
+    const sort: RecordSort = { createdAt: SortDirections.ASCENDING };
 
     const records = await database.searchRecords(RECORD_TYPE, query, undefined, sort);
 
