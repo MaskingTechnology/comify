@@ -1,5 +1,5 @@
 
-import { Row } from '../../designsystem/module';
+import { ClickArea, Row } from '../../designsystem/module';
 import CompactNumber from '../common/CompactNumber';
 import Icon from './elementary/Icon';
 
@@ -10,8 +10,15 @@ export type Props = {
 
 export default function Component({ reactionCount }: Props)
 {
-    return <Row gap='small' alignX='left' alignY='center'>
-        <Icon />
-        <CompactNumber value={reactionCount} />
-    </Row>;
+    const handleClick = async () =>
+    {
+        console.log('Reaction clicked');
+    };
+
+    return <ClickArea clickHandler={handleClick}>
+        <Row gap='small' alignX='left' alignY='center'>
+            <Icon />
+            <CompactNumber value={reactionCount} />
+        </Row>
+    </ClickArea>;
 }
