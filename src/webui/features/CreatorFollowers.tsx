@@ -1,5 +1,7 @@
 
 import { useEffect, useState } from 'react';
+import johnDoe from '../../domain/authentication/johnDoe';
+import establishRelation from '../../domain/relation/establish';
 import getFollowers from '../../domain/relation/getFollowers';
 import type RelationView from '../../domain/relation/view/RelationView';
 import { Loading, OrderAndSearchRow, RelationPanelList } from '../components/module';
@@ -14,7 +16,7 @@ export default function Feature()
 
     if (creator === undefined) return null;
 
-    const getRelations = () => getFollowers(creator.id);
+    const getRelations = () => getFollowers(johnDoe, creator.id);
 
     const handleOrderChange = (oldKey: string, newKey: string) =>
     {
@@ -23,7 +25,8 @@ export default function Feature()
 
     const handleFollow = (relation: RelationView) =>
     {
-        console.log(`Followed ${relation.creator.fullName}`);
+
+        return establishRelation(johnDoe, relation.creator.id);
     };
 
     useEffect(() => awaitData(getRelations, setRelations), [creator]);

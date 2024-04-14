@@ -20,8 +20,7 @@ export default class RelationView
 
     get following() { return this.#following; }
 
-    //    get exists() { return this.#id !== undefined; }
-    get exists() { return !!this.id; }
+    get exists() { return this.#id !== undefined; }
 
     get creator() { return this.#following ?? this.#follower as CreatorView; }
 }
