@@ -19,7 +19,11 @@ export default function LargePanel({ reaction, followHandler }: Props)
 
     const handleFollow = () => 
     {
-        console.log('Followed');
+        if (followHandler)
+        {
+            return followHandler();
+        }
+
         return Promise.resolve();
     };
 
