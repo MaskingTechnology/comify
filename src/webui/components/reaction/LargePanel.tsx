@@ -10,10 +10,10 @@ import TimeElapsed from '../relation/TimeElapsed';
 
 export type Props = {
     reaction: ReactionView;
-    followHandler: () => Promise<void>;
+    followHandler?: () => Promise<void>;
 };
 
-export default function LargePanel({ reaction }: Props)
+export default function LargePanel({ reaction, followHandler }: Props)
 {
     const relationView = new RelationView('1', reaction.creator, reaction.creator);
 

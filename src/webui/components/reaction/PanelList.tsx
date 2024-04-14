@@ -1,6 +1,7 @@
 
 import ReactionView from '../../../domain/reaction/view/ReactionView';
 import { Column } from '../../designsystem/module';
+import NoResults from '../common/NoResults';
 import LargePanel from './LargePanel';
 
 export type Props = {
@@ -10,6 +11,11 @@ export type Props = {
 export default function Component({ reactions }: Props)
 {
     if (reactions === undefined) return null;
+
+    if (reactions.length === 0)
+    {
+        return <NoResults />;
+    }
 
     return <Column gap='medium' alignX='stretch'>
         {

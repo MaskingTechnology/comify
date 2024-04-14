@@ -6,9 +6,10 @@ import get from '../../domain/post/get';
 import toggleRating from '../../domain/post/toggleRating';
 import type PostView from '../../domain/post/view/PostView';
 import { Loading } from '../components/module';
-import PostDetails from '../components/post/PostDetails';
-import { Column } from '../designsystem/module';
+import PostPanel from '../components/post/PostPanel';
+import { Column, Ruler } from '../designsystem/module';
 import awaitData from '../utils/awaitData';
+import Reactions from './Reactions';
 
 export default function Feature()
 {
@@ -19,6 +20,13 @@ export default function Feature()
     const [post, setPost] = useState<PostView | undefined>(undefined);
 
     const getPost = () => get(johnDoe, postId);
+
+    useEffect(() => awaitData(getPost, setPost), []);
+
+    if (post === undefined)
+    {
+        return <Loading />;
+    }
 
     const handleFollow = async () =>
     {
@@ -32,13 +40,9 @@ export default function Feature()
         return toggleRating(johnDoe, post.id);
     };
 
-    useEffect(() => awaitData(getPost, setPost), []);
-
-    return <Column>
-        {
-            post !== undefined
-                ? <PostDetails post={post} followHandler={handleFollow} rateHandler={handleRate} />
-                : <Loading />
-        }
+    return <Column gap='medium' alignX='stretch'>
+        <PostPanel post={post} followHandler={handleFollow} rateHandler={handleRate} />
+        <Ruler type='horizontal' />
+        <Reactions post={post} />
     </Column>;
 }
