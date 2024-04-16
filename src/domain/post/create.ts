@@ -2,7 +2,7 @@
 import Requester from '../authentication/Requester';
 import createComic from '../comic/create';
 import removeComic from '../comic/remove';
-import increaseCreatorComicCount from '../creator/increaseComicCount';
+import increaseCreatorPostCount from '../creator/increasePostCount';
 import createPost from './data/create';
 import removePost from './data/remove';
 
@@ -15,7 +15,7 @@ export default async function create(requester: Requester, comicImageDataUrl: st
         comic = await createComic(comicImageDataUrl);
         post = await createPost(requester.id, comic.id);
 
-        await increaseCreatorComicCount(requester.id);
+        await increaseCreatorPostCount(requester.id);
     }
     catch (error: unknown)
     {
