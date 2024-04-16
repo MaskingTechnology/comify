@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import johnDoe from '../../domain/authentication/johnDoe';
 import SortOptions from '../../domain/relation/definitions/SortOptions';
 import establishRelation from '../../domain/relation/establish';
@@ -9,12 +10,13 @@ import { Loading, OrderAndSearchRow, RelationPanelList } from '../components/mod
 import { Column } from '../designsystem/module';
 import awaitData from '../utils/awaitData';
 
-
 export default function Feature()
 {
     const [relations, setRelations] = useState<RelationView[] | undefined>(undefined);
 
     const getRelations = () => exploreRelations(johnDoe, SortOptions.POPULAR);
+
+    const navigate = useNavigate();
 
     const handleOrderChange = (oldKey: string, newKey: string) =>
     {
@@ -26,13 +28,18 @@ export default function Feature()
         return establishRelation(johnDoe, relation.creator.id);
     };
 
+    const handleProfile = (relation: RelationView) =>
+    {
+        navigate(`/profile/${relation.creator.nickname}`);
+    };
+
     useEffect(() => awaitData(getRelations, setRelations), []);
 
     return <Column gap='small' alignX='stretch'>
         <OrderAndSearchRow selected='popular' orderChangeHandler={handleOrderChange} />
         {
             relations !== undefined
-                ? <RelationPanelList relations={relations} followHandler={handleFollow} />
+                ? <RelationPanelList relations={relations} followHandler={handleFollow} profileHandler={handleProfile} />
                 : <Loading />
         }
     </Column>;

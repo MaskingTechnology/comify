@@ -1,5 +1,5 @@
 
-import { Column } from '../../../designsystem/module';
+import { ClickArea, Column } from '../../../designsystem/module';
 import CountersRow from './CountersRow';
 import NamesRow from './NamesRow';
 
@@ -9,12 +9,15 @@ export type Props = {
     postCount: number;
     followerCount: number;
     followingCount: number;
+    profileHandler: () => void;
 };
 
-export default function Component({ fullName, nickname, postCount, followerCount, followingCount }: Props)
+export default function Component({ fullName, nickname, postCount, followerCount, followingCount, profileHandler }: Props)
 {
     return <Column gap='small' alignY='justify' alignX='stretch'>
-        <NamesRow fullName={fullName} nickname={nickname} />
+        <ClickArea clickHandler={profileHandler}>
+            <NamesRow fullName={fullName} nickname={nickname} />
+        </ClickArea>
         <CountersRow postCount={postCount} followerCount={followerCount} followingCount={followingCount} />
     </Column>;
 }
