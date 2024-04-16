@@ -54,6 +54,7 @@ export default class PostData
         return this.#mutate({ reactionCount: this.#reactionCount - 1 });
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     #mutate(values: Record<string, any>)
     {
         return new PostData(
