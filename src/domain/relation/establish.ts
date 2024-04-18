@@ -23,11 +23,13 @@ export default async function establish(requester: Requester, followingId: strin
     {
         relation = await create(requester.id, followingId);
         followerCount = await increaseFollowerCount(followingId);
+
         await increaseFollowingCount(requester.id);
     }
     catch (error: unknown)
     {
         const relationId = relation?.id ?? '';
+
         const undoRelation = relation !== undefined ? remove(relationId) : Promise.resolve();
         const undoFollowerCount = followerCount !== undefined ? decreaseFollowerCount(followingId) : Promise.resolve();
 

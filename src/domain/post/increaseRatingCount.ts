@@ -1,22 +1,14 @@
 
-import PostData from './data/PostData';
 import retrieveData from './data/retrieve';
 import updateData from './data/update';
 
 export default async function increaseRatingCount(postId: string): Promise<number>
 {
-    const post = await retrieveData(postId);
+    const currentData = await retrieveData(postId);
 
-    const updatedPost = new PostData(
-        post.id,
-        post.creatorId,
-        post.comicId,
-        post.createdAt,
-        post.ratingCount + 1,
-        post.reactionCount
-    );
+    const updatedData = currentData.increaseRatingCount();
 
-    await updateData(updatedPost);
+    await updateData(updatedData);
 
-    return updatedPost.ratingCount;
+    return updatedData.ratingCount;
 }
