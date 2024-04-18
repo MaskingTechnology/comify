@@ -50,4 +50,56 @@ export default class CreatorData
     get followerCount() { return this.#followerCount; }
 
     get followingCount() { return this.#followingCount; }
+
+    increasePostCount(): CreatorData
+    {
+        return this.#mutate({ postCount: this.postCount + 1 });
+    }
+
+    decreasePostCount(): CreatorData
+    {
+        return this.#mutate({ postCount: this.postCount - 1 });
+    }
+
+    increaseFollowerCount(): CreatorData
+    {
+        return this.#mutate({ followerCount: this.followerCount + 1 });
+    }
+
+    decreaseFollowerCount(): CreatorData
+    {
+        return this.#mutate({ followerCount: this.followerCount - 1 });
+    }
+
+    increaseFollowingCount(): CreatorData
+    {
+        return this.#mutate({ followingCount: this.followingCount + 1 });
+    }
+
+    decreaseFollowingCount(): CreatorData
+    {
+        return this.#mutate({ followingCount: this.followingCount - 1 });
+    }
+
+    updateEmail(email: string): CreatorData
+    {
+        return this.#mutate({ email });
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    #mutate(values: Record<string, any>)
+    {
+        return new CreatorData(
+            values.id ?? this.id,
+            values.fullName ?? this.fullName,
+            values.nickname ?? this.nickname,
+            values.email ?? this.email,
+            values.portraitId ?? this.portraitId,
+            values.joinedAt ?? this.joinedAt,
+            values.popularity ?? this.popularity,
+            values.postCount ?? this.postCount,
+            values.followerCount ?? this.followerCount,
+            values.followingCount ?? this.followingCount
+        );
+    }
 }

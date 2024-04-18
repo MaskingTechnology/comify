@@ -7,8 +7,9 @@ import createView from './view/createView';
 
 export default async function getFollowing(requester: Requester, followerId: string): Promise<RelationView[]>
 {
-    const data = await retrieveByFollower(followerId);
-    const relationData = await Promise.all(data.map(data => retrieve(requester.id, data.followingId)));
+    const followerData = await retrieveByFollower(followerId);
 
-    return Promise.all(relationData.map(createView));
+    const requesterData = await Promise.all(followerData.map(data => retrieve(requester.id, data.followingId)));
+
+    return Promise.all(requesterData.map(createView));
 }
