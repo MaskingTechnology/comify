@@ -46,4 +46,3 @@ async function createFileStorage()
 }
 
 export { COMIC_RECORD_TYPE, DATA_URL, EXISTING_REQUESTER, IMAGE_RECORD_TYPE, POST_RECORD_TYPE, UNKNOWN_REQUESTER, create, createDatabase, createFileStorage };
-
