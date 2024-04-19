@@ -3,10 +3,6 @@
     "./domain/authentication/login": { "default": {  "access": "public" } },
     "./domain/authentication/logout": { "default": {  "access": "public" } },
 
-    "./domain/comic/get": { "default": {  "access": "public" } },
-
-    "./domain/comment/get": { "default": {  "access": "public" } },
-
     "./domain/creator/getByNickname": { "default": {  "access": "public" } },
     "./domain/creator/getMe": { "default": {  "access": "public" } },
 

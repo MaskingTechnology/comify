@@ -23,11 +23,6 @@ export default function Feature()
         console.log(`Order changed from ${oldKey} to ${newKey}`);
     };
 
-    const handleComic = (post: PostView) =>
-    {
-        navigate(`/post/${post.id}`);
-    };
-
     const handleFollow = (relation: RelationView) =>
     {
         console.log(`Followed ${relation.creator.fullName}`);
@@ -40,7 +35,7 @@ export default function Feature()
         return toggleRating(johnDoe, post.id);
     };
 
-    const handleReaction = (post: PostView) =>
+    const handleDetails = (post: PostView) =>
     {
         navigate(`/post/${post.id}`);
     };
@@ -53,10 +48,9 @@ export default function Feature()
             posts !== undefined
                 ? <PostPanelList
                     posts={posts}
-                    comicHandler={handleComic}
                     followHandler={handleFollow}
                     rateHandler={handleRate}
-                    reactionHandler={handleReaction}
+                    detailsHandler={handleDetails}
                 />
                 : <Loading />
         }

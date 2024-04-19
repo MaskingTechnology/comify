@@ -7,26 +7,20 @@ import EngagementsRow from './elementary/EngagementRow';
 
 export type Props = {
     post: PostView;
-    comicHandler: () => void;
     followHandler: () => Promise<void>;
     rateHandler: () => Promise<boolean>;
-    reactionHandler: () => void;
+    detailsHandler: () => void;
 };
 
-export default function Component({ post, comicHandler, followHandler, rateHandler, reactionHandler }: Props)
+export default function Component({ post, followHandler, rateHandler, detailsHandler }: Props)
 {
-    const handleClick = () =>
-    {
-        comicHandler();
-    };
-
     return <Panel>
         <Column gap='medium' alignX='stretch'>
             <TimeElapsed date={post.createdAt} relation={post.creator} followHandler={followHandler} />
-            <ClickArea clickHandler={handleClick}>
+            <ClickArea clickHandler={detailsHandler}>
                 <ComicImage comic={post.comic} />
             </ClickArea>
-            <EngagementsRow isRated={post.hasRated} ratingCount={post.ratingCount} reactionCount={post.reactionCount} rateHandler={rateHandler} reactionHandler={reactionHandler} />
+            <EngagementsRow isRated={post.hasRated} ratingCount={post.ratingCount} reactionCount={post.reactionCount} rateHandler={rateHandler} reactionHandler={detailsHandler} />
         </Column>
     </Panel>;
 }

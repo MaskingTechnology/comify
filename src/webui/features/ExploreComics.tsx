@@ -35,12 +35,7 @@ export default function Feature()
         return toggleRating(johnDoe, post.id);
     };
 
-    const handleReaction = (post: PostView) =>
-    {
-        navigate(`/post/${post.id}`);
-    };
-
-    const handleComic = (post: PostView) =>
+    const handleDetails = (post: PostView) =>
     {
         navigate(`/post/${post.id}`);
     };
@@ -53,10 +48,9 @@ export default function Feature()
             posts !== undefined
                 ? <PostPanelList
                     posts={posts}
-                    comicHandler={handleComic}
                     followHandler={handleFollow}
                     rateHandler={handleRate}
-                    reactionHandler={handleReaction}
+                    detailsHandler={handleDetails}
                 />
                 : <Loading />
         }

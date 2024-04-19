@@ -5,10 +5,11 @@ import NoResults from '../common/NoResults';
 import LargePanel from './LargePanel';
 
 export type Props = {
-    reactions?: ReactionView[];
+    reactions: ReactionView[];
+    followHandler: () => Promise<void>;
 };
 
-export default function Component({ reactions }: Props)
+export default function Component({ reactions, followHandler }: Props)
 {
     if (reactions === undefined) return null;
 
@@ -23,6 +24,7 @@ export default function Component({ reactions }: Props)
                 <LargePanel
                     key={reaction.id}
                     reaction={reaction}
+                    followHandler={followHandler}
                 />
             )
         }

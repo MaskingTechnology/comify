@@ -20,7 +20,7 @@ export default function Component({ selected, postId, orderChangeHandler }: Prop
     return <Row alignX='justify' alignY='center'>
         <OrderSelection key='ratings' selected={selected} changeHandler={orderChangeHandler} />
         <ClickArea clickHandler={clickHandler}>
-            <Icon type='star' />
+            <Icon type='plus' />
         </ClickArea>
     </Row>;
 }

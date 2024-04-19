@@ -1,3 +1,4 @@
 {
+    "./domain/comment/get": { "default": {  "access": "public" } },
     "./domain/comment/data/retrieve": { "default": {  "access": "protected" } }
 }

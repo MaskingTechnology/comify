@@ -6,7 +6,7 @@ import get from '../../domain/post/get';
 import toggleRating from '../../domain/post/toggleRating';
 import type PostView from '../../domain/post/view/PostView';
 import { Loading } from '../components/module';
-import PostPanel from '../components/post/PostPanel';
+import PostPanel from '../components/post/DetailsPanel';
 import { Column, Ruler } from '../designsystem/module';
 import awaitData from '../utils/awaitData';
 import Reactions from './Reactions';

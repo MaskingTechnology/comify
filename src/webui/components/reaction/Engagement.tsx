@@ -10,12 +10,7 @@ export type Props = {
 
 export default function Component({ reactionCount, reactionHandler }: Props)
 {
-    const handleClick = async () =>
-    {
-        reactionHandler();
-    };
-
-    return <ClickArea clickHandler={handleClick}>
+    return <ClickArea clickHandler={reactionHandler}>
         <Row gap='small' alignX='left' alignY='center'>
             <Icon />
             <CompactNumber value={reactionCount} />

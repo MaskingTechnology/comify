@@ -21,13 +21,17 @@ export default function Feature({ post }: Props)
 
     useEffect(() => awaitData(getReactions, setReactions), []);
 
-    if (reactions === undefined)
+    const handleFollow = async () =>
     {
-        return <Loading />;
-    }
+        console.log(`Followed clicked`);
+    };
 
     return <Column alignX='stretch'>
         <OrderAndAddRow selected='recent' postId={post.id} />
-        <ReactionsList reactions={reactions} />
+        {
+            reactions !== undefined
+                ? <ReactionsList reactions={reactions} followHandler={handleFollow} />
+                : <Loading />
+        }
     </Column>;
 }

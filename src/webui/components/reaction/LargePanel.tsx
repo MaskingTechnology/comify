@@ -10,22 +10,14 @@ import TimeElapsed from '../relation/TimeElapsed';
 
 export type Props = {
     reaction: ReactionView;
-    followHandler?: () => Promise<void>;
+    followHandler: () => Promise<void>;
 };
 
 export default function LargePanel({ reaction, followHandler }: Props)
 {
+    // Dummy implementation to simply show some comments underneath the post
+
     const relationView = new RelationView('1', reaction.creator, reaction.creator);
-
-    const handleFollow = () => 
-    {
-        if (followHandler)
-        {
-            return followHandler();
-        }
-
-        return Promise.resolve();
-    };
 
     const handleRate = () =>
     {
@@ -34,8 +26,8 @@ export default function LargePanel({ reaction, followHandler }: Props)
 
     return <Panel>
         <Column gap='medium' alignX='stretch'>
-            <TimeElapsed date={reaction.createdAt} relation={relationView} followHandler={handleFollow} />
-            <Comment text={reaction.comment?.message ?? 'Geen tekst'} />
+            <TimeElapsed date={reaction.createdAt} relation={relationView} followHandler={followHandler} />
+            <Comment text={reaction.comment?.message ?? 'No comment'} />
             <RatingEngagement isEngaged={reaction.hasRated} count={reaction.ratingCount} rateHandler={handleRate} />
         </Column>
     </Panel>;
