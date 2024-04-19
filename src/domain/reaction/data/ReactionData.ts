@@ -39,4 +39,28 @@ export default class ReactionData
     get ratingCount() { return this.#ratingCount; }
 
     get createdAt() { return this.#createdAt; }
+
+    increaseRatingCount(): ReactionData
+    {
+        return this.#mutate({ ratingCount: this.#ratingCount + 1 });
+    }
+
+    decreaseRatingCount(): ReactionData
+    {
+        return this.#mutate({ ratingCount: this.#ratingCount - 1 });
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    #mutate(values: Record<string, any>)
+    {
+        return new ReactionData(
+            values.id ?? this.#id,
+            values.creatorId ?? this.#creatorId,
+            values.postId ?? this.#postId,
+            values.comicId ?? this.#comicId,
+            values.commentId ?? this.#commentId,
+            values.ratingCount ?? this.#ratingCount,
+            values.createdAt ?? this.#createdAt
+        );
+    }
 }
