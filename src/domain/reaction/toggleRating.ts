@@ -12,8 +12,6 @@ export default async function toggleRating(requester: Requester, reactionId: str
     {
         rating = await updateRating(requester, undefined, reactionId);
 
-        console.log(`Rating updated: ` + rating);
-
         rating !== undefined
             ? await increaseRatingCount(reactionId)
             : await decreaseRatingCount(reactionId);
