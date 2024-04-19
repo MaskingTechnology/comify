@@ -6,9 +6,9 @@ export default async function increaseReactionCount(postId: string): Promise<num
 {
     const currentData = await retrieveData(postId);
 
-    const updatedPost = currentData.increaseReactionCount();
+    const updatedData = currentData.increaseReactionCount();
 
-    await updateData(updatedPost);
+    await updateData(updatedData);
 
-    return updatedPost.ratingCount;
+    return updatedData.ratingCount;
 }
