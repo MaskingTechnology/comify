@@ -43,7 +43,7 @@ export default function Feature()
 
     return <Column gap='medium' alignX='stretch'>
         <RelationProfile relation={relation} followHandler={handleFollow} />
-        <CreatorContext values={{ creator }}>
+        <CreatorContext values={{ creator }} key={creator.id}>
             <Tabs separator={<Ruler type='horizontal' size='small' />}>
                 <Tab title={`Comics (${creator.postCount})`}>
                     <CreatorComics />
