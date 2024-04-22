@@ -33,4 +33,37 @@ export default class PostData
     get ratingCount() { return this.#ratingCount; }
 
     get reactionCount() { return this.#reactionCount; }
+
+    increaseRatingCount(): PostData
+    {
+        return this.#mutate({ ratingCount: this.#ratingCount + 1 });
+    }
+
+    decreaseRatingCount(): PostData
+    {
+        return this.#mutate({ ratingCount: this.#ratingCount - 1 });
+    }
+
+    increaseReactionCount(): PostData
+    {
+        return this.#mutate({ reactionCount: this.#reactionCount + 1 });
+    }
+
+    decreaseReactionCount(): PostData
+    {
+        return this.#mutate({ reactionCount: this.#reactionCount - 1 });
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    #mutate(values: Record<string, any>)
+    {
+        return new PostData(
+            values.id ?? this.#id,
+            values.creatorId ?? this.#creatorId,
+            values.comicId ?? this.#comicId,
+            values.createdAt ?? this.#createdAt,
+            values.ratingCount ?? this.#ratingCount,
+            values.reactionCount ?? this.#reactionCount
+        );
+    }
 }

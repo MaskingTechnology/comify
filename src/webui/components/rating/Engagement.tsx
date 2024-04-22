@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Row } from '../../designsystem/module';
+import { ClickArea, Row } from '../../designsystem/module';
 import CompactNumber from '../common/CompactNumber';
 import Icon from './elementary/Icon';
 
@@ -26,8 +26,10 @@ export default function Component({ isEngaged, count, rateHandler }: Props)
         setIsRated(isRated);
     };
 
-    return <Row gap='small' alignX='left' alignY='center'>
-        <Icon isRated={isRated} clickHandler={handleClick} />
-        <CompactNumber value={ratingCount} />
-    </Row>;
+    return <ClickArea clickHandler={handleClick}>
+        <Row gap='small' alignX='left' alignY='center'>
+            <Icon isRated={isRated} />
+            <CompactNumber value={ratingCount} />
+        </Row>
+    </ClickArea>;
 }

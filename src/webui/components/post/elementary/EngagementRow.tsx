@@ -8,12 +8,13 @@ export type Props = {
     ratingCount: number;
     reactionCount: number;
     rateHandler: () => Promise<boolean>;
+    reactionHandler: () => void;
 };
 
-export default function Component({ isRated, ratingCount, reactionCount, rateHandler }: Props)
+export default function Component({ isRated, ratingCount, reactionCount, rateHandler, reactionHandler }: Props)
 {
     return <Row gap='medium' alignY='center'>
         <RatingEngagement isEngaged={isRated} count={ratingCount} rateHandler={rateHandler} />
-        <ReactionEngagement reactionCount={reactionCount} />
+        <ReactionEngagement reactionCount={reactionCount} reactionHandler={reactionHandler} />
     </Row>;
 }

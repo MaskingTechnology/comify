@@ -9,10 +9,11 @@ export type Props = {
     posts: PostView[];
     followHandler: (relation: RelationView) => Promise<void>;
     rateHandler: (post: PostView) => Promise<boolean>;
+    detailsHandler: (post: PostView) => void;
     profileHandler: (relation: RelationView) => void;
 };
 
-export default function Component({ posts, followHandler, rateHandler, profileHandler }: Props)
+export default function Component({ posts, followHandler, rateHandler, detailsHandler, profileHandler }: Props)
 {
     if (posts.length === 0)
     {
@@ -27,6 +28,7 @@ export default function Component({ posts, followHandler, rateHandler, profileHa
                     post={post}
                     followHandler={() => followHandler(post.creator)}
                     rateHandler={() => rateHandler(post)}
+                    detailsHandler={() => detailsHandler(post)}
                     profileHandler={() => profileHandler(post.creator)}
                 />
             )

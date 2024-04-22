@@ -40,13 +40,24 @@ export default function Feature()
         return toggleRating(johnDoe, post.id);
     };
 
+    const handleDetails = (post: PostView) =>
+    {
+        navigate(`/post/${post.id}`);
+    };
+
     useEffect(() => awaitData(getPosts, setPosts), []);
 
     return <Column gap='small' alignX='stretch'>
         <OrderRow selected='recent' orderChangeHandler={handleOrderChange} />
         {
             posts !== undefined
-                ? <PostPanelList posts={posts} followHandler={handleFollow} rateHandler={handleRate} profileHandler={handleProfile} />
+                ? <PostPanelList
+                    posts={posts}
+                    followHandler={handleFollow}
+                    rateHandler={handleRate}
+                    detailsHandler={handleDetails}
+                    profileHandler={handleProfile}
+                />
                 : <Loading />
         }
     </Column>;

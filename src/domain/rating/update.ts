@@ -7,9 +7,9 @@ import remove from './data/remove';
 
 export default async function update(requester: Requester, postId: string | undefined = undefined, reactionId: string | undefined = undefined): Promise<RatingData | void>
 {
-    const rating = await find(requester.id, postId, reactionId);
+    const data = await find(requester.id, postId, reactionId);
 
-    return rating === undefined
+    return data === undefined
         ? create(requester.id, postId, reactionId)
-        : remove(rating.id);
+        : remove(data.id);
 }

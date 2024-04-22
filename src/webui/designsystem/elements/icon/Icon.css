@@ -33,6 +33,7 @@
 
     --icon-phone: '\260E';
     --icon-piece: '\262E';
+    --icon-plus: '\2795';
 
     --icon-question: '\2753';
 
@@ -171,6 +172,11 @@
 .ds-icon.ds-icon-piece:before
 {
     content: var(--icon-piece);
+}
+
+.ds-icon.ds-icon-plus:before
+{
+    content: var(--icon-plus);
 }
 
 .ds-icon.ds-icon-question:before
