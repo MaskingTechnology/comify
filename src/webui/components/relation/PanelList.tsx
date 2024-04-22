@@ -7,9 +7,10 @@ import Panel from './Panel';
 export type Props = {
     relations: RelationView[];
     followHandler: (relation: RelationView) => Promise<void>;
+    profileHandler: (relation: RelationView) => void;
 };
 
-export default function Component({ relations, followHandler }: Props)
+export default function Component({ relations, followHandler, profileHandler }: Props)
 {
     if (relations.length === 0)
     {
@@ -23,6 +24,7 @@ export default function Component({ relations, followHandler }: Props)
                     key={relation.creator.id}
                     relation={relation}
                     followHandler={() => followHandler(relation)}
+                    profileHandler={() => profileHandler(relation)}
                 />
             )
         }

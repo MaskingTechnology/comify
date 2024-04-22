@@ -12,11 +12,10 @@ import awaitData from '../utils/awaitData';
 
 export default function Feature()
 {
+    const navigate = useNavigate();
     const [posts, setPosts] = useState<PostView[] | undefined>(undefined);
 
     const getPosts = () => getTimelinePosts(johnDoe);
-
-    const navigate = useNavigate();
 
     const handleOrderChange = (oldKey: string, newKey: string) =>
     {
@@ -28,6 +27,11 @@ export default function Feature()
         console.log(`Followed ${relation.creator.fullName}`);
 
         return Promise.resolve();
+    };
+
+    const handleProfile = (relation: RelationView) =>
+    {
+        navigate(`/profile/${relation.creator.nickname}`);
     };
 
     const handleRate = (post: PostView) =>
@@ -51,6 +55,7 @@ export default function Feature()
                     followHandler={handleFollow}
                     rateHandler={handleRate}
                     detailsHandler={handleDetails}
+                    profileHandler={handleProfile}
                 />
                 : <Loading />
         }
