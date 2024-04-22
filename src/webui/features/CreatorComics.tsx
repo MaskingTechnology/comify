@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import johnDoe from '../../domain/authentication/johnDoe';
 import getCreatorPosts from '../../domain/post/getByCreator';
 import toggleRating from '../../domain/post/toggleRating';
@@ -13,14 +14,25 @@ export default function Feature()
 {
     const { creator } = useCreatorContext();
     const [posts, setPosts] = useState<PostView[] | undefined>(undefined);
+    const navigate = useNavigate();
 
     if (creator === undefined) return null;
 
     const getPosts = () => getCreatorPosts(johnDoe, creator.id);
 
+    const handleComic = (post: PostView) =>
+    {
+        navigate(`/post/${post.id}`);
+    };
+
     const handleRate = (post: PostView) =>
     {
         return toggleRating(johnDoe, post.id);
+    };
+
+    const handleReaction = (post: PostView) =>
+    {
+        navigate(`/post/${post.id}`);
     };
 
     useEffect(() => awaitData(getPosts, setPosts), [creator]);
@@ -31,6 +43,11 @@ export default function Feature()
     }
 
     return <Column gap='small' alignX='stretch'>
-        <PostPanelGrid posts={posts} rateHandler={handleRate} />
+        <PostPanelGrid
+            posts={posts}
+            comicHandler={handleComic}
+            rateHandler={handleRate}
+            reactionHandler={handleReaction}
+        />
     </Column>;
 }

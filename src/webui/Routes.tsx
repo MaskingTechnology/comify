@@ -10,6 +10,7 @@ import Login from './features/Login';
 import Logout from './features/Logout';
 import NotFound from './features/NotFound';
 import Notifications from './features/Notifications';
+import Post from './features/Post';
 import Profile from './features/Profile';
 import Timeline from './features/Timeline';
 
@@ -33,6 +34,7 @@ export default function Component()
         <Route path="/notifications" element={protect(<Notifications />)} />
         <Route path="/create" element={protect(<CreateComic />)} />
         <Route path="/profile/:nickname" element={protect(<Profile />)} />
+        <Route path="/post/:postId" element={protect(<Post />)} />
         <Route path="/logout" element={protect(<Logout />)} />
 
         <Route path="*" element={<NotFound />} />

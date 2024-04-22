@@ -10,9 +10,14 @@
     
     "./domain/post/create": { "default": {  "access": "public" } },
     "./domain/post/explore": { "default": {  "access": "public" } },
+    "./domain/post/get": { "default": {  "access": "public" } },
     "./domain/post/getByCreator": { "default": {  "access": "public" } },
     "./domain/post/getTimeline": { "default": {  "access": "public" } },
     "./domain/post/toggleRating": { "default": {  "access": "public" } },
+
+    "./domain/reaction/create": { "default": {  "access": "public" } },
+    "./domain/reaction/toggleRating": { "default": {  "access": "public" } },
+    "./domain/reaction/getByPost": { "default": {  "access": "public" } },
 
     "./domain/relation/explore": { "default": {  "access": "public" } },
     "./domain/relation/establish": { "default": { "access": "public" }},

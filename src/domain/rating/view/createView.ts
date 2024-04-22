@@ -11,7 +11,7 @@ export default async function createView(requester: Requester, data: RatingData)
     const [creatorView, postView, reactionView] = await Promise.all([
         getCreatorView(data.creatorId),
         data.postId !== undefined ? getPostView(requester, data.postId) : undefined,
-        data.reactionId !== undefined ? getReactionView(data.reactionId) : undefined,
+        data.reactionId !== undefined ? getReactionView(requester, data.reactionId) : undefined,
     ]);
 
     return new RatingView(data.id, new Date(), creatorView, postView, reactionView);
