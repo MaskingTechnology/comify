@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import johnDoe from '../../domain/authentication/johnDoe';
 import PostView from '../../domain/post/view/PostView';
+import create from '../../domain/reaction/create';
 import getReactionsByPost from '../../domain/reaction/getByPost';
 import ReactionView from '../../domain/reaction/view/ReactionView';
 import { Loading, OrderAndAddRow } from '../components/module';
@@ -21,13 +22,18 @@ export default function Feature({ post }: Props)
 
     useEffect(() => awaitData(getReactions, setReactions), []);
 
+    const handleReaction = () => 
+    {
+        create(johnDoe, post.id, `This is a random comment ${Math.random() * 1000}`);
+    };
+
     const handleFollow = async () =>
     {
         console.log(`Followed clicked`);
     };
 
     return <Column alignX='stretch'>
-        <OrderAndAddRow selected='recent' postId={post.id} />
+        <OrderAndAddRow selected='recent' postId={post.id} reactionHandler={handleReaction} />
         {
             reactions !== undefined
                 ? <ReactionsList reactions={reactions} followHandler={handleFollow} />
