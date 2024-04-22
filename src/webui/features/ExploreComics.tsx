@@ -5,6 +5,7 @@ import johnDoe from '../../domain/authentication/johnDoe';
 import explorePosts from '../../domain/post/explore';
 import toggleRating from '../../domain/post/toggleRating';
 import type PostView from '../../domain/post/view/PostView';
+import establishRelation from '../../domain/relation/establish';
 import type RelationView from '../../domain/relation/view/RelationView';
 import { LoadingContainer, OrderRow, PostPanelList } from '../components/module';
 import { Column } from '../designsystem/module';
@@ -25,9 +26,7 @@ export default function Feature()
 
     const handleFollow = (relation: RelationView) =>
     {
-        console.log(`Followed ${relation.creator.fullName}`);
-
-        return Promise.resolve();
+        return establishRelation(johnDoe, relation.creator.id);
     };
 
     const handleRate = (post: PostView) =>
