@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import johnDoe from '../../domain/authentication/johnDoe';
 import getTimelinePosts from '../../domain/post/getTimeline';
 import toggleRating from '../../domain/post/toggleRating';
@@ -11,6 +12,7 @@ import awaitData from '../utils/awaitData';
 
 export default function Feature()
 {
+    const navigate = useNavigate();
     const [posts, setPosts] = useState<PostView[] | undefined>(undefined);
 
     const getPosts = () => getTimelinePosts(johnDoe);
@@ -27,6 +29,12 @@ export default function Feature()
         return Promise.resolve();
     };
 
+    const handleProfile = (relation: RelationView) =>
+    {
+        console.log('switch profile ');
+        navigate(`/profile/${relation.creator.nickname}`);
+    };
+
     const handleRate = (post: PostView) =>
     {
         return toggleRating(johnDoe, post.id);
@@ -38,7 +46,7 @@ export default function Feature()
         <OrderRow selected='recent' orderChangeHandler={handleOrderChange} />
         {
             posts !== undefined
-                ? <PostPanelList posts={posts} followHandler={handleFollow} rateHandler={handleRate} />
+                ? <PostPanelList posts={posts} followHandler={handleFollow} rateHandler={handleRate} profileHandler={handleProfile} />
                 : <Loading />
         }
     </Column>;
