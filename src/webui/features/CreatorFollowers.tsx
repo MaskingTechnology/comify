@@ -5,7 +5,7 @@ import johnDoe from '../../domain/authentication/johnDoe';
 import establishRelation from '../../domain/relation/establish';
 import getFollowers from '../../domain/relation/getFollowers';
 import type RelationView from '../../domain/relation/view/RelationView';
-import { Loading, OrderAndSearchRow, RelationPanelList } from '../components/module';
+import { LoadingContainer, OrderAndSearchRow, RelationPanelList } from '../components/module';
 import { useCreatorContext } from '../contexts/CreatorContext';
 import { Column } from '../designsystem/module';
 import awaitData from '../utils/awaitData';
@@ -40,10 +40,12 @@ export default function Feature()
 
     return <Column gap='small' alignX='stretch'>
         <OrderAndSearchRow selected='recent' orderChangeHandler={handleOrderChange} />
-        {
-            relations !== undefined
-                ? <RelationPanelList relations={relations} followHandler={handleFollow} profileHandler={handleProfile} />
-                : <Loading />
-        }
+        <LoadingContainer data={relations}>
+            <RelationPanelList
+                relations={relations as RelationView[]}
+                followHandler={handleFollow}
+                profileHandler={handleProfile}
+            />
+        </LoadingContainer>
     </Column>;
 }

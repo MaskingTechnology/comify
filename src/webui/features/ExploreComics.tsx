@@ -6,7 +6,7 @@ import explorePosts from '../../domain/post/explore';
 import toggleRating from '../../domain/post/toggleRating';
 import type PostView from '../../domain/post/view/PostView';
 import type RelationView from '../../domain/relation/view/RelationView';
-import { Loading, OrderRow, PostPanelList } from '../components/module';
+import { LoadingContainer, OrderRow, PostPanelList } from '../components/module';
 import { Column } from '../designsystem/module';
 import awaitData from '../utils/awaitData';
 
@@ -40,19 +40,23 @@ export default function Feature()
         navigate(`/post/${post.id}`);
     };
 
+    const handleProfile = (relation: RelationView) =>
+    {
+        navigate(`/profile/${relation.creator.nickname}`);
+    };
+
     useEffect(() => awaitData(getPosts, setPosts), []);
 
     return <Column gap='small' alignX='stretch'>
         <OrderRow selected='popular' orderChangeHandler={handleOrderChange} />
-        {
-            posts !== undefined
-                ? <PostPanelList
-                    posts={posts}
-                    followHandler={handleFollow}
-                    rateHandler={handleRate}
-                    detailsHandler={handleDetails}
-                />
-                : <Loading />
-        }
+        <LoadingContainer data={posts}>
+            <PostPanelList
+                posts={posts as PostView[]}
+                followHandler={handleFollow}
+                rateHandler={handleRate}
+                detailsHandler={handleDetails}
+                profileHandler={handleProfile}
+            />
+        </LoadingContainer>
     </Column>;
 }

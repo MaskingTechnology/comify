@@ -5,7 +5,7 @@ import johnDoe from '../../domain/authentication/johnDoe';
 import getCreatorPosts from '../../domain/post/getByCreator';
 import toggleRating from '../../domain/post/toggleRating';
 import type PostView from '../../domain/post/view/PostView';
-import { Loading, PostPanelGrid } from '../components/module';
+import { LoadingContainer, PostPanelGrid } from '../components/module';
 import { useCreatorContext } from '../contexts/CreatorContext';
 import { Column } from '../designsystem/module';
 import awaitData from '../utils/awaitData';
@@ -37,17 +37,14 @@ export default function Feature()
 
     useEffect(() => awaitData(getPosts, setPosts), [creator]);
 
-    if (posts === undefined)
-    {
-        return <Loading />;
-    }
-
     return <Column gap='small' alignX='stretch'>
-        <PostPanelGrid
-            posts={posts}
-            comicHandler={handleComic}
-            rateHandler={handleRate}
-            reactionHandler={handleReaction}
-        />
+        <LoadingContainer data={posts}>
+            <PostPanelGrid
+                posts={posts as PostView[]}
+                comicHandler={handleComic}
+                rateHandler={handleRate}
+                reactionHandler={handleReaction}
+            />
+        </LoadingContainer>
     </Column>;
 }

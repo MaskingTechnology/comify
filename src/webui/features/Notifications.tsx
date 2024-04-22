@@ -4,7 +4,7 @@ import johnDoe from '../../domain/authentication/johnDoe';
 import getRecentNotifications from '../../domain/notification/getRecent';
 import type NotificationView from '../../domain/notification/view/NotificationView';
 import type RelationView from '../../domain/relation/view/RelationView';
-import { Loading, NotificationPanelList } from '../components/module';
+import { LoadingContainer, NotificationPanelList } from '../components/module';
 import { Column } from '../designsystem/module';
 import awaitData from '../utils/awaitData';
 
@@ -21,12 +21,9 @@ export default function Feature()
 
     useEffect(() => awaitData(getNotifications, setNotifications), []);
 
-    if (notifications === undefined)
-    {
-        return <Loading />;
-    }
-
     return <Column gap='small' alignX='stretch'>
-        <NotificationPanelList notifications={notifications} followHandler={handleFollow} />
+        <LoadingContainer data={notifications}>
+            <NotificationPanelList notifications={notifications as NotificationView[]} followHandler={handleFollow} />
+        </LoadingContainer>
     </Column>;
 }

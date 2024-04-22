@@ -6,7 +6,7 @@ import getTimelinePosts from '../../domain/post/getTimeline';
 import toggleRating from '../../domain/post/toggleRating';
 import type PostView from '../../domain/post/view/PostView';
 import type RelationView from '../../domain/relation/view/RelationView';
-import { Loading, OrderRow, PostPanelList } from '../components/module';
+import { LoadingContainer, OrderRow, PostPanelList } from '../components/module';
 import { Column } from '../designsystem/module';
 import awaitData from '../utils/awaitData';
 
@@ -48,16 +48,14 @@ export default function Feature()
 
     return <Column gap='small' alignX='stretch'>
         <OrderRow selected='recent' orderChangeHandler={handleOrderChange} />
-        {
-            posts !== undefined
-                ? <PostPanelList
-                    posts={posts}
-                    followHandler={handleFollow}
-                    rateHandler={handleRate}
-                    detailsHandler={handleDetails}
-                    profileHandler={handleProfile}
-                />
-                : <Loading />
-        }
+        <LoadingContainer data={posts}>
+            <PostPanelList
+                posts={posts as PostView[]}
+                followHandler={handleFollow}
+                rateHandler={handleRate}
+                detailsHandler={handleDetails}
+                profileHandler={handleProfile}
+            />
+        </LoadingContainer>
     </Column>;
 }

@@ -5,7 +5,7 @@ import PostView from '../../domain/post/view/PostView';
 import create from '../../domain/reaction/create';
 import getReactionsByPost from '../../domain/reaction/getByPost';
 import ReactionView from '../../domain/reaction/view/ReactionView';
-import { Loading, OrderAndAddRow } from '../components/module';
+import { LoadingContainer, OrderAndAddRow } from '../components/module';
 import ReactionsList from '../components/reaction/PanelList';
 import { Column } from '../designsystem/module';
 import awaitData from '../utils/awaitData';
@@ -34,10 +34,8 @@ export default function Feature({ post }: Props)
 
     return <Column alignX='stretch'>
         <OrderAndAddRow selected='recent' reactionHandler={handleReaction} />
-        {
-            reactions !== undefined
-                ? <ReactionsList reactions={reactions} followHandler={handleFollow} />
-                : <Loading />
-        }
+        <LoadingContainer data={reactions}>
+            <ReactionsList reactions={reactions as ReactionView[]} followHandler={handleFollow} />
+        </LoadingContainer>
     </Column>;
 }

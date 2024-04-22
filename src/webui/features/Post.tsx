@@ -5,7 +5,7 @@ import johnDoe from '../../domain/authentication/johnDoe';
 import get from '../../domain/post/get';
 import toggleRating from '../../domain/post/toggleRating';
 import type PostView from '../../domain/post/view/PostView';
-import { Loading } from '../components/module';
+import { LoadingContainer } from '../components/module';
 import PostPanel from '../components/post/DetailsPanel';
 import { Column, Ruler } from '../designsystem/module';
 import awaitData from '../utils/awaitData';
@@ -23,11 +23,6 @@ export default function Feature()
 
     useEffect(() => awaitData(getPost, setPost), []);
 
-    if (post === undefined)
-    {
-        return <Loading />;
-    }
-
     const handleFollow = async () =>
     {
         console.log(`Followed clicked`);
@@ -41,8 +36,10 @@ export default function Feature()
     };
 
     return <Column gap='medium' alignX='stretch'>
-        <PostPanel post={post} followHandler={handleFollow} rateHandler={handleRate} />
-        <Ruler type='horizontal' />
-        <Reactions post={post} />
+        <LoadingContainer data={post}>
+            <PostPanel post={post as PostView} followHandler={handleFollow} rateHandler={handleRate} />
+            <Ruler type='horizontal' />
+            <Reactions post={post as PostView} />
+        </LoadingContainer>
     </Column>;
 }
