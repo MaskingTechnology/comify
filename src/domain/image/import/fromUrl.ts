@@ -1,4 +1,5 @@
 
+import Http from '../../../integrations/http/module';
 import ImageNotDownloaded from '../errors/ImageNotDownloaded';
 import ImageImport from './ImageImport';
 import validate from './validate';
@@ -8,7 +9,7 @@ const CONTENT_LENGTH = 'Content-Length';
 
 export default async function fromUrl(imageUrl: string): Promise<ImageImport>
 {
-    const headResponse = await fetch(imageUrl, { method: 'HEAD' });
+    const headResponse = await Http.head(imageUrl);
 
     if (headResponse.ok === false)
     {
@@ -21,7 +22,7 @@ export default async function fromUrl(imageUrl: string): Promise<ImageImport>
 
     validate(mimeType, size);
 
-    const getResponse = await fetch(imageUrl, { method: 'GET' });
+    const getResponse = await Http.get(imageUrl);
 
     if (getResponse.ok === false)
     {
