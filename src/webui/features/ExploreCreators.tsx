@@ -5,7 +5,7 @@ import SortOptions from '../../domain/relation/definitions/SortOptions';
 import establishRelation from '../../domain/relation/establish';
 import exploreRelations from '../../domain/relation/explore';
 import type RelationView from '../../domain/relation/view/RelationView';
-import { Loading, OrderAndSearchRow, RelationPanelList } from '../components/module';
+import { LoadingContainer, OrderAndSearchRow, RelationPanelList } from '../components/module';
 import { Column } from '../designsystem/module';
 import awaitData from '../utils/awaitData';
 
@@ -30,10 +30,8 @@ export default function Feature()
 
     return <Column gap='small' alignX='stretch'>
         <OrderAndSearchRow selected='popular' orderChangeHandler={handleOrderChange} />
-        {
-            relations !== undefined
-                ? <RelationPanelList relations={relations} followHandler={handleFollow} />
-                : <Loading />
-        }
+        <LoadingContainer data={relations}>
+            <RelationPanelList relations={relations as RelationView[]} followHandler={handleFollow} />
+        </LoadingContainer>
     </Column>;
 }

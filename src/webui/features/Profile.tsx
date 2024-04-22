@@ -5,7 +5,7 @@ import getCreator from '../../domain/creator/getByNickname';
 import CreatorView from '../../domain/creator/view/CreatorView';
 import getRelation from '../../domain/relation/get';
 import type RelationView from '../../domain/relation/view/RelationView';
-import { Loading, RelationProfile } from '../components/module';
+import { LoadingContainer, RelationProfile } from '../components/module';
 import { useAppContext } from '../contexts/AppContext';
 import CreatorContext from '../contexts/CreatorContext';
 import { Column, Ruler, Tab, Tabs } from '../designsystem/module';
@@ -27,32 +27,27 @@ export default function Feature()
 
     useEffect(() => awaitData(getCreatorRelation, setRelation), [identity, nickname]);
 
-    if (relation === undefined)
-    {
-        return <Loading />;
-    }
-
     const handleFollow = async () =>
     {
-        console.log(`Followed ${relation.creator.fullName}`);
+        console.log(`Followed ${relation?.creator.fullName}`);
     };
 
-    const creator = relation.creator;
-
     return <Column gap='medium' alignX='stretch'>
-        <RelationProfile relation={relation} followHandler={handleFollow} />
-        <CreatorContext values={{ creator }}>
-            <Tabs separator={<Ruler type='horizontal' size='small' />}>
-                <Tab title={`Comics (${creator.postCount})`}>
-                    <CreatorComics />
-                </Tab>
-                <Tab title={`Followers (${creator.followerCount})`}>
-                    <CreatorFollowers />
-                </Tab>
-                <Tab title={`Following (${creator.followingCount})`}>
-                    <CreatorFollowing />
-                </Tab>
-            </Tabs>
-        </CreatorContext>
+        <LoadingContainer data={relation}>
+            <RelationProfile relation={relation as RelationView} followHandler={handleFollow} />
+            <CreatorContext values={{ creator: relation?.creator }}>
+                <Tabs separator={<Ruler type='horizontal' size='small' />}>
+                    <Tab title={`Comics (${relation?.creator.postCount})`}>
+                        <CreatorComics />
+                    </Tab>
+                    <Tab title={`Followers (${relation?.creator.followerCount})`}>
+                        <CreatorFollowers />
+                    </Tab>
+                    <Tab title={`Following (${relation?.creator.followingCount})`}>
+                        <CreatorFollowing />
+                    </Tab>
+                </Tabs>
+            </CreatorContext>
+        </LoadingContainer>
     </Column>;
 }

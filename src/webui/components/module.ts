@@ -4,7 +4,7 @@ export { default as ApplicationLegalInfo } from './application/LegalInfo';
 export { default as ApplicationLogo } from './application/Logo';
 export { default as ApplicationSidebar } from './application/sidebar/Sidebar';
 export { default as ErrorBoundary } from './common/ErrorBoundary';
-export { default as Loading } from './common/Loading';
+export { default as LoadingContainer } from './common/LoadingContainer';
 export { default as LogoutPanel } from './common/LogoutPanel';
 export { default as OrderAndAddRow } from './common/OrderAndAddRow';
 export { default as OrderAndSearchRow } from './common/OrderAndSearchRow';
