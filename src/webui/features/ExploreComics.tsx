@@ -40,6 +40,11 @@ export default function Feature()
         navigate(`/post/${post.id}`);
     };
 
+    const handleProfile = (relation: RelationView) =>
+    {
+        navigate(`/profile/${relation.creator.nickname}`);
+    };
+
     useEffect(() => awaitData(getPosts, setPosts), []);
 
     return <Column gap='small' alignX='stretch'>
@@ -50,6 +55,7 @@ export default function Feature()
                 followHandler={handleFollow}
                 rateHandler={handleRate}
                 detailsHandler={handleDetails}
+                profileHandler={handleProfile}
             />
         </LoadingContainer>
     </Column>;
