@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import johnDoe from '../../domain/authentication/johnDoe';
 import establishRelation from '../../domain/relation/establish';
 import getFollowers from '../../domain/relation/getFollowers';
@@ -13,6 +14,7 @@ export default function Feature()
 {
     const { creator } = useCreatorContext();
     const [relations, setRelations] = useState<RelationView[] | undefined>(undefined);
+    const navigate = useNavigate();
 
     if (creator === undefined) return null;
 
@@ -29,12 +31,21 @@ export default function Feature()
         return establishRelation(johnDoe, relation.creator.id);
     };
 
+    const handleProfile = (relation: RelationView) =>
+    {
+        navigate(`/profile/${relation.creator.nickname}`);
+    };
+
     useEffect(() => awaitData(getRelations, setRelations), [creator]);
 
     return <Column gap='small' alignX='stretch'>
         <OrderAndSearchRow selected='recent' orderChangeHandler={handleOrderChange} />
         <LoadingContainer data={relations}>
-            <RelationPanelList relations={relations as RelationView[]} followHandler={handleFollow} />
+            <RelationPanelList
+                relations={relations as RelationView[]}
+                followHandler={handleFollow}
+                profileHandler={handleProfile}
+            />
         </LoadingContainer>
     </Column>;
 }

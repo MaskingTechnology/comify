@@ -6,11 +6,12 @@ import Counters from './Counters';
 export type Props = {
     relation: RelationView;
     followHandler: () => Promise<void>;
+    profileHandler: () => void;
 };
 
-export default function Component({ relation, followHandler }: Props)
+export default function Component({ relation, followHandler, profileHandler }: Props)
 {
     return <Panel>
-        <Counters relation={relation} followHandler={followHandler} />
+        <Counters relation={relation} followHandler={followHandler} profileHandler={profileHandler} />
     </Panel>;
 }

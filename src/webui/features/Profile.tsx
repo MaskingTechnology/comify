@@ -1,8 +1,10 @@
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import johnDoe from '../../domain/authentication/johnDoe';
 import getCreator from '../../domain/creator/getByNickname';
 import CreatorView from '../../domain/creator/view/CreatorView';
+import establishRelation from '../../domain/relation/establish';
 import getRelation from '../../domain/relation/get';
 import type RelationView from '../../domain/relation/view/RelationView';
 import { LoadingContainer, RelationProfile } from '../components/module';
@@ -29,10 +31,10 @@ export default function Feature()
 
     const handleFollow = async () =>
     {
-        console.log(`Followed ${relation?.creator.fullName}`);
+        return establishRelation(johnDoe, (relation as RelationView).creator.id);
     };
 
-    return <Column gap='medium' alignX='stretch'>
+    return <Column gap='medium' alignX='stretch'>;
         <LoadingContainer data={relation}>
             <RelationProfile relation={relation as RelationView} followHandler={handleFollow} />
             <CreatorContext values={{ creator: relation?.creator }}>
@@ -49,5 +51,5 @@ export default function Feature()
                 </Tabs>
             </CreatorContext>
         </LoadingContainer>
-    </Column>;
+    </Column >;
 }
