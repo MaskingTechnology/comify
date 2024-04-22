@@ -31,7 +31,6 @@ export default function Feature()
 
     const handleProfile = (relation: RelationView) =>
     {
-        console.log('switch profile ');
         navigate(`/profile/${relation.creator.nickname}`);
     };
 
