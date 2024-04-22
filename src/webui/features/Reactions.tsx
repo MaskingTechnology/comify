@@ -33,7 +33,7 @@ export default function Feature({ post }: Props)
     };
 
     return <Column alignX='stretch'>
-        <OrderAndAddRow selected='recent' postId={post.id} reactionHandler={handleReaction} />
+        <OrderAndAddRow selected='recent' reactionHandler={handleReaction} />
         {
             reactions !== undefined
                 ? <ReactionsList reactions={reactions} followHandler={handleFollow} />
