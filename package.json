@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "copy-assets": "cpx src/assets/**/* dist/assets",
-    "build": "vite build && tsc -p tsconfig.build.json && npm run copy-assets",
+    "build": "vite build && tsc -p tsconfig.json && npm run copy-assets",
     "clean": "rm -rf dist",
     "docker-up": "docker compose --env-file development.env up",
     "docker-down": "docker compose --env-file development.env down",
