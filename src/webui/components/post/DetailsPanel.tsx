@@ -9,13 +9,14 @@ export type Props = {
     post: PostView;
     followHandler: () => Promise<void>;
     rateHandler: () => Promise<boolean>;
+    profileHandler: () => void;
 };
 
-export default function Component({ post, followHandler, rateHandler }: Props)
+export default function Component({ post, followHandler, rateHandler, profileHandler }: Props)
 {
     return <Panel>
         <Column gap='medium' alignX='stretch'>
-            <TimeElapsed date={post.createdAt} relation={post.creator} followHandler={followHandler} />
+            <TimeElapsed date={post.createdAt} relation={post.creator} followHandler={followHandler} profileHandler={profileHandler} />
             <ComicImage comic={post.comic} />
             <RatingEngagement isEngaged={post.hasRated} count={post.ratingCount} rateHandler={rateHandler} />
         </Column>

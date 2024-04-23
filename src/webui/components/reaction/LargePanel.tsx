@@ -11,9 +11,10 @@ import TimeElapsed from '../relation/TimeElapsed';
 export type Props = {
     reaction: ReactionView;
     followHandler: () => Promise<void>;
+    profileHandler: () => void;
 };
 
-export default function LargePanel({ reaction, followHandler }: Props)
+export default function LargePanel({ reaction, followHandler, profileHandler }: Props)
 {
     // Dummy implementation to simply show some comments underneath the post
 
@@ -26,7 +27,7 @@ export default function LargePanel({ reaction, followHandler }: Props)
 
     return <Panel>
         <Column gap='medium' alignX='stretch'>
-            <TimeElapsed date={reaction.createdAt} relation={relationView} followHandler={followHandler} />
+            <TimeElapsed date={reaction.createdAt} relation={relationView} followHandler={followHandler} profileHandler={profileHandler} />
             <Comment text={reaction.comment?.message ?? 'No comment'} />
             <RatingEngagement isEngaged={reaction.hasRated} count={reaction.ratingCount} rateHandler={handleRate} />
         </Column>

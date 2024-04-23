@@ -7,9 +7,10 @@ import LargePanel from './LargePanel';
 export type Props = {
     reactions: ReactionView[];
     followHandler: () => Promise<void>;
+    profileHandler: () => void;
 };
 
-export default function Component({ reactions, followHandler }: Props)
+export default function Component({ reactions, followHandler, profileHandler }: Props)
 {
     if (reactions === undefined) return null;
 
@@ -25,6 +26,7 @@ export default function Component({ reactions, followHandler }: Props)
                     key={reaction.id}
                     reaction={reaction}
                     followHandler={followHandler}
+                    profileHandler={profileHandler}
                 />
             )
         }
