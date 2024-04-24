@@ -7,10 +7,11 @@ import Panel from './Panel';
 
 export type Props = {
     notifications: NotificationView[];
-    followHandler: (relation: RelationView) => void;
+    followHandler: (relation: RelationView) => Promise<void>;
+    profileHandler: () => void;
 };
 
-export default function Component({ notifications, followHandler }: Props)
+export default function Component({ notifications, followHandler, profileHandler }: Props)
 {
     if (notifications.length === 0)
     {
@@ -24,6 +25,7 @@ export default function Component({ notifications, followHandler }: Props)
                     key={notification.id}
                     notification={notification}
                     followHandler={() => followHandler(notification.relation)}
+                    profileHandler={profileHandler}
                 />
             )
         }

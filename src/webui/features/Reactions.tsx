@@ -22,6 +22,11 @@ export default function Feature({ post }: Props)
 
     useEffect(() => awaitData(getReactions, setReactions), []);
 
+    const handleProfile = () =>
+    {
+        console.log('Profile');
+    };
+
     const handleReaction = () => 
     {
         create(johnDoe, post.id, `This is a random comment ${Math.random() * 1000}`);
@@ -35,7 +40,11 @@ export default function Feature({ post }: Props)
     return <Column alignX='stretch'>
         <OrderAndAddRow selected='recent' reactionHandler={handleReaction} />
         <LoadingContainer data={reactions}>
-            <ReactionsList reactions={reactions as ReactionView[]} followHandler={handleFollow} />
+            <ReactionsList
+                reactions={reactions as ReactionView[]}
+                followHandler={handleFollow}
+                profileHandler={handleProfile}
+            />
         </LoadingContainer>
     </Column>;
 }

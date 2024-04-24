@@ -23,6 +23,11 @@ export default function Feature()
 
     useEffect(() => awaitData(getPost, setPost), []);
 
+    const handleProfile = () =>
+    {
+        console.log('Profile');
+    };
+
     const handleFollow = async () =>
     {
         console.log(`Followed clicked`);
@@ -37,7 +42,12 @@ export default function Feature()
 
     return <Column gap='medium' alignX='stretch'>
         <LoadingContainer data={post}>
-            <PostPanel post={post as PostView} followHandler={handleFollow} rateHandler={handleRate} />
+            <PostPanel
+                post={post as PostView}
+                followHandler={handleFollow}
+                rateHandler={handleRate}
+                profileHandler={handleProfile}
+            />
             <Ruler type='horizontal' />
             <Reactions post={post as PostView} />
         </LoadingContainer>

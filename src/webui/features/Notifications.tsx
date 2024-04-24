@@ -17,13 +17,24 @@ export default function Feature()
     const handleFollow = (relation: RelationView) =>
     {
         console.log(`Followed ${relation.creator.fullName}`);
+
+        return Promise.resolve();
+    };
+
+    const handleProfile = () =>
+    {
+        console.log('Profile');
     };
 
     useEffect(() => awaitData(getNotifications, setNotifications), []);
 
     return <Column gap='small' alignX='stretch'>
         <LoadingContainer data={notifications}>
-            <NotificationPanelList notifications={notifications as NotificationView[]} followHandler={handleFollow} />
+            <NotificationPanelList
+                notifications={notifications as NotificationView[]}
+                followHandler={handleFollow}
+                profileHandler={handleProfile}
+            />
         </LoadingContainer>
     </Column>;
 }
