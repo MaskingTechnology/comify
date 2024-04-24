@@ -1,10 +1,12 @@
 
 import { useNavigate } from 'react-router-dom';
-import johnDoe from '../../domain/authentication/johnDoe';
-import createPost from '../../domain/post/create';
-import Editor from '../components/comic/Editor';
-import { useAppContext } from '../contexts/AppContext';
-import { Column } from '../designsystem/module';
+
+import johnDoe from '^/domain/authentication/johnDoe';
+import createPost from '^/domain/post/create';
+
+import { ComicEditor } from '^/webui/components/module';
+import { useAppContext } from '^/webui/contexts/module';
+import { Column } from '^/webui/designsystem/module';
 
 export default function Feature()
 {
@@ -19,6 +21,6 @@ export default function Feature()
     };
 
     return <Column alignX='stretch'>
-        <Editor createHandler={handleCreate} />
+        <ComicEditor createHandler={handleCreate} />
     </Column>;
 }

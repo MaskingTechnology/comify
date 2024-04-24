@@ -1,5 +1,6 @@
 
-import validator, { ValidationSchema } from '../../../integrations/validation/module';
+import validator, { ValidationSchema } from '^/integrations/validation/module';
+
 import InvalidImage from '../errors/InvalidImage';
 
 const TEN_B = 10;

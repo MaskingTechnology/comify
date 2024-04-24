@@ -1,5 +1,5 @@
 
-import { Button, Panel, Paragraph, Row } from '../../designsystem/module';
+import { Button, Panel, Paragraph, Row } from '^/webui/designsystem/module';
 
 export type Props = {
     logoutHandler: () => void;

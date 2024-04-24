@@ -1,5 +1,6 @@
 
-import { ClickArea, Column, Text } from '../../../designsystem/module';
+import { ClickArea, Column, Text } from '^/webui/designsystem/module';
+
 import TimeElapsed from '../../common/TimeElapsed';
 
 export type Props = {

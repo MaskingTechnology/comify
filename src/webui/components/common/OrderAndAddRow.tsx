@@ -1,5 +1,6 @@
 
-import { ClickArea, Icon, Row } from '../../designsystem/module';
+import { ClickArea, Icon, Row } from '^/webui/designsystem/module';
+
 import OrderSelection from './elementary/OrderSelection';
 
 export type Props = {

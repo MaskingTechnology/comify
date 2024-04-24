@@ -1,5 +1,6 @@
 
-import { RecordData } from '../../../integrations/database/module';
+import { RecordData } from '^/integrations/database/module';
+
 import ComicData from './ComicData';
 
 export default function mapRecord(record: RecordData): ComicData

@@ -1,5 +1,6 @@
 
-import { Row } from '../../designsystem/module';
+import { Row } from '^/webui/designsystem/module';
+
 import OrderSelection from './elementary/OrderSelection';
 
 export type Props = {

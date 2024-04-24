@@ -1,7 +1,9 @@
 
-import type CreatorView from '../../../domain/creator/view/CreatorView';
-import logoutIcon from '../../assets/images/icons/logout.svg';
-import { ClickArea, Image, Row } from '../../designsystem/module';
+import type CreatorView from '^/domain/creator/view/CreatorView';
+
+import logoutIcon from '^/webui/assets/images/icons/logout.svg';
+import { ClickArea, Image, Row } from '^/webui/designsystem/module';
+
 import CreatorIdentity from '../creator/Identity';
 
 export type Props = {

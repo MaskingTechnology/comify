@@ -1,14 +1,16 @@
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import johnDoe from '../../domain/authentication/johnDoe';
-import get from '../../domain/post/get';
-import toggleRating from '../../domain/post/toggleRating';
-import type PostView from '../../domain/post/view/PostView';
-import { LoadingContainer } from '../components/module';
-import PostPanel from '../components/post/DetailsPanel';
-import { Column, Ruler } from '../designsystem/module';
-import awaitData from '../utils/awaitData';
+
+import johnDoe from '^/domain/authentication/johnDoe';
+import get from '^/domain/post/get';
+import toggleRating from '^/domain/post/toggleRating';
+import type PostView from '^/domain/post/view/PostView';
+
+import { LoadingContainer, PostDetailsPanel } from '^/webui/components/module';
+import { Column, Ruler } from '^/webui/designsystem/module';
+import { awaitData } from '^/webui/utils/module';
+
 import Reactions from './Reactions';
 
 export default function Feature()
@@ -42,7 +44,7 @@ export default function Feature()
 
     return <Column gap='medium' alignX='stretch'>
         <LoadingContainer data={post}>
-            <PostPanel
+            <PostDetailsPanel
                 post={post as PostView}
                 followHandler={handleFollow}
                 rateHandler={handleRate}

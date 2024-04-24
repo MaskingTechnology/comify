@@ -1,5 +1,6 @@
 
-import database, { RecordQuery, RecordSort, SortDirections } from '../../../integrations/database/module';
+import database, { RecordQuery, RecordSort, SortDirections } from '^/integrations/database/module';
+
 import { RECORD_TYPE } from '../definitions/constants';
 import type PostData from './PostData';
 import createData from './mapRecord';

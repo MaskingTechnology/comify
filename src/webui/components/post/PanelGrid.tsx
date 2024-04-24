@@ -1,6 +1,8 @@
 
-import type PostView from '../../../domain/post/view/PostView';
-import { Grid } from '../../designsystem/module';
+import type PostView from '^/domain/post/view/PostView';
+
+import { Grid } from '^/webui/designsystem/module';
+
 import NoResults from '../common/NoResults';
 import SmallPanel from './SmallPanel';
 

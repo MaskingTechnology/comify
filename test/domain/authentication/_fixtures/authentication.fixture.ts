@@ -1,10 +1,10 @@
 
-import login from '../../../../src/domain/authentication/login';
-import { RECORD_TYPE } from '../../../../src/domain/creator/definitions/constants';
-import TooManySimilarNicknames from '../../../../src/domain/creator/errors/TooManySimilarNicknames';
-import { Identity } from '../../../../src/integrations/authentication/module';
-import database, { RecordData } from '../../../../src/integrations/database/module';
-import filestorage from '../../../../src/integrations/filestorage/module';
+import login from '^/domain/authentication/login';
+import { RECORD_TYPE } from '^/domain/creator/definitions/constants';
+import TooManySimilarNicknames from '^/domain/creator/errors/TooManySimilarNicknames';
+import { Identity } from '^/integrations/authentication/module';
+import database, { RecordData } from '^/integrations/database/module';
+import filestorage from '^/integrations/filestorage/module';
 
 const NICKNAMES: Record<string, string> = {
     EXISTING_NICKNAME: 'ExistingNickname',

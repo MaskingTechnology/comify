@@ -1,7 +1,9 @@
 
-import type NotificationView from '../../../domain/notification/view/NotificationView';
-import type RelationView from '../../../domain/relation/view/RelationView';
-import { Column } from '../../designsystem/module';
+import type NotificationView from '^/domain/notification/view/NotificationView';
+import type RelationView from '^/domain/relation/view/RelationView';
+
+import { Column } from '^/webui/designsystem/module';
+
 import NoResults from "../common/NoResults";
 import Panel from './Panel';
 

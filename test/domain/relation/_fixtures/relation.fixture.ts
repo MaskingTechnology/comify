@@ -1,15 +1,15 @@
 
-import Requester from '../../../../src/domain/authentication/Requester';
-import { RECORD_TYPE as RECORD_TYPE_CREATOR } from '../../../../src/domain/creator/definitions/constants';
-import RelationData from '../../../../src/domain/relation/data/RelationData';
-import SortOptions from '../../../../src/domain/relation/definitions/SortOptions';
-import { RECORD_TYPE as RECORD_TYPE_RELATION } from '../../../../src/domain/relation/definitions/constants';
-import RelationAlreadyExists from '../../../../src/domain/relation/errors/RelationAlreadyExists';
-import establish from '../../../../src/domain/relation/establish';
-import explore from '../../../../src/domain/relation/explore';
-import getFollowers from '../../../../src/domain/relation/getFollowers';
-import getFollowing from '../../../../src/domain/relation/getFollowing';
-import database, { RecordData, RecordQuery } from '../../../../src/integrations/database/module';
+import Requester from '^/domain/authentication/Requester';
+import { RECORD_TYPE as RECORD_TYPE_CREATOR } from '^/domain/creator/definitions/constants';
+import RelationData from '^/domain/relation/data/RelationData';
+import SortOptions from '^/domain/relation/definitions/SortOptions';
+import { RECORD_TYPE as RECORD_TYPE_RELATION } from '^/domain/relation/definitions/constants';
+import RelationAlreadyExists from '^/domain/relation/errors/RelationAlreadyExists';
+import establish from '^/domain/relation/establish';
+import explore from '^/domain/relation/explore';
+import getFollowers from '^/domain/relation/getFollowers';
+import getFollowing from '^/domain/relation/getFollowing';
+import database, { RecordData, RecordQuery } from '^/integrations/database/module';
 
 await database.connect();
 

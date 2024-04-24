@@ -1,6 +1,8 @@
 
-import type RelationView from '../../../domain/relation/view/RelationView';
-import { Panel } from '../../designsystem/module';
+import type RelationView from '^/domain/relation/view/RelationView';
+
+import { Panel } from '^/webui/designsystem/module';
+
 import Counters from './Counters';
 
 export type Props = {

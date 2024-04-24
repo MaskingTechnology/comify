@@ -1,6 +1,8 @@
 
-import type NotificationView from '../../../domain/notification/view/NotificationView';
-import { Column, Panel } from '../../designsystem/module';
+import type NotificationView from '^/domain/notification/view/NotificationView';
+
+import { Column, Panel } from '^/webui/designsystem/module';
+
 import TimeElapsed from '../relation/TimeElapsed';
 import RatedPost from './elementary/RatedPost';
 import RatedReaction from './elementary/RatedReaction';

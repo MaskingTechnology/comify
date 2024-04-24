@@ -1,5 +1,6 @@
 
-import { RecordData } from '../../../integrations/database/module';
+import { RecordData } from '^/integrations/database/module';
+
 import CommentData from './CommentData';
 
 export default function mapRecord(record: RecordData): CommentData

@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
-import { Button } from '../../../designsystem/module';
+
+import { Button } from '^/webui/designsystem/module';
 
 export type Props = {
     isFollowing: boolean;

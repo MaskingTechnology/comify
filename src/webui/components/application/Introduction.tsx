@@ -1,7 +1,8 @@
 
-import introductionImage from '../../assets/images/introduction.png';
-import { Button, Column, Image, Panel, Row, Text } from '../../designsystem/module';
-import { ApplicationLogo } from '../module';
+import introductionImage from '^/webui/assets/images/introduction.png';
+import { Button, Column, Image, Panel, Row, Text } from '^/webui/designsystem/module';
+
+import Logo from './Logo';
 
 export type Props = {
     getInHandler: () => void;
@@ -12,7 +13,7 @@ export default function Component({ getInHandler }: Props)
     return <Panel>
         <Column gap='medium' alignX='stretch'>
             <Row alignX='justify' alignY='top'>
-                <ApplicationLogo />
+                <Logo />
                 <Button type='primary' text='Get in' clickHandler={getInHandler} />
             </Row>
             <Image source={introductionImage} width='600px' />

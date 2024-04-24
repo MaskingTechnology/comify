@@ -1,5 +1,6 @@
 
-import { Panel, Paragraph, Title } from '../designsystem/module';
+import { Panel, Paragraph, Title } from '^/webui/designsystem/module';
+
 import Login from './Login';
 
 export type Props = {

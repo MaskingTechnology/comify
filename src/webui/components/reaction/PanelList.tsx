@@ -1,6 +1,8 @@
 
-import ReactionView from '../../../domain/reaction/view/ReactionView';
-import { Column } from '../../designsystem/module';
+import ReactionView from '^/domain/reaction/view/ReactionView';
+
+import { Column } from '^/webui/designsystem/module';
+
 import NoResults from '../common/NoResults';
 import LargePanel from './LargePanel';
 

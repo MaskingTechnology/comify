@@ -1,9 +1,9 @@
 
-import johnDoe from '../../../../src/domain/authentication/johnDoe';
-import { RECORD_TYPE as RATING_RECORD_TYPE } from '../../../../src/domain/rating/definitions/constants';
-import { RECORD_TYPE as REACTION_RECORD_TYPE } from '../../../../src/domain/reaction/definitions/constants';
-import toggleRating from '../../../../src/domain/reaction/toggleRating';
-import database, { RecordQuery } from '../../../../src/integrations/database/module';
+import johnDoe from '^/domain/authentication/johnDoe';
+import { RECORD_TYPE as RATING_RECORD_TYPE } from '^/domain/rating/definitions/constants';
+import { RECORD_TYPE as REACTION_RECORD_TYPE } from '^/domain/reaction/definitions/constants';
+import toggleRating from '^/domain/reaction/toggleRating';
+import database, { RecordQuery } from '^/integrations/database/module';
 
 const POST_ID = '1';
 const COMMENT_ID = '1';

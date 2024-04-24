@@ -1,7 +1,8 @@
 
 import { useEffect, useState } from 'react';
-import { Button, Column, Panel, Row } from '../../designsystem/module';
-import Editor from '../../editor/Editor';
+
+import { Button, Column, Panel, Row } from '^/webui/designsystem/module';
+import { Editor } from '^/webui/editor/module';
 
 export type Props = {
     createHandler: (imageData: string) => Promise<void>;

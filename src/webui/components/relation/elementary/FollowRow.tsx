@@ -1,6 +1,8 @@
 
 import React from 'react';
-import { Row } from '../../../designsystem/module';
+
+import { Row } from '^/webui/designsystem/module';
+
 import FollowButton from './FollowButton';
 
 export type Props = {

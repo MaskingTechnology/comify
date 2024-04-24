@@ -1,5 +1,6 @@
 
-import type RelationView from '../../../domain/relation/view/RelationView';
+import type RelationView from '^/domain/relation/view/RelationView';
+
 import CreatorProfile from '../creator/Profile';
 import FollowRow from './elementary/FollowRow';
 

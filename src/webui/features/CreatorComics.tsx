@@ -1,14 +1,16 @@
 
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import johnDoe from '../../domain/authentication/johnDoe';
-import getCreatorPosts from '../../domain/post/getByCreator';
-import toggleRating from '../../domain/post/toggleRating';
-import type PostView from '../../domain/post/view/PostView';
-import { LoadingContainer, PostPanelGrid } from '../components/module';
-import { useCreatorContext } from '../contexts/CreatorContext';
-import { Column } from '../designsystem/module';
-import awaitData from '../utils/awaitData';
+
+import johnDoe from '^/domain/authentication/johnDoe';
+import getCreatorPosts from '^/domain/post/getByCreator';
+import toggleRating from '^/domain/post/toggleRating';
+import type PostView from '^/domain/post/view/PostView';
+
+import { LoadingContainer, PostPanelGrid } from '^/webui/components/module';
+import { useCreatorContext } from '^/webui/contexts/module';
+import { Column } from '^/webui/designsystem/module';
+import { awaitData } from '^/webui/utils/module';
 
 export default function Feature()
 {
