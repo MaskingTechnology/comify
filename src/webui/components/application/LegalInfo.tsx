@@ -1,5 +1,5 @@
 
-import { Column, Link, Paragraph } from '../../designsystem/module';
+import { Column, Link, Paragraph } from '^/webui/designsystem/module';
 
 export default function Component()
 {

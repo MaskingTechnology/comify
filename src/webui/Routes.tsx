@@ -1,7 +1,8 @@
 
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { useAppContext } from './contexts/AppContext';
+
+import { useAppContext } from './contexts/module';
 import CreateComic from './features/CreateComic';
 import Explore from './features/Explore';
 import Home from './features/Home';

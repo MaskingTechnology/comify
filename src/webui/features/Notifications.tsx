@@ -1,12 +1,14 @@
 
 import { useEffect, useState } from 'react';
-import johnDoe from '../../domain/authentication/johnDoe';
-import getRecentNotifications from '../../domain/notification/getRecent';
-import type NotificationView from '../../domain/notification/view/NotificationView';
-import type RelationView from '../../domain/relation/view/RelationView';
-import { LoadingContainer, NotificationPanelList } from '../components/module';
-import { Column } from '../designsystem/module';
-import awaitData from '../utils/awaitData';
+
+import johnDoe from '^/domain/authentication/johnDoe';
+import getRecentNotifications from '^/domain/notification/getRecent';
+import type NotificationView from '^/domain/notification/view/NotificationView';
+import type RelationView from '^/domain/relation/view/RelationView';
+
+import { LoadingContainer, NotificationPanelList } from '^/webui/components/module';
+import { Column } from '^/webui/designsystem/module';
+import { awaitData } from '^/webui/utils/module';
 
 export default function Feature()
 {

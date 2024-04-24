@@ -1,5 +1,5 @@
 
-import { Panel, Paragraph, Title } from '../designsystem/module';
+import { Panel, Paragraph, Title } from '^/webui/designsystem/module';
 
 export default function Feature()
 {

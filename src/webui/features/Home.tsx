@@ -1,7 +1,8 @@
 
 import { useNavigate } from 'react-router-dom';
-import { ApplicationIntroduction, ApplicationLegalInfo } from '../components/module';
-import { Column } from '../designsystem/module';
+
+import { ApplicationIntroduction, ApplicationLegalInfo } from '^/webui/components/module';
+import { Column } from '^/webui/designsystem/module';
 
 export default function Feature()
 {

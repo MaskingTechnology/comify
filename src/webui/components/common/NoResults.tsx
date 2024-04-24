@@ -1,7 +1,6 @@
 
-import { Image, Panel, Row, Text } from '../../designsystem/module';
-
-import noResultImage from '../../assets/images/noresult.svg';
+import noResultImage from '^/webui/assets/images/noresult.svg';
+import { Image, Panel, Row, Text } from '^/webui/designsystem/module';
 
 export default function Component()
 {

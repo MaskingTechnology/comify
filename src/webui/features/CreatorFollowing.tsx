@@ -1,14 +1,16 @@
 
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import johnDoe from '../../domain/authentication/johnDoe';
-import establishRelation from '../../domain/relation/establish';
-import getFollowing from '../../domain/relation/getFollowing';
-import type RelationView from '../../domain/relation/view/RelationView';
-import { LoadingContainer, OrderAndSearchRow, RelationPanelList } from '../components/module';
-import { useCreatorContext } from '../contexts/CreatorContext';
-import { Column } from '../designsystem/module';
-import awaitData from '../utils/awaitData';
+
+import johnDoe from '^/domain/authentication/johnDoe';
+import establishRelation from '^/domain/relation/establish';
+import getFollowing from '^/domain/relation/getFollowing';
+import type RelationView from '^/domain/relation/view/RelationView';
+
+import { LoadingContainer, OrderAndSearchRow, RelationPanelList } from '^/webui/components/module';
+import { useCreatorContext } from '^/webui/contexts/module';
+import { Column } from '^/webui/designsystem/module';
+import { awaitData } from '^/webui/utils/module';
 
 export default function Feature()
 {
@@ -27,7 +29,6 @@ export default function Feature()
 
     const handleFollow = (relation: RelationView) =>
     {
-
         return establishRelation(johnDoe, relation.creator.id);
     };
 

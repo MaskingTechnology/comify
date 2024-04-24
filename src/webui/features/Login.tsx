@@ -1,7 +1,9 @@
 
 import { useEffect } from 'react';
-import getLoginUrl from '../../domain/authentication/getLoginUrl';
-import awaitData from '../utils/awaitData';
+
+import getLoginUrl from '^/domain/authentication/getLoginUrl';
+
+import { awaitData } from '^/webui/utils/module';
 
 const IGNORE_PATHS = ['/', '/login', '/identify'];
 

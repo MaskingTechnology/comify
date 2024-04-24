@@ -1,17 +1,19 @@
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import johnDoe from '../../domain/authentication/johnDoe';
-import getCreator from '../../domain/creator/getByNickname';
-import CreatorView from '../../domain/creator/view/CreatorView';
-import establishRelation from '../../domain/relation/establish';
-import getRelation from '../../domain/relation/get';
-import type RelationView from '../../domain/relation/view/RelationView';
-import { LoadingContainer, RelationProfile } from '../components/module';
-import { useAppContext } from '../contexts/AppContext';
-import CreatorContext from '../contexts/CreatorContext';
-import { Column, Ruler, Tab, Tabs } from '../designsystem/module';
-import awaitData from '../utils/awaitData';
+
+import johnDoe from '^/domain/authentication/johnDoe';
+import getCreator from '^/domain/creator/getByNickname';
+import CreatorView from '^/domain/creator/view/CreatorView';
+import establishRelation from '^/domain/relation/establish';
+import getRelation from '^/domain/relation/get';
+import type RelationView from '^/domain/relation/view/RelationView';
+
+import { LoadingContainer, RelationProfile } from '^/webui/components/module';
+import { CreatorContextProvider, useAppContext } from '^/webui/contexts/module';
+import { Column, Ruler, Tab, Tabs } from '^/webui/designsystem/module';
+import { awaitData } from '^/webui/utils/module';
+
 import CreatorComics from './CreatorComics';
 import CreatorFollowers from './CreatorFollowers';
 import CreatorFollowing from './CreatorFollowing';
@@ -37,7 +39,7 @@ export default function Feature()
     return <Column gap='medium' alignX='stretch'>;
         <LoadingContainer data={relation}>
             <RelationProfile relation={relation as RelationView} followHandler={handleFollow} />
-            <CreatorContext values={{ creator: relation?.creator }}>
+            <CreatorContextProvider values={{ creator: relation?.creator }}>
                 <Tabs separator={<Ruler type='horizontal' size='small' />}>
                     <Tab title={`Comics (${relation?.creator.postCount})`}>
                         <CreatorComics />
@@ -49,7 +51,7 @@ export default function Feature()
                         <CreatorFollowing />
                     </Tab>
                 </Tabs>
-            </CreatorContext>
+            </CreatorContextProvider>
         </LoadingContainer>
     </Column >;
 }

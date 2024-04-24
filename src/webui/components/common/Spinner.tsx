@@ -1,5 +1,5 @@
 
-import { Row, Spinner } from '../../designsystem/module';
+import { Row, Spinner } from '^/webui/designsystem/module';
 
 export default function Component()
 {

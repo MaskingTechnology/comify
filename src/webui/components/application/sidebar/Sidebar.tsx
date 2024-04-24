@@ -1,5 +1,6 @@
 
-import type CreatorView from '../../../../domain/creator/view/CreatorView';
+import type CreatorView from '^/domain/creator/view/CreatorView';
+
 import Identity from '../Identity';
 import Logo from '../Logo';
 import Navigation from '../navigation/Navigation';

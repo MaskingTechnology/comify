@@ -1,5 +1,6 @@
 
-import { ClickArea, Row } from '../../designsystem/module';
+import { ClickArea, Row } from '^/webui/designsystem/module';
+
 import CompactNumber from '../common/CompactNumber';
 import Icon from './elementary/Icon';
 

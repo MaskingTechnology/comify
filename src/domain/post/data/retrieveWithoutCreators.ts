@@ -1,8 +1,9 @@
 
-import database, { RecordQuery } from '../../../integrations/database/module';
+import database, { RecordQuery } from '^/integrations/database/module';
+
 import { RECORD_TYPE } from '../definitions/constants';
-import mapRecord from './mapRecord';
 import type PostData from './PostData';
+import mapRecord from './mapRecord';
 
 export default async function retrieveWithoutCreators(creatorIds: string[]): Promise<PostData[]>
 {

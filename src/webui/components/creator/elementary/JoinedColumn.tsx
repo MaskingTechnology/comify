@@ -1,5 +1,6 @@
 
-import { Column, Text } from '../../../designsystem/module';
+import { Column, Text } from '^/webui/designsystem/module';
+
 import NamesRow from './NamesRow';
 
 export type Props = {

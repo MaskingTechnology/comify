@@ -1,5 +1,5 @@
 
-import { Dropdown } from '../../../designsystem/module';
+import { Dropdown } from '^/webui/designsystem/module';
 
 export type Props = {
     selected?: 'recent' | 'popular';

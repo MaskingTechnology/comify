@@ -1,5 +1,6 @@
 
-import type { RecordData } from '../../../integrations/database/module';
+import type { RecordData } from '^/integrations/database/module';
+
 import ReactionData from './ReactionData';
 
 export default function mapRecord(record: RecordData): ReactionData

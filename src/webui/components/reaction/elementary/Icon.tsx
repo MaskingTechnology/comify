@@ -1,6 +1,6 @@
 
-import icon from '../../../assets/images/icons/reactions.svg';
-import { Image } from '../../../designsystem/module';
+import icon from '^/webui/assets/images/icons/reactions.svg';
+import { Image } from '^/webui/designsystem/module';
 
 export default function Component()
 {

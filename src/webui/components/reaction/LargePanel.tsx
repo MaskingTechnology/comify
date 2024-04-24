@@ -1,9 +1,11 @@
 
-import johnDoe from '../../../domain/authentication/johnDoe';
-import toggleRating from '../../../domain/reaction/toggleRating';
-import ReactionView from '../../../domain/reaction/view/ReactionView';
-import RelationView from '../../../domain/relation/view/RelationView';
-import { Column, Panel } from '../../designsystem/module';
+import johnDoe from '^/domain/authentication/johnDoe';
+import toggleRating from '^/domain/reaction/toggleRating';
+import ReactionView from '^/domain/reaction/view/ReactionView';
+import RelationView from '^/domain/relation/view/RelationView';
+
+import { Column, Panel } from '^/webui/designsystem/module';
+
 import Comment from '../comment/Comment';
 import RatingEngagement from '../rating/Engagement';
 import TimeElapsed from '../relation/TimeElapsed';

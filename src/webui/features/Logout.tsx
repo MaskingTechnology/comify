@@ -1,8 +1,10 @@
 
 import { useNavigate } from 'react-router-dom';
-import logout from '../../domain/authentication/logout';
-import { LogoutPanel } from '../components/module';
-import { useAppContext } from '../contexts/AppContext';
+
+import logout from '^/domain/authentication/logout';
+
+import { LogoutPanel } from '^/webui/components/module';
+import { useAppContext } from '^/webui/contexts/module';
 
 export default function Feature()
 {

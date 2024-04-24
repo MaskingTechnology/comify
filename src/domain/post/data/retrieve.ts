@@ -1,5 +1,6 @@
 
-import database from '../../../integrations/database/module';
+import database from '^/integrations/database/module';
+
 import { RECORD_TYPE } from '../definitions/constants';
 import PostData from './PostData';
 import mapRecord from './mapRecord';

@@ -1,5 +1,5 @@
 
-import filestorage from '../../../integrations/filestorage/module';
+import filestorage from '^/integrations/filestorage/module';
 
 export default async function exists(storageKey: string): Promise<boolean>
 {

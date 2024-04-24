@@ -1,6 +1,8 @@
 
-import type PostView from '../../../domain/post/view/PostView';
-import { ClickArea, Column, Panel } from '../../designsystem/module';
+import type PostView from '^/domain/post/view/PostView';
+
+import { ClickArea, Column, Panel } from '^/webui/designsystem/module';
+
 import ComicImage from '../comic/Image';
 import TimeElapsed from '../relation/TimeElapsed';
 import EngagementsRow from './elementary/EngagementRow';

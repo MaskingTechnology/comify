@@ -1,5 +1,5 @@
 
-import { Image, Row, Text } from '../../../designsystem/module';
+import { Image, Row, Text } from '^/webui/designsystem/module';
 
 export type Props = {
     comicDataUrl: string;
