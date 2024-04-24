@@ -1,10 +1,10 @@
 
-import johnDoe from '../../../../src/domain/authentication/johnDoe';
-import { RECORD_TYPE as COMMENT_RECORD_TYPE } from '../../../../src/domain/comment/definitions/constants';
-import { RECORD_TYPE as POST_RECORD_TYPE } from '../../../../src/domain/post/definitions/constants';
-import create from '../../../../src/domain/reaction/create';
-import { RECORD_TYPE as REACTION_RECORD_TYPE } from '../../../../src/domain/reaction/definitions/constants';
-import database from '../../../../src/integrations/database/module';
+import johnDoe from '^/domain/authentication/johnDoe';
+import { RECORD_TYPE as COMMENT_RECORD_TYPE } from '^/domain/comment/definitions/constants';
+import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions/constants';
+import create from '^/domain/reaction/create';
+import { RECORD_TYPE as REACTION_RECORD_TYPE } from '^/domain/reaction/definitions/constants';
+import database from '^/integrations/database/module';
 
 const COMIC_ID = '1';
 const POST_ID = '1';

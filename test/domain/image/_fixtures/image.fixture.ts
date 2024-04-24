@@ -1,12 +1,12 @@
 
-import johnDoe from '../../../../src/domain/authentication/johnDoe';
-import create from '../../../../src/domain/image/create';
-import download from '../../../../src/domain/image/download';
-import ImageNotDownloaded from '../../../../src/domain/image/errors/ImageNotDownloaded';
-import InvalidDataURL from '../../../../src/domain/image/errors/InvalidDataURL';
-import InvalidImage from '../../../../src/domain/image/errors/InvalidImage';
-import database from '../../../../src/integrations/database/module';
-import fileStorage from '../../../../src/integrations/filestorage/module';
+import johnDoe from '^/domain/authentication/johnDoe';
+import create from '^/domain/image/create';
+import download from '^/domain/image/download';
+import ImageNotDownloaded from '^/domain/image/errors/ImageNotDownloaded';
+import InvalidDataURL from '^/domain/image/errors/InvalidDataURL';
+import InvalidImage from '^/domain/image/errors/InvalidImage';
+import database from '^/integrations/database/module';
+import fileStorage from '^/integrations/filestorage/module';
 
 const IMAGE_URLS =
 {
