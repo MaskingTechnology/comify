@@ -14,6 +14,7 @@ export { default as Image } from './elements/image/Image';
 export { default as Input } from './elements/input/Input';
 export { default as Label } from './elements/label/Label';
 export { default as Link } from './elements/link/Link';
+export { default as Modal } from './elements/modal/Modal';
 export { default as Panel } from './elements/panel/Panel';
 export { default as Paragraph } from './elements/paragraph/Paragraph';
 export { default as Row } from './elements/row/Row';

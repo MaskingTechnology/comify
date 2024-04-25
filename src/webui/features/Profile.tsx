@@ -36,7 +36,7 @@ export default function Feature()
         return establishRelation(johnDoe, (relation as RelationView).creator.id);
     };
 
-    return <Column gap='medium' alignX='stretch'>;
+    return <Column gap='medium' alignX='stretch'>
         <LoadingContainer data={relation}>
             <RelationProfile relation={relation as RelationView} followHandler={handleFollow} />
             <CreatorContextProvider values={{ creator: relation?.creator }}>
