@@ -13,6 +13,7 @@ export default function Component({ createHandler }: Props)
 
     const handleCreate = async () =>
     {
+        setCreating(true);
         createHandler('Hello world!');
     };
 

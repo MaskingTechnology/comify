@@ -8,12 +8,14 @@ type Props = {
 
 export default function Feature({ handleDone }: Props)
 {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const createComic = async (imageData: string) =>
     {
         console.log('Create comic');
         handleDone();
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const createComment = async (commentText: string) =>
     {
         console.log('Create comment');
