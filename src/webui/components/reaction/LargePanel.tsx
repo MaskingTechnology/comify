@@ -23,8 +23,6 @@ export default function LargePanel({ reaction, followHandler, profileHandler }: 
         return toggleRating(johnDoe, reaction.id);
     };
 
-    console.log('Relation creator', reaction.creator);
-
     return <Panel>
         <Column gap='medium' alignX='stretch'>
             <TimeElapsed date={reaction.createdAt} relation={reaction.creator} followHandler={followHandler} profileHandler={profileHandler} />
