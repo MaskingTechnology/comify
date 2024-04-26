@@ -5,7 +5,7 @@ import { RECORD_TYPE as COMMENT_RECORD_TYPE } from '^/domain/comment/definitions
 import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator/definitions/constants';
 import { RECORD_TYPE as IMAGE_RECORD_TYPE } from '^/domain/image/definitions/constants';
 import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions/constants';
-import createComicReaction from '^/domain/reaction/createComic';
+import createComic from '^/domain/reaction/createComic';
 import createCommentReaction from '^/domain/reaction/createComment';
 import { RECORD_TYPE as REACTION_RECORD_TYPE } from '^/domain/reaction/definitions/constants';
 import database from '^/integrations/database/module';
@@ -49,5 +49,5 @@ async function createFileStorage()
 }
 
 
-export { COMIC_DATA_URL, COMIC_RECORD_TYPE, COMMENT_MESSAGE, COMMENT_RECORD_TYPE, EXISTING_REQUESTER, IMAGE_RECORD_TYPE, NOT_EXISTING_POST_ID, POST_ID, POST_RECORD_TYPE, REACTION_RECORD_TYPE, createComicReaction, createCommentReaction, createDatabase, createFileStorage };
+export { COMIC_DATA_URL, COMIC_RECORD_TYPE, COMMENT_MESSAGE, COMMENT_RECORD_TYPE, EXISTING_REQUESTER, IMAGE_RECORD_TYPE, NOT_EXISTING_POST_ID, POST_ID, POST_RECORD_TYPE, REACTION_RECORD_TYPE, createComic as createComicReaction, createCommentReaction, createDatabase, createFileStorage };
 
