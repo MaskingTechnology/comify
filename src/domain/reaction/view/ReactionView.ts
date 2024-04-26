@@ -1,19 +1,19 @@
 
+import RelationView from '^/domain/relation/view/RelationView';
 import type ComicView from '../../comic/view/ComicView';
 import type CommentView from '../../comment/view/CommentView';
-import type CreatorView from '../../creator/view/CreatorView';
 
 export default class ReactionView
 {
     #id: string;
     #createdAt: Date;
-    #creator: CreatorView;
+    #creator: RelationView;
     #ratingCount: number;
     #comic: ComicView | undefined;
     #comment: CommentView | undefined;
     #hasRated: boolean;
 
-    constructor(id: string, createdAt: Date, creator: CreatorView, ratingCount: number, hasRated: boolean, comic?: ComicView, comment?: CommentView)
+    constructor(id: string, createdAt: Date, creator: RelationView, ratingCount: number, hasRated: boolean, comic?: ComicView, comment?: CommentView)
     {
         this.#id = id;
         this.#createdAt = createdAt;

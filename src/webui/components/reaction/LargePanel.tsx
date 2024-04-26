@@ -2,7 +2,6 @@
 import johnDoe from '^/domain/authentication/johnDoe';
 import toggleRating from '^/domain/reaction/toggleRating';
 import ReactionView from '^/domain/reaction/view/ReactionView';
-import RelationView from '^/domain/relation/view/RelationView';
 
 import Image from '^/webui/components/comic/Image';
 import { Column, Panel } from '^/webui/designsystem/module';
@@ -19,18 +18,16 @@ export type Props = {
 
 export default function LargePanel({ reaction, followHandler, profileHandler }: Props)
 {
-    // Dummy implementation to simply show some comments underneath the post
-
-    const relationView = new RelationView('1', reaction.creator, reaction.creator);
-
     const handleRate = () =>
     {
         return toggleRating(johnDoe, reaction.id);
     };
 
+    console.log('Relation creator', reaction.creator);
+
     return <Panel>
         <Column gap='medium' alignX='stretch'>
-            <TimeElapsed date={reaction.createdAt} relation={relationView} followHandler={followHandler} profileHandler={profileHandler} />
+            <TimeElapsed date={reaction.createdAt} relation={reaction.creator} followHandler={followHandler} profileHandler={profileHandler} />
             {
                 reaction.comment !== undefined
                     ? <Comment text={reaction.comment.message} />
