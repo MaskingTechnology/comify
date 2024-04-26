@@ -12,7 +12,7 @@ describe('domain/reaction/create', () =>
 
         const record = await database.readRecord(REACTION_RECORD_TYPE, reaction.id);
 
-        expect(record?.creatorId).toBe(reaction.creator.id);
+        expect(record?.creatorId).toBe(EXISTING_REQUESTER.id);
         expect(record?.postId).toBe(POST_ID);
         expect(record?.comicId).toBeUndefined();
         expect(record?.commentId).toBe(reaction.comment?.id);
@@ -38,7 +38,7 @@ describe('domain/reaction/create', () =>
         const reaction = await createComicReaction(EXISTING_REQUESTER, POST_ID, COMIC_DATA_URL);
 
         const record = await database.readRecord(REACTION_RECORD_TYPE, reaction.id);
-        expect(record?.creatorId).toBe(reaction.creator.id);
+        expect(record?.creatorId).toBe(EXISTING_REQUESTER.id);
         expect(record?.postId).toBe(POST_ID);
         expect(record?.comicId).toBe(reaction.comic?.id);
         expect(record?.commentId).toBeUndefined();
