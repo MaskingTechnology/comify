@@ -21,13 +21,17 @@ export default function Component({ createHandler, cancelHandler }: Props)
     const handleCancel = () =>
     {
         setCreating(false);
+
         cancelHandler();
     };
 
     const handleCreate = async () =>
     {
         setCreating(true);
-        createHandler(comment);
+
+        await createHandler(comment);
+
+        setCreating(false);
     };
 
     return <Panel>

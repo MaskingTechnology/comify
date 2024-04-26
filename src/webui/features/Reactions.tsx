@@ -43,12 +43,14 @@ export default function Feature({ post }: Props)
     const closeModal = () =>
     {
         setCreating(false);
+
+        awaitData(getReactions, setReactions);
     };
 
     return <>
         <Modal open={creating} width='660px'>
             <Border padding='small'>
-                <CreateReaction handleDone={closeModal} />
+                <CreateReaction post={post} handleDone={closeModal} />
             </Border>
         </Modal>
         <Column alignX='stretch'>
