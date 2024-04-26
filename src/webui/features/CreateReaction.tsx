@@ -4,32 +4,34 @@ import { Ruler, Tab, Tabs } from '^/webui/designsystem/module';
 
 import johnDoe from '^/domain/authentication/johnDoe';
 import PostView from '^/domain/post/view/PostView';
-import create from '^/domain/reaction/create';
+import createComicReaction from '^/domain/reaction/createComicReaction';
+import createCommentReaction from '^/domain/reaction/createCommentReaction';
+import type ReactionView from '^/domain/reaction/view/ReactionView';
 
 type Props = {
     post: PostView;
-    handleDone: (reload: boolean) => void;
+    handleDone: (reaction?: ReactionView) => void;
 };
 
 export default function Feature({ post, handleDone }: Props)
 {
     const createComic = async (imageData: string) =>
     {
-        await create(johnDoe, post.id, undefined, imageData);
+        const reaction = await createComicReaction(johnDoe, post.id, imageData);
 
-        handleDone(true);
+        handleDone(reaction);
     };
 
     const createComment = async (commentText: string) =>
     {
-        await create(johnDoe, post.id, commentText);
+        const reaction = await createCommentReaction(johnDoe, post.id, commentText);
 
-        handleDone(true);
+        handleDone(reaction);
     };
 
     const cancelReaction = () =>
     {
-        handleDone(false);
+        handleDone();
     };
 
     return <Tabs separator={<Ruler type='horizontal' size='small' />}>

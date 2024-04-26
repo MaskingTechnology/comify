@@ -15,7 +15,8 @@
     "./domain/post/getTimeline": { "default": {  "access": "public" } },
     "./domain/post/toggleRating": { "default": {  "access": "public" } },
 
-    "./domain/reaction/create": { "default": {  "access": "public" } },
+    "./domain/reaction/createComicReaction": { "default": {  "access": "public" } },
+    "./domain/reaction/createCommentReaction": { "default": {  "access": "public" } },
     "./domain/reaction/toggleRating": { "default": {  "access": "public" } },
     "./domain/reaction/getByPost": { "default": {  "access": "public" } },
 
