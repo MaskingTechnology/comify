@@ -5,8 +5,8 @@ import { RECORD_TYPE as COMMENT_RECORD_TYPE } from '^/domain/comment/definitions
 import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator/definitions/constants';
 import { RECORD_TYPE as IMAGE_RECORD_TYPE } from '^/domain/image/definitions/constants';
 import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions/constants';
-import createComicReaction from '^/domain/reaction/createComicReaction';
-import createCommentReaction from '^/domain/reaction/createCommentReaction';
+import createComicReaction from '^/domain/reaction/createComic';
+import createCommentReaction from '^/domain/reaction/createComment';
 import { RECORD_TYPE as REACTION_RECORD_TYPE } from '^/domain/reaction/definitions/constants';
 import database from '^/integrations/database/module';
 import fileStorage from '^/integrations/filestorage/module';

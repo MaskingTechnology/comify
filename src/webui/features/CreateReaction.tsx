@@ -4,8 +4,8 @@ import { Ruler, Tab, Tabs } from '^/webui/designsystem/module';
 
 import johnDoe from '^/domain/authentication/johnDoe';
 import PostView from '^/domain/post/view/PostView';
-import createComicReaction from '^/domain/reaction/createComicReaction';
-import createCommentReaction from '^/domain/reaction/createCommentReaction';
+import createComicReaction from '^/domain/reaction/createComic';
+import createCommentReaction from '^/domain/reaction/createComment';
 import type ReactionView from '^/domain/reaction/view/ReactionView';
 
 type Props = {

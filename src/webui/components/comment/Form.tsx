@@ -36,7 +36,7 @@ export default function Component({ createHandler, cancelHandler }: Props)
 
     return <Panel>
         <Column alignX='stretch'>
-            <TextArea name='comment' value={comment} changeHandler={handleChange} />
+            <TextArea name='comment' changeHandler={handleChange} />
             <Row alignX='right'>
                 <Button type='secondary' text='Cancel' clickHandler={handleCancel} />
                 <Button type={creating ? 'disabled' : 'primary'} text={creating ? 'Creating' : 'Create'} clickHandler={handleCreate} />
