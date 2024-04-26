@@ -8,29 +8,28 @@ import create from '^/domain/reaction/create';
 
 type Props = {
     post: PostView;
-    handleDone: () => void;
+    handleDone: (reload: boolean) => void;
 };
 
 export default function Feature({ post, handleDone }: Props)
 {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const createComic = async (imageData: string) =>
     {
         await create(johnDoe, post.id, undefined, imageData);
 
-        handleDone();
+        handleDone(true);
     };
 
     const createComment = async (commentText: string) =>
     {
         await create(johnDoe, post.id, commentText);
 
-        handleDone();
+        handleDone(true);
     };
 
     const cancelReaction = () =>
     {
-        handleDone();
+        handleDone(false);
     };
 
     return <Tabs separator={<Ruler type='horizontal' size='small' />}>

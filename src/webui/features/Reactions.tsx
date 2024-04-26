@@ -40,11 +40,14 @@ export default function Feature({ post }: Props)
         setCreating(true);
     };
 
-    const closeModal = () =>
+    const closeModal = (reload: boolean) =>
     {
         setCreating(false);
 
-        awaitData(getReactions, setReactions);
+        if (reload)
+        {
+            awaitData(getReactions, setReactions);
+        }
     };
 
     return <>
