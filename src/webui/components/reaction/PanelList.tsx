@@ -14,8 +14,6 @@ export type Props = {
 
 export default function Component({ reactions, followHandler, profileHandler }: Props)
 {
-    if (reactions === undefined) return null;
-
     if (reactions.length === 0)
     {
         return <NoResults />;

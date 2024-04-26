@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import johnDoe from '^/domain/authentication/johnDoe';
 import PostView from '^/domain/post/view/PostView';
 import getReactionsByPost from '^/domain/reaction/getByPost';
-import ReactionView from '^/domain/reaction/view/ReactionView';
+import type ReactionView from '^/domain/reaction/view/ReactionView';
 
 import { LoadingContainer, OrderAndAddRow, ReactionPanelList } from '^/webui/components/module';
 import { Border, Column, Modal } from '^/webui/designsystem/module';
@@ -40,15 +40,22 @@ export default function Feature({ post }: Props)
         setCreating(true);
     };
 
-    const closeModal = () =>
+    const closeModal = (reaction?: ReactionView) =>
     {
         setCreating(false);
+
+        if (reaction !== undefined)
+        {
+            const result = [reaction, ...reactions as ReactionView[]];
+
+            setReactions(result);
+        }
     };
 
     return <>
         <Modal open={creating} width='660px'>
             <Border padding='small'>
-                <CreateReaction handleDone={closeModal} />
+                <CreateReaction post={post} handleDone={closeModal} />
             </Border>
         </Modal>
         <Column alignX='stretch'>

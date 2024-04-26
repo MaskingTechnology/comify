@@ -2,32 +2,44 @@
 import { ComicEditor, CommentForm } from '^/webui/components/module';
 import { Ruler, Tab, Tabs } from '^/webui/designsystem/module';
 
+import johnDoe from '^/domain/authentication/johnDoe';
+import PostView from '^/domain/post/view/PostView';
+import createComicReaction from '^/domain/reaction/createComic';
+import createCommentReaction from '^/domain/reaction/createComment';
+import type ReactionView from '^/domain/reaction/view/ReactionView';
+
 type Props = {
-    handleDone: () => void;
+    post: PostView;
+    handleDone: (reaction?: ReactionView) => void;
 };
 
-export default function Feature({ handleDone }: Props)
+export default function Feature({ post, handleDone }: Props)
 {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const createComic = async (imageData: string) =>
     {
-        console.log('Create comic');
-        handleDone();
+        const reaction = await createComicReaction(johnDoe, post.id, imageData);
+
+        handleDone(reaction);
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const createComment = async (commentText: string) =>
     {
-        console.log('Create comment');
+        const reaction = await createCommentReaction(johnDoe, post.id, commentText);
+
+        handleDone(reaction);
+    };
+
+    const cancelReaction = () =>
+    {
         handleDone();
     };
 
     return <Tabs separator={<Ruler type='horizontal' size='small' />}>
         <Tab title='Comic'>
-            <ComicEditor createHandler={createComic} />
+            <ComicEditor createHandler={createComic} cancelHandler={cancelReaction} />
         </Tab>
         <Tab title='Comment'>
-            <CommentForm createHandler={createComment} />
+            <CommentForm createHandler={createComment} cancelHandler={cancelReaction} />
         </Tab>
     </Tabs>;
 }
