@@ -6,9 +6,10 @@ import { Editor } from '^/webui/editor/module';
 
 export type Props = {
     createHandler: (imageData: string) => Promise<void>;
+    cancelHandler?: () => void;
 };
 
-export default function Component({ createHandler }: Props)
+export default function Component({ createHandler, cancelHandler }: Props)
 {
     const [editor, setEditor] = useState<Editor | undefined>(undefined);
     const [creating, setCreating] = useState(false);
@@ -50,6 +51,11 @@ export default function Component({ createHandler }: Props)
         <Column alignX='stretch'>
             <canvas id="editor" />
             <Row alignX='right'>
+                {
+                    cancelHandler !== undefined
+                        ? <Button type='secondary' text='Cancel' clickHandler={cancelHandler} />
+                        : null
+                }
                 <Button type={creating ? 'disabled' : 'primary'} text={creating ? 'Creating' : 'Create'} clickHandler={handleCreate} />
             </Row>
         </Column>
