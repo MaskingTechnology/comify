@@ -21,6 +21,6 @@ export default function Feature()
     };
 
     return <Column alignX='stretch'>
-        <ComicEditor createHandler={handleCreate} />
+        <ComicEditor createHandler={handleCreate} cancelHandler={undefined} />
     </Column>;
 }

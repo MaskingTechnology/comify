@@ -3,7 +3,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { useAppContext } from './contexts/module';
-import CreateComic from './features/CreateComic';
+import CreateComicPost from './features/CreateComicPost';
 import Explore from './features/Explore';
 import Home from './features/Home';
 import Identify from './features/Identify';
@@ -33,7 +33,7 @@ export default function Component()
         <Route path="/timeline" element={protect(<Timeline />)} />
         <Route path="/explore" element={protect(<Explore />)} />
         <Route path="/notifications" element={protect(<Notifications />)} />
-        <Route path="/create" element={protect(<CreateComic />)} />
+        <Route path="/create" element={protect(<CreateComicPost />)} />
         <Route path="/profile/:nickname" element={protect(<Profile />)} />
         <Route path="/post/:postId" element={protect(<Post />)} />
         <Route path="/logout" element={protect(<Logout />)} />
