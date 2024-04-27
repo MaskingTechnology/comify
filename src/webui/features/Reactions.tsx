@@ -4,12 +4,14 @@ import { useEffect, useState } from 'react';
 import johnDoe from '^/domain/authentication/johnDoe';
 import PostView from '^/domain/post/view/PostView';
 import getReactionsByPost from '^/domain/reaction/getByPost';
+import remove from '^/domain/reaction/remove';
 import type ReactionView from '^/domain/reaction/view/ReactionView';
 
 import { LoadingContainer, OrderAndAddRow, ReactionPanelList } from '^/webui/components/module';
 import { Border, Column, Modal } from '^/webui/designsystem/module';
 import { awaitData } from '^/webui/utils/module';
 
+import { useAppContext } from '../contexts/AppContext';
 import CreateReaction from './CreateReaction';
 
 export type Props = {
@@ -20,6 +22,8 @@ export default function Feature({ post }: Props)
 {
     const [reactions, setReactions] = useState<ReactionView[] | undefined>(undefined);
     const [creating, setCreating] = useState<boolean>(false);
+
+    const { identity } = useAppContext();
 
     const getReactions = () => getReactionsByPost(johnDoe, post.id);
 
@@ -52,6 +56,15 @@ export default function Feature({ post }: Props)
         }
     };
 
+    const deleteReaction = async (reaction: ReactionView) =>
+    {
+        await remove(johnDoe, reaction.id);
+
+        const result = (reactions as ReactionView[]).filter(item => item.id !== reaction.id);
+
+        setReactions(result);
+    };
+
     return <>
         <Modal open={creating} width='660px'>
             <Border padding='small'>
@@ -62,9 +75,11 @@ export default function Feature({ post }: Props)
             <OrderAndAddRow selected='recent' reactionHandler={openModal} />
             <LoadingContainer data={reactions}>
                 <ReactionPanelList
+                    identity={identity}
                     reactions={reactions as ReactionView[]}
                     followHandler={handleFollow}
                     profileHandler={handleProfile}
+                    deleteHandler={deleteReaction}
                 />
             </LoadingContainer>
         </Column>
