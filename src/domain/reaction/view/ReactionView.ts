@@ -7,17 +7,17 @@ export default class ReactionView
 {
     #id: string;
     #createdAt: Date;
-    #creator: RelationView;
+    #relation: RelationView;
     #ratingCount: number;
     #comic: ComicView | undefined;
     #comment: CommentView | undefined;
     #hasRated: boolean;
 
-    constructor(id: string, createdAt: Date, creator: RelationView, ratingCount: number, hasRated: boolean, comic?: ComicView, comment?: CommentView)
+    constructor(id: string, createdAt: Date, relation: RelationView, ratingCount: number, hasRated: boolean, comic?: ComicView, comment?: CommentView)
     {
         this.#id = id;
         this.#createdAt = createdAt;
-        this.#creator = creator;
+        this.#relation = relation;
         this.#ratingCount = ratingCount;
         this.#comic = comic;
         this.#comment = comment;
@@ -26,7 +26,7 @@ export default class ReactionView
 
     get id() { return this.#id; }
 
-    get creator() { return this.#creator; }
+    get relation() { return this.#relation; }
 
     get createdAt() { return this.#createdAt; }
 
