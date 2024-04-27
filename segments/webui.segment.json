@@ -19,6 +19,7 @@
     "./domain/reaction/createComment": { "default": {  "access": "public" } },
     "./domain/reaction/toggleRating": { "default": {  "access": "public" } },
     "./domain/reaction/getByPost": { "default": {  "access": "public" } },
+    "./domain/reaction/remove": { "default": {  "access": "public" } },
 
     "./domain/relation/explore": { "default": {  "access": "public" } },
     "./domain/relation/establish": { "default": { "access": "public" }},
