@@ -8,6 +8,7 @@ import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions/const
 import createComic from '^/domain/reaction/createComic';
 import createCommentReaction from '^/domain/reaction/createComment';
 import { RECORD_TYPE as REACTION_RECORD_TYPE } from '^/domain/reaction/definitions/constants';
+import remove from '^/domain/reaction/remove';
 import database from '^/integrations/database/module';
 import fileStorage from '^/integrations/filestorage/module';
 
@@ -49,5 +50,5 @@ async function createFileStorage()
 }
 
 
-export { COMIC_DATA_URL, COMIC_RECORD_TYPE, COMMENT_MESSAGE, COMMENT_RECORD_TYPE, EXISTING_REQUESTER, IMAGE_RECORD_TYPE, NOT_EXISTING_POST_ID, POST_ID, POST_RECORD_TYPE, REACTION_RECORD_TYPE, createComic as createComicReaction, createCommentReaction, createDatabase, createFileStorage };
+export { COMIC_DATA_URL, COMIC_RECORD_TYPE, COMMENT_MESSAGE, COMMENT_RECORD_TYPE, EXISTING_REQUESTER, IMAGE_RECORD_TYPE, NOT_EXISTING_POST_ID, POST_ID, POST_RECORD_TYPE, REACTION_RECORD_TYPE, createComic as createComicReaction, createCommentReaction, createDatabase, createFileStorage, remove };
 
