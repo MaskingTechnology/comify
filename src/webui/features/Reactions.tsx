@@ -11,6 +11,7 @@ import { Border, Column, Modal } from '^/webui/designsystem/module';
 import { awaitData } from '^/webui/utils/module';
 
 import CreateReaction from './CreateReaction';
+import handleFollow from './handlers/handleFollow';
 
 export type Props = {
     post: PostView;
@@ -28,11 +29,6 @@ export default function Feature({ post }: Props)
     const handleProfile = () =>
     {
         console.log('Profile');
-    };
-
-    const handleFollow = async () =>
-    {
-        console.log(`Followed clicked`);
     };
 
     const openModal = () =>

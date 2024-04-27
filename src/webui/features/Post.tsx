@@ -4,13 +4,14 @@ import { useParams } from 'react-router-dom';
 
 import johnDoe from '^/domain/authentication/johnDoe';
 import get from '^/domain/post/get';
-import toggleRating from '^/domain/post/toggleRating';
 import type PostView from '^/domain/post/view/PostView';
 
 import { LoadingContainer, PostDetailsPanel } from '^/webui/components/module';
 import { Column, Ruler } from '^/webui/designsystem/module';
 import { awaitData } from '^/webui/utils/module';
 
+import handleFollow from './handlers/handleFollow';
+import handleRate from './handlers/handleRate';
 import Reactions from './Reactions';
 
 export default function Feature()
@@ -30,24 +31,12 @@ export default function Feature()
         console.log('Profile');
     };
 
-    const handleFollow = async () =>
-    {
-        console.log(`Followed clicked`);
-    };
-
-    const handleRate = () =>
-    {
-        if (post === undefined) return Promise.resolve(false);
-
-        return toggleRating(johnDoe, post.id);
-    };
-
     return <Column gap='medium' alignX='stretch'>
         <LoadingContainer data={post}>
             <PostDetailsPanel
                 post={post as PostView}
-                followHandler={handleFollow}
-                rateHandler={handleRate}
+                followHandler={() => handleFollow((post as PostView).creator)}
+                rateHandler={() => handleRate((post as PostView))}
                 profileHandler={handleProfile}
             />
             <Ruler type='horizontal' />

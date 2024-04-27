@@ -4,13 +4,14 @@ import { useNavigate } from 'react-router-dom';
 
 import johnDoe from '^/domain/authentication/johnDoe';
 import getCreatorPosts from '^/domain/post/getByCreator';
-import toggleRating from '^/domain/post/toggleRating';
 import type PostView from '^/domain/post/view/PostView';
 
 import { LoadingContainer, PostPanelGrid } from '^/webui/components/module';
 import { useCreatorContext } from '^/webui/contexts/module';
 import { Column } from '^/webui/designsystem/module';
 import { awaitData } from '^/webui/utils/module';
+
+import handleRate from './handlers/handleRate';
 
 export default function Feature()
 {
@@ -25,11 +26,6 @@ export default function Feature()
     const handleComic = (post: PostView) =>
     {
         navigate(`/post/${post.id}`);
-    };
-
-    const handleRate = (post: PostView) =>
-    {
-        return toggleRating(johnDoe, post.id);
     };
 
     const handleReaction = (post: PostView) =>

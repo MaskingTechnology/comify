@@ -1,7 +1,8 @@
 
 import johnDoe from '^/domain/authentication/johnDoe';
 import toggleRating from '^/domain/reaction/toggleRating';
-import ReactionView from '^/domain/reaction/view/ReactionView';
+import type ReactionView from '^/domain/reaction/view/ReactionView';
+import type RelationView from '^/domain/relation/view/RelationView';
 
 import Image from '^/webui/components/comic/Image';
 import { Column, Panel } from '^/webui/designsystem/module';
@@ -12,7 +13,7 @@ import TimeElapsed from '../relation/TimeElapsed';
 
 export type Props = {
     reaction: ReactionView;
-    followHandler: () => Promise<void>;
+    followHandler: (relation: RelationView) => Promise<void>;
     profileHandler: () => void;
 };
 
@@ -25,7 +26,7 @@ export default function LargePanel({ reaction, followHandler, profileHandler }: 
 
     return <Panel>
         <Column gap='medium' alignX='stretch'>
-            <TimeElapsed date={reaction.createdAt} relation={reaction.creator} followHandler={followHandler} profileHandler={profileHandler} />
+            <TimeElapsed date={reaction.createdAt} relation={reaction.creator} followHandler={() => followHandler(reaction.creator)} profileHandler={profileHandler} />
             {
                 reaction.comment !== undefined
                     ? <Comment text={reaction.comment.message} />

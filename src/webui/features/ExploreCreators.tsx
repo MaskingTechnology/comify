@@ -4,13 +4,14 @@ import { useNavigate } from 'react-router-dom';
 
 import johnDoe from '^/domain/authentication/johnDoe';
 import SortOptions from '^/domain/relation/definitions/SortOptions';
-import establishRelation from '^/domain/relation/establish';
 import exploreRelations from '^/domain/relation/explore';
 import type RelationView from '^/domain/relation/view/RelationView';
 
 import { LoadingContainer, OrderAndSearchRow, RelationPanelList } from '^/webui/components/module';
 import { Column } from '^/webui/designsystem/module';
 import { awaitData } from '^/webui/utils/module';
+
+import handleFollow from './handlers/handleFollow';
 
 export default function Feature()
 {
@@ -23,11 +24,6 @@ export default function Feature()
     const handleOrderChange = (oldKey: string, newKey: string) =>
     {
         console.log(`Order changed from ${oldKey} to ${newKey}`);
-    };
-
-    const handleFollow = (relation: RelationView) => 
-    {
-        return establishRelation(johnDoe, relation.creator.id);
     };
 
     const handleProfile = (relation: RelationView) =>

@@ -1,5 +1,6 @@
 
 import ReactionView from '^/domain/reaction/view/ReactionView';
+import type RelationView from '^/domain/relation/view/RelationView';
 
 import { Column } from '^/webui/designsystem/module';
 
@@ -8,7 +9,7 @@ import LargePanel from './LargePanel';
 
 export type Props = {
     reactions: ReactionView[];
-    followHandler: () => Promise<void>;
+    followHandler: (relation: RelationView) => Promise<void>;
     profileHandler: () => void;
 };
 
