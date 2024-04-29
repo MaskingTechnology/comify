@@ -11,6 +11,7 @@ import StartedFollowing from './elementary/StartedFollowing';
 export type Props = {
     notification: NotificationView;
     followHandler: () => Promise<void>;
+    profileHandler: () => void;
     editHandler: () => void;
 };
 
@@ -24,11 +25,11 @@ function getContent(notification: NotificationView)
     }
 }
 
-export default function Component({ notification, followHandler, editHandler }: Props)
+export default function Component({ notification, followHandler, profileHandler, editHandler }: Props)
 {
     return <Panel>
         <Column gap='medium' alignX='stretch'>
-            <TimeElapsed date={notification.createdAt} relation={notification.relation} followHandler={followHandler} editHandler={editHandler} />
+            <TimeElapsed date={notification.createdAt} relation={notification.relation} followHandler={followHandler} profileHandler={profileHandler} editHandler={editHandler} />
             {getContent(notification)}
         </Column>
     </Panel>;

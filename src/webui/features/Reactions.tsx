@@ -32,6 +32,11 @@ export default function Feature({ post }: Props)
         return establishRelation(johnDoe, relation.following.id);
     };
 
+    const handleProfile = (relation: RelationView) =>
+    {
+        console.log(relation.following.fullName);
+    };
+
     const handleEdit = (relation: RelationView) =>
     {
         console.log(`Edit profile of: ${relation.following.fullName}`);
@@ -66,6 +71,7 @@ export default function Feature({ post }: Props)
                 <ReactionPanelList
                     reactions={reactions as ReactionView[]}
                     followHandler={handleFollow}
+                    profileHandler={handleProfile}
                     editHandler={handleEdit}
                 />
             </LoadingContainer>

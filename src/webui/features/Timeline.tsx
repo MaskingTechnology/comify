@@ -40,6 +40,11 @@ export default function Feature()
         navigate(`/post/${post.id}`);
     };
 
+    const handleProfile = (relation: RelationView) =>
+    {
+        console.log(relation.following.fullName);
+    };
+
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const handleEdit = (relation: RelationView) => { };
 
@@ -53,6 +58,7 @@ export default function Feature()
                 followHandler={handleFollow}
                 rateHandler={handleRate}
                 detailsHandler={handleDetails}
+                profileHandler={handleProfile}
                 editHandler={handleEdit}
             />
         </LoadingContainer>

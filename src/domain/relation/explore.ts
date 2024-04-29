@@ -1,5 +1,5 @@
 
-import Requester from '../authentication/Requester';
+import type Requester from '../authentication/Requester';
 import retrieveCreatorsWithout from '../creator/data/retrieveWithout';
 import { SortFields as CreatorSortFields } from '../creator/definitions/SortFields';
 import createCreatorView from '../creator/view/createView';
@@ -21,5 +21,10 @@ export default async function explore(requester: Requester, sortOption: SortOpti
 
     const creatorViews = await Promise.all(creatorData.map(data => createCreatorView(data)));
 
-    return creatorViews.map(creatorView => new RelationView(undefined, creatorView, requester.id === creatorView.id));
+    return creatorViews.map(creatorView => 
+    {
+        const self = requester.id === creatorView.id;
+
+        return new RelationView(undefined, creatorView, self);
+    });
 }

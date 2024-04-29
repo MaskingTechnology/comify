@@ -14,10 +14,11 @@ import TimeElapsed from '../relation/TimeElapsed';
 export type Props = {
     reaction: ReactionView;
     followHandler: (relation: RelationView) => Promise<void>;
+    profileHandler: (relation: RelationView) => void;
     editHandler: (relation: RelationView) => void;
 };
 
-export default function LargePanel({ reaction, followHandler, editHandler }: Props)
+export default function LargePanel({ reaction, followHandler, profileHandler, editHandler }: Props)
 {
     const handleRate = () =>
     {
@@ -26,7 +27,7 @@ export default function LargePanel({ reaction, followHandler, editHandler }: Pro
 
     return <Panel>
         <Column gap='medium' alignX='stretch'>
-            <TimeElapsed date={reaction.createdAt} relation={reaction.creator} followHandler={() => followHandler(reaction.creator)} editHandler={() => editHandler(reaction.creator)} />
+            <TimeElapsed date={reaction.createdAt} relation={reaction.creator} followHandler={() => followHandler(reaction.creator)} profileHandler={() => profileHandler(reaction.creator)} editHandler={() => editHandler(reaction.creator)} />
             {
                 reaction.comment !== undefined
                     ? <Comment text={reaction.comment.message} />

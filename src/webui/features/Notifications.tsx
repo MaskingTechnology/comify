@@ -22,6 +22,11 @@ export default function Feature()
         Promise.resolve();
     };
 
+    const handleProfile = (relation: RelationView) =>
+    {
+        console.log(relation.following.fullName);
+    };
+
     const handleEdit = (relation: RelationView) =>
     {
         console.log(`Edit profile of: ${relation.following.fullName}`);
@@ -34,6 +39,7 @@ export default function Feature()
             <NotificationPanelList
                 notifications={notifications as NotificationView[]}
                 followHandler={handleFollow}
+                profileHandler={handleProfile}
                 editHandler={handleEdit}
             />
         </LoadingContainer>

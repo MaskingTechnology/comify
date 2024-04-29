@@ -39,6 +39,11 @@ export default function Feature()
         return toggleRating(johnDoe, post.id);
     };
 
+    const handleProfile = (relation: RelationView) =>
+    {
+        console.log(relation.following.fullName);
+    };
+
     const handleEdit = (relation: RelationView) =>
     {
         console.log(`Edit profile of: ${relation.following.fullName}`);
@@ -50,6 +55,7 @@ export default function Feature()
                 post={post as PostView}
                 followHandler={handleFollow}
                 rateHandler={handleRate}
+                profileHandler={handleProfile}
                 editHandler={handleEdit}
             />
             <Ruler type='horizontal' />

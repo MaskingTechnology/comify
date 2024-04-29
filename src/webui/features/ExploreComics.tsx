@@ -36,6 +36,11 @@ export default function Feature()
         return toggleRating(johnDoe, post.id);
     };
 
+    const handleProfile = (relation: RelationView) =>
+    {
+        console.log(relation.following.fullName);
+    };
+
     const handleDetails = (post: PostView) =>
     {
         navigate(`/post/${post.id}`);
@@ -53,6 +58,7 @@ export default function Feature()
                 posts={posts as PostView[]}
                 followHandler={handleFollow}
                 rateHandler={handleRate}
+                profileHandler={handleProfile}
                 detailsHandler={handleDetails}
                 editHandler={handleEdit}
             />
