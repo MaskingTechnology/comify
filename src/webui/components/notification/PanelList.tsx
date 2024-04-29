@@ -10,10 +10,10 @@ import Panel from './Panel';
 export type Props = {
     notifications: NotificationView[];
     followHandler: (relation: RelationView) => Promise<void>;
-    profileHandler: () => void;
+    editHandler: (relation: RelationView) => void;
 };
 
-export default function Component({ notifications, followHandler, profileHandler }: Props)
+export default function Component({ notifications, followHandler, editHandler }: Props)
 {
     if (notifications.length === 0)
     {
@@ -27,7 +27,7 @@ export default function Component({ notifications, followHandler, profileHandler
                     key={notification.id}
                     notification={notification}
                     followHandler={() => followHandler(notification.relation)}
-                    profileHandler={profileHandler}
+                    editHandler={() => editHandler(notification.relation)}
                 />
             )
         }

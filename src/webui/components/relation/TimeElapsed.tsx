@@ -8,12 +8,12 @@ export type Props = {
     relation: RelationView;
     date: Date;
     followHandler: () => Promise<void>;
-    profileHandler: () => void;
+    editHandler: (relation: RelationView) => void;
 };
 
-export default function Component({ relation, date, followHandler, profileHandler }: Props)
+export default function Component({ relation, date, followHandler, editHandler }: Props)
 {
-    return <FollowRow isFollowing={relation.exists} followHandler={followHandler}>
-        <CreatorTimeElapsed creator={relation.creator} date={date} profileHandler={profileHandler} />
+    return <FollowRow isFollowing={relation.exists} isSelf={relation.self} followHandler={followHandler} editHandler={() => editHandler(relation)}>
+        <CreatorTimeElapsed creator={relation.following} date={date} />
     </FollowRow>;
 }

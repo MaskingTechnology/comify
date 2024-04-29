@@ -5,7 +5,9 @@ import johnDoe from '^/domain/authentication/johnDoe';
 import PostView from '^/domain/post/view/PostView';
 import getReactionsByPost from '^/domain/reaction/getByPost';
 import type ReactionView from '^/domain/reaction/view/ReactionView';
+import establishRelation from '^/domain/relation/establish';
 
+import RelationView from '^/domain/relation/view/RelationView';
 import { LoadingContainer, OrderAndAddRow, ReactionPanelList } from '^/webui/components/module';
 import { Border, Column, Modal } from '^/webui/designsystem/module';
 import { awaitData } from '^/webui/utils/module';
@@ -25,14 +27,14 @@ export default function Feature({ post }: Props)
 
     useEffect(() => awaitData(getReactions, setReactions), [post]);
 
-    const handleProfile = () =>
+    const handleFollow = (relation: RelationView) =>
     {
-        console.log('Profile');
+        return establishRelation(johnDoe, relation.following.id);
     };
 
-    const handleFollow = async () =>
+    const handleEdit = (relation: RelationView) =>
     {
-        console.log(`Followed clicked`);
+        console.log(`Edit profile of: ${relation.following.fullName}`);
     };
 
     const openModal = () =>
@@ -64,7 +66,7 @@ export default function Feature({ post }: Props)
                 <ReactionPanelList
                     reactions={reactions as ReactionView[]}
                     followHandler={handleFollow}
-                    profileHandler={handleProfile}
+                    editHandler={handleEdit}
                 />
             </LoadingContainer>
         </Column>

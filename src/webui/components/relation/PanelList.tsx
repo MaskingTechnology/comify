@@ -10,9 +10,10 @@ export type Props = {
     relations: RelationView[];
     followHandler: (relation: RelationView) => Promise<void>;
     profileHandler: (relation: RelationView) => void;
+    editHandler: (relation: RelationView) => void;
 };
 
-export default function Component({ relations, followHandler, profileHandler }: Props)
+export default function Component({ relations, followHandler, profileHandler, editHandler }: Props)
 {
     if (relations.length === 0)
     {
@@ -23,10 +24,11 @@ export default function Component({ relations, followHandler, profileHandler }: 
         {
             relations.map(relation =>
                 <Panel
-                    key={relation.creator.id}
+                    key={relation.following.id}
                     relation={relation}
                     followHandler={() => followHandler(relation)}
                     profileHandler={() => profileHandler(relation)}
+                    editHandler={() => editHandler(relation)}
                 />
             )
         }

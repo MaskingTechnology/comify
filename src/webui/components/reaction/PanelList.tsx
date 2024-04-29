@@ -1,5 +1,6 @@
 
-import ReactionView from '^/domain/reaction/view/ReactionView';
+import type ReactionView from '^/domain/reaction/view/ReactionView';
+import type RelationView from '^/domain/relation/view/RelationView';
 
 import { Column } from '^/webui/designsystem/module';
 
@@ -8,11 +9,11 @@ import LargePanel from './LargePanel';
 
 export type Props = {
     reactions: ReactionView[];
-    followHandler: () => Promise<void>;
-    profileHandler: () => void;
+    followHandler: (relation: RelationView) => Promise<void>;
+    editHandler: (relation: RelationView) => void;
 };
 
-export default function Component({ reactions, followHandler, profileHandler }: Props)
+export default function Component({ reactions, followHandler, editHandler }: Props)
 {
     if (reactions.length === 0)
     {
@@ -26,7 +27,7 @@ export default function Component({ reactions, followHandler, profileHandler }: 
                     key={reaction.id}
                     reaction={reaction}
                     followHandler={followHandler}
-                    profileHandler={profileHandler}
+                    editHandler={editHandler}
                 />
             )
         }

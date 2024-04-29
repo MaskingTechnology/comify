@@ -27,12 +27,17 @@ export default function Feature()
 
     const handleFollow = (relation: RelationView) => 
     {
-        return establishRelation(johnDoe, relation.creator.id);
+        return establishRelation(johnDoe, relation.following.id);
     };
 
     const handleProfile = (relation: RelationView) =>
     {
-        navigate(`/profile/${relation.creator.nickname}`);
+        navigate(`/profile/${relation.following.nickname}`);
+    };
+
+    const handleEdit = (relation: RelationView) =>
+    {
+        console.log(`Edit profile of: ${relation.following.fullName}`);
     };
 
     useEffect(() => awaitData(getRelations, setRelations), []);
@@ -40,7 +45,7 @@ export default function Feature()
     return <Column gap='small' alignX='stretch'>
         <OrderAndSearchRow selected='popular' orderChangeHandler={handleOrderChange} />
         <LoadingContainer data={relations}>
-            <RelationPanelList relations={relations as RelationView[]} followHandler={handleFollow} profileHandler={handleProfile} />
+            <RelationPanelList relations={relations as RelationView[]} followHandler={handleFollow} profileHandler={handleProfile} editHandler={handleEdit} />
         </LoadingContainer>
     </Column>;
 }

@@ -16,16 +16,15 @@ export default function Feature()
 
     const getNotifications = () => getRecentNotifications(johnDoe);
 
-    const handleFollow = (relation: RelationView) =>
+    const handleFollow = async (relation: RelationView) =>
     {
-        console.log(`Followed ${relation.creator.fullName}`);
-
-        return Promise.resolve();
+        console.log(`Followed ${relation.following.fullName}`);
+        Promise.resolve();
     };
 
-    const handleProfile = () =>
+    const handleEdit = (relation: RelationView) =>
     {
-        console.log('Profile');
+        console.log(`Edit profile of: ${relation.following.fullName}`);
     };
 
     useEffect(() => awaitData(getNotifications, setNotifications), []);
@@ -35,7 +34,7 @@ export default function Feature()
             <NotificationPanelList
                 notifications={notifications as NotificationView[]}
                 followHandler={handleFollow}
-                profileHandler={handleProfile}
+                editHandler={handleEdit}
             />
         </LoadingContainer>
     </Column>;

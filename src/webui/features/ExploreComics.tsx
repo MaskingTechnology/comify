@@ -26,9 +26,9 @@ export default function Feature()
         console.log(`Order changed from ${oldKey} to ${newKey}`);
     };
 
-    const handleFollow = (relation: RelationView) =>
+    const handleFollow = async (relation: RelationView) =>
     {
-        return establishRelation(johnDoe, relation.creator.id);
+        return establishRelation(johnDoe, relation.following.id);
     };
 
     const handleRate = (post: PostView) =>
@@ -41,10 +41,8 @@ export default function Feature()
         navigate(`/post/${post.id}`);
     };
 
-    const handleProfile = (relation: RelationView) =>
-    {
-        navigate(`/profile/${relation.creator.nickname}`);
-    };
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const handleEdit = (relation: RelationView) => { };
 
     useEffect(() => awaitData(getPosts, setPosts), []);
 
@@ -56,7 +54,7 @@ export default function Feature()
                 followHandler={handleFollow}
                 rateHandler={handleRate}
                 detailsHandler={handleDetails}
-                profileHandler={handleProfile}
+                editHandler={handleEdit}
             />
         </LoadingContainer>
     </Column>;

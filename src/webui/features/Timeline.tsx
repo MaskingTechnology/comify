@@ -7,6 +7,7 @@ import getTimelinePosts from '^/domain/post/getTimeline';
 import toggleRating from '^/domain/post/toggleRating';
 import type PostView from '^/domain/post/view/PostView';
 import type RelationView from '^/domain/relation/view/RelationView';
+import establishRelation from '../../domain/relation/establish';
 
 import { LoadingContainer, OrderRow, PostPanelList } from '^/webui/components/module';
 import { Column } from '^/webui/designsystem/module';
@@ -26,14 +27,7 @@ export default function Feature()
 
     const handleFollow = (relation: RelationView) =>
     {
-        console.log(`Followed ${relation.creator.fullName}`);
-
-        return Promise.resolve();
-    };
-
-    const handleProfile = (relation: RelationView) =>
-    {
-        navigate(`/profile/${relation.creator.nickname}`);
+        return establishRelation(johnDoe, relation.following.id);
     };
 
     const handleRate = (post: PostView) =>
@@ -46,6 +40,9 @@ export default function Feature()
         navigate(`/post/${post.id}`);
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const handleEdit = (relation: RelationView) => { };
+
     useEffect(() => awaitData(getPosts, setPosts), []);
 
     return <Column gap='small' alignX='stretch'>
@@ -56,7 +53,7 @@ export default function Feature()
                 followHandler={handleFollow}
                 rateHandler={handleRate}
                 detailsHandler={handleDetails}
-                profileHandler={handleProfile}
+                editHandler={handleEdit}
             />
         </LoadingContainer>
     </Column>;
