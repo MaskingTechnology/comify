@@ -10,8 +10,8 @@ import TimeElapsed from '../relation/TimeElapsed';
 
 export type Props = {
     post: PostView;
-    followHandler: () => Promise<void>;
-    rateHandler: () => Promise<boolean>;
+    followHandler: (relation: RelationView) => Promise<void>;
+    rateHandler: (post: PostView) => Promise<boolean>;
     profileHandler: (relation: RelationView) => void;
     editHandler: (relation: RelationView) => void;
 };
@@ -20,9 +20,19 @@ export default function Component({ post, followHandler, rateHandler, profileHan
 {
     return <Panel>
         <Column gap='medium' alignX='stretch'>
-            <TimeElapsed date={post.createdAt} relation={post.creator} followHandler={followHandler} profileHandler={() => profileHandler(post.creator)} editHandler={() => editHandler(post.creator)} />
+            <TimeElapsed
+                date={post.createdAt}
+                relation={post.creator}
+                followHandler={() => followHandler(post.creator)}
+                profileHandler={() => profileHandler(post.creator)}
+                editHandler={() => editHandler(post.creator)}
+            />
             <ComicImage comic={post.comic} />
-            <RatingEngagement isEngaged={post.hasRated} count={post.ratingCount} rateHandler={rateHandler} />
+            <RatingEngagement
+                isEngaged={post.hasRated}
+                count={post.ratingCount}
+                rateHandler={() => rateHandler(post)}
+            />
         </Column>
     </Panel>;
 }

@@ -6,8 +6,8 @@ import FollowRow from './elementary/FollowRow';
 
 export type Props = {
     relation: RelationView;
-    followHandler: () => Promise<void>;
-    editHandler?: () => void;
+    followHandler: (relation: RelationView) => Promise<void>;
+    editHandler?: (relation: RelationView) => void;
 };
 
 export default function Component({ relation, followHandler, editHandler }: Props)
@@ -15,8 +15,8 @@ export default function Component({ relation, followHandler, editHandler }: Prop
     return <FollowRow
         isFollowing={relation.exists}
         isSelf={relation.self}
-        followHandler={followHandler}
-        editHandler={editHandler}
+        followHandler={() => followHandler(relation)}
+        editHandler={editHandler !== undefined ? () => editHandler(relation) : undefined}
     >
 
         <CreatorProfile creator={relation.following} />
