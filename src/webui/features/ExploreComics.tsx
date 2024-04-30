@@ -46,9 +46,6 @@ export default function Feature()
         navigate(`/post/${post.id}`);
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const handleEdit = (relation: RelationView) => { };
-
     useEffect(() => awaitData(getPosts, setPosts), []);
 
     return <Column gap='small' alignX='stretch'>
@@ -60,7 +57,6 @@ export default function Feature()
                 rateHandler={handleRate}
                 profileHandler={handleProfile}
                 detailsHandler={handleDetails}
-                editHandler={handleEdit}
             />
         </LoadingContainer>
     </Column>;

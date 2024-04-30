@@ -27,11 +27,6 @@ export default function Feature()
         console.log(relation.following.fullName);
     };
 
-    const handleEdit = (relation: RelationView) =>
-    {
-        console.log(`Edit profile of: ${relation.following.fullName}`);
-    };
-
     useEffect(() => awaitData(getNotifications, setNotifications), []);
 
     return <Column gap='small' alignX='stretch'>
@@ -40,7 +35,6 @@ export default function Feature()
                 notifications={notifications as NotificationView[]}
                 followHandler={handleFollow}
                 profileHandler={handleProfile}
-                editHandler={handleEdit}
             />
         </LoadingContainer>
     </Column>;

@@ -11,7 +11,7 @@ export type Props = {
     reactions: ReactionView[];
     followHandler: (relation: RelationView) => Promise<void>;
     profileHandler: (relation: RelationView) => void;
-    editHandler: (relation: RelationView) => void;
+    editHandler?: (relation: RelationView) => void;
 };
 
 export default function Component({ reactions, followHandler, profileHandler, editHandler }: Props)

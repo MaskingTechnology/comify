@@ -3,7 +3,7 @@ import { ComicEditor, CommentForm } from '^/webui/components/module';
 import { Ruler, Tab, Tabs } from '^/webui/designsystem/module';
 
 import johnDoe from '^/domain/authentication/johnDoe';
-import PostView from '^/domain/post/view/PostView';
+import type PostView from '^/domain/post/view/PostView';
 import createComicReaction from '^/domain/reaction/createComic';
 import createCommentReaction from '^/domain/reaction/createComment';
 import type ReactionView from '^/domain/reaction/view/ReactionView';

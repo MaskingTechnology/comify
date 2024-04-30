@@ -35,17 +35,12 @@ export default function Feature()
         navigate(`/profile/${relation.following.nickname}`);
     };
 
-    const handleEdit = (relation: RelationView) =>
-    {
-        console.log(`Edit profile of: ${relation.following.fullName}`);
-    };
-
     useEffect(() => awaitData(getRelations, setRelations), []);
 
     return <Column gap='small' alignX='stretch'>
         <OrderAndSearchRow selected='popular' orderChangeHandler={handleOrderChange} />
         <LoadingContainer data={relations}>
-            <RelationPanelList relations={relations as RelationView[]} followHandler={handleFollow} profileHandler={handleProfile} editHandler={handleEdit} />
+            <RelationPanelList relations={relations as RelationView[]} followHandler={handleFollow} profileHandler={handleProfile} />
         </LoadingContainer>
     </Column>;
 }

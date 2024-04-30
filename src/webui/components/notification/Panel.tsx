@@ -12,7 +12,7 @@ export type Props = {
     notification: NotificationView;
     followHandler: () => Promise<void>;
     profileHandler: () => void;
-    editHandler: () => void;
+    editHandler?: () => void;
 };
 
 function getContent(notification: NotificationView)

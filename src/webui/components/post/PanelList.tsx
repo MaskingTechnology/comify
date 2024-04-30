@@ -13,7 +13,7 @@ export type Props = {
     rateHandler: (post: PostView) => Promise<boolean>;
     detailsHandler: (post: PostView) => void;
     profileHandler: (relation: RelationView) => void;
-    editHandler: (relation: RelationView) => void;
+    editHandler?: (relation: RelationView) => void;
 };
 
 export default function Component({ posts, followHandler, rateHandler, detailsHandler, profileHandler, editHandler }: Props)
@@ -33,7 +33,7 @@ export default function Component({ posts, followHandler, rateHandler, detailsHa
                     rateHandler={() => rateHandler(post)}
                     detailsHandler={() => detailsHandler(post)}
                     profileHandler={() => profileHandler(post.creator)}
-                    editHandler={() => editHandler(post.creator)}
+                    editHandler={editHandler !== undefined ? () => editHandler(post.creator) : undefined}
                 />
             )
         }

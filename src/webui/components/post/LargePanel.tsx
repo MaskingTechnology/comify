@@ -13,7 +13,7 @@ export type Props = {
     rateHandler: () => Promise<boolean>;
     detailsHandler: () => void;
     profileHandler: () => void;
-    editHandler: () => void;
+    editHandler?: () => void;
 };
 
 export default function Component({ post, followHandler, rateHandler, detailsHandler, profileHandler, editHandler }: Props)

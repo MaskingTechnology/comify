@@ -15,7 +15,7 @@ export type Props = {
     reaction: ReactionView;
     followHandler: (relation: RelationView) => Promise<void>;
     profileHandler: (relation: RelationView) => void;
-    editHandler: (relation: RelationView) => void;
+    editHandler?: (relation: RelationView) => void;
 };
 
 export default function LargePanel({ reaction, followHandler, profileHandler, editHandler }: Props)
@@ -27,18 +27,33 @@ export default function LargePanel({ reaction, followHandler, profileHandler, ed
 
     return <Panel>
         <Column gap='medium' alignX='stretch'>
-            <TimeElapsed date={reaction.createdAt} relation={reaction.creator} followHandler={() => followHandler(reaction.creator)} profileHandler={() => profileHandler(reaction.creator)} editHandler={() => editHandler(reaction.creator)} />
+
+            <TimeElapsed
+                date={reaction.createdAt}
+                relation={reaction.creator}
+                followHandler={() => followHandler(reaction.creator)}
+                profileHandler={() => profileHandler(reaction.creator)}
+                editHandler={editHandler !== undefined ? () => editHandler(reaction.creator) : undefined}
+            />
+
             {
                 reaction.comment !== undefined
                     ? <Comment text={reaction.comment.message} />
                     : null
             }
+
             {
                 reaction.comic !== undefined
                     ? <Image comic={reaction.comic} />
                     : null
             }
-            <RatingEngagement isEngaged={reaction.hasRated} count={reaction.ratingCount} rateHandler={handleRate} />
+
+            <RatingEngagement
+                isEngaged={reaction.hasRated}
+                count={reaction.ratingCount}
+                rateHandler={handleRate}
+            />
+
         </Column>
     </Panel>;
 }

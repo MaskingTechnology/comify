@@ -4,10 +4,10 @@ import { useParams } from 'react-router-dom';
 
 import johnDoe from '^/domain/authentication/johnDoe';
 import getCreator from '^/domain/creator/getByNickname';
-import CreatorView from '^/domain/creator/view/CreatorView';
+import type CreatorView from '^/domain/creator/view/CreatorView';
 import establishRelation from '^/domain/relation/establish';
 import getRelation from '^/domain/relation/get';
-import RelationView from '^/domain/relation/view/RelationView';
+import type RelationView from '^/domain/relation/view/RelationView';
 
 import { LoadingContainer, RelationProfile } from '^/webui/components/module';
 import { CreatorContextProvider, useAppContext } from '^/webui/contexts/module';

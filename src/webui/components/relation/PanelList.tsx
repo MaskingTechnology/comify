@@ -10,7 +10,7 @@ export type Props = {
     relations: RelationView[];
     followHandler: (relation: RelationView) => Promise<void>;
     profileHandler: (relation: RelationView) => void;
-    editHandler: (relation: RelationView) => void;
+    editHandler?: (relation: RelationView) => void;
 };
 
 export default function Component({ relations, followHandler, profileHandler, editHandler }: Props)
@@ -28,7 +28,7 @@ export default function Component({ relations, followHandler, profileHandler, ed
                     relation={relation}
                     followHandler={() => followHandler(relation)}
                     profileHandler={() => profileHandler(relation)}
-                    editHandler={() => editHandler(relation)}
+                    editHandler={editHandler !== undefined ? () => editHandler(relation) : undefined}
                 />
             )
         }

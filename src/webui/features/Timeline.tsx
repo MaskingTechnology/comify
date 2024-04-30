@@ -45,9 +45,6 @@ export default function Feature()
         console.log(relation.following.fullName);
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const handleEdit = (relation: RelationView) => { };
-
     useEffect(() => awaitData(getPosts, setPosts), []);
 
     return <Column gap='small' alignX='stretch'>
@@ -59,7 +56,6 @@ export default function Feature()
                 rateHandler={handleRate}
                 detailsHandler={handleDetails}
                 profileHandler={handleProfile}
-                editHandler={handleEdit}
             />
         </LoadingContainer>
     </Column>;

@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import johnDoe from '^/domain/authentication/johnDoe';
 import get from '^/domain/post/get';
 import toggleRating from '^/domain/post/toggleRating';
-import PostView from '^/domain/post/view/PostView';
+import type PostView from '^/domain/post/view/PostView';
 import establishRelation from '../../domain/relation/establish';
 
 import { LoadingContainer, PostDetailsPanel } from '^/webui/components/module';

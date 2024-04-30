@@ -1,9 +1,9 @@
 
 import type PostView from '^/domain/post/view/PostView';
+import type RelationView from '^/domain/relation/view/RelationView';
 
 import { Column, Panel } from '^/webui/designsystem/module';
 
-import RelationView from '^/domain/relation/view/RelationView';
 import ComicImage from '../comic/Image';
 import RatingEngagement from '../rating/Engagement';
 import TimeElapsed from '../relation/TimeElapsed';

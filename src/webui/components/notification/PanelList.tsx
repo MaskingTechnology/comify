@@ -11,7 +11,7 @@ export type Props = {
     notifications: NotificationView[];
     followHandler: (relation: RelationView) => Promise<void>;
     profileHandler: (relation: RelationView) => void;
-    editHandler: (relation: RelationView) => void;
+    editHandler?: (relation: RelationView) => void;
 };
 
 export default function Component({ notifications, followHandler, profileHandler, editHandler }: Props)
@@ -29,7 +29,7 @@ export default function Component({ notifications, followHandler, profileHandler
                     notification={notification}
                     followHandler={() => followHandler(notification.relation)}
                     profileHandler={() => profileHandler(notification.relation)}
-                    editHandler={() => editHandler(notification.relation)}
+                    editHandler={editHandler !== undefined ? () => editHandler(notification.relation) : undefined}
                 />
             )
         }
