@@ -21,5 +21,10 @@ export default async function explore(requester: Requester, sortOption: SortOpti
 
     const creatorViews = await Promise.all(creatorData.map(data => createCreatorView(data)));
 
-    return creatorViews.map(creatorView => new RelationView(undefined, undefined, creatorView));
+    return creatorViews.map(creatorView => 
+    {
+        const self = requester.id === creatorView.id;
+
+        return new RelationView(undefined, creatorView, self);
+    });
 }
