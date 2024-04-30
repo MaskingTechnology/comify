@@ -7,5 +7,7 @@ export default async function createView(data: RelationData): Promise<RelationVi
 {
     const followingView = await getCreatorView(data.followingId);
 
-    return new RelationView(data.id, undefined, followingView);
+    const self = data.followerId === data.followingId;
+
+    return new RelationView(data.id, followingView, self);
 }
