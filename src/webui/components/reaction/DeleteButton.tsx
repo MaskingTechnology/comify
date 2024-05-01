@@ -1,6 +1,6 @@
 
 import { ClickArea } from '^/webui/designsystem';
-import Trash from './elementary/Trash';
+import DeleteIcon from './elementary/DeleteIcon';
 
 export type Props = {
     onClick: () => void;
@@ -9,6 +9,6 @@ export type Props = {
 export default function Component({ onClick }: Props)
 {
     return <ClickArea onClick={onClick}>
-        <Trash />
+        <DeleteIcon />
     </ClickArea>;
 }

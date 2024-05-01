@@ -8,7 +8,7 @@ import { Column, Panel, Row } from '^/webui/designsystem';
 import Comment from '../comment/Comment';
 import RatingEngagement from '../rating/Engagement';
 import TimeElapsed from '../relation/TimeElapsed';
-import Delete from './Delete';
+import DeleteButton from './DeleteButton';
 
 export type Props = {
     reaction: ReactionView;
@@ -24,9 +24,9 @@ export default function LargePanel({ reaction, onFollowClick, onCreatorClick, on
         <Column gap='medium' alignX='stretch'>
             <TimeElapsed
                 date={reaction.createdAt}
-                relation={reaction.relation}
-                onFollowClick={() => onFollowClick(reaction.relation)}
-                onCreatorClick={() => onCreatorClick(reaction.relation)}
+                relation={reaction.creator}
+                onFollowClick={() => onFollowClick(reaction.creator)}
+                onCreatorClick={() => onCreatorClick(reaction.creator)}
             />
             {
                 reaction.comment !== undefined
@@ -45,8 +45,8 @@ export default function LargePanel({ reaction, onFollowClick, onCreatorClick, on
                     onClick={() => onRatingClick(reaction)}
                 />
                 {
-                    reaction.relation.self
-                        ? <Delete onClick={() => onDeleteClick(reaction)} />
+                    reaction.creator.self
+                        ? <DeleteButton onClick={() => onDeleteClick(reaction)} />
                         : null
                 }
             </Row>
