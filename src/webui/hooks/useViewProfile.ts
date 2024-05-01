@@ -7,10 +7,8 @@ export default function hook()
 {
     const navigate = useNavigate();
 
-    const handler = (relation: RelationView) =>
+    return (relation: RelationView) =>
     {
         navigate(`/profile/${relation.following.nickname}`);
     };
-
-    return handler;
 }

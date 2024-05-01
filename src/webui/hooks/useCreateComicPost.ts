@@ -11,12 +11,10 @@ export default function hook()
     const navigate = useNavigate();
     const { identity } = useAppContext();
 
-    const handler = async (imageData: string) =>
+    return async (imageData: string) =>
     {
         await createPost(johnDoe, imageData);
 
         navigate(`/profile/${identity?.nickname}`);
     };
-
-    return handler;
 }

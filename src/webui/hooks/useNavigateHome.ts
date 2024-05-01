@@ -5,10 +5,8 @@ export default function hook()
 {
     const navigate = useNavigate();
 
-    const handler = () =>
+    return () =>
     {
         navigate('/login');
     };
-
-    return handler;
 }

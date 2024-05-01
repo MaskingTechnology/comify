@@ -7,10 +7,8 @@ export default function hook()
 {
     const navigate = useNavigate();
 
-    const handler = (post: PostView) =>
+    return (post: PostView) =>
     {
         navigate(`/post/${post.id}`);
     };
-
-    return handler;
 }
