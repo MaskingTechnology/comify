@@ -18,10 +18,10 @@ export default function Feature({ post, handleDone }: Props)
 
     return <Tabs separator={<Ruler type='horizontal' size='small' />}>
         <Tab title='Comic'>
-            <ComicEditor createHandler={createComicReaction} cancelHandler={handleDone} />
+            <ComicEditor onCreate={createComicReaction} onCancel={handleDone} />
         </Tab>
         <Tab title='Comment'>
-            <CommentForm createHandler={createCommentReaction} cancelHandler={handleDone} />
+            <CommentForm onCreate={createCommentReaction} onCancel={handleDone} />
         </Tab>
     </Tabs>;
 }

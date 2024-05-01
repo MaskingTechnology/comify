@@ -1,5 +1,6 @@
 
 import type PostView from '^/domain/post/view/PostView';
+import type RelationView from '^/domain/relation/view/RelationView';
 
 import { ClickArea, Column, Panel } from '^/webui/designsystem/module';
 
@@ -9,22 +10,33 @@ import EngagementsRow from './elementary/EngagementRow';
 
 export type Props = {
     post: PostView;
-    followHandler: () => Promise<void>;
-    rateHandler: () => Promise<boolean>;
-    detailsHandler: () => void;
-    profileHandler: () => void;
-    editHandler?: () => void;
+    onFollowClick: (relation: RelationView) => Promise<void>;
+    onCreatorClick: (relation: RelationView) => void;
+    onComicClick: (post: PostView) => void;
+    onRatingClick: (post: PostView) => Promise<boolean>;
+    onReactionClick: (post: PostView) => void;
 };
 
-export default function Component({ post, followHandler, rateHandler, detailsHandler, profileHandler, editHandler }: Props)
+export default function Component({ post, onFollowClick, onCreatorClick, onComicClick, onRatingClick, onReactionClick }: Props)
 {
     return <Panel>
         <Column gap='medium' alignX='stretch'>
-            <TimeElapsed date={post.createdAt} relation={post.creator} followHandler={followHandler} profileHandler={profileHandler} editHandler={editHandler} />
-            <ClickArea clickHandler={detailsHandler}>
+            <TimeElapsed
+                date={post.createdAt}
+                relation={post.creator}
+                onFollowClick={onFollowClick}
+                onCreatorClick={onCreatorClick}
+            />
+            <ClickArea onClick={() => onComicClick(post)}>
                 <ComicImage comic={post.comic} />
             </ClickArea>
-            <EngagementsRow isRated={post.hasRated} ratingCount={post.ratingCount} reactionCount={post.reactionCount} rateHandler={rateHandler} reactionHandler={detailsHandler} />
+            <EngagementsRow
+                isRated={post.hasRated}
+                ratingCount={post.ratingCount}
+                reactionCount={post.reactionCount}
+                onRatingClick={() => onRatingClick(post)}
+                onReactionClick={() => onReactionClick(post)}
+            />
         </Column>
     </Panel>;
 }

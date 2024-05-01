@@ -9,7 +9,7 @@ export default function Feature()
     const navigateHome = useNavigateHome();
 
     return <Column gap='medium' alignX='stretch' alignY='top'>
-        <ApplicationIntroduction getInHandler={navigateHome} />
+        <ApplicationIntroduction onGetIn={navigateHome} />
         <ApplicationLegalInfo />
     </Column>;
 }

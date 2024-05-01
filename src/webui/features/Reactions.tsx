@@ -6,7 +6,7 @@ import type ReactionView from '^/domain/reaction/view/ReactionView';
 
 import { LoadingContainer, OrderAndAddRow, ReactionPanelList } from '^/webui/components/module';
 import { Border, Column, Modal } from '^/webui/designsystem/module';
-import { useEstablishRelation, useReactions, useViewProfile } from '^/webui/hooks/module';
+import { useEstablishRelation, useReactions, useToggleReactionRating, useViewProfile } from '^/webui/hooks/module';
 
 import CreateReaction from './CreateReaction';
 
@@ -18,6 +18,7 @@ export default function Feature({ post }: Props)
 {
     const establishRelation = useEstablishRelation();
     const viewProfile = useViewProfile();
+    const toggleReactionRating = useToggleReactionRating();
 
     const [reactions, setReactions] = useReactions(post);
 
@@ -51,8 +52,9 @@ export default function Feature({ post }: Props)
             <LoadingContainer data={reactions}>
                 <ReactionPanelList
                     reactions={reactions as ReactionView[]}
-                    followHandler={establishRelation}
-                    profileHandler={viewProfile}
+                    onFollowClick={establishRelation}
+                    onCreatorClick={viewProfile}
+                    onRatingClick={toggleReactionRating}
                 />
             </LoadingContainer>
         </Column>

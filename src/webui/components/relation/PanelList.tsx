@@ -8,12 +8,12 @@ import Panel from './Panel';
 
 export type Props = {
     relations: RelationView[];
-    followHandler: (relation: RelationView) => Promise<void>;
-    profileHandler: (relation: RelationView) => void;
-    editHandler?: (relation: RelationView) => void;
+    onFollowClick: (relation: RelationView) => Promise<void>;
+    onEditClick?: (relation: RelationView) => void;
+    onCreatorClick: (relation: RelationView) => void;
 };
 
-export default function Component({ relations, followHandler, profileHandler, editHandler }: Props)
+export default function Component({ relations, onFollowClick, onEditClick, onCreatorClick }: Props)
 {
     if (relations.length === 0)
     {
@@ -26,9 +26,9 @@ export default function Component({ relations, followHandler, profileHandler, ed
                 <Panel
                     key={relation.following.id}
                     relation={relation}
-                    followHandler={() => followHandler(relation)}
-                    profileHandler={() => profileHandler(relation)}
-                    editHandler={editHandler !== undefined ? () => editHandler(relation) : undefined}
+                    onFollowClick={() => onFollowClick(relation)}
+                    onEditClick={onEditClick !== undefined ? () => onEditClick(relation) : undefined}
+                    onCreatorClick={() => onCreatorClick(relation)}
                 />
             )
         }

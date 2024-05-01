@@ -8,6 +8,6 @@ export default function Feature()
     const createComicPost = useCreateComicPost();
 
     return <Column alignX='stretch'>
-        <ComicEditor createHandler={createComicPost} />
+        <ComicEditor onCreate={createComicPost} />
     </Column>;
 }

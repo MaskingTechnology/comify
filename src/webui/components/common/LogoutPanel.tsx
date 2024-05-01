@@ -2,17 +2,17 @@
 import { Button, Panel, Paragraph, Row } from '^/webui/designsystem/module';
 
 export type Props = {
-    logoutHandler: () => void;
+    onLogout: () => void;
 };
 
-export default function Component({ logoutHandler }: Props)
+export default function Component({ onLogout }: Props)
 {
     return <Panel>
         <Paragraph>
             Are you sure you want to logout?
         </Paragraph>
         <Row alignX='right'>
-            <Button text='Yes, log me out' type='primary' clickHandler={logoutHandler} />
+            <Button text='Yes, log me out' type='primary' onClick={onLogout} />
         </Row>
     </Panel>;
 }

@@ -4,7 +4,7 @@ import type PostView from '^/domain/post/view/PostView';
 
 import { LoadingContainer, PostPanelGrid } from '^/webui/components/module';
 import { Column } from '^/webui/designsystem/module';
-import { useCreatorPosts, useToggleRating, useViewPostDetails } from '^/webui/hooks/module';
+import { useCreatorPosts, useTogglePostRating, useViewPostDetails } from '^/webui/hooks/module';
 
 type Props = {
     creator: CreatorView;
@@ -13,7 +13,7 @@ type Props = {
 export default function Feature({ creator }: Props)
 {
     const viewPostDetails = useViewPostDetails();
-    const toggleRating = useToggleRating();
+    const togglePostRating = useTogglePostRating();
 
     const [posts] = useCreatorPosts(creator);
 
@@ -21,9 +21,9 @@ export default function Feature({ creator }: Props)
         <LoadingContainer data={posts}>
             <PostPanelGrid
                 posts={posts as PostView[]}
-                comicHandler={viewPostDetails}
-                rateHandler={toggleRating}
-                reactionHandler={viewPostDetails}
+                onComicClick={viewPostDetails}
+                onRatingClick={togglePostRating}
+                onReactionClick={viewPostDetails}
             />
         </LoadingContainer>
     </Column>;

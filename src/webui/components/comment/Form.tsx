@@ -4,11 +4,11 @@ import { useState } from 'react';
 import { Button, Column, Panel, Row, TextArea } from '^/webui/designsystem/module';
 
 export type Props = {
-    createHandler: (commentText: string) => Promise<void>;
-    cancelHandler: () => void;
+    onCreate: (commentText: string) => Promise<void>;
+    onCancel: () => void;
 };
 
-export default function Component({ createHandler, cancelHandler }: Props)
+export default function Component({ onCreate, onCancel }: Props)
 {
     const [creating, setCreating] = useState(false);
     const [comment, setComment] = useState('');
@@ -22,24 +22,24 @@ export default function Component({ createHandler, cancelHandler }: Props)
     {
         setCreating(false);
 
-        cancelHandler();
+        onCancel();
     };
 
     const handleCreate = async () =>
     {
         setCreating(true);
 
-        await createHandler(comment);
+        await onCreate(comment);
 
         setCreating(false);
     };
 
     return <Panel>
         <Column alignX='stretch'>
-            <TextArea name='comment' changeHandler={handleChange} />
+            <TextArea name='comment' onChange={handleChange} />
             <Row alignX='right'>
-                <Button type='secondary' text='Cancel' clickHandler={handleCancel} />
-                <Button type={creating ? 'disabled' : 'primary'} text={creating ? 'Creating' : 'Create'} clickHandler={handleCreate} />
+                <Button type='secondary' text='Cancel' onClick={handleCancel} />
+                <Button type={creating ? 'disabled' : 'primary'} text={creating ? 'Creating' : 'Create'} onClick={handleCreate} />
             </Row>
         </Column>
     </Panel>;

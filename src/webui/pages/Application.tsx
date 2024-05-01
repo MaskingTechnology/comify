@@ -19,7 +19,7 @@ export default function Page({ children }: Props)
         return null;
     }
 
-    const sidebar = <ApplicationSidebar identity={identity} logoutHandler={() => navigate('/logout')} />;
+    const sidebar = <ApplicationSidebar identity={identity} onLogout={() => navigate('/logout')} />;
 
     return <SidebarLayout sidebar={sidebar}>
         {children}

@@ -16,8 +16,8 @@ export default function Feature()
         <LoadingContainer data={notifications}>
             <NotificationPanelList
                 notifications={notifications as NotificationView[]}
-                followHandler={establishRelation}
-                profileHandler={viewProfile}
+                onFollowClick={establishRelation}
+                onCreatorClick={viewProfile}
             />
         </LoadingContainer>
     </Column>;

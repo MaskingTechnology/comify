@@ -7,21 +7,19 @@ import Counters from './Counters';
 
 export type Props = {
     relation: RelationView;
-    followHandler: () => Promise<void>;
-    profileHandler: () => void;
-    editHandler?: () => void;
+    onFollowClick: () => Promise<void>;
+    onEditClick?: () => void;
+    onCreatorClick: () => void;
 };
 
-export default function Component({ relation, followHandler, profileHandler, editHandler }: Props)
+export default function Component({ relation, onFollowClick, onEditClick, onCreatorClick }: Props)
 {
     return <Panel>
-
         <Counters
             relation={relation}
-            followHandler={followHandler}
-            profileHandler={profileHandler}
-            editHandler={editHandler}
+            onFollowClick={onFollowClick}
+            onEditClick={onEditClick}
+            onCreatorClick={onCreatorClick}
         />
-
     </Panel>;
 }

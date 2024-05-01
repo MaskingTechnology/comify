@@ -15,12 +15,12 @@ export default function Feature()
     const [relations] = useExploreCreators();
 
     return <Column gap='small' alignX='stretch'>
-        <OrderAndSearchRow selected='popular' orderChangeHandler={reorderList} />
+        <OrderAndSearchRow selected='popular' onOrderChange={reorderList} />
         <LoadingContainer data={relations}>
             <RelationPanelList
                 relations={relations as RelationView[]}
-                followHandler={establishRelation}
-                profileHandler={viewProfile}
+                onFollowClick={establishRelation}
+                onCreatorClick={viewProfile}
             />
         </LoadingContainer>
     </Column>;

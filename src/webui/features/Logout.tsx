@@ -20,5 +20,5 @@ export default function Feature()
         navigate('/');
     };
 
-    return <LogoutPanel logoutHandler={doIt} />;
+    return <LogoutPanel onLogout={doIt} />;
 }

@@ -9,12 +9,11 @@ import Panel from './Panel';
 
 export type Props = {
     notifications: NotificationView[];
-    followHandler: (relation: RelationView) => Promise<void>;
-    profileHandler: (relation: RelationView) => void;
-    editHandler?: (relation: RelationView) => void;
+    onFollowClick: (relation: RelationView) => Promise<void>;
+    onCreatorClick: (relation: RelationView) => void;
 };
 
-export default function Component({ notifications, followHandler, profileHandler, editHandler }: Props)
+export default function Component({ notifications, onFollowClick, onCreatorClick }: Props)
 {
     if (notifications.length === 0)
     {
@@ -27,9 +26,8 @@ export default function Component({ notifications, followHandler, profileHandler
                 <Panel
                     key={notification.id}
                     notification={notification}
-                    followHandler={() => followHandler(notification.relation)}
-                    profileHandler={() => profileHandler(notification.relation)}
-                    editHandler={editHandler !== undefined ? () => editHandler(notification.relation) : undefined}
+                    onFollowClick={onFollowClick}
+                    onCreatorClick={onCreatorClick}
                 />
             )
         }

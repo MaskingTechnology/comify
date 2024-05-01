@@ -5,22 +5,22 @@ import OrderSelection from './elementary/OrderSelection';
 
 export type Props = {
     selected?: 'recent' | 'popular';
-    orderChangeHandler?: (oldKey: string, newKey: string) => void;
-    searchChangeHandler?: (newValue: string) => void;
+    onOrderChange?: (oldKey: string, newKey: string) => void;
+    onSearchChange?: (newValue: string) => void;
 };
 
-export default function Component({ selected, orderChangeHandler, searchChangeHandler }: Props)
+export default function Component({ selected, onOrderChange, onSearchChange }: Props)
 {
     function handleSearchChange(value: string)
     {
-        if (searchChangeHandler)
+        if (onSearchChange)
         {
-            searchChangeHandler(value);
+            onSearchChange(value);
         }
     }
 
     return <Row alignX='justify' alignY='center'>
-        <OrderSelection key='creators' selected={selected} changeHandler={orderChangeHandler} />
-        <TextBox name='search' placeholder='Search' size='small' changeHandler={(event) => handleSearchChange(event.target.value)} />
+        <OrderSelection key='creators' selected={selected} onChange={onOrderChange} />
+        <TextBox name='search' placeholder='Search' size='small' onChange={(event) => handleSearchChange(event.target.value)} />
     </Row>;
 }

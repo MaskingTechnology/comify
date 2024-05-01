@@ -5,10 +5,8 @@ import type PostView from '^/domain/post/view/PostView';
 
 export default function hook()
 {
-    const handler = (post: PostView) =>
+    return (post: PostView) =>
     {
         return toggleRating(johnDoe, post.id);
     };
-
-    return handler;
 }

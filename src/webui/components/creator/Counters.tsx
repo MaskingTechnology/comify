@@ -6,16 +6,16 @@ import CountersColumn from './elementary/CountersColumn';
 
 export type Props = {
     creator: CreatorView;
-    profileHandler: () => void;
+    onCreatorClick: (creator: CreatorView) => void;
 };
 
-export default function Component({ creator, profileHandler }: Props)
+export default function Component({ creator, onCreatorClick }: Props)
 {
     return <AvatarRow avatarSize='large' avatarUrl={creator.portrait?.dataUrl}>
         <CountersColumn
             fullName={creator.fullName}
             nickname={creator.nickname}
-            profileHandler={profileHandler}
+            onNameClick={() => onCreatorClick(creator)}
             postCount={creator.postCount}
             followerCount={creator.followerCount}
             followingCount={creator.followingCount}

@@ -16,6 +16,7 @@ export { default as usePost } from './usePost';
 export { default as useReactions } from './useReactions';
 export { default as useReorderList } from './useReorderList';
 export { default as useTimelinePosts } from './useTimelinePosts';
-export { default as useToggleRating } from './useToggleRating';
+export { default as useTogglePostRating } from './useTogglePostRating';
+export { default as useToggleReactionRating } from './useToggleReactionRating';
 export { default as useViewPostDetails } from './useViewPostDetails';
 export { default as useViewProfile } from './useViewProfile';
