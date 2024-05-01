@@ -10,10 +10,11 @@ export default async function create(creatorId: string, postId: string, comicId:
 
     const createdAt = now.toISOString();
     const ratingCount = 0;
+    const deleted = false;
 
-    const record: RecordData = { creatorId, postId, comicId, commentId, ratingCount, createdAt };
+    const record: RecordData = { creatorId, postId, comicId, commentId, ratingCount, createdAt, deleted };
 
     const id = await database.createRecord(RECORD_TYPE, record);
 
-    return new ReactionData(id, creatorId, postId, comicId, commentId, ratingCount, now);
+    return new ReactionData(id, creatorId, postId, comicId, commentId, ratingCount, now, deleted);
 }

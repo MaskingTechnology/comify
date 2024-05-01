@@ -1,13 +1,14 @@
 
-import { ClickArea, Icon } from '^/webui/designsystem/module';
+import { ClickArea } from '^/webui/designsystem';
+import Trash from './elementary/Trash';
 
 export type Props = {
-    deleteHandler: () => void;
+    onClick: () => void;
 };
 
-export default function Component({ deleteHandler }: Props)
+export default function Component({ onClick }: Props)
 {
-    return <ClickArea clickHandler={deleteHandler}>
-        <Icon type='trash' />
+    return <ClickArea onClick={onClick}>
+        <Trash />
     </ClickArea>;
 }

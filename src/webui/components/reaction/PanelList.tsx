@@ -8,14 +8,14 @@ import NoResults from '../common/NoResults';
 import LargePanel from './LargePanel';
 
 export type Props = {
-    identity?: CreatorView | undefined;
     reactions: ReactionView[];
     onFollowClick: (relation: RelationView) => Promise<void>;
     onCreatorClick: (relation: RelationView) => void;
     onRatingClick: (reaction: ReactionView) => Promise<boolean>;
+    onDeleteClick: (reaction: ReactionView) => Promise<void>;
 };
 
-export default function Component({ reactions, onFollowClick, onCreatorClick, onRatingClick }: Props)
+export default function Component({ reactions, onFollowClick, onCreatorClick, onRatingClick, onDeleteClick }: Props)
 {
     if (reactions.length === 0)
     {
@@ -31,6 +31,7 @@ export default function Component({ reactions, onFollowClick, onCreatorClick, on
                     onFollowClick={onFollowClick}
                     onCreatorClick={onCreatorClick}
                     onRatingClick={onRatingClick}
+                    onDeleteClick={onDeleteClick}
                 />
             )
         }

@@ -8,6 +8,7 @@ export { default as useCreator } from './useCreator';
 export { default as useCreatorFollowers } from './useCreatorFollowers';
 export { default as useCreatorFollowing } from './useCreatorFollowing';
 export { default as useCreatorPosts } from './useCreatorPosts';
+export { default as useDeleteReaction } from './useDeleteReaction';
 export { default as useEditProfile } from './useEditProfile';
 export { default as useEstablishRelation } from './useEstablishRelation';
 export { default as useExploreCreators } from './useExploreCreators';
@@ -23,4 +24,3 @@ export { default as useTogglePostRating } from './useTogglePostRating';
 export { default as useToggleReactionRating } from './useToggleReactionRating';
 export { default as useViewPostDetails } from './useViewPostDetails';
 export { default as useViewProfile } from './useViewProfile';
-

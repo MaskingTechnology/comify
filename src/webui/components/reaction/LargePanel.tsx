@@ -15,7 +15,7 @@ export type Props = {
     onFollowClick: (relation: RelationView) => Promise<void>;
     onCreatorClick: (relation: RelationView) => void;
     onRatingClick: (reaction: ReactionView) => Promise<boolean>;
-    onDeleteClick: (relation: RelationView) => Promise<void>;
+    onDeleteClick: (relation: ReactionView) => Promise<void>;
 };
 
 export default function LargePanel({ reaction, onFollowClick, onCreatorClick, onRatingClick, onDeleteClick }: Props)
@@ -46,7 +46,7 @@ export default function LargePanel({ reaction, onFollowClick, onCreatorClick, on
                 />
                 {
                     reaction.relation.self
-                        ? <Delete onClick={() => onDeleteClick(reaction.relation)} />
+                        ? <Delete onClick={() => onDeleteClick(reaction)} />
                         : null
                 }
             </Row>
