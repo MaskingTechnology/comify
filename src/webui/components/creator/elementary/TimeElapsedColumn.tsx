@@ -1,17 +1,18 @@
 
-import { ClickArea, Column, Text } from '../../../designsystem/module';
+import { ClickArea, Column, Text } from '^/webui/designsystem/module';
+
 import TimeElapsed from '../../common/TimeElapsed';
 
 export type Props = {
     fullName: string;
     date: Date;
-    profileHandler: () => void;
+    onNameClick: () => void;
 };
 
-export default function Component({ fullName, date, profileHandler }: Props)
+export default function Component({ fullName, date, onNameClick }: Props)
 {
     return <Column alignY='justify' gap='none'>
-        <ClickArea clickHandler={profileHandler}>
+        <ClickArea onClick={onNameClick}>
             <Text value={fullName} size='medium' weight='bold' />
         </ClickArea>
         <TimeElapsed date={date} size='small' />

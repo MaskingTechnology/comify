@@ -1,7 +1,8 @@
 
-import database, { QueryStatement, RecordQuery, RecordSort, SortDirections } from '../../../integrations/database/module';
-import { RECORD_TYPE } from '../definitions/constants';
+import database, { QueryStatement, RecordQuery, RecordSort, SortDirections } from '^/integrations/database/module';
+
 import type SortFields from '../definitions/SortFields';
+import { RECORD_TYPE } from '../definitions/constants';
 import CreatorData from './CreatorData';
 import createCreatorData from './mapRecord';
 

@@ -1,5 +1,5 @@
 
-import { Paragraph } from '../../designsystem/module';
+import { Paragraph } from '^/webui/designsystem/module';
 
 export type Props = {
     text: string;

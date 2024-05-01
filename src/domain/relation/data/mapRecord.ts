@@ -1,5 +1,6 @@
 
-import { RecordData } from '../../../integrations/database/module';
+import { RecordData } from '^/integrations/database/module';
+
 import RelationData from './RelationData';
 
 export default function mapRelation(record: RecordData): RelationData

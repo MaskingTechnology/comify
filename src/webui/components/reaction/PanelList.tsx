@@ -1,18 +1,21 @@
 
-import ReactionView from '../../../domain/reaction/view/ReactionView';
-import { Column } from '../../designsystem/module';
+import type ReactionView from '^/domain/reaction/view/ReactionView';
+import type RelationView from '^/domain/relation/view/RelationView';
+
+import { Column } from '^/webui/designsystem/module';
+
 import NoResults from '../common/NoResults';
 import LargePanel from './LargePanel';
 
 export type Props = {
     reactions: ReactionView[];
-    followHandler: () => Promise<void>;
+    onFollowClick: (relation: RelationView) => Promise<void>;
+    onCreatorClick: (relation: RelationView) => void;
+    onRatingClick: (reaction: ReactionView) => Promise<boolean>;
 };
 
-export default function Component({ reactions, followHandler }: Props)
+export default function Component({ reactions, onFollowClick, onCreatorClick, onRatingClick }: Props)
 {
-    if (reactions === undefined) return null;
-
     if (reactions.length === 0)
     {
         return <NoResults />;
@@ -24,7 +27,9 @@ export default function Component({ reactions, followHandler }: Props)
                 <LargePanel
                     key={reaction.id}
                     reaction={reaction}
-                    followHandler={followHandler}
+                    onFollowClick={onFollowClick}
+                    onCreatorClick={onCreatorClick}
+                    onRatingClick={onRatingClick}
                 />
             )
         }

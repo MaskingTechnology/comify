@@ -8,10 +8,10 @@ export type Props = {
     value?: string;
     size?: 'large' | 'medium' | 'small';
     rows?: number;
-    changeHandler?: React.ChangeEventHandler<HTMLTextAreaElement>;
+    onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
 };
 
-export default function Element({ name, placeholder, value, size, rows, changeHandler }: Props)
+export default function Element({ name, placeholder, value, size, rows, onChange }: Props)
 {
     const className = 'ds-textarea'
         + ' ds-textarea-size-' + (size ?? 'medium');
@@ -22,6 +22,6 @@ export default function Element({ name, placeholder, value, size, rows, changeHa
         placeholder={placeholder}
         defaultValue={value}
         rows={rows}
-        onChange={changeHandler}>
+        onChange={onChange}>
     </textarea>;
 }

@@ -1,5 +1,6 @@
 
 import React from 'react';
+
 import './Centered.css';
 
 export type Props = {

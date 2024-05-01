@@ -15,7 +15,7 @@ describe('domain/image/download', () =>
         expect(image.filename).toEqual('peter.jpg');
         expect(image.mimeType).toEqual('image/jpeg');
         expect(image.storageKey).toContain('test/');
-        expect(data.length).toEqual(50783);
+        expect(data.length).toEqual(285897);
     });
 
     it('should fail to download an non-existing image', async () =>

@@ -1,5 +1,6 @@
 
-import { Text } from '../../designsystem/module';
+import { Text } from '^/webui/designsystem/module';
+
 import CompactNumber from './CompactNumber';
 
 export type Props = {

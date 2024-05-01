@@ -1,58 +1,31 @@
 
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import johnDoe from '../../domain/authentication/johnDoe';
-import explorePosts from '../../domain/post/explore';
-import toggleRating from '../../domain/post/toggleRating';
-import type PostView from '../../domain/post/view/PostView';
-import type RelationView from '../../domain/relation/view/RelationView';
-import { Loading, OrderRow, PostPanelList } from '../components/module';
-import { Column } from '../designsystem/module';
-import awaitData from '../utils/awaitData';
+import type PostView from '^/domain/post/view/PostView';
+
+import { LoadingContainer, OrderRow, PostPanelList } from '^/webui/components/module';
+import { Column } from '^/webui/designsystem/module';
+import { useEstablishRelation, useExplorePosts, useReorderList, useTogglePostRating, useViewPostDetails, useViewProfile } from '^/webui/hooks/module';
 
 export default function Feature()
 {
-    const [posts, setPosts] = useState<PostView[] | undefined>(undefined);
+    const togglePostRating = useTogglePostRating();
+    const establishRelation = useEstablishRelation();
+    const viewProfile = useViewProfile();
+    const viewPostDetails = useViewPostDetails();
+    const reorderList = useReorderList();
 
-    const getPosts = () => explorePosts(johnDoe);
-
-    const navigate = useNavigate();
-
-    const handleOrderChange = (oldKey: string, newKey: string) =>
-    {
-        console.log(`Order changed from ${oldKey} to ${newKey}`);
-    };
-
-    const handleFollow = (relation: RelationView) =>
-    {
-        console.log(`Followed ${relation.creator.fullName}`);
-
-        return Promise.resolve();
-    };
-
-    const handleRate = (post: PostView) =>
-    {
-        return toggleRating(johnDoe, post.id);
-    };
-
-    const handleDetails = (post: PostView) =>
-    {
-        navigate(`/post/${post.id}`);
-    };
-
-    useEffect(() => awaitData(getPosts, setPosts), []);
+    const [posts] = useExplorePosts();
 
     return <Column gap='small' alignX='stretch'>
-        <OrderRow selected='popular' orderChangeHandler={handleOrderChange} />
-        {
-            posts !== undefined
-                ? <PostPanelList
-                    posts={posts}
-                    followHandler={handleFollow}
-                    rateHandler={handleRate}
-                    detailsHandler={handleDetails}
-                />
-                : <Loading />
-        }
+        <OrderRow selected='popular' onOrderChange={reorderList} />
+        <LoadingContainer data={posts}>
+            <PostPanelList
+                posts={posts as PostView[]}
+                onFollowClick={establishRelation}
+                onRatingClick={togglePostRating}
+                onReactionClick={viewPostDetails}
+                onCreatorClick={viewProfile}
+                onComicClick={viewPostDetails}
+            />
+        </LoadingContainer>
     </Column>;
 }

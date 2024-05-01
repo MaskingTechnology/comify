@@ -1,5 +1,6 @@
 
-import database from '../../../integrations/database/module';
+import database from '^/integrations/database/module';
+
 import { RECORD_TYPE } from '../definitions/constants';
 import type RelationData from './RelationData';
 import createRelationData from './mapRecord';

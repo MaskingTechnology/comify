@@ -1,6 +1,7 @@
 
 import React, { useContext, useState } from 'react';
-import type CreatorView from '../../domain/creator/view/CreatorView';
+
+import type CreatorView from '^/domain/creator/view/CreatorView';
 
 type Context = {
     identity: CreatorView | undefined;
@@ -10,7 +11,7 @@ type Context = {
 export const AppContext = React.createContext({} as Context);
 export const useAppContext = () => useContext(AppContext);
 
-export type Props = {
+type Props = {
     values?:
     {
         identity: CreatorView | undefined;
@@ -18,7 +19,7 @@ export type Props = {
     children: React.ReactNode;
 };
 
-export default function AppContextProvider({ values, children }: Props)
+export function AppContextProvider({ values, children }: Props)
 {
     const [identity, setIdentity] = useState<CreatorView | undefined>(values?.identity);
 

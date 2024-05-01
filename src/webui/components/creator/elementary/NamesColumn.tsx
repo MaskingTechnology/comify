@@ -1,5 +1,5 @@
 
-import { Column, Text } from '../../../designsystem/module';
+import { Column, Text } from '^/webui/designsystem/module';
 
 export type Props = {
     fullName: string;

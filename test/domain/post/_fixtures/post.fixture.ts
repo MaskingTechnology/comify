@@ -1,13 +1,13 @@
 
-import Requester from '../../../../src/domain/authentication/Requester';
-import johnDoe from '../../../../src/domain/authentication/johnDoe';
-import { RECORD_TYPE as COMIC_RECORD_TYPE } from '../../../../src/domain/comic/definitions/constants';
-import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '../../../../src/domain/creator/definitions/constants';
-import { RECORD_TYPE as IMAGE_RECORD_TYPE } from '../../../../src/domain/image/definitions/constants';
-import create from '../../../../src/domain/post/create';
-import { RECORD_TYPE as POST_RECORD_TYPE } from '../../../../src/domain/post/definitions/constants';
-import database from '../../../../src/integrations/database/module';
-import fileStorage from '../../../../src/integrations/filestorage/module';
+import Requester from '^/domain/authentication/Requester';
+import johnDoe from '^/domain/authentication/johnDoe';
+import { RECORD_TYPE as COMIC_RECORD_TYPE } from '^/domain/comic/definitions/constants';
+import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator/definitions/constants';
+import { RECORD_TYPE as IMAGE_RECORD_TYPE } from '^/domain/image/definitions/constants';
+import create from '^/domain/post/create';
+import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions/constants';
+import database from '^/integrations/database/module';
+import fileStorage from '^/integrations/filestorage/module';
 
 const CREATOR_ID = '1';
 const CREATOR_FULL_NAME = 'Test Creator';

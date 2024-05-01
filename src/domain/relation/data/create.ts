@@ -1,5 +1,6 @@
 
-import database, { RecordData } from '../../../integrations/database/module';
+import database, { RecordData } from '^/integrations/database/module';
+
 import { RECORD_TYPE } from '../definitions/constants';
 import RelationData from './RelationData';
 

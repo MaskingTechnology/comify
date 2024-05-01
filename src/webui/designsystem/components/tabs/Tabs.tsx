@@ -6,18 +6,18 @@ import './Tabs.css';
 export type Props = {
     separator?: React.ReactNode;
     children: React.ReactElement<TabProps> | React.ReactElement<TabProps>[];
-    changeHandler?: (oldIndex: number, newIndex: number) => void;
+    onChange?: (oldIndex: number, newIndex: number) => void;
 };
 
-export default function Component({ separator, children, changeHandler }: Props)
+export default function Component({ separator, children, onChange }: Props)
 {
     const [selected, setSelected] = useState(0);
 
     const handleChange = (index: number) =>
     {
-        if (changeHandler !== undefined)
+        if (onChange !== undefined)
         {
-            changeHandler(selected, index);
+            onChange(selected, index);
         }
 
         setSelected(index);

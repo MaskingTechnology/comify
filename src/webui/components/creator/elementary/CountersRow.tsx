@@ -1,5 +1,6 @@
 
-import { Row } from '../../../designsystem/module';
+import { Row } from '^/webui/designsystem/module';
+
 import Quantifier from '../../common/Quantifier';
 
 export type Props = {

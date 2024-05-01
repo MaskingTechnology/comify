@@ -1,8 +1,7 @@
 
-
-import ratedIcon from '../../../assets/images/icons/rated.svg';
-import unratedIcon from '../../../assets/images/icons/unrated.svg';
-import { Image } from '../../../designsystem/module';
+import ratedIcon from '^/webui/assets/images/icons/rated.svg';
+import unratedIcon from '^/webui/assets/images/icons/unrated.svg';
+import { Image } from '^/webui/designsystem/module';
 
 export type Props = {
     isRated: boolean;

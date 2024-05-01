@@ -6,10 +6,10 @@ export type Props = {
     type?: 'submit' | 'primary' | 'secondary' | 'disabled';
     size?: 'large' | 'medium' | 'small';
     text: string;
-    clickHandler?: React.MouseEventHandler<HTMLInputElement>;
+    onClick?: React.MouseEventHandler<HTMLInputElement>;
 };
 
-export default function Element({ type, size, text, clickHandler }: Props)
+export default function Element({ type, size, text, onClick }: Props)
 {
     type ??= 'primary';
     size ??= 'medium';
@@ -21,5 +21,5 @@ export default function Element({ type, size, text, clickHandler }: Props)
     const disabled = type === 'disabled';
     const inputType = type === 'submit' ? 'submit' : 'button';
 
-    return <input type={inputType} onClick={clickHandler} className={className} disabled={disabled} value={text} />;
+    return <input type={inputType} onClick={onClick} className={className} disabled={disabled} value={text} />;
 }

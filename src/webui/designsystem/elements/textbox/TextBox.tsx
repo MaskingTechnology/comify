@@ -7,10 +7,10 @@ export type Props = {
     placeholder?: string;
     value?: string;
     size?: 'large' | 'medium' | 'small';
-    changeHandler?: React.ChangeEventHandler<HTMLInputElement>;
+    onChange?: React.ChangeEventHandler<HTMLInputElement>;
 };
 
-export default function Element({ name, placeholder, value, size, changeHandler }: Props)
+export default function Element({ name, placeholder, value, size, onChange }: Props)
 {
     const className = 'ds-textbox'
         + ' ds-textbox-size-' + (size ?? 'medium');
@@ -21,6 +21,6 @@ export default function Element({ name, placeholder, value, size, changeHandler 
         name={name}
         placeholder={placeholder}
         defaultValue={value}
-        onChange={changeHandler}
+        onChange={onChange}
     />;
 }

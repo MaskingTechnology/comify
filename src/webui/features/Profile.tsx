@@ -1,60 +1,40 @@
 
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import johnDoe from '../../domain/authentication/johnDoe';
-import getCreator from '../../domain/creator/getByNickname';
-import CreatorView from '../../domain/creator/view/CreatorView';
-import establishRelation from '../../domain/relation/establish';
-import getRelation from '../../domain/relation/get';
-import type RelationView from '../../domain/relation/view/RelationView';
-import { Loading, RelationProfile } from '../components/module';
-import { useAppContext } from '../contexts/AppContext';
-import CreatorContext from '../contexts/CreatorContext';
-import { Column, Ruler, Tab, Tabs } from '../designsystem/module';
-import awaitData from '../utils/awaitData';
+import type CreatorView from '^/domain/creator/view/CreatorView';
+import type RelationView from '^/domain/relation/view/RelationView';
+
+import { LoadingContainer, RelationProfile } from '^/webui/components/module';
+import { Column, Ruler, Tab, Tabs } from '^/webui/designsystem/module';
+import { useCreator, useEditProfile, useEstablishRelation } from '^/webui/hooks/module';
+
 import CreatorComics from './CreatorComics';
 import CreatorFollowers from './CreatorFollowers';
 import CreatorFollowing from './CreatorFollowing';
 
 export default function Feature()
 {
-    const { identity } = useAppContext();
-    const { nickname } = useParams();
+    const establishRelation = useEstablishRelation();
+    const editProfile = useEditProfile();
 
-    if (identity === undefined || nickname === undefined) return null;
-
-    const [relation, setRelation] = useState<RelationView | undefined>(undefined);
-
-    const getCreatorRelation = () => getCreator(nickname).then((creator: CreatorView) => getRelation(identity.id, creator.id));
-
-    useEffect(() => awaitData(getCreatorRelation, setRelation), [identity, nickname]);
-
-    if (relation === undefined)
-    {
-        return <Loading />;
-    }
-
-    const handleFollow = async () =>
-    {
-        return establishRelation(johnDoe, relation.creator.id);
-    };
-
-    const creator = relation.creator;
+    const [relation] = useCreator();
 
     return <Column gap='medium' alignX='stretch'>
-        <RelationProfile relation={relation} followHandler={handleFollow} />
-        <CreatorContext values={{ creator }} key={creator.id}>
+        <LoadingContainer data={relation}>
+            <RelationProfile
+                relation={relation as RelationView}
+                onFollowClick={establishRelation}
+                onEditClick={editProfile}
+            />
             <Tabs separator={<Ruler type='horizontal' size='small' />}>
-                <Tab title={`Comics (${creator.postCount})`}>
-                    <CreatorComics />
+                <Tab title={`Comics (${relation?.following.postCount})`}>
+                    <CreatorComics creator={relation?.following as CreatorView} />
                 </Tab>
-                <Tab title={`Followers (${creator.followerCount})`}>
-                    <CreatorFollowers />
+                <Tab title={`Followers (${relation?.following.followerCount})`}>
+                    <CreatorFollowers creator={relation?.following as CreatorView} />
                 </Tab>
-                <Tab title={`Following (${creator.followingCount})`}>
-                    <CreatorFollowing />
+                <Tab title={`Following (${relation?.following.followingCount})`}>
+                    <CreatorFollowing creator={relation?.following as CreatorView} />
                 </Tab>
             </Tabs>
-        </CreatorContext>
-    </Column>;
+        </LoadingContainer>
+    </Column >;
 }

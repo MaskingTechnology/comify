@@ -1,7 +1,8 @@
 
 import React from 'react';
-import portraitImage from '../../../assets/images/portrait.svg';
-import { Avatar, Row } from '../../../designsystem/module';
+
+import portraitImage from '^/webui/assets/images/portrait.svg';
+import { Avatar, Row } from '^/webui/designsystem/module';
 
 export type Props = {
     avatarSize: 'small' | 'medium' | 'large';

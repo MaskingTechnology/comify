@@ -1,14 +1,14 @@
 
-import { useEffect, useState } from 'react';
-import johnDoe from '../../domain/authentication/johnDoe';
-import PostView from '../../domain/post/view/PostView';
-import create from '../../domain/reaction/create';
-import getReactionsByPost from '../../domain/reaction/getByPost';
-import ReactionView from '../../domain/reaction/view/ReactionView';
-import { Loading, OrderAndAddRow } from '../components/module';
-import ReactionsList from '../components/reaction/PanelList';
-import { Column } from '../designsystem/module';
-import awaitData from '../utils/awaitData';
+import { useState } from 'react';
+
+import type PostView from '^/domain/post/view/PostView';
+import type ReactionView from '^/domain/reaction/view/ReactionView';
+
+import { LoadingContainer, OrderAndAddRow, ReactionPanelList } from '^/webui/components/module';
+import { Border, Column, Modal } from '^/webui/designsystem/module';
+import { useEstablishRelation, useReactions, useToggleReactionRating, useViewProfile } from '^/webui/hooks/module';
+
+import CreateReaction from './CreateReaction';
 
 export type Props = {
     post: PostView;
@@ -16,28 +16,47 @@ export type Props = {
 
 export default function Feature({ post }: Props)
 {
-    const [reactions, setReactions] = useState<ReactionView[] | undefined>(undefined);
+    const establishRelation = useEstablishRelation();
+    const viewProfile = useViewProfile();
+    const toggleReactionRating = useToggleReactionRating();
 
-    const getReactions = () => getReactionsByPost(johnDoe, post.id);
+    const [reactions, setReactions] = useReactions(post);
 
-    useEffect(() => awaitData(getReactions, setReactions), []);
+    const [creating, setCreating] = useState<boolean>(false);
 
-    const handleReaction = () => 
+    const openModal = () =>
     {
-        create(johnDoe, post.id, `This is a random comment ${Math.random() * 1000}`);
+        setCreating(true);
     };
 
-    const handleFollow = async () =>
+    const closeModal = (reaction?: ReactionView) =>
     {
-        console.log(`Followed clicked`);
-    };
+        setCreating(false);
 
-    return <Column alignX='stretch'>
-        <OrderAndAddRow selected='recent' reactionHandler={handleReaction} />
+        if (reaction !== undefined)
         {
-            reactions !== undefined
-                ? <ReactionsList reactions={reactions} followHandler={handleFollow} />
-                : <Loading />
+            const result = [reaction, ...reactions as ReactionView[]];
+
+            setReactions(result);
         }
-    </Column>;
+    };
+
+    return <>
+        <Modal open={creating} width='660px'>
+            <Border padding='small'>
+                <CreateReaction post={post} handleDone={closeModal} />
+            </Border>
+        </Modal>
+        <Column alignX='stretch'>
+            <OrderAndAddRow selected='recent' reactionHandler={openModal} />
+            <LoadingContainer data={reactions}>
+                <ReactionPanelList
+                    reactions={reactions as ReactionView[]}
+                    onFollowClick={establishRelation}
+                    onCreatorClick={viewProfile}
+                    onRatingClick={toggleReactionRating}
+                />
+            </LoadingContainer>
+        </Column>
+    </>;
 }

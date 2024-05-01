@@ -1,17 +1,27 @@
 
-import type RelationView from '../../../domain/relation/view/RelationView';
+import type RelationView from '^/domain/relation/view/RelationView';
+
 import CreatorCounters from '../creator/Counters';
 import FollowRow from './elementary/FollowRow';
 
 export type Props = {
     relation: RelationView;
-    followHandler: () => Promise<void>;
-    profileHandler: () => void;
+    onFollowClick: () => Promise<void>;
+    onEditClick?: () => void;
+    onCreatorClick: () => void;
 };
 
-export default function Component({ relation, followHandler, profileHandler }: Props)
+export default function Component({ relation, onFollowClick, onEditClick, onCreatorClick }: Props)
 {
-    return <FollowRow isFollowing={relation.exists} followHandler={followHandler}>
-        <CreatorCounters creator={relation.creator} profileHandler={profileHandler} />
+    return <FollowRow
+        isFollowing={relation.exists}
+        isSelf={relation.self}
+        onFollowClick={onFollowClick}
+        onEditClick={(onEditClick)}
+    >
+        <CreatorCounters
+            creator={relation.following}
+            onCreatorClick={onCreatorClick}
+        />
     </FollowRow>;
 }

@@ -1,5 +1,6 @@
 
-import { Row } from '../../../designsystem/module';
+import { Row } from '^/webui/designsystem/module';
+
 import RatingEngagement from '../../rating/Engagement';
 import ReactionEngagement from '../../reaction/Engagement';
 
@@ -7,14 +8,14 @@ export type Props = {
     isRated: boolean;
     ratingCount: number;
     reactionCount: number;
-    rateHandler: () => Promise<boolean>;
-    reactionHandler: () => void;
+    onRatingClick: () => Promise<boolean>;
+    onReactionClick: () => void;
 };
 
-export default function Component({ isRated, ratingCount, reactionCount, rateHandler, reactionHandler }: Props)
+export default function Component({ isRated, ratingCount, reactionCount, onRatingClick, onReactionClick }: Props)
 {
     return <Row gap='medium' alignY='center'>
-        <RatingEngagement isEngaged={isRated} count={ratingCount} rateHandler={rateHandler} />
-        <ReactionEngagement reactionCount={reactionCount} reactionHandler={reactionHandler} />
+        <RatingEngagement isEngaged={isRated} count={ratingCount} onClick={onRatingClick} />
+        <ReactionEngagement reactionCount={reactionCount} onClick={onReactionClick} />
     </Row>;
 }

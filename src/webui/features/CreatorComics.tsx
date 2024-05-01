@@ -1,53 +1,30 @@
 
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import johnDoe from '../../domain/authentication/johnDoe';
-import getCreatorPosts from '../../domain/post/getByCreator';
-import toggleRating from '../../domain/post/toggleRating';
-import type PostView from '../../domain/post/view/PostView';
-import { Loading, PostPanelGrid } from '../components/module';
-import { useCreatorContext } from '../contexts/CreatorContext';
-import { Column } from '../designsystem/module';
-import awaitData from '../utils/awaitData';
+import type CreatorView from '^/domain/creator/view/CreatorView';
+import type PostView from '^/domain/post/view/PostView';
 
-export default function Feature()
+import { LoadingContainer, PostPanelGrid } from '^/webui/components/module';
+import { Column } from '^/webui/designsystem/module';
+import { useCreatorPosts, useTogglePostRating, useViewPostDetails } from '^/webui/hooks/module';
+
+type Props = {
+    creator: CreatorView;
+};
+
+export default function Feature({ creator }: Props)
 {
-    const { creator } = useCreatorContext();
-    const [posts, setPosts] = useState<PostView[] | undefined>(undefined);
-    const navigate = useNavigate();
+    const viewPostDetails = useViewPostDetails();
+    const togglePostRating = useTogglePostRating();
 
-    if (creator === undefined) return null;
-
-    const getPosts = () => getCreatorPosts(johnDoe, creator.id);
-
-    const handleComic = (post: PostView) =>
-    {
-        navigate(`/post/${post.id}`);
-    };
-
-    const handleRate = (post: PostView) =>
-    {
-        return toggleRating(johnDoe, post.id);
-    };
-
-    const handleReaction = (post: PostView) =>
-    {
-        navigate(`/post/${post.id}`);
-    };
-
-    useEffect(() => awaitData(getPosts, setPosts), [creator]);
-
-    if (posts === undefined)
-    {
-        return <Loading />;
-    }
+    const [posts] = useCreatorPosts(creator);
 
     return <Column gap='small' alignX='stretch'>
-        <PostPanelGrid
-            posts={posts}
-            comicHandler={handleComic}
-            rateHandler={handleRate}
-            reactionHandler={handleReaction}
-        />
+        <LoadingContainer data={posts}>
+            <PostPanelGrid
+                posts={posts as PostView[]}
+                onComicClick={viewPostDetails}
+                onRatingClick={togglePostRating}
+                onReactionClick={viewPostDetails}
+            />
+        </LoadingContainer>
     </Column>;
 }
