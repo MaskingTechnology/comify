@@ -8,12 +8,12 @@ import SmallPanel from './SmallPanel';
 
 export type Props = {
     posts: PostView[];
-    comicHandler: (post: PostView) => void;
-    rateHandler: (post: PostView) => Promise<boolean>;
-    reactionHandler: (post: PostView) => void;
+    onComicClick: (post: PostView) => void;
+    onRatingClick: (post: PostView) => Promise<boolean>;
+    onReactionClick: (post: PostView) => void;
 };
 
-export default function Component({ posts, comicHandler, rateHandler, reactionHandler }: Props)
+export default function Component({ posts, onComicClick, onRatingClick, onReactionClick }: Props)
 {
     if (posts.length === 0)
     {
@@ -25,9 +25,9 @@ export default function Component({ posts, comicHandler, rateHandler, reactionHa
             posts.map(post => <SmallPanel
                 key={post.id}
                 post={post}
-                comicHandler={() => comicHandler(post)}
-                rateHandler={() => rateHandler(post)}
-                reactionHandler={() => reactionHandler(post)}
+                onComicClick={() => onComicClick(post)}
+                onRatingClick={() => onRatingClick(post)}
+                onReactionClick={() => onReactionClick(post)}
             />)
         }
     </Grid>;

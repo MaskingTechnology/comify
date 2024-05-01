@@ -1,16 +1,17 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { Button, Column, Panel, Row } from '^/webui/designsystem/module';
 import { Editor } from '^/webui/editor/module';
 
 export type Props = {
-    createHandler: (imageData: string) => Promise<void>;
-    cancelHandler?: () => void;
+    onCreate: (imageData: string) => Promise<void>;
+    onCancel?: () => void;
 };
 
-export default function Component({ createHandler, cancelHandler }: Props)
+export default function Component({ onCreate, onCancel }: Props)
 {
+    const canvasRef = useRef<HTMLCanvasElement>(null);
     const [editor, setEditor] = useState<Editor | undefined>(undefined);
     const [creating, setCreating] = useState(false);
 
@@ -25,14 +26,14 @@ export default function Component({ createHandler, cancelHandler }: Props)
 
         setCreating(true);
 
-        await createHandler(imageData);
+        await onCreate(imageData);
 
         setCreating(false);
     };
 
     useEffect(() =>
     {
-        const canvas = document.getElementById('editor') as HTMLCanvasElement;
+        const canvas = canvasRef.current;
 
         if (canvas === null)
         {
@@ -49,14 +50,14 @@ export default function Component({ createHandler, cancelHandler }: Props)
 
     return <Panel>
         <Column alignX='stretch'>
-            <canvas id="editor" />
+            <canvas ref={canvasRef} />
             <Row alignX='right'>
                 {
-                    cancelHandler !== undefined
-                        ? <Button type='secondary' text='Cancel' clickHandler={cancelHandler} />
+                    onCancel !== undefined
+                        ? <Button type='secondary' text='Cancel' onClick={onCancel} />
                         : null
                 }
-                <Button type={creating ? 'disabled' : 'primary'} text={creating ? 'Creating' : 'Create'} clickHandler={handleCreate} />
+                <Button type={creating ? 'disabled' : 'primary'} text={creating ? 'Creating' : 'Create'} onClick={handleCreate} />
             </Row>
         </Column>
     </Panel>;

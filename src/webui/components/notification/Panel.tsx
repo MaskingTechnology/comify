@@ -1,5 +1,6 @@
 
 import type NotificationView from '^/domain/notification/view/NotificationView';
+import type RelationView from '^/domain/relation/view/RelationView';
 
 import { Column, Panel } from '^/webui/designsystem/module';
 
@@ -10,9 +11,8 @@ import StartedFollowing from './elementary/StartedFollowing';
 
 export type Props = {
     notification: NotificationView;
-    followHandler: () => Promise<void>;
-    profileHandler: () => void;
-    editHandler?: () => void;
+    onFollowClick: (relation: RelationView) => Promise<void>;
+    onCreatorClick: (relation: RelationView) => void;
 };
 
 function getContent(notification: NotificationView)
@@ -25,11 +25,16 @@ function getContent(notification: NotificationView)
     }
 }
 
-export default function Component({ notification, followHandler, profileHandler, editHandler }: Props)
+export default function Component({ notification, onFollowClick, onCreatorClick }: Props)
 {
     return <Panel>
         <Column gap='medium' alignX='stretch'>
-            <TimeElapsed date={notification.createdAt} relation={notification.relation} followHandler={followHandler} profileHandler={profileHandler} editHandler={editHandler} />
+            <TimeElapsed
+                date={notification.createdAt}
+                relation={notification.relation}
+                onFollowClick={onFollowClick}
+                onCreatorClick={onCreatorClick}
+            />
             {getContent(notification)}
         </Column>
     </Panel>;

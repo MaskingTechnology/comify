@@ -1,12 +1,10 @@
 
+import type PostView from '^/domain/post/view/PostView';
+import type ReactionView from '^/domain/reaction/view/ReactionView';
+
 import { ComicEditor, CommentForm } from '^/webui/components/module';
 import { Ruler, Tab, Tabs } from '^/webui/designsystem/module';
-
-import johnDoe from '^/domain/authentication/johnDoe';
-import type PostView from '^/domain/post/view/PostView';
-import createComicReaction from '^/domain/reaction/createComic';
-import createCommentReaction from '^/domain/reaction/createComment';
-import type ReactionView from '^/domain/reaction/view/ReactionView';
+import { useCreateComicReaction, useCreateCommentReaction } from '^/webui/hooks/module';
 
 type Props = {
     post: PostView;
@@ -15,31 +13,15 @@ type Props = {
 
 export default function Feature({ post, handleDone }: Props)
 {
-    const createComic = async (imageData: string) =>
-    {
-        const reaction = await createComicReaction(johnDoe, post.id, imageData);
-
-        handleDone(reaction);
-    };
-
-    const createComment = async (commentText: string) =>
-    {
-        const reaction = await createCommentReaction(johnDoe, post.id, commentText);
-
-        handleDone(reaction);
-    };
-
-    const cancelReaction = () =>
-    {
-        handleDone();
-    };
+    const createComicReaction = useCreateComicReaction(post, handleDone);
+    const createCommentReaction = useCreateCommentReaction(post, handleDone);
 
     return <Tabs separator={<Ruler type='horizontal' size='small' />}>
         <Tab title='Comic'>
-            <ComicEditor createHandler={createComic} cancelHandler={cancelReaction} />
+            <ComicEditor onCreate={createComicReaction} onCancel={handleDone} />
         </Tab>
         <Tab title='Comment'>
-            <CommentForm createHandler={createComment} cancelHandler={cancelReaction} />
+            <CommentForm onCreate={createCommentReaction} onCancel={handleDone} />
         </Tab>
     </Tabs>;
 }

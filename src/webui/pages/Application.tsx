@@ -1,9 +1,10 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ApplicationSidebar } from '../components/module';
-import { useAppContext } from '../contexts/AppContext';
-import { SidebarLayout } from '../layouts/module';
+
+import { ApplicationSidebar } from '^/webui/components/module';
+import { useAppContext } from '^/webui/contexts/AppContext';
+import { SidebarLayout } from '^/webui/layouts/module';
 
 export type Props = {
     children?: React.ReactNode;
@@ -19,7 +20,7 @@ export default function Page({ children }: Props)
         return null;
     }
 
-    const sidebar = <ApplicationSidebar identity={identity} logoutHandler={() => navigate('/logout')} />;
+    const sidebar = <ApplicationSidebar identity={identity} onLogout={() => navigate('/logout')} />;
 
     return <SidebarLayout sidebar={sidebar}>
         {children}

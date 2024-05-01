@@ -5,16 +5,16 @@ import { Button, Column, Image, Panel, Row, Text } from '^/webui/designsystem/mo
 import Logo from './Logo';
 
 export type Props = {
-    getInHandler: () => void;
+    onGetIn: () => void;
 };
 
-export default function Component({ getInHandler }: Props)
+export default function Component({ onGetIn }: Props)
 {
     return <Panel>
         <Column gap='medium' alignX='stretch'>
             <Row alignX='justify' alignY='top'>
                 <Logo />
-                <Button type='primary' text='Get in' clickHandler={getInHandler} />
+                <Button type='primary' text='Get in' onClick={onGetIn} />
             </Row>
             <Image source={introductionImage} width='600px' />
             <Text size='large' value='Take or upload a picture. Add speech bubbles. Share with friends.' />

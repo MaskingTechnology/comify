@@ -5,12 +5,12 @@ import { Button } from '^/webui/designsystem/module';
 
 export type Props = {
     isFollowing: boolean;
-    followHandler: () => Promise<void>;
+    onClick: () => Promise<void>;
 };
 
 type States = 'unestablished' | 'establishing' | 'established';
 
-export default function Component({ isFollowing, followHandler }: Props)
+export default function Component({ isFollowing, onClick }: Props)
 {
     const [status, setStatus] = useState<States>(isFollowing ? 'established' : 'unestablished');
 
@@ -18,7 +18,7 @@ export default function Component({ isFollowing, followHandler }: Props)
     {
         setStatus('establishing');
 
-        await followHandler();
+        await onClick();
 
         setStatus('established');
     };
@@ -37,6 +37,6 @@ export default function Component({ isFollowing, followHandler }: Props)
     return <Button
         type={state}
         text={text}
-        clickHandler={handleClick}
+        onClick={handleClick}
     />;
 }

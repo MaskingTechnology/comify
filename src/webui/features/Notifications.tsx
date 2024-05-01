@@ -1,40 +1,23 @@
 
-import { useEffect, useState } from 'react';
-
-import johnDoe from '^/domain/authentication/johnDoe';
-import getRecentNotifications from '^/domain/notification/getRecent';
 import type NotificationView from '^/domain/notification/view/NotificationView';
-import type RelationView from '^/domain/relation/view/RelationView';
 
 import { LoadingContainer, NotificationPanelList } from '^/webui/components/module';
 import { Column } from '^/webui/designsystem/module';
-import { awaitData } from '^/webui/utils/module';
+import { useEstablishRelation, useNotifications, useViewProfile } from '^/webui/hooks/module';
 
 export default function Feature()
 {
-    const [notifications, setNotifications] = useState<NotificationView[] | undefined>(undefined);
+    const establishRelation = useEstablishRelation();
+    const viewProfile = useViewProfile();
 
-    const getNotifications = () => getRecentNotifications(johnDoe);
-
-    const handleFollow = async (relation: RelationView) =>
-    {
-        console.log(`Followed ${relation.following.fullName}`);
-        Promise.resolve();
-    };
-
-    const handleProfile = (relation: RelationView) =>
-    {
-        console.log(relation.following.fullName);
-    };
-
-    useEffect(() => awaitData(getNotifications, setNotifications), []);
+    const [notifications] = useNotifications();
 
     return <Column gap='small' alignX='stretch'>
         <LoadingContainer data={notifications}>
             <NotificationPanelList
                 notifications={notifications as NotificationView[]}
-                followHandler={handleFollow}
-                profileHandler={handleProfile}
+                onFollowClick={establishRelation}
+                onCreatorClick={viewProfile}
             />
         </LoadingContainer>
     </Column>;

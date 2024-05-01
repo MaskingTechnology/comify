@@ -9,23 +9,20 @@ import FollowButton from './FollowButton';
 export type Props = {
     isFollowing: boolean;
     isSelf: boolean;
-    followHandler: () => Promise<void>;
-    editHandler?: () => void;
+    onFollowClick: () => Promise<void>;
+    onEditClick?: () => void;
     children: React.ReactNode;
 };
 
-export default function Component({ isFollowing, isSelf, followHandler, editHandler, children }: Props)
+export default function Component({ isFollowing, isSelf, onFollowClick, onEditClick, children }: Props)
 {
     return <Row alignX='justify' alignY='top'>
-
         {children}
-
         {isSelf
-            ? editHandler !== undefined
-                ? <EditButton editHandler={editHandler} />
+            ? onEditClick !== undefined
+                ? <EditButton onClick={onEditClick} />
                 : <></>
-            : <FollowButton isFollowing={isFollowing} followHandler={followHandler} />
+            : <FollowButton isFollowing={isFollowing} onClick={onFollowClick} />
         }
-
     </Row>;
 }

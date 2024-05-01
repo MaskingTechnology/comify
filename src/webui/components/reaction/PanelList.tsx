@@ -9,12 +9,12 @@ import LargePanel from './LargePanel';
 
 export type Props = {
     reactions: ReactionView[];
-    followHandler: (relation: RelationView) => Promise<void>;
-    profileHandler: (relation: RelationView) => void;
-    editHandler?: (relation: RelationView) => void;
+    onFollowClick: (relation: RelationView) => Promise<void>;
+    onCreatorClick: (relation: RelationView) => void;
+    onRatingClick: (reaction: ReactionView) => Promise<boolean>;
 };
 
-export default function Component({ reactions, followHandler, profileHandler, editHandler }: Props)
+export default function Component({ reactions, onFollowClick, onCreatorClick, onRatingClick }: Props)
 {
     if (reactions.length === 0)
     {
@@ -27,9 +27,9 @@ export default function Component({ reactions, followHandler, profileHandler, ed
                 <LargePanel
                     key={reaction.id}
                     reaction={reaction}
-                    followHandler={followHandler}
-                    profileHandler={profileHandler}
-                    editHandler={editHandler}
+                    onFollowClick={onFollowClick}
+                    onCreatorClick={onCreatorClick}
+                    onRatingClick={onRatingClick}
                 />
             )
         }

@@ -2,14 +2,14 @@
 import { Button } from '^/webui/designsystem/module';
 
 export type Props = {
-    editHandler: () => void;
+    onClick: () => void;
 };
 
-export default function Component({ editHandler }: Props)
+export default function Component({ onClick }: Props)
 {
     return <Button
         type={'secondary'}
         text={'Edit'}
-        clickHandler={editHandler}
+        onClick={onClick}
     />;
 }
