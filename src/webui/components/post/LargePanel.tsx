@@ -2,7 +2,7 @@
 import type PostView from '^/domain/post/view/PostView';
 import type RelationView from '^/domain/relation/view/RelationView';
 
-import { ClickArea, Column, Panel } from '^/webui/designsystem/module';
+import { ClickArea, Column, Panel } from '^/webui/designsystem';
 
 import ComicImage from '../comic/Image';
 import TimeElapsed from '../relation/TimeElapsed';

@@ -2,9 +2,9 @@
 import type CreatorView from '^/domain/creator/view/CreatorView';
 import type RelationView from '^/domain/relation/view/RelationView';
 
-import { LoadingContainer, OrderAndSearchRow, RelationPanelList } from '^/webui/components/module';
-import { Column } from '^/webui/designsystem/module';
-import { useCreatorFollowing, useEstablishRelation, useReorderList, useViewProfile } from '^/webui/hooks/module';
+import { LoadingContainer, OrderAndSearchRow, RelationPanelList } from '^/webui/components';
+import { Column } from '^/webui/designsystem';
+import { useCreatorFollowing, useEstablishRelation, useReorderList, useViewProfile } from '^/webui/hooks';
 
 type Props = {
     creator: CreatorView;

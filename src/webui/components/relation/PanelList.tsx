@@ -1,7 +1,7 @@
 
 import type RelationView from '^/domain/relation/view/RelationView';
 
-import { Column } from '^/webui/designsystem/module';
+import { Column } from '^/webui/designsystem';
 
 import NoResults from '../common/NoResults';
 import Panel from './Panel';

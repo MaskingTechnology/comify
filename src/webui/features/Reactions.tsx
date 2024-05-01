@@ -4,9 +4,9 @@ import { useState } from 'react';
 import type PostView from '^/domain/post/view/PostView';
 import type ReactionView from '^/domain/reaction/view/ReactionView';
 
-import { LoadingContainer, OrderAndAddRow, ReactionPanelList } from '^/webui/components/module';
-import { Border, Column, Modal } from '^/webui/designsystem/module';
-import { useEstablishRelation, useReactions, useToggleReactionRating, useViewProfile } from '^/webui/hooks/module';
+import { LoadingContainer, OrderAndAddRow, ReactionPanelList } from '^/webui/components';
+import { Border, Column, Modal } from '^/webui/designsystem';
+import { useEstablishRelation, useReactions, useToggleReactionRating, useViewProfile } from '^/webui/hooks';
 
 import CreateReaction from './CreateReaction';
 

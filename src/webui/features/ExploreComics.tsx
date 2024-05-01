@@ -1,9 +1,9 @@
 
 import type PostView from '^/domain/post/view/PostView';
 
-import { LoadingContainer, OrderRow, PostPanelList } from '^/webui/components/module';
-import { Column } from '^/webui/designsystem/module';
-import { useEstablishRelation, useExplorePosts, useReorderList, useTogglePostRating, useViewPostDetails, useViewProfile } from '^/webui/hooks/module';
+import { LoadingContainer, OrderRow, PostPanelList } from '^/webui/components';
+import { Column } from '^/webui/designsystem';
+import { useEstablishRelation, useExplorePosts, useReorderList, useTogglePostRating, useViewPostDetails, useViewProfile } from '^/webui/hooks';
 
 export default function Feature()
 {

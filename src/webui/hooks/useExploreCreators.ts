@@ -6,7 +6,7 @@ import SortOptions from '^/domain/relation/definitions/SortOptions';
 import exploreRelations from '^/domain/relation/explore';
 import type RelationView from '^/domain/relation/view/RelationView';
 
-import { awaitData } from '^/webui/utils/module';
+import { awaitData } from '^/webui/utils';
 
 export default function hook()
 {

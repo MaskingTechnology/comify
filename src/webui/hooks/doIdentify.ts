@@ -6,8 +6,8 @@ import johnDoe from '^/domain/authentication/johnDoe';
 import getMe from '^/domain/creator/getMe';
 import type CreatorView from '^/domain/creator/view/CreatorView';
 
-import { useAppContext } from '^/webui/contexts/module';
-import { awaitData } from '^/webui/utils/module';
+import { useAppContext } from '^/webui/contexts';
+import { awaitData } from '^/webui/utils';
 
 export default function hook()
 {

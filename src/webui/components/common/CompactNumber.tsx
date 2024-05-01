@@ -1,5 +1,5 @@
 
-import { Text } from '^/webui/designsystem/module';
+import { Text } from '^/webui/designsystem';
 
 export type Props = {
     value: number;

@@ -2,9 +2,9 @@
 import type CreatorView from '^/domain/creator/view/CreatorView';
 import type RelationView from '^/domain/relation/view/RelationView';
 
-import { LoadingContainer, RelationProfile } from '^/webui/components/module';
-import { Column, Ruler, Tab, Tabs } from '^/webui/designsystem/module';
-import { useCreator, useEditProfile, useEstablishRelation } from '^/webui/hooks/module';
+import { LoadingContainer, RelationProfile } from '^/webui/components';
+import { Column, Ruler, Tab, Tabs } from '^/webui/designsystem';
+import { useCreator, useEditProfile, useEstablishRelation } from '^/webui/hooks';
 
 import CreatorComics from './CreatorComics';
 import CreatorFollowers from './CreatorFollowers';

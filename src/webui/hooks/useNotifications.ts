@@ -5,7 +5,7 @@ import johnDoe from '^/domain/authentication/johnDoe';
 import getRecentNotifications from '^/domain/notification/getRecent';
 import type NotificationView from '^/domain/notification/view/NotificationView';
 
-import { awaitData } from '^/webui/utils/module';
+import { awaitData } from '^/webui/utils';
 
 export default function hook()
 {

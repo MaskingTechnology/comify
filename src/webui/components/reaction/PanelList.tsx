@@ -2,7 +2,7 @@
 import type ReactionView from '^/domain/reaction/view/ReactionView';
 import type RelationView from '^/domain/relation/view/RelationView';
 
-import { Column } from '^/webui/designsystem/module';
+import { Column } from '^/webui/designsystem';
 
 import NoResults from '../common/NoResults';
 import LargePanel from './LargePanel';

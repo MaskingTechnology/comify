@@ -1,5 +1,5 @@
 
-import { ClickArea, Column, Text } from '^/webui/designsystem/module';
+import { ClickArea, Column, Text } from '^/webui/designsystem';
 
 import TimeElapsed from '../../common/TimeElapsed';
 

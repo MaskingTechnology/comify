@@ -5,7 +5,7 @@ import johnDoe from '^/domain/authentication/johnDoe';
 import getTimelinePosts from '^/domain/post/getTimeline';
 import type PostView from '^/domain/post/view/PostView';
 
-import { awaitData } from '^/webui/utils/module';
+import { awaitData } from '^/webui/utils';
 
 export default function hook()
 {

@@ -1,5 +1,5 @@
 
-import { ClickArea, Icon, Row } from '^/webui/designsystem/module';
+import { ClickArea, Icon, Row } from '^/webui/designsystem';
 
 import OrderSelection from './elementary/OrderSelection';
 
