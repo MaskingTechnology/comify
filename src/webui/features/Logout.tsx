@@ -1,24 +1,11 @@
 
-import { useNavigate } from 'react-router-dom';
-
-import logout from '^/domain/authentication/logout';
-
 import { LogoutPanel } from '^/webui/components/module';
-import { useAppContext } from '^/webui/contexts/module';
+
+import { useLogout } from '^/webui/hooks/module';
 
 export default function Feature()
 {
-    const navigate = useNavigate();
-    const { setIdentity } = useAppContext();
+    const logout = useLogout();
 
-    const doIt = async () =>
-    {
-        await logout();
-
-        setIdentity(undefined);
-
-        navigate('/');
-    };
-
-    return <LogoutPanel onLogout={doIt} />;
+    return <LogoutPanel onLogout={logout} />;
 }
