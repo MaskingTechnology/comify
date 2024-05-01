@@ -2,7 +2,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import { useAppContext } from './contexts/module';
+import { useAppContext } from './contexts';
 import CreateComicPost from './features/CreateComicPost';
 import Explore from './features/Explore';
 import Home from './features/Home';
@@ -11,7 +11,7 @@ import Login from './features/Login';
 import Logout from './features/Logout';
 import NotFound from './features/NotFound';
 import Notifications from './features/Notifications';
-import Post from './features/Post';
+import PostDetails from './features/PostDetails';
 import Profile from './features/Profile';
 import Timeline from './features/Timeline';
 
@@ -35,7 +35,7 @@ export default function Component()
         <Route path="/notifications" element={protect(<Notifications />)} />
         <Route path="/create" element={protect(<CreateComicPost />)} />
         <Route path="/profile/:nickname" element={protect(<Profile />)} />
-        <Route path="/post/:postId" element={protect(<Post />)} />
+        <Route path="/post/:postId" element={protect(<PostDetails />)} />
         <Route path="/logout" element={protect(<Logout />)} />
 
         <Route path="*" element={<NotFound />} />

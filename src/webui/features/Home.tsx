@@ -1,15 +1,14 @@
 
-import { useNavigate } from 'react-router-dom';
-
-import { ApplicationIntroduction, ApplicationLegalInfo } from '^/webui/components/module';
-import { Column } from '^/webui/designsystem/module';
+import { ApplicationIntroduction, ApplicationLegalInfo } from '^/webui/components';
+import { Column } from '^/webui/designsystem';
+import { useNavigateHome } from '^/webui/hooks';
 
 export default function Feature()
 {
-    const navigate = useNavigate();
+    const navigateHome = useNavigateHome();
 
     return <Column gap='medium' alignX='stretch' alignY='top'>
-        <ApplicationIntroduction getInHandler={() => navigate('/login')} />
+        <ApplicationIntroduction onGetIn={navigateHome} />
         <ApplicationLegalInfo />
     </Column>;
 }

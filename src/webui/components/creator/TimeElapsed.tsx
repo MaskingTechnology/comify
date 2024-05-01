@@ -7,16 +7,16 @@ import TimeElapsedColumn from './elementary/TimeElapsedColumn';
 export type Props = {
     creator: CreatorView;
     date: Date;
-    profileHandler: () => void;
+    onCreatorClick: (creator: CreatorView) => void;
 };
 
-export default function Component({ creator, date, profileHandler }: Props)
+export default function Component({ creator, date, onCreatorClick }: Props)
 {
     return <AvatarRow avatarSize='small' avatarUrl={creator.portrait?.dataUrl}>
         <TimeElapsedColumn
             fullName={creator.fullName}
             date={date}
-            profileHandler={profileHandler}
+            onNameClick={() => onCreatorClick(creator)}
         />
     </AvatarRow>;
 }

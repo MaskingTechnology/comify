@@ -1,17 +1,14 @@
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-import johnDoe from '^/domain/authentication/johnDoe';
-import PostView from '^/domain/post/view/PostView';
-import getReactionsByPost from '^/domain/reaction/getByPost';
+import type PostView from '^/domain/post/view/PostView';
 import remove from '^/domain/reaction/remove';
 import type ReactionView from '^/domain/reaction/view/ReactionView';
 
-import { LoadingContainer, OrderAndAddRow, ReactionPanelList } from '^/webui/components/module';
-import { Border, Column, Modal } from '^/webui/designsystem/module';
-import { awaitData } from '^/webui/utils/module';
+import { LoadingContainer, OrderAndAddRow, ReactionPanelList } from '^/webui/components';
+import { Border, Column, Modal } from '^/webui/designsystem';
+import { useEstablishRelation, useReactions, useToggleReactionRating, useViewProfile } from '^/webui/hooks';
 
-import { useAppContext } from '../contexts/AppContext';
 import CreateReaction from './CreateReaction';
 
 export type Props = {
@@ -20,24 +17,13 @@ export type Props = {
 
 export default function Feature({ post }: Props)
 {
-    const [reactions, setReactions] = useState<ReactionView[] | undefined>(undefined);
+    const establishRelation = useEstablishRelation();
+    const viewProfile = useViewProfile();
+    const toggleReactionRating = useToggleReactionRating();
+
+    const [reactions, setReactions] = useReactions(post);
+
     const [creating, setCreating] = useState<boolean>(false);
-
-    const { identity } = useAppContext();
-
-    const getReactions = () => getReactionsByPost(johnDoe, post.id);
-
-    useEffect(() => awaitData(getReactions, setReactions), [post]);
-
-    const handleProfile = () =>
-    {
-        console.log('Profile');
-    };
-
-    const handleFollow = async () =>
-    {
-        console.log(`Followed clicked`);
-    };
 
     const openModal = () =>
     {
@@ -77,8 +63,9 @@ export default function Feature({ post }: Props)
                 <ReactionPanelList
                     identity={identity}
                     reactions={reactions as ReactionView[]}
-                    followHandler={handleFollow}
-                    profileHandler={handleProfile}
+                    onFollowClick={establishRelation}
+                    onCreatorClick={viewProfile}
+                    onRatingClick={toggleReactionRating}
                     deleteHandler={deleteReaction}
                 />
             </LoadingContainer>

@@ -1,8 +1,8 @@
 
-import type CreatorView from '^/domain/creator/view/CreatorView';
 import type ReactionView from '^/domain/reaction/view/ReactionView';
+import type RelationView from '^/domain/relation/view/RelationView';
 
-import { Column } from '^/webui/designsystem/module';
+import { Column } from '^/webui/designsystem';
 
 import NoResults from '../common/NoResults';
 import LargePanel from './LargePanel';
@@ -10,12 +10,12 @@ import LargePanel from './LargePanel';
 export type Props = {
     identity?: CreatorView | undefined;
     reactions: ReactionView[];
-    followHandler: () => Promise<void>;
-    profileHandler: () => void;
-    deleteHandler: (reaction: ReactionView) => Promise<void>;
+    onFollowClick: (relation: RelationView) => Promise<void>;
+    onCreatorClick: (relation: RelationView) => void;
+    onRatingClick: (reaction: ReactionView) => Promise<boolean>;
 };
 
-export default function Component({ identity, reactions, followHandler, profileHandler, deleteHandler }: Props)
+export default function Component({ reactions, onFollowClick, onCreatorClick, onRatingClick }: Props)
 {
     if (reactions.length === 0)
     {
@@ -27,11 +27,10 @@ export default function Component({ identity, reactions, followHandler, profileH
             reactions.map(reaction =>
                 <LargePanel
                     key={reaction.id}
-                    identity={identity}
                     reaction={reaction}
-                    followHandler={followHandler}
-                    profileHandler={profileHandler}
-                    deleteHandler={deleteHandler}
+                    onFollowClick={onFollowClick}
+                    onCreatorClick={onCreatorClick}
+                    onRatingClick={onRatingClick}
                 />
             )
         }

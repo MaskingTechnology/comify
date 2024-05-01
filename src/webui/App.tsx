@@ -2,10 +2,10 @@
 import { BrowserRouter } from 'react-router-dom';
 
 import Routes from './Routes';
-import { ErrorBoundary } from './components/module';
-import { useAppContext } from './contexts/module';
+import { ErrorBoundary } from './components';
+import { useAppContext } from './contexts';
 import ErrorHandler from './features/ErrorHandler';
-import { Application, Guest } from './pages/module';
+import { Application, Guest } from './pages';
 
 export default function App()
 {

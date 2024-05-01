@@ -1,18 +1,19 @@
 
 import type RelationView from '^/domain/relation/view/RelationView';
 
-import { Column } from '^/webui/designsystem/module';
+import { Column } from '^/webui/designsystem';
 
 import NoResults from '../common/NoResults';
 import Panel from './Panel';
 
 export type Props = {
     relations: RelationView[];
-    followHandler: (relation: RelationView) => Promise<void>;
-    profileHandler: (relation: RelationView) => void;
+    onFollowClick: (relation: RelationView) => Promise<void>;
+    onEditClick?: (relation: RelationView) => void;
+    onCreatorClick: (relation: RelationView) => void;
 };
 
-export default function Component({ relations, followHandler, profileHandler }: Props)
+export default function Component({ relations, onFollowClick, onEditClick, onCreatorClick }: Props)
 {
     if (relations.length === 0)
     {
@@ -23,10 +24,11 @@ export default function Component({ relations, followHandler, profileHandler }: 
         {
             relations.map(relation =>
                 <Panel
-                    key={relation.creator.id}
+                    key={relation.following.id}
                     relation={relation}
-                    followHandler={() => followHandler(relation)}
-                    profileHandler={() => profileHandler(relation)}
+                    onFollowClick={() => onFollowClick(relation)}
+                    onEditClick={onEditClick !== undefined ? () => onEditClick(relation) : undefined}
+                    onCreatorClick={() => onCreatorClick(relation)}
                 />
             )
         }
