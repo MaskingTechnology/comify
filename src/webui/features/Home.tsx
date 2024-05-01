@@ -1,5 +1,4 @@
 
-
 import { ApplicationIntroduction, ApplicationLegalInfo } from '^/webui/components/module';
 import { Column } from '^/webui/designsystem/module';
 import { useNavigateHome } from '^/webui/hooks/module';

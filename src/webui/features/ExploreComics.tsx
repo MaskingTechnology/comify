@@ -1,5 +1,4 @@
 
-
 import type PostView from '^/domain/post/view/PostView';
 
 import { LoadingContainer, OrderRow, PostPanelList } from '^/webui/components/module';

@@ -1,5 +1,4 @@
 
-
 import type RelationView from '^/domain/relation/view/RelationView';
 
 import { LoadingContainer, OrderAndSearchRow, RelationPanelList } from '^/webui/components/module';
