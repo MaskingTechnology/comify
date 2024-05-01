@@ -2,9 +2,9 @@
 import type PostView from '^/domain/post/view/PostView';
 import type ReactionView from '^/domain/reaction/view/ReactionView';
 
-import { ComicEditor, CommentForm } from '^/webui/components/module';
-import { Ruler, Tab, Tabs } from '^/webui/designsystem/module';
-import { useCreateComicReaction, useCreateCommentReaction } from '^/webui/hooks/module';
+import { ComicEditor, CommentForm } from '^/webui/components';
+import { Ruler, Tab, Tabs } from '^/webui/designsystem';
+import { useCreateComicReaction, useCreateCommentReaction } from '^/webui/hooks';
 
 type Props = {
     post: PostView;

@@ -6,7 +6,7 @@ import type CreatorView from '^/domain/creator/view/CreatorView';
 import getFollowing from '^/domain/relation/getFollowing';
 import type RelationView from '^/domain/relation/view/RelationView';
 
-import { awaitData } from '^/webui/utils/module';
+import { awaitData } from '^/webui/utils';
 
 export default function hook(creator: CreatorView)
 {

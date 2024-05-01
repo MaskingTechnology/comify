@@ -1,5 +1,5 @@
 
-import { Text } from '^/webui/designsystem/module';
+import { Text } from '^/webui/designsystem';
 
 import CompactNumber from './CompactNumber';
 

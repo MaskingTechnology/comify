@@ -1,7 +1,7 @@
 
 import type ComicView from '^/domain/comic/view/ComicView';
 
-import { Image } from '^/webui/designsystem/module';
+import { Image } from '^/webui/designsystem';
 
 export type Props = {
     comic: ComicView;

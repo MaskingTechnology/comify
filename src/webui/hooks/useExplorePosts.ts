@@ -5,7 +5,7 @@ import johnDoe from '^/domain/authentication/johnDoe';
 import explorePosts from '^/domain/post/explore';
 import type PostView from '^/domain/post/view/PostView';
 
-import { awaitData } from '^/webui/utils/module';
+import { awaitData } from '^/webui/utils';
 
 export default function hook()
 {

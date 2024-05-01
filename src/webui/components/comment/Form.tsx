@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 
-import { Button, Column, Panel, Row, TextArea } from '^/webui/designsystem/module';
+import { Button, Column, Panel, Row, TextArea } from '^/webui/designsystem';
 
 export type Props = {
     onCreate: (commentText: string) => Promise<void>;

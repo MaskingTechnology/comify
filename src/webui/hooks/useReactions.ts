@@ -6,7 +6,7 @@ import type PostView from '^/domain/post/view/PostView';
 import getReactionsByPost from '^/domain/reaction/getByPost';
 import type ReactionView from '^/domain/reaction/view/ReactionView';
 
-import { awaitData } from '^/webui/utils/module';
+import { awaitData } from '^/webui/utils';
 
 export default function hooks(post: PostView)
 {

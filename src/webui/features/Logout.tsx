@@ -1,6 +1,6 @@
 
-import { LogoutPanel } from '^/webui/components/module';
-import { useLogout } from '^/webui/hooks/module';
+import { LogoutPanel } from '^/webui/components';
+import { useLogout } from '^/webui/hooks';
 
 export default function Feature()
 {

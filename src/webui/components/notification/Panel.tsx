@@ -2,7 +2,7 @@
 import type NotificationView from '^/domain/notification/view/NotificationView';
 import type RelationView from '^/domain/relation/view/RelationView';
 
-import { Column, Panel } from '^/webui/designsystem/module';
+import { Column, Panel } from '^/webui/designsystem';
 
 import TimeElapsed from '../relation/TimeElapsed';
 import RatedPost from './elementary/RatedPost';

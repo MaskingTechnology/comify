@@ -1,5 +1,5 @@
 
-import { Row } from '^/webui/designsystem/module';
+import { Row } from '^/webui/designsystem';
 
 import OrderSelection from './elementary/OrderSelection';
 

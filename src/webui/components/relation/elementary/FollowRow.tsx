@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import { Row } from '^/webui/designsystem/module';
+import { Row } from '^/webui/designsystem';
 
 import EditButton from '../../common/EditButton';
 import FollowButton from './FollowButton';

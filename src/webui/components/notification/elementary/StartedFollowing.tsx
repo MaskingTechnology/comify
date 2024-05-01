@@ -1,5 +1,5 @@
 
-import { Paragraph, Text } from '^/webui/designsystem/module';
+import { Paragraph, Text } from '^/webui/designsystem';
 
 export type Props = {
     isFollowing: boolean;

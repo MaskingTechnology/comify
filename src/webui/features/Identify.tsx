@@ -1,5 +1,5 @@
 
-import { doIdentify } from '^/webui/hooks/module';
+import { doIdentify } from '^/webui/hooks';
 
 export default function Feature()
 {

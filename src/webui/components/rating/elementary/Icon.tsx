@@ -1,7 +1,7 @@
 
 import ratedIcon from '^/webui/assets/images/icons/rated.svg';
 import unratedIcon from '^/webui/assets/images/icons/unrated.svg';
-import { Image } from '^/webui/designsystem/module';
+import { Image } from '^/webui/designsystem';
 
 export type Props = {
     isRated: boolean;
