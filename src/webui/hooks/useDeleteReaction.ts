@@ -7,7 +7,7 @@ export default function hook(reactions: ReactionView[], setReactions: (reactions
 {
     return async (reaction: ReactionView) =>
     {
-        const result = (reactions).filter(item => item.id !== reaction.id);
+        const result = reactions.filter(item => item.id !== reaction.id);
 
         setReactions(result);
 
