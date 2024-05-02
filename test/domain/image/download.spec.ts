@@ -1,6 +1,6 @@
 
 import { describe, expect, it } from 'vitest';
-import { IMAGE_URLS, ImageNotDownloaded, createDatabase, createFileStorage, download } from './_fixtures/image.fixture';
+import { IMAGE_URLS, ImageNotDownloaded, InvalidImage, createDatabase, createFileStorage, download } from './_fixtures/image.fixture';
 
 describe('domain/image/download', () =>
 {
@@ -12,10 +12,10 @@ describe('domain/image/download', () =>
         const image = await download('test', IMAGE_URLS.VALID);
         const data = await fileStorage.readFile(image.storageKey);
 
-        expect(image.filename).toEqual('peter.jpg');
+        expect(image.filename).toEqual('image.jpg');
         expect(image.mimeType).toEqual('image/jpeg');
         expect(image.storageKey).toContain('test/');
-        expect(data.length).toEqual(285897);
+        expect(data.length).toEqual(95);
     });
 
     it('should fail to download an non-existing image', async () =>
@@ -27,13 +27,15 @@ describe('domain/image/download', () =>
 
     it('should fail to download an image with an invalid type', async () =>
     {
-        // Not implemented until we have moved the fetch to the integration layer
-        expect(true).toEqual(true);
+        const promise = download('test', IMAGE_URLS.INVALID_TYPE);
+
+        await expect(promise).rejects.toStrictEqual(new InvalidImage('Invalid field(s): mimeType'));
     });
 
     it('should fail to download an image that is to large', async () =>
     {
-        // Not implemented until we have moved the fetch to the integration layer
-        expect(true).toEqual(true);
+        const promise = download('test', IMAGE_URLS.INVALID_SIZE);
+
+        await expect(promise).rejects.toStrictEqual(new InvalidImage('Invalid field(s): size'));
     });
 });
