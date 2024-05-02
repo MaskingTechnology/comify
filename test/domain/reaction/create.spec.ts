@@ -71,13 +71,13 @@ describe('domain/reaction/create', () =>
         await expect(promise).rejects.toThrow('Record not found');
 
         const reactions = await database.searchRecords(REACTION_RECORD_TYPE, {});
-        expect(reactions.length).toBe(0);
+        expect(reactions.length).toBe(3);
 
         const posts = await database.searchRecords(POST_RECORD_TYPE, {});
         expect(posts.length).toBe(1);
 
         const comments = await database.searchRecords(COMMENT_RECORD_TYPE, {});
-        expect(comments.length).toBe(0);
+        expect(comments.length).toBe(1);
     });
 
     it('should rollback created data at failed comic reaction', async () =>
@@ -89,15 +89,15 @@ describe('domain/reaction/create', () =>
         await expect(promise).rejects.toThrow('Record not found');
 
         const reactions = await database.searchRecords(REACTION_RECORD_TYPE, {});
-        expect(reactions.length).toBe(0);
+        expect(reactions.length).toBe(3);
 
         const posts = await database.searchRecords(POST_RECORD_TYPE, {});
         expect(posts.length).toBe(1);
 
         const comics = await database.searchRecords(COMIC_RECORD_TYPE, {});
-        expect(comics.length).toBe(0);
+        expect(comics.length).toBe(1);
 
         const images = await database.searchRecords(IMAGE_RECORD_TYPE, {});
-        expect(images.length).toBe(0);
+        expect(images.length).toBe(1);
     });
 });

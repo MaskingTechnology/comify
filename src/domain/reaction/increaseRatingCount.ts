@@ -6,9 +6,9 @@ export default async function increaseRatingCount(ratingId: string): Promise<num
 {
     const currentData = await retrieveData(ratingId);
 
-    const updatedPost = currentData.increaseRatingCount();
+    const updatedData = currentData.increaseRatingCount();
 
-    await updateData(updatedPost);
+    await updateData(updatedData);
 
-    return updatedPost.ratingCount;
+    return updatedData.ratingCount;
 }

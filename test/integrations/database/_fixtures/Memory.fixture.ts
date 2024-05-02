@@ -144,7 +144,7 @@ const QUERY_RESULTS = {
 
 export
 {
-    FIRST_PIZZA, ID, IDS, INVALID_ID, PIZZAS, QUERY_RESULTS, RECORD_TYPE_FRUIT, RECORD_TYPE_PIZZA, RecordData, RecordNotFound, RecordNotUpdated, RecordQuery, RecordSort, SEARCH_QUERIES,
-    SortDirections, UPDATE_COUNTRY, database
+    FIRST_PIZZA, ID, IDS, INVALID_ID, PIZZAS, QUERY_RESULTS, RECORD_TYPE_FRUIT, RECORD_TYPE_PIZZA, RecordNotFound, RecordNotUpdated, SEARCH_QUERIES,
+    SortDirections, UPDATE_COUNTRY, database, type RecordData, type RecordQuery, type RecordSort
 };
 
