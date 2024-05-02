@@ -293,7 +293,7 @@ export default class MongoDB implements Database
         if (fields === undefined)
         {
             const recordData = { ...data };
-            fields = Object.keys(recordData) as RecordField[];
+            fields = Object.keys(recordData);
 
             const idIndex = fields.indexOf(MONGO_ID);
             fields[idIndex] = ID;
