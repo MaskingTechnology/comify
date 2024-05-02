@@ -1,7 +1,7 @@
 
 import type RelationView from '^/domain/relation/view/RelationView';
 
-import { Panel } from '^/webui/designsystem/module';
+import { Panel } from '^/webui/designsystem';
 
 import Counters from './Counters';
 

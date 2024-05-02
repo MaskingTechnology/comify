@@ -1,6 +1,6 @@
 
 
-import { Column } from '^/webui/designsystem/module';
+import { Column } from '^/webui/designsystem';
 
 import createActiveIcon from '^/webui/assets/images/navigation/create-active.svg';
 import createInactiveIcon from '^/webui/assets/images/navigation/create-inactive.svg';

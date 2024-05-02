@@ -1,5 +1,5 @@
 
-import { Column, Text } from '^/webui/designsystem/module';
+import { Column, Text } from '^/webui/designsystem';
 
 import NamesRow from './NamesRow';
 

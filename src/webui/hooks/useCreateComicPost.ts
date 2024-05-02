@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import johnDoe from '^/domain/authentication/johnDoe';
 import createPost from '^/domain/post/create';
 
-import { useAppContext } from '^/webui/contexts/module';
+import { useAppContext } from '^/webui/contexts';
 
 export default function hook()
 {

@@ -1,7 +1,7 @@
 
-import { ComicEditor } from '^/webui/components/module';
-import { Column } from '^/webui/designsystem/module';
-import { useCreateComicPost } from '^/webui/hooks/module';
+import { ComicEditor } from '^/webui/components';
+import { Column } from '^/webui/designsystem';
+import { useCreateComicPost } from '^/webui/hooks';
 
 export default function Feature()
 {

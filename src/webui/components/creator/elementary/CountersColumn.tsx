@@ -1,5 +1,5 @@
 
-import { ClickArea, Column } from '^/webui/designsystem/module';
+import { ClickArea, Column } from '^/webui/designsystem';
 
 import CountersRow from './CountersRow';
 import NamesRow from './NamesRow';

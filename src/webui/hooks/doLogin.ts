@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 import getLoginUrl from '^/domain/authentication/getLoginUrl';
 
-import { awaitData } from '^/webui/utils/module';
+import { awaitData } from '^/webui/utils';
 
 const IGNORE_PATHS = ['/', '/login', '/identify'];
 

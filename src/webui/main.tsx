@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import App from './App';
-import { AppContextProvider } from './contexts/module';
+import { AppContextProvider } from './contexts';
 
 import './designsystem/designsystem.css';
 import './main.css';

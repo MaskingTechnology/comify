@@ -1,8 +1,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import { Button, Column, Panel, Row } from '^/webui/designsystem/module';
-import { Editor } from '^/webui/editor/module';
+import { Button, Column, Panel, Row } from '^/webui/designsystem';
+import { Editor } from '^/webui/editor';
 
 export type Props = {
     onCreate: (imageData: string) => Promise<void>;

@@ -1,6 +1,6 @@
 
 import { timeElapsed } from '^/integrations/utilities/dates';
-import { Text } from '^/webui/designsystem/module';
+import { Text } from '^/webui/designsystem';
 
 export type Props = {
     date: Date;

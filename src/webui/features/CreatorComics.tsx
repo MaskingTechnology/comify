@@ -2,9 +2,9 @@
 import type CreatorView from '^/domain/creator/view/CreatorView';
 import type PostView from '^/domain/post/view/PostView';
 
-import { LoadingContainer, PostPanelGrid } from '^/webui/components/module';
-import { Column } from '^/webui/designsystem/module';
-import { useCreatorPosts, useTogglePostRating, useViewPostDetails } from '^/webui/hooks/module';
+import { LoadingContainer, PostPanelGrid } from '^/webui/components';
+import { Column } from '^/webui/designsystem';
+import { useCreatorPosts, useTogglePostRating, useViewPostDetails } from '^/webui/hooks';
 
 type Props = {
     creator: CreatorView;

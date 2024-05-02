@@ -1,7 +1,7 @@
 
-import { ApplicationIntroduction, ApplicationLegalInfo } from '^/webui/components/module';
-import { Column } from '^/webui/designsystem/module';
-import { useNavigateHome } from '^/webui/hooks/module';
+import { ApplicationIntroduction, ApplicationLegalInfo } from '^/webui/components';
+import { Column } from '^/webui/designsystem';
+import { useNavigateHome } from '^/webui/hooks';
 
 export default function Feature()
 {

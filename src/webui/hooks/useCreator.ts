@@ -7,8 +7,8 @@ import type CreatorView from '^/domain/creator/view/CreatorView';
 import getRelation from '^/domain/relation/get';
 import type RelationView from '^/domain/relation/view/RelationView';
 
-import { useAppContext } from '^/webui/contexts/module';
-import { awaitData } from '^/webui/utils/module';
+import { useAppContext } from '^/webui/contexts';
+import { awaitData } from '^/webui/utils';
 
 export default function hook()
 {

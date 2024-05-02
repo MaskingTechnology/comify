@@ -1,9 +1,9 @@
 
 import type RelationView from '^/domain/relation/view/RelationView';
 
-import { LoadingContainer, OrderAndSearchRow, RelationPanelList } from '^/webui/components/module';
-import { Column } from '^/webui/designsystem/module';
-import { useEstablishRelation, useExploreCreators, useReorderList, useViewProfile } from '^/webui/hooks/module';
+import { LoadingContainer, OrderAndSearchRow, RelationPanelList } from '^/webui/components';
+import { Column } from '^/webui/designsystem';
+import { useEstablishRelation, useExploreCreators, useReorderList, useViewProfile } from '^/webui/hooks';
 
 export default function Feature()
 {

@@ -3,7 +3,7 @@ import type ReactionView from '^/domain/reaction/view/ReactionView';
 import type RelationView from '^/domain/relation/view/RelationView';
 
 import Image from '^/webui/components/comic/Image';
-import { Column, Panel } from '^/webui/designsystem/module';
+import { Column, Panel } from '^/webui/designsystem';
 
 import Comment from '../comment/Comment';
 import RatingEngagement from '../rating/Engagement';

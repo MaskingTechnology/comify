@@ -1,7 +1,7 @@
 
 import { NavLink, useLocation } from 'react-router-dom';
 
-import { Image, Row, Text } from '^/webui/designsystem/module';
+import { Image, Row, Text } from '^/webui/designsystem';
 
 import './Item.css';
 

@@ -1,9 +1,9 @@
 
 import type NotificationView from '^/domain/notification/view/NotificationView';
 
-import { LoadingContainer, NotificationPanelList } from '^/webui/components/module';
-import { Column } from '^/webui/designsystem/module';
-import { useEstablishRelation, useNotifications, useViewProfile } from '^/webui/hooks/module';
+import { LoadingContainer, NotificationPanelList } from '^/webui/components';
+import { Column } from '^/webui/designsystem';
+import { useEstablishRelation, useNotifications, useViewProfile } from '^/webui/hooks';
 
 export default function Feature()
 {

@@ -1,5 +1,5 @@
 
-import { doLogin } from '^/webui/hooks/module';
+import { doLogin } from '^/webui/hooks';
 
 export default function Feature()
 {

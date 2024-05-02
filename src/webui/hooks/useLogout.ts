@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import logout from '^/domain/authentication/logout';
 
-import { useAppContext } from '^/webui/contexts/module';
+import { useAppContext } from '^/webui/contexts';
 
 export default function hook()
 {

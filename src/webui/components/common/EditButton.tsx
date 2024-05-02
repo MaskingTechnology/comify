@@ -1,5 +1,5 @@
 
-import { Button } from '^/webui/designsystem/module';
+import { Button } from '^/webui/designsystem';
 
 export type Props = {
     onClick: () => void;
