@@ -10,7 +10,7 @@ export default async function toggleRating(requester: Requester, postId: string)
 
     try
     {
-        rating = await updateRating(requester, postId, undefined);
+        rating = await updateRating(requester, postId);
 
         rating !== undefined
             ? await increaseRatingCount(postId)
@@ -22,7 +22,7 @@ export default async function toggleRating(requester: Requester, postId: string)
     {
         if (rating !== undefined) 
         {
-            await updateRating(requester, postId, undefined);
+            await updateRating(requester, postId);
         }
 
         throw error;
