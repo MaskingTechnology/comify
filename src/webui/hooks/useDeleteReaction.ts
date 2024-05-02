@@ -1,5 +1,4 @@
 
-
 import johnDoe from '^/domain/authentication/johnDoe';
 import remove from '^/domain/reaction/remove';
 import type ReactionView from '^/domain/reaction/view/ReactionView';

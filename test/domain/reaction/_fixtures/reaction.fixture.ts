@@ -1,4 +1,5 @@
 
+import Requester from '^/domain/authentication/Requester';
 import johnDoe from '^/domain/authentication/johnDoe';
 import { RECORD_TYPE as COMIC_RECORD_TYPE } from '^/domain/comic/definitions/constants';
 import { RECORD_TYPE as COMMENT_RECORD_TYPE } from '^/domain/comment/definitions/constants';
@@ -8,6 +9,7 @@ import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions/const
 import createComicReaction from '^/domain/reaction/createComic';
 import createCommentReaction from '^/domain/reaction/createComment';
 import { RECORD_TYPE as REACTION_RECORD_TYPE } from '^/domain/reaction/definitions/constants';
+import ReactionNotFound from '^/domain/reaction/errors/ReactionNotFound';
 import getByPost from '^/domain/reaction/getByPost';
 import remove from '^/domain/reaction/remove';
 import database from '^/integrations/database/module';
@@ -39,6 +41,7 @@ const IMAGE_RECORD = { id: IMAGE_ID, storageKey: IMAGE_STORAGE_KEY, filename: 'd
 const IMAGE_FILE = Buffer.from('Test data');
 
 const EXISTING_REQUESTER = johnDoe;
+const SOME_OTHER_REQUESTER = new Requester('1', 'Some Other', 'someOther');
 
 async function createDatabase()
 {
@@ -78,5 +81,6 @@ export
     COMIC_DATA_URL, COMIC_REACTION_ID, COMIC_RECORD_TYPE, COMMENT_MESSAGE, COMMENT_REACTION_ID,
     COMMENT_RECORD_TYPE, DELETED_REACTION_ID, EXISTING_REQUESTER, IMAGE_RECORD_TYPE, NOT_EXISTING_POST_ID,
     POST_ID, POST_RECORD_TYPE, REACTION_COMIC_ID, REACTION_COMMENT_ID, REACTION_RECORD_TYPE,
-    createComicReaction, createCommentReaction, createDatabase, createFileStorage, getByPost, remove
+    ReactionNotFound, SOME_OTHER_REQUESTER, createComicReaction, createCommentReaction, createDatabase,
+    createFileStorage, getByPost, remove
 };
