@@ -1,4 +1,5 @@
 
+import { HTTP_METHODS } from './definitions/constants.js';
 import { Http } from './definitions/interfaces.js';
 
 export default class Memory implements Http
@@ -35,37 +36,37 @@ export default class Memory implements Http
 
     async get(url: string, headers?: Record<string, string> | undefined): Promise<Response>
     {
-        return this.getCache('GET', url)
+        return this.getCache(HTTP_METHODS.GET, url)
             ?? this.#implementation.get(url, headers);
     }
 
     async post(url: string, body: unknown, headers?: Record<string, string> | undefined): Promise<Response>
     {
-        return this.getCache('POST', url)
+        return this.getCache(HTTP_METHODS.POST, url)
             ?? this.#implementation.post(url, body, headers);
     }
 
     async put(url: string, body: unknown, headers?: Record<string, string> | undefined): Promise<Response>
     {
-        return this.getCache('PUT', url)
+        return this.getCache(HTTP_METHODS.PUT, url)
             ?? this.#implementation.put(url, body, headers);
     }
 
     async patch(url: string, body: unknown, headers?: Record<string, string> | undefined): Promise<Response>
     {
-        return this.getCache('PATCH', url)
+        return this.getCache(HTTP_METHODS.PATCH, url)
             ?? this.#implementation.patch(url, body, headers);
     }
 
     async delete(url: string, headers?: Record<string, string> | undefined): Promise<Response>
     {
-        return this.getCache('DELETE', url)
+        return this.getCache(HTTP_METHODS.DELETE, url)
             ?? this.#implementation.delete(url, headers);
     }
 
     async head(url: string, headers?: Record<string, string> | undefined): Promise<Response>
     {
-        return this.getCache('HEAD', url)
+        return this.getCache(HTTP_METHODS.HEAD, url)
             ?? this.#implementation.head(url, headers);
     }
 

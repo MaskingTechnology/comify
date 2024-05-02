@@ -7,7 +7,7 @@ import InvalidDataURL from '^/domain/image/errors/InvalidDataURL';
 import InvalidImage from '^/domain/image/errors/InvalidImage';
 import database from '^/integrations/database/module';
 import fileStorage from '^/integrations/filestorage/module';
-import httpClient from '^/integrations/http/module';
+import httpClient, { HTTP_METHODS } from '^/integrations/http/module';
 
 const IMAGE_URLS =
 {
@@ -56,11 +56,11 @@ async function createFileStorage()
     return fileStorage;
 }
 
-httpClient.setCache('HEAD', IMAGE_URLS.VALID, RESPONSES.VALID);
-httpClient.setCache('GET', IMAGE_URLS.VALID, RESPONSES.VALID);
-httpClient.setCache('HEAD', IMAGE_URLS.INVALID_TYPE, RESPONSES.INVALID_TYPE);
-httpClient.setCache('HEAD', IMAGE_URLS.INVALID_SIZE, RESPONSES.INVALID_SIZE);
-httpClient.setCache('HEAD', IMAGE_URLS.NONEXISTING, RESPONSES.NONEXISTING);
+httpClient.setCache(HTTP_METHODS.HEAD, IMAGE_URLS.VALID, RESPONSES.VALID);
+httpClient.setCache(HTTP_METHODS.GET, IMAGE_URLS.VALID, RESPONSES.VALID);
+httpClient.setCache(HTTP_METHODS.HEAD, IMAGE_URLS.INVALID_TYPE, RESPONSES.INVALID_TYPE);
+httpClient.setCache(HTTP_METHODS.HEAD, IMAGE_URLS.INVALID_SIZE, RESPONSES.INVALID_SIZE);
+httpClient.setCache(HTTP_METHODS.HEAD, IMAGE_URLS.NONEXISTING, RESPONSES.NONEXISTING);
 
 export
 {

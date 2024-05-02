@@ -1,5 +1,6 @@
 
 import Client from '^/integrations/http/Client';
+import { HTTP_METHODS } from '^/integrations/http/definitions/constants';
 import { Http } from '^/integrations/http/definitions/interfaces';
 
 const URLS =
@@ -56,6 +57,11 @@ class MonoResponse implements Http
 const implementation = new MonoResponse();
 const httpClient = new Client(implementation);
 
-httpClient.setCache('GET', URLS.CACHED, RESPONSES.CACHED);
+httpClient.setCache(HTTP_METHODS.GET, URLS.CACHED, RESPONSES.CACHED);
+httpClient.setCache(HTTP_METHODS.POST, URLS.CACHED, RESPONSES.CACHED);
+httpClient.setCache(HTTP_METHODS.PUT, URLS.CACHED, RESPONSES.CACHED);
+httpClient.setCache(HTTP_METHODS.PATCH, URLS.CACHED, RESPONSES.CACHED);
+httpClient.setCache(HTTP_METHODS.DELETE, URLS.CACHED, RESPONSES.CACHED);
+httpClient.setCache(HTTP_METHODS.HEAD, URLS.CACHED, RESPONSES.CACHED);
 
 export { RESPONSES, URLS, httpClient };
