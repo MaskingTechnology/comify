@@ -8,10 +8,10 @@ export default function hook(reactions: ReactionView[], setReactions: (reactions
 {
     return async (reaction: ReactionView) =>
     {
-        await remove(johnDoe, reaction.id);
-
         const result = (reactions).filter(item => item.id !== reaction.id);
 
         setReactions(result);
+
+        await remove(johnDoe, reaction.id);
     };
 }
