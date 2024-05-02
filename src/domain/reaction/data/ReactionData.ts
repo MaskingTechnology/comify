@@ -11,8 +11,9 @@ export default class ReactionData
     #ratingCount: number;
 
     #createdAt: Date;
+    #deleted: boolean;
 
-    constructor(id: string, creatorId: string, postId: string, comicId: string | undefined, commentId: string | undefined, ratingCount = 0, createdAt = new Date())
+    constructor(id: string, creatorId: string, postId: string, comicId: string | undefined, commentId: string | undefined, ratingCount = 0, createdAt = new Date(), deleted = false)
     {
         this.#id = id;
         this.#creatorId = creatorId;
@@ -24,6 +25,7 @@ export default class ReactionData
         this.#ratingCount = ratingCount;
 
         this.#createdAt = createdAt;
+        this.#deleted = deleted;
     }
 
     get id() { return this.#id; }
@@ -40,6 +42,8 @@ export default class ReactionData
 
     get createdAt() { return this.#createdAt; }
 
+    get deleted() { return this.#deleted; }
+
     increaseRatingCount(): ReactionData
     {
         return this.#mutate({ ratingCount: this.#ratingCount + 1 });
@@ -48,6 +52,11 @@ export default class ReactionData
     decreaseRatingCount(): ReactionData
     {
         return this.#mutate({ ratingCount: this.#ratingCount - 1 });
+    }
+
+    delete(): ReactionData
+    {
+        return this.#mutate({ deleted: true });
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -60,7 +69,8 @@ export default class ReactionData
             values.comicId ?? this.#comicId,
             values.commentId ?? this.#commentId,
             values.ratingCount ?? this.#ratingCount,
-            values.createdAt ?? this.#createdAt
+            values.createdAt ?? this.#createdAt,
+            values.deleted ?? this.#deleted
         );
     }
 }

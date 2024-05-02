@@ -12,9 +12,10 @@ export type Props = {
     onFollowClick: (relation: RelationView) => Promise<void>;
     onCreatorClick: (relation: RelationView) => void;
     onRatingClick: (reaction: ReactionView) => Promise<boolean>;
+    onDeleteClick: (reaction: ReactionView) => Promise<void>;
 };
 
-export default function Component({ reactions, onFollowClick, onCreatorClick, onRatingClick }: Props)
+export default function Component({ reactions, onFollowClick, onCreatorClick, onRatingClick, onDeleteClick }: Props)
 {
     if (reactions.length === 0)
     {
@@ -30,6 +31,7 @@ export default function Component({ reactions, onFollowClick, onCreatorClick, on
                     onFollowClick={onFollowClick}
                     onCreatorClick={onCreatorClick}
                     onRatingClick={onRatingClick}
+                    onDeleteClick={onDeleteClick}
                 />
             )
         }

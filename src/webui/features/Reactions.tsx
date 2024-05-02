@@ -6,7 +6,7 @@ import type ReactionView from '^/domain/reaction/view/ReactionView';
 
 import { LoadingContainer, OrderAndAddRow, ReactionPanelList } from '^/webui/components';
 import { Border, Column, Modal } from '^/webui/designsystem';
-import { useEstablishRelation, useReactions, useToggleReactionRating, useViewProfile } from '^/webui/hooks';
+import { useDeleteReaction, useEstablishRelation, useReactions, useToggleReactionRating, useViewProfile } from '^/webui/hooks';
 
 import CreateReaction from './CreateReaction';
 
@@ -16,13 +16,15 @@ export type Props = {
 
 export default function Feature({ post }: Props)
 {
+    const [creating, setCreating] = useState<boolean>(false);
+
     const establishRelation = useEstablishRelation();
     const viewProfile = useViewProfile();
     const toggleReactionRating = useToggleReactionRating();
 
     const [reactions, setReactions] = useReactions(post);
 
-    const [creating, setCreating] = useState<boolean>(false);
+    const deleteReaction = useDeleteReaction(reactions as ReactionView[], setReactions);
 
     const openModal = () =>
     {
@@ -55,6 +57,7 @@ export default function Feature({ post }: Props)
                     onFollowClick={establishRelation}
                     onCreatorClick={viewProfile}
                     onRatingClick={toggleReactionRating}
+                    onDeleteClick={deleteReaction}
                 />
             </LoadingContainer>
         </Column>
