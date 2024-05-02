@@ -22,20 +22,20 @@ describe('domain/image/create', () =>
     {
         const promise = create('test', DATA_URLS.INVALID_FORMAT);
 
-        await expect(promise).rejects.toStrictEqual(new InvalidDataURL());
+        expect(promise).rejects.toStrictEqual(new InvalidDataURL());
     });
 
     it('should fail to create an image with an invalid type', async () =>
     {
         const promise = create('test', DATA_URLS.INVALID_TYPE);
 
-        await expect(promise).rejects.toStrictEqual(new InvalidImage('Invalid field(s): mimeType'));
+        expect(promise).rejects.toStrictEqual(new InvalidImage('Invalid field(s): mimeType'));
     });
 
     it('should fail to create an image that is to small', async () =>
     {
         const promise = create('test', DATA_URLS.INVALID_SIZE);
 
-        await expect(promise).rejects.toStrictEqual(new InvalidImage('Invalid field(s): size'));
+        expect(promise).rejects.toStrictEqual(new InvalidImage('Invalid field(s): size'));
     });
 });
