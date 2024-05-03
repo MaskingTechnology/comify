@@ -1,12 +1,11 @@
 
-import React from 'react';
 import './Button.css';
 
 export type Props = {
     readonly type?: 'submit' | 'primary' | 'secondary' | 'disabled';
     readonly size?: 'large' | 'medium' | 'small';
     readonly text: string;
-    readonly onClick?: React.MouseEventHandler<HTMLInputElement>;
+    readonly onClick: () => void;
 };
 
 export default function Element({ type, size, text, onClick }: Props)
@@ -21,5 +20,5 @@ export default function Element({ type, size, text, onClick }: Props)
     const disabled = type === 'disabled';
     const inputType = type === 'submit' ? 'submit' : 'button';
 
-    return <input type={inputType} onClick={onClick} className={className} disabled={disabled} value={text} />;
+    return <input type={inputType} onClick={() => onClick()} className={className} disabled={disabled} value={text} />;
 }
