@@ -7,7 +7,7 @@ import { useAppContext } from '^/webui/contexts/AppContext';
 import { SidebarLayout } from '^/webui/layouts';
 
 type Props = {
-    children?: React.ReactNode;
+    readonly children?: React.ReactNode;
 };
 
 export default function Page({ children }: Props)
