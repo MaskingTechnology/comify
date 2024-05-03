@@ -3,9 +3,11 @@ import InvalidDataURL from '../errors/InvalidDataURL';
 import ImageImport from './ImageImport';
 import validate from './validate';
 
+const DATA_URL_REGEX = /^data:(image\/(\w+));base64,(.*)$/;
+
 export default async function fromDataUrl(dataUrl: string): Promise<ImageImport>
 {
-    const matches = dataUrl.match(/^data:(image\/(\w+));base64,(.*)$/);
+    const matches = DATA_URL_REGEX.exec(dataUrl);
 
     if (matches === null)
     {

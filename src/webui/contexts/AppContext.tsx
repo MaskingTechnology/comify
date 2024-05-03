@@ -1,5 +1,5 @@
 
-import React, { useContext, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 
 import type CreatorView from '^/domain/creator/view/CreatorView';
 
@@ -23,7 +23,9 @@ export function AppContextProvider({ values, children }: Props)
 {
     const [identity, setIdentity] = useState<CreatorView | undefined>(values?.identity);
 
-    return <AppContext.Provider value={{ identity, setIdentity }}>
+    const contextValue = useMemo(() => ({ identity, setIdentity }), [identity]);
+
+    return <AppContext.Provider value={contextValue}>
         {children}
     </AppContext.Provider>;
 }
