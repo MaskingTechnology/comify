@@ -1,7 +1,7 @@
 
 import Geometry, { type Area } from '../utils/Geometry';
 
-type PressHandler = (x: number, y: number) => void;
+type PressHandler = (x: number, y: number) => Promise<void>;
 type DragHandler = (deltaX: number, deltaY: number) => void;
 type ReleaseHandler = (x: number, y: number) => Promise<void>;
 

@@ -6,7 +6,7 @@ import Button from './Button';
 
 type Handler = {
     editBubble: (bubble: Bubble) => void;
-    deleteBubble: (bubble: Bubble) => void;
+    deleteBubble: (bubble: Bubble) => Promise<void>;
 };
 
 const BUTTON_SIZE = 40;
