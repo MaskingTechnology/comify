@@ -31,7 +31,7 @@ describe('domain/relation/explore', () =>
         expect(relations[0]).toBeUndefined();
     });
 
-    it('should find relations based on searchfull name', async () =>
+    it('should find relations based on search fullname', async () =>
     {
         const relations = await explore(REQUESTER1, SortOptions.POPULAR, 'or 4');
         expect(relations.length).toBe(1);

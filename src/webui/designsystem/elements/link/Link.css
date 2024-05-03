@@ -6,8 +6,6 @@
     --text-decoration: dotted underline;
     --text-decoration-hover: underline;
 
-
-
     color: var(--color);
     text-decoration: var(--text-decoration);
 }

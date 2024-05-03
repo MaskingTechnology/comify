@@ -5,8 +5,6 @@
     --speed: 1.2s;
     --thickness: 0.3rem;
 
-
-
     display: inline-block;
     width: var(--size);
     height: var(--size);

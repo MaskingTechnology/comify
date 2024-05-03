@@ -17,8 +17,6 @@
     --secondary-foreground-color: var(--color-secondary-action-foreground);
     --disabled-background-color: transparent;
 
-
-
     border-radius: var(--border-radius);
     border: 0;
 

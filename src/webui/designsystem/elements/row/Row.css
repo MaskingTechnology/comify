@@ -4,8 +4,6 @@
     --gap-medium: 1em;
     --gap-large: 2em;
 
-
-
     display: flex;
     flex-direction: row;
     min-width: 0;

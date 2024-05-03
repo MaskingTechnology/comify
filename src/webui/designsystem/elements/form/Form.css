@@ -2,8 +2,6 @@
 {
     --margin: var(--margin-container);
 
-
-
     margin: var(--margin);
     min-width: 0;
 }

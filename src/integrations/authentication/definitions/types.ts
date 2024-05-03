@@ -7,11 +7,13 @@ export type Identity = {
     email_verified: boolean;
 };
 
+export type Token = string;
+
 export type Session = {
     key?: string;
     requester?: unknown;
     identity: Identity;
-    accessToken: string;
-    refreshToken: string;
+    accessToken: Token;
+    refreshToken: Token;
     expires: Date;
 };

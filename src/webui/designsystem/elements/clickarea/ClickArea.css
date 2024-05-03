@@ -7,8 +7,6 @@
     --padding-small: 1em;
     --padding-none: 0;
 
-
-
     margin: var(--margin);
     padding: var(--padding);
     cursor: pointer;
