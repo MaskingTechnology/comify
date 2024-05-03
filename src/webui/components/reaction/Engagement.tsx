@@ -4,7 +4,7 @@ import { ClickArea, Row } from '^/webui/designsystem';
 import CompactNumber from '../common/CompactNumber';
 import Icon from './elementary/Icon';
 
-export type Props = {
+type Props = {
     readonly reactionCount: number;
     readonly onClick: () => void;
 };

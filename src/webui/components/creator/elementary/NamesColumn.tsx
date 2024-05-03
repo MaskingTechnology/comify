@@ -1,7 +1,7 @@
 
 import { Column, Text } from '^/webui/designsystem';
 
-export type Props = {
+type Props = {
     readonly fullName: string;
     readonly nickname: string;
 };

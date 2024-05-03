@@ -1,9 +1,9 @@
 
-import { doLogin } from '^/webui/hooks';
+import { useLogin } from '^/webui/hooks';
 
 export default function Feature()
 {
-    doLogin();
+    useLogin();
 
     return <>Redirecting...</>;
 }

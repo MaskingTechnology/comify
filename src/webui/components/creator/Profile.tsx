@@ -4,7 +4,7 @@ import type CreatorView from '^/domain/creator/view/CreatorView';
 import AvatarRow from './elementary/AvatarRow';
 import JoinedColumn from './elementary/JoinedColumn';
 
-export type Props = {
+type Props = {
     readonly creator: CreatorView;
 };
 

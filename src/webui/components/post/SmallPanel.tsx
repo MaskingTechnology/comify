@@ -7,7 +7,7 @@ import Comic from '../comic/Image';
 import TimeElapsed from '../common/TimeElapsed';
 import EngagementsRow from './elementary/EngagementRow';
 
-export type Props = {
+type Props = {
     readonly post: PostView;
     readonly onComicClick: () => void;
     readonly onRatingClick: () => Promise<boolean>;

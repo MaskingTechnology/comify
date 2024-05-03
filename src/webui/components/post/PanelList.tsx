@@ -7,7 +7,7 @@ import { Column } from '^/webui/designsystem';
 import NoResults from '../common/NoResults';
 import LargePanel from './LargePanel';
 
-export type Props = {
+type Props = {
     readonly posts: PostView[];
     readonly onFollowClick: (relation: RelationView) => Promise<void>;
     readonly onCreatorClick: (relation: RelationView) => void;

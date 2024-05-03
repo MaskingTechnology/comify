@@ -3,7 +3,7 @@ import { Row } from '^/webui/designsystem';
 
 import NamesColumn from './NamesColumn';
 
-export type Props = {
+type Props = {
     readonly fullName: string;
     readonly nickname: string;
 };

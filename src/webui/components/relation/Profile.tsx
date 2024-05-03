@@ -4,7 +4,7 @@ import type RelationView from '^/domain/relation/view/RelationView';
 import CreatorProfile from '../creator/Profile';
 import FollowRow from './elementary/FollowRow';
 
-export type Props = {
+type Props = {
     readonly relation: RelationView;
     readonly onFollowClick: (relation: RelationView) => Promise<void>;
     readonly onEditClick?: (relation: RelationView) => void;

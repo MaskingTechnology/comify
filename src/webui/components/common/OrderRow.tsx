@@ -3,7 +3,7 @@ import { Row } from '^/webui/designsystem';
 
 import OrderSelection from './elementary/OrderSelection';
 
-export type Props = {
+type Props = {
     readonly selected?: 'recent' | 'popular';
     readonly onOrderChange?: (oldKey: string, newKey: string) => void;
 };

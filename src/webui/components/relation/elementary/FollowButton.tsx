@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { Button } from '^/webui/designsystem';
 
-export type Props = {
+type Props = {
     readonly isFollowing: boolean;
     readonly onClick: () => Promise<void>;
 };

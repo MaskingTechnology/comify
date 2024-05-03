@@ -14,7 +14,7 @@ import timelineInactiveIcon from '^/webui/assets/images/navigation/timeline-inac
 
 import Item from './Item';
 
-export type Props = {
+type Props = {
     readonly identity: {
         nickname: string;
     };

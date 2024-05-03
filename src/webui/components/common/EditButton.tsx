@@ -1,7 +1,7 @@
 
 import { Button } from '^/webui/designsystem';
 
-export type Props = {
+type Props = {
     readonly onClick: () => void;
 };
 

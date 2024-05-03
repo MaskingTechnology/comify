@@ -4,7 +4,7 @@ import React from 'react';
 import portraitImage from '^/webui/assets/images/portrait.svg';
 import { Avatar, Row } from '^/webui/designsystem';
 
-export type Props = {
+type Props = {
     readonly avatarSize: 'small' | 'medium' | 'large';
     readonly avatarUrl?: string;
     readonly children: React.ReactNode;

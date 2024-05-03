@@ -3,7 +3,7 @@ import { Panel, Paragraph, Title } from '^/webui/designsystem';
 
 import Login from './Login';
 
-export type Props = {
+type Props = {
     readonly error: unknown;
 };
 

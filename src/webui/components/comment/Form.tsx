@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { Button, Column, Panel, Row, TextArea } from '^/webui/designsystem';
 
-export type Props = {
+type Props = {
     readonly onCreate: (commentText: string) => Promise<void>;
     readonly onCancel: () => void;
 };

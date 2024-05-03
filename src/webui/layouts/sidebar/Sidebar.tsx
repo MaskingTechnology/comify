@@ -5,7 +5,7 @@ import { Ruler } from '^/webui/designsystem';
 
 import './Sidebar.css';
 
-export type Props = {
+type Props = {
     sidebar: React.ReactNode;
     children: React.ReactNode;
 };

@@ -1,7 +1,7 @@
 
 import { Paragraph } from '^/webui/designsystem';
 
-export type Props = {
+type Props = {
     readonly text: string;
 };
 

@@ -3,7 +3,7 @@ import { ClickArea, Column, Text } from '^/webui/designsystem';
 
 import TimeElapsed from '../../common/TimeElapsed';
 
-export type Props = {
+type Props = {
     readonly fullName: string;
     readonly date: Date;
     readonly onNameClick: () => void;

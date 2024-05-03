@@ -1,7 +1,7 @@
 
 import { Button, Panel, Paragraph, Row } from '^/webui/designsystem';
 
-export type Props = {
+type Props = {
     readonly onLogout: () => void;
 };
 

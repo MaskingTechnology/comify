@@ -6,7 +6,7 @@ import { ClickArea, Row } from '^/webui/designsystem';
 import CompactNumber from '../common/CompactNumber';
 import Icon from './elementary/Icon';
 
-export type Props = {
+type Props = {
     readonly isEngaged: boolean;
     readonly count: number;
     readonly onClick: () => Promise<boolean>;

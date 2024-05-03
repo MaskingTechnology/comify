@@ -10,7 +10,7 @@ import { useDeleteReaction, useEstablishRelation, useReactions, useToggleReactio
 
 import CreateReaction from './CreateReaction';
 
-export type Props = {
+type Props = {
     readonly post: PostView;
 };
 

@@ -6,7 +6,7 @@ import { Row } from '^/webui/designsystem';
 import EditButton from '../../common/EditButton';
 import FollowButton from './FollowButton';
 
-export type Props = {
+type Props = {
     readonly isFollowing: boolean;
     readonly isSelf: boolean;
     readonly onFollowClick: () => Promise<void>;

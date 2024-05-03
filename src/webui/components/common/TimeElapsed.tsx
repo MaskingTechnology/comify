@@ -2,7 +2,7 @@
 import { timeElapsed } from '^/integrations/utilities/dates';
 import { Text } from '^/webui/designsystem';
 
-export type Props = {
+type Props = {
     readonly date: Date;
     readonly size?: 'large' | 'medium' | 'small';
     readonly weight?: 'light' | 'normal' | 'bold';

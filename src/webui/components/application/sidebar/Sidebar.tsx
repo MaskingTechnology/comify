@@ -6,7 +6,7 @@ import Logo from '../Logo';
 import Navigation from '../navigation/Navigation';
 import './Sidebar.css';
 
-export type Props = {
+type Props = {
     readonly identity: CreatorView;
     readonly onLogout: () => void;
 };

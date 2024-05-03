@@ -8,7 +8,7 @@ import ComicImage from '../comic/Image';
 import TimeElapsed from '../relation/TimeElapsed';
 import EngagementsRow from './elementary/EngagementRow';
 
-export type Props = {
+type Props = {
     readonly post: PostView;
     readonly onFollowClick: (relation: RelationView) => Promise<void>;
     readonly onCreatorClick: (relation: RelationView) => void;

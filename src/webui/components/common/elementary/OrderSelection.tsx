@@ -1,7 +1,7 @@
 
 import { Dropdown } from '^/webui/designsystem';
 
-export type Props = {
+type Props = {
     readonly selected?: 'recent' | 'popular';
     readonly onChange?: (oldKey: string, newKey: string) => void;
 };

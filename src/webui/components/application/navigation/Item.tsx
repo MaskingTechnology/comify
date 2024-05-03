@@ -5,7 +5,7 @@ import { Image, Row, Text } from '^/webui/designsystem';
 
 import './Item.css';
 
-export type Props = {
+type Props = {
     readonly title: string;
     readonly to: string;
     readonly activeIcon: string;

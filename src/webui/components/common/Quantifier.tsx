@@ -3,7 +3,7 @@ import { Text } from '^/webui/designsystem';
 
 import CompactNumber from './CompactNumber';
 
-export type Props = {
+type Props = {
     readonly value: number;
     readonly text: string;
 };

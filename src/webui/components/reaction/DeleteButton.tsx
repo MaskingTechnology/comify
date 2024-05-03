@@ -2,7 +2,7 @@
 import { ClickArea } from '^/webui/designsystem';
 import DeleteIcon from './elementary/DeleteIcon';
 
-export type Props = {
+type Props = {
     readonly onClick: () => void;
 };
 

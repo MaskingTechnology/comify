@@ -4,7 +4,7 @@ import { ClickArea, Column } from '^/webui/designsystem';
 import CountersRow from './CountersRow';
 import NamesRow from './NamesRow';
 
-export type Props = {
+type Props = {
     readonly fullName: string;
     readonly nickname: string;
     readonly postCount: number;

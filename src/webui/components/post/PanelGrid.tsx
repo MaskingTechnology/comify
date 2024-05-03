@@ -6,7 +6,7 @@ import { Grid } from '^/webui/designsystem';
 import NoResults from '../common/NoResults';
 import SmallPanel from './SmallPanel';
 
-export type Props = {
+type Props = {
     readonly posts: PostView[];
     readonly onComicClick: (post: PostView) => void;
     readonly onRatingClick: (post: PostView) => Promise<boolean>;

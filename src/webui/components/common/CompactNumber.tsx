@@ -1,7 +1,7 @@
 
 import { Text } from '^/webui/designsystem';
 
-export type Props = {
+type Props = {
     readonly value: number;
     readonly size?: 'large' | 'medium' | 'small';
     readonly weight?: 'light' | 'normal' | 'bold';

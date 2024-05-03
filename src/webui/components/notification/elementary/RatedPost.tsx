@@ -1,7 +1,7 @@
 
 import { Image, Row, Text } from '^/webui/designsystem';
 
-export type Props = {
+type Props = {
     readonly comicDataUrl: string;
 };
 

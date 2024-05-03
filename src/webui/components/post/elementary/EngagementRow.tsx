@@ -4,7 +4,7 @@ import { Row } from '^/webui/designsystem';
 import RatingEngagement from '../../rating/Engagement';
 import ReactionEngagement from '../../reaction/Engagement';
 
-export type Props = {
+type Props = {
     readonly isRated: boolean;
     readonly ratingCount: number;
     readonly reactionCount: number;

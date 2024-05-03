@@ -9,7 +9,7 @@ import RatedPost from './elementary/RatedPost';
 import RatedReaction from './elementary/RatedReaction';
 import StartedFollowing from './elementary/StartedFollowing';
 
-export type Props = {
+type Props = {
     readonly notification: NotificationView;
     readonly onFollowClick: (relation: RelationView) => Promise<void>;
     readonly onCreatorClick: (relation: RelationView) => void;

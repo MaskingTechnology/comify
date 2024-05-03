@@ -1,7 +1,7 @@
 
 import { Paragraph, Text } from '^/webui/designsystem';
 
-export type Props = {
+type Props = {
     readonly isFollowing: boolean;
 };
 

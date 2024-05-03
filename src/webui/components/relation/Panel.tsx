@@ -5,7 +5,7 @@ import { Panel } from '^/webui/designsystem';
 
 import Counters from './Counters';
 
-export type Props = {
+type Props = {
     readonly relation: RelationView;
     readonly onFollowClick: () => Promise<void>;
     readonly onEditClick?: () => void;

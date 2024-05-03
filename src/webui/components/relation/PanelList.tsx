@@ -6,7 +6,7 @@ import { Column } from '^/webui/designsystem';
 import NoResults from '../common/NoResults';
 import Panel from './Panel';
 
-export type Props = {
+type Props = {
     readonly relations: RelationView[];
     readonly onFollowClick: (relation: RelationView) => Promise<void>;
     readonly onEditClick?: (relation: RelationView) => void;

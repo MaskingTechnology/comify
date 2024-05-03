@@ -10,7 +10,7 @@ import RatingEngagement from '../rating/Engagement';
 import TimeElapsed from '../relation/TimeElapsed';
 import DeleteButton from './DeleteButton';
 
-export type Props = {
+type Props = {
     readonly reaction: ReactionView;
     readonly onFollowClick: (relation: RelationView) => Promise<void>;
     readonly onCreatorClick: (relation: RelationView) => void;

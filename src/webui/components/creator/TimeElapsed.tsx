@@ -4,7 +4,7 @@ import type CreatorView from '^/domain/creator/view/CreatorView';
 import AvatarRow from './elementary/AvatarRow';
 import TimeElapsedColumn from './elementary/TimeElapsedColumn';
 
-export type Props = {
+type Props = {
     readonly creator: CreatorView;
     readonly date: Date;
     readonly onCreatorClick: (creator: CreatorView) => void;
