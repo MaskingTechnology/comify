@@ -26,22 +26,20 @@ const LOGICAL_OPERATORS =
 
 export default class Memory implements Database
 {
-    #memory?: Map<string, RecordData[]>;
+    #memory: Map<string, RecordData[]> = new Map();
+    #connected = false;
     recordId = 0;
 
-    get connected()
-    {
-        return this.#memory !== undefined;
-    }
+    get connected() { return this.#connected; }
 
     async connect(): Promise<void>
     {
-        this.#memory = new Map();
+        this.#connected = true;
     }
 
     async disconnect(): Promise<void>
     {
-        this.#memory = undefined;
+        this.#connected = false;
     }
 
     async createRecord(type: string, data: RecordData): Promise<string>
@@ -114,6 +112,11 @@ export default class Memory implements Database
         const limitedResult = this.#limitNumberOfRecords(sortedResult, offset, limit);
 
         return limitedResult.map(records => this.#buildRecordData(records, fields));
+    }
+
+    async clear(): Promise<void>
+    {
+        this.#memory.clear();
     }
 
     #limitNumberOfRecords(result: RecordData[], offset?: number, limit?: number): RecordData[]

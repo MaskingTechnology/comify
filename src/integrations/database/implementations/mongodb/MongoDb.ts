@@ -176,6 +176,11 @@ export default class MongoDB implements Database
         return result.map(data => this.#buildRecordData(data, fields));
     }
 
+    async clear(): Promise<void>
+    {
+        return; // Deliberately not implemented
+    }
+
     #createIds(inputIds: string[]): ObjectId[]
     {
         return inputIds.map(id => this.#createId(id));

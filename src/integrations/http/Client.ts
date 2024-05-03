@@ -34,6 +34,11 @@ export default class Memory implements Http
         this.#cache.delete(id);
     }
 
+    clearCache(): void
+    {
+        this.#cache.clear();
+    }
+
     async get(url: string, headers?: Record<string, string> | undefined): Promise<Response>
     {
         return this.getCache(HTTP_METHODS.GET, url)
