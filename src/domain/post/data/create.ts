@@ -11,8 +11,9 @@ export default async function create(creatorId: string, comicId: string,): Promi
     const createdAt = now.toISOString();
     const ratingCount = 0;
     const reactionCount = 0;
+    const deleted = false;
 
-    const record: RecordData = { creatorId, comicId, createdAt, ratingCount, reactionCount };
+    const record: RecordData = { creatorId, comicId, createdAt, ratingCount, reactionCount, deleted };
 
     const id = await database.createRecord(RECORD_TYPE, record);
 
