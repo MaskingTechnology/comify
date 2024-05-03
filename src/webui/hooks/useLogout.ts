@@ -5,7 +5,7 @@ import logout from '^/domain/authentication/logout';
 
 import { useAppContext } from '^/webui/contexts';
 
-export default function hook()
+export function useLogout()
 {
     const navigate = useNavigate();
     const { setIdentity } = useAppContext();

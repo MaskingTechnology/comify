@@ -4,11 +4,11 @@ import type RelationView from '^/domain/relation/view/RelationView';
 import CreatorCounters from '../creator/Counters';
 import FollowRow from './elementary/FollowRow';
 
-export type Props = {
-    relation: RelationView;
-    onFollowClick: () => Promise<void>;
-    onEditClick?: () => void;
-    onCreatorClick: () => void;
+type Props = {
+    readonly relation: RelationView;
+    readonly onFollowClick: () => Promise<void>;
+    readonly onEditClick?: () => void;
+    readonly onCreatorClick: () => void;
 };
 
 export default function Component({ relation, onFollowClick, onEditClick, onCreatorClick }: Props)

@@ -4,7 +4,7 @@ import type PostView from '^/domain/post/view/PostView';
 import createComicReaction from '^/domain/reaction/createComic';
 import type ReactionView from '^/domain/reaction/view/ReactionView';
 
-export default function hook(post: PostView, handleDone: (reaction?: ReactionView) => void)
+export function useCreateComicReaction(post: PostView, handleDone: (reaction?: ReactionView) => void)
 {
     return async (imageData: string) =>
     {

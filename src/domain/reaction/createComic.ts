@@ -15,7 +15,7 @@ export default async function createComic(requester: Requester, postId: string, 
     try
     {
         comic = await createActualComic(imageData);
-        reaction = await createReaction(requester.id, postId, comic.id, undefined);
+        reaction = await createReaction(requester.id, postId, comic.id);
         await increaseReactionCount(postId);
 
         return createView(requester, reaction);

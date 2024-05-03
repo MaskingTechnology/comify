@@ -3,9 +3,9 @@ import React from 'react';
 import './Link.css';
 
 export type Props = {
-    url?: string;
-    target?: string;
-    children: React.ReactNode;
+    readonly url?: string;
+    readonly target?: string;
+    readonly children: React.ReactNode;
 };
 
 export default function Element({ url, target, children }: Props)

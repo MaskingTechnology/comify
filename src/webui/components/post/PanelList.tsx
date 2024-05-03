@@ -7,13 +7,13 @@ import { Column } from '^/webui/designsystem';
 import NoResults from '../common/NoResults';
 import LargePanel from './LargePanel';
 
-export type Props = {
-    posts: PostView[];
-    onFollowClick: (relation: RelationView) => Promise<void>;
-    onCreatorClick: (relation: RelationView) => void;
-    onComicClick: (post: PostView) => void;
-    onRatingClick: (post: PostView) => Promise<boolean>;
-    onReactionClick: (post: PostView) => void;
+type Props = {
+    readonly posts: PostView[];
+    readonly onFollowClick: (relation: RelationView) => Promise<void>;
+    readonly onCreatorClick: (relation: RelationView) => void;
+    readonly onComicClick: (post: PostView) => void;
+    readonly onRatingClick: (post: PostView) => Promise<boolean>;
+    readonly onReactionClick: (post: PostView) => void;
 };
 
 export default function Component({ posts, onFollowClick, onCreatorClick, onComicClick, onRatingClick, onReactionClick }: Props)

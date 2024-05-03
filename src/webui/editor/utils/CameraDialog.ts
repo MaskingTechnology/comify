@@ -3,7 +3,7 @@ const CAPTURE_IMAGE_TYPE = 'image/jpeg';
 
 export default class CameraDialog
 {
-    static #dialog = this.#createDialog();
+    static readonly #dialog = this.#createDialog();
 
     static async open(width: number, height: number): Promise<string | undefined>
     {

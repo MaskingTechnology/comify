@@ -2,10 +2,7 @@
 {
     --margin: 0 0 1em 0;
     --gap: 0.5em;
-}
 
-.ds-input
-{
     display: flex;
     flex-direction: column;
 

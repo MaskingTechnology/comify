@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from 'react';
 import { Button, Column, Panel, Row } from '^/webui/designsystem';
 import { Editor } from '^/webui/editor';
 
-export type Props = {
-    onCreate: (imageData: string) => Promise<void>;
-    onCancel?: () => void;
+type Props = {
+    readonly onCreate: (imageData: string) => Promise<void>;
+    readonly onCancel?: () => void;
 };
 
 export default function Component({ onCreate, onCancel }: Props)

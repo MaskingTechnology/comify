@@ -4,9 +4,9 @@ import { Props as TabProps } from './Tab';
 import './Tabs.css';
 
 export type Props = {
-    separator?: React.ReactNode;
-    children: React.ReactElement<TabProps> | React.ReactElement<TabProps>[];
-    onChange?: (oldIndex: number, newIndex: number) => void;
+    readonly separator?: React.ReactNode;
+    readonly children: React.ReactElement<TabProps> | React.ReactElement<TabProps>[];
+    readonly onChange?: (oldIndex: number, newIndex: number) => void;
 };
 
 export default function Component({ separator, children, onChange }: Props)
@@ -27,29 +27,28 @@ export default function Component({ separator, children, onChange }: Props)
         ? children
         : [children];
 
-    return <>
-        <div className='ds-tabs'>
-            <div className='ds-tabs-nav'>
-                {
-                    tabs.map((element, index) =>
-                    {
-                        const style = index === selected ? 'active' : 'inactive';
-                        const handleClick = () => handleChange(index);
-
-                        return (
-                            <div key={index} className={'ds-tabs-nav-item ' + style} onClick={handleClick}>
-                                {element.props.title}
-                            </div>
-                        );
-                    })
-                }
-            </div>
+    return <div className='ds-tabs'>
+        <div className='ds-tabs-nav'>
             {
-                separator !== undefined
-                    ? <div className='ds-tabs-separator'>{separator}</div>
-                    : null
+                tabs.map((element, index) =>
+                {
+                    const style = index === selected ? 'active' : 'inactive';
+                    const handleClick = () => handleChange(index);
+                    const key = `tab-${index}-${element.props.title}`;
+
+                    return (
+                        <div key={key} className={'ds-tabs-nav-item ' + style} onClick={handleClick}>
+                            {element.props.title}
+                        </div>
+                    );
+                })
             }
-            <div className="ds-tabs-content">{tabs[selected]}</div>
         </div>
-    </>;
+        {
+            separator !== undefined
+                ? <div className='ds-tabs-separator'>{separator}</div>
+                : null
+        }
+        <div className="ds-tabs-content">{tabs[selected]}</div>
+    </div>;
 }

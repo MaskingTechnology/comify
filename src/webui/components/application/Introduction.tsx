@@ -4,8 +4,8 @@ import { Button, Column, Image, Panel, Row, Text } from '^/webui/designsystem';
 
 import Logo from './Logo';
 
-export type Props = {
-    onGetIn: () => void;
+type Props = {
+    readonly onGetIn: () => void;
 };
 
 export default function Component({ onGetIn }: Props)

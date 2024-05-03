@@ -8,13 +8,17 @@ import type PostView from '^/domain/post/view/PostView';
 
 import { awaitData } from '^/webui/utils';
 
-export default function hook(creator: CreatorView)
+export function useCreatorPosts(creator: CreatorView)
 {
     const [posts, setPosts] = useState<PostView[] | undefined>(undefined);
 
-    const getPosts = () => getCreatorPosts(johnDoe, creator.id);
+    useEffect(() => 
+    {
+        const getPosts = () => getCreatorPosts(johnDoe, creator.id);
 
-    useEffect(() => awaitData(getPosts, setPosts), [creator]);
+        awaitData(getPosts, setPosts);
+
+    }, [creator]);
 
     return [posts, setPosts] as const;
 }

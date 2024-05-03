@@ -5,9 +5,9 @@ type ViewProps = {
     error: unknown;
 };
 
-export type Props = {
-    element: React.ComponentType<ViewProps>;
-    children: React.ReactNode;
+type Props = {
+    readonly element: React.ComponentType<ViewProps>;
+    readonly children: React.ReactNode;
 };
 
 export type State = {

@@ -6,7 +6,7 @@ import { ApplicationSidebar } from '^/webui/components';
 import { useAppContext } from '^/webui/contexts/AppContext';
 import { SidebarLayout } from '^/webui/layouts';
 
-export type Props = {
+type Props = {
     children?: React.ReactNode;
 };
 

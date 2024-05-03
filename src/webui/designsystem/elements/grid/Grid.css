@@ -3,10 +3,7 @@
     --gap-small: 0.5em;
     --gap-medium: 1em;
     --gap-large: 2em;
-}
 
-.ds-grid
-{
     display: grid;
     min-width: 0;
 }

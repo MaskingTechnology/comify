@@ -1,5 +1,5 @@
 
-export default function hook()
+export function useReorderList()
 {
     return (oldKey: string, newKey: string) =>
     {

@@ -3,9 +3,9 @@ import { Row } from '^/webui/designsystem';
 
 import OrderSelection from './elementary/OrderSelection';
 
-export type Props = {
-    selected?: 'recent' | 'popular';
-    onOrderChange?: (oldKey: string, newKey: string) => void;
+type Props = {
+    readonly selected?: 'recent' | 'popular';
+    readonly onOrderChange?: (oldKey: string, newKey: string) => void;
 };
 
 export default function Component({ selected, onOrderChange }: Props)

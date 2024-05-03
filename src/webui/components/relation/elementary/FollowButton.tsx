@@ -3,9 +3,9 @@ import { useState } from 'react';
 
 import { Button } from '^/webui/designsystem';
 
-export type Props = {
-    isFollowing: boolean;
-    onClick: () => Promise<void>;
+type Props = {
+    readonly isFollowing: boolean;
+    readonly onClick: () => Promise<void>;
 };
 
 type States = 'unestablished' | 'establishing' | 'established';

@@ -5,11 +5,11 @@ import { Panel } from '^/webui/designsystem';
 
 import Counters from './Counters';
 
-export type Props = {
-    relation: RelationView;
-    onFollowClick: () => Promise<void>;
-    onEditClick?: () => void;
-    onCreatorClick: () => void;
+type Props = {
+    readonly relation: RelationView;
+    readonly onFollowClick: () => Promise<void>;
+    readonly onEditClick?: () => void;
+    readonly onCreatorClick: () => void;
 };
 
 export default function Component({ relation, onFollowClick, onEditClick, onCreatorClick }: Props)

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import type PostView from '^/domain/post/view/PostView';
 
-export default function hook()
+export function useViewPostDetails()
 {
     const navigate = useNavigate();
 

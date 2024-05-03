@@ -2,7 +2,7 @@
 import './Label.css';
 
 export type Props = {
-    value: string;
+    readonly value: string;
 };
 
 export default function Element({ value }: Props)

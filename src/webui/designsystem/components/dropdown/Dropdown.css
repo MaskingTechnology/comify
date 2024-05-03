@@ -5,10 +5,7 @@
     --background-color-options-hover: var(--color-background-hover);
     --arrow-color: var(--color-alert-foreground);
     --border-color: var(--color-border);
-}
 
-.ds-selection
-{
     display: inline-block;
     position: relative;
 

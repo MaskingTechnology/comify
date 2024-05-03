@@ -6,10 +6,7 @@
     --padding-medium: 1.5em;
     --padding-small: 1em;
     --padding-none: 0;
-}
 
-.ds-clickarea
-{
     margin: var(--margin);
     padding: var(--padding);
     cursor: pointer;

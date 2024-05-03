@@ -3,10 +3,10 @@ import React from 'react';
 import './Border.css';
 
 export type Props = {
-    type?: 'normal' | 'dashed' | 'dotted';
-    size?: 'large' | 'medium' | 'small';
-    padding?: 'large' | 'medium' | 'small';
-    children?: React.ReactNode;
+    readonly type?: 'normal' | 'dashed' | 'dotted';
+    readonly size?: 'large' | 'medium' | 'small';
+    readonly padding?: 'large' | 'medium' | 'small';
+    readonly children?: React.ReactNode;
 };
 
 export default function Element({ type, size, padding, children }: Props)

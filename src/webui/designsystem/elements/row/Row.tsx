@@ -3,11 +3,11 @@ import React from 'react';
 import './Row.css';
 
 export type Props = {
-    alignX?: 'left' | 'center' | 'right' | 'justify';
-    alignY?: 'top' | 'center' | 'bottom' | 'stretch';
-    gap?: 'large' | 'medium' | 'small' | 'none';
-    wrap?: 'wrap' | 'nowrap';
-    children: React.ReactNode;
+    readonly alignX?: 'left' | 'center' | 'right' | 'justify';
+    readonly alignY?: 'top' | 'center' | 'bottom' | 'stretch';
+    readonly gap?: 'large' | 'medium' | 'small' | 'none';
+    readonly wrap?: 'wrap' | 'nowrap';
+    readonly children: React.ReactNode;
 };
 
 export default function Element({ alignX, alignY, gap, wrap, children }: Props)

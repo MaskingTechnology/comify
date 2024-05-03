@@ -10,19 +10,27 @@ import type RelationView from '^/domain/relation/view/RelationView';
 import { useAppContext } from '^/webui/contexts';
 import { awaitData } from '^/webui/utils';
 
-export default function hook()
+export function useCreator()
 {
     const { identity } = useAppContext();
     const { nickname } = useParams();
 
     const [relation, setRelation] = useState<RelationView | undefined>(undefined);
 
-    if (identity !== undefined && nickname !== undefined)
+    useEffect(() =>
     {
-        const getCreatorRelation = () => getCreator(nickname).then((creator: CreatorView) => getRelation(identity.id, creator.id));
+        if (identity !== undefined && nickname !== undefined)
+        {
+            const getCreatorRelation = async () =>
+            {
+                const creator: CreatorView = await getCreator(nickname);
 
-        useEffect(() => awaitData(getCreatorRelation, setRelation), [identity, nickname]);
-    }
+                return getRelation(identity.id, creator.id);
+            };
+
+            awaitData(getCreatorRelation, setRelation);
+        }
+    }, [identity, nickname]);
 
     return [relation, setRelation] as const;
 }

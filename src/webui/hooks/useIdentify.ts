@@ -9,21 +9,25 @@ import type CreatorView from '^/domain/creator/view/CreatorView';
 import { useAppContext } from '^/webui/contexts';
 import { awaitData } from '^/webui/utils';
 
-export default function hook()
+export function useIdentify()
 {
     const navigate = useNavigate();
     const context = useAppContext();
 
-    const getIdentity = () => getMe(johnDoe);
-
-    const setIdentity = (identity: CreatorView) =>
+    useEffect(() => 
     {
-        const redirectLocation = window.sessionStorage.getItem('redirect');
+        const getIdentity = () => getMe(johnDoe);
 
-        context.setIdentity(identity);
+        const setIdentity = (identity: CreatorView) =>
+        {
+            const redirectLocation = window.sessionStorage.getItem('redirect');
 
-        navigate(redirectLocation ?? '/timeline');
-    };
+            context.setIdentity(identity);
 
-    useEffect(() => awaitData(getIdentity, setIdentity), []);
+            navigate(redirectLocation ?? '/timeline');
+        };
+
+        awaitData(getIdentity, setIdentity);
+
+    }, [context, navigate]);
 }

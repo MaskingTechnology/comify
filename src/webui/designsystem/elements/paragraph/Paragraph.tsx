@@ -3,8 +3,8 @@ import React from 'react';
 import './Paragraph.css';
 
 export type Props = {
-    size?: 'large' | 'medium' | 'small';
-    children: React.ReactNode;
+    readonly size?: 'large' | 'medium' | 'small';
+    readonly children: React.ReactNode;
 };
 
 export default function Element({ size, children }: Props)

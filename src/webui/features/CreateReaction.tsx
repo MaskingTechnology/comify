@@ -7,8 +7,8 @@ import { Ruler, Tab, Tabs } from '^/webui/designsystem';
 import { useCreateComicReaction, useCreateCommentReaction } from '^/webui/hooks';
 
 type Props = {
-    post: PostView;
-    handleDone: (reaction?: ReactionView) => void;
+    readonly post: PostView;
+    readonly handleDone: (reaction?: ReactionView) => void;
 };
 
 export default function Feature({ post, handleDone }: Props)
