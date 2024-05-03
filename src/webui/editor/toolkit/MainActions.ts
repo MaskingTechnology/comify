@@ -6,7 +6,7 @@ import Button from './Button';
 type Handler = {
     selectImage: () => Promise<void>;
     takePicture: () => Promise<void>;
-    addSpeechBubble: () => void;
+    addSpeechBubble: () => Promise<void>;
 };
 
 export default class MainActions extends Group

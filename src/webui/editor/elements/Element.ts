@@ -3,7 +3,7 @@ import Geometry, { type Area } from '../utils/Geometry';
 
 type PressHandler = (x: number, y: number) => void;
 type DragHandler = (deltaX: number, deltaY: number) => void;
-type ReleaseHandler = (x: number, y: number) => void;
+type ReleaseHandler = (x: number, y: number) => Promise<void>;
 
 export default abstract class Element
 {

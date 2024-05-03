@@ -89,7 +89,7 @@ export default class Workbench extends Group
         this.#model.background.loadImage(source);
     }
 
-    #addSpeechBubble()
+    async #addSpeechBubble(): Promise<void>
     {
         const bubble = this.#createSpeechBubble();
 
@@ -125,14 +125,14 @@ export default class Workbench extends Group
         bubble.setText(text);
     }
 
-    #deleteBubble(bubble: Bubble): void
+    async #deleteBubble(bubble: Bubble): Promise<void>
     {
         this.#model.removeSpeechBubble(bubble as SpeechBubble);
 
         this.#deselectBubble();
     }
 
-    #selectBubble(bubble: Bubble): void
+    async #selectBubble(bubble: Bubble): Promise<void>
     {
         this.#deselectBubble();
 
@@ -141,7 +141,7 @@ export default class Workbench extends Group
         this.addElement(this.#selection);
     }
 
-    #deselectBubble(): void
+    async #deselectBubble(): Promise<void>
     {
         this.removeElement(this.#selection);
     }
