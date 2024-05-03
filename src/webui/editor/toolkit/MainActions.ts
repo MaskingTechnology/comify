@@ -4,8 +4,8 @@ import Group from '../elements/Group';
 import Button from './Button';
 
 type Handler = {
-    selectImage: () => void;
-    takePicture: () => void;
+    selectImage: () => Promise<void>;
+    takePicture: () => Promise<void>;
     addSpeechBubble: () => void;
 };
 

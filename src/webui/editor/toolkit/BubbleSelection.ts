@@ -5,7 +5,7 @@ import Bubble from '../model/Bubble';
 import Button from './Button';
 
 type Handler = {
-    editBubble: (bubble: Bubble) => void;
+    editBubble: (bubble: Bubble) => Promise<void>;
     deleteBubble: (bubble: Bubble) => void;
 };
 
