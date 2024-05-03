@@ -3,10 +3,9 @@
     --gap-small: 0.5em;
     --gap-medium: 1em;
     --gap-large: 2em;
-}
 
-.ds-column
-{
+
+
     display: flex;
     flex-direction: column;
     min-width: 0;

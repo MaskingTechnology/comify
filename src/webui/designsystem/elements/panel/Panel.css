@@ -21,10 +21,9 @@
 
     --warning-background-color: var(--color-warning-background);
     --warning-foreground-color: var(--color-warning-foreground);
-}
 
-.ds-panel
-{
+
+
     border-radius: var(--border-radius);
     padding: var(--padding);
     margin: var(--margin);

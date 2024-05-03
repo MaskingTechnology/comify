@@ -11,10 +11,9 @@
     --padding-large: 2em;
     --padding-medium: 1.5em;
     --padding-small: 1em;
-}
 
-.ds-border
-{
+
+
     border-color: var(--color);
     border-radius: var(--border-radius);
     margin: var(--margin);

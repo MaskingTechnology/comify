@@ -224,11 +224,6 @@
     content: var(--icon-trash);
 }
 
-.ds-icon.ds-icon-trash:before
-{
-    content: var(--icon-trash);
-}
-
 .ds-icon.ds-icon-umbrella:before
 {
     content: var(--icon-umbrella);

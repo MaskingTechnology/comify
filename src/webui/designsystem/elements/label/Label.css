@@ -1,9 +1,8 @@
 .ds-label
 {
     --margin: 0;
-}
 
-.ds-label
-{
+
+
     margin: var(--margin);
 }
