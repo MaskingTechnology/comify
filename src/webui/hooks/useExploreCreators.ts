@@ -8,7 +8,7 @@ import type RelationView from '^/domain/relation/view/RelationView';
 
 import { awaitData } from '^/webui/utils';
 
-export default function hook()
+export function useExploreCreators()
 {
     const [relations, setRelations] = useState<RelationView[] | undefined>(undefined);
 

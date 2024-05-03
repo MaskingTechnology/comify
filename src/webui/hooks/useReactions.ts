@@ -8,13 +8,17 @@ import type ReactionView from '^/domain/reaction/view/ReactionView';
 
 import { awaitData } from '^/webui/utils';
 
-export default function hooks(post: PostView)
+export function useReactions(post: PostView)
 {
     const [reactions, setReactions] = useState<ReactionView[] | undefined>(undefined);
 
-    const getReactions = () => getReactionsByPost(johnDoe, post.id);
+    useEffect(() => 
+    {
+        const getReactions = () => getReactionsByPost(johnDoe, post.id);
 
-    useEffect(() => awaitData(getReactions, setReactions), [post]);
+        awaitData(getReactions, setReactions);
+
+    }, [post]);
 
     return [reactions, setReactions] as const;
 }

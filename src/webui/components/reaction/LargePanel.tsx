@@ -10,12 +10,12 @@ import RatingEngagement from '../rating/Engagement';
 import TimeElapsed from '../relation/TimeElapsed';
 import DeleteButton from './DeleteButton';
 
-export type Props = {
-    reaction: ReactionView;
-    onFollowClick: (relation: RelationView) => Promise<void>;
-    onCreatorClick: (relation: RelationView) => void;
-    onRatingClick: (reaction: ReactionView) => Promise<boolean>;
-    onDeleteClick: (relation: ReactionView) => Promise<void>;
+type Props = {
+    readonly reaction: ReactionView;
+    readonly onFollowClick: (relation: RelationView) => Promise<void>;
+    readonly onCreatorClick: (relation: RelationView) => void;
+    readonly onRatingClick: (reaction: ReactionView) => Promise<boolean>;
+    readonly onDeleteClick: (relation: ReactionView) => Promise<void>;
 };
 
 export default function LargePanel({ reaction, onFollowClick, onCreatorClick, onRatingClick, onDeleteClick }: Props)

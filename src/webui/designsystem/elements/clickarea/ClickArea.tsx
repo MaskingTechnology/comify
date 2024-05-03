@@ -2,9 +2,9 @@
 import './ClickArea.css';
 
 export type Props = {
-    padding?: 'large' | 'medium' | 'small' | 'none';
-    onClick?: () => void;
-    children?: React.ReactNode;
+    readonly padding?: 'large' | 'medium' | 'small' | 'none';
+    readonly onClick?: () => void;
+    readonly children?: React.ReactNode;
 };
 
 export default function Element({ padding, onClick, children }: Props)

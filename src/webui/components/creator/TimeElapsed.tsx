@@ -4,10 +4,10 @@ import type CreatorView from '^/domain/creator/view/CreatorView';
 import AvatarRow from './elementary/AvatarRow';
 import TimeElapsedColumn from './elementary/TimeElapsedColumn';
 
-export type Props = {
-    creator: CreatorView;
-    date: Date;
-    onCreatorClick: (creator: CreatorView) => void;
+type Props = {
+    readonly creator: CreatorView;
+    readonly date: Date;
+    readonly onCreatorClick: (creator: CreatorView) => void;
 };
 
 export default function Component({ creator, date, onCreatorClick }: Props)

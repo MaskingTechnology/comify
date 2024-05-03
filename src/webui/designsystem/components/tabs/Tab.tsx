@@ -2,8 +2,8 @@
 import React from 'react';
 
 export type Props = {
-    title: React.ReactNode;
-    children: React.ReactNode;
+    readonly title: React.ReactNode;
+    readonly children: React.ReactNode;
 };
 
 export default function Component({ children }: Props)

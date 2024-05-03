@@ -7,7 +7,7 @@ import type NotificationView from '^/domain/notification/view/NotificationView';
 
 import { awaitData } from '^/webui/utils';
 
-export default function hook()
+export function useNotifications()
 {
     const [notifications, setNotifications] = useState<NotificationView[] | undefined>(undefined);
 

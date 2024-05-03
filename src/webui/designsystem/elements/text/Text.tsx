@@ -2,11 +2,11 @@
 import './Text.css';
 
 export type Props = {
-    value: string;
-    type?: 'primary' | 'secondary';
-    size?: 'large' | 'medium' | 'small';
-    weight?: 'light' | 'normal' | 'bold';
-    wrap?: 'none' | 'normal' | 'break-word';
+    readonly value: string;
+    readonly type?: 'primary' | 'secondary';
+    readonly size?: 'large' | 'medium' | 'small';
+    readonly weight?: 'light' | 'normal' | 'bold';
+    readonly wrap?: 'none' | 'normal' | 'break-word';
 };
 
 export default function Element({ value, type, size, weight, wrap }: Props)

@@ -3,10 +3,10 @@ import { Row } from '^/webui/designsystem';
 
 import Quantifier from '../../common/Quantifier';
 
-export type Props = {
-    postCount: number;
-    followerCount: number;
-    followingCount: number;
+type Props = {
+    readonly postCount: number;
+    readonly followerCount: number;
+    readonly followingCount: number;
 };
 
 export default function Component({ postCount, followerCount, followingCount }: Props)

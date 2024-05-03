@@ -2,11 +2,11 @@
 import './Image.css';
 
 export type Props = {
-    source: string;
-    title?: string;
-    alt?: string;
-    width?: string;
-    height?: string;
+    readonly source: string;
+    readonly title?: string;
+    readonly alt?: string;
+    readonly width?: string;
+    readonly height?: string;
 };
 
 export default function Element({ source, title, alt, width, height }: Props)

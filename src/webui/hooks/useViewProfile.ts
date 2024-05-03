@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import type RelationView from '^/domain/relation/view/RelationView';
 
-export default function hook()
+export function useViewProfile()
 {
     const navigate = useNavigate();
 

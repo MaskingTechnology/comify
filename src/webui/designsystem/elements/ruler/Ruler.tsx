@@ -2,8 +2,8 @@
 import './Ruler.css';
 
 export type Props = {
-    type: 'horizontal' | 'vertical';
-    size?: 'small' | 'medium' | 'large';
+    readonly type: 'horizontal' | 'vertical';
+    readonly size?: 'small' | 'medium' | 'large';
 };
 
 export default function Element({ type, size }: Props)

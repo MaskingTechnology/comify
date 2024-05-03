@@ -7,7 +7,7 @@ import type PostView from '^/domain/post/view/PostView';
 
 import { awaitData } from '^/webui/utils';
 
-export default function hook()
+export function useTimelinePosts()
 {
     const [posts, setPosts] = useState<PostView[] | undefined>(undefined);
 

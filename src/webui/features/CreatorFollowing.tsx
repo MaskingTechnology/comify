@@ -7,7 +7,7 @@ import { Column } from '^/webui/designsystem';
 import { useCreatorFollowing, useEstablishRelation, useReorderList, useViewProfile } from '^/webui/hooks';
 
 type Props = {
-    creator: CreatorView;
+    readonly creator: CreatorView;
 };
 
 export default function Feature({ creator }: Props)

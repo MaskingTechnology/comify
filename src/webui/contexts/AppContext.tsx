@@ -1,5 +1,5 @@
 
-import React, { useContext, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 
 import type CreatorView from '^/domain/creator/view/CreatorView';
 
@@ -12,18 +12,20 @@ export const AppContext = React.createContext({} as Context);
 export const useAppContext = () => useContext(AppContext);
 
 type Props = {
-    values?:
+    readonly values?:
     {
         identity: CreatorView | undefined;
     };
-    children: React.ReactNode;
+    readonly children: React.ReactNode;
 };
 
 export function AppContextProvider({ values, children }: Props)
 {
     const [identity, setIdentity] = useState<CreatorView | undefined>(values?.identity);
 
-    return <AppContext.Provider value={{ identity, setIdentity }}>
+    const contextValue = useMemo(() => ({ identity, setIdentity }), [identity]);
+
+    return <AppContext.Provider value={contextValue}>
         {children}
     </AppContext.Provider>;
 }

@@ -22,6 +22,7 @@ hr
 {
     display: flex;
     justify-content: flex-end;
+    margin-top: 20px;
 }
 
 .pf-c-form__label
@@ -578,11 +579,6 @@ ul#kc-totp-supported-apps
 {
     float: right;
     margin-left: 10px;
-}
-
-#kc-form-buttons
-{
-    margin-top: 20px;
 }
 
 .login-pf-page .login-pf-brand

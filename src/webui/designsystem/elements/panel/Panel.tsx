@@ -3,9 +3,9 @@ import React from 'react';
 import './Panel.css';
 
 export type Props = {
-    type?: 'normal' | 'alert' | 'warning' | 'success' | 'error' | 'transparent';
-    padding?: 'large' | 'medium' | 'small';
-    children?: React.ReactNode;
+    readonly type?: 'normal' | 'alert' | 'warning' | 'success' | 'error' | 'transparent';
+    readonly padding?: 'large' | 'medium' | 'small';
+    readonly children?: React.ReactNode;
 };
 
 export default function Element({ type, padding, children }: Props)

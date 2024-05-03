@@ -1,9 +1,9 @@
 
-import { doIdentify } from '^/webui/hooks';
+import { useIdentify } from '^/webui/hooks';
 
 export default function Feature()
 {
-    doIdentify();
+    useIdentify();
 
     return <>Identifying...</>;
 }

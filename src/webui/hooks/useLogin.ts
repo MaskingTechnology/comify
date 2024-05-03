@@ -7,7 +7,7 @@ import { awaitData } from '^/webui/utils';
 
 const IGNORE_PATHS = ['/', '/login', '/identify'];
 
-export default function hook()
+export function useLogin()
 {
     const setLoginUrl = (loginUrl: string) =>
     {

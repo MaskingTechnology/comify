@@ -16,10 +16,7 @@
     --secondary-background-color: var(--color-secondary-action-background);
     --secondary-foreground-color: var(--color-secondary-action-foreground);
     --disabled-background-color: transparent;
-}
 
-.ds-button
-{
     border-radius: var(--border-radius);
     border: 0;
 

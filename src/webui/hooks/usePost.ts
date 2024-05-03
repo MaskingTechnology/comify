@@ -8,17 +8,20 @@ import type PostView from '^/domain/post/view/PostView';
 
 import { awaitData } from '^/webui/utils';
 
-export default function hook()
+export function usePost()
 {
     const { postId } = useParams();
     const [post, setPost] = useState<PostView | undefined>(undefined);
 
-    if (postId !== undefined)
+    useEffect(() => 
     {
-        const getPost = () => get(johnDoe, postId);
+        if (postId !== undefined)
+        {
+            const getPost = () => get(johnDoe, postId);
 
-        useEffect(() => awaitData(getPost, setPost), []);
-    }
+            awaitData(getPost, setPost);
+        }
+    }, [postId]);
 
     return [post, setPost] as const;
 }

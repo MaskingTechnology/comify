@@ -6,11 +6,11 @@ import { Grid } from '^/webui/designsystem';
 import NoResults from '../common/NoResults';
 import SmallPanel from './SmallPanel';
 
-export type Props = {
-    posts: PostView[];
-    onComicClick: (post: PostView) => void;
-    onRatingClick: (post: PostView) => Promise<boolean>;
-    onReactionClick: (post: PostView) => void;
+type Props = {
+    readonly posts: PostView[];
+    readonly onComicClick: (post: PostView) => void;
+    readonly onRatingClick: (post: PostView) => Promise<boolean>;
+    readonly onReactionClick: (post: PostView) => void;
 };
 
 export default function Component({ posts, onComicClick, onRatingClick, onReactionClick }: Props)

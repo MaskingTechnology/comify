@@ -7,8 +7,8 @@ import { Props as TextBoxProps } from '../textbox/TextBox';
 import './Input.css';
 
 export type Props = {
-    label: React.ReactElement<LabelProps>;
-    element: React.ReactElement<TextBoxProps> | React.ReactElement<TextAreaProps> | React.ReactElement<SelectProps>;
+    readonly label: React.ReactElement<LabelProps>;
+    readonly element: React.ReactElement<TextBoxProps> | React.ReactElement<TextAreaProps> | React.ReactElement<SelectProps>;
 };
 
 export default function Element({ label, element }: Props) 

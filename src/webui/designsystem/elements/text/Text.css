@@ -2,10 +2,7 @@
 {
     --primary-color: var(--color-primary-foreground);
     --secondary-color: var(--color-secondary-foreground);
-}
 
-.ds-text
-{
     display: inline-block;
 }
 

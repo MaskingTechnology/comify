@@ -126,7 +126,7 @@ export default class Memory implements Database
             return result;
         }
 
-        const first = offset === undefined ? 0 : offset;
+        const first = offset ?? 0;
         const last = limit === undefined ? undefined : first + limit;
 
         return result.slice(first, last);

@@ -3,12 +3,12 @@ import React from 'react';
 import './TextArea.css';
 
 export type Props = {
-    name: string;
-    placeholder?: string;
-    value?: string;
-    size?: 'large' | 'medium' | 'small';
-    rows?: number;
-    onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
+    readonly name: string;
+    readonly placeholder?: string;
+    readonly value?: string;
+    readonly size?: 'large' | 'medium' | 'small';
+    readonly rows?: number;
+    readonly onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
 };
 
 export default function Element({ name, placeholder, value, size, rows, onChange }: Props)
