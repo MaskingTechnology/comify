@@ -8,13 +8,17 @@ import type RelationView from '^/domain/relation/view/RelationView';
 
 import { awaitData } from '^/webui/utils';
 
-export default function hook(creator: CreatorView)
+export function useCreatorFollowing(creator: CreatorView)
 {
     const [relations, setRelations] = useState<RelationView[] | undefined>(undefined);
 
-    const getRelations = () => getFollowing(johnDoe, creator.id);
+    useEffect(() => 
+    {
+        const getRelations = () => getFollowing(johnDoe, creator.id);
 
-    useEffect(() => awaitData(getRelations, setRelations), [creator]);
+        awaitData(getRelations, setRelations);
+
+    }, [creator]);
 
     return [relations, setRelations] as const;
 }

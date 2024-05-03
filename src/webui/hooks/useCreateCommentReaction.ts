@@ -4,7 +4,7 @@ import type PostView from '^/domain/post/view/PostView';
 import createCommentReaction from '^/domain/reaction/createComment';
 import type ReactionView from '^/domain/reaction/view/ReactionView';
 
-export default function hook(post: PostView, handleDone: (reaction?: ReactionView) => void)
+export function useCreateCommentReaction(post: PostView, handleDone: (reaction?: ReactionView) => void)
 {
     return async (imageData: string) =>
     {

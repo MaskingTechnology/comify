@@ -6,7 +6,7 @@ import createPost from '^/domain/post/create';
 
 import { useAppContext } from '^/webui/contexts';
 
-export default function hook()
+export function useCreateComicPost()
 {
     const navigate = useNavigate();
     const { identity } = useAppContext();

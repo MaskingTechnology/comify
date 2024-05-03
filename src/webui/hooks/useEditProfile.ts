@@ -1,7 +1,7 @@
 
 import type RelationView from '^/domain/relation/view/RelationView';
 
-export default function hook()
+export function useEditProfile()
 {
     return (relation: RelationView) =>
     {
