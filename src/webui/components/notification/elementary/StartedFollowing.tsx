@@ -2,7 +2,7 @@
 import { Paragraph, Text } from '^/webui/designsystem';
 
 export type Props = {
-    isFollowing: boolean;
+    readonly isFollowing: boolean;
 };
 
 export default function Component({ isFollowing }: Props)

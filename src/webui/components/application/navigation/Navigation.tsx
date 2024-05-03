@@ -1,5 +1,4 @@
 
-
 import { Column } from '^/webui/designsystem';
 
 import createActiveIcon from '^/webui/assets/images/navigation/create-active.svg';
@@ -16,7 +15,7 @@ import timelineInactiveIcon from '^/webui/assets/images/navigation/timeline-inac
 import Item from './Item';
 
 export type Props = {
-    identity: {
+    readonly identity: {
         nickname: string;
     };
 };

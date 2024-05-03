@@ -11,7 +11,7 @@ import { useDeleteReaction, useEstablishRelation, useReactions, useToggleReactio
 import CreateReaction from './CreateReaction';
 
 export type Props = {
-    post: PostView;
+    readonly post: PostView;
 };
 
 export default function Feature({ post }: Props)

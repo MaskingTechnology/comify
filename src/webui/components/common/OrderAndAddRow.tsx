@@ -4,9 +4,9 @@ import { ClickArea, Icon, Row } from '^/webui/designsystem';
 import OrderSelection from './elementary/OrderSelection';
 
 export type Props = {
-    selected?: 'recent' | 'popular';
-    reactionHandler: () => void;
-    onOrderChange?: (oldKey: string, newKey: string) => void;
+    readonly selected?: 'recent' | 'popular';
+    readonly reactionHandler: () => void;
+    readonly onOrderChange?: (oldKey: string, newKey: string) => void;
 };
 
 export default function Component({ selected, onOrderChange, reactionHandler }: Props)

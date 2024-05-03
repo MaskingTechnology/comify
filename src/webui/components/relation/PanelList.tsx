@@ -7,10 +7,10 @@ import NoResults from '../common/NoResults';
 import Panel from './Panel';
 
 export type Props = {
-    relations: RelationView[];
-    onFollowClick: (relation: RelationView) => Promise<void>;
-    onEditClick?: (relation: RelationView) => void;
-    onCreatorClick: (relation: RelationView) => void;
+    readonly relations: RelationView[];
+    readonly onFollowClick: (relation: RelationView) => Promise<void>;
+    readonly onEditClick?: (relation: RelationView) => void;
+    readonly onCreatorClick: (relation: RelationView) => void;
 };
 
 export default function Component({ relations, onFollowClick, onEditClick, onCreatorClick }: Props)

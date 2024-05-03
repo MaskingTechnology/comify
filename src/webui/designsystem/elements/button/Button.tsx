@@ -3,10 +3,10 @@ import React from 'react';
 import './Button.css';
 
 export type Props = {
-    type?: 'submit' | 'primary' | 'secondary' | 'disabled';
-    size?: 'large' | 'medium' | 'small';
-    text: string;
-    onClick?: React.MouseEventHandler<HTMLInputElement>;
+    readonly type?: 'submit' | 'primary' | 'secondary' | 'disabled';
+    readonly size?: 'large' | 'medium' | 'small';
+    readonly text: string;
+    readonly onClick?: React.MouseEventHandler<HTMLInputElement>;
 };
 
 export default function Element({ type, size, text, onClick }: Props)

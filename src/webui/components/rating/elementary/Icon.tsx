@@ -4,7 +4,7 @@ import unratedIcon from '^/webui/assets/images/icons/unrated.svg';
 import { Image } from '^/webui/designsystem';
 
 export type Props = {
-    isRated: boolean;
+    readonly isRated: boolean;
 };
 
 export default function Component({ isRated }: Props)

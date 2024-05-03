@@ -4,9 +4,9 @@ import { Column, Text } from '^/webui/designsystem';
 import NamesRow from './NamesRow';
 
 export type Props = {
-    fullName: string;
-    nickname: string;
-    joinedAt: Date;
+    readonly fullName: string;
+    readonly nickname: string;
+    readonly joinedAt: Date;
 };
 
 export default function Component({ fullName, nickname, joinedAt }: Props)

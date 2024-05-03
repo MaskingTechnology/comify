@@ -3,11 +3,11 @@ import React from 'react';
 import './Select.css';
 
 export type Props = {
-    name: string;
-    options: Map<string, string>;
-    value?: string;
-    size?: 'large' | 'medium' | 'small';
-    onChange?: React.ChangeEventHandler<HTMLSelectElement>;
+    readonly name: string;
+    readonly options: Map<string, string>;
+    readonly value?: string;
+    readonly size?: 'large' | 'medium' | 'small';
+    readonly onChange?: React.ChangeEventHandler<HTMLSelectElement>;
 };
 
 export default function Element({ name, options, value, size, onChange }: Props)

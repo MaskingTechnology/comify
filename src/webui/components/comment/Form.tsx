@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { Button, Column, Panel, Row, TextArea } from '^/webui/designsystem';
 
 export type Props = {
-    onCreate: (commentText: string) => Promise<void>;
-    onCancel: () => void;
+    readonly onCreate: (commentText: string) => Promise<void>;
+    readonly onCancel: () => void;
 };
 
 export default function Component({ onCreate, onCancel }: Props)

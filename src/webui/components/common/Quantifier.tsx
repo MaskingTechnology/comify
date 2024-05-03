@@ -4,8 +4,8 @@ import { Text } from '^/webui/designsystem';
 import CompactNumber from './CompactNumber';
 
 export type Props = {
-    value: number;
-    text: string;
+    readonly value: number;
+    readonly text: string;
 };
 
 export default function Component({ value, text }: Props)

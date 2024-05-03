@@ -2,7 +2,7 @@
 import { Button, Panel, Paragraph, Row } from '^/webui/designsystem';
 
 export type Props = {
-    onLogout: () => void;
+    readonly onLogout: () => void;
 };
 
 export default function Component({ onLogout }: Props)

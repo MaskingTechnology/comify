@@ -5,9 +5,9 @@ import AvatarRow from './elementary/AvatarRow';
 import TimeElapsedColumn from './elementary/TimeElapsedColumn';
 
 export type Props = {
-    creator: CreatorView;
-    date: Date;
-    onCreatorClick: (creator: CreatorView) => void;
+    readonly creator: CreatorView;
+    readonly date: Date;
+    readonly onCreatorClick: (creator: CreatorView) => void;
 };
 
 export default function Component({ creator, date, onCreatorClick }: Props)

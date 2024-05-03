@@ -2,8 +2,8 @@
 import { Dropdown } from '^/webui/designsystem';
 
 export type Props = {
-    selected?: 'recent' | 'popular';
-    onChange?: (oldKey: string, newKey: string) => void;
+    readonly selected?: 'recent' | 'popular';
+    readonly onChange?: (oldKey: string, newKey: string) => void;
 };
 
 const options = new Map<string, string>();

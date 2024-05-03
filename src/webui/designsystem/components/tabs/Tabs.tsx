@@ -4,9 +4,9 @@ import { Props as TabProps } from './Tab';
 import './Tabs.css';
 
 export type Props = {
-    separator?: React.ReactNode;
-    children: React.ReactElement<TabProps> | React.ReactElement<TabProps>[];
-    onChange?: (oldIndex: number, newIndex: number) => void;
+    readonly separator?: React.ReactNode;
+    readonly children: React.ReactElement<TabProps> | React.ReactElement<TabProps>[];
+    readonly onChange?: (oldIndex: number, newIndex: number) => void;
 };
 
 export default function Component({ separator, children, onChange }: Props)

@@ -2,8 +2,8 @@
 import './Avatar.css';
 
 export type Props = {
-    size?: string;
-    source: string;
+    readonly size?: string;
+    readonly source: string;
 };
 
 export default function Element({ size, source }: Props)

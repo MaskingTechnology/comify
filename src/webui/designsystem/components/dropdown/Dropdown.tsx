@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import './Dropdown.css';
 
 export type Props = {
-    options: Map<string, string>;
-    selected?: string; // Key of the selected option
-    onChange?: (oldKey: string, newKey: string) => void;
+    readonly options: Map<string, string>;
+    readonly selected?: string; // Key of the selected option
+    readonly onChange?: (oldKey: string, newKey: string) => void;
 };
 
 export default function Component({ options, selected, onChange }: Props)

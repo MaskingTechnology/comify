@@ -2,8 +2,8 @@
 import { Column, Text } from '^/webui/designsystem';
 
 export type Props = {
-    fullName: string;
-    nickname: string;
+    readonly fullName: string;
+    readonly nickname: string;
 };
 
 export default function Component({ fullName, nickname }: Props)

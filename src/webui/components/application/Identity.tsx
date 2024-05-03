@@ -7,8 +7,8 @@ import { ClickArea, Image, Row } from '^/webui/designsystem';
 import CreatorIdentity from '../creator/Identity';
 
 export type Props = {
-    identity: CreatorView;
-    onLogout: () => void;
+    readonly identity: CreatorView;
+    readonly onLogout: () => void;
 };
 
 export default function Component({ identity, onLogout }: Props)

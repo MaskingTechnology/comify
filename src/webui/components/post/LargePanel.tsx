@@ -9,12 +9,12 @@ import TimeElapsed from '../relation/TimeElapsed';
 import EngagementsRow from './elementary/EngagementRow';
 
 export type Props = {
-    post: PostView;
-    onFollowClick: (relation: RelationView) => Promise<void>;
-    onCreatorClick: (relation: RelationView) => void;
-    onComicClick: (post: PostView) => void;
-    onRatingClick: (post: PostView) => Promise<boolean>;
-    onReactionClick: (post: PostView) => void;
+    readonly post: PostView;
+    readonly onFollowClick: (relation: RelationView) => Promise<void>;
+    readonly onCreatorClick: (relation: RelationView) => void;
+    readonly onComicClick: (post: PostView) => void;
+    readonly onRatingClick: (post: PostView) => Promise<boolean>;
+    readonly onReactionClick: (post: PostView) => void;
 };
 
 export default function Component({ post, onFollowClick, onCreatorClick, onComicClick, onRatingClick, onReactionClick }: Props)

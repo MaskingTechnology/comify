@@ -8,10 +8,10 @@ import TimeElapsed from '../common/TimeElapsed';
 import EngagementsRow from './elementary/EngagementRow';
 
 export type Props = {
-    post: PostView;
-    onComicClick: () => void;
-    onRatingClick: () => Promise<boolean>;
-    onReactionClick: () => void;
+    readonly post: PostView;
+    readonly onComicClick: () => void;
+    readonly onRatingClick: () => Promise<boolean>;
+    readonly onReactionClick: () => void;
 };
 
 export default function Component({ post, onComicClick, onRatingClick, onReactionClick }: Props)

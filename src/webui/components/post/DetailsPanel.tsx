@@ -9,10 +9,10 @@ import RatingEngagement from '../rating/Engagement';
 import TimeElapsed from '../relation/TimeElapsed';
 
 export type Props = {
-    post: PostView;
-    onFollowClick: (relation: RelationView) => Promise<void>;
-    onCreatorClick: (relation: RelationView) => void;
-    onRatingClick: (post: PostView) => Promise<boolean>;
+    readonly post: PostView;
+    readonly onFollowClick: (relation: RelationView) => Promise<void>;
+    readonly onCreatorClick: (relation: RelationView) => void;
+    readonly onRatingClick: (post: PostView) => Promise<boolean>;
 };
 
 export default function Component({ post, onFollowClick, onCreatorClick, onRatingClick }: Props)

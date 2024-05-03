@@ -4,7 +4,7 @@ import { Panel, Paragraph, Title } from '^/webui/designsystem';
 import Login from './Login';
 
 export type Props = {
-    error: unknown;
+    readonly error: unknown;
 };
 
 export default function Feature({ error }: Props)

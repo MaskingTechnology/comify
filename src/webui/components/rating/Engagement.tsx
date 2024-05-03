@@ -7,9 +7,9 @@ import CompactNumber from '../common/CompactNumber';
 import Icon from './elementary/Icon';
 
 export type Props = {
-    isEngaged: boolean;
-    count: number;
-    onClick: () => Promise<boolean>;
+    readonly isEngaged: boolean;
+    readonly count: number;
+    readonly onClick: () => Promise<boolean>;
 };
 
 export default function Component({ isEngaged, count, onClick }: Props)

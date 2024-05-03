@@ -5,8 +5,8 @@ import CompactNumber from '../common/CompactNumber';
 import Icon from './elementary/Icon';
 
 export type Props = {
-    reactionCount: number;
-    onClick: () => void;
+    readonly reactionCount: number;
+    readonly onClick: () => void;
 };
 
 export default function Component({ reactionCount, onClick }: Props)

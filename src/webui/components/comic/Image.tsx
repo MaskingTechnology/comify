@@ -4,7 +4,7 @@ import type ComicView from '^/domain/comic/view/ComicView';
 import { Image } from '^/webui/designsystem';
 
 export type Props = {
-    comic: ComicView;
+    readonly comic: ComicView;
 };
 
 export default function Component({ comic }: Props)

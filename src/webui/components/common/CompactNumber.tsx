@@ -2,9 +2,9 @@
 import { Text } from '^/webui/designsystem';
 
 export type Props = {
-    value: number;
-    size?: 'large' | 'medium' | 'small';
-    weight?: 'light' | 'normal' | 'bold';
+    readonly value: number;
+    readonly size?: 'large' | 'medium' | 'small';
+    readonly weight?: 'light' | 'normal' | 'bold';
 };
 
 const formatter = new Intl.NumberFormat('en', { notation: 'compact' });

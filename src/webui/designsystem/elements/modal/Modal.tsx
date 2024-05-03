@@ -4,10 +4,10 @@ import React, { useEffect, useRef } from 'react';
 import './Modal.css';
 
 type Props = {
-    open: boolean,
-    width?: string;
-    height?: string;
-    children: React.ReactNode;
+    readonly open: boolean,
+    readonly width?: string;
+    readonly height?: string;
+    readonly children: React.ReactNode;
 };
 
 export default function Element({ open, width, height, children }: Props)

@@ -10,9 +10,9 @@ import RatedReaction from './elementary/RatedReaction';
 import StartedFollowing from './elementary/StartedFollowing';
 
 export type Props = {
-    notification: NotificationView;
-    onFollowClick: (relation: RelationView) => Promise<void>;
-    onCreatorClick: (relation: RelationView) => void;
+    readonly notification: NotificationView;
+    readonly onFollowClick: (relation: RelationView) => Promise<void>;
+    readonly onCreatorClick: (relation: RelationView) => void;
 };
 
 function getContent(notification: NotificationView)

@@ -12,11 +12,11 @@ export const AppContext = React.createContext({} as Context);
 export const useAppContext = () => useContext(AppContext);
 
 type Props = {
-    values?:
+    readonly values?:
     {
         identity: CreatorView | undefined;
     };
-    children: React.ReactNode;
+    readonly children: React.ReactNode;
 };
 
 export function AppContextProvider({ values, children }: Props)

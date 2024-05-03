@@ -5,7 +5,7 @@ import AvatarRow from './elementary/AvatarRow';
 import NamesColumn from './elementary/NamesColumn';
 
 export type Props = {
-    creator: CreatorView;
+    readonly creator: CreatorView;
 };
 
 export default function Component({ creator }: Props)

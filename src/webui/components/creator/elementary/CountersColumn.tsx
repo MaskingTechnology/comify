@@ -5,12 +5,12 @@ import CountersRow from './CountersRow';
 import NamesRow from './NamesRow';
 
 export type Props = {
-    fullName: string;
-    nickname: string;
-    postCount: number;
-    followerCount: number;
-    followingCount: number;
-    onNameClick: () => void;
+    readonly fullName: string;
+    readonly nickname: string;
+    readonly postCount: number;
+    readonly followerCount: number;
+    readonly followingCount: number;
+    readonly onNameClick: () => void;
 };
 
 export default function Component({ fullName, nickname, postCount, followerCount, followingCount, onNameClick }: Props)

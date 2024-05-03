@@ -8,9 +8,9 @@ import NoResults from "../common/NoResults";
 import Panel from './Panel';
 
 export type Props = {
-    notifications: NotificationView[];
-    onFollowClick: (relation: RelationView) => Promise<void>;
-    onCreatorClick: (relation: RelationView) => void;
+    readonly notifications: NotificationView[];
+    readonly onFollowClick: (relation: RelationView) => Promise<void>;
+    readonly onCreatorClick: (relation: RelationView) => void;
 };
 
 export default function Component({ notifications, onFollowClick, onCreatorClick }: Props)

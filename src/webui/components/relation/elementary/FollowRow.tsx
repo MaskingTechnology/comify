@@ -7,11 +7,11 @@ import EditButton from '../../common/EditButton';
 import FollowButton from './FollowButton';
 
 export type Props = {
-    isFollowing: boolean;
-    isSelf: boolean;
-    onFollowClick: () => Promise<void>;
-    onEditClick?: () => void;
-    children: React.ReactNode;
+    readonly isFollowing: boolean;
+    readonly isSelf: boolean;
+    readonly onFollowClick: () => Promise<void>;
+    readonly onEditClick?: () => void;
+    readonly children: React.ReactNode;
 };
 
 export default function Component({ isFollowing, isSelf, onFollowClick, onEditClick, children }: Props)

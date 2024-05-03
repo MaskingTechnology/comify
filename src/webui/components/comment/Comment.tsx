@@ -2,7 +2,7 @@
 import { Paragraph } from '^/webui/designsystem';
 
 export type Props = {
-    text: string;
+    readonly text: string;
 };
 
 export default function Component({ text }: Props)

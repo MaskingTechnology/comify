@@ -5,9 +5,9 @@ import portraitImage from '^/webui/assets/images/portrait.svg';
 import { Avatar, Row } from '^/webui/designsystem';
 
 export type Props = {
-    avatarSize: 'small' | 'medium' | 'large';
-    avatarUrl?: string;
-    children: React.ReactNode;
+    readonly avatarSize: 'small' | 'medium' | 'large';
+    readonly avatarUrl?: string;
+    readonly children: React.ReactNode;
 };
 
 function getActualSize(size: string): string

@@ -5,8 +5,8 @@ import AvatarRow from './elementary/AvatarRow';
 import CountersColumn from './elementary/CountersColumn';
 
 export type Props = {
-    creator: CreatorView;
-    onCreatorClick: (creator: CreatorView) => void;
+    readonly creator: CreatorView;
+    readonly onCreatorClick: (creator: CreatorView) => void;
 };
 
 export default function Component({ creator, onCreatorClick }: Props)

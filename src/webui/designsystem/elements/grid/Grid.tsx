@@ -3,9 +3,9 @@ import React from 'react';
 import './Grid.css';
 
 export type Props = {
-    layout: 'two-columns' | 'three-columns' | 'four-columns';
-    gap?: 'large' | 'medium' | 'small' | 'none';
-    children: React.ReactNode;
+    readonly layout: 'two-columns' | 'three-columns' | 'four-columns';
+    readonly gap?: 'large' | 'medium' | 'small' | 'none';
+    readonly children: React.ReactNode;
 };
 
 export default function Element({ layout, gap, children }: Props)
