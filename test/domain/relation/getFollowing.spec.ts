@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 
 import getFollowing from '^/domain/relation/getFollowing';
 
-import { DATABASES, REQUESTERS, VALUES } from './_fixtures';
+import { DATABASES, REQUESTERS, VALUES } from './fixtures';
 
 describe('domain/relation/getFollowing', () =>
 {

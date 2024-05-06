@@ -45,12 +45,14 @@ export default class Memory implements Database
     async createRecord(type: string, data: RecordData): Promise<string>
     {
         const collection = this.#getCollection(type);
-        const id = this.#createId();
-        const record = { 'id': id, ...data };
+
+        const record = data.id === undefined
+            ? { id: this.#createId(), ...data }
+            : data;
 
         collection.push(record);
 
-        return id;
+        return record.id as string;
     }
 
     async readRecord(type: string, id: string, fields?: string[]): Promise<RecordData>
@@ -240,8 +242,7 @@ export default class Memory implements Database
 
     #createId(): string
     {
-
-        return (this.recordId++).toString().padStart(8, '0');
+        return (++this.recordId).toString().padStart(8, '0');
     }
 
     #getCollection(type: string): RecordData[]

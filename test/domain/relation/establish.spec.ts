@@ -6,7 +6,7 @@ import { RECORD_TYPE as RELATION_RECORD_TYPE } from '^/domain/relation/definitio
 import RelationAlreadyExists from '^/domain/relation/errors/RelationAlreadyExists';
 import establish from '^/domain/relation/establish';
 
-import { DATABASES, QUERIES, REQUESTERS, VALUES } from './_fixtures';
+import { DATABASES, QUERIES, REQUESTERS, VALUES } from './fixtures';
 
 describe('domain/relation/establish', () =>
 {
