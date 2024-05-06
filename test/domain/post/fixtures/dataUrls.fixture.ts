@@ -1,0 +1,5 @@
+
+export const DATA_URLS =
+{
+    COMIC_IMAGE: 'data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABEElEQVR42mL8//8/AyUYIIgBh'
+};

@@ -26,33 +26,33 @@ const LOGICAL_OPERATORS =
 
 export default class Memory implements Database
 {
-    #memory?: Map<string, RecordData[]>;
+    #memory: Map<string, RecordData[]> = new Map();
+    #connected = false;
     recordId = 0;
 
-    get connected()
-    {
-        return this.#memory !== undefined;
-    }
+    get connected() { return this.#connected; }
 
     async connect(): Promise<void>
     {
-        this.#memory = new Map();
+        this.#connected = true;
     }
 
     async disconnect(): Promise<void>
     {
-        this.#memory = undefined;
+        this.#connected = false;
     }
 
     async createRecord(type: string, data: RecordData): Promise<string>
     {
         const collection = this.#getCollection(type);
-        const id = this.#createId();
-        const record = { 'id': id, ...data };
+
+        const record = data.id === undefined
+            ? { id: this.#createId(), ...data }
+            : data;
 
         collection.push(record);
 
-        return id;
+        return record.id as string;
     }
 
     async readRecord(type: string, id: string, fields?: string[]): Promise<RecordData>
@@ -114,6 +114,11 @@ export default class Memory implements Database
         const limitedResult = this.#limitNumberOfRecords(sortedResult, offset, limit);
 
         return limitedResult.map(records => this.#buildRecordData(records, fields));
+    }
+
+    async clear(): Promise<void>
+    {
+        this.#memory.clear();
     }
 
     #limitNumberOfRecords(result: RecordData[], offset?: number, limit?: number): RecordData[]
@@ -237,8 +242,7 @@ export default class Memory implements Database
 
     #createId(): string
     {
-
-        return (this.recordId++).toString().padStart(8, '0');
+        return (++this.recordId).toString().padStart(8, '0');
     }
 
     #getCollection(type: string): RecordData[]

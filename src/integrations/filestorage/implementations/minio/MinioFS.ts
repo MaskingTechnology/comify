@@ -109,6 +109,11 @@ export default class MinioFS implements FileStorage
         }
     }
 
+    async clear(): Promise<void>
+    {
+        return;  // Deliberately not implemented
+    }
+
     #getClient(): Client
     {
         if (this.#client === undefined)
