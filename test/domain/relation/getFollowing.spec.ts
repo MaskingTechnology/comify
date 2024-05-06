@@ -1,15 +1,19 @@
 
 import { describe, expect, it } from 'vitest';
-import { CREATOR0_ID, CREATOR1_ID, CREATOR2_ID, REQUESTER1, getFollowing } from './_fixtures/relation.fixture';
+
+import getFollowing from '^/domain/relation/getFollowing';
+
+import { DATABASES, REQUESTERS, VALUES } from './_fixtures';
 
 describe('domain/relation/getFollowing', () =>
 {
     it('should retrieve relations for a follower', async () =>
     {
-        const relations = await getFollowing(REQUESTER1, CREATOR0_ID);
+        await DATABASES.withEverything();
 
-        expect(relations.length).toBe(2);
-        expect(relations[0].following?.id).toBe(CREATOR1_ID);
-        expect(relations[1].following?.id).toBe(CREATOR2_ID);
+        const relations = await getFollowing(REQUESTERS.FIRST, VALUES.IDS.CREATOR1);
+        expect(relations).toHaveLength(2);
+        expect(relations[0].following?.id).toBe(VALUES.IDS.CREATOR2);
+        expect(relations[1].following?.id).toBe(VALUES.IDS.CREATOR3);
     });
 });

@@ -103,7 +103,7 @@ export default class MongoDB implements Database
     async createRecord(type: RecordType, data: RecordData): Promise<RecordId>
     {
         const collection = await this.#getCollection(type);
-        const mongoId = this.#createId();
+        const mongoId = this.#createId(data.id as string);
 
         try
         {
