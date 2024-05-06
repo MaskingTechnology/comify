@@ -6,8 +6,8 @@ import { Ruler } from '^/webui/designsystem';
 import './Sidebar.css';
 
 type Props = {
-    sidebar: React.ReactNode;
-    children: React.ReactNode;
+    readonly sidebar: React.ReactNode;
+    readonly children: React.ReactNode;
 };
 
 export default function Layout({ sidebar, children }: Props)
