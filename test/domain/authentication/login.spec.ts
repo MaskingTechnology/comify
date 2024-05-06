@@ -1,14 +1,20 @@
 
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import login from '^/domain/authentication/login';
 import TooManySimilarNicknames from '^/domain/creator/errors/TooManySimilarNicknames';
 
 import { DATABASES, FILE_STORAGES, HTTP_CLIENTS, IDENTITIES, VALUES } from './fixtures';
 
-DATABASES.withCreators();
-HTTP_CLIENTS.withProfilePictures();
-FILE_STORAGES.empty();
+beforeEach(async () =>
+{
+    HTTP_CLIENTS.withProfilePictures();
+
+    await Promise.all([
+        DATABASES.withCreators(),
+        FILE_STORAGES.empty()
+    ]);
+});
 
 describe('domain/authentication', () =>
 {

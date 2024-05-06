@@ -1,33 +1,34 @@
 
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { RECORD_TYPE as RATING_RECORD_TYPE } from '^/domain/rating/definitions/constants';
 import toggleRating from '^/domain/reaction/toggleRating';
 
+import database from '^/integrations/database/module';
+
 import { DATABASES, QUERIES, REQUESTERS, VALUES } from './fixtures';
+
+beforeEach(async () =>
+{
+    await DATABASES.withEverything();
+});
 
 describe('domain/post/toggleRating', () =>
 {
     it('should add a rating', async () =>
     {
-        await DATABASES.withEverything();
-
         const isRated = await toggleRating(REQUESTERS.OWNER, VALUES.IDS.REACTION_UNRATED);
         expect(isRated).toBeTruthy();
     });
 
     it('should remove a rating', async () =>
     {
-        await DATABASES.withEverything();
-
         const isRated = await toggleRating(REQUESTERS.OWNER, VALUES.IDS.REACTION_RATED);
         expect(isRated).toBeFalsy();
     });
 
     it('should rollback created data at failure', async () =>
     {
-        const database = await DATABASES.withEverything();
-
         // This should fail at the last action when changing the post's rating count
         const promise = toggleRating(REQUESTERS.OWNER, VALUES.IDS.REACTION_NOT_EXISTING);
         await expect(promise).rejects.toThrow('Record not found');

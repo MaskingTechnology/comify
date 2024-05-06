@@ -9,33 +9,29 @@ import { RECORDS } from './records.fixture';
 
 database.connect();
 
-async function withCreators()
+async function withCreators(): Promise<void>
 {
     database.clear();
 
     RECORDS.CREATORS.forEach(async (creator) =>
     {
-        await database.createRecord(CREATOR_RECORD_TYPE, creator);
+        await database.createRecord(CREATOR_RECORD_TYPE, { ...creator });
     });
-
-    return database;
 }
 
-async function withPostsAndRatings()
+async function withPostsAndRatings(): Promise<void>
 {
     database.clear();
 
     RECORDS.POSTS.forEach(async (post) =>
     {
-        await database.createRecord(POST_RECORD_TYPE, post);
+        await database.createRecord(POST_RECORD_TYPE, { ...post });
     });
 
     RECORDS.RATINGS.forEach(async (rating) =>
     {
-        await database.createRecord(RATING_RECORD_TYPE, rating);
+        await database.createRecord(RATING_RECORD_TYPE, { ...rating });
     });
-
-    return database;
 }
 
 export const DATABASES = { withCreators, withPostsAndRatings };

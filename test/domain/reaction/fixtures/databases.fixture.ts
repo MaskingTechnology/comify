@@ -11,46 +11,46 @@ import database from '^/integrations/database/module';
 
 import { RECORDS } from './records.fixture';
 
-async function withEverything()
+database.connect();
+
+async function withEverything(): Promise<void>
 {
     database.clear();
 
     RECORDS.COMICS.forEach(async (comic) =>
     {
-        await database.createRecord(COMIC_RECORD_TYPE, comic);
+        await database.createRecord(COMIC_RECORD_TYPE, { ...comic });
     });
 
     RECORDS.COMMENTS.forEach(async (comment) =>
     {
-        await database.createRecord(COMMENT_RECORD_TYPE, comment);
+        await database.createRecord(COMMENT_RECORD_TYPE, { ...comment });
     });
 
     RECORDS.CREATORS.forEach(async (creator) =>
     {
-        await database.createRecord(CREATOR_RECORD_TYPE, creator);
+        await database.createRecord(CREATOR_RECORD_TYPE, { ...creator });
     });
 
     RECORDS.IMAGES.forEach(async (image) =>
     {
-        await database.createRecord(IMAGE_RECORD_TYPE, image);
+        await database.createRecord(IMAGE_RECORD_TYPE, { ...image });
     });
 
     RECORDS.POSTS.forEach(async (post) =>
     {
-        await database.createRecord(POST_RECORD_TYPE, post);
+        await database.createRecord(POST_RECORD_TYPE, { ...post });
     });
 
     RECORDS.REACTIONS.forEach(async (reaction) =>
     {
-        await database.createRecord(REACTION_RECORD_TYPE, reaction);
+        await database.createRecord(REACTION_RECORD_TYPE, { ...reaction });
     });
 
     RECORDS.RATINGS.forEach(async (rating) =>
     {
-        await database.createRecord(RATING_RECORD_TYPE, rating);
+        await database.createRecord(RATING_RECORD_TYPE, { ...rating });
     });
-
-    return database;
 }
 
 export const DATABASES = { withEverything };

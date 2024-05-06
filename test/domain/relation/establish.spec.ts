@@ -1,19 +1,24 @@
 
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator/definitions/constants';
 import { RECORD_TYPE as RELATION_RECORD_TYPE } from '^/domain/relation/definitions/constants';
 import RelationAlreadyExists from '^/domain/relation/errors/RelationAlreadyExists';
 import establish from '^/domain/relation/establish';
 
+import database from '^/integrations/database/module';
+
 import { DATABASES, QUERIES, REQUESTERS, VALUES } from './fixtures';
+
+beforeEach(async () =>
+{
+    await DATABASES.withEverything();
+});
 
 describe('domain/relation/establish', () =>
 {
     it('should establish a relation', async () =>
     {
-        const database = await DATABASES.withEverything();
-
         await establish(REQUESTERS.SECOND, VALUES.IDS.CREATOR1);
 
         const relation = await database.findRecord(RELATION_RECORD_TYPE, QUERIES.EXISTING_RELATION);
@@ -28,8 +33,6 @@ describe('domain/relation/establish', () =>
 
     it('should NOT establish a duplicate relation', async () =>
     {
-        await DATABASES.withEverything();
-
         const promise = establish(REQUESTERS.FIRST, VALUES.IDS.CREATOR2);
 
         expect(promise).rejects.toStrictEqual(new RelationAlreadyExists());
@@ -37,8 +40,6 @@ describe('domain/relation/establish', () =>
 
     it('Should rollback created data after failure', async () =>
     {
-        const database = await DATABASES.withEverything();
-
         // This should fail at the action when incrementing the creator's following count
         const promise = establish(REQUESTERS.UNKNOWN, VALUES.IDS.CREATOR2);
         await expect(promise).rejects.toThrow('Record not found');

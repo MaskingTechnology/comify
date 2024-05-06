@@ -6,13 +6,11 @@ import { VALUES } from './values.fixture';
 
 fileStorage.connect();
 
-async function withImage()
+async function withImage(): Promise<void>
 {
     await fileStorage.clear();
 
     await fileStorage.writeFile(VALUES.STORAGE_KEYS.IMAGE, FILES.IMAGE);
-
-    return fileStorage;
 }
 
 export const FILE_STORAGES = { withImage };

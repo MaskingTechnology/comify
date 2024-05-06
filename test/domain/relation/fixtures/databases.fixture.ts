@@ -8,21 +8,19 @@ import { RECORDS } from './records.fixture';
 
 database.connect();
 
-async function withEverything()
+async function withEverything(): Promise<void>
 {
     database.clear();
 
     RECORDS.CREATORS.forEach(async (creator) =>
     {
-        await database.createRecord(CREATOR_RECORD_TYPE, creator);
+        await database.createRecord(CREATOR_RECORD_TYPE, { ...creator });
     });
 
     RECORDS.RELATIONS.forEach(async (relation) =>
     {
-        await database.createRecord(RELATION_RECORD_TYPE, relation);
+        await database.createRecord(RELATION_RECORD_TYPE, { ...relation });
     });
-
-    return database;
 }
 
 export const DATABASES = { withEverything };

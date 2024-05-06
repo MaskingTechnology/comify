@@ -1,5 +1,5 @@
 
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { RECORD_TYPE as COMIC_RECORD_TYPE } from '^/domain/comic/definitions/constants';
 import { RECORD_TYPE as COMMENT_RECORD_TYPE } from '^/domain/comment/definitions/constants';
@@ -9,14 +9,23 @@ import createComicReaction from '^/domain/reaction/createComic';
 import createCommentReaction from '^/domain/reaction/createComment';
 import { RECORD_TYPE as REACTION_RECORD_TYPE } from '^/domain/reaction/definitions/constants';
 
+import database from '^/integrations/database/module';
+import fileStorage from '^/integrations/filestorage/module';
+
 import { DATABASES, FILE_STORAGES, REQUESTERS, VALUES } from './fixtures';
+
+beforeEach(async () =>
+{
+    await Promise.all([
+        DATABASES.withEverything(),
+        FILE_STORAGES.withImage()
+    ]);
+});
 
 describe('domain/reaction/create', () =>
 {
     it('should create a comment reaction', async () =>
     {
-        const database = await DATABASES.withEverything();
-
         const reaction = await createCommentReaction(REQUESTERS.OWNER, VALUES.IDS.POST_EXISTING, VALUES.MESSAGES.COMMENT);
 
         const record = await database.readRecord(REACTION_RECORD_TYPE, reaction.id);
@@ -40,9 +49,6 @@ describe('domain/reaction/create', () =>
 
     it('should create a comic reaction', async () =>
     {
-        const database = await DATABASES.withEverything();
-        const fileStorage = await FILE_STORAGES.withImage();
-
         const reaction = await createComicReaction(REQUESTERS.OWNER, VALUES.IDS.POST_EXISTING, VALUES.DATA_URLS.COMIC);
 
         const record = await database.readRecord(REACTION_RECORD_TYPE, reaction.id);
@@ -72,8 +78,6 @@ describe('domain/reaction/create', () =>
 
     it('should rollback created data at failed comment reaction', async () =>
     {
-        const database = await DATABASES.withEverything();
-
         // This should fail at the last action when incrementing post's reaction count
         const promise = createCommentReaction(REQUESTERS.OWNER, VALUES.IDS.POST_NOT_EXISTING, VALUES.MESSAGES.COMMENT);
         await expect(promise).rejects.toThrow('Record not found');
@@ -90,8 +94,6 @@ describe('domain/reaction/create', () =>
 
     it('should rollback created data at failed comic reaction', async () =>
     {
-        const database = await DATABASES.withEverything();
-
         // This should fail at the last action when incrementing post's reaction count
         const promise = createComicReaction(REQUESTERS.OWNER, VALUES.IDS.POST_NOT_EXISTING, VALUES.DATA_URLS.COMIC);
         await expect(promise).rejects.toThrow('Record not found');

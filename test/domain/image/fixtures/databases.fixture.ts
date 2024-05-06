@@ -6,8 +6,6 @@ database.connect();
 async function empty()
 {
     await database.clear();
-
-    return database;
 }
 
 export const DATABASES = { empty };

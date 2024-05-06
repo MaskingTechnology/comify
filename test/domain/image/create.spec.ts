@@ -1,19 +1,26 @@
 
-import { describe, expect, it } from 'vitest';
-
-import { DATA_URLS, DATABASES, FILE_STORAGES } from './fixtures';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import create from '^/domain/image/create';
 import InvalidDataURL from '^/domain/image/errors/InvalidDataURL';
 import InvalidImage from '^/domain/image/errors/InvalidImage';
 
+import fileStorage from '^/integrations/filestorage/module';
+
+import { DATA_URLS, DATABASES, FILE_STORAGES } from './fixtures';
+
+beforeEach(async () =>
+{
+    await Promise.all([
+        DATABASES.empty(),
+        FILE_STORAGES.empty()
+    ]);
+});
+
 describe('domain/image/create', () =>
 {
     it('should create an image from a valid data url', async () =>
     {
-        await DATABASES.empty();
-        const fileStorage = await FILE_STORAGES.empty();
-
         const image = await create('test', DATA_URLS.VALID);
         const data = await fileStorage.readFile(image.storageKey);
 

@@ -6,7 +6,7 @@ import { RECORDS } from './records.fixture';
 
 database.connect();
 
-async function withCreators()
+async function withCreators(): Promise<void>
 {
     database.clear();
 

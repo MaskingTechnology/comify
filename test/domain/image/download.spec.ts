@@ -1,21 +1,30 @@
 
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import download from '^/domain/image/download';
 import ImageNotDownloaded from '^/domain/image/errors/ImageNotDownloaded';
 import InvalidImage from '^/domain/image/errors/InvalidImage';
 
+import fileStorage from '^/integrations/filestorage/module';
+
 import { DATABASES, FILE_STORAGES, HTTP_CLIENTS, URLS } from './fixtures';
 
 HTTP_CLIENTS.withImages();
+
+beforeEach(async () =>
+{
+    HTTP_CLIENTS.withImages();
+
+    await Promise.all([
+        DATABASES.empty(),
+        FILE_STORAGES.empty()
+    ]);
+});
 
 describe('domain/image/download', () =>
 {
     it('should download an image', async () =>
     {
-        await DATABASES.empty();
-        const fileStorage = await FILE_STORAGES.empty();
-
         const image = await download('test', URLS.VALID);
         const data = await fileStorage.readFile(image.storageKey);
 

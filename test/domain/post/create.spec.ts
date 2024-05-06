@@ -1,20 +1,28 @@
 
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { RECORD_TYPE as COMIC_RECORD_TYPE } from '^/domain/comic/definitions/constants';
 import { RECORD_TYPE as IMAGE_RECORD_TYPE } from '^/domain/image/definitions/constants';
 import create from '^/domain/post/create';
 import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions/constants';
 
+import database from '^/integrations/database/module';
+import fileStorage from '^/integrations/filestorage/module';
+
 import { DATABASES, DATA_URLS, FILE_STORAGES, REQUESTERS } from './fixtures';
+
+beforeEach(async () =>
+{
+    await Promise.all([
+        DATABASES.withCreators(),
+        FILE_STORAGES.empty()
+    ]);
+});
 
 describe('domain/post/create', () =>
 {
     it('should create an image from a valid data url', async () =>
     {
-        const database = await DATABASES.withCreators();
-        const fileStorage = await FILE_STORAGES.empty();
-
         await create(REQUESTERS.EXISTING, DATA_URLS.COMIC_IMAGE);
 
         const posts = await database.searchRecords(POST_RECORD_TYPE, {});
@@ -43,8 +51,6 @@ describe('domain/post/create', () =>
 
     it('should rollback created data at failure', async () =>
     {
-        const database = await DATABASES.withCreators();
-
         // This should fail at the last action when incrementing the creator's post count
         const promise = create(REQUESTERS.UNKNOWN, DATA_URLS.COMIC_IMAGE);
         await expect(promise).rejects.toThrow('Record not found');
