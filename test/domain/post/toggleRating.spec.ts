@@ -1,36 +1,40 @@
 
-import { describe, expect, it } from 'vitest';
-import { NOT_EXISTING_POST_ID, RATED_POST_ID, RATING_RECORD_TYPE, UNRATED_POST_ID, createDatabase, johnDoe, ratingQuery, toggleRating } from './_fixtures/toggleRating.fixture';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import johnDoe from '^/domain/authentication/johnDoe';
+import toggleRating from '^/domain/post/toggleRating';
+import { RECORD_TYPE as RATING_RECORD_TYPE } from '^/domain/rating/definitions/constants';
+
+import database from '^/integrations/database/module';
+
+import { DATABASES, QUERIES, VALUES } from './fixtures';
+
+beforeEach(async () =>
+{
+    await DATABASES.withPostsAndRatings();
+});
 
 describe('domain/post/toggleRating', () =>
 {
     it('should add a rating', async () =>
     {
-        await createDatabase();
-
-        const isRated = await toggleRating(johnDoe, UNRATED_POST_ID);
-
-        expect(isRated).toBe(true);
+        const isRated = await toggleRating(johnDoe, VALUES.IDS.POST_UNRATED);
+        expect(isRated).toBeTruthy();
     });
 
     it('should remove a rating', async () =>
     {
-        await createDatabase();
-
-        const isRated = await toggleRating(johnDoe, RATED_POST_ID);
-
-        expect(isRated).toBe(false);
+        const isRated = await toggleRating(johnDoe, VALUES.IDS.POST_RATED);
+        expect(isRated).toBeFalsy();
     });
 
     it('should rollback created data at failure', async () =>
     {
-        const database = await createDatabase();
-
         // This should fail at the last action when changing the post's rating count
-        const promise = toggleRating(johnDoe, NOT_EXISTING_POST_ID);
+        const promise = toggleRating(johnDoe, VALUES.IDS.POST_NOT_EXISTING);
         await expect(promise).rejects.toThrow('Record not found');
 
-        const rating = await database.findRecord(RATING_RECORD_TYPE, ratingQuery);
-        expect(rating).toBe(undefined);
+        const rating = await database.findRecord(RATING_RECORD_TYPE, QUERIES.RATING_NOT_EXISTING_POST);
+        expect(rating).toBeUndefined();
     });
 });

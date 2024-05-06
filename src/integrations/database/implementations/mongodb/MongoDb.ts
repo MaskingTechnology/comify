@@ -103,7 +103,7 @@ export default class MongoDB implements Database
     async createRecord(type: RecordType, data: RecordData): Promise<RecordId>
     {
         const collection = await this.#getCollection(type);
-        const mongoId = this.#createId();
+        const mongoId = this.#createId(data.id as string);
 
         try
         {
@@ -174,6 +174,11 @@ export default class MongoDB implements Database
         const result = await cursor.toArray();
 
         return result.map(data => this.#buildRecordData(data, fields));
+    }
+
+    async clear(): Promise<void>
+    {
+        return; // Deliberately not implemented
     }
 
     #createIds(inputIds: string[]): ObjectId[]

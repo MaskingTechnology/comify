@@ -1,56 +1,61 @@
 
-import { describe, expect, it } from 'vitest';
-import { CREATOR3_ID, CREATOR4_ID, CREATOR5_ID, REQUESTER1, SortOptions, explore } from './_fixtures/relation.fixture';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import SortOptions from '^/domain/relation/definitions/SortOptions';
+import explore from '^/domain/relation/explore';
+
+import { DATABASES, REQUESTERS, VALUES } from './fixtures';
+
+beforeEach(async () =>
+{
+    await DATABASES.withEverything();
+});
 
 describe('domain/relation/explore', () =>
 {
     it('should explore relations based on popularity', async () =>
     {
-        const relations = await explore(REQUESTER1, SortOptions.POPULAR, undefined);
-
-        expect(relations.length).toBe(3);
-        expect(relations[0].following?.id).toBe(CREATOR4_ID);
-        expect(relations[1].following?.id).toBe(CREATOR3_ID);
-        expect(relations[2].following?.id).toBe(CREATOR5_ID);
-        expect(relations[0].follower).toBeUndefined();
+        const relations = await explore(REQUESTERS.FIRST, SortOptions.POPULAR);
+        expect(relations).toHaveLength(3);
+        expect(relations[0].following?.id).toBe(VALUES.IDS.CREATOR5);
+        expect(relations[1].following?.id).toBe(VALUES.IDS.CREATOR4);
+        expect(relations[2].following?.id).toBe(VALUES.IDS.CREATOR6);
     });
 
     it('should explore relations based on recent', async () =>
     {
-        const relations = await explore(REQUESTER1, SortOptions.RECENT, undefined);
-
-        expect(relations.length).toBe(3);
-        expect(relations[0].following?.id).toBe(CREATOR3_ID);
-        expect(relations[1].following?.id).toBe(CREATOR5_ID);
-        expect(relations[2].following?.id).toBe(CREATOR4_ID);
+        const relations = await explore(REQUESTERS.FIRST, SortOptions.RECENT);
+        expect(relations).toHaveLength(3);
+        expect(relations[0].following?.id).toBe(VALUES.IDS.CREATOR4);
+        expect(relations[1].following?.id).toBe(VALUES.IDS.CREATOR6);
+        expect(relations[2].following?.id).toBe(VALUES.IDS.CREATOR5);
     });
 
     it('should find no relations based on search', async () =>
     {
-        const relations = await explore(REQUESTER1, SortOptions.POPULAR, 'or2');
-        expect(relations[0]).toBeUndefined();
+        const relations = await explore(REQUESTERS.FIRST, SortOptions.POPULAR, 'or2');
+        expect(relations).toHaveLength(0);
     });
 
-    it('should find relations based on search fullname', async () =>
+    it('should find relations based on search full name', async () =>
     {
-        const relations = await explore(REQUESTER1, SortOptions.POPULAR, 'or 4');
-        expect(relations.length).toBe(1);
-        expect(relations[0].following?.id).toBe(CREATOR4_ID);
+        const relations = await explore(REQUESTERS.FIRST, SortOptions.POPULAR, 'or 4');
+        expect(relations).toHaveLength(1);
+        expect(relations[0].following?.id).toBe(VALUES.IDS.CREATOR4);
     });
 
     it('should find relations based on search nickname', async () =>
     {
-        const relations = await explore(REQUESTER1, SortOptions.POPULAR, 'creator4');
-        expect(relations.length).toBe(2);
-        expect(relations[0].following?.id).toBe(CREATOR4_ID);
-        expect(relations[1].following?.id).toBe(CREATOR5_ID);
+        const relations = await explore(REQUESTERS.FIRST, SortOptions.POPULAR, 'creator4');
+        expect(relations).toHaveLength(1);
+        expect(relations[0].following?.id).toBe(VALUES.IDS.CREATOR4);
     });
 
-    it('should find relations based on search fullname and nickname', async () =>
+    it('should find relations based on search full name and nickname', async () =>
     {
-        const relations = await explore(REQUESTER1, SortOptions.POPULAR, '_');
-        expect(relations.length).toBe(2);
-        expect(relations[0].following?.id).toBe(CREATOR3_ID);
-        expect(relations[1].following?.id).toBe(CREATOR5_ID);
+        const relations = await explore(REQUESTERS.FIRST, SortOptions.POPULAR, 'five');
+        expect(relations).toHaveLength(2);
+        expect(relations[0].following?.id).toBe(VALUES.IDS.CREATOR5);
+        expect(relations[1].following?.id).toBe(VALUES.IDS.CREATOR6);
     });
 });
