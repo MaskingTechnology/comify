@@ -13,18 +13,16 @@ describe('domain/post/toggleRating', () =>
     {
         await DATABASES.withPostsAndRatings();
 
-        const isRated = await toggleRating(johnDoe, VALUES.POST_UNRATED_ID);
-
-        expect(isRated).toBe(true);
+        const isRated = await toggleRating(johnDoe, VALUES.IDS.POST_UNRATED);
+        expect(isRated).toBeTruthy();
     });
 
     it('should remove a rating', async () =>
     {
         await DATABASES.withPostsAndRatings();
 
-        const isRated = await toggleRating(johnDoe, VALUES.POST_RATED_ID);
-
-        expect(isRated).toBe(false);
+        const isRated = await toggleRating(johnDoe, VALUES.IDS.POST_RATED);
+        expect(isRated).toBeFalsy();
     });
 
     it('should rollback created data at failure', async () =>
@@ -32,10 +30,10 @@ describe('domain/post/toggleRating', () =>
         const database = await DATABASES.withPostsAndRatings();
 
         // This should fail at the last action when changing the post's rating count
-        const promise = toggleRating(johnDoe, VALUES.POST_NOT_EXISTING_ID);
+        const promise = toggleRating(johnDoe, VALUES.IDS.POST_NOT_EXISTING);
         await expect(promise).rejects.toThrow('Record not found');
 
         const rating = await database.findRecord(RATING_RECORD_TYPE, QUERIES.RATING_NOT_EXISTING_POST);
-        expect(rating).toBe(undefined);
+        expect(rating).toBeUndefined();
     });
 });

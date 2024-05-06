@@ -38,7 +38,7 @@ describe('domain/post/create', () =>
         expect(image?.storageKey).toContain('comic/');
 
         const data = await fileStorage.readFile(image.storageKey as string);
-        expect(data.length).toEqual(54);
+        expect(data).toHaveLength(54);
     });
 
     it('should rollback created data at failure', async () =>
@@ -50,12 +50,12 @@ describe('domain/post/create', () =>
         await expect(promise).rejects.toThrow('Record not found');
 
         const posts = await database.searchRecords(POST_RECORD_TYPE, {});
-        expect(posts.length).toBe(0);
+        expect(posts).toHaveLength(0);
 
         const comics = await database.searchRecords(COMIC_RECORD_TYPE, {});
-        expect(comics.length).toBe(0);
+        expect(comics).toHaveLength(0);
 
         const images = await database.searchRecords(IMAGE_RECORD_TYPE, {});
-        expect(images.length).toBe(0);
+        expect(images).toHaveLength(0);
     });
 });

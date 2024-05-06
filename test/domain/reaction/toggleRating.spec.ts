@@ -13,8 +13,7 @@ describe('domain/post/toggleRating', () =>
         await DATABASES.withEverything();
 
         const isRated = await toggleRating(REQUESTERS.OWNER, VALUES.IDS.REACTION_UNRATED);
-
-        expect(isRated).toBe(true);
+        expect(isRated).toBeTruthy();
     });
 
     it('should remove a rating', async () =>
@@ -22,8 +21,7 @@ describe('domain/post/toggleRating', () =>
         await DATABASES.withEverything();
 
         const isRated = await toggleRating(REQUESTERS.OWNER, VALUES.IDS.REACTION_RATED);
-
-        expect(isRated).toBe(false);
+        expect(isRated).toBeFalsy();
     });
 
     it('should rollback created data at failure', async () =>
@@ -35,6 +33,6 @@ describe('domain/post/toggleRating', () =>
         await expect(promise).rejects.toThrow('Record not found');
 
         const rating = await database.findRecord(RATING_RECORD_TYPE, QUERIES.RATING_NOT_EXISTING);
-        expect(rating).toBe(undefined);
+        expect(rating).toBeUndefined();
     });
 });

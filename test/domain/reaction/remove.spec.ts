@@ -16,7 +16,7 @@ describe('domain/reaction/remove', () =>
         await remove(REQUESTERS.OWNER, VALUES.IDS.REACTION_COMMENT);
 
         const reaction = await database.readRecord(REACTION_RECORD_TYPE, VALUES.IDS.REACTION_COMMENT);
-        expect(reaction.deleted).toBe(true);
+        expect(reaction.deleted).toBeTruthy();
     });
 
     it('should soft delete a reaction with a comic', async () =>
@@ -26,24 +26,22 @@ describe('domain/reaction/remove', () =>
         await remove(REQUESTERS.OWNER, VALUES.IDS.REACTION_COMIC);
 
         const record = await database.readRecord(REACTION_RECORD_TYPE, VALUES.IDS.REACTION_COMIC);
-        expect(record.deleted).toBe(true);
+        expect(record.deleted).toBeTruthy();
     });
 
     it('should not delete an already deleted reaction', async () =>
     {
-        await await DATABASES.withEverything();
+        await DATABASES.withEverything();
 
         const promise = remove(REQUESTERS.OWNER, VALUES.IDS.REACTION_DELETED);
-
         await expect(promise).rejects.toThrow(ReactionNotFound);
     });
 
     it('should not delete a reaction from another creator', async () =>
     {
-        await await DATABASES.withEverything();
+        await DATABASES.withEverything();
 
         const promise = remove(REQUESTERS.VIEWER, VALUES.IDS.REACTION_COMMENT);
-
         await expect(promise).rejects.toThrow(ReactionNotFound);
     });
 });
