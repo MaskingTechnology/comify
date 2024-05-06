@@ -8,6 +8,6 @@ export const QUERIES: Record<string, RecordQuery> =
 {
     RATING_NOT_EXISTING_POST: {
         creatorId: { EQUALS: johnDoe.id },
-        postId: { EQUALS: VALUES.POST_NOT_EXISTING_ID }
+        postId: { EQUALS: VALUES.IDS.POST_NOT_EXISTING }
     }
 };
