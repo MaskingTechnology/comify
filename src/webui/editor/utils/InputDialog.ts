@@ -1,7 +1,7 @@
 
 export default class InputDialog
 {
-    static #dialog = this.#createDialog();
+    static readonly #dialog = this.#createDialog();
 
     static async open(text: string): Promise<string>
     {
