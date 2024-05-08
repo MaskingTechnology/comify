@@ -9,4 +9,5 @@ export interface FileStorage
     writeFile(path: string, data: Buffer): Promise<void>;
     readFile(path: string): Promise<Buffer>;
     deleteFile(path: string): Promise<void>;
+    clear(): Promise<void>;
 }

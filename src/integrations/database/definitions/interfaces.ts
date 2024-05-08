@@ -13,4 +13,5 @@ export interface Database
     deleteRecord(type: RecordType, id: RecordId): Promise<void>;
     findRecord(type: RecordType, query: RecordQuery, fields?: RecordField[], sort?: RecordSort): Promise<RecordData | undefined>;
     searchRecords(type: RecordType, query: RecordQuery, fields?: RecordField[], sort?: RecordSort, limit?: number, offset?: number): Promise<RecordData[]>;
+    clear(): Promise<void>;
 }

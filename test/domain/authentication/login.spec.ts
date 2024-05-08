@@ -1,6 +1,20 @@
 
-import { describe, expect, it } from 'vitest';
-import { LOGINS, NICKNAMES, TooManySimilarNicknames, login } from './_fixtures/authentication.fixture';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import login from '^/domain/authentication/login';
+import TooManySimilarNicknames from '^/domain/creator/errors/TooManySimilarNicknames';
+
+import { DATABASES, FILE_STORAGES, HTTP_CLIENTS, IDENTITIES, VALUES } from './fixtures';
+
+beforeEach(async () =>
+{
+    HTTP_CLIENTS.withProfilePictures();
+
+    await Promise.all([
+        DATABASES.withCreators(),
+        FILE_STORAGES.empty()
+    ]);
+});
 
 describe('domain/authentication', () =>
 {
@@ -8,65 +22,50 @@ describe('domain/authentication', () =>
     {
         it('should login with an existing email', async () =>
         {
-            const requester = await login(LOGINS.LOGIN_WITH_EXISTING_EMAIL);
-
-            expect(requester.nickname).toBe(NICKNAMES.EXISTING_NICKNAME);
+            const requester = await login(IDENTITIES.EXISTING);
+            expect(requester.nickname).toBe(VALUES.NICKNAMES.FIRST);
         });
 
-        it('should register with an unknown nickname', async () =>
+        it('should register without a nickname', async () =>
         {
-            const requester = await login(LOGINS.REGISTER_WITH_UNKNOWN_NICKNAME);
-
-            expect(requester.nickname).toBe(NICKNAMES.CREATED_FROM_FULL_NAME);
+            const requester = await login(IDENTITIES.NO_NICKNAME);
+            expect(requester.nickname).toBe(VALUES.NICKNAMES.FROM_FULL_NAME);
         });
 
         it('should register with a duplicate nickname', async () =>
         {
-            const requester = await login(LOGINS.REGISTER_WITH_DUPLICATE_NICKNAME);
-
-            expect(requester.nickname).toBe(NICKNAMES.DEDUPLICATED_NICKNAME);
+            const requester = await login(IDENTITIES.DUPLICATE_NICKNAME);
+            expect(requester.nickname).toBe(VALUES.NICKNAMES.DEDUPLICATED);
         });
 
         it('should register with multiple occurrences of nickname', async () =>
         {
-            const requester = await login(LOGINS.REGISTER_WITH_MULTIPLE_OCCURRENCES_NICKNAME);
-
-            expect(requester.nickname).toBe(NICKNAMES.NEXT_OCCURRED_NICKNAME);
+            const requester = await login(IDENTITIES.MULTIPLE_OCCURRENCES_NICKNAME);
+            expect(requester.nickname).toBe(VALUES.NICKNAMES.NEXT_OCCURRED);
         });
 
         it('should NOT register with too many occurrences nickname', async () =>
         {
-            const promise = login(LOGINS.REGISTER_WITH_TOO_MANY_SIMILAR_NICKNAME);
-
+            const promise = login(IDENTITIES.TOO_MANY_SIMILAR_NICKNAMES);
             expect(promise).rejects.toStrictEqual(new TooManySimilarNicknames());
         });
 
         it('should register with spaces in nickname', async () =>
         {
-            const requester = await login(LOGINS.REGISTER_WITH_SPACED_NICKNAME);
-
-            expect(requester.nickname).toBe(NICKNAMES.DESPACED_NICKNAME);
+            const requester = await login(IDENTITIES.SPACED_NICKNAME);
+            expect(requester.nickname).toBe(VALUES.NICKNAMES.DESPACED);
         });
 
         it('should register with underscores in nickname', async () =>
         {
-            const requester = await login(LOGINS.REGISTER_WITH_UNDERSCORED_NICKNAME);
-
-            expect(requester.nickname).toBe(NICKNAMES.DEUNDERSCORED_NICKNAME);
-        });
-
-        it('should register with spaces and underscores in nickname', async () =>
-        {
-            const requester = await login(LOGINS.REGISTER_WITH_SPACED_UNDERSCORED_NICKNAME);
-
-            expect(requester.nickname).toBe(NICKNAMES.DESPACED_DEUNDERSCORED_NICKNAME);
+            const requester = await login(IDENTITIES.UNDERSCORED_NICKNAME);
+            expect(requester.nickname).toBe(VALUES.NICKNAMES.DEUNDERSCORED);
         });
 
         it('should register with a valid profile picture', async () =>
         {
-            const requestor = await login(LOGINS.NAME_WITH_A_VALID_PICTURE_URL);
-
-            expect(requestor.nickname).toBe('LongOne');
+            const requestor = await login(IDENTITIES.WITH_PICTURE);
+            expect(requestor.nickname).toBe(VALUES.NICKNAMES.WITH_PICTURE);
         });
     });
 });
