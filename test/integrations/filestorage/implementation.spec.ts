@@ -1,0 +1,80 @@
+
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import fileStorage, { FileNotFound } from '^/integrations/filestorage/module';
+
+import { FILES, FILE_STORAGES, VALUES } from './fixtures';
+
+beforeEach(async () =>
+{
+    await FILE_STORAGES.withFile();
+});
+
+describe('integrations/filestorage/implementation', () =>
+{
+    describe('.hasFile(path)', () =>
+    {
+        it('should return true for existing files', async () =>
+        {
+            const result = await fileStorage.hasFile(VALUES.FILENAMES.HELLO);
+            expect(result).toBeTruthy();
+        });
+
+        it('should return false for non-existing files', async () =>
+        {
+            const result = await fileStorage.hasFile(VALUES.FILENAMES.UNKNOWN);
+            expect(result).toBeFalsy();
+        });
+    });
+
+    describe('.readFile(path)', () =>
+    {
+        it('should read existing files', async () =>
+        {
+            const buffer = await fileStorage.readFile(VALUES.FILENAMES.HELLO);
+            expect(buffer.toString()).toEqual(VALUES.CONTENTS.HELLO);
+        });
+
+        it('should not read non-existing files', async () =>
+        {
+            const promise = fileStorage.readFile(VALUES.FILENAMES.UNKNOWN);
+            expect(promise).rejects.toStrictEqual(new FileNotFound(VALUES.FILENAMES.UNKNOWN));
+        });
+    });
+
+    describe('.writeFile(path)', () =>
+    {
+        it('should write files', async () =>
+        {
+            await fileStorage.writeFile(VALUES.FILENAMES.GOODBYE, FILES.GOODBYE);
+
+            const buffer = await fileStorage.readFile(VALUES.FILENAMES.GOODBYE);
+            expect(buffer).toEqual(FILES.GOODBYE);
+        });
+
+        it('should overwrite files', async () =>
+        {
+            await fileStorage.writeFile(VALUES.FILENAMES.HELLO, FILES.GOODBYE);
+
+            const buffer = await fileStorage.readFile(VALUES.FILENAMES.HELLO);
+            expect(buffer).toEqual(FILES.GOODBYE);
+        });
+    });
+
+    describe('.deleteFile(path)', () =>
+    {
+        it('should delete existing files', async () =>
+        {
+            await fileStorage.deleteFile(VALUES.FILENAMES.HELLO);
+
+            const promise = fileStorage.readFile(VALUES.FILENAMES.HELLO);
+            expect(promise).rejects.toStrictEqual(new FileNotFound(VALUES.FILENAMES.HELLO));
+        });
+
+        it('should not delete non-existing files', async () =>
+        {
+            const promise = fileStorage.deleteFile(VALUES.FILENAMES.UNKNOWN);
+            expect(promise).rejects.toStrictEqual(new FileNotFound(VALUES.FILENAMES.UNKNOWN));
+        });
+    });
+});
