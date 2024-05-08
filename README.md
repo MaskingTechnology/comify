@@ -8,7 +8,7 @@ Comify is an open source social media platform that leverages comics for communi
 
 ## Project goals
 
-Its intent is not to disrupt the social-media space, but to learn and improve building future-proofed applications that can grow. Besides that, it's also a demo project our distributed runtime [Jitar](https://jitar.dev).
+Its intent is not to disrupt the social-media space, but to learn and improve building future-proofed applications that can grow. Besides that, it's also a demo project for our distributed runtime [Jitar](https://jitar.dev).
 
 ## Current state
 
