@@ -9,7 +9,7 @@ import Login from '^/webui/features/Login';
 
 describe('Home feature', async () =>
 {
-    it('Renders the Home page and redirect to login', async () =>
+    it('Should render the home page and redirect to login', async () =>
     {
         render(
             <MemoryRouter>
