@@ -1,21 +1,9 @@
 
-import Client from '^/integrations/http/Client';
-import { HTTP_METHODS } from '^/integrations/http/definitions/constants';
 import { Http } from '^/integrations/http/definitions/interfaces';
 
-const URLS =
-{
-    CACHED: 'http://localhost/cached',
-    NOT_CACHED: 'http://localhost/not-cached'
-};
+import { RESPONSES } from './responses.fixture';
 
-const RESPONSES =
-{
-    CACHED: new Response('Cached', { status: 200 }),
-    NOT_CACHED: new Response('Not cached', { status: 200 })
-};
-
-class MonoResponse implements Http
+class Implementation implements Http
 {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async get(url: string, headers?: Record<string, string> | undefined): Promise<Response>
@@ -54,14 +42,4 @@ class MonoResponse implements Http
     }
 }
 
-const implementation = new MonoResponse();
-const httpClient = new Client(implementation);
-
-httpClient.setCache(HTTP_METHODS.GET, URLS.CACHED, RESPONSES.CACHED);
-httpClient.setCache(HTTP_METHODS.POST, URLS.CACHED, RESPONSES.CACHED);
-httpClient.setCache(HTTP_METHODS.PUT, URLS.CACHED, RESPONSES.CACHED);
-httpClient.setCache(HTTP_METHODS.PATCH, URLS.CACHED, RESPONSES.CACHED);
-httpClient.setCache(HTTP_METHODS.DELETE, URLS.CACHED, RESPONSES.CACHED);
-httpClient.setCache(HTTP_METHODS.HEAD, URLS.CACHED, RESPONSES.CACHED);
-
-export { RESPONSES, URLS, httpClient };
+export const implementation = new Implementation();

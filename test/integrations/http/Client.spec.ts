@@ -1,6 +1,12 @@
 
-import { describe, expect, it } from 'vitest';
-import { RESPONSES, URLS, httpClient } from './_fixtures/Client.fixture';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { HTTP_CLIENTS, RESPONSES, URLS, httpClient } from './fixtures';
+
+beforeEach(() =>
+{
+    HTTP_CLIENTS.withCache();
+});
 
 describe('Client', () =>
 {
