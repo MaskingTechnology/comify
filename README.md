@@ -16,9 +16,9 @@ We're working hard to get the MVP done. To document the project we started writi
 
 ## How to run
 
-The project required [Node.js](https://nodejs.org/) version 20+ to run the application and [Docker](https://www.docker.com/) for the additional services.
+The project requires [Node.js](https://nodejs.org/) version 20+ to run the application and [Docker](https://www.docker.com/) for the additional services.
 
-You need to set up the configuration first by copying the `example.env` file to a `development.env` file. Copying the file is enough for the first run. After that, you can run the following command to start Docker:
+You need to set up the configuration first by copying the `example.env` file to a `development.env` file. Copying the file is enough for the first run. Then you can run the following command to start Docker:
 
 ```bash
 npm run docker-compose up
