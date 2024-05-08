@@ -1,11 +1,15 @@
 
+import type Requester from '../authentication/Requester';
+import retrieve from './data/retrieve';
 import retrieveByFollowing from './data/retrieveByFollowing';
 import type RelationView from './view/RelationView';
-import createFollowerView from './view/createFollowerView';
+import createView from './view/createView';
 
-export default async function getFollowers(followingId: string): Promise<RelationView[]>
+export default async function getFollowers(requester: Requester, followingId: string): Promise<RelationView[]>
 {
-    const data = await retrieveByFollowing(followingId);
+    const followingData = await retrieveByFollowing(followingId);
 
-    return Promise.all(data.map(createFollowerView));
+    const requesterData = await Promise.all(followingData.map(data => retrieve(requester.id, data.followerId)));
+
+    return Promise.all(requesterData.map(createView));
 }

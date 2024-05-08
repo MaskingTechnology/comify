@@ -1,5 +1,6 @@
 
-import { RecordData } from '../../../integrations/database/module';
+import type { RecordData } from '^/integrations/database/module';
+
 import PostData from './PostData';
 
 export default function mapRecord(record: RecordData): PostData

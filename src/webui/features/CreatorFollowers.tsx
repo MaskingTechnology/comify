@@ -1,39 +1,31 @@
 
-import { useEffect, useState } from 'react';
-import getFollowers from '../../domain/relation/getFollowers';
-import type RelationView from '../../domain/relation/view/RelationView';
-import { Loading, OrderAndSearchRow, RelationPanelList } from '../components/module';
-import { useCreatorContext } from '../contexts/CreatorContext';
-import { Column } from '../designsystem/module';
-import awaitData from '../utils/awaitData';
+import type CreatorView from '^/domain/creator/view/CreatorView';
+import type RelationView from '^/domain/relation/view/RelationView';
 
-export default function Feature()
+import { LoadingContainer, OrderAndSearchRow, RelationPanelList } from '^/webui/components';
+import { Column } from '^/webui/designsystem';
+import { useCreatorFollowers, useEstablishRelation, useReorderList, useViewProfile } from '^/webui/hooks';
+
+type Props = {
+    readonly creator: CreatorView;
+};
+
+export default function Feature({ creator }: Props)
 {
-    const { creator } = useCreatorContext();
-    const [relations, setRelations] = useState<RelationView[] | undefined>(undefined);
+    const viewProfile = useViewProfile();
+    const establishRelation = useEstablishRelation();
+    const reorderList = useReorderList();
 
-    if (creator === undefined) return null;
-
-    const getRelations = () => getFollowers(creator.id);
-
-    const handleOrderChange = (oldKey: string, newKey: string) =>
-    {
-        console.log(`Order changed from ${oldKey} to ${newKey}`);
-    };
-
-    const handleFollow = (relation: RelationView) =>
-    {
-        console.log(`Followed ${relation.creator.fullName}`);
-    };
-
-    useEffect(() => awaitData(getRelations, setRelations), [creator]);
+    const [relations] = useCreatorFollowers(creator);
 
     return <Column gap='small' alignX='stretch'>
-        <OrderAndSearchRow selected='recent' orderChangeHandler={handleOrderChange} />
-        {
-            relations !== undefined
-                ? <RelationPanelList relations={relations} followHandler={handleFollow} />
-                : <Loading />
-        }
+        <OrderAndSearchRow selected='recent' onOrderChange={reorderList} />
+        <LoadingContainer data={relations}>
+            <RelationPanelList
+                relations={relations as RelationView[]}
+                onFollowClick={establishRelation}
+                onCreatorClick={viewProfile}
+            />
+        </LoadingContainer>
     </Column>;
 }

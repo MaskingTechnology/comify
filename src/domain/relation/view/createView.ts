@@ -5,10 +5,9 @@ import RelationView from './RelationView';
 
 export default async function createView(data: RelationData): Promise<RelationView>
 {
-    const [followerView, followingView] = await Promise.all([
-        getCreatorView(data.followerId),
-        getCreatorView(data.followingId)
-    ]);
+    const followingView = await getCreatorView(data.followingId);
 
-    return new RelationView(data.id, followerView, followingView);
+    const self = data.followerId === data.followingId;
+
+    return new RelationView(data.id, followingView, self);
 }

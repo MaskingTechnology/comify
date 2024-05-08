@@ -1,11 +1,11 @@
 
-import { timeElapsed } from '../../../integrations/utilities/dates';
-import { Text } from '../../designsystem/module';
+import { timeElapsed } from '^/integrations/utilities/dates';
+import { Text } from '^/webui/designsystem';
 
-export type Props = {
-    date: Date;
-    size?: 'large' | 'medium' | 'small';
-    weight?: 'light' | 'normal' | 'bold';
+type Props = {
+    readonly date: Date;
+    readonly size?: 'large' | 'medium' | 'small';
+    readonly weight?: 'light' | 'normal' | 'bold';
 };
 
 export default function Component({ date, size, weight }: Props)

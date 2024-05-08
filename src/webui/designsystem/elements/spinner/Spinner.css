@@ -4,10 +4,7 @@
     --size: 2rem;
     --speed: 1.2s;
     --thickness: 0.3rem;
-}
 
-.ds-spinner
-{
     display: inline-block;
     width: var(--size);
     height: var(--size);

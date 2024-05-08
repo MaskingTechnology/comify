@@ -1,5 +1,6 @@
 
-import { RecordData } from '../../../integrations/database/module';
+import { RecordData } from '^/integrations/database/module';
+
 import ImageData from './ImageData';
 
 export default function mapRecord(record: RecordData): ImageData

@@ -5,10 +5,7 @@
 
     --text-decoration: dotted underline;
     --text-decoration-hover: underline;
-}
 
-.ds-link
-{
     color: var(--color);
     text-decoration: var(--text-decoration);
 }

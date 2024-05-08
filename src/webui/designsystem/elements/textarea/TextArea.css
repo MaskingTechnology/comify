@@ -9,10 +9,7 @@
     --border-style: solid;
     --border-color: var(--color-border);
     --border-width: var(--width-border);
-}
 
-.ds-textarea
-{
     margin: var(--margin);
     padding: var(--padding);
 

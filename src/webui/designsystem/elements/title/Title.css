@@ -5,10 +5,7 @@
     --font-size-large: 2em;
     --font-size-medium: 1.5em;
     --font-size-small: 1em;
-}
 
-.ds-title
-{
     margin: var(--margin);
 }
 

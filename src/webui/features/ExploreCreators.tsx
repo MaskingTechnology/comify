@@ -1,37 +1,26 @@
 
-import { useEffect, useState } from 'react';
-import johnDoe from '../../domain/authentication/johnDoe';
-import SortOptions from '../../domain/relation/definitions/SortOptions';
-import exploreRelations from '../../domain/relation/explore';
-import type RelationView from '../../domain/relation/view/RelationView';
-import { Loading, OrderAndSearchRow, RelationPanelList } from '../components/module';
-import { Column } from '../designsystem/module';
-import awaitData from '../utils/awaitData';
+import type RelationView from '^/domain/relation/view/RelationView';
+
+import { LoadingContainer, OrderAndSearchRow, RelationPanelList } from '^/webui/components';
+import { Column } from '^/webui/designsystem';
+import { useEstablishRelation, useExploreCreators, useReorderList, useViewProfile } from '^/webui/hooks';
 
 export default function Feature()
 {
-    const [relations, setRelations] = useState<RelationView[] | undefined>(undefined);
+    const establishRelation = useEstablishRelation();
+    const reorderList = useReorderList();
+    const viewProfile = useViewProfile();
 
-    const getRelations = () => exploreRelations(johnDoe, SortOptions.POPULAR);
-
-    const handleOrderChange = (oldKey: string, newKey: string) =>
-    {
-        console.log(`Order changed from ${oldKey} to ${newKey}`);
-    };
-
-    const handleFollow = (relation: RelationView) =>
-    {
-        console.log(`Followed ${relation.creator.fullName}`);
-    };
-
-    useEffect(() => awaitData(getRelations, setRelations), []);
+    const [relations] = useExploreCreators();
 
     return <Column gap='small' alignX='stretch'>
-        <OrderAndSearchRow selected='popular' orderChangeHandler={handleOrderChange} />
-        {
-            relations !== undefined
-                ? <RelationPanelList relations={relations} followHandler={handleFollow} />
-                : <Loading />
-        }
+        <OrderAndSearchRow selected='popular' onOrderChange={reorderList} />
+        <LoadingContainer data={relations}>
+            <RelationPanelList
+                relations={relations as RelationView[]}
+                onFollowClick={establishRelation}
+                onCreatorClick={viewProfile}
+            />
+        </LoadingContainer>
     </Column>;
 }

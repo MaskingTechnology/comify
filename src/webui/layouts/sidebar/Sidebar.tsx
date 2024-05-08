@@ -1,9 +1,11 @@
 
 import React from 'react';
-import { Ruler } from '../../designsystem/module';
+
+import { Ruler } from '^/webui/designsystem';
+
 import './Sidebar.css';
 
-export type Props = {
+type Props = {
     sidebar: React.ReactNode;
     children: React.ReactNode;
 };

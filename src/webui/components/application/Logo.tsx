@@ -1,6 +1,6 @@
 
-import logoImage from '../../assets/images/logo.svg';
-import { Image } from '../../designsystem/module';
+import logoImage from '^/webui/assets/images/logo.svg';
+import { Image } from '^/webui/designsystem';
 
 export default function Component()
 {

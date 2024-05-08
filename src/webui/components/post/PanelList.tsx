@@ -1,17 +1,22 @@
 
-import type PostView from '../../../domain/post/view/PostView';
-import type RelationView from '../../../domain/relation/view/RelationView';
-import { Column } from '../../designsystem/module';
+import type PostView from '^/domain/post/view/PostView';
+import type RelationView from '^/domain/relation/view/RelationView';
+
+import { Column } from '^/webui/designsystem';
+
 import NoResults from '../common/NoResults';
 import LargePanel from './LargePanel';
 
-export type Props = {
-    posts: PostView[];
-    followHandler: (relation: RelationView) => void;
-    rateHandler: (post: PostView) => void;
+type Props = {
+    readonly posts: PostView[];
+    readonly onFollowClick: (relation: RelationView) => Promise<void>;
+    readonly onCreatorClick: (relation: RelationView) => void;
+    readonly onComicClick: (post: PostView) => void;
+    readonly onRatingClick: (post: PostView) => Promise<boolean>;
+    readonly onReactionClick: (post: PostView) => void;
 };
 
-export default function Component({ posts, followHandler, rateHandler }: Props)
+export default function Component({ posts, onFollowClick, onCreatorClick, onComicClick, onRatingClick, onReactionClick }: Props)
 {
     if (posts.length === 0)
     {
@@ -24,8 +29,11 @@ export default function Component({ posts, followHandler, rateHandler }: Props)
                 <LargePanel
                     key={post.id}
                     post={post}
-                    followHandler={() => followHandler(post.creator)}
-                    rateHandler={() => rateHandler(post)}
+                    onFollowClick={onFollowClick}
+                    onCreatorClick={onCreatorClick}
+                    onComicClick={onComicClick}
+                    onRatingClick={onRatingClick}
+                    onReactionClick={onReactionClick}
                 />
             )
         }

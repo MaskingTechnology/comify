@@ -4,9 +4,9 @@ import Group from '../elements/Group';
 import Button from './Button';
 
 type Handler = {
-    selectImage: () => void;
-    takePicture: () => void;
-    addSpeechBubble: () => void;
+    selectImage: () => Promise<void>;
+    takePicture: () => Promise<void>;
+    addSpeechBubble: () => Promise<void>;
 };
 
 export default class MainActions extends Group

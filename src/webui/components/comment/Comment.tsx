@@ -1,8 +1,8 @@
 
-import { Paragraph } from '../../designsystem/module';
+import { Paragraph } from '^/webui/designsystem';
 
-export type Props = {
-    text: string;
+type Props = {
+    readonly text: string;
 };
 
 export default function Component({ text }: Props)

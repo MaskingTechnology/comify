@@ -1,8 +1,9 @@
 
 import React from 'react';
-import { CenteredLayout } from '../layouts/module';
 
-export type Props = {
+import { CenteredLayout } from '^/webui/layouts';
+
+type Props = {
     children?: React.ReactNode;
 };
 

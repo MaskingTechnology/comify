@@ -1,8 +1,9 @@
 
 import React from 'react';
+
 import './Centered.css';
 
-export type Props = {
+type Props = {
     children?: React.ReactNode;
 };
 

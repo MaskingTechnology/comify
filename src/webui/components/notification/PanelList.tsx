@@ -1,16 +1,19 @@
 
-import type NotificationView from '../../../domain/notification/view/NotificationView';
-import type RelationView from '../../../domain/relation/view/RelationView';
-import { Column } from '../../designsystem/module';
+import type NotificationView from '^/domain/notification/view/NotificationView';
+import type RelationView from '^/domain/relation/view/RelationView';
+
+import { Column } from '^/webui/designsystem';
+
 import NoResults from "../common/NoResults";
 import Panel from './Panel';
 
-export type Props = {
-    notifications: NotificationView[];
-    followHandler: (relation: RelationView) => void;
+type Props = {
+    readonly notifications: NotificationView[];
+    readonly onFollowClick: (relation: RelationView) => Promise<void>;
+    readonly onCreatorClick: (relation: RelationView) => void;
 };
 
-export default function Component({ notifications, followHandler }: Props)
+export default function Component({ notifications, onFollowClick, onCreatorClick }: Props)
 {
     if (notifications.length === 0)
     {
@@ -23,7 +26,8 @@ export default function Component({ notifications, followHandler }: Props)
                 <Panel
                     key={notification.id}
                     notification={notification}
-                    followHandler={() => followHandler(notification.relation)}
+                    onFollowClick={onFollowClick}
+                    onCreatorClick={onCreatorClick}
                 />
             )
         }

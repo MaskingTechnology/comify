@@ -1,8 +1,15 @@
 
-import type PostData from './PostData';
+import database, { RecordQuery } from '^/integrations/database/module';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { RECORD_TYPE } from '../definitions/constants';
+import type PostData from './PostData';
+import mapRecord from './mapRecord';
+
 export default async function retrieveWithoutCreators(creatorIds: string[]): Promise<PostData[]>
 {
-    return [];
+    const query: RecordQuery = { creatorId: { NOT_IN: creatorIds } };
+
+    const records = await database.searchRecords(RECORD_TYPE, query);
+
+    return Promise.all(records.map(mapRecord));
 }

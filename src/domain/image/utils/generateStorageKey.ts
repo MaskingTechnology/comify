@@ -1,5 +1,5 @@
 
-import { generateHash } from '../../../integrations/utilities/crypto';
+import { generateHash } from '^/integrations/utilities/crypto';
 
 export default function generateStorageKey(type: string, data: Buffer): string
 {

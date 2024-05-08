@@ -3,8 +3,8 @@ import React from 'react';
 import './Form.css';
 
 export type Props = {
-    children: React.ReactNode;
-    submitHandler?: React.FormEventHandler<HTMLFormElement>;
+    readonly children: React.ReactNode;
+    readonly submitHandler?: React.FormEventHandler<HTMLFormElement>;
 };
 
 export default function Element({ children, submitHandler }: Props)

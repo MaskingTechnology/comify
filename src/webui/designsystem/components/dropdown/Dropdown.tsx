@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import './Dropdown.css';
 
 export type Props = {
-    options: Map<string, string>;
-    selected?: string; // Key of the selected option
-    changeHandler?: (oldKey: string, newKey: string) => void;
+    readonly options: Map<string, string>;
+    readonly selected?: string; // Key of the selected option
+    readonly onChange?: (oldKey: string, newKey: string) => void;
 };
 
-export default function Component({ options, selected, changeHandler }: Props)
+export default function Component({ options, selected, onChange }: Props)
 {
     const defaultKey = selected ?? [...options.keys()][0];
     const defaultText = options.get(defaultKey) ?? '';
@@ -34,9 +34,9 @@ export default function Component({ options, selected, changeHandler }: Props)
         setSelectedText(newText);
         setShowOptions(false);
 
-        if (changeHandler)
+        if (onChange)
         {
-            changeHandler(oldKey, newKey);
+            onChange(oldKey, newKey);
         }
     };
 

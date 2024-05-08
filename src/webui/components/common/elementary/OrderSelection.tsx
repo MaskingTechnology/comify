@@ -1,20 +1,20 @@
 
-import { Dropdown } from '../../../designsystem/module';
+import { Dropdown } from '^/webui/designsystem';
 
-export type Props = {
-    selected?: 'recent' | 'popular';
-    changeHandler?: (oldKey: string, newKey: string) => void;
+type Props = {
+    readonly selected?: 'recent' | 'popular';
+    readonly onChange?: (oldKey: string, newKey: string) => void;
 };
 
 const options = new Map<string, string>();
 options.set('recent', 'Most recent');
 options.set('popular', 'Most popular');
 
-export default function Component({ selected, changeHandler }: Props)
+export default function Component({ selected, onChange }: Props)
 {
     return <Dropdown
         options={options}
         selected={selected}
-        changeHandler={changeHandler}
+        onChange={onChange}
     />;
 }

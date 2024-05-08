@@ -1,20 +1,24 @@
 
-import { Column } from '../../../designsystem/module';
+import { ClickArea, Column } from '^/webui/designsystem';
+
 import CountersRow from './CountersRow';
 import NamesRow from './NamesRow';
 
-export type Props = {
-    fullName: string;
-    nickname: string;
-    postCount: number;
-    followerCount: number;
-    followingCount: number;
+type Props = {
+    readonly fullName: string;
+    readonly nickname: string;
+    readonly postCount: number;
+    readonly followerCount: number;
+    readonly followingCount: number;
+    readonly onNameClick: () => void;
 };
 
-export default function Component({ fullName, nickname, postCount, followerCount, followingCount }: Props)
+export default function Component({ fullName, nickname, postCount, followerCount, followingCount, onNameClick }: Props)
 {
     return <Column gap='small' alignY='justify' alignX='stretch'>
-        <NamesRow fullName={fullName} nickname={nickname} />
+        <ClickArea onClick={onNameClick}>
+            <NamesRow fullName={fullName} nickname={nickname} />
+        </ClickArea>
         <CountersRow postCount={postCount} followerCount={followerCount} followingCount={followingCount} />
     </Column>;
 }

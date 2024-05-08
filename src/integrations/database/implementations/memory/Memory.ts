@@ -1,8 +1,10 @@
 
 import { LogicalOperators, QueryOperators, SortDirections } from '../../definitions/constants.js';
-import { NotConnected, RecordNotFound, RecordNotUpdated } from '../../definitions/errors.js';
 import { Database } from '../../definitions/interfaces.js';
 import { QueryExpression, QueryMultiExpressionStatement, QueryOperator, QuerySingleExpressionStatement, QueryStatement, RecordData, RecordField, RecordQuery, RecordSort, RecordValue } from '../../definitions/types.js';
+import NotConnected from '../../errors/NotConnected.js';
+import RecordNotFound from '../../errors/RecordNotFound.js';
+import RecordNotUpdated from '../../errors/RecordNotUpdated.js';
 
 type FilterFunction = (record: RecordData) => boolean;
 
@@ -24,33 +26,33 @@ const LOGICAL_OPERATORS =
 
 export default class Memory implements Database
 {
-    #memory?: Map<string, RecordData[]>;
+    #memory: Map<string, RecordData[]> = new Map();
+    #connected = false;
     recordId = 0;
 
-    get connected()
-    {
-        return this.#memory !== undefined;
-    }
+    get connected() { return this.#connected; }
 
     async connect(): Promise<void>
     {
-        this.#memory = new Map();
+        this.#connected = true;
     }
 
     async disconnect(): Promise<void>
     {
-        this.#memory = undefined;
+        this.#connected = false;
     }
 
     async createRecord(type: string, data: RecordData): Promise<string>
     {
         const collection = this.#getCollection(type);
-        const id = this.#createId();
-        const record = { 'id': id, ...data };
+
+        const record = data.id === undefined
+            ? { id: this.#createId(), ...data }
+            : data;
 
         collection.push(record);
 
-        return id;
+        return record.id as string;
     }
 
     async readRecord(type: string, id: string, fields?: string[]): Promise<RecordData>
@@ -114,6 +116,11 @@ export default class Memory implements Database
         return limitedResult.map(records => this.#buildRecordData(records, fields));
     }
 
+    async clear(): Promise<void>
+    {
+        this.#memory.clear();
+    }
+
     #limitNumberOfRecords(result: RecordData[], offset?: number, limit?: number): RecordData[]
     {
         if (offset === undefined && limit === undefined)
@@ -121,7 +128,7 @@ export default class Memory implements Database
             return result;
         }
 
-        const first = offset === undefined ? 0 : offset;
+        const first = offset ?? 0;
         const last = limit === undefined ? undefined : first + limit;
 
         return result.slice(first, last);
@@ -235,8 +242,7 @@ export default class Memory implements Database
 
     #createId(): string
     {
-
-        return (this.recordId++).toString().padStart(8, '0');
+        return (++this.recordId).toString().padStart(8, '0');
     }
 
     #getCollection(type: string): RecordData[]

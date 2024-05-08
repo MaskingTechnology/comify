@@ -5,10 +5,7 @@
     --border-width-large: 0.3rem;
 
     --color: var(--color-border);
-}
 
-.ds-ruler
-{
     background-color: var(--color);
 }
 

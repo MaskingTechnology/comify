@@ -3,14 +3,14 @@ import React from 'react';
 import './TextBox.css';
 
 export type Props = {
-    name: string;
-    placeholder?: string;
-    value?: string;
-    size?: 'large' | 'medium' | 'small';
-    changeHandler?: React.ChangeEventHandler<HTMLInputElement>;
+    readonly name: string;
+    readonly placeholder?: string;
+    readonly value?: string;
+    readonly size?: 'large' | 'medium' | 'small';
+    readonly onChange?: React.ChangeEventHandler<HTMLInputElement>;
 };
 
-export default function Element({ name, placeholder, value, size, changeHandler }: Props)
+export default function Element({ name, placeholder, value, size, onChange }: Props)
 {
     const className = 'ds-textbox'
         + ' ds-textbox-size-' + (size ?? 'medium');
@@ -21,6 +21,6 @@ export default function Element({ name, placeholder, value, size, changeHandler 
         name={name}
         placeholder={placeholder}
         defaultValue={value}
-        onChange={changeHandler}
+        onChange={onChange}
     />;
 }

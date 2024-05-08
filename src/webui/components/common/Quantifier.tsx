@@ -1,10 +1,11 @@
 
-import { Text } from '../../designsystem/module';
+import { Text } from '^/webui/designsystem';
+
 import CompactNumber from './CompactNumber';
 
-export type Props = {
-    value: number;
-    text: string;
+type Props = {
+    readonly value: number;
+    readonly text: string;
 };
 
 export default function Component({ value, text }: Props)

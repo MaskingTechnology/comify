@@ -1,12 +1,12 @@
 
-import type ComicView from '../../../domain/comic/view/ComicView';
-import { Image } from '../../designsystem/module';
+import type ComicView from '^/domain/comic/view/ComicView';
 
-export type Props = {
-    comic: ComicView;
+import { Image } from '^/webui/designsystem';
+
+type Props = {
+    readonly comic: ComicView;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function Component({ comic }: Props)
 {
     return <Image source={comic.image.dataUrl} width='100%' />;

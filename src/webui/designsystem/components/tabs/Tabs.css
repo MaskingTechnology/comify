@@ -12,10 +12,7 @@
     --padding-nav-item: 0.5em 1em;
 
     --margin-separator: 0.2em 0 1em 0;
-}
 
-.ds-tabs
-{
     display: flex;
     flex-direction: column;
 

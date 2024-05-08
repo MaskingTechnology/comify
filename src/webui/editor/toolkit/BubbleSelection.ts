@@ -6,7 +6,7 @@ import Button from './Button';
 
 type Handler = {
     editBubble: (bubble: Bubble) => void;
-    deleteBubble: (bubble: Bubble) => void;
+    deleteBubble: (bubble: Bubble) => Promise<void>;
 };
 
 const BUTTON_SIZE = 40;
@@ -87,12 +87,12 @@ export default class BubbleSelection extends Group
         this.#updateButtonPositions();
     }
 
-    #editBubble(): void
+    async #editBubble(): Promise<void>
     {
         this.#handler.editBubble(this.bubble);
     }
 
-    #deleteBubble(): void
+    async #deleteBubble(): Promise<void>
     {
         this.#handler.deleteBubble(this.bubble);
     }

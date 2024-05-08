@@ -1,5 +1,6 @@
 
-import { Ruler, Tab, Tabs } from '../designsystem/module';
+import { Ruler, Tab, Tabs } from '^/webui/designsystem';
+
 import ExploreComics from './ExploreComics';
 import ExploreCreators from './ExploreCreators';
 

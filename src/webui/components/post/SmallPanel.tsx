@@ -1,21 +1,34 @@
 
-import type PostView from '../../../domain/post/view/PostView';
-import { Column, Panel, Row } from '../../designsystem/module';
+import type PostView from '^/domain/post/view/PostView';
+
+import { ClickArea, Column, Panel, Row } from '^/webui/designsystem';
+
 import Comic from '../comic/Image';
 import TimeElapsed from '../common/TimeElapsed';
 import EngagementsRow from './elementary/EngagementRow';
 
-export type Props = {
-    post: PostView;
+type Props = {
+    readonly post: PostView;
+    readonly onComicClick: () => void;
+    readonly onRatingClick: () => Promise<boolean>;
+    readonly onReactionClick: () => void;
 };
 
-export default function Component({ post }: Props)
+export default function Component({ post, onComicClick, onRatingClick, onReactionClick }: Props)
 {
     return <Panel padding='small'>
         <Column gap='small' alignX='stretch'>
-            <Comic comic={post.comic} />
+            <ClickArea onClick={onComicClick}>
+                <Comic comic={post.comic} />
+            </ClickArea>
             <Row alignX='justify'>
-                <EngagementsRow isRated={post.hasRated} ratingCount={post.ratingCount} reactionCount={post.reactionCount} />
+                <EngagementsRow
+                    isRated={post.hasRated}
+                    ratingCount={post.ratingCount}
+                    reactionCount={post.reactionCount}
+                    onRatingClick={onRatingClick}
+                    onReactionClick={onReactionClick}
+                />
                 <TimeElapsed date={post.createdAt} />
             </Row>
         </Column>

@@ -1,30 +1,30 @@
 
-import { useEffect, useState } from 'react';
-import johnDoe from '../../domain/authentication/johnDoe';
-import getCreatorPosts from '../../domain/post/getByCreator';
-import type PostView from '../../domain/post/view/PostView';
-import { Loading, PostPanelGrid } from '../components/module';
-import { useCreatorContext } from '../contexts/CreatorContext';
-import { Column } from '../designsystem/module';
-import awaitData from '../utils/awaitData';
+import type CreatorView from '^/domain/creator/view/CreatorView';
+import type PostView from '^/domain/post/view/PostView';
 
-export default function Feature()
+import { LoadingContainer, PostPanelGrid } from '^/webui/components';
+import { Column } from '^/webui/designsystem';
+import { useCreatorPosts, useTogglePostRating, useViewPostDetails } from '^/webui/hooks';
+
+type Props = {
+    readonly creator: CreatorView;
+};
+
+export default function Feature({ creator }: Props)
 {
-    const { creator } = useCreatorContext();
-    const [posts, setPosts] = useState<PostView[] | undefined>(undefined);
+    const viewPostDetails = useViewPostDetails();
+    const togglePostRating = useTogglePostRating();
 
-    if (creator === undefined) return null;
-
-    const getPosts = () => getCreatorPosts(johnDoe, creator.id);
-
-    useEffect(() => awaitData(getPosts, setPosts), [creator]);
-
-    if (posts === undefined)
-    {
-        return <Loading />;
-    }
+    const [posts] = useCreatorPosts(creator);
 
     return <Column gap='small' alignX='stretch'>
-        <PostPanelGrid posts={posts} />
+        <LoadingContainer data={posts}>
+            <PostPanelGrid
+                posts={posts as PostView[]}
+                onComicClick={viewPostDetails}
+                onRatingClick={togglePostRating}
+                onReactionClick={viewPostDetails}
+            />
+        </LoadingContainer>
     </Column>;
 }

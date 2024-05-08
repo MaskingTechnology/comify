@@ -4,23 +4,22 @@ import type CreatorView from '../../creator/view/CreatorView';
 export default class RelationView
 {
     #id: string | undefined;
-    #follower: CreatorView | undefined;
-    #following: CreatorView | undefined;
+    #following: CreatorView;
+    #self: boolean;
 
-    constructor(id: string | undefined, follower: CreatorView | undefined, following: CreatorView | undefined)
+    constructor(id: string | undefined, following: CreatorView, self: boolean)
     {
         this.#id = id;
-        this.#follower = follower;
         this.#following = following;
+        this.#self = self;
     }
 
     get id() { return this.#id; }
-
-    get follower() { return this.#follower; }
 
     get following() { return this.#following; }
 
     get exists() { return this.#id !== undefined; }
 
-    get creator() { return this.#following ?? this.#follower as CreatorView; }
+    get self() { return this.#self; }
+
 }

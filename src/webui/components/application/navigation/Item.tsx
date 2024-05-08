@@ -1,13 +1,15 @@
 
 import { NavLink, useLocation } from 'react-router-dom';
-import { Image, Row, Text } from '../../../designsystem/module';
+
+import { Image, Row, Text } from '^/webui/designsystem';
+
 import './Item.css';
 
-export type Props = {
-    title: string;
-    to: string;
-    activeIcon: string;
-    inactiveIcon: string;
+type Props = {
+    readonly title: string;
+    readonly to: string;
+    readonly activeIcon: string;
+    readonly inactiveIcon: string;
 };
 
 export default function Component({ title, to, activeIcon, inactiveIcon }: Props)

@@ -1,9 +1,14 @@
 
 import { Collection, Db, Document, Filter, MongoClient, ObjectId, Sort } from 'mongodb';
 import { ID, LogicalOperators, QueryOperators, SortDirections } from '../../definitions/constants.js';
-import { DatabaseError, NotConnected, RecordNotCreated, RecordNotDeleted, RecordNotFound, RecordNotUpdated } from '../../definitions/errors.js';
 import { Database } from '../../definitions/interfaces.js';
 import { QueryMultiExpressionStatement, QueryOperator, QuerySingleExpressionStatement, RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType, RecordValue } from '../../definitions/types.js';
+import DatabaseError from '../../errors/DatabaseError.js';
+import NotConnected from '../../errors/NotConnected.js';
+import RecordNotCreated from '../../errors/RecordNotCreated.js';
+import RecordNotDeleted from '../../errors/RecordNotDeleted.js';
+import RecordNotFound from '../../errors/RecordNotFound.js';
+import RecordNotUpdated from '../../errors/RecordNotUpdated.js';
 
 const UNKNOWN_ERROR = 'Unknown error';
 
@@ -98,7 +103,7 @@ export default class MongoDB implements Database
     async createRecord(type: RecordType, data: RecordData): Promise<RecordId>
     {
         const collection = await this.#getCollection(type);
-        const mongoId = this.#createId();
+        const mongoId = this.#createId(data.id as string);
 
         try
         {
@@ -169,6 +174,11 @@ export default class MongoDB implements Database
         const result = await cursor.toArray();
 
         return result.map(data => this.#buildRecordData(data, fields));
+    }
+
+    async clear(): Promise<void>
+    {
+        return; // Deliberately not implemented
     }
 
     #createIds(inputIds: string[]): ObjectId[]
@@ -288,7 +298,7 @@ export default class MongoDB implements Database
         if (fields === undefined)
         {
             const recordData = { ...data };
-            fields = Object.keys(recordData) as RecordField[];
+            fields = Object.keys(recordData);
 
             const idIndex = fields.indexOf(MONGO_ID);
             fields[idIndex] = ID;

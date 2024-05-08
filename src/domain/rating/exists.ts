@@ -1,8 +1,9 @@
 
-import type Requester from '../authentication/Requester';
+import find from './data/find';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default async function exists(creatorId: string, postId: string | undefined, reactionId: string | undefined, requester?: Requester): Promise<boolean>
+export default async function exists(creatorId: string, postId: string | undefined, reactionId: string | undefined): Promise<boolean>
 {
-    return false;
+    const data = await find(creatorId, postId, reactionId);
+
+    return data !== undefined;
 }

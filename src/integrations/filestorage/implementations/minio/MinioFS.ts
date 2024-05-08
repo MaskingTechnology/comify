@@ -1,7 +1,8 @@
 
 import { Client, ClientOptions } from 'minio';
-import { FileNotFound, NotConnected } from '../../definitions/errors.js';
 import { FileStorage } from '../../definitions/interfaces.js';
+import FileNotFound from '../../errors/FileNotFound.js';
+import NotConnected from '../../errors/NotConnected.js';
 
 const BUCKET_NAME = 'comify';
 
@@ -106,6 +107,11 @@ export default class MinioFS implements FileStorage
         {
             throw this.#handleError(error, path);
         }
+    }
+
+    async clear(): Promise<void>
+    {
+        return;  // Deliberately not implemented
     }
 
     #getClient(): Client

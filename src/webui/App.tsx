@@ -1,11 +1,11 @@
 
 import { BrowserRouter } from 'react-router-dom';
+
 import Routes from './Routes';
-import { ErrorBoundary } from './components/module';
-import { useAppContext } from './contexts/AppContext';
+import { ErrorBoundary } from './components';
+import { useAppContext } from './contexts';
 import ErrorHandler from './features/ErrorHandler';
-import Application from './pages/Application';
-import Guest from './pages/Guest';
+import { Application, Guest } from './pages';
 
 export default function App()
 {

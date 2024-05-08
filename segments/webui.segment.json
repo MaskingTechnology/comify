@@ -10,10 +10,19 @@
     
     "./domain/post/create": { "default": {  "access": "public" } },
     "./domain/post/explore": { "default": {  "access": "public" } },
+    "./domain/post/get": { "default": {  "access": "public" } },
     "./domain/post/getByCreator": { "default": {  "access": "public" } },
     "./domain/post/getTimeline": { "default": {  "access": "public" } },
+    "./domain/post/toggleRating": { "default": {  "access": "public" } },
+
+    "./domain/reaction/createComic": { "default": {  "access": "public" } },
+    "./domain/reaction/createComment": { "default": {  "access": "public" } },
+    "./domain/reaction/toggleRating": { "default": {  "access": "public" } },
+    "./domain/reaction/getByPost": { "default": {  "access": "public" } },
+    "./domain/reaction/remove": { "default": {  "access": "public" } },
 
     "./domain/relation/explore": { "default": {  "access": "public" } },
+    "./domain/relation/establish": { "default": { "access": "public" }},
     "./domain/relation/get": { "default": {  "access": "public" } },
     "./domain/relation/getFollowers": { "default": {  "access": "public" } },
     "./domain/relation/getFollowing": { "default": {  "access": "public" } }

@@ -1,18 +1,28 @@
 
 import React from 'react';
-import { Row } from '../../../designsystem/module';
+
+import { Row } from '^/webui/designsystem';
+
+import EditButton from '../../common/EditButton';
 import FollowButton from './FollowButton';
 
-export type Props = {
-    isFollowing: boolean;
-    followHandler: () => void;
-    children: React.ReactNode;
+type Props = {
+    readonly isFollowing: boolean;
+    readonly isSelf: boolean;
+    readonly onFollowClick: () => Promise<void>;
+    readonly onEditClick?: () => void;
+    readonly children: React.ReactNode;
 };
 
-export default function Component({ isFollowing, followHandler, children }: Props)
+export default function Component({ isFollowing, isSelf, onFollowClick, onEditClick, children }: Props)
 {
     return <Row alignX='justify' alignY='top'>
         {children}
-        <FollowButton isFollowing={isFollowing} followHandler={followHandler} />
+        {isSelf
+            ? onEditClick !== undefined
+                ? <EditButton onClick={onEditClick} />
+                : <></>
+            : <FollowButton isFollowing={isFollowing} onClick={onFollowClick} />
+        }
     </Row>;
 }

@@ -1,9 +1,10 @@
 
 import { ZodError, ZodIssue, ZodType, z } from 'zod';
-import { FieldTypes, MAX_EMAIL_LENGTH } from '../../definitions/constants.js';
-import { InvalidData, UnknownValidator } from '../../definitions/errors.js';
+import { FieldTypes, MAX_EMAIL_LENGTH, MAX_URL_LENGTH } from '../../definitions/constants.js';
 import { Validator } from '../../definitions/interfaces.js';
 import { Message, ValidationSchema, Validations } from '../../definitions/types.js';
+import InvalidData from '../../errors/InvalidData.js';
+import UnknownValidator from '../../errors/UnknownValidator.js';
 
 type ValidatorFunction = (value: Validations[keyof Validations]) => z.ZodType<unknown, z.ZodTypeDef> | z.ZodArray<z.ZodType<unknown, z.ZodTypeDef>>;
 
@@ -23,6 +24,7 @@ export default class Zod implements Validator
         this.#validations.set(FieldTypes.UUID, (value: Validations['UUID']) => this.#validateUuid(value));
         this.#validations.set(FieldTypes.EMAIL, (value: Validations['EMAIL']) => this.#validateEmail(value));
         this.#validations.set(FieldTypes.ARRAY, (value: Validations['ARRAY']) => this.#validateArray(value));
+        this.#validations.set(FieldTypes.URL, (value: Validations['URL']) => this.#validateUrl(value));
     }
 
     validate(data: unknown, schema: ValidationSchema): void
@@ -137,6 +139,20 @@ export default class Zod implements Validator
 
         if (value.minLength !== undefined) validation = validation.min(value.minLength);
         if (value.maxLength !== undefined) validation = validation.max(value.maxLength);
+
+        return this.#checkRequired(value, validation);
+    }
+
+    #validateUrl(value: Validations['URL'])
+    {
+        let validation = z.string().url().max(MAX_URL_LENGTH);
+
+        if (value.protocols !== undefined)
+        {
+            const expression = value.protocols.join('|');
+
+            validation = validation.regex(new RegExp(`^(${expression}):.*`));
+        }
 
         return this.#checkRequired(value, validation);
     }

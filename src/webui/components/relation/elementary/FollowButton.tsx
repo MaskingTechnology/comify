@@ -1,16 +1,42 @@
 
-import { Button } from '../../../designsystem/module';
+import { useState } from 'react';
 
-export type Props = {
-    isFollowing: boolean;
-    followHandler: () => void;
+import { Button } from '^/webui/designsystem';
+
+type Props = {
+    readonly isFollowing: boolean;
+    readonly onClick: () => Promise<void>;
 };
 
-export default function Component({ isFollowing, followHandler }: Props)
+type States = 'unestablished' | 'establishing' | 'established';
+
+export default function Component({ isFollowing, onClick }: Props)
 {
+    const [status, setStatus] = useState<States>(isFollowing ? 'established' : 'unestablished');
+
+    const handleClick = async () =>  
+    {
+        setStatus('establishing');
+
+        await onClick();
+
+        setStatus('established');
+    };
+
+    const state = status !== 'unestablished' ? 'disabled' : 'secondary';
+
+    let text: string;
+
+    switch (status)
+    {
+        case 'establishing': text = 'Establishing'; break;
+        case 'established': text = 'Following'; break;
+        default: text = 'Follow';
+    }
+
     return <Button
-        type={isFollowing ? 'disabled' : 'secondary'}
-        text={isFollowing ? 'Following' : 'Follow'}
-        clickHandler={followHandler}
+        type={state}
+        text={text}
+        onClick={handleClick}
     />;
 }

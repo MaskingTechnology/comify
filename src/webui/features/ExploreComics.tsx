@@ -1,42 +1,31 @@
 
-import { useEffect, useState } from 'react';
-import johnDoe from '../../domain/authentication/johnDoe';
-import explorePosts from '../../domain/post/explore';
-import type PostView from '../../domain/post/view/PostView';
-import type RelationView from '../../domain/relation/view/RelationView';
-import { Loading, OrderRow, PostPanelList } from '../components/module';
-import { Column } from '../designsystem/module';
-import awaitData from '../utils/awaitData';
+import type PostView from '^/domain/post/view/PostView';
+
+import { LoadingContainer, OrderRow, PostPanelList } from '^/webui/components';
+import { Column } from '^/webui/designsystem';
+import { useEstablishRelation, useExplorePosts, useReorderList, useTogglePostRating, useViewPostDetails, useViewProfile } from '^/webui/hooks';
 
 export default function Feature()
 {
-    const [posts, setPosts] = useState<PostView[] | undefined>(undefined);
+    const togglePostRating = useTogglePostRating();
+    const establishRelation = useEstablishRelation();
+    const viewProfile = useViewProfile();
+    const viewPostDetails = useViewPostDetails();
+    const reorderList = useReorderList();
 
-    const getPosts = () => explorePosts(johnDoe);
-
-    const handleOrderChange = (oldKey: string, newKey: string) =>
-    {
-        console.log(`Order changed from ${oldKey} to ${newKey}`);
-    };
-
-    const handleFollow = (relation: RelationView) =>
-    {
-        console.log(`Followed ${relation.creator.fullName}`);
-    };
-
-    const handleRate = (post: PostView) =>
-    {
-        console.log(`Rated ${post.id}`);
-    };
-
-    useEffect(() => awaitData(getPosts, setPosts), []);
+    const [posts] = useExplorePosts();
 
     return <Column gap='small' alignX='stretch'>
-        <OrderRow selected='popular' orderChangeHandler={handleOrderChange} />
-        {
-            posts !== undefined
-                ? <PostPanelList posts={posts} followHandler={handleFollow} rateHandler={handleRate} />
-                : <Loading />
-        }
+        <OrderRow selected='popular' onOrderChange={reorderList} />
+        <LoadingContainer data={posts}>
+            <PostPanelList
+                posts={posts as PostView[]}
+                onFollowClick={establishRelation}
+                onRatingClick={togglePostRating}
+                onReactionClick={viewPostDetails}
+                onCreatorClick={viewProfile}
+                onComicClick={viewPostDetails}
+            />
+        </LoadingContainer>
     </Column>;
 }

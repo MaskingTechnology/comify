@@ -1,29 +1,23 @@
 
-import { FileNotFound, NotConnected } from '../../definitions/errors.js';
 import { FileStorage } from '../../definitions/interfaces.js';
+import FileNotFound from '../../errors/FileNotFound.js';
+import NotConnected from '../../errors/NotConnected.js';
 
 export default class Memory implements FileStorage
 {
-    #files?: Map<string, Buffer>;
+    #files: Map<string, Buffer> = new Map();
+    #connected = false;
 
-    get connected()
-    {
-        return this.#files !== undefined;
-    }
+    get connected() { return this.#connected; }
 
     async connect(): Promise<void>
     {
-        this.#files = new Map();
+        this.#connected = true;
     }
 
     async disconnect(): Promise<void>
     {
-        if (this.#files === undefined)
-        {
-            throw new NotConnected();
-        }
-
-        this.#files = undefined;
+        this.#connected = false;
     }
 
     async hasFile(path: string): Promise<boolean>
@@ -74,5 +68,10 @@ export default class Memory implements FileStorage
         }
 
         return this.#files;
+    }
+
+    async clear(): Promise<void>
+    {
+        this.#files.clear();
     }
 }
