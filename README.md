@@ -1,45 +1,53 @@
 # Comify
 
-Hi there, and welcome to Comify. This project is a web application that allows you to convert images into comics. It's set up as a social media platform, so you can create content, follow creators and engage with content of others.
+Hi there, and welcome to Comify. 👋
 
-The project is a demo of how to use [Jitar](https://jitar.dev) to build a highly scalable web application. It's also a project to show the vision of [Masking Technology](https://masking.tech) on how to build future-proof (web) applications. The project is open-source so you can see and learn about the techniques we've used to build a future-proof application. It can also be used as a reference for building your own web application.
+<img width="1102" alt="explainer" src="https://github.com/MaskingTechnology/comify/assets/108156553/25d88eca-0221-41f6-bd6c-a8b93bda9ff4">
 
-# Future-proofing
+Comify is an open source social media platform that leverages comics for communication. The idea is simple: take or upload a picture, add speech bubbles and share with others. These others can be related or unrelated users, depending on the view you're looking at. Comics can be liked, and users can react with a comment or another comic.
 
-Future-proofing is the practice of designing and developing software in a way that it can be changed without making extensive modifications and regression testing. This is done by using our 5 rules of thumb:
+## Project goals
 
-1. Keep it Small
-1. Keep it Simple
-1. Keep it Elegant
-1. Keep it Safe
-1. Keep it Updated
+Its intent is not to disrupt the social-media space, but to learn and improve building future-proofed applications that can grow. Besides that, it's also a demo project our distributed runtime [Jitar](https://jitar.dev).
 
+## Current state
 
-# How to run
+We're working hard to get the MVP done. To document the project we started writing articles about every step we take. You can read them and follow us on our [LinkedIn page](https://www.linkedin.com/company/maskingtechnology/).
 
-To run the project, you need to have [Docker](https://www.docker.com/) installed. The runtime configuration of the database, keycloak and minio is done using an environment file. You need to copy the `example.env` file to a `development.env` file before docker can be started. Then, you can run the following command to start the external services:
+## How to run
+
+The project required [Node.js](https://nodejs.org/) version 20+ to run the application and [Docker](https://www.docker.com/) for the additional services.
+
+You need to set up the configuration first by copying the `example.env` file to a `development.env` file. Copying the file is enough for the first run. After that, you can run the following command to start Docker:
 
 ```bash
 npm run docker-compose up
 ```
 
-This will start a keycloack instance for account management, a mongodb instance for data storage and a miniofs instance for storing the comic images. Then, to start the application, you can run the following commands:
+This will start a [Keycloack](https://www.keycloak.org/) instance for account management, a [MongoDB](https://www.mongodb.com/) instance for data storage and a [MinIO](https://min.io/) instance for storing the comic images.
+
+Next you can start the application with the following commands:
 
 ```bash
 npm install
 npm run build
 npm run standalone
+```
+
+This will start the Jitar runtime at port 3000. To start the application you need to run the following command in a new terminal:
+
+```bash
 npm run dev
 ```
 
-This will start the application as a monolith on port 3000 and a Vite dev server on port 5173. You can then navigate to http://localhost:5173 to see the application.
+Now a [Vite](https://vitest.dev/) dev server is running on port 5173. You can then navigate to http://localhost:5173 to see the application.
 
-# How to use
+## How to use
 
-When you click on the `Get in` button, you will be redirected to the Keycloak login page. The social login is not configured in the example.env file. If you have your own social login, you can add the details to the development.env file and restart docker. Then you can login with your social account. Otherwise you'll have to create a local user in Keycloak by using the user creation form.
+Click on the `Get in` button to be redirected to the Keycloak login page. Here you can create your own account and log in directly. If you want to use any of the social options, you need to configure them in `development.env` file. Don't forget to restart Docker afterwards.
 
-# Project documentation
-The documentation of the project is also part of this repository. In the future we will add a `docs` folder with all the documentation. For now, the documentation is not yet available.
+Once you're in it should be pretty straightforward. You should be able to comic! If not, please let us know by starting a discussion or creating an issue.
 
-# Contributing
+## Contributing
+
 This project is not open for code contributions. However, if you have any questions or suggestions, feel free to contact us at [comify\@masking.tech](mailto:comify@masking.tech?subject=Comify%20question), or post a message in the discussion section of this repository.
