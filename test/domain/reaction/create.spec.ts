@@ -80,7 +80,7 @@ describe('domain/reaction/create', () =>
     {
         // This should fail at the last action when incrementing post's reaction count
         const promise = createCommentReaction(REQUESTERS.OWNER, VALUES.IDS.POST_NOT_EXISTING, VALUES.MESSAGES.COMMENT);
-        await expect(promise).rejects.toThrow('Record not found');
+        await expect(promise).rejects.toThrow('Post not found');
 
         const reactions = await database.searchRecords(REACTION_RECORD_TYPE, {});
         expect(reactions).toHaveLength(5);
@@ -96,7 +96,7 @@ describe('domain/reaction/create', () =>
     {
         // This should fail at the last action when incrementing post's reaction count
         const promise = createComicReaction(REQUESTERS.OWNER, VALUES.IDS.POST_NOT_EXISTING, VALUES.DATA_URLS.COMIC);
-        await expect(promise).rejects.toThrow('Record not found');
+        await expect(promise).rejects.toThrow('Post not found');
 
         const reactions = await database.searchRecords(REACTION_RECORD_TYPE, {});
         expect(reactions).toHaveLength(5);

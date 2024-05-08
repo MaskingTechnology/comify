@@ -23,7 +23,7 @@ export const RECORDS: Record<string, Array<RecordData>> =
     ],
 
     POSTS: [
-        { id: VALUES.IDS.POST_EXISTING, creatorId: REQUESTERS.OWNER.id, comicId: VALUES.IDS.COMIC, createdAt: new Date(), ratingCount: 0, reactionCount: 0 }
+        { id: VALUES.IDS.POST_EXISTING, creatorId: REQUESTERS.OWNER.id, comicId: VALUES.IDS.COMIC, createdAt: new Date(), ratingCount: 0, reactionCount: 0, deleted: false }
     ],
 
     REACTIONS: [

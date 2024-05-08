@@ -11,8 +11,9 @@ export const RECORDS: Record<string, Array<RecordData>> =
     ],
 
     POSTS: [
-        { id: VALUES.IDS.POST_RATED, creatorId: johnDoe.id, comicId: VALUES.IDS.COMIC, createdAt: new Date(), ratingCount: 10, reactionCount: 0 },
-        { id: VALUES.IDS.POST_UNRATED, creatorId: johnDoe.id, comicId: VALUES.IDS.COMIC, createdAt: new Date(), ratingCount: 10, reactionCount: 0 }
+        { id: VALUES.IDS.POST_RATED, creatorId: johnDoe.id, comicId: VALUES.IDS.COMIC, createdAt: new Date(), ratingCount: 10, reactionCount: 0, deleted: false },
+        { id: VALUES.IDS.POST_UNRATED, creatorId: johnDoe.id, comicId: VALUES.IDS.COMIC, createdAt: new Date(), ratingCount: 10, reactionCount: 0, deleted: false },
+        { id: VALUES.IDS.POST_DELETED, creatorId: johnDoe.id, comicId: VALUES.IDS.COMIC, createdAt: new Date(), ratingCount: 10, reactionCount: 0, deleted: true }
     ],
 
     RATINGS: [
