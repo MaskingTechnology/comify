@@ -8,7 +8,7 @@ beforeEach(() =>
     HTTP_CLIENTS.withCache();
 });
 
-describe('Client', () =>
+describe('integrations/http/Client', () =>
 {
     describe('.get', () =>
     {
