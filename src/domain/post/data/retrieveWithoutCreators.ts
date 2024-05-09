@@ -7,7 +7,7 @@ import mapRecord from './mapRecord';
 
 export default async function retrieveWithoutCreators(creatorIds: string[]): Promise<PostData[]>
 {
-    const query: RecordQuery = { creatorId: { NOT_IN: creatorIds } };
+    const query: RecordQuery = { creatorId: { NOT_IN: creatorIds }, deleted: { 'EQUALS': false } };
 
     const records = await database.searchRecords(RECORD_TYPE, query);
 

@@ -34,4 +34,19 @@ async function withPostsAndRatings(): Promise<void>
     });
 }
 
-export const DATABASES = { withCreators, withPostsAndRatings };
+async function withPostsAndCreators(): Promise<void>
+{
+    database.clear();
+
+    RECORDS.CREATORS.forEach(async (creator) =>
+    {
+        await database.createRecord(CREATOR_RECORD_TYPE, { ...creator });
+    });
+
+    RECORDS.POSTS.forEach(async (post) =>
+    {
+        await database.createRecord(POST_RECORD_TYPE, { ...post });
+    });
+}
+
+export const DATABASES = { withCreators, withPostsAndRatings, withPostsAndCreators };

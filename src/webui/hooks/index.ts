@@ -6,6 +6,7 @@ export * from './useCreator';
 export * from './useCreatorFollowers';
 export * from './useCreatorFollowing';
 export * from './useCreatorPosts';
+export * from './useDeletePost';
 export * from './useDeleteReaction';
 export * from './useEditProfile';
 export * from './useEstablishRelation';

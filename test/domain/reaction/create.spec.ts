@@ -5,6 +5,7 @@ import { RECORD_TYPE as COMIC_RECORD_TYPE } from '^/domain/comic/definitions/con
 import { RECORD_TYPE as COMMENT_RECORD_TYPE } from '^/domain/comment/definitions/constants';
 import { RECORD_TYPE as IMAGE_RECORD_TYPE } from '^/domain/image/definitions/constants';
 import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions/constants';
+import PostNotFound from '^/domain/post/errors/PostNotFound';
 import createComicReaction from '^/domain/reaction/createComic';
 import createCommentReaction from '^/domain/reaction/createComment';
 import { RECORD_TYPE as REACTION_RECORD_TYPE } from '^/domain/reaction/definitions/constants';
@@ -80,7 +81,7 @@ describe('domain/reaction/create', () =>
     {
         // This should fail at the last action when incrementing post's reaction count
         const promise = createCommentReaction(REQUESTERS.OWNER, VALUES.IDS.POST_NOT_EXISTING, VALUES.MESSAGES.COMMENT);
-        await expect(promise).rejects.toThrow('Record not found');
+        await expect(promise).rejects.toThrow(PostNotFound);
 
         const reactions = await database.searchRecords(REACTION_RECORD_TYPE, {});
         expect(reactions).toHaveLength(5);
@@ -96,7 +97,7 @@ describe('domain/reaction/create', () =>
     {
         // This should fail at the last action when incrementing post's reaction count
         const promise = createComicReaction(REQUESTERS.OWNER, VALUES.IDS.POST_NOT_EXISTING, VALUES.DATA_URLS.COMIC);
-        await expect(promise).rejects.toThrow('Record not found');
+        await expect(promise).rejects.toThrow(PostNotFound);
 
         const reactions = await database.searchRecords(REACTION_RECORD_TYPE, {});
         expect(reactions).toHaveLength(5);
