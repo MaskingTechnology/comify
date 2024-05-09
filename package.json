@@ -39,22 +39,26 @@
   },
   "devDependencies": {
     "@jitar/plugin-vite": "^0.7.4",
+    "@testing-library/jest-dom": "^6.4.5",
+    "@testing-library/react": "^15.0.6",
+    "@testing-library/user-event": "^14.5.2",
     "@types/node": "20.12.5",
     "@types/react": "^18.2.73",
     "@types/react-dom": "^18.2.23",
     "@types/web-push": "^3.6.3",
     "@typescript-eslint/eslint-plugin": "^7.5.0",
     "@vitejs/plugin-react": "^4.2.1",
-    "@vitest/coverage-v8": "^1.4.0",
+    "@vitest/coverage-v8": "^1.6.0",
     "auto-changelog": "^2.4.0",
     "cpx2": "^7.0.1",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-sonarjs": "^0.25.0",
+    "jsdom": "^24.0.0",
     "tsc-alias": "^1.8.8",
     "typescript": "5.4.3",
     "vite": "^5.2.10",
-    "vitest": "^1.4.0"
+    "vitest": "^1.6.0"
   }
 }
