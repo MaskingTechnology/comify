@@ -59,8 +59,7 @@ export default class ReactionData
         return this.#mutate({ deleted: true });
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    #mutate(values: Record<string, any>)
+    #mutate(values: Partial<ReactionData>)
     {
         return new ReactionData(
             values.id ?? this.#id,
