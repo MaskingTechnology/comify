@@ -1,13 +1,13 @@
 
-import johnDoe from '^/domain/authentication/johnDoe';
 import { RecordQuery } from '^/integrations/database/module';
 
+import { REQUESTERS } from './requesters.fixture';
 import { VALUES } from './values.fixture';
 
 export const QUERIES: Record<string, RecordQuery> =
 {
     RATING_NOT_EXISTING_POST: {
-        creatorId: { EQUALS: johnDoe.id },
+        creatorId: { EQUALS: REQUESTERS.UNKNOWN.id },
         postId: { EQUALS: VALUES.IDS.POST_NOT_EXISTING }
     }
 };

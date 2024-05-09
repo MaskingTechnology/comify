@@ -3,7 +3,9 @@ export const VALUES =
 {
     IDS: {
         COMIC: '1',
+
         CREATOR: '1',
+        VIEWER: '2',
 
         POST_RATED: '1',
         POST_UNRATED: '2',
@@ -14,14 +16,17 @@ export const VALUES =
     },
 
     FULL_NAMES: {
-        CREATOR: 'Test Creator'
+        CREATOR: 'Test Creator',
+        VIEWER: 'Test Viewer'
     },
 
     NICKNAMES: {
-        CREATOR: 'testcreator'
+        CREATOR: 'testcreator',
+        VIEWER: 'testviewer'
     },
 
     EMAILS: {
-        CREATOR: 'test@example.com'
+        CREATOR: 'creator@example.com',
+        VIEWER: 'viewer@example.com'
     }
 };

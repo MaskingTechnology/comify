@@ -1,7 +1,7 @@
 
-import johnDoe from '^/domain/authentication/johnDoe';
 import { RecordData } from '^/integrations/database/module';
 
+import { REQUESTERS } from './requesters.fixture';
 import { VALUES } from './values.fixture';
 
 export const RECORDS: Record<string, Array<RecordData>> =
@@ -11,12 +11,12 @@ export const RECORDS: Record<string, Array<RecordData>> =
     ],
 
     POSTS: [
-        { id: VALUES.IDS.POST_RATED, creatorId: johnDoe.id, comicId: VALUES.IDS.COMIC, createdAt: new Date(), ratingCount: 10, reactionCount: 0, deleted: false },
-        { id: VALUES.IDS.POST_UNRATED, creatorId: johnDoe.id, comicId: VALUES.IDS.COMIC, createdAt: new Date(), ratingCount: 10, reactionCount: 0, deleted: false },
-        { id: VALUES.IDS.POST_DELETED, creatorId: johnDoe.id, comicId: VALUES.IDS.COMIC, createdAt: new Date(), ratingCount: 10, reactionCount: 0, deleted: true }
+        { id: VALUES.IDS.POST_RATED, creatorId: REQUESTERS.CREATOR.id, comicId: VALUES.IDS.COMIC, createdAt: new Date(), ratingCount: 10, reactionCount: 0, deleted: false },
+        { id: VALUES.IDS.POST_UNRATED, creatorId: REQUESTERS.CREATOR.id, comicId: VALUES.IDS.COMIC, createdAt: new Date(), ratingCount: 10, reactionCount: 0, deleted: false },
+        { id: VALUES.IDS.POST_DELETED, creatorId: REQUESTERS.CREATOR.id, comicId: VALUES.IDS.COMIC, createdAt: new Date(), ratingCount: 10, reactionCount: 0, deleted: true },
     ],
 
     RATINGS: [
-        { id: VALUES.IDS.RATING, creatorId: johnDoe.id, postId: VALUES.IDS.POST_RATED, reactionId: undefined, createdAt: new Date() }
+        { id: VALUES.IDS.RATING, creatorId: REQUESTERS.CREATOR.id, postId: VALUES.IDS.POST_RATED, reactionId: undefined, createdAt: new Date() }
     ]
 };
