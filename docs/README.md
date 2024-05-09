@@ -5,28 +5,6 @@ Hi, welcome to the Comify documentation. 👋
 
 Here you'll find all the technical details on how we are building the application. We'll start with the fundamentals below. From there you can zoom in at any part for the details.
 
-## Technology stack
-
-The project is 100% [TypeScript](https://www.typescriptlang.org/) based.
-
-**Runtime requirements**
-
-* [Node.js](https://nodejs.org/) as runtime (version 20+).
-* [Docker](https://www.docker.com/) for additional services.
-
-**Main dependencies**
-
-* [Jitar](http://jitar.dev) for E2E communication and scaling concerns.
-* [React](https://react.dev) for the frontend.
-
-All backend components are written in pure TypeScript without a framework.
-
-**Additional services**
-
-* [MongoDB](https://www.mongodb.com/) as database.
-* [MinIO](https://min.io/) as file store (images).
-* [Keycloak](https://www.keycloak.org/) as identity and access manager.
-
 ## Architecture
 
 At the heart of any application lies architecture. To explain ours, we found inspiration from the [C4 model](https://c4model.com/) and added our own sauce.
@@ -63,6 +41,28 @@ Let's look at their usages and responsibilities.
 * [**Integrations**](./integrations/) - Contains implementations for IAM, database, etc..
 
 Each part has its own folder in the application (and its shadows). For more detailed information you can click on their names.
+
+## Technology stack
+
+The project is 100% [TypeScript](https://www.typescriptlang.org/) based.
+
+**Runtime requirements**
+
+* [Node.js](https://nodejs.org/) as runtime (version 20+).
+* [Docker](https://www.docker.com/) for additional services.
+
+**Main dependencies**
+
+* [Jitar](http://jitar.dev) for E2E communication and scaling concerns.
+* [React](https://react.dev) for the frontend.
+
+All backend components are written in pure TypeScript without a framework.
+
+**Additional services**
+
+* [MongoDB](https://www.mongodb.com/) as database.
+* [MinIO](https://min.io/) as file store (images).
+* [Keycloak](https://www.keycloak.org/) as identity and access manager.
 
 ## Configuration
 
