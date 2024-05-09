@@ -62,7 +62,7 @@ Let's look at their usages and responsibilities.
 * [**Domain**](./domain/) - Contains business related components like use-case logic, data entities, etc..
 * [**Integrations**](./integrations/) - Contains implementations for IAM, database, etc..
 
-Echt part has its own folder in the application (and its shadows). For more detailed information you can click on their names.
+Each part has its own folder in the application (and its shadows). For more detailed information you can click on their names.
 
 ## Configuration
 
@@ -74,7 +74,7 @@ For both the application and Docker services we've set up environment variables 
 
 ### Segments
 
-The domain container can be split into multiple segments for scalability reasons like deployment, load balancing and fail over. This is feature provided by Jitar, more information on this can be found in [its documentation](https://docs.jitar.dev/deploy/segmentation.html). The configuration files can be found in the `segments` folder in the project root.
+The domain container can be split into multiple segments for scalability reasons like deployment, load balancing and fail over. This is a feature provided by Jitar, more information on this can be found in [its documentation](https://docs.jitar.dev/deploy/segmentation.html). The configuration files can be found in the `segments` folder in the project root.
 
 We use a backend for frontend (BFF) segmentation strategy. The `webui.segment.json` file exposes all functions that can be remotely accessed by the frontend. All the other segment files are for future purposes and currently unused.
 
@@ -97,10 +97,10 @@ To start the application you need to open a new terminal and run `npm run dev`. 
 
 To stop the application you can press CONTROL+C in both terminals.
 
-### Build & start
+### Build & run
 
 To build and run the application you can keep using the `npm run build` and `npm run standalone` commands. For convenience both commands are combined in the following command: `npm run rebuild`.
 
-### Test & check
+### Test & lint
 
-To run the tests you can use the `npm run test` command. You can also run the linter with the `npm run lint` command. For convenience the `build`, `test` and `lint` commands are combined in the following command: `npm run review`.
+To run the tests you can use the `npm run test` command. You can also run the linter with the `npm run lint` command. For convenience the **build**, **test** and **lint** commands are combined in the following command: `npm run review`.
