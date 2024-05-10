@@ -8,4 +8,4 @@ async function empty(): Promise<void>
     await fileStore.clear();
 }
 
-export const FILE_STORAGES = { empty };
+export const FILE_STORES = { empty };

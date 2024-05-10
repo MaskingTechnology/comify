@@ -3,13 +3,13 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import getByPost from '^/domain/reaction/getByPost';
 
-import { DATABASES, FILE_STORAGES, REQUESTERS, VALUES } from './fixtures';
+import { DATABASES, FILE_STORES, REQUESTERS, VALUES } from './fixtures';
 
 beforeEach(async () =>
 {
     await Promise.all([
         DATABASES.withEverything(),
-        FILE_STORAGES.withImage()
+        FILE_STORES.withImage()
     ]);
 });
 

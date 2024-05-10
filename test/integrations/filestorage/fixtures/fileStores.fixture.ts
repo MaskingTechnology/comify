@@ -13,4 +13,4 @@ async function withFile()
     await fileStore.writeFile(VALUES.FILENAMES.HELLO, FILES.HELLO);
 }
 
-export const FILE_STORAGES = { withFile };
+export const FILE_STORES = { withFile };

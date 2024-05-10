@@ -13,4 +13,4 @@ async function withImage(): Promise<void>
     await fileStore.writeFile(VALUES.STORAGE_KEYS.IMAGE, FILES.IMAGE);
 }
 
-export const FILE_STORAGES = { withImage };
+export const FILE_STORES = { withImage };

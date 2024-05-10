@@ -9,9 +9,9 @@ const implementations = new Map<string, () => FileStore>([
     ['minio', createMinioFS],
 ]);
 
-const DEFAULT_FILE_STORAGE_IMPLEMENTATION = 'memory';
+const DEFAULT_FILE_STORE_IMPLEMENTATION = 'memory';
 
-const implementationName = process.env.FILE_STORAGE_IMPLEMENTATION ?? DEFAULT_FILE_STORAGE_IMPLEMENTATION;
+const implementationName = process.env.FILE_STORE_IMPLEMENTATION ?? DEFAULT_FILE_STORE_IMPLEMENTATION;
 const creator = implementations.get(implementationName.toLowerCase());
 
 if (creator === undefined)

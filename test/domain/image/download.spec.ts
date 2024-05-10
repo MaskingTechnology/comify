@@ -7,7 +7,7 @@ import InvalidImage from '^/domain/image/errors/InvalidImage';
 
 import fileStore from '^/integrations/filestore/module';
 
-import { DATABASES, FILE_STORAGES, HTTP_CLIENTS, URLS } from './fixtures';
+import { DATABASES, FILE_STORES, HTTP_CLIENTS, URLS } from './fixtures';
 
 HTTP_CLIENTS.withImages();
 
@@ -17,7 +17,7 @@ beforeEach(async () =>
 
     await Promise.all([
         DATABASES.empty(),
-        FILE_STORAGES.empty()
+        FILE_STORES.empty()
     ]);
 });
 

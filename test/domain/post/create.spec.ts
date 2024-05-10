@@ -9,13 +9,13 @@ import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions/const
 import database from '^/integrations/database/module';
 import fileStore from '^/integrations/filestore/module';
 
-import { DATABASES, DATA_URLS, FILE_STORAGES, REQUESTERS } from './fixtures';
+import { DATABASES, DATA_URLS, FILE_STORES, REQUESTERS } from './fixtures';
 
 beforeEach(async () =>
 {
     await Promise.all([
         DATABASES.withCreators(),
-        FILE_STORAGES.empty()
+        FILE_STORES.empty()
     ]);
 });
 

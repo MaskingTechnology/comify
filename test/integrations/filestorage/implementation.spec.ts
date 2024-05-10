@@ -3,11 +3,11 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import fileStore, { FileNotFound } from '^/integrations/filestore/module';
 
-import { FILES, FILE_STORAGES, VALUES } from './fixtures';
+import { FILES, FILE_STORES, VALUES } from './fixtures';
 
 beforeEach(async () =>
 {
-    await FILE_STORAGES.withFile();
+    await FILE_STORES.withFile();
 });
 
 describe('integrations/filestore/implementation', () =>
