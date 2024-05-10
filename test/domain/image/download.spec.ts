@@ -5,7 +5,7 @@ import download from '^/domain/image/download';
 import ImageNotDownloaded from '^/domain/image/errors/ImageNotDownloaded';
 import InvalidImage from '^/domain/image/errors/InvalidImage';
 
-import fileStorage from '^/integrations/filestorage/module';
+import fileStore from '^/integrations/filestore/module';
 
 import { DATABASES, FILE_STORAGES, HTTP_CLIENTS, URLS } from './fixtures';
 
@@ -26,7 +26,7 @@ describe('domain/image/download', () =>
     it('should download an image', async () =>
     {
         const image = await download('test', URLS.VALID);
-        const data = await fileStorage.readFile(image.storageKey);
+        const data = await fileStore.readFile(image.storageKey);
 
         expect(image.filename).toEqual('image.jpg');
         expect(image.mimeType).toEqual('image/jpeg');

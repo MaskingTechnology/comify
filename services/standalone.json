@@ -10,7 +10,7 @@
     ],
     "healthChecks": [
         "./integrations/jitar/notificationHealthCheck",
-        "./integrations/jitar/fileStorageHealthCheck",
+        "./integrations/jitar/fileStoreHealthCheck",
         "./integrations/jitar/databaseHealthCheck"
     ],
     "standalone":

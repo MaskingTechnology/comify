@@ -2,7 +2,7 @@
 import { HealthCheck } from 'jitar';
 import { NotificationService } from '../../notification/definitions/interfaces';
 
-export default class FileStorageHealthCheck implements HealthCheck
+export default class FileStoreHealthCheck implements HealthCheck
 {
     #notificationService: NotificationService;
 

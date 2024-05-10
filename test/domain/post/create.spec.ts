@@ -7,7 +7,7 @@ import create from '^/domain/post/create';
 import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions/constants';
 
 import database from '^/integrations/database/module';
-import fileStorage from '^/integrations/filestorage/module';
+import fileStore from '^/integrations/filestore/module';
 
 import { DATABASES, DATA_URLS, FILE_STORAGES, REQUESTERS } from './fixtures';
 
@@ -45,7 +45,7 @@ describe('domain/post/create', () =>
         expect(image?.mimeType).toEqual('image/jpeg');
         expect(image?.storageKey).toContain('comic/');
 
-        const data = await fileStorage.readFile(image.storageKey as string);
+        const data = await fileStore.readFile(image.storageKey as string);
         expect(data).toHaveLength(54);
     });
 
