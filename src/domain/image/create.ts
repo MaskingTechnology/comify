@@ -1,5 +1,5 @@
 
-import ImageData from './data/ImageData';
+import type ImageData from './data/ImageData';
 import importFromDataUrl from './import/fromDataUrl';
 import save from './save';
 

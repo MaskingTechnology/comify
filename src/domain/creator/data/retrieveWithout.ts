@@ -3,7 +3,7 @@ import database, { QueryStatement, RecordQuery, RecordSort, SortDirections } fro
 
 import type SortFields from '../definitions/SortFields';
 import { RECORD_TYPE } from '../definitions/constants';
-import CreatorData from './CreatorData';
+import type CreatorData from './CreatorData';
 import createCreatorData from './mapRecord';
 
 export default async function retrieveWithout(ids: string[], sortField: SortFields, search?: string): Promise<CreatorData[]>

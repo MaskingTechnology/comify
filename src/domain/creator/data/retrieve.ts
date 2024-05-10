@@ -2,7 +2,7 @@
 import database from '^/integrations/database/module';
 
 import { RECORD_TYPE } from '../definitions/constants';
-import CreatorData from './CreatorData';
+import type CreatorData from './CreatorData';
 import mapRecord from './mapRecord';
 
 export default async function retrieve(id: string): Promise<CreatorData>

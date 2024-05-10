@@ -1,5 +1,5 @@
 
-import Requester from '../authentication/Requester';
+import type Requester from '../authentication/Requester';
 import decreasePostCount from '../creator/decreasePostCount';
 import increasePostCount from '../creator/increasePostCount';
 import retrieveOwn from './data/retrieveOwn';

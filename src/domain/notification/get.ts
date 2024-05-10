@@ -1,5 +1,5 @@
 
-import Requester from '../authentication/Requester';
+import type Requester from '../authentication/Requester';
 import retrieve from './data/retrieve';
 import type NotificationView from './view/NotificationView';
 import createView from './view/createView';

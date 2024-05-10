@@ -1,5 +1,5 @@
 
-import Requester from '../../authentication/Requester';
+import type Requester from '../../authentication/Requester';
 import getComicView from '../../comic/get';
 import ratingExists from '../../rating/exists';
 import getRelationView from '../../relation/get';

@@ -2,7 +2,7 @@
 import database from '^/integrations/database/module';
 
 import { RECORD_TYPE } from '../definitions/constants';
-import ReactionData from './ReactionData';
+import type ReactionData from './ReactionData';
 import mapRecord from './mapRecord';
 
 export default async function retrieve(id: string): Promise<ReactionData>

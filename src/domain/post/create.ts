@@ -1,5 +1,5 @@
 
-import Requester from '../authentication/Requester';
+import type Requester from '../authentication/Requester';
 import createComic from '../comic/create';
 import removeComic from '../comic/remove';
 import increaseCreatorPostCount from '../creator/increasePostCount';

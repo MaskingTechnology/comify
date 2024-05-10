@@ -1,7 +1,7 @@
 
 import createImage from '../image/create';
 import removeImage from '../image/remove';
-import ComicData from './data/ComicData';
+import type ComicData from './data/ComicData';
 import createData from './data/create';
 import { IMAGE_TYPE } from './definitions/constants.js';
 

@@ -1,5 +1,5 @@
 
-import Requester from '../authentication/Requester';
+import type Requester from '../authentication/Requester';
 import createActualComment from '../comment/create';
 import removeActualComment from '../comment/remove';
 import increaseReactionCount from '../post/increaseReactionCount';

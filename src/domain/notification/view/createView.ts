@@ -1,5 +1,5 @@
 
-import Requester from '../../authentication/Requester';
+import type Requester from '../../authentication/Requester';
 import getPostView from '../../post/get';
 import getReactionView from '../../reaction/get';
 import getRelationView from '../../relation/get';

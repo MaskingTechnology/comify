@@ -1,6 +1,6 @@
 
 import type Requester from '../authentication/Requester';
-import RatingData from './data/RatingData';
+import type RatingData from './data/RatingData';
 import create from './data/create';
 import find from './data/find';
 import remove from './data/remove';

@@ -1,5 +1,5 @@
 
-import CreatorData from './data/CreatorData';
+import type CreatorData from './data/CreatorData';
 import create from './data/create';
 import generateNickname from './data/generateNickname';
 import downloadPortrait from './image/downloadPortrait';
