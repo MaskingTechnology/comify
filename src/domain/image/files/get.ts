@@ -1,7 +1,7 @@
 
-import filestorage from '^/integrations/filestorage/module';
+import fileStorage from '^/integrations/filestorage/module';
 
-export default async function get(storagekey: string): Promise<Buffer>
+export default async function get(storageKey: string): Promise<Buffer>
 {
-    return filestorage.readFile(storagekey);
+    return fileStorage.readFile(storageKey);
 }
