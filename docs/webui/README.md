@@ -80,9 +80,11 @@ Also, public components can be bound to a domain view model. Elementary componen
 
 ### Design system
 
-At the core of the design lies a design system that we use for building the pages, features and components. When done correctly,you won't find a trace of standard HTML in them.
+At the core of the design lies a design system that we use for building the pages, features and components. When done correctly, you won't find a trace of standard HTML in them.
 
 The design system consists for the most part of a set of elements like a button, panel, etc.. But it also has interactive components like a dropdown and tabs. A full description of the design system can be found in a [separate document](./DESIGNSYSTEM.md).
+
+**Note:** In the future we might move the design system to its own project so we can reuse it for other projects.
 
 ## Other topics
 
@@ -98,6 +100,6 @@ Currently we only a single context for the application. The `AppContext` only pr
 
 All server communication comes from hooks. A hook is allowed to import and execute a domain function, like establishing a relation.
 
-Because we're using Jitar, we can import and call the functions directly and don't have to build API requests.
-
 Many of the domain functions require a requester object for authorization purposes. We've created a `johnDoe` object to act as placeholder when calling these functions. The authentication middleware will replace this object with the actual requester.
+
+**Note:** Because we're using Jitar, we can import and call the functions directly and don't have to build API requests.
