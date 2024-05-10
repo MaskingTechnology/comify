@@ -13,7 +13,7 @@ At the heart of any application lies architecture. To explain ours, we found ins
 
 Comify runs as a stand-alone application and hasn't many external dependencies (yet?). The most important one is the `Creator` that represents the end-user. Without it, the application doesn't have any value. Secondly we're outsourcing the identity and access management (IAM) to save on development that doesn't add business value.
 
-<img width="1102" alt="context" src="./assets/images/context.png">
+<img width="1102" alt="Application context" src="./assets/images/architecture/context.png">
 
 **Note** We use OpenID Connect for the IAM integration.
 
@@ -21,7 +21,7 @@ Comify runs as a stand-alone application and hasn't many external dependencies (
 
 The application has two shadows. Each shadow contains content related to the application.
 
-<img width="1102" alt="shadows" src="./assets/images/shadows.png">
+<img width="1102" alt="Application shadows" src="./assets/images/architecture/shadows.png">
 
 If you're reading this, then you've already found the docs. This is the darkest shadow, because it's the furthest away from the code. The tests are more code related, and can be found in the `test` folder in the project root. The application itself is placed in the `src` folder also in the project root.
 
@@ -31,7 +31,7 @@ The structure of the shadows mimic the application structure to make navigating 
 
 The application is divided into multiple parts, called containers. We have these four.
 
-<img width="1102" alt="containers" src="./assets/images/containers.png">
+<img width="1102" alt="Application containers" src="./assets/images/architecture/containers.png">
 
 Let's look at their usages and responsibilities.
 
