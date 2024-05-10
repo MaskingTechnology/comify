@@ -86,8 +86,7 @@ export default class CreatorData
         return this.#mutate({ email });
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    #mutate(values: Record<string, any>)
+    #mutate(values: Partial<CreatorData>)
     {
         return new CreatorData(
             values.id ?? this.id,

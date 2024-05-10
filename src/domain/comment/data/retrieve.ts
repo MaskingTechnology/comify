@@ -2,7 +2,7 @@
 import database from '^/integrations/database/module';
 
 import { RECORD_TYPE } from '../definitions/constants';
-import CommentData from './CommentData';
+import type CommentData from './CommentData';
 import mapRecord from './mapRecord';
 
 export default async function retrieve(id: string): Promise<CommentData>

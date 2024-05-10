@@ -2,7 +2,7 @@
 import database, { RecordData } from '^/integrations/database/module';
 
 import { RECORD_TYPE } from '../definitions/constants';
-import PostData from './PostData';
+import type PostData from './PostData';
 
 export default async function update(data: PostData): Promise<void>
 {

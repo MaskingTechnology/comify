@@ -2,7 +2,7 @@
 import database, { RecordQuery } from '^/integrations/database/module';
 
 import { RECORD_TYPE } from '../definitions/constants';
-import RatingData from './RatingData';
+import type RatingData from './RatingData';
 import mapRecord from './mapRecord';
 
 export default async function find(creatorId: string, postId: string | undefined, reactionId: string | undefined): Promise<RatingData | undefined>

@@ -1,5 +1,5 @@
 
-export interface FileStorage
+export interface FileStore
 {
     get connected(): boolean;
 

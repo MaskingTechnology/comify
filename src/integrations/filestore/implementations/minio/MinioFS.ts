@@ -1,12 +1,12 @@
 
 import { Client, ClientOptions } from 'minio';
-import { FileStorage } from '../../definitions/interfaces.js';
+import { FileStore } from '../../definitions/interfaces.js';
 import FileNotFound from '../../errors/FileNotFound.js';
 import NotConnected from '../../errors/NotConnected.js';
 
 const BUCKET_NAME = 'comify';
 
-export default class MinioFS implements FileStorage
+export default class MinioFS implements FileStore
 {
     #configuration: ClientOptions;
     #client?: Client;

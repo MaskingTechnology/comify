@@ -11,15 +11,15 @@ import createCommentReaction from '^/domain/reaction/createComment';
 import { RECORD_TYPE as REACTION_RECORD_TYPE } from '^/domain/reaction/definitions/constants';
 
 import database from '^/integrations/database/module';
-import fileStorage from '^/integrations/filestorage/module';
+import fileStore from '^/integrations/filestore/module';
 
-import { DATABASES, FILE_STORAGES, REQUESTERS, VALUES } from './fixtures';
+import { DATABASES, FILE_STORES, REQUESTERS, VALUES } from './fixtures';
 
 beforeEach(async () =>
 {
     await Promise.all([
         DATABASES.withEverything(),
-        FILE_STORAGES.withImage()
+        FILE_STORES.withImage()
     ]);
 });
 
@@ -73,7 +73,7 @@ describe('domain/reaction/create', () =>
         const image = await database.readRecord(IMAGE_RECORD_TYPE, comic.imageId as string);
         expect(image?.storageKey).toBeDefined();
 
-        const file = await fileStorage.readFile(image.storageKey as string);
+        const file = await fileStore.readFile(image.storageKey as string);
         expect(file).toBeDefined();
     });
 

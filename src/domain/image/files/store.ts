@@ -1,7 +1,7 @@
 
-import fileStorage from '^/integrations/filestorage/module';
+import fileStore from '^/integrations/filestore/module';
 
 export default async function store(path: string, buffer: Buffer): Promise<void>
 {
-    await fileStorage.writeFile(path, buffer);
+    await fileStore.writeFile(path, buffer);
 }

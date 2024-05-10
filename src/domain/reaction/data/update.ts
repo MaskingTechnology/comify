@@ -2,7 +2,7 @@
 import database, { RecordData } from '^/integrations/database/module';
 
 import { RECORD_TYPE } from '../definitions/constants';
-import ReactionData from './ReactionData';
+import type ReactionData from './ReactionData';
 
 export default async function update(data: ReactionData): Promise<void>
 {

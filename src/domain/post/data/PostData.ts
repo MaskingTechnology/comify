@@ -65,8 +65,7 @@ export default class PostData
         return this.#mutate({ deleted: true });
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    #mutate(values: Record<string, any>)
+    #mutate(values: Partial<PostData>)
     {
         return new PostData(
             values.id ?? this.#id,

@@ -2,7 +2,7 @@
 import database from '^/integrations/database/module';
 
 import { RECORD_TYPE } from '../definitions/constants';
-import ComicData from './ComicData';
+import type ComicData from './ComicData';
 import mapRecord from './mapRecord';
 
 export default async function retrieve(id: string): Promise<ComicData>

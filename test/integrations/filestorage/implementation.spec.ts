@@ -1,28 +1,28 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import fileStorage, { FileNotFound } from '^/integrations/filestorage/module';
+import fileStore, { FileNotFound } from '^/integrations/filestore/module';
 
-import { FILES, FILE_STORAGES, VALUES } from './fixtures';
+import { FILES, FILE_STORES, VALUES } from './fixtures';
 
 beforeEach(async () =>
 {
-    await FILE_STORAGES.withFile();
+    await FILE_STORES.withFile();
 });
 
-describe('integrations/filestorage/implementation', () =>
+describe('integrations/filestore/implementation', () =>
 {
     describe('.hasFile(path)', () =>
     {
         it('should return true for existing files', async () =>
         {
-            const result = await fileStorage.hasFile(VALUES.FILENAMES.HELLO);
+            const result = await fileStore.hasFile(VALUES.FILENAMES.HELLO);
             expect(result).toBeTruthy();
         });
 
         it('should return false for non-existing files', async () =>
         {
-            const result = await fileStorage.hasFile(VALUES.FILENAMES.UNKNOWN);
+            const result = await fileStore.hasFile(VALUES.FILENAMES.UNKNOWN);
             expect(result).toBeFalsy();
         });
     });
@@ -31,13 +31,13 @@ describe('integrations/filestorage/implementation', () =>
     {
         it('should read existing files', async () =>
         {
-            const buffer = await fileStorage.readFile(VALUES.FILENAMES.HELLO);
+            const buffer = await fileStore.readFile(VALUES.FILENAMES.HELLO);
             expect(buffer.toString()).toEqual(VALUES.CONTENTS.HELLO);
         });
 
         it('should not read non-existing files', async () =>
         {
-            const promise = fileStorage.readFile(VALUES.FILENAMES.UNKNOWN);
+            const promise = fileStore.readFile(VALUES.FILENAMES.UNKNOWN);
             expect(promise).rejects.toStrictEqual(new FileNotFound(VALUES.FILENAMES.UNKNOWN));
         });
     });
@@ -46,17 +46,17 @@ describe('integrations/filestorage/implementation', () =>
     {
         it('should write files', async () =>
         {
-            await fileStorage.writeFile(VALUES.FILENAMES.GOODBYE, FILES.GOODBYE);
+            await fileStore.writeFile(VALUES.FILENAMES.GOODBYE, FILES.GOODBYE);
 
-            const buffer = await fileStorage.readFile(VALUES.FILENAMES.GOODBYE);
+            const buffer = await fileStore.readFile(VALUES.FILENAMES.GOODBYE);
             expect(buffer).toEqual(FILES.GOODBYE);
         });
 
         it('should overwrite files', async () =>
         {
-            await fileStorage.writeFile(VALUES.FILENAMES.HELLO, FILES.GOODBYE);
+            await fileStore.writeFile(VALUES.FILENAMES.HELLO, FILES.GOODBYE);
 
-            const buffer = await fileStorage.readFile(VALUES.FILENAMES.HELLO);
+            const buffer = await fileStore.readFile(VALUES.FILENAMES.HELLO);
             expect(buffer).toEqual(FILES.GOODBYE);
         });
     });
@@ -65,15 +65,15 @@ describe('integrations/filestorage/implementation', () =>
     {
         it('should delete existing files', async () =>
         {
-            await fileStorage.deleteFile(VALUES.FILENAMES.HELLO);
+            await fileStore.deleteFile(VALUES.FILENAMES.HELLO);
 
-            const promise = fileStorage.readFile(VALUES.FILENAMES.HELLO);
+            const promise = fileStore.readFile(VALUES.FILENAMES.HELLO);
             expect(promise).rejects.toStrictEqual(new FileNotFound(VALUES.FILENAMES.HELLO));
         });
 
         it('should not delete non-existing files', async () =>
         {
-            const promise = fileStorage.deleteFile(VALUES.FILENAMES.UNKNOWN);
+            const promise = fileStore.deleteFile(VALUES.FILENAMES.UNKNOWN);
             expect(promise).rejects.toStrictEqual(new FileNotFound(VALUES.FILENAMES.UNKNOWN));
         });
     });
