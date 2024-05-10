@@ -98,4 +98,6 @@ Currently we only a single context for the application. The `AppContext` only pr
 
 All server communication comes from hooks. A hook is allowed to import and execute a domain function, like establishing a relation.
 
-We don't have to build a request for calling an API. Jitar automates this for us.
+Because we're using Jitar, we can import and call the functions directly and don't have to build API requests.
+
+Many of the domain functions require a requester object for authorization purposes. We've created a `johnDoe` object to act as placeholder when calling these functions. The authentication middleware will replace this object with the actual requester.
