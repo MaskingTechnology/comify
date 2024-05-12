@@ -6,9 +6,7 @@ import ReactionData from './ReactionData';
 
 export default async function create(creatorId: string, postId: string, comicId: string | undefined = undefined, commentId: string | undefined = undefined): Promise<ReactionData>
 {
-    const now = new Date();
-
-    const createdAt = now.toISOString();
+    const createdAt = new Date();
     const ratingCount = 0;
     const deleted = false;
 
@@ -16,5 +14,5 @@ export default async function create(creatorId: string, postId: string, comicId:
 
     const id = await database.createRecord(RECORD_TYPE, record);
 
-    return new ReactionData(id, creatorId, postId, comicId, commentId, ratingCount, now);
+    return new ReactionData(id, creatorId, postId, comicId, commentId, ratingCount, createdAt);
 }
