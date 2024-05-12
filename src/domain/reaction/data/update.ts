@@ -13,8 +13,7 @@ export default async function update(data: ReactionData): Promise<void>
         comicId: data.comicId,
         commentId: data.commentId,
         createdAt: data.createdAt,
-        ratingCount: data.ratingCount,
-        deleted: data.deleted,
+        ratingCount: data.ratingCount
     };
 
     await database.updateRecord(RECORD_TYPE, data.id, record);

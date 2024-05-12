@@ -3,8 +3,8 @@ import type Requester from '../authentication/Requester';
 import decreaseFollowerCount from '../creator/decreaseFollowerCount';
 import increaseFollowerCount from '../creator/increaseFollowerCount';
 import increaseFollowingCount from '../creator/increaseFollowingCount';
-import remove from '../relation/data/remove';
 import create from './data/create';
+import erase from './data/erase';
 import exists from './data/exists';
 import RelationAlreadyExists from './errors/RelationAlreadyExists';
 
@@ -30,7 +30,7 @@ export default async function establish(requester: Requester, followingId: strin
     {
         const relationId = relation?.id ?? '';
 
-        const undoRelation = relation !== undefined ? remove(relationId) : Promise.resolve();
+        const undoRelation = relation !== undefined ? erase(relationId) : Promise.resolve();
         const undoFollowerCount = followerCount !== undefined ? decreaseFollowerCount(followingId) : Promise.resolve();
 
         await Promise.all([undoRelation, undoFollowerCount]);
