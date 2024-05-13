@@ -37,7 +37,7 @@ Let's look at their usages and responsibilities.
 
 * [**Web UI**](./webui/) - Contains the web based interface for user interaction (SPA).
 * [**Assets**](./assets/) - Contains shared things like images, downloads, etc...
-* [**Domain**](./domain/) - Contains business related components like use-case logic, data entities, etc..
+* [**Domain**](./domain/) - Contains business related components like business logic, data entities, etc..
 * [**Integrations**](./integrations/) - Contains implementations for IAM, database, etc..
 
 Each part has its own folder in the application (and its shadows). For more detailed information you can click on their names.

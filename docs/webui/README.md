@@ -5,7 +5,7 @@ The Web UI container contains the web based interface for user interaction. It's
 
 ## Module structure
 
-We're using a modular composable approach for building this part of the application. The basic module structure looks like this.
+We're using a modular composable approach. Our primary module structure looks like this.
 
 <img width="1102" alt="Web UI module structure" src="../assets/images/webui/modules.png">
 
