@@ -1,10 +1,13 @@
 
 import type RelationView from '^/domain/relation/view/RelationView';
+import { useNavigate } from 'react-router-dom';
 
 export function useEditProfile()
 {
+    const navigate = useNavigate();
+
     return (relation: RelationView) =>
     {
-        console.log(`Edit profile of: ${relation.following.fullName}`);
+        navigate(`/editProfile/${relation.following.nickname}`);
     };
 }

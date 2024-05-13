@@ -51,6 +51,16 @@ export default class CreatorData
 
     get followingCount() { return this.#followingCount; }
 
+    updateFullName(fullName: string): CreatorData
+    {
+        return this.#mutate({ fullName });
+    }
+
+    updateNickname(nickname: string): CreatorData
+    {
+        return this.#mutate({ nickname });
+    }
+
     increasePostCount(): CreatorData
     {
         return this.#mutate({ postCount: this.postCount + 1 });

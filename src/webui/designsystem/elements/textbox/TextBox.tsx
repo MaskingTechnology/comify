@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { RefObject } from 'react';
 import './TextBox.css';
 
 export type Props = {
@@ -8,9 +8,10 @@ export type Props = {
     readonly value?: string;
     readonly size?: 'large' | 'medium' | 'small';
     readonly onChange?: React.ChangeEventHandler<HTMLInputElement>;
+    readonly reference?: RefObject<HTMLInputElement>;
 };
 
-export default function Element({ name, placeholder, value, size, onChange }: Props)
+export default function Element({ name, placeholder, value, size, onChange, reference }: Props)
 {
     const className = 'ds-textbox'
         + ' ds-textbox-size-' + (size ?? 'medium');
@@ -22,5 +23,6 @@ export default function Element({ name, placeholder, value, size, onChange }: Pr
         placeholder={placeholder}
         defaultValue={value}
         onChange={onChange}
+        ref={reference}
     />;
 }

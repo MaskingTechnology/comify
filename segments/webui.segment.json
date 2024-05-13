@@ -5,6 +5,8 @@
 
     "./domain/creator/getByNickname": { "default": {  "access": "public" } },
     "./domain/creator/getMe": { "default": {  "access": "public" } },
+    "./domain/creator/updateFullName": { "default": {  "access": "public" }},
+    "./domain/creator/updateNickname": { "default": {  "access": "public" }},
 
     "./domain/notification/getRecent": { "default": {  "access": "public" } },
     
