@@ -12,7 +12,7 @@ export default async function update(data: ReactionData): Promise<void>
         postId: data.postId,
         comicId: data.comicId,
         commentId: data.commentId,
-        createdAt: data.createdAt,
+        createdAt: data.createdAt.toISOString(),
         ratingCount: data.ratingCount
     };
 

@@ -6,9 +6,11 @@ import RatingData from './RatingData';
 
 export default async function create(creatorId: string, postId: string | undefined, reactionId: string | undefined): Promise<RatingData>
 {
-    const createdAt = new Date();
+    const now = new Date();
+
+    const createdAt = now.toISOString();
     const data: RecordData = { creatorId, postId, reactionId, createdAt };
     const ratingId = await database.createRecord(RECORD_TYPE, data);
 
-    return new RatingData(ratingId, creatorId, postId, reactionId, createdAt);
+    return new RatingData(ratingId, creatorId, postId, reactionId, now);
 }
