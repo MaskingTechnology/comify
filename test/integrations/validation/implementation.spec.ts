@@ -1,7 +1,7 @@
 
 import { describe, expect, it } from 'vitest';
 
-import validator from '^/integrations/validation/module';
+import validator, { ValidationSchema } from '^/integrations/validation/module';
 
 import { VALIDATION_SCHEMES, VALUES } from './fixtures';
 
@@ -13,74 +13,42 @@ describe('integrations/validation/implementation', () =>
         {
             const input = { string: 'abcd' };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.STRING);
-
-            expect(result.invalid).toBe(false);
+            performValidResultCheck(input, VALIDATION_SCHEMES.STRING);
         });
 
         it('should reject a missing required string', () =>
         {
             const input = { string: undefined };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.STRING);
-            const messages = result.messages;
-            const message = messages.get('string');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_STRING);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.STRING, VALUES.MESSAGES.INVALID_STRING);
         });
 
         it('should reject a value that is too short', () =>
         {
             const input = { string: 'abc' };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.STRING);
-            const messages = result.messages;
-            const message = messages.get('string');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_STRING);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.STRING, VALUES.MESSAGES.INVALID_STRING);
         });
 
         it('should reject a value that is too long', () =>
         {
             const input = { string: 'abcd ef' };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.STRING);
-            const messages = result.messages;
-            const message = messages.get('string');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_STRING);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.STRING, VALUES.MESSAGES.INVALID_STRING);
         });
 
         it('should reject a value that does not match a pattern', () =>
         {
             const input = { string: 'abcd 1' };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.STRING);
-            const messages = result.messages;
-            const message = messages.get('string');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_STRING);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.STRING, VALUES.MESSAGES.INVALID_STRING);
         });
 
         it('should reject a value that is not a string', () =>
         {
             const input = { string: true };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.STRING);
-            const messages = result.messages;
-            const message = messages.get('string');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_STRING);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.STRING, VALUES.MESSAGES.INVALID_STRING);
         });
     });
 
@@ -90,61 +58,35 @@ describe('integrations/validation/implementation', () =>
         {
             const input = { number: 10 };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.NUMBER);
-
-            expect(result.invalid).toBe(false);
+            performValidResultCheck(input, VALIDATION_SCHEMES.NUMBER);
         });
 
         it('should reject a missing required number', () =>
         {
             const input = { number: undefined };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.NUMBER);
-            const messages = result.messages;
-            const message = messages.get('number');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_NUMBER);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.NUMBER, VALUES.MESSAGES.INVALID_NUMBER);
         });
 
         it('should reject a value that is too small', () =>
         {
             const input = { number: 9 };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.NUMBER);
-            const messages = result.messages;
-            const message = messages.get('number');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_NUMBER);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.NUMBER, VALUES.MESSAGES.INVALID_NUMBER);
         });
 
         it('should reject a value that is too big', () =>
         {
             const input = { number: 21 };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.NUMBER);
-            const messages = result.messages;
-            const message = messages.get('number');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_NUMBER);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.NUMBER, VALUES.MESSAGES.INVALID_NUMBER);
         });
 
         it('should reject a value that is not a number', () =>
         {
             const input = { number: '10' };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.NUMBER);
-            const messages = result.messages;
-            const message = messages.get('number');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_NUMBER);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.NUMBER, VALUES.MESSAGES.INVALID_NUMBER);
         });
     });
 
@@ -154,35 +96,21 @@ describe('integrations/validation/implementation', () =>
         {
             const input = { boolean: true };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.BOOLEAN);
-
-            expect(result.invalid).toBe(false);
+            performValidResultCheck(input, VALIDATION_SCHEMES.BOOLEAN);
         });
 
         it('should reject a missing required boolean', () =>
         {
             const input = { boolean: undefined };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.BOOLEAN);
-            const messages = result.messages;
-            const message = messages.get('boolean');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_BOOLEAN);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.BOOLEAN, VALUES.MESSAGES.INVALID_BOOLEAN);
         });
 
         it('should reject a value that is not a boolean', () =>
         {
             const input = { boolean: 'true' };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.BOOLEAN);
-            const messages = result.messages;
-            const message = messages.get('boolean');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_BOOLEAN);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.BOOLEAN, VALUES.MESSAGES.INVALID_BOOLEAN);
         });
     });
 
@@ -192,48 +120,28 @@ describe('integrations/validation/implementation', () =>
         {
             const input = { date: new Date() };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.DATE);
-
-            expect(result.invalid).toBe(false);
+            performValidResultCheck(input, VALIDATION_SCHEMES.DATE);
         });
 
         it('should reject a missing required date', () =>
         {
             const input = { date: undefined };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.DATE);
-            const messages = result.messages;
-            const message = messages.get('date');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_DATE);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.DATE, VALUES.MESSAGES.INVALID_DATE);
         });
 
         it('should reject a value that is not a valid date', () =>
         {
             const input = { date: new Date('invalid') };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.DATE);
-            const messages = result.messages;
-            const message = messages.get('date');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_DATE);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.DATE, VALUES.MESSAGES.INVALID_DATE);
         });
 
         it('should reject a value that is not a date', () =>
         {
             const input = { date: '2021-01-01' };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.DATE);
-            const messages = result.messages;
-            const message = messages.get('date');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_DATE);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.DATE, VALUES.MESSAGES.INVALID_DATE);
         });
     });
 
@@ -243,48 +151,28 @@ describe('integrations/validation/implementation', () =>
         {
             const input = { id: '123e4567-e89b-12d3-a456-426614174000' };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.UUID);
-
-            expect(result.invalid).toBe(false);
+            performValidResultCheck(input, VALIDATION_SCHEMES.UUID);
         });
 
         it('should reject a missing required uuid', () =>
         {
             const input = { id: undefined };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.UUID);
-            const messages = result.messages;
-            const message = messages.get('id');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_ID);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.UUID, VALUES.MESSAGES.INVALID_ID);
         });
 
         it('should reject a value that is not a valid UUID', () =>
         {
             const input = { id: '123e' };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.UUID);
-            const messages = result.messages;
-            const message = messages.get('id');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_ID);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.UUID, VALUES.MESSAGES.INVALID_ID);
         });
 
         it('should reject a value that is not a uuid', () =>
         {
             const input = { id: 123 };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.UUID);
-            const messages = result.messages;
-            const message = messages.get('id');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_ID);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.UUID, VALUES.MESSAGES.INVALID_ID);
         });
     });
 
@@ -294,61 +182,35 @@ describe('integrations/validation/implementation', () =>
         {
             const input = { email: 'abc@def.com' };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.EMAIL);
-
-            expect(result.invalid).toBe(false);
+            performValidResultCheck(input, VALIDATION_SCHEMES.EMAIL);
         });
 
         it('should reject a missing required email', () =>
         {
             const input = { email: undefined };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.EMAIL);
-            const messages = result.messages;
-            const message = messages.get('email');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_EMAIL);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.EMAIL, VALUES.MESSAGES.INVALID_EMAIL);
         });
 
         it('should reject a value to be a valid email', () =>
         {
             const input = { email: 'abcd@' };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.EMAIL);
-            const messages = result.messages;
-            const message = messages.get('email');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_EMAIL);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.EMAIL, VALUES.MESSAGES.INVALID_EMAIL);
         });
 
         it('should reject a value that is too long', () =>
         {
             const input = { email: 'abcd'.repeat(80) + '@def.com' };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.EMAIL);
-            const messages = result.messages;
-            const message = messages.get('email');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_EMAIL);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.EMAIL, VALUES.MESSAGES.INVALID_EMAIL);
         });
 
         it('should reject a value that is not an email', () =>
         {
             const input = { email: 123 };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.EMAIL);
-            const messages = result.messages;
-            const message = messages.get('email');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_EMAIL);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.EMAIL, VALUES.MESSAGES.INVALID_EMAIL);
         });
     });
 
@@ -358,75 +220,44 @@ describe('integrations/validation/implementation', () =>
         {
             const input = { url: 'https://this is an invalid url' };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.URL_HTTPS_FTP);
-            const messages = result.messages;
-            const message = messages.get('url');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_URL);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.URL_HTTPS_FTP, VALUES.MESSAGES.INVALID_URL);
         });
 
         it('should reject an url without protocol', () =>
         {
             const input = { url: 'example.com/folder/file.ext' };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.URL_HTTPS_FTP);
-            const messages = result.messages;
-            const message = messages.get('url');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_URL);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.URL_HTTPS_FTP, VALUES.MESSAGES.INVALID_URL);
         });
 
         it('should accept a valid url when no protocols are configured', () =>
         {
             const input = { url: 'someprotocol://example.com/folder/file.ext' };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.URL_NO_PROTOCOL);
-
-            expect(result.invalid).toBe(false);
+            performValidResultCheck(input, VALIDATION_SCHEMES.URL_NO_PROTOCOL);
         });
 
         it('should accept valid urls with configured protocols', () =>
         {
             const httpsInput = { url: 'https://example.com/folder/file.ext' };
-
-            const httpResult = validator.validate(httpsInput, VALIDATION_SCHEMES.URL_HTTPS_FTP);
-
             const ftpInput = { url: 'ftp://example.com/folder/file.ext' };
 
-            const ftpResult = validator.validate(ftpInput, VALIDATION_SCHEMES.URL_HTTPS_FTP);
-
-            expect(httpResult.invalid).toBe(false);
-            expect(ftpResult.invalid).toBe(false);
+            performValidResultCheck(httpsInput, VALIDATION_SCHEMES.URL_HTTPS_FTP);
+            performValidResultCheck(ftpInput, VALIDATION_SCHEMES.URL_HTTPS_FTP);
         });
 
         it('should reject an url with a protocol that is not configured', () =>
         {
-            const httpInput = { url: 'http://example.com/folder/file.ext' };
+            const input = { url: 'http://example.com/folder/file.ext' };
 
-            const result = validator.validate(httpInput, VALIDATION_SCHEMES.URL_HTTPS_FTP);
-            const messages = result.messages;
-            const message = messages.get('url');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_URL);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.URL_HTTPS_FTP, VALUES.MESSAGES.INVALID_URL);
         });
 
         it('should reject an url that is too long', () =>
         {
             const input = { url: VALUES.TOO_LONG_URL };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.URL_HTTPS_FTP);
-            const messages = result.messages;
-            const message = messages.get('url');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_URL);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.URL_HTTPS_FTP, VALUES.MESSAGES.INVALID_URL);
         });
     });
 
@@ -436,87 +267,49 @@ describe('integrations/validation/implementation', () =>
         {
             const input = { list: ['abcde', 'abcd'] };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.ARRAY);
-
-            expect(result.invalid).toBe(false);
+            performValidResultCheck(input, VALIDATION_SCHEMES.ARRAY);
         });
 
         it('should reject a missing required array', () =>
         {
             const input = { list: undefined };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.ARRAY);
-            const messages = result.messages;
-            const message = messages.get('list');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_LIST);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.ARRAY, VALUES.MESSAGES.INVALID_LIST);
         });
 
         it('should reject an array that has too little items', () =>
         {
             const input = { list: [] };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.ARRAY);
-            const messages = result.messages;
-            const message = messages.get('list');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_LIST);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.ARRAY, VALUES.MESSAGES.INVALID_LIST);
         });
 
         it('should reject an array with too many items', () =>
         {
             const input = { list: ['abcde', 'abcd', 'xyz'] };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.ARRAY);
-            const messages = result.messages;
-            const message = messages.get('list');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_LIST);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.ARRAY, VALUES.MESSAGES.INVALID_LIST);
         });
 
         it('should reject an array with items that are too short', () =>
         {
             const input = { list: ['ab'] };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.ARRAY);
-            const messages = result.messages;
-            const message = messages.get('list');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_LIST);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.ARRAY, VALUES.MESSAGES.INVALID_LIST);
         });
 
         it('should reject an array with items that are too long', () =>
         {
             const input = { list: ['abcde', 'abcdef'] };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.ARRAY);
-            const messages = result.messages;
-            const message = messages.get('list');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_LIST);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.ARRAY, VALUES.MESSAGES.INVALID_LIST);
         });
 
         it('should reject a value that is not an array', () =>
         {
             const input = { list: 'abcde' };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.ARRAY);
-            const messages = result.messages;
-            const message = messages.get('list');
-
-            expect(result.invalid).toBe(true);
-            expect(messages.size).toBe(1);
-            expect(message).toBe(VALUES.MESSAGES.INVALID_LIST);
+            performInvalidResultCheck(input, VALIDATION_SCHEMES.ARRAY, VALUES.MESSAGES.INVALID_LIST);
         });
     });
 
@@ -544,18 +337,14 @@ describe('integrations/validation/implementation', () =>
         {
             const input = {};
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.OPTIONAL);
-
-            expect(result.invalid).toBe(false);
+            performValidResultCheck(input, VALIDATION_SCHEMES.OPTIONAL);
         });
 
         it('should accept one optional value', () =>
         {
             const input = { number: 18 };
 
-            const result = validator.validate(input, VALIDATION_SCHEMES.OPTIONAL);
-
-            expect(result.invalid).toBe(false);
+            performValidResultCheck(input, VALIDATION_SCHEMES.OPTIONAL);
         });
     });
 
@@ -600,3 +389,21 @@ describe('integrations/validation/implementation', () =>
         });
     });
 });
+
+function performInvalidResultCheck(input: unknown, validationScheme: ValidationSchema, expectedMessage: string): void
+{
+    const result = validator.validate(input, validationScheme);
+    const messages = result.messages;
+    const message = messages.get(Object.keys(validationScheme)[0]);
+
+    expect(result.invalid).toBe(true);
+    expect(messages.size).toBe(1);
+    expect(message).toBe(expectedMessage);
+}
+
+function performValidResultCheck(input: unknown, validationScheme: ValidationSchema): void
+{
+    const result = validator.validate(input, validationScheme);
+
+    expect(result.invalid).toBe(false);
+}
