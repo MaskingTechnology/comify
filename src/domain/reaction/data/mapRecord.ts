@@ -12,7 +12,6 @@ export default function mapRecord(record: RecordData): ReactionData
         record.comicId as string,
         record.commentId as string,
         record.ratingCount as number,
-        new Date(record.createdAt as string),
-        record.deleted as boolean,
+        new Date(record.createdAt as string)
     );
 }

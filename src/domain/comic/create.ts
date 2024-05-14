@@ -1,6 +1,6 @@
 
 import createImage from '../image/create';
-import removeImage from '../image/remove';
+import eraseImage from '../image/erase';
 import type ComicData from './data/ComicData';
 import createData from './data/create';
 import { IMAGE_TYPE } from './definitions/constants.js';
@@ -20,7 +20,7 @@ export default async function create(imageDataUrl: string, structure?: string): 
     {
         if (image !== undefined)
         {
-            await removeImage(image.id);
+            await eraseImage(image.id);
         }
 
         throw error;

@@ -10,10 +10,9 @@ export default async function update(data: PostData): Promise<void>
     {
         creatorId: data.creatorId,
         comicId: data.comicId,
-        createdAt: data.createdAt,
+        createdAt: data.createdAt.toISOString(),
         ratingCount: data.ratingCount,
-        reactionCount: data.reactionCount,
-        deleted: data.deleted
+        reactionCount: data.reactionCount
     };
 
     await database.updateRecord(RECORD_TYPE, data.id, record);

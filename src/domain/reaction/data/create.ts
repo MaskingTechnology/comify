@@ -16,5 +16,5 @@ export default async function create(creatorId: string, postId: string, comicId:
 
     const id = await database.createRecord(RECORD_TYPE, record);
 
-    return new ReactionData(id, creatorId, postId, comicId, commentId, ratingCount, now, deleted);
+    return new ReactionData(id, creatorId, postId, comicId, commentId, ratingCount, now);
 }
