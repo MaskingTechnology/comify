@@ -1,8 +1,7 @@
 
-export default class InvalidImage extends Error
+import { ValidationError } from '^/integrations/runtime/module';
+
+export default class InvalidImage extends ValidationError
 {
-    constructor(message?: string)
-    {
-        super(message ?? 'Invalid image');
-    }
+
 }

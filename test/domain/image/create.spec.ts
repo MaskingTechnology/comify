@@ -38,13 +38,17 @@ describe('domain/image/create', () =>
 
     it('should fail to create an image with an invalid type', async () =>
     {
+        const messages = new Map([['mimeType', 'Invalid mime type']]);
+
         const promise = create('test', DATA_URLS.INVALID_TYPE);
-        expect(promise).rejects.toStrictEqual(new InvalidImage('Invalid field(s): mimeType'));
+        expect(promise).rejects.toStrictEqual(new InvalidImage(messages));
     });
 
     it('should fail to create an image that is to small', async () =>
     {
+        const messages = new Map([['size', 'Invalid size']]);
+
         const promise = create('test', DATA_URLS.INVALID_SIZE);
-        expect(promise).rejects.toStrictEqual(new InvalidImage('Invalid field(s): size'));
+        expect(promise).rejects.toStrictEqual(new InvalidImage(messages));
     });
 });

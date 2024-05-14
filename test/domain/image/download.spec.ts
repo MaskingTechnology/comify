@@ -43,15 +43,19 @@ describe('domain/image/download', () =>
 
     it('should fail to download an image with an invalid type', async () =>
     {
+        const messages = new Map([['mimeType', 'Invalid mime type']]);
+
         const promise = download('test', URLS.INVALID_TYPE);
 
-        await expect(promise).rejects.toStrictEqual(new InvalidImage('Invalid field(s): mimeType'));
+        await expect(promise).rejects.toStrictEqual(new InvalidImage(messages));
     });
 
     it('should fail to download an image that is to large', async () =>
     {
+        const messages = new Map([['size', 'Invalid size']]);
+
         const promise = download('test', URLS.INVALID_SIZE);
 
-        await expect(promise).rejects.toStrictEqual(new InvalidImage('Invalid field(s): size'));
+        await expect(promise).rejects.toStrictEqual(new InvalidImage(messages));
     });
 });

@@ -30,14 +30,10 @@ const schema: ValidationSchema = {
 
 export default function validate(mimeType: string, size: number): void
 {
-    try
-    {
-        validator.validate({ mimeType, size }, schema);
-    }
-    catch (error: unknown)
-    {
-        const message = (error as Error).message;
+    const result = validator.validate({ mimeType, size }, schema);
 
-        throw new InvalidImage(message);
+    if (result.invalid)
+    {
+        throw new InvalidImage(result.messages);
     }
 }
