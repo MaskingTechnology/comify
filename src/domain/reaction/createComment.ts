@@ -1,10 +1,10 @@
 
 import type Requester from '../authentication/Requester';
 import createActualComment from '../comment/create';
-import removeActualComment from '../comment/remove';
+import eraseActualComment from '../comment/erase';
 import increaseReactionCount from '../post/increaseReactionCount';
 import createReaction from './data/create';
-import removeReaction from './data/remove';
+import eraseReaction from './data/erase';
 import type ReactionView from './view/ReactionView';
 import createView from './view/createView';
 
@@ -22,8 +22,8 @@ export default async function createComment(requester: Requester, postId: string
     }
     catch (error: unknown)
     {
-        const undoComment = comment !== undefined ? removeActualComment(comment.id) : Promise.resolve();
-        const undoReaction = reaction !== undefined ? removeReaction(reaction.id) : Promise.resolve();
+        const undoComment = comment !== undefined ? eraseActualComment(comment.id) : Promise.resolve();
+        const undoReaction = reaction !== undefined ? eraseReaction(reaction.id) : Promise.resolve();
 
         await Promise.all([undoComment, undoReaction]);
 
