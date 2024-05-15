@@ -1,13 +1,17 @@
 
 import database, { RecordData } from '^/integrations/database/module';
+import { generateId } from '^/integrations/utilities/crypto';
 
 import { RECORD_TYPE } from '../definitions/constants';
 import RelationData from './RelationData';
 
 export default async function create(followerId: string, followingId: string): Promise<RelationData>
 {
-    const data: RecordData = { followerId, followingId };
-    const relationId = await database.createRecord(RECORD_TYPE, data);
+    const id = generateId();
 
-    return new RelationData(relationId, followerId, followingId);
+    const record: RecordData = { id, followerId, followingId };
+
+    await database.createRecord(RECORD_TYPE, record);
+
+    return new RelationData(id, followerId, followingId);
 }

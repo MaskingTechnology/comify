@@ -1,12 +1,17 @@
 
-import database from '^/integrations/database/module';
+import database, { RecordData } from '^/integrations/database/module';
+import { generateId } from '^/integrations/utilities/crypto';
 
 import { RECORD_TYPE } from '../definitions/constants';
 import ImageData from './ImageData';
 
 export default async function create(storageKey: string, filename: string, mimeType: string, size: number): Promise<ImageData>
 {
-    const imageId = await database.createRecord(RECORD_TYPE, { storageKey, filename, mimeType, size });
+    const id = generateId();
 
-    return new ImageData(imageId, storageKey, filename, mimeType, size);
+    const record: RecordData = { id, storageKey, filename, mimeType, size };
+
+    await database.createRecord(RECORD_TYPE, record);
+
+    return new ImageData(id, storageKey, filename, mimeType, size);
 }

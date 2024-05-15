@@ -1,5 +1,5 @@
 
-import { Collection, Db, Document, Filter, MongoClient, ObjectId, Sort } from 'mongodb';
+import { Collection, Db, Document, Filter, MongoClient, Sort } from 'mongodb';
 import { ID, LogicalOperators, QueryOperators, SortDirections } from '../../definitions/constants.js';
 import { Database } from '../../definitions/interfaces.js';
 import { QueryMultiExpressionStatement, QueryOperator, QuerySingleExpressionStatement, RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType, RecordValue } from '../../definitions/types.js';
@@ -103,11 +103,13 @@ export default class MongoDB implements Database
     async createRecord(type: RecordType, data: RecordData): Promise<RecordId>
     {
         const collection = await this.#getCollection(type);
-        const mongoId = this.#createId(data.id as string);
+        const id = data.id as string;
+
+        delete data.id;
 
         try
         {
-            await collection.insertOne({ _id: mongoId, ...data });
+            await collection.insertOne({ _id: id, ...data });
         }
         catch (error: unknown)
         {
@@ -116,14 +118,13 @@ export default class MongoDB implements Database
             throw new RecordNotCreated(message);
         }
 
-        return mongoId.toHexString();
+        return id;
     }
 
     async readRecord(type: RecordType, id: RecordId, fields?: RecordField[]): Promise<RecordData>
     {
         const collection = await this.#getCollection(type);
-        const mongoId = this.#createId(id);
-        const entry = await collection.findOne({ _id: mongoId });
+        const entry = await collection.findOne({ _id: id });
 
         if (entry === null)
         {
@@ -136,8 +137,7 @@ export default class MongoDB implements Database
     async updateRecord(type: RecordType, id: RecordId, data: RecordData): Promise<void>
     {
         const collection = await this.#getCollection(type);
-        const mongoId = this.#createId(id);
-        const entry = await collection.updateOne({ _id: mongoId }, { $set: data });
+        const entry = await collection.updateOne({ _id: id }, { $set: data });
 
         if (entry.modifiedCount === 0)
         {
@@ -148,8 +148,7 @@ export default class MongoDB implements Database
     async deleteRecord(type: RecordType, id: RecordId): Promise<void>
     {
         const collection = await this.#getCollection(type);
-        const mongoId = this.#createId(id);
-        const result = await collection.deleteOne({ _id: mongoId });
+        const result = await collection.deleteOne({ _id: id });
 
         if (result.deletedCount !== 1)
         {
@@ -179,16 +178,6 @@ export default class MongoDB implements Database
     async clear(): Promise<void>
     {
         return; // Deliberately not implemented
-    }
-
-    #createIds(inputIds: string[]): ObjectId[]
-    {
-        return inputIds.map(id => this.#createId(id));
-    }
-
-    #createId(inputId?: string): ObjectId
-    {
-        return new ObjectId(inputId);
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any, sonarjs/cognitive-complexity
@@ -226,10 +215,9 @@ export default class MongoDB implements Database
             for (const operator in expression)
             {
                 const value = this.#extractValue(expression as RecordData, operator as QueryOperator);
-                const mongoValue = key === ID ? value instanceof Array ? this.#createIds(value) : this.#createId(value as string) : value;
                 const mongoOperator = OPERATORS[operator];
 
-                mongoExpression[mongoOperator] = mongoValue;
+                mongoExpression[mongoOperator] = value;
             }
 
             mongoQuery[mongoKey] = mongoExpression;
@@ -307,7 +295,7 @@ export default class MongoDB implements Database
         for (const field of fields)
         {
             const value = field === ID
-                ? data[MONGO_ID].toHexString()
+                ? data[MONGO_ID]
                 : data[field];
 
             result[field] = value ?? undefined;
