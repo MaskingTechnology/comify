@@ -1,5 +1,5 @@
 
-import retrieveData from './data/retrieve';
+import retrieveData from './repository/retrieve';
 import type ComicView from './view/ComicView';
 import createView from './view/createView';
 
