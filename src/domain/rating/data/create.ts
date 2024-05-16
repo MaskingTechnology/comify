@@ -1,16 +1,19 @@
 
 import database, { RecordData } from '^/integrations/database/module';
+import { generateId } from '^/integrations/utilities/crypto';
 
 import { RECORD_TYPE } from '../definitions/constants';
 import RatingData from './RatingData';
+import mapRecord from './mapRecord';
 
 export default async function create(creatorId: string, postId: string | undefined, reactionId: string | undefined): Promise<RatingData>
 {
-    const now = new Date();
+    const id = generateId();
+    const createdAt = new Date().toISOString();
 
-    const createdAt = now.toISOString();
-    const data: RecordData = { creatorId, postId, reactionId, createdAt };
-    const ratingId = await database.createRecord(RECORD_TYPE, data);
+    const record: RecordData = { id, creatorId, postId, reactionId, createdAt };
 
-    return new RatingData(ratingId, creatorId, postId, reactionId, now);
+    await database.createRecord(RECORD_TYPE, record);
+
+    return mapRecord(record);
 }
