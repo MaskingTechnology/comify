@@ -3,7 +3,7 @@ import { RecordData } from '^/integrations/database/module';
 
 import RelationData from './RelationData';
 
-export default function mapRelation(record: RecordData): RelationData
+export default function mapRecord(record: RecordData): RelationData
 {
     return new RelationData(
         record.id as string,

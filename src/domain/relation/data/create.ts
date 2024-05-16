@@ -4,6 +4,7 @@ import { generateId } from '^/integrations/utilities/crypto';
 
 import { RECORD_TYPE } from '../definitions/constants';
 import RelationData from './RelationData';
+import mapRecord from './mapRecord';
 
 export default async function create(followerId: string, followingId: string): Promise<RelationData>
 {
@@ -13,5 +14,5 @@ export default async function create(followerId: string, followingId: string): P
 
     await database.createRecord(RECORD_TYPE, record);
 
-    return new RelationData(id, followerId, followingId);
+    return mapRecord(record);
 }

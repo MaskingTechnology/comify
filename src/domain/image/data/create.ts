@@ -4,6 +4,7 @@ import { generateId } from '^/integrations/utilities/crypto';
 
 import { RECORD_TYPE } from '../definitions/constants';
 import ImageData from './ImageData';
+import mapRecord from './mapRecord';
 
 export default async function create(storageKey: string, filename: string, mimeType: string, size: number): Promise<ImageData>
 {
@@ -13,5 +14,5 @@ export default async function create(storageKey: string, filename: string, mimeT
 
     await database.createRecord(RECORD_TYPE, record);
 
-    return new ImageData(id, storageKey, filename, mimeType, size);
+    return mapRecord(record);
 }

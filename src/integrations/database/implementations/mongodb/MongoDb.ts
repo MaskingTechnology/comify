@@ -103,13 +103,14 @@ export default class MongoDB implements Database
     async createRecord(type: RecordType, data: RecordData): Promise<RecordId>
     {
         const collection = await this.#getCollection(type);
-        const id = data.id as string;
+        const dataCopy = { ...data };
+        const id = dataCopy.id as RecordId;
 
-        delete data.id;
+        delete dataCopy.id;
 
         try
         {
-            await collection.insertOne({ _id: id, ...data });
+            await collection.insertOne({ _id: id, ...dataCopy });
         }
         catch (error: unknown)
         {
@@ -128,7 +129,7 @@ export default class MongoDB implements Database
 
         if (entry === null)
         {
-            throw new RecordNotFound();
+            throw new RecordNotFound(`Record ${type} found: ${id}`);
         }
 
         return this.#buildRecordData(entry as Document, fields);

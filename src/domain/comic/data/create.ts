@@ -4,6 +4,7 @@ import { generateId } from '^/integrations/utilities/crypto';
 
 import { RECORD_TYPE } from '../definitions/constants';
 import ComicData from './ComicData';
+import mapRecord from './mapRecord';
 
 export default async function create(imageId: string, structure?: string): Promise<ComicData>
 {
@@ -13,5 +14,5 @@ export default async function create(imageId: string, structure?: string): Promi
 
     await database.createRecord(RECORD_TYPE, record);
 
-    return new ComicData(id, imageId, structure);
+    return mapRecord(record);
 }

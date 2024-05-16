@@ -4,6 +4,7 @@ import { generateId } from '^/integrations/utilities/crypto';
 
 import { RECORD_TYPE } from '../definitions/constants';
 import CommentData from './CommentData';
+import mapRecord from './mapRecord';
 
 export default async function create(message: string): Promise<CommentData>
 {
@@ -13,5 +14,5 @@ export default async function create(message: string): Promise<CommentData>
 
     await database.createRecord(RECORD_TYPE, record);
 
-    return new CommentData(id, message);
+    return mapRecord(record);
 }
