@@ -3,7 +3,7 @@
     "./domain/comic/get": { "default": {  "access": "protected" } },
     "./domain/comic/erase": { "default": {  "access": "protected" } },
 
-    "./domain/comic/data/create": { "default": {  "access": "private" } },
-    "./domain/comic/data/erase": { "default": {  "access": "private" } },
-    "./domain/comic/data/retrieve": { "default": {  "access": "private" } }
+    "./domain/comic/repository/erase": { "default": {  "access": "private" } },
+    "./domain/comic/repository/insert": { "default": {  "access": "private" } },
+    "./domain/comic/repository/retrieve": { "default": {  "access": "private" } }
 }
