@@ -1,5 +1,5 @@
 
-import validator, { ValidationSchema } from '^/integrations/validation/module';
+import validator, { type ValidationSchema } from '^/integrations/validation/module';
 
 import InvalidImage from '../errors/InvalidImage';
 

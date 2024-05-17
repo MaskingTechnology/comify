@@ -1,9 +1,10 @@
 
 import type ImageData from './data/ImageData';
-import createData from './data/create';
-import fileExists from './files/exists';
-import store from './files/store';
-import ImageImport from './import/ImageImport.js';
+import createData from './data/createData';
+import type ImageImport from './import/ImageImport.js';
+import fileExists from './repository/checkFileExists';
+import insertData from './repository/insertData';
+import insertFile from './repository/insertFile';
 import generateStorageKey from './utils/generateStorageKey';
 
 export default async function save(type: string, image: ImageImport): Promise<ImageData>
@@ -13,8 +14,12 @@ export default async function save(type: string, image: ImageImport): Promise<Im
 
     if (alreadyStored === false)
     {
-        await store(storageKey, image.data);
+        await insertFile(storageKey, image.data);
     }
 
-    return createData(storageKey, image.filename, image.mimeType, image.size);
+    const data = createData(storageKey, image.filename, image.mimeType, image.size);
+
+    await insertData(data);
+
+    return data;
 }

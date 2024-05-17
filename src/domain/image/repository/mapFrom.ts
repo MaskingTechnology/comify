@@ -1,9 +1,9 @@
 
-import { RecordData } from '^/integrations/database/module';
+import { type RecordData } from '^/integrations/database/module';
 
-import ImageData from './ImageData';
+import ImageData from '../data/ImageData';
 
-export default function mapRecord(record: RecordData): ImageData
+export default function mapFrom(record: RecordData): ImageData
 {
     return new ImageData(
         record.id as string,

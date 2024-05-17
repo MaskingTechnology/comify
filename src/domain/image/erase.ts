@@ -1,10 +1,7 @@
 
-import eraseData from './data/erase';
-import retrieveData from './data/retrieve';
+import eraseImage from './repository/eraseData';
 
 export default async function erase(id: string): Promise<void>
 {
-    const data = await retrieveData(id);
-
-    return eraseData(data.id);
+    return eraseImage(id);
 }

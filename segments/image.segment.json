@@ -5,7 +5,9 @@
     "./domain/image/erase": { "default": {  "access": "protected" } },
     
     "./domain/image/save": { "default": {  "access": "private" } },
-    "./domain/image/data/create": { "default": {  "access": "private" } },
-    "./domain/image/data/erase": { "default": {  "access": "private" } },
-    "./domain/image/data/retrieve": { "default": {  "access": "private" } }
+    "./domain/image/repository/eraseData": { "default": {  "access": "private" } },
+    "./domain/image/repository/insertData": { "default": {  "access": "private" } },
+    "./domain/image/repository/retrieveData": { "default": {  "access": "private" } },
+    "./domain/image/repository/checkFileExists": { "default": {  "access": "private" } },
+    "./domain/image/repository/retrieveFile": { "default": {  "access": "private" } }
 }
