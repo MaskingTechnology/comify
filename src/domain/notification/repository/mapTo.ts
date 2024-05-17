@@ -1,3 +1,4 @@
+
 import { type RecordData } from '^/integrations/database/module';
 import type NotificationData from '../data/NotificationData';
 

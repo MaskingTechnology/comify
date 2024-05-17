@@ -1,5 +1,5 @@
 
-import database, { RecordSort, SortDirections } from '^/integrations/database/module';
+import database, { SortDirections, type RecordSort } from '^/integrations/database/module';
 
 import type CreatorData from '../data/CreatorData';
 import { RECORD_TYPE } from '../definitions/constants';

@@ -1,5 +1,5 @@
 
-import database, { QueryStatement, RecordQuery, RecordSort, SortDirections } from '^/integrations/database/module';
+import database, { SortDirections, type QueryStatement, type RecordQuery, type RecordSort } from '^/integrations/database/module';
 
 import type CreatorData from '../data/CreatorData';
 import type SortFields from '../definitions/SortFields';
