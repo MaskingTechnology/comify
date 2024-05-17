@@ -1,5 +1,11 @@
 {
-    "./domain/relation/data/retrieve": { "default": {  "access": "protected" } },
-    "./domain/relation/data/retrieveByFollower": { "default": {  "access": "protected" } },
-    "./domain/relation/data/retrieveByFollowing": { "default": {  "access": "protected" } }
+    "./domain/relation/establish": { "default": {  "access": "protected" } },
+    "./domain/relation/explore": { "default": {  "access": "protected" } },
+    "./domain/relation/get": { "default": {  "access": "protected" } },
+    "./domain/relation/getFollowers": { "default": {  "access": "protected" } },
+    "./domain/relation/getFollowing": { "default": {  "access": "protected" } },
+
+    "./domain/relation/repository/retrieve": { "default": {  "access": "private" } },
+    "./domain/relation/repository/retrieveByFollower": { "default": {  "access": "private" } },
+    "./domain/relation/repository/retrieveByFollowing": { "default": {  "access": "private" } }
 }

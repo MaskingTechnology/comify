@@ -1,6 +1,6 @@
 
 import type Requester from '../authentication/Requester';
-import retrieveFollowerData from '../relation/data/retrieveByFollower';
+import retrieveFollowerData from '../relation/repository/retrieveByFollower';
 import retrieveByCreators from './repository/retrieveByCreators';
 import type PostView from './view/PostView';
 import createView from './view/createView';

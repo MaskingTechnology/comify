@@ -1,5 +1,5 @@
 
-import retrieve from './data/retrieve';
+import retrieve from './repository/retrieve';
 import type RelationView from './view/RelationView';
 import createView from './view/createView';
 

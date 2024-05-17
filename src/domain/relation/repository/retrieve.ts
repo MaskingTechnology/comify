@@ -1,8 +1,10 @@
 
-import database, { RecordQuery } from '^/integrations/database/module';
+import database, { type RecordQuery } from '^/integrations/database/module';
 
+import RelationData from '../data/RelationData';
+import createWithoutId from '../data/createWithoutId';
 import { RECORD_TYPE } from '../definitions/constants';
-import RelationData from './RelationData';
+import mapTo from './mapTo';
 
 export default async function retrieve(followerId: string, followingId: string): Promise<RelationData>
 {
@@ -13,5 +15,10 @@ export default async function retrieve(followerId: string, followingId: string):
 
     const record = await database.findRecord(RECORD_TYPE, query);
 
-    return new RelationData(record?.id as string, followerId, followingId);
+    if (record !== undefined)
+    {
+        return mapTo(record);
+    }
+
+    return createWithoutId(followerId, followingId);
 }

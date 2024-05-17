@@ -1,5 +1,5 @@
 
-import database, { RecordQuery } from '^/integrations/database/module';
+import database, { type RecordQuery } from '^/integrations/database/module';
 
 import { RECORD_TYPE } from '../definitions/constants';
 

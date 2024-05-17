@@ -1,7 +1,7 @@
 
 import type Requester from '../authentication/Requester';
-import retrieve from './data/retrieve';
-import retrieveByFollower from './data/retrieveByFollower';
+import retrieve from './repository/retrieve';
+import retrieveByFollower from './repository/retrieveByFollower';
 import type RelationView from './view/RelationView';
 import createView from './view/createView';
 
