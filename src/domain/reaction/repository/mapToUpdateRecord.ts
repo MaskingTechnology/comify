@@ -3,7 +3,7 @@ import { type RecordData } from '^/integrations/database/module';
 
 import type ReactionData from '../data/ReactionData';
 
-export default function mapToUpdate(data: ReactionData): RecordData
+export default function mapToUpdateRecord(data: ReactionData): RecordData
 {
     return {
         id: data.id,

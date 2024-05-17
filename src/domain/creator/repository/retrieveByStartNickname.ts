@@ -3,7 +3,7 @@ import database, { SortDirections, type RecordSort } from '^/integrations/databa
 
 import type CreatorData from '../data/CreatorData';
 import { RECORD_TYPE } from '../definitions/constants';
-import mapRecord from './mapFrom';
+import mapToData from './mapToData';
 
 export default async function retrieveByStartNickname(nickname: string): Promise<CreatorData | undefined>
 {
@@ -11,6 +11,6 @@ export default async function retrieveByStartNickname(nickname: string): Promise
     const result = await database.findRecord(RECORD_TYPE, { nickname: { STARTS_WITH: nickname } }, undefined, sort);
 
     return result !== undefined
-        ? mapRecord(result)
+        ? mapToData(result)
         : undefined;
 }

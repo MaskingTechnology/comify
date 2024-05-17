@@ -1,5 +1,6 @@
 
 import { generateId } from '^/integrations/utilities/crypto';
+
 import NotificationData from './NotificationData';
 
 export default function createData(type: string, senderId: string, receiverId: string, postId: string, reactionId: string): NotificationData

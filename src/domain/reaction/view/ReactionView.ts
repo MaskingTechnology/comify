@@ -1,7 +1,7 @@
 
-import type ComicView from '../../comic/view/ComicView';
-import type CommentView from '../../comment/view/CommentView';
-import type RelationView from '../../relation/view/RelationView';
+import type ComicView from '^/domain/comic/view/ComicView';
+import type CommentView from '^/domain/comment/view/CommentView';
+import type RelationView from '^/domain/relation/view/RelationView';
 
 export default class ReactionView
 {

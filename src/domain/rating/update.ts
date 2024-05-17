@@ -1,5 +1,6 @@
 
-import type Requester from '../authentication/Requester';
+import type Requester from '^/domain/authentication/Requester';
+
 import type RatingData from './data/RatingData';
 import createData from './data/createData';
 import erase from './repository/erase';

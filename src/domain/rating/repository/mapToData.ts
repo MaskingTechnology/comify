@@ -3,7 +3,7 @@ import { type RecordData } from '^/integrations/database/module';
 
 import RatingData from '../data/RatingData';
 
-export default function mapFrom(record: RecordData): RatingData
+export default function mapToData(record: RecordData): RatingData
 {
     return new RatingData(
         record.id as string,

@@ -22,13 +22,14 @@ export default function Component({ posts, onComicClick, onRatingClick, onReacti
 
     return <Grid layout='two-columns' gap='medium'>
         {
-            posts.map(post => <SmallPanel
-                key={post.id}
-                post={post}
-                onComicClick={() => onComicClick(post)}
-                onRatingClick={() => onRatingClick(post)}
-                onReactionClick={() => onReactionClick(post)}
-            />)
+            posts.map(post =>
+                <SmallPanel
+                    key={post.id}
+                    post={post}
+                    onComicClick={() => onComicClick(post)}
+                    onRatingClick={() => onRatingClick(post)}
+                    onReactionClick={() => onReactionClick(post)}
+                />)
         }
     </Grid>;
 }

@@ -3,7 +3,7 @@ import { type RecordData } from '^/integrations/database/module';
 
 import type PostData from '../data/PostData';
 
-export default function mapToInsert(data: PostData): RecordData
+export default function mapToDeleteRecord(data: PostData): RecordData
 {
     return {
         id: data.id,
@@ -12,6 +12,6 @@ export default function mapToInsert(data: PostData): RecordData
         createdAt: data.createdAt.toISOString(),
         ratingCount: data.ratingCount,
         reactionCount: data.reactionCount,
-        deleted: false
+        deleted: true
     };
 }

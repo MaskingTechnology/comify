@@ -3,7 +3,7 @@ import { type RecordData } from '^/integrations/database/module';
 
 import type PostData from '../data/PostData';
 
-export default function mapToUpdate(data: PostData): RecordData
+export default function mapToUpdateRecord(data: PostData): RecordData
 {
     return {
         id: data.id,

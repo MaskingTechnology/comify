@@ -1,7 +1,8 @@
 
-import type Requester from '../authentication/Requester';
-import decreaseReactionCount from '../post/decreaseReactionCount';
-import increaseReactionCount from '../post/increaseReactionCount';
+import type Requester from '^/domain/authentication/Requester';
+import decreaseReactionCount from '^/domain/post/decreaseReactionCount';
+import increaseReactionCount from '^/domain/post/increaseReactionCount';
+
 import removeData from './repository/remove';
 import retrieveOwn from './repository/retrieveOwn';
 

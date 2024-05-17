@@ -3,7 +3,7 @@ import { type RecordData } from '^/integrations/database/module';
 
 import type ReactionData from '../data/ReactionData';
 
-export default function mapToDelete(data: ReactionData): RecordData
+export default function mapToNewRecord(data: ReactionData): RecordData
 {
     return {
         id: data.id,
@@ -13,6 +13,6 @@ export default function mapToDelete(data: ReactionData): RecordData
         commentId: data.commentId,
         ratingCount: data.ratingCount,
         createdAt: data.createdAt,
-        deleted: true
+        deleted: false
     };
 }

@@ -1,8 +1,9 @@
 
-import type Requester from '../authentication/Requester';
-import createActualComment from '../comment/create';
-import eraseActualComment from '../comment/erase';
-import increaseReactionCount from '../post/increaseReactionCount';
+import type Requester from '^/domain/authentication/Requester';
+import createActualComment from '^/domain/comment/create';
+import eraseActualComment from '^/domain/comment/erase';
+import increaseReactionCount from '^/domain/post/increaseReactionCount';
+
 import createData from './data/createData';
 import eraseReaction from './repository/erase';
 import insert from './repository/insert';

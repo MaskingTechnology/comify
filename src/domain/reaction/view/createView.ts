@@ -1,9 +1,10 @@
 
-import type Requester from '../../authentication/Requester';
-import getComicView from '../../comic/get';
-import getCommentView from '../../comment/get';
-import ratingExists from '../../rating/exists';
-import getRelationView from '../../relation/get';
+import type Requester from '^/domain/authentication/Requester';
+import getComicView from '^/domain/comic/get';
+import getCommentView from '^/domain/comment/get';
+import ratingExists from '^/domain/rating/exists';
+import getRelationView from '^/domain/relation/get';
+
 import type ReactionData from '../data/ReactionData';
 import ReactionView from './ReactionView';
 

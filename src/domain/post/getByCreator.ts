@@ -1,5 +1,6 @@
 
-import type Requester from '../authentication/Requester';
+import type Requester from '^/domain/authentication/Requester';
+
 import retrieveByCreators from './repository/retrieveByCreators';
 import type PostView from './view/PostView';
 import createView from './view/createView';

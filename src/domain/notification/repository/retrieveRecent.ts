@@ -1,5 +1,6 @@
 
-import type Requester from '../../authentication/Requester';
+import type Requester from '^/domain/authentication/Requester';
+
 import type NotificationData from '../data/NotificationData';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -3,7 +3,7 @@ import database, { SortDirections, type RecordQuery, type RecordSort } from '^/i
 
 import type ReactionData from '../data/ReactionData';
 import { RECORD_TYPE } from '../definitions/constants';
-import createData from './mapFrom';
+import createData from './mapToData';
 
 export default async function retrieveByPost(postId: string): Promise<ReactionData[]>
 {
@@ -12,7 +12,7 @@ export default async function retrieveByPost(postId: string): Promise<ReactionDa
 
     const records = await database.searchRecords(RECORD_TYPE, query, undefined, sort);
 
-    const dataList = records.map(createData);
+    const dataList = records.map(record => createData(record));
 
     return Promise.all(dataList);
 }

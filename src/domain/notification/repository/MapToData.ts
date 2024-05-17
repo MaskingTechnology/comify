@@ -1,8 +1,9 @@
 
 import { type RecordData } from '^/integrations/database/module';
+
 import NotificationData from '../data/NotificationData';
 
-export default function mapFrom(record: RecordData): NotificationData
+export default function mapToData(record: RecordData): NotificationData
 {
     return new NotificationData(
         record.id as string,

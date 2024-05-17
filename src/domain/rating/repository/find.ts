@@ -3,7 +3,7 @@ import database, { type RecordQuery } from '^/integrations/database/module';
 
 import type RatingData from '../data/RatingData';
 import { RECORD_TYPE } from '../definitions/constants';
-import mapRecord from './mapFrom';
+import mapToData from './mapToData';
 
 export default async function find(creatorId: string, postId: string | undefined, reactionId: string | undefined): Promise<RatingData | undefined>
 {
@@ -16,6 +16,6 @@ export default async function find(creatorId: string, postId: string | undefined
     const record = await database.findRecord(RECORD_TYPE, query);
 
     return record !== undefined
-        ? mapRecord(record)
+        ? mapToData(record)
         : undefined;
 }

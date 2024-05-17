@@ -3,7 +3,7 @@ import database, { type RecordQuery } from '^/integrations/database/module';
 
 import type RelationData from '../data/RelationData';
 import { RECORD_TYPE } from '../definitions/constants';
-import createRelationData from './mapTo';
+import mapToData from './mapToData';
 
 export default async function retrieveByFollowing(followingId: string): Promise<RelationData[]>
 {
@@ -11,5 +11,5 @@ export default async function retrieveByFollowing(followingId: string): Promise<
 
     const records = await database.searchRecords(RECORD_TYPE, query);
 
-    return Promise.all(records.map(createRelationData));
+    return Promise.all(records.map(record => mapToData(record)));
 }

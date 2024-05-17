@@ -1,6 +1,6 @@
 
-import type NotificationData from '../data/NotificationData.js';
-import mapFrom from './mapFrom';
+import type NotificationData from '../data/NotificationData';
+import mapToData from './MapToData';
 
 export default async function retrieve(id: string): Promise<NotificationData>
 {
@@ -14,5 +14,5 @@ export default async function retrieve(id: string): Promise<NotificationData>
         createdAt: '2024-05-17T2024-05-16T15:10:44.292Z'
     };
 
-    return mapFrom(record);
+    return mapToData(record);
 }

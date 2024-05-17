@@ -4,7 +4,7 @@ import database, { type RecordQuery } from '^/integrations/database/module';
 import type PostData from '../data/PostData';
 import { RECORD_TYPE } from '../definitions/constants';
 import PostNotFound from '../errors/PostNotFound';
-import createData from './mapFrom';
+import mapToData from './mapToData';
 
 export default async function retrieveOwn(id: string, creatorId: string): Promise<PostData>
 {
@@ -21,5 +21,5 @@ export default async function retrieveOwn(id: string, creatorId: string): Promis
         throw new PostNotFound();
     }
 
-    return createData(record);
+    return mapToData(record);
 }

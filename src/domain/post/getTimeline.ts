@@ -1,6 +1,7 @@
 
-import type Requester from '../authentication/Requester';
-import retrieveFollowerData from '../relation/repository/retrieveByFollower';
+import type Requester from '^/domain/authentication/Requester';
+import retrieveFollowerData from '^/domain/relation/repository/retrieveByFollower';
+
 import retrieveByCreators from './repository/retrieveByCreators';
 import type PostView from './view/PostView';
 import createView from './view/createView';

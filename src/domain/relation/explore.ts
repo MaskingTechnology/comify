@@ -1,8 +1,9 @@
 
-import type Requester from '../authentication/Requester';
-import { SortFields as CreatorSortFields } from '../creator/definitions/SortFields';
-import retrieveCreatorsWithout from '../creator/repository/retrieveWithout';
-import createCreatorView from '../creator/view/createView';
+import type Requester from '^/domain/authentication/Requester';
+import { SortFields as CreatorSortFields } from '^/domain/creator/definitions/SortFields';
+import retrieveCreatorsWithout from '^/domain/creator/repository/retrieveWithout';
+import createCreatorView from '^/domain/creator/view/createView';
+
 import SortOptions from './definitions/SortOptions';
 import retrieveDataByFollower from './repository/retrieveByFollower';
 import RelationView from './view/RelationView';

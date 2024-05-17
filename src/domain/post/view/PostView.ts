@@ -1,6 +1,6 @@
 
-import type ComicView from '../../comic/view/ComicView';
-import type RelationView from '../../relation/view/RelationView';
+import type ComicView from '^/domain/comic/view/ComicView';
+import type RelationView from '^/domain/relation/view/RelationView';
 
 export default class PostView
 {

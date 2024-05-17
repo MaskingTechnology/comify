@@ -3,7 +3,7 @@ import database, { type RecordQuery } from '^/integrations/database/module';
 
 import type PostData from '../data/PostData';
 import { RECORD_TYPE } from '../definitions/constants';
-import mapRecord from './mapFrom';
+import mapToData from './mapToData';
 
 export default async function retrieveWithoutCreators(creatorIds: string[]): Promise<PostData[]>
 {
@@ -11,5 +11,5 @@ export default async function retrieveWithoutCreators(creatorIds: string[]): Pro
 
     const records = await database.searchRecords(RECORD_TYPE, query);
 
-    return Promise.all(records.map(mapRecord));
+    return Promise.all(records.map(record => mapToData(record)));
 }

@@ -9,6 +9,7 @@ export default async function exists(followerId: string, followingId: string): P
         followerId: { EQUALS: followerId },
         followingId: { EQUALS: followingId }
     };
+
     const relation = await database.findRecord(RECORD_TYPE, query);
 
     return relation !== undefined;

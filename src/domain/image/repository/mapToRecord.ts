@@ -3,7 +3,7 @@ import { type RecordData } from '^/integrations/database/module';
 
 import type ImageData from '../data/ImageData';
 
-export default function mapTo(data: ImageData): RecordData
+export default function mapToRecord(data: ImageData): RecordData
 {
     return {
         id: data.id,

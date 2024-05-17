@@ -1,8 +1,9 @@
 
-import type Requester from '../../authentication/Requester';
-import getPostView from '../../post/get';
-import getReactionView from '../../reaction/get';
-import getRelationView from '../../relation/get';
+import type Requester from '^/domain/authentication/Requester';
+import getPostView from '^/domain/post/get';
+import getReactionView from '^/domain/reaction/get';
+import getRelationView from '^/domain/relation/get';
+
 import type NotificationData from '../data/NotificationData';
 import NotificationView from './NotificationView';
 

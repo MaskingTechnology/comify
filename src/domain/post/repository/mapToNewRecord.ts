@@ -1,18 +1,17 @@
 
 import { type RecordData } from '^/integrations/database/module';
 
-import type ReactionData from '../data/ReactionData';
+import type PostData from '../data/PostData';
 
-export default function mapToInsert(data: ReactionData): RecordData
+export default function mapToNewRecord(data: PostData): RecordData
 {
     return {
         id: data.id,
         creatorId: data.creatorId,
-        postId: data.postId,
         comicId: data.comicId,
-        commentId: data.commentId,
+        createdAt: data.createdAt.toISOString(),
         ratingCount: data.ratingCount,
-        createdAt: data.createdAt,
+        reactionCount: data.reactionCount,
         deleted: false
     };
 }

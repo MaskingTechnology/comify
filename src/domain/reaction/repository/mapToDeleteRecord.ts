@@ -1,17 +1,18 @@
 
 import { type RecordData } from '^/integrations/database/module';
 
-import type PostData from '../data/PostData';
+import type ReactionData from '../data/ReactionData';
 
-export default function mapToDelete(data: PostData): RecordData
+export default function mapToDeleteRecord(data: ReactionData): RecordData
 {
     return {
         id: data.id,
         creatorId: data.creatorId,
+        postId: data.postId,
         comicId: data.comicId,
-        createdAt: data.createdAt.toISOString(),
+        commentId: data.commentId,
         ratingCount: data.ratingCount,
-        reactionCount: data.reactionCount,
+        createdAt: data.createdAt,
         deleted: true
     };
 }

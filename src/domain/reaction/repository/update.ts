@@ -3,11 +3,11 @@ import database from '^/integrations/database/module';
 
 import type ReactionData from '../data/ReactionData';
 import { RECORD_TYPE } from '../definitions/constants';
-import mapToUpdate from './mapToUpdate';
+import mapToRecord from './mapToUpdateRecord';
 
 export default async function update(data: ReactionData): Promise<void>
 {
-    const record = mapToUpdate(data);
+    const record = mapToRecord(data);
 
-    await database.updateRecord(RECORD_TYPE, data.id, record);
+    return database.updateRecord(RECORD_TYPE, data.id, record);
 }

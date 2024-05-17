@@ -3,7 +3,7 @@ import database, { SortDirections, type RecordQuery, type RecordSort } from '^/i
 
 import type PostData from '../data/PostData';
 import { RECORD_TYPE } from '../definitions/constants';
-import createData from './mapFrom';
+import mapToData from './mapToData';
 
 export default async function retrieveByCreators(creatorIds: string[]): Promise<PostData[]>
 {
@@ -12,7 +12,7 @@ export default async function retrieveByCreators(creatorIds: string[]): Promise<
 
     const records = await database.searchRecords(RECORD_TYPE, query, undefined, sort);
 
-    const dataList = records.map(createData);
+    const dataList = records.map(record => mapToData(record));
 
     return Promise.all(dataList);
 }

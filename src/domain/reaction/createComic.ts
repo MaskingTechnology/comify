@@ -1,8 +1,9 @@
 
-import type Requester from '../authentication/Requester';
-import createActualComic from '../comic/create';
-import eraseActualComic from '../comic/erase';
-import increaseReactionCount from '../post/increaseReactionCount';
+import type Requester from '^/domain/authentication/Requester';
+import createActualComic from '^/domain/comic/create';
+import eraseActualComic from '^/domain/comic/erase';
+import increaseReactionCount from '^/domain/post/increaseReactionCount';
+
 import createData from './data/createData';
 import eraseReaction from './repository/erase';
 import insert from './repository/insert';

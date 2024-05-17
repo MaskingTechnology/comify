@@ -1,8 +1,9 @@
 
-import type Requester from '../authentication/Requester';
-import decreaseFollowerCount from '../creator/decreaseFollowerCount';
-import increaseFollowerCount from '../creator/increaseFollowerCount';
-import increaseFollowingCount from '../creator/increaseFollowingCount';
+import type Requester from '^/domain/authentication/Requester';
+import decreaseFollowerCount from '^/domain/creator/decreaseFollowerCount';
+import increaseFollowerCount from '^/domain/creator/increaseFollowerCount';
+import increaseFollowingCount from '^/domain/creator/increaseFollowingCount';
+
 import createData from './data/createData';
 import RelationAlreadyExists from './errors/RelationAlreadyExists';
 import erase from './repository/erase';

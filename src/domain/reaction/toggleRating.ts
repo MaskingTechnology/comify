@@ -1,6 +1,7 @@
 
-import type Requester from '../authentication/Requester';
-import updateRating from '../rating/update';
+import type Requester from '^/domain/authentication/Requester';
+import updateRating from '^/domain/rating/update';
+
 import decreaseRatingCount from './decreaseRatingCount';
 import increaseRatingCount from './increaseRatingCount';
 

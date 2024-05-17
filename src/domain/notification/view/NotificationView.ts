@@ -1,7 +1,7 @@
 
-import type PostView from '../../post/view/PostView';
-import type ReactionView from '../../reaction/view/ReactionView';
-import type RelationView from '../../relation/view/RelationView';
+import type PostView from '^/domain/post/view/PostView';
+import type ReactionView from '^/domain/reaction/view/ReactionView';
+import type RelationView from '^/domain/relation/view/RelationView';
 
 export default class NotificationView
 {

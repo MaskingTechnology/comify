@@ -1,8 +1,9 @@
 
-import type Requester from '../../authentication/Requester';
-import getCreatorView from '../../creator/get';
-import getPostView from '../../post/get';
-import getReactionView from '../../reaction/get.js';
+import type Requester from '^/domain/authentication/Requester';
+import getCreatorView from '^/domain/creator/get';
+import getPostView from '^/domain/post/get';
+import getReactionView from '^/domain/reaction/get';
+
 import type RatingData from '../data/RatingData';
 import RatingView from './RatingView';
 
