@@ -1,8 +1,8 @@
 
 import { Identity } from '^/integrations/authentication/module';
 
-import retrieveCreatorByEmail from '../creator/data/retrieveByEmail';
 import registerCreator from '../creator/register';
+import retrieveCreatorByEmail from '../creator/repository/retrieveByEmail';
 import type Requester from './Requester';
 import createRequester from './createRequester';
 

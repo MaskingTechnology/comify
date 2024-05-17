@@ -1,8 +1,9 @@
 
 import type CreatorData from './data/CreatorData';
-import create from './data/create';
-import generateNickname from './data/generateNickname';
-import downloadPortrait from './image/downloadPortrait';
+import createData from './data/createData';
+import generateNickname from './generateNickname';
+import downloadPortrait from './repository/downloadPortrait';
+import insert from './repository/insert';
 
 export default async function register(fullName: string, nickname: string, email: string, portraitUrl?: string): Promise<CreatorData>
 {
@@ -12,5 +13,9 @@ export default async function register(fullName: string, nickname: string, email
         ? await downloadPortrait(portraitUrl)
         : undefined;
 
-    return create(fullName, generatedNickname, email, portrait?.id);
+    const creator = createData(fullName, generatedNickname, email, portrait?.id);
+
+    await insert(creator);
+
+    return creator;
 }

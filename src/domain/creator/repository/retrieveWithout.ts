@@ -1,10 +1,10 @@
 
 import database, { QueryStatement, RecordQuery, RecordSort, SortDirections } from '^/integrations/database/module';
 
+import type CreatorData from '../data/CreatorData';
 import type SortFields from '../definitions/SortFields';
 import { RECORD_TYPE } from '../definitions/constants';
-import type CreatorData from './CreatorData';
-import createCreatorData from './mapRecord';
+import mapFrom from './mapFrom';
 
 export default async function retrieveWithout(ids: string[], sortField: SortFields, search?: string): Promise<CreatorData[]>
 {
@@ -24,7 +24,7 @@ export default async function retrieveWithout(ids: string[], sortField: SortFiel
 
     const records = await database.searchRecords(RECORD_TYPE, query, undefined, recordSort, 10);
 
-    const data = records.map(data => createCreatorData(data));
+    const data = records.map(mapFrom);
 
     return Promise.all(data);
 }

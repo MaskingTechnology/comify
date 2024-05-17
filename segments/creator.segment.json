@@ -1,10 +1,11 @@
 {
-    "./domain/creator/data/create": { "default": {  "access": "protected" } },
-    "./domain/creator/data/generateNickname": { "default": {  "access": "protected" } },
-    "./domain/creator/data/retrieve": { "default": {  "access": "protected" } },
-    "./domain/creator/data/retrieveByEmail": { "default": {  "access": "protected" } },
-    "./domain/creator/data/retrieveByNickname": { "default": {  "access": "protected" } },
-    "./domain/creator/data/retrieveByStartNickname": { "default": {  "access": "protected" } },
-    "./domain/creator/data/retrieveWithout": { "default": {  "access": "protected" } },
-    "./domain/creator/data/update": { "default": {  "access": "protected" } }
+    "./domain/creator/generateNickname": { "default": {  "access": "protected" } },
+
+    "./domain/creator/repository/insert": { "default": {  "access": "protected" } },
+    "./domain/creator/repository/retrieve": { "default": {  "access": "protected" } },
+    "./domain/creator/repository/retrieveByEmail": { "default": {  "access": "protected" } },
+    "./domain/creator/repository/retrieveByNickname": { "default": {  "access": "protected" } },
+    "./domain/creator/repository/retrieveByStartNickname": { "default": {  "access": "protected" } },
+    "./domain/creator/repository/retrieveWithout": { "default": {  "access": "protected" } },
+    "./domain/creator/repository/update": { "default": {  "access": "protected" } }
 }

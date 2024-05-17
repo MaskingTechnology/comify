@@ -1,6 +1,6 @@
 
-import retrieveByNickname from './data/retrieveByNickname';
 import CreatorNotFound from './errors/CreatorNotFound';
+import retrieveByNickname from './repository/retrieveByNickname';
 import type CreatorView from './view/CreatorView';
 import createView from './view/createView';
 

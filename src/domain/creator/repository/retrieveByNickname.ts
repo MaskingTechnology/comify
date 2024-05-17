@@ -1,9 +1,9 @@
 
 import database from '^/integrations/database/module';
 
+import type CreatorData from '../data/CreatorData';
 import { RECORD_TYPE } from '../definitions/constants';
-import type CreatorData from './CreatorData';
-import mapRecord from './mapRecord';
+import mapRecord from './mapFrom';
 
 export default async function retrieveByNickname(nickname: string): Promise<CreatorData | undefined>
 {
