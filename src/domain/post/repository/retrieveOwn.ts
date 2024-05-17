@@ -1,10 +1,10 @@
 
-import database, { RecordQuery } from '^/integrations/database/module';
+import database, { type RecordQuery } from '^/integrations/database/module';
 
+import type PostData from '../data/PostData';
 import { RECORD_TYPE } from '../definitions/constants';
 import PostNotFound from '../errors/PostNotFound';
-import type PostData from './PostData';
-import createData from './mapRecord';
+import createData from './mapFrom';
 
 export default async function retrieveOwn(id: string, creatorId: string): Promise<PostData>
 {

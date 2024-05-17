@@ -3,8 +3,9 @@ import type Requester from '../authentication/Requester';
 import createComic from '../comic/create';
 import eraseComic from '../comic/erase';
 import increaseCreatorPostCount from '../creator/increasePostCount';
-import createPost from './data/create';
-import erasePost from './data/erase';
+import createPost from './data/createData';
+import erasePost from './repository/erase';
+import insert from './repository/insert';
 
 export default async function create(requester: Requester, comicImageDataUrl: string): Promise<void>
 {
@@ -13,7 +14,9 @@ export default async function create(requester: Requester, comicImageDataUrl: st
     try
     {
         comic = await createComic(comicImageDataUrl);
-        post = await createPost(requester.id, comic.id);
+        post = createPost(requester.id, comic.id);
+
+        await insert(post);
 
         await increaseCreatorPostCount(requester.id);
     }

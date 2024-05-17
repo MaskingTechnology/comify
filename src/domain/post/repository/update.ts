@@ -1,8 +1,8 @@
 
-import database, { RecordData } from '^/integrations/database/module';
+import database, { type RecordData } from '^/integrations/database/module';
 
+import type PostData from '../data/PostData';
 import { RECORD_TYPE } from '../definitions/constants';
-import type PostData from './PostData';
 
 export default async function update(data: PostData): Promise<void>
 {
@@ -15,5 +15,5 @@ export default async function update(data: PostData): Promise<void>
         reactionCount: data.reactionCount
     };
 
-    await database.updateRecord(RECORD_TYPE, data.id, record);
+    return database.updateRecord(RECORD_TYPE, data.id, record);
 }

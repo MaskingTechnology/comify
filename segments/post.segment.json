@@ -1,8 +1,9 @@
 {
     "./domain/post/get": { "default": {  "access": "protected" } },
 
-    "./domain/post/data/remove": { "default": {  "access": "protected" } },
-    "./domain/post/data/retrieve": { "default": {  "access": "protected" } },
-    "./domain/post/data/retrieveByCreators": { "default": {  "access": "protected" } },
-    "./domain/post/data/retrieveWithoutCreators": { "default": {  "access": "protected" } }
+    "./domain/post/repository/remove": { "default": {  "access": "private" } },
+    "./domain/post/repository/retrieve": { "default": {  "access": "private" } },
+    "./domain/post/repository/retrieveByCreators": { "default": {  "access": "private" } },
+    "./domain/post/repository/retrieveOwn": { "default": {  "access": "private" } },
+    "./domain/post/repository/retrieveWithoutCreators": { "default": {  "access": "private" } }
 }
