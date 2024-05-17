@@ -2,8 +2,8 @@
 import type Requester from '../authentication/Requester';
 import decreaseReactionCount from '../post/decreaseReactionCount';
 import increaseReactionCount from '../post/increaseReactionCount';
-import removeData from './data/remove';
-import retrieveOwn from './data/retrieveOwn';
+import removeData from './repository/remove';
+import retrieveOwn from './repository/retrieveOwn';
 
 export default async function remove(requester: Requester, id: string): Promise<void>
 {

@@ -1,10 +1,10 @@
 
-import database, { RecordQuery } from '^/integrations/database/module';
+import database, { type RecordQuery } from '^/integrations/database/module';
 
+import type ReactionData from '../data/ReactionData';
 import { RECORD_TYPE } from '../definitions/constants';
 import ReactionNotFound from '../errors/ReactionNotFound';
-import type ReactionData from './ReactionData';
-import createData from './mapRecord';
+import createData from './mapFrom';
 
 export default async function retrieveOwn(id: string, creatorId: string): Promise<ReactionData>
 {

@@ -1,6 +1,6 @@
 
 import type Requester from '../authentication/Requester';
-import retrieveByPost from './data/retrieveByPost';
+import retrieveByPost from './repository/retrieveByPost';
 import type ReactionView from './view/ReactionView';
 import createView from './view/createView';
 

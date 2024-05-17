@@ -3,27 +3,32 @@ import type Requester from '../authentication/Requester';
 import createActualComment from '../comment/create';
 import eraseActualComment from '../comment/erase';
 import increaseReactionCount from '../post/increaseReactionCount';
-import createReaction from './data/create';
-import eraseReaction from './data/erase';
+import createData from './data/createData';
+import eraseReaction from './repository/erase';
+import insert from './repository/insert';
 import type ReactionView from './view/ReactionView';
 import createView from './view/createView';
 
 export default async function createComment(requester: Requester, postId: string, message: string): Promise<ReactionView>
 {
-    let comment, reaction;
+    let comment, reactionId;
 
     try
     {
         comment = await createActualComment(message);
-        reaction = await createReaction(requester.id, postId, undefined, comment.id);
+
+        const data = createData(requester.id, postId, undefined, comment.id);
+
+        reactionId = await insert(data);
+
         await increaseReactionCount(postId);
 
-        return createView(requester, reaction);
+        return createView(requester, data);
     }
     catch (error: unknown)
     {
         const undoComment = comment !== undefined ? eraseActualComment(comment.id) : Promise.resolve();
-        const undoReaction = reaction !== undefined ? eraseReaction(reaction.id) : Promise.resolve();
+        const undoReaction = reactionId !== undefined ? eraseReaction(reactionId) : Promise.resolve();
 
         await Promise.all([undoComment, undoReaction]);
 

@@ -1,9 +1,9 @@
 
-import database, { RecordQuery, RecordSort, SortDirections } from '^/integrations/database/module';
+import database, { SortDirections, type RecordQuery, type RecordSort } from '^/integrations/database/module';
 
+import type ReactionData from '../data/ReactionData';
 import { RECORD_TYPE } from '../definitions/constants';
-import type ReactionData from './ReactionData';
-import createData from './mapRecord';
+import createData from './mapFrom';
 
 export default async function retrieveByPost(postId: string): Promise<ReactionData[]>
 {

@@ -8,12 +8,13 @@ import insert from './repository/insert';
 
 export default async function create(imageDataUrl: string, structure?: string): Promise<ComicData>
 {
-    let image, data;
+    let image;
 
     try
     {
         image = await createImage(IMAGE_TYPE, imageDataUrl);
-        data = createData(image.id, structure);
+
+        const data = createData(image.id, structure);
 
         await insert(data);
 

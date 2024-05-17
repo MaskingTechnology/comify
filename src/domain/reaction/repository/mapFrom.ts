@@ -1,9 +1,9 @@
 
 import type { RecordData } from '^/integrations/database/module';
 
-import ReactionData from './ReactionData';
+import ReactionData from '../data/ReactionData';
 
-export default function mapRecord(record: RecordData): ReactionData
+export default function mapFrom(record: RecordData): ReactionData
 {
     return new ReactionData(
         record.id as string,

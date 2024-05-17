@@ -9,21 +9,22 @@ import insert from './repository/insert';
 
 export default async function create(requester: Requester, comicImageDataUrl: string): Promise<void>
 {
-    let comic, post;
+    let comic, postId;
 
     try
     {
         comic = await createComic(comicImageDataUrl);
-        post = createPost(requester.id, comic.id);
 
-        await insert(post);
+        const data = createPost(requester.id, comic.id);
+
+        postId = await insert(data);
 
         await increaseCreatorPostCount(requester.id);
     }
     catch (error: unknown)
     {
         const undoComic = comic !== undefined ? eraseComic(comic.id) : Promise.resolve();
-        const undoPost = post !== undefined ? erasePost(post.id) : Promise.resolve();
+        const undoPost = postId !== undefined ? erasePost(postId) : Promise.resolve();
 
         await Promise.all([undoComic, undoPost]);
 

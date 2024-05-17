@@ -1,3 +1,18 @@
 {
-    "./domain/reaction/data/retrieve": { "default": {  "access": "protected" } }
+    "./domain/reaction/createComic": { "default": {  "access": "protected" } },
+    "./domain/reaction/createComment": { "default": {  "access": "protected" } },
+    "./domain/reaction/decreaseRatingCount": { "default": {  "access": "protected" } },
+    "./domain/reaction/get": { "default": {  "access": "protected" } },
+    "./domain/reaction/getByPost": { "default": {  "access": "protected" } },
+    "./domain/reaction/increaseRatingCount": { "default": {  "access": "protected" } },
+    "./domain/reaction/remove": { "default": {  "access": "protected" } },
+    "./domain/reaction/toggleRating": { "default": {  "access": "protected" } },
+
+    "./domain/reaction/repository/erase": { "default": {  "access": "private" } },
+    "./domain/reaction/repository/insert": { "default": {  "access": "private" } },
+    "./domain/reaction/repository/remove": { "default": {  "access": "private" } },
+    "./domain/reaction/repository/retrieve": { "default": {  "access": "private" } },
+    "./domain/reaction/repository/retrieveByPost": { "default": {  "access": "private" } },
+    "./domain/reaction/repository/retrieveOwn": { "default": {  "access": "private" } },
+    "./domain/reaction/repository/update": { "default": {  "access": "private" } }
 }
