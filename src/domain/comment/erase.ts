@@ -1,5 +1,5 @@
 
-import eraseData from './data/erase';
+import eraseData from './repository/erase';
 
 export default async function erase(id: string): Promise<void>
 {

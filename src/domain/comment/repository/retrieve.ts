@@ -1,9 +1,9 @@
 
 import database from '^/integrations/database/module';
 
+import type CommentData from '../data/CommentData';
 import { RECORD_TYPE } from '../definitions/constants';
-import type CommentData from './CommentData';
-import mapRecord from './mapRecord';
+import mapRecord from './mapFrom';
 
 export default async function retrieve(id: string): Promise<CommentData>
 {

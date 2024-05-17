@@ -1,5 +1,5 @@
 
-import retrieveData from './data/retrieve';
+import retrieveData from './repository/retrieve';
 import type CommentView from './view/CommentView';
 import createView from './view/createView';
 

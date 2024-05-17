@@ -1,4 +1,9 @@
 {
-    "./domain/comment/get": { "default": {  "access": "public" } },
-    "./domain/comment/data/retrieve": { "default": {  "access": "protected" } }
+    "./domain/comment/create": { "default": {  "access": "protected" } },
+    "./domain/comment/get": { "default": {  "access": "protected" } },
+    "./domain/comment/erase": { "default": {  "access": "protected" } },
+
+    "./domain/comment/repository/erase": { "default": {  "access": "private" } },
+    "./domain/comment/repository/insert": { "default": {  "access": "private" } },
+    "./domain/comment/repository/retrieve": { "default": {  "access": "private" } }
 }
