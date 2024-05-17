@@ -1,6 +1,6 @@
 
 import type Requester from '../authentication/Requester';
-import retrieveRecent from './data/retrieveRecent';
+import retrieveRecent from './repository/retrieveRecent';
 import type NotificationView from './view/NotificationView';
 import createView from './view/createView';
 

@@ -1,3 +1,4 @@
 {
-    "./domain/notification/data/retrieve": { "default": {  "access": "protected" } }
+    "./domain/notification/repository/retrieve": { "default": {  "access": "protected" } },
+    "./domain/notification/repository/retrieveRecent": { "default": {  "access": "protected" } }
 }
