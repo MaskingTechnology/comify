@@ -1,9 +1,9 @@
 
-import type { RecordData } from '^/integrations/database/module';
+import { type RecordData } from '^/integrations/database/module';
 
-import RatingData from './RatingData';
+import RatingData from '../data/RatingData';
 
-export default function mapRecord(record: RecordData): RatingData
+export default function mapFrom(record: RecordData): RatingData
 {
     return new RatingData(
         record.id as string,

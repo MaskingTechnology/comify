@@ -1,3 +1,5 @@
 {
-    "./domain/rating/data/retrieve": { "default": {  "access": "protected" } }
+    "./domain/rating/repository/erase": { "default": {  "access": "private" } },
+    "./domain/rating/repository/find": { "default": {  "access": "private" } },
+    "./domain/rating/repository/insert": { "default": {  "access": "private" } }
 }

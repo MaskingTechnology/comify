@@ -1,5 +1,5 @@
 
-import find from './data/find';
+import find from './repository/find';
 
 export default async function exists(creatorId: string, postId: string | undefined, reactionId: string | undefined): Promise<boolean>
 {
