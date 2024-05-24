@@ -1,9 +1,7 @@
 
-import type ImageView from '^/domain/image/view/ImageView';
+import getImageData, { type Result as ImageData } from '^/domain/image/get/feature';
 
-import retrieveImageView from '../../image/get';
-
-export type Input = {
+export type Data = {
     readonly id: string;
     readonly imageId: string;
     readonly structure?: string;
@@ -11,12 +9,12 @@ export type Input = {
 
 export type Result = {
     readonly id: string;
-    readonly image: ImageView;
+    readonly image: ImageData;
 };
 
-export default async function feature(input: Input): Promise<Result>
+export default async function feature(data: Data): Promise<Result>
 {
-    const imageView = await retrieveImageView(input.imageId);
+    const imageView = await getImageData(data.imageId);
 
-    return { id: input.id, image: imageView };
+    return { id: data.id, image: imageView };
 }

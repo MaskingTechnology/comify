@@ -1,6 +1,6 @@
 
 import type ImageData from '../../image/data/ImageData';
-import downloadImage from '../../image/download';
+import downloadImage from '../../image/download/feature';
 
 import { IMAGE_TYPE } from '../definitions/constants';
 

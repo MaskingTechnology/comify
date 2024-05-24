@@ -1,5 +1,5 @@
 
-import getImageView from '../../image/get';
+import getImageView from '../../image/get/feature';
 import type CreatorData from '../data/CreatorData';
 import CreatorView from './CreatorView';
 

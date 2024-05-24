@@ -1,8 +1,9 @@
 
-import createImage from '../../image/create';
-import eraseImage from '../../image/erase';
+import createImage from '^/domain/image/create/feature';
+import eraseImage from '^/domain/image/erase/feature';
+
 import { IMAGE_TYPE } from '../definitions';
-import insert, { type Data as Result } from './insert';
+import insert, { type Data as Result } from './insertData';
 
 export default async function feature(imageDataUrl: string, structure?: string): Promise<Result>
 {

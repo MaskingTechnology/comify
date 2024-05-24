@@ -1,7 +1,7 @@
 
 import validator, { ValidationSchema } from '^/integrations/validation/module';
 
-import InvalidImage from '../errors/InvalidImage';
+import InvalidImage from './InvalidImage';
 
 const TEN_B = 10;
 const FIVE_MB = 1024 * 1024 * 5;
@@ -28,9 +28,14 @@ const schema: ValidationSchema = {
     }
 };
 
-export default function validate(mimeType: string, size: number): void
+export type Data = {
+    readonly mimeType: string;
+    readonly size: number;
+};
+
+export default function feature(data: Data): void
 {
-    const result = validator.validate({ mimeType, size }, schema);
+    const result = validator.validate(data, schema);
 
     if (result.invalid)
     {

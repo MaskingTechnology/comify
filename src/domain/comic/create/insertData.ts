@@ -10,7 +10,7 @@ export type Data = {
     readonly structure?: string;
 };
 
-export default async function insert(imageId: string, structure?: string): Promise<Data>
+export default async function insertData(imageId: string, structure?: string): Promise<Data>
 {
     const id = generateId();
 

@@ -1,9 +1,9 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import create from '^/domain/image/create';
-import InvalidDataURL from '^/domain/image/errors/InvalidDataURL';
-import InvalidImage from '^/domain/image/errors/InvalidImage';
+import create from '^/domain/image/create/feature';
+import InvalidDataURL from '^/domain/image/create/InvalidDataURL';
+import InvalidImage from '^/domain/image/validate/InvalidImage';
 
 import fileStore from '^/integrations/filestore/module';
 

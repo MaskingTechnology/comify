@@ -1,9 +1,9 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import download from '^/domain/image/download';
-import ImageNotDownloaded from '^/domain/image/errors/ImageNotDownloaded';
-import InvalidImage from '^/domain/image/errors/InvalidImage';
+import download from '^/domain/image/download/feature';
+import ImageNotDownloaded from '^/domain/image/download/ImageNotDownloaded';
+import InvalidImage from '^/domain/image/validate/InvalidImage';
 
 import fileStore from '^/integrations/filestore/module';
 
