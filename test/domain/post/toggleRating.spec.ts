@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import PostNotFound from '^/domain/post/PostNotFound';
 import toggleRating from '^/domain/post/toggleRating/feature';
-import { RECORD_TYPE as RATING_RECORD_TYPE } from '^/domain/rating/definitions/constants';
+import { RECORD_TYPE } from '^/domain/rating/definitions/constants';
 
 import database from '^/integrations/database/module';
 
@@ -34,7 +34,7 @@ describe('domain/post/toggleRating', () =>
         const promise = toggleRating(REQUESTERS.CREATOR, VALUES.IDS.POST_NOT_EXISTING);
         await expect(promise).rejects.toThrow(PostNotFound);
 
-        const rating = await database.findRecord(RATING_RECORD_TYPE, QUERIES.RATING_NOT_EXISTING_POST);
+        const rating = await database.findRecord(RECORD_TYPE, QUERIES.RATING_NOT_EXISTING_POST);
         expect(rating).toBeUndefined();
     });
 });

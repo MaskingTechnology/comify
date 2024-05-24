@@ -1,10 +1,12 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
+import { RECORD_TYPE } from '^/domain/image/definitions';
 import download from '^/domain/image/download/feature';
 import ImageNotDownloaded from '^/domain/image/download/ImageNotDownloaded';
 import InvalidImage from '^/domain/image/validate/InvalidImage';
 
+import database from '^/integrations/database/module';
 import fileStore from '^/integrations/filestore/module';
 
 import { DATABASES, FILE_STORES, HTTP_CLIENTS, URLS } from './fixtures';
@@ -25,8 +27,9 @@ describe('domain/image/download', () =>
 {
     it('should download an image', async () =>
     {
-        const image = await download('test', URLS.VALID);
-        const data = await fileStore.readFile(image.storageKey);
+        const imageId = await download('test', URLS.VALID);
+        const image = await database.readRecord(RECORD_TYPE, imageId);
+        const data = await fileStore.readFile(image.storageKey as string);
 
         expect(image.filename).toEqual('image.jpg');
         expect(image.mimeType).toEqual('image/jpeg');

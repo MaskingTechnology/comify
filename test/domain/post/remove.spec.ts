@@ -1,7 +1,7 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions';
+import { RECORD_TYPE } from '^/domain/post/definitions';
 import PostNotFound from '^/domain/post/PostNotFound';
 import remove from '^/domain/post/remove/feature';
 
@@ -20,7 +20,7 @@ describe('domain/post/remove', () =>
     {
         await remove(REQUESTERS.CREATOR, VALUES.IDS.POST_RATED);
 
-        const reaction = await database.readRecord(POST_RECORD_TYPE, VALUES.IDS.POST_RATED);
+        const reaction = await database.readRecord(RECORD_TYPE, VALUES.IDS.POST_RATED);
         expect(reaction.deleted).toBeTruthy();
     });
 
