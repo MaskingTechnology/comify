@@ -1,7 +1,7 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { RECORD_TYPE as COMIC_RECORD_TYPE } from '^/domain/comic/definitions/constants';
+import { RECORD_TYPE as COMIC_RECORD_TYPE } from '^/domain/comic/definitions';
 import { RECORD_TYPE as COMMENT_RECORD_TYPE } from '^/domain/comment/definitions/constants';
 import { RECORD_TYPE as IMAGE_RECORD_TYPE } from '^/domain/image/definitions/constants';
 import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions/constants';

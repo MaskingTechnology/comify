@@ -1,5 +1,5 @@
 
-import NotificationData from './NotificationData.js';
+import NotificationData from './NotificationData';
 
 export default async function retrieve(id: string): Promise<NotificationData>
 {

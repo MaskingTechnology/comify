@@ -1,6 +1,6 @@
 
 import type Requester from '../../authentication/Requester';
-import getComicView from '../../comic/get';
+import getComicView from '../../comic/get/feature';
 import ratingExists from '../../rating/exists';
 import getRelationView from '../../relation/get';
 import type PostData from '../data/PostData';

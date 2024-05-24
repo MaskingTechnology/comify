@@ -1,7 +1,8 @@
 
+import createActualComic from '^/domain/comic/create/feature';
+import eraseActualComic from '^/domain/comic/erase/feature';
+
 import type Requester from '../authentication/Requester';
-import createActualComic from '../comic/create';
-import eraseActualComic from '../comic/erase';
 import increaseReactionCount from '../post/increaseReactionCount';
 import createReaction from './data/create';
 import eraseReaction from './data/erase';
@@ -22,7 +23,7 @@ export default async function createComic(requester: Requester, postId: string, 
     }
     catch (error: unknown)
     {
-        const undoComment = comic !== undefined ? eraseActualComic(comic.id) : Promise.resolve();
+        const undoComment = comic !== undefined ? eraseActualComic(comic.id, comic.imageId) : Promise.resolve();
         const undoReaction = reaction !== undefined ? eraseReaction(reaction.id) : Promise.resolve();
 
         await Promise.all([undoComment, undoReaction]);

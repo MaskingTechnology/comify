@@ -3,7 +3,7 @@ import type ImageData from './data/ImageData';
 import createData from './data/create';
 import fileExists from './files/exists';
 import store from './files/store';
-import ImageImport from './import/ImageImport.js';
+import ImageImport from './import/ImageImport';
 import generateStorageKey from './utils/generateStorageKey';
 
 export default async function save(type: string, image: ImageImport): Promise<ImageData>

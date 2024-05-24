@@ -1,5 +1,5 @@
 
-import type ComicView from '../../comic/view/ComicView';
+import type { Result as ComicView } from '../../comic/aggregate/feature';
 import RelationView from '../../relation/view/RelationView';
 
 export default class PostView

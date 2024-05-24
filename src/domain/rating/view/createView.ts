@@ -2,7 +2,7 @@
 import type Requester from '../../authentication/Requester';
 import getCreatorView from '../../creator/get';
 import getPostView from '../../post/get';
-import getReactionView from '../../reaction/get.js';
+import getReactionView from '../../reaction/get';
 import type RatingData from '../data/RatingData';
 import RatingView from './RatingView';
 
