@@ -1,5 +1,5 @@
 
-import ImageView from '../../image/view/ImageView';
+import { type Result as ImageView } from '../../image/get/feature';
 
 export default class CreatorView
 {

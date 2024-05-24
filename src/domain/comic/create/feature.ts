@@ -19,7 +19,7 @@ export default async function feature(imageDataUrl: string, structure?: string):
     {
         if (image !== undefined)
         {
-            await eraseImage(image.id);
+            await eraseImage(image);
         }
 
         throw error;

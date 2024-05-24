@@ -4,6 +4,8 @@ import validate from '../validate/feature';
 import downloadImage from './downloadImage';
 import getMetaData from './getMetaData';
 
+export { Result };
+
 export default async function feature(type: string, imageUrl: string): Promise<Result>
 {
     const metaData = await getMetaData(imageUrl);

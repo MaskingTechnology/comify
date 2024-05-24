@@ -1,10 +1,11 @@
 
-import eraseData from '../data/erase';
-import retrieveData from '../get/retrieveData';
+import eraseData from './eraseData';
 
-export default async function erase(id: string): Promise<void>
+export type Data = {
+    readonly id: string;
+};
+
+export default async function feature(data: Data): Promise<void>
 {
-    const data = await retrieveData(id);
-
     return eraseData(data.id);
 }

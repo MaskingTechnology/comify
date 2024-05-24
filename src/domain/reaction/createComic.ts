@@ -23,7 +23,7 @@ export default async function createComic(requester: Requester, postId: string, 
     }
     catch (error: unknown)
     {
-        const undoComment = comic !== undefined ? eraseActualComic(comic.id, comic.imageId) : Promise.resolve();
+        const undoComment = comic !== undefined ? eraseActualComic(comic) : Promise.resolve();
         const undoReaction = reaction !== undefined ? eraseReaction(reaction.id) : Promise.resolve();
 
         await Promise.all([undoComment, undoReaction]);

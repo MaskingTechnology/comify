@@ -11,5 +11,5 @@ export type Data = {
 export default async function feature(data: Data): Promise<void>
 {
     await eraseData(data.id);
-    await eraseImage(data.imageId);
+    await eraseImage({ id: data.imageId });
 }

@@ -1,6 +1,5 @@
 
-import type ImageData from '../../image/data/ImageData';
-import downloadImage from '../../image/download/feature';
+import downloadImage, { type Result as ImageData } from '../../image/download/feature';
 
 import { IMAGE_TYPE } from '../definitions/constants';
 

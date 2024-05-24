@@ -1,12 +1,18 @@
 
-import aggregate, { type Result } from '../aggregate/feature';
+import createDataUrl from './createDataUrl';
 import retrieveData from './retrieveData';
+import retrieveFile from './retrieveFile';
 
-export { Result };
+export type Result = {
+    readonly dataUrl: string;
+};
 
 export default async function feature(id: string): Promise<Result>
 {
     const data = await retrieveData(id);
+    const file = await retrieveFile(data.storageKey);
 
-    return aggregate(data);
+    const dataUrl = createDataUrl(file, data.mimeType);
+
+    return { dataUrl };
 }

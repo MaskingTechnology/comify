@@ -33,9 +33,9 @@ export type Data = {
     readonly size: number;
 };
 
-export default function feature(data: Data): void
+export default function feature({ mimeType, size }: Data): void
 {
-    const result = validator.validate(data, schema);
+    const result = validator.validate({ mimeType, size }, schema);
 
     if (result.invalid)
     {
