@@ -1,6 +1,6 @@
 
 import type { AggregatedData as ComicView } from '../../comic/aggregate/feature';
-import type CommentView from '../../comment/view/CommentView';
+import type { Data as CommentView } from '../../comment/get/feature';
 import type RelationView from '../../relation/view/RelationView';
 
 export default class ReactionView

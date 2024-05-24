@@ -1,7 +1,7 @@
 
 import type Requester from '../../authentication/Requester';
 import getComicView from '../../comic/get/feature';
-import getCommentView from '../../comment/get';
+import getCommentView from '../../comment/get/feature';
 import ratingExists from '../../rating/exists';
 import getRelationView from '../../relation/get';
 import type ReactionData from '../data/ReactionData';
