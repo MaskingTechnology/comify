@@ -1,6 +1,0 @@
-{
-    "./domain/image/create/feature": { "default": {  "access": "protected" } },
-    "./domain/image/download/feature": { "default": {  "access": "protected" } },
-    "./domain/image/get/feature": { "default": {  "access": "protected" } },
-    "./domain/image/erase/feature": { "default": {  "access": "protected" } }
-}

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import johnDoe from '^/domain/authentication/johnDoe';
-import get from '^/domain/post/get';
+import get from '^/domain/post/get/feature';
 import type PostView from '^/domain/post/view/PostView';
 
 import { awaitData } from '^/webui/utils';

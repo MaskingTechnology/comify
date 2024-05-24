@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 import johnDoe from '^/domain/authentication/johnDoe';
-import explorePosts from '^/domain/post/explore';
+import explorePosts from '^/domain/post/explore/feature';
 import type PostView from '^/domain/post/view/PostView';
 
 import { awaitData } from '^/webui/utils';

@@ -1,8 +1,10 @@
 
-import aggregate, { type Result } from '../aggregate/feature';
-import retrieveData from './retrieve';
+import aggregate, { AggregatedData } from '../aggregate/feature';
+import retrieveData from './retrieveData';
 
-export default async function feature(id: string): Promise<Result>
+export { type AggregatedData };
+
+export default async function feature(id: string): Promise<AggregatedData>
 {
     const data = await retrieveData(id);
 

@@ -2,7 +2,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import johnDoe from '^/domain/authentication/johnDoe';
-import createPost from '^/domain/post/create';
+import createPost from '^/domain/post/create/feature';
 
 import { useAppContext } from '^/webui/contexts';
 

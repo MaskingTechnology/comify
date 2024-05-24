@@ -1,11 +1,7 @@
 
 import eraseData from './eraseData';
 
-export type Data = {
-    readonly id: string;
-};
-
-export default async function feature(data: Data): Promise<void>
+export default async function feature(dataId: string): Promise<void>
 {
-    return eraseData(data.id);
+    return eraseData(dataId);
 }

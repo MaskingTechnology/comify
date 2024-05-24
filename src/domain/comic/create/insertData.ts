@@ -1,22 +1,11 @@
 
-import database from '^/integrations/database/module';
-import { generateId } from '^/integrations/utilities/crypto';
+import database, { RecordData } from '^/integrations/database/module';
 
 import { RECORD_TYPE } from '../definitions';
 
-export type Data = {
-    readonly id: string;
-    readonly imageId: string;
-    readonly structure?: string;
-};
-
-export default async function insertData(imageId: string, structure?: string): Promise<Data>
+export default async function insertData(data: RecordData): Promise<string>
 {
-    const id = generateId();
+    const record = { ...data };
 
-    const record: Data = { id, imageId, structure };
-
-    await database.createRecord(RECORD_TYPE, record);
-
-    return record;
+    return database.createRecord(RECORD_TYPE, record);
 }

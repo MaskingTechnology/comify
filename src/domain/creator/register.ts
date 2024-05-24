@@ -8,9 +8,9 @@ export default async function register(fullName: string, nickname: string, email
 {
     const generatedNickname = await generateNickname(nickname);
 
-    const portrait = portraitUrl !== undefined
+    const portraitId = portraitUrl !== undefined
         ? await downloadPortrait(portraitUrl)
         : undefined;
 
-    return create(fullName, generatedNickname, email, portrait?.id);
+    return create(fullName, generatedNickname, email, portraitId);
 }

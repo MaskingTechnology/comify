@@ -1,3 +1,0 @@
-{
-    "./domain/reaction/data/retrieve": { "default": {  "access": "protected" } }
-}

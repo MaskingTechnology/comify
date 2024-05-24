@@ -1,12 +1,10 @@
 
-import save, { type Result } from '../save/feature';
+import save from '../save/feature';
 import validate from '../validate/feature';
 import downloadImage from './downloadImage';
 import getMetaData from './getMetaData';
 
-export { Result };
-
-export default async function feature(type: string, imageUrl: string): Promise<Result>
+export default async function feature(type: string, imageUrl: string): Promise<string>
 {
     const metaData = await getMetaData(imageUrl);
 

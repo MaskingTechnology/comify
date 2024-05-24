@@ -1,6 +1,6 @@
 
 import type Requester from '../../authentication/Requester';
-import getPostView from '../../post/get';
+import getPostView from '../../post/get/feature';
 import getReactionView from '../../reaction/get';
 import getRelationView from '../../relation/get';
 import type NotificationData from '../data/NotificationData';

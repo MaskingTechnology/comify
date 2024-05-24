@@ -1,10 +1,9 @@
 
+import createData from './createData';
 import fileExists from './fileExists';
 import generateStorageKey from './generateStorageKey';
-import insertData, { type Data as Result } from './insertData';
+import insertData from './insertData';
 import insertFile from './insertFile';
-
-export { Result };
 
 export type Image = {
     readonly filename: string;
@@ -13,7 +12,7 @@ export type Image = {
     readonly buffer: Buffer;
 };
 
-export default async function feature(type: string, image: Image): Promise<Result>
+export default async function feature(type: string, image: Image): Promise<string>
 {
     const storageKey = generateStorageKey(type, image.buffer);
     const existingFile = await fileExists(storageKey);
@@ -23,5 +22,7 @@ export default async function feature(type: string, image: Image): Promise<Resul
         await insertFile(storageKey, image.buffer);
     }
 
-    return insertData(storageKey, image.filename, image.mimeType, image.size);
+    const data = createData(storageKey, image.filename, image.mimeType, image.size);
+
+    return insertData(data);
 }

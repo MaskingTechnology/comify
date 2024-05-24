@@ -1,7 +1,8 @@
 
-import type PostView from '../../post/view/PostView';
-import type ReactionView from '../../reaction/view/ReactionView';
-import type RelationView from '../../relation/view/RelationView';
+import type ReactionView from '^/domain/reaction/view/ReactionView';
+import type RelationView from '^/domain/relation/view/RelationView';
+
+import { AggregatedData as PostView } from '^/domain/post/aggregate/feature';
 
 export default class NotificationView
 {

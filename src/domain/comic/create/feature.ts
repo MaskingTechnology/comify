@@ -3,23 +3,26 @@ import createImage from '^/domain/image/create/feature';
 import eraseImage from '^/domain/image/erase/feature';
 
 import { IMAGE_TYPE } from '../definitions';
-import insert, { type Data as Result } from './insertData';
+import createData from './createData';
+import insert from './insertData';
 
-export default async function feature(imageDataUrl: string, structure?: string): Promise<Result>
+export default async function feature(imageDataUrl: string, structure?: string): Promise<string>
 {
-    let image;
+    let imageId;
 
     try
     {
-        image = await createImage(IMAGE_TYPE, imageDataUrl);
+        imageId = await createImage(IMAGE_TYPE, imageDataUrl);
 
-        return insert(image.id, structure);
+        const data = createData(imageId, structure);
+
+        return insert(data);
     }
     catch (error: unknown)
     {
-        if (image !== undefined)
+        if (imageId !== undefined)
         {
-            await eraseImage(image);
+            await eraseImage(imageId);
         }
 
         throw error;

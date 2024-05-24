@@ -1,9 +1,9 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions/constants';
-import PostNotFound from '^/domain/post/errors/PostNotFound';
-import remove from '^/domain/post/remove';
+import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions';
+import PostNotFound from '^/domain/post/PostNotFound';
+import remove from '^/domain/post/remove/feature';
 
 import database from '^/integrations/database/module';
 

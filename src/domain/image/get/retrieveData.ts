@@ -13,5 +13,7 @@ export type Data = {
 
 export default async function retrieveData(id: string): Promise<Data>
 {
-    return database.readRecord(RECORD_TYPE, id) as Promise<Data>;
+    const fields = ['id', 'storageKey', 'filename', 'mimeType', 'size'];
+
+    return database.readRecord(RECORD_TYPE, id, fields) as Promise<Data>;
 }

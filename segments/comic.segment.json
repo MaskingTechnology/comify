@@ -1,5 +1,0 @@
-{
-    "./domain/comic/create/feature": { "default": {  "access": "protected" } },
-    "./domain/comic/get/feature": { "default": {  "access": "protected" } },
-    "./domain/comic/erase/feature": { "default": {  "access": "protected" } }
-}

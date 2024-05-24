@@ -1,7 +1,6 @@
 
 import type Requester from '../authentication/Requester';
-import decreaseReactionCount from '../post/decreaseReactionCount';
-import increaseReactionCount from '../post/increaseReactionCount';
+import updateReactionCount from '../post/updateReactionCount/feature';
 import removeData from './data/remove';
 import retrieveOwn from './data/retrieveOwn';
 
@@ -16,7 +15,7 @@ export default async function remove(requester: Requester, id: string): Promise<
 
     try
     {
-        postCount = await decreaseReactionCount(reaction.postId);
+        postCount = await updateReactionCount(reaction.postId, 'decrease');
 
         await removeData(reaction);
     }
@@ -24,7 +23,7 @@ export default async function remove(requester: Requester, id: string): Promise<
     {
         if (postCount !== undefined)
         {
-            await increaseReactionCount(reaction.postId);
+            await updateReactionCount(reaction.postId, 'increase');
         }
 
         throw error;

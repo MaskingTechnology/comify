@@ -2,7 +2,7 @@
 import type Requester from '../authentication/Requester';
 import createActualComment from '../comment/create';
 import eraseActualComment from '../comment/erase';
-import increaseReactionCount from '../post/increaseReactionCount';
+import updateReactionCount from '../post/updateReactionCount/feature';
 import createReaction from './data/create';
 import eraseReaction from './data/erase';
 import type ReactionView from './view/ReactionView';
@@ -16,7 +16,7 @@ export default async function createComment(requester: Requester, postId: string
     {
         comment = await createActualComment(message);
         reaction = await createReaction(requester.id, postId, undefined, comment.id);
-        await increaseReactionCount(postId);
+        await updateReactionCount(postId, 'increase');
 
         return createView(requester, reaction);
     }

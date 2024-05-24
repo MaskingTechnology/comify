@@ -1,9 +1,9 @@
 
-import save, { type Result } from '../save/feature';
+import save from '../save/feature';
 import validate from '../validate/feature';
 import convertDataUrl from './convertDataUrl';
 
-export default async function feature(type: string, dataUrl: string): Promise<Result>
+export default async function feature(type: string, dataUrl: string): Promise<string>
 {
     const image = await convertDataUrl(dataUrl);
 
