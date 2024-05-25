@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import PostNotFound from '^/domain/post/PostNotFound';
 import toggleRating from '^/domain/post/toggleRating/feature';
-import { RECORD_TYPE } from '^/domain/rating/definitions/constants';
+import { RECORD_TYPE } from '^/domain/rating/definitions';
 
 import database from '^/integrations/database/module';
 

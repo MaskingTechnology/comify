@@ -1,26 +1,26 @@
 
 import type Requester from '^/domain/authentication/Requester';
-import updateRating from '^/domain/rating/update';
+import updateRating from '^/domain/rating/update/feature';
 
 import updateRatingCount from '../updateRatingCount/feature';
 
 export default async function feature(requester: Requester, postId: string): Promise<boolean>
 {
-    let rating;
+    let ratingId;
 
     try
     {
-        rating = await updateRating(requester, postId, undefined);
+        ratingId = await updateRating(requester, postId, undefined);
 
-        rating !== undefined
+        ratingId !== undefined
             ? await updateRatingCount(postId, 'increase')
             : await updateRatingCount(postId, 'decrease');
 
-        return rating !== undefined;
+        return ratingId !== undefined;
     }
     catch (error)
     {
-        if (rating !== undefined) 
+        if (ratingId !== undefined) 
         {
             await updateRating(requester, postId, undefined);
         }

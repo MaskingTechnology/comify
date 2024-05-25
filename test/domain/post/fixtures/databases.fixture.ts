@@ -1,7 +1,7 @@
 
 import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator/definitions/constants';
 import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions';
-import { RECORD_TYPE as RATING_RECORD_TYPE } from '^/domain/rating/definitions/constants';
+import { RECORD_TYPE as RATING_RECORD_TYPE } from '^/domain/rating/definitions';
 
 import database from '^/integrations/database/module';
 

@@ -1,26 +1,26 @@
 
 import type Requester from '../authentication/Requester';
-import updateRating from '../rating/update';
+import updateRating from '../rating/update/feature';
 import decreaseRatingCount from './decreaseRatingCount';
 import increaseRatingCount from './increaseRatingCount';
 
 export default async function toggleRating(requester: Requester, reactionId: string): Promise<boolean>
 {
-    let rating;
+    let ratingId;
 
     try
     {
-        rating = await updateRating(requester, undefined, reactionId);
+        ratingId = await updateRating(requester, undefined, reactionId);
 
-        rating !== undefined
+        ratingId !== undefined
             ? await increaseRatingCount(reactionId)
             : await decreaseRatingCount(reactionId);
 
-        return rating !== undefined;
+        return ratingId !== undefined;
     }
     catch (error)
     {
-        if (rating !== undefined) 
+        if (ratingId !== undefined) 
         {
             await updateRating(requester, undefined, reactionId);
         }

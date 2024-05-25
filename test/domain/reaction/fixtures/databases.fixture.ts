@@ -4,7 +4,7 @@ import { RECORD_TYPE as COMMENT_RECORD_TYPE } from '^/domain/comment/definitions
 import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator/definitions/constants';
 import { RECORD_TYPE as IMAGE_RECORD_TYPE } from '^/domain/image/definitions';
 import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions';
-import { RECORD_TYPE as RATING_RECORD_TYPE } from '^/domain/rating/definitions/constants';
+import { RECORD_TYPE as RATING_RECORD_TYPE } from '^/domain/rating/definitions';
 import { RECORD_TYPE as REACTION_RECORD_TYPE } from '^/domain/reaction/definitions/constants';
 
 import database from '^/integrations/database/module';
