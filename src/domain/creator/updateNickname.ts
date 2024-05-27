@@ -1,14 +1,23 @@
 
 import Requester from '../authentication/Requester';
-import generateNickname from './data/generateNickname';
+import nicknameExists from './data/exists';
 import retrieve from './data/retrieve';
 import update from './data/update';
+import NicknameAlreadyExists from './errors/NicknameAlreadyExists';
+import CreatorView from './view/CreatorView';
+import createView from './view/createView';
 
-export default async function updateNickname(requester: Requester, nickname: string)
+
+export default async function updateNickname(requester: Requester, nickname: string): Promise<CreatorView>
 {
-    const generatedNickname = await generateNickname(nickname);
+    if (await nicknameExists(nickname))
+    {
+        throw new NicknameAlreadyExists(nickname);
+    }
     const currentData = await retrieve(requester.id);
-    const updatedData = currentData.updateNickname(generatedNickname);
+    const updatedData = currentData.updateNickname(nickname);
 
-    return update(updatedData);
+    await update(updatedData);
+
+    return createView(updatedData);
 }

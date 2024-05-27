@@ -6,12 +6,15 @@ export type Props = {
     readonly name: string;
     readonly placeholder?: string;
     readonly value?: string;
+    readonly pattern?: string;
+    readonly title?: string;
     readonly size?: 'large' | 'medium' | 'small';
     readonly onChange?: React.ChangeEventHandler<HTMLInputElement>;
     readonly reference?: RefObject<HTMLInputElement>;
+    readonly required?: boolean;
 };
 
-export default function Element({ name, placeholder, value, size, onChange, reference }: Props)
+export default function Element({ name, placeholder, value, pattern, title, size, onChange, reference, required }: Props)
 {
     const className = 'ds-textbox'
         + ' ds-textbox-size-' + (size ?? 'medium');
@@ -22,7 +25,10 @@ export default function Element({ name, placeholder, value, size, onChange, refe
         name={name}
         placeholder={placeholder}
         defaultValue={value}
+        pattern={pattern}
+        title={title}
         onChange={onChange}
         ref={reference}
+        required={required}
     />;
 }

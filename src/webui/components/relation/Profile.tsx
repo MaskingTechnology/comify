@@ -7,7 +7,7 @@ import FollowRow from './elementary/FollowRow';
 type Props = {
     readonly relation: RelationView;
     readonly onFollowClick: (relation: RelationView) => Promise<void>;
-    readonly onEditClick?: (relation: RelationView) => void;
+    readonly onEditClick?: () => void;
 };
 
 export default function Component({ relation, onFollowClick, onEditClick }: Props)
@@ -16,7 +16,7 @@ export default function Component({ relation, onFollowClick, onEditClick }: Prop
         isFollowing={relation.exists}
         isSelf={relation.self}
         onFollowClick={() => onFollowClick(relation)}
-        onEditClick={onEditClick !== undefined ? () => onEditClick(relation) : undefined}
+        onEditClick={onEditClick}
     >
         <CreatorProfile creator={relation.following} />
     </FollowRow>;

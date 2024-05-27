@@ -5,10 +5,11 @@ import { useRef } from 'react';
 
 export type Props = {
     nickname: string;
+    alreadyInUse: boolean;
     onUpdateClick: (nickname: string) => Promise<void>;
 };
 
-export default function Component({ nickname, onUpdateClick }: Props)
+export default function Component({ nickname, alreadyInUse, onUpdateClick }: Props)
 {
     const inputRef = useRef<HTMLInputElement>(null);
     const handleClick = async () =>
@@ -16,20 +17,33 @@ export default function Component({ nickname, onUpdateClick }: Props)
         const value = inputRef.current?.value ?? '';
 
         await onUpdateClick(value);
+
+        return false;
     };
 
     return <Panel>
-        <Form>
+        {
+            alreadyInUse
+                ? <Panel type='error' padding='small'>Sorry, this nickname is already in use. </Panel>
+                : null
+        }
+        <Form submitHandler={handleClick}>
             <Input
                 label={<Label value='Nickname'></Label>}
                 element={<TextBox
                     reference={inputRef}
                     name='nickname'
-                    value={nickname}
-                    size='small' />} >
-            </Input>
+                    placeholder={nickname}
+                    value={''}
+                    pattern="^(?!.*[\s_]).+$"
+                    title='underscores and spaces not allowed'
+                    size='small'
+                    required={true}
+                />
+                }
+            />
             <Row alignX='right'>
-                <UpdateButton onClick={handleClick} ></UpdateButton>
+                <UpdateButton></UpdateButton>
             </Row>
         </Form>
     </Panel >;

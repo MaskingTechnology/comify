@@ -27,11 +27,14 @@ export default function Component({ fullName, onUpdateClick }: Props)
                 element={<TextBox
                     reference={inputRef}
                     name='fullName'
-                    value={fullName}
-                    size='small' />}
+                    value={''}
+                    placeholder={fullName}
+                    size='small'
+                    required={true}
+                />}
             />
             <Row alignX='right'>
-                <UpdateButton onClick={handleClick}></UpdateButton>
+                <UpdateButton></UpdateButton>
             </Row>
         </Form>
     </Panel>;

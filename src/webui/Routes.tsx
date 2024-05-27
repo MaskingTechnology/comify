@@ -36,7 +36,7 @@ export default function Component()
         <Route path="/notifications" element={protect(<Notifications />)} />
         <Route path="/create" element={protect(<CreateComicPost />)} />
         <Route path="/profile/:nickname" element={protect(<Profile />)} />
-        <Route path="/editProfile/:nickname" element={protect(<EditProfile />)} />
+        <Route path="/editProfile" element={protect(<EditProfile />)} />
         <Route path="/post/:postId" element={protect(<PostDetails />)} />
         <Route path="/logout" element={protect(<Logout />)} />
 
