@@ -1,9 +1,7 @@
 
-import findData from './findData';
+import hasData from './hasData';
 
 export default async function feature(creatorId: string, postId: string | undefined, reactionId: string | undefined): Promise<boolean>
 {
-    const data = await findData(creatorId, postId, reactionId);
-
-    return data !== undefined;
+    return hasData(creatorId, postId, reactionId);
 }

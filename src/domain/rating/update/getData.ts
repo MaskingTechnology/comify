@@ -7,7 +7,7 @@ export type Data = {
     readonly id: string;
 };
 
-export default async function findData(creatorId: string, postId: string | undefined, reactionId: string | undefined): Promise<Data | undefined>
+export default async function getData(creatorId: string, postId: string | undefined, reactionId: string | undefined): Promise<Data | undefined>
 {
     const fields = ['id'];
 

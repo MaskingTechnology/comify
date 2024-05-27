@@ -3,12 +3,12 @@ import type Requester from '^/domain/authentication/Requester';
 
 import createData from './createData';
 import eraseData from './eraseData';
-import findData from './findData';
+import getData from './getData';
 import insertData from './insertData';
 
 export default async function feature(requester: Requester, postId: string | undefined, reactionId: string | undefined): Promise<string | void>
 {
-    const data = await findData(requester.id, postId, reactionId);
+    const data = await getData(requester.id, postId, reactionId);
 
     if (data !== undefined)
     {

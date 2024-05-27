@@ -3,11 +3,7 @@ import database, { RecordQuery } from '^/integrations/database/module';
 
 import { RECORD_TYPE } from '../definitions';
 
-export type Data = {
-    readonly id: string;
-};
-
-export default async function findData(creatorId: string, postId: string | undefined, reactionId: string | undefined): Promise<Data | undefined>
+export default async function hasData(creatorId: string, postId: string | undefined, reactionId: string | undefined): Promise<boolean>
 {
     const fields = ['id'];
 
@@ -17,5 +13,7 @@ export default async function findData(creatorId: string, postId: string | undef
         reactionId: { EQUALS: reactionId }
     };
 
-    return database.findRecord(RECORD_TYPE, query, fields) as Promise<Data | undefined>;
+    const data = await database.findRecord(RECORD_TYPE, query, fields);
+
+    return data !== undefined;
 }
