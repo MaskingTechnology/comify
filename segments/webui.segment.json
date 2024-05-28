@@ -3,8 +3,8 @@
     "./domain/authentication/login": { "default": {  "access": "public" } },
     "./domain/authentication/logout": { "default": {  "access": "public" } },
 
-    "./domain/creator/getByNickname": { "default": {  "access": "public" } },
-    "./domain/creator/getMe": { "default": {  "access": "public" } },
+    "./domain/creator/getByNicknameAggregated/feature": { "default": {  "access": "public" } },
+    "./domain/creator/getMeAggregated/feature": { "default": {  "access": "public" } },
 
     "./domain/notification/getRecent": { "default": {  "access": "public" } },
     

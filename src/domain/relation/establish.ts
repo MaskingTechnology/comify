@@ -1,8 +1,7 @@
 
 import type Requester from '../authentication/Requester';
-import decreaseFollowerCount from '../creator/decreaseFollowerCount';
-import increaseFollowerCount from '../creator/increaseFollowerCount';
-import increaseFollowingCount from '../creator/increaseFollowingCount';
+import updateFollowerCount from '../creator/updateFollowerCount/feature';
+import updateFollowingCount from '../creator/updateFollowingCount/feature';
 import create from './data/create';
 import erase from './data/erase';
 import exists from './data/exists';
@@ -22,16 +21,16 @@ export default async function establish(requester: Requester, followingId: strin
     try
     {
         relation = await create(requester.id, followingId);
-        followerCount = await increaseFollowerCount(followingId);
+        followerCount = await updateFollowerCount(followingId, 'increase');
 
-        await increaseFollowingCount(requester.id);
+        await updateFollowingCount(requester.id, 'increase');
     }
     catch (error: unknown)
     {
         const relationId = relation?.id ?? '';
 
         const undoRelation = relation !== undefined ? erase(relationId) : Promise.resolve();
-        const undoFollowerCount = followerCount !== undefined ? decreaseFollowerCount(followingId) : Promise.resolve();
+        const undoFollowerCount = followerCount !== undefined ? updateFollowerCount(followingId, 'decrease') : Promise.resolve();
 
         await Promise.all([undoRelation, undoFollowerCount]);
 

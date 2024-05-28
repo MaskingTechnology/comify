@@ -1,5 +1,5 @@
 
-import getCreatorView from '../../creator/get';
+import getCreatorView from '../../creator/getByIdAggregated/feature';
 import type RelationData from '../data/RelationData';
 import RelationView from './RelationView';
 

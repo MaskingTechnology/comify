@@ -2,7 +2,7 @@
 import type Requester from '^/domain/authentication/Requester';
 import createComic from '^/domain/comic/create/feature';
 import eraseComic from '^/domain/comic/erase/feature';
-import increaseCreatorPostCount from '^/domain/creator/increasePostCount';
+import updateCreatorPostCount from '^/domain/creator/updatePostCount/feature';
 
 import createData from './createData';
 import erasePost from './eraseData';
@@ -20,7 +20,7 @@ export default async function feature(requester: Requester, comicImageDataUrl: s
 
         postId = await insertData(data);
 
-        await increaseCreatorPostCount(requester.id);
+        await updateCreatorPostCount(requester.id, 'increase');
     }
     catch (error: unknown)
     {

@@ -1,8 +1,8 @@
 
 import type Requester from '../authentication/Requester';
-import retrieveCreatorsWithout from '../creator/data/retrieveWithout';
-import { SortFields as CreatorSortFields } from '../creator/definitions/SortFields';
-import createCreatorView from '../creator/view/createView';
+import createCreatorView from '../creator/aggregate/feature';
+import { SortFields as CreatorSortFields } from '../creator/definitions';
+import getOtherCreators from '../creator/getOthers/feature';
 import retrieveDataByFollower from './data/retrieveByFollower';
 import SortOptions from './definitions/SortOptions';
 import RelationView from './view/RelationView';
@@ -17,7 +17,7 @@ export default async function explore(requester: Requester, sortOption: SortOpti
         ? CreatorSortFields.POPULARITY
         : CreatorSortFields.JOINED_AT;
 
-    const creatorData = await retrieveCreatorsWithout(followingIds, sort, search);
+    const creatorData = await getOtherCreators(followingIds, sort, search);
 
     const creatorViews = await Promise.all(creatorData.map(data => createCreatorView(data)));
 

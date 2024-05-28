@@ -1,5 +1,5 @@
 
-import CreatorData from '../creator/data/CreatorData';
+import type { DataModel as CreatorData } from '../creator/types';
 import Requester from './Requester';
 
 export default function createRequester(creator: CreatorData): Requester

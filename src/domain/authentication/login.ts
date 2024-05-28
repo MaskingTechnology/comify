@@ -1,14 +1,15 @@
 
 import { Identity } from '^/integrations/authentication/module';
 
-import retrieveCreatorByEmail from '../creator/data/retrieveByEmail';
-import registerCreator from '../creator/register';
+import getCreatorByEmail from '^/domain/creator/getByEmail/feature';
+import registerCreator from '^/domain/creator/register/feature';
+
 import type Requester from './Requester';
 import createRequester from './createRequester';
 
 export default async function login(identity: Identity): Promise<Requester>
 {
-    const existingCreator = await retrieveCreatorByEmail(identity.email);
+    const existingCreator = await getCreatorByEmail(identity.email);
 
     const loggedInCreator = existingCreator ?? await registerCreator(
         identity.name,

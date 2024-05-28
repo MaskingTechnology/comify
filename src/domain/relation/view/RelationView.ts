@@ -1,5 +1,5 @@
 
-import type CreatorView from '../../creator/view/CreatorView';
+import type { AggregatedData as CreatorView } from '../../creator/aggregate/feature';
 
 export default class RelationView
 {

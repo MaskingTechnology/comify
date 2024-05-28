@@ -1,7 +1,6 @@
 
 import type Requester from '^/domain/authentication/Requester';
-import decreasePostCount from '^/domain/creator/decreasePostCount';
-import increasePostCount from '^/domain/creator/increasePostCount';
+import updateCreatorPostCount from '^/domain/creator/updatePostCount/feature';
 
 import PostNotFound from '../PostNotFound';
 import removeData from './deleteData';
@@ -23,7 +22,7 @@ export default async function feature(requester: Requester, id: string): Promise
 
     try
     {
-        creatorCount = await decreasePostCount(requester.id);
+        creatorCount = await updateCreatorPostCount(requester.id, 'decrease');
 
         await removeData(id);
     }
@@ -31,7 +30,7 @@ export default async function feature(requester: Requester, id: string): Promise
     {
         if (creatorCount !== undefined)
         {
-            await increasePostCount(requester.id);
+            await updateCreatorPostCount(requester.id, 'increase');
         }
 
         throw error;

@@ -2,14 +2,15 @@
 import { useEffect, useState } from 'react';
 
 import johnDoe from '^/domain/authentication/johnDoe';
-import type CreatorView from '^/domain/creator/view/CreatorView';
-import getCreatorPosts, { Result as PostData } from '^/domain/post/fromCreator/feature';
+import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/feature';
+import type { AggregatedData as PostView } from '^/domain/post/aggregate/feature';
+import getCreatorPosts from '^/domain/post/fromCreator/feature';
 
 import { awaitData } from '^/webui/utils';
 
 export function useCreatorPosts(creator: CreatorView)
 {
-    const [posts, setPosts] = useState<PostData[] | undefined>(undefined);
+    const [posts, setPosts] = useState<PostView[] | undefined>(undefined);
 
     useEffect(() => 
     {

@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import johnDoe from '^/domain/authentication/johnDoe';
-import getMe from '^/domain/creator/getMe';
-import type CreatorView from '^/domain/creator/view/CreatorView';
+import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/feature';
+import getMe from '^/domain/creator/getMeAggregated/feature';
 
 import { useAppContext } from '^/webui/contexts';
 import { awaitData } from '^/webui/utils';
