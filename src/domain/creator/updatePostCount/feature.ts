@@ -2,7 +2,7 @@
 import getById from '../getById/feature';
 import update from '../update/feature';
 
-import { CountOperation } from '../types';
+import type { CountOperation } from '../types';
 
 export default async function feature(id: string, operation: CountOperation): Promise<number>
 {

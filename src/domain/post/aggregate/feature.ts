@@ -1,42 +1,24 @@
 
 import type Requester from '^/domain/authentication/Requester';
-import { AggregatedData as ComicData } from '^/domain/comic/aggregate/feature';
-import getComicView from '^/domain/comic/get/feature';
+import getComicData from '^/domain/comic/getByIdAggregated/feature';
 import ratingExists from '^/domain/rating/exists/feature';
-import getRelationView from '^/domain/relation/get';
-import type RelationView from '^/domain/relation/view/RelationView';
+import getRelationData from '^/domain/relation/get';
 
-export type Data = {
-    readonly id: string;
-    readonly creatorId: string;
-    readonly comicId: string;
-    readonly createdAt: string;
-    readonly ratingCount: number;
-    readonly reactionCount: number;
-};
+import type { DataModel } from '../types';
+import type { AggregatedData } from './types';
 
-export type AggregatedData = {
-    readonly id: string;
-    readonly createdAt: string;
-    readonly creator: RelationView;
-    readonly comic: ComicData;
-    readonly ratingCount: number;
-    readonly reactionCount: number;
-    readonly hasRated: boolean;
-};
-
-export default async function createView(requester: Requester, data: Data): Promise<AggregatedData>
+export default async function feature(requester: Requester, data: DataModel): Promise<AggregatedData>
 {
-    const [creatorView, comicData, hasRated] = await Promise.all([
-        getRelationView(requester.id, data.creatorId),
-        getComicView(data.comicId),
+    const [creatorData, comicData, hasRated] = await Promise.all([
+        getRelationData(requester.id, data.creatorId),
+        getComicData(data.comicId),
         ratingExists(requester.id, data.id, undefined),
     ]);
 
     return {
         id: data.id,
         createdAt: data.createdAt,
-        creator: creatorView,
+        creator: creatorData,
         comic: comicData,
         ratingCount: data.ratingCount,
         reactionCount: data.reactionCount,

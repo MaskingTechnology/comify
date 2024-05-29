@@ -2,7 +2,7 @@
 import database from '^/integrations/database/module';
 
 import { RECORD_TYPE } from '../definitions';
-import { DataModel } from '../types';
+import type { DataModel } from '../types';
 import NicknameNotFound from './NicknameNotFound';
 
 export default async function feature(nickname: string): Promise<DataModel>

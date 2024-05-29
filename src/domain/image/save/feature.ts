@@ -1,16 +1,10 @@
 
+import type { Image } from '../types';
 import createData from './createData';
 import fileExists from './fileExists';
 import generateStorageKey from './generateStorageKey';
 import insertData from './insertData';
 import insertFile from './insertFile';
-
-export type Image = {
-    readonly filename: string;
-    readonly mimeType: string;
-    readonly size: number;
-    readonly buffer: Buffer;
-};
 
 export default async function feature(type: string, image: Image): Promise<string>
 {

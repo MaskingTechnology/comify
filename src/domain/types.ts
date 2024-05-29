@@ -1,5 +1,5 @@
 
-export type DataEntity = {
+export type BaseDataModel = {
     readonly id: string;
 };
 

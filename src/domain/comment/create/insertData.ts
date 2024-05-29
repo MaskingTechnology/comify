@@ -1,18 +1,10 @@
 
-import database, { RecordData } from '^/integrations/database/module';
+import database from '^/integrations/database/module';
 
 import { RECORD_TYPE } from '../definitions';
+import type { DataModel } from '../types';
 
-export type Data = {
-    readonly id: string;
-    readonly message: string;
-};
-
-export default async function insertData(data: RecordData): Promise<Data>
+export default async function insertData(data: DataModel): Promise<void>
 {
-    const record = { ...data };
-
-    await database.createRecord(RECORD_TYPE, record);
-
-    return record as Data;
+    await database.createRecord(RECORD_TYPE, data);
 }

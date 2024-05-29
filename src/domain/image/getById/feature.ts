@@ -2,10 +2,7 @@
 import createDataUrl from './createDataUrl';
 import retrieveData from './retrieveData';
 import retrieveFile from './retrieveFile';
-
-export type ImageData = {
-    readonly dataUrl: string;
-};
+import type { ImageData } from './types';
 
 export default async function feature(id: string): Promise<ImageData>
 {

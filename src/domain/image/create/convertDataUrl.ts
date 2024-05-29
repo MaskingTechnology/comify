@@ -1,14 +1,9 @@
 
 import InvalidDataURL from './InvalidDataURL';
 
-const DATA_URL_REGEX = /^data:(image\/(\w+));base64,(.*)$/;
+import type { Image } from '../types';
 
-export type Image = {
-    readonly filename: string;
-    readonly mimeType: string;
-    readonly size: number;
-    readonly buffer: Buffer;
-};
+const DATA_URL_REGEX = /^data:(image\/(\w+));base64,(.*)$/;
 
 export default async function convertDataUrl(dataUrl: string): Promise<Image>
 {

@@ -1,6 +1,6 @@
 
 import johnDoe from '^/domain/authentication/johnDoe';
-import type PostView from '^/domain/post/view/PostView';
+import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 import createComicReaction from '^/domain/reaction/createComic';
 import type ReactionView from '^/domain/reaction/view/ReactionView';
 

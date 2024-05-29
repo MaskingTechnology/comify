@@ -5,7 +5,8 @@ import { RECORD_TYPE } from '../definitions';
 
 export default async function ownsData(id: string, creatorId: string): Promise<boolean>
 {
-    const query: RecordQuery = {
+    const query: RecordQuery =
+    {
         id: { 'EQUALS': id },
         creatorId: { 'EQUALS': creatorId },
         deleted: { 'EQUALS': false }

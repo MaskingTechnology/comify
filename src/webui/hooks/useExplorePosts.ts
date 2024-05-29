@@ -2,8 +2,8 @@
 import { useEffect, useState } from 'react';
 
 import johnDoe from '^/domain/authentication/johnDoe';
-import explorePosts from '^/domain/post/explore/feature';
-import type PostView from '^/domain/post/view/PostView';
+import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
+import explorePosts from '^/domain/post/exploreAggregated/feature';
 
 import { awaitData } from '^/webui/utils';
 

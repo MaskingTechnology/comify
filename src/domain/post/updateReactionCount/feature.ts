@@ -1,18 +1,18 @@
 
-import retrieveCount from './retrieveCount';
-import updateCount from './updateCount';
+import getById from '../getById/feature';
+import update from '../update/feature';
 
-export type Operation = 'increase' | 'decrease';
+import type { CountOperation } from '../types';
 
-export default async function feature(postId: string, operation: Operation): Promise<number>
+export default async function feature(id: string, operation: CountOperation): Promise<number>
 {
-    const currentCount = await retrieveCount(postId);
+    const data = await getById(id);
 
-    const newCount = operation === 'increase'
-        ? currentCount + 1
-        : currentCount - 1;
+    const reactionCount = operation === 'increase'
+        ? data.reactionCount + 1
+        : data.reactionCount - 1;
 
-    await updateCount(postId, newCount);
+    await update(id, { reactionCount });
 
-    return newCount;
+    return reactionCount;
 }

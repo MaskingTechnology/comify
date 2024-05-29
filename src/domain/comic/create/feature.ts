@@ -3,6 +3,7 @@ import createImage from '^/domain/image/create/feature';
 import eraseImage from '^/domain/image/erase/feature';
 
 import { IMAGE_TYPE } from '../definitions';
+
 import createData from './createData';
 import insert from './insertData';
 

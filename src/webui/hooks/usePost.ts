@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import johnDoe from '^/domain/authentication/johnDoe';
-import get from '^/domain/post/get/feature';
-import type PostView from '^/domain/post/view/PostView';
+import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
+import get from '^/domain/post/getByIdAggregated/feature';
 
 import { awaitData } from '^/webui/utils';
 

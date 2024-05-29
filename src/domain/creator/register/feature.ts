@@ -1,7 +1,7 @@
 
 import generateNickname from '../generateNickname/feature';
 
-import { DataModel } from '../types';
+import type { DataModel } from '../types';
 
 import createData from './createData';
 import downloadPortrait from './downloadPortrait';

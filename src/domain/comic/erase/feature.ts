@@ -1,12 +1,13 @@
 
 import eraseImage from '^/domain/image/erase/feature';
 
+import getById from '../getById/feature';
+
 import eraseData from './eraseData';
-import retrieveData from './retrieveData';
 
 export default async function feature(id: string): Promise<void>
 {
-    const data = await retrieveData(id);
+    const data = await getById(id);
 
     await eraseData(data.id);
 

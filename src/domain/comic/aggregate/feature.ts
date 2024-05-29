@@ -1,17 +1,10 @@
 
-import getImageData, { ImageData } from '^/domain/image/get/feature';
+import getImageData from '^/domain/image/getById/feature';
 
-export type Data = {
-    readonly id: string;
-    readonly imageId: string;
-};
+import type { DataModel } from '../types';
+import type { AggregatedData } from './types';
 
-export type AggregatedData = {
-    readonly id: string;
-    readonly image: ImageData;
-};
-
-export default async function feature(data: Data): Promise<AggregatedData>
+export default async function feature(data: DataModel): Promise<AggregatedData>
 {
     const imageData = await getImageData(data.imageId);
 

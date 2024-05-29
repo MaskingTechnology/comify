@@ -1,5 +1,5 @@
 
-import type PostView from '^/domain/post/view/PostView';
+import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 
 import { LoadingContainer, OrderRow, PostPanelList } from '^/webui/components';
 import { Column } from '^/webui/designsystem';

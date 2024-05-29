@@ -1,7 +1,9 @@
 
-import eraseData from './eraseData';
+import database from '^/integrations/database/module';
 
-export default async function feature(dataId: string): Promise<void>
+import { RECORD_TYPE } from '../definitions';
+
+export default async function feature(id: string): Promise<void>
 {
-    return eraseData(dataId);
+    return database.deleteRecord(RECORD_TYPE, id);
 }

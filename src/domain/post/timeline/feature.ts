@@ -1,21 +1,14 @@
 
-import type Requester from '^/domain/authentication/Requester';
 import retrieveFollowerData from '^/domain/relation/data/retrieveByFollower';
 
-import aggregate, { AggregatedData } from '../aggregate/feature';
+import type { DataModel } from '../types';
 import retrieveData from './retrieveData';
 
-export { type AggregatedData };
-
-export default async function feature(requester: Requester): Promise<AggregatedData[]>
+export default async function feature(creatorId: string): Promise<DataModel[]>
 {
-    const followerData = await retrieveFollowerData(requester.id);
+    const followerData = await retrieveFollowerData(creatorId);
 
-    const followingIds = followerData.map(data => data.followingId);
+    const creatorIds = followerData.map(data => data.followingId);
 
-    const data = await retrieveData(followingIds);
-
-    const aggregates = data.map(item => aggregate(requester, item));
-
-    return Promise.all(aggregates);
+    return retrieveData(creatorIds);
 }

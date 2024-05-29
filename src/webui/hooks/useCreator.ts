@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/feature';
+import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
 import getCreator from '^/domain/creator/getByNicknameAggregated/feature';
 import getRelation from '^/domain/relation/get';
 import type RelationView from '^/domain/relation/view/RelationView';

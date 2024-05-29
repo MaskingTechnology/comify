@@ -2,8 +2,8 @@
 import { useEffect, useState } from 'react';
 
 import johnDoe from '^/domain/authentication/johnDoe';
-import getTimelinePosts from '^/domain/post/timeline/feature';
-import type PostView from '^/domain/post/view/PostView';
+import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
+import getTimelinePosts from '^/domain/post/timelineAggregated/feature';
 
 import { awaitData } from '^/webui/utils';
 

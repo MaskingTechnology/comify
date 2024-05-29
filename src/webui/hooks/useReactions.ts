@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 import johnDoe from '^/domain/authentication/johnDoe';
-import type PostView from '^/domain/post/view/PostView';
+import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 import getReactionsByPost from '^/domain/reaction/getByPost';
 import type ReactionView from '^/domain/reaction/view/ReactionView';
 

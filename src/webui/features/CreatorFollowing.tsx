@@ -1,5 +1,5 @@
 
-import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/feature';
+import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
 import type RelationView from '^/domain/relation/view/RelationView';
 
 import { LoadingContainer, OrderAndSearchRow, RelationPanelList } from '^/webui/components';

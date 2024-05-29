@@ -1,5 +1,5 @@
 
-import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/feature';
+import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
 
 import AvatarRow from './elementary/AvatarRow';
 import NamesColumn from './elementary/NamesColumn';

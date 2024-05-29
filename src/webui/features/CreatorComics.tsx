@@ -1,6 +1,6 @@
 
-import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/feature';
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/feature';
+import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
+import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 
 import { LoadingContainer, PostPanelGrid } from '^/webui/components';
 import { Column } from '^/webui/designsystem';

@@ -1,7 +1,8 @@
 
 import Requester from '^/domain/authentication/Requester';
 
-import aggregate, { AggregatedData } from '../aggregate/feature';
+import aggregate from '../aggregate/feature';
+import type { AggregatedData } from '../aggregate/types';
 import getMe from '../getMe/feature';
 
 export default async function feature(requester: Requester): Promise<AggregatedData>

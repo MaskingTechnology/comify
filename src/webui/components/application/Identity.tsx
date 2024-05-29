@@ -1,5 +1,5 @@
 
-import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/feature';
+import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
 
 import logoutIcon from '^/webui/assets/images/icons/logout.svg';
 import { ClickArea, Image, Row } from '^/webui/designsystem';

@@ -1,12 +1,9 @@
 
 import { generateId } from '^/integrations/utilities/crypto';
 
-export type Data = {
-    readonly id: string;
-    readonly message: string;
-};
+import type { DataModel } from '../types';
 
-export default function createData(message: string): Data
+export default function createData(message: string): DataModel
 {
     const id = generateId();
 

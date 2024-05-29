@@ -1,11 +1,10 @@
 
-import database, { RecordData } from '^/integrations/database/module';
+import database from '^/integrations/database/module';
 
 import { RECORD_TYPE } from '../definitions';
+import type { DataModel } from '../types';
 
-export default async function insertData(data: RecordData): Promise<string>
+export default async function insertData(data: DataModel): Promise<string>
 {
-    const record: RecordData = { ...data, deleted: false };
-
-    return database.createRecord(RECORD_TYPE, record);
+    return database.createRecord(RECORD_TYPE, { ...data, deleted: false });
 }

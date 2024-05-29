@@ -2,7 +2,7 @@
 import database from '^/integrations/database/module';
 
 import { RECORD_TYPE } from '../definitions';
-import { DataModel } from '../types';
+import type { DataModel } from '../types';
 
 export default async function feature(email: string): Promise<DataModel | undefined>
 {

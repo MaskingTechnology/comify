@@ -1,16 +1,11 @@
 
 import httpClient from '^/integrations/http/module';
 
+import type { MetaData } from '../types';
 import ImageNotDownloaded from './ImageNotDownloaded';
 
 const CONTENT_TYPE = 'Content-Type';
 const CONTENT_LENGTH = 'Content-Length';
-
-export type MetaData = {
-    readonly filename: string;
-    readonly mimeType: string;
-    readonly size: number;
-};
 
 export default async function getMetaData(imageUrl: string): Promise<MetaData>
 {

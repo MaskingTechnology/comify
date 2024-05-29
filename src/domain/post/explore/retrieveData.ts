@@ -2,20 +2,15 @@
 import database, { RecordQuery } from '^/integrations/database/module';
 
 import { RECORD_TYPE } from '../definitions';
+import type { DataModel } from '../types';
 
-export type Data = {
-    readonly id: string;
-    readonly creatorId: string;
-    readonly comicId: string;
-    readonly createdAt: string;
-    readonly ratingCount: number;
-    readonly reactionCount: number;
-};
-
-export default async function retrieveData(creatorIds: string[]): Promise<Data[]>
+export default async function retrieveData(excludedCreatorIds: string[]): Promise<DataModel[]>
 {
-    const fields = ['id', 'creatorId', 'comicId', 'createdAt', 'ratingCount', 'reactionCount'];
-    const query: RecordQuery = { creatorId: { NOT_IN: creatorIds }, deleted: { 'EQUALS': false } };
+    const query: RecordQuery =
+    {
+        creatorId: { NOT_IN: excludedCreatorIds },
+        deleted: { 'EQUALS': false }
+    };
 
-    return database.searchRecords(RECORD_TYPE, query, fields) as Promise<Data[]>;
+    return database.searchRecords(RECORD_TYPE, query) as Promise<DataModel[]>;
 }

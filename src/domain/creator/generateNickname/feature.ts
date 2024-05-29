@@ -4,7 +4,7 @@ import getByNickname from '../getByNickname/feature';
 import TooManySimilarNicknames from './TooManySimilarNicknames';
 import retrieveByStartNickname from './retrieveByStartNickname';
 
-export default async function generateNickname(nickname: string): Promise<string>
+export default async function feature(nickname: string): Promise<string>
 {
     const strippedName: string = nickname.trim();
     const noSpacesNickname: string = strippedName.replaceAll(' ', '');

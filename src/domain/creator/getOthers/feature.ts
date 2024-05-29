@@ -2,7 +2,7 @@
 import database, { QueryStatement, RecordQuery, RecordSort, SortDirections } from '^/integrations/database/module';
 
 import { RECORD_TYPE, SortFields } from '../definitions';
-import { DataModel } from '../types';
+import type { DataModel } from '../types';
 
 export default async function feature(ids: string[], sortField: SortFields, search?: string): Promise<DataModel[]>
 {

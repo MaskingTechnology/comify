@@ -1,7 +1,7 @@
 
-import { CountOperation, DataEntity } from '../types';
+import { BaseDataModel, CountOperation } from '../types';
 
-type DataModel = DataEntity &
+type DataModel = BaseDataModel &
 {
     readonly fullName: string;
     readonly nickname: string;

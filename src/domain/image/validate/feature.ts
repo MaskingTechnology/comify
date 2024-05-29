@@ -1,6 +1,8 @@
 
 import validator, { ValidationSchema } from '^/integrations/validation/module';
 
+import type { MetaData } from '../types';
+
 import InvalidImage from './InvalidImage';
 
 const TEN_B = 10;
@@ -28,12 +30,7 @@ const schema: ValidationSchema = {
     }
 };
 
-export type Data = {
-    readonly mimeType: string;
-    readonly size: number;
-};
-
-export default function feature({ mimeType, size }: Data): void
+export default function feature({ mimeType, size }: MetaData): void
 {
     const result = validator.validate({ mimeType, size }, schema);
 

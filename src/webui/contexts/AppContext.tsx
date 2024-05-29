@@ -1,7 +1,7 @@
 
 import React, { useContext, useMemo, useState } from 'react';
 
-import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/feature';
+import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
 
 type Context = {
     identity: CreatorView | undefined;

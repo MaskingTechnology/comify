@@ -1,12 +1,14 @@
 
+import type { DataModel } from '../types';
+
 import createData from './createData';
-import insertData, { Data } from './insertData';
+import insertData from './insertData';
 
-export { type Data };
-
-export default async function feature(message: string): Promise<Data>
+export default async function feature(message: string): Promise<DataModel>
 {
     const data = createData(message);
 
-    return insertData(data);
+    await insertData(data);
+
+    return data;
 }
