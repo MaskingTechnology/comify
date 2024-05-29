@@ -1,6 +1,8 @@
 
-export type DataModel = {
-    readonly id: string;
+import { CountOperation, DataEntity } from '../types';
+
+type DataModel = DataEntity &
+{
     readonly fullName: string;
     readonly nickname: string;
     readonly email: string;
@@ -11,4 +13,4 @@ export type DataModel = {
     readonly followingCount: number;
 };
 
-export type DataFields = Array<keyof DataModel>;
+export type { CountOperation, DataModel };
