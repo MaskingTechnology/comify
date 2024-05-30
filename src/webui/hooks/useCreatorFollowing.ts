@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 
 import johnDoe from '^/domain/authentication/johnDoe';
 import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
-import getFollowing from '^/domain/relation/getFollowing';
-import type RelationView from '^/domain/relation/view/RelationView';
+import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
+import getFollowing from '^/domain/relation/getFollowingAggregated/feature';
 
 import { awaitData } from '^/webui/utils';
 

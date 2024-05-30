@@ -1,6 +1,6 @@
 
 import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
-import type RelationView from '^/domain/relation/view/RelationView';
+import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
 
 import { Column, Panel, Row } from '^/webui/designsystem';
 

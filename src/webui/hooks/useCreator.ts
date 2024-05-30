@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom';
 
 import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
 import getCreator from '^/domain/creator/getByNicknameAggregated/feature';
-import getRelation from '^/domain/relation/get';
-import type RelationView from '^/domain/relation/view/RelationView';
+import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
+import getRelation from '^/domain/relation/getAggregated/feature';
 
 import { useAppContext } from '^/webui/contexts';
 import { awaitData } from '^/webui/utils';

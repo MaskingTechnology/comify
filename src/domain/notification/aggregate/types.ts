@@ -1,7 +1,7 @@
 
 import type { AggregatedData as PostData } from '^/domain/post/aggregate/types';
 import type { AggregatedData as ReactionData } from '^/domain/reaction/aggregate/types';
-import type RelationData from '^/domain/relation/view/RelationView';
+import type { AggregatedData as RelationData } from '^/domain/relation/aggregate/types';
 
 import { DataModel } from '../types';
 

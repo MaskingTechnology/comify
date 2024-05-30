@@ -2,7 +2,7 @@
 import type Requester from '^/domain/authentication/Requester';
 import getPostData from '^/domain/post/getByIdAggregated/feature';
 import getReactionData from '^/domain/reaction/getByIdAggregated/feature';
-import getRelationData from '^/domain/relation/get';
+import getRelationData from '^/domain/relation/getAggregated/feature';
 
 import type { DataModel } from '../types';
 import type { AggregatedData } from './types';

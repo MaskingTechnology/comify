@@ -23,9 +23,9 @@
     "./domain/reaction/getByPostAggregated/feature": { "default": {  "access": "public" } },
     "./domain/reaction/remove/feature": { "default": {  "access": "public" } },
 
-    "./domain/relation/explore": { "default": {  "access": "public" } },
-    "./domain/relation/establish": { "default": { "access": "public" }},
-    "./domain/relation/get": { "default": {  "access": "public" } },
-    "./domain/relation/getFollowers": { "default": {  "access": "public" } },
-    "./domain/relation/getFollowing": { "default": {  "access": "public" } }
+    "./domain/relation/exploreAggregated/feature": { "default": {  "access": "public" } },
+    "./domain/relation/establish/feature": { "default": { "access": "public" }},
+    "./domain/relation/getAggregated/feature": { "default": {  "access": "public" } },
+    "./domain/relation/getFollowersAggregated/feature": { "default": {  "access": "public" } },
+    "./domain/relation/getFollowingAggregated/feature": { "default": {  "access": "public" } }
 }

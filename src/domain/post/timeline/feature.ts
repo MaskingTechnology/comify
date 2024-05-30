@@ -1,12 +1,13 @@
 
-import retrieveFollowerData from '^/domain/relation/data/retrieveByFollower';
+import type Requester from '^/domain/authentication/Requester';
+import retrieveFollowerData from '^/domain/relation/getFollowing/feature';
 
 import type { DataModel } from '../types';
 import retrieveData from './retrieveData';
 
-export default async function feature(creatorId: string): Promise<DataModel[]>
+export default async function feature(requester: Requester): Promise<DataModel[]>
 {
-    const followerData = await retrieveFollowerData(creatorId);
+    const followerData = await retrieveFollowerData(requester, requester.id);
 
     const creatorIds = followerData.map(data => data.followingId);
 

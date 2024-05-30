@@ -2,7 +2,7 @@
 import type Requester from '^/domain/authentication/Requester';
 import getComicData from '^/domain/comic/getByIdAggregated/feature';
 import ratingExists from '^/domain/rating/exists/feature';
-import getRelationData from '^/domain/relation/get';
+import getRelationData from '^/domain/relation/getAggregated/feature';
 
 import type { DataModel } from '../types';
 import type { AggregatedData } from './types';

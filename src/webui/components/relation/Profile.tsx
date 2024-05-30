@@ -1,5 +1,5 @@
 
-import type RelationView from '^/domain/relation/view/RelationView';
+import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
 
 import CreatorProfile from '../creator/Profile';
 import FollowRow from './elementary/FollowRow';
@@ -13,7 +13,7 @@ type Props = {
 export default function Component({ relation, onFollowClick, onEditClick }: Props)
 {
     return <FollowRow
-        isFollowing={relation.exists}
+        isFollowing={relation.established}
         isSelf={relation.self}
         onFollowClick={() => onFollowClick(relation)}
         onEditClick={onEditClick !== undefined ? () => onEditClick(relation) : undefined}

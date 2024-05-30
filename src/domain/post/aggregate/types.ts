@@ -1,7 +1,6 @@
 
-import { AggregatedData as ComicData } from '^/domain/comic/aggregate/types';
-// import { AggregatedData as RelationData } from '^/domain/relation/aggregate/types';
-import type RelationData from '^/domain/relation/view/RelationView';
+import type { AggregatedData as ComicData } from '^/domain/comic/aggregate/types';
+import type { AggregatedData as RelationData } from '^/domain/relation/aggregate/types';
 
 type AggregatedData = {
     readonly id: string;

@@ -1,5 +1,5 @@
 
-import type RelationView from '^/domain/relation/view/RelationView';
+import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
 
 import { Panel } from '^/webui/designsystem';
 

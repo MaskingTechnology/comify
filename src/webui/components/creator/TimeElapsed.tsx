@@ -6,7 +6,7 @@ import TimeElapsedColumn from './elementary/TimeElapsedColumn';
 
 type Props = {
     readonly creator: CreatorView;
-    readonly date: Date;
+    readonly date: string;
     readonly onCreatorClick: (creator: CreatorView) => void;
 };
 

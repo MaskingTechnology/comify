@@ -1,5 +1,5 @@
 
-import type NotificationView from '^/domain/notification/aggregate/NotificationView';
+import type { AggregatedData as NotificationView } from '^/domain/notification/aggregate/types';
 
 import { LoadingContainer, NotificationPanelList } from '^/webui/components';
 import { Column } from '^/webui/designsystem';
