@@ -17,8 +17,6 @@ export default function Component({ nickname, alreadyInUse, onUpdateClick }: Pro
         const value = inputRef.current?.value ?? '';
 
         await onUpdateClick(value);
-
-        return false;
     };
 
     return <Panel>

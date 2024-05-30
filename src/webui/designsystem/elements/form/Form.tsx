@@ -4,12 +4,22 @@ import './Form.css';
 
 export type Props = {
     readonly children: React.ReactNode;
-    readonly submitHandler?: React.FormEventHandler<HTMLFormElement>;
+    readonly submitHandler?: (form: HTMLFormElement) => void;
 };
 
 export default function Element({ children, submitHandler }: Props)
 {
-    return <form onSubmit={submitHandler} className='ds-form'>
+    const handleSubmit = (event: React.FormEvent<HTMLElement>) =>
+    {
+        if (submitHandler)
+        {
+            submitHandler(event.target as HTMLFormElement);
+        }
+
+        event.preventDefault();
+    };
+
+    return <form onSubmit={handleSubmit} className='ds-form'>
         {children}
     </form>;
 }

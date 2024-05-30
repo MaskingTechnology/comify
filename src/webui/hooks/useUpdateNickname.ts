@@ -19,19 +19,18 @@ export function useUpdateNickname()
             const updatedCreator = await updateNickname(johnDoe, nickname);
 
             setIdentity(updatedCreator);
-
+            setAlreadyInUse(false);
         }
-        catch (Error: unknown)
+        catch (error: unknown)
         {
-            if (Error instanceof NicknameAlreadyExists)
+            if (error instanceof NicknameAlreadyExists)
             {
                 setAlreadyInUse(true);
+
                 return;
             }
-            else
-            {
-                throw (Error);
-            }
+
+            throw error;
         }
     };
 

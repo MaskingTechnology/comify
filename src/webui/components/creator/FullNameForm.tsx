@@ -21,7 +21,7 @@ export default function Component({ fullName, onUpdateClick }: Props)
     };
 
     return <Panel>
-        <Form>
+        <Form submitHandler={handleClick}>
             <Input
                 label={<Label value='FullName'></Label>}
                 element={<TextBox
