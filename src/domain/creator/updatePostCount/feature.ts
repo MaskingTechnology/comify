@@ -9,8 +9,8 @@ export default async function feature(id: string, operation: CountOperation): Pr
     const data = await getById(id);
 
     const postCount = operation === 'increase'
-        ? data.followerCount + 1
-        : data.followerCount - 1;
+        ? data.postCount + 1
+        : data.postCount - 1;
 
     await update(id, { postCount });
 

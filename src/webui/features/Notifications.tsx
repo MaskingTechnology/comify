@@ -1,5 +1,5 @@
 
-import type NotificationView from '^/domain/notification/view/NotificationView';
+import type NotificationView from '^/domain/notification/aggregate/NotificationView';
 
 import { LoadingContainer, NotificationPanelList } from '^/webui/components';
 import { Column } from '^/webui/designsystem';
