@@ -2,8 +2,8 @@
 import { useEffect, useState } from 'react';
 
 import johnDoe from '^/domain/authentication/johnDoe';
-import type NotificationView from '^/domain/notification/aggregate/NotificationView';
-import getRecentNotifications from '^/domain/notification/getRecentAggregated/getRecent';
+import type { AggregatedData as NotificationView } from '^/domain/notification/aggregate/types';
+import getRecentNotifications from '^/domain/notification/getRecentAggregated/feature';
 
 import { awaitData } from '^/webui/utils';
 

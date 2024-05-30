@@ -4,11 +4,11 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { RECORD_TYPE as COMIC_RECORD_TYPE } from '^/domain/comic/definitions';
 import { RECORD_TYPE as COMMENT_RECORD_TYPE } from '^/domain/comment/definitions';
 import { RECORD_TYPE as IMAGE_RECORD_TYPE } from '^/domain/image/definitions';
-import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions';
 import PostNotFound from '^/domain/post/PostNotFound';
-import createComicReaction from '^/domain/reaction/createComic';
-import createCommentReaction from '^/domain/reaction/createComment';
-import { RECORD_TYPE as REACTION_RECORD_TYPE } from '^/domain/reaction/definitions/constants';
+import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions';
+import createComicReaction from '^/domain/reaction/createComic/feature';
+import createCommentReaction from '^/domain/reaction/createComment/feature';
+import { RECORD_TYPE as REACTION_RECORD_TYPE } from '^/domain/reaction/definitions';
 
 import database from '^/integrations/database/module';
 import fileStore from '^/integrations/filestore/module';

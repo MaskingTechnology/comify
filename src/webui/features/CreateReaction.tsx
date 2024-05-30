@@ -1,6 +1,6 @@
 
 import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
-import type ReactionView from '^/domain/reaction/view/ReactionView';
+import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
 
 import { ComicEditor, CommentForm } from '^/webui/components';
 import { Ruler, Tab, Tabs } from '^/webui/designsystem';

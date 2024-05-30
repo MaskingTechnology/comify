@@ -6,7 +6,7 @@
     "./domain/creator/getByNicknameAggregated/feature": { "default": {  "access": "public" } },
     "./domain/creator/getMeAggregated/feature": { "default": {  "access": "public" } },
 
-    "./domain/notification/getRecent": { "default": {  "access": "public" } },
+    "./domain/notification/getRecentAggregated/feature": { "default": {  "access": "public" } },
     
     "./domain/post/create/feature": { "default": {  "access": "public" } },
     "./domain/post/exploreAggregated/feature": { "default": {  "access": "public" } },
@@ -16,11 +16,12 @@
     "./domain/post/remove/feature": { "default": {  "access": "public" } },
     "./domain/post/toggleRating/feature": { "default": {  "access": "public" } },
 
-    "./domain/reaction/createComic": { "default": {  "access": "public" } },
-    "./domain/reaction/createComment": { "default": {  "access": "public" } },
-    "./domain/reaction/toggleRating": { "default": {  "access": "public" } },
-    "./domain/reaction/getByPost": { "default": {  "access": "public" } },
-    "./domain/reaction/remove": { "default": {  "access": "public" } },
+    "./domain/reaction/createComic/feature": { "default": {  "access": "public" } },
+    "./domain/reaction/createComment/feature": { "default": {  "access": "public" } },
+    "./domain/reaction/toggleRating/feature": { "default": {  "access": "public" } },
+    "./domain/reaction/getByIdAggregated/feature": { "default": {  "access": "public" } },
+    "./domain/reaction/getByPostAggregated/feature": { "default": {  "access": "public" } },
+    "./domain/reaction/remove/feature": { "default": {  "access": "public" } },
 
     "./domain/relation/explore": { "default": {  "access": "public" } },
     "./domain/relation/establish": { "default": { "access": "public" }},

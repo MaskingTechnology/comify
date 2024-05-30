@@ -1,5 +1,5 @@
 
-import type ReactionView from '^/domain/reaction/view/ReactionView';
+import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
 import type RelationView from '^/domain/relation/view/RelationView';
 
 import Image from '^/webui/components/comic/Image';
