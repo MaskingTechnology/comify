@@ -1,11 +1,11 @@
 
-import ValidationError from './ValidationError.js';
+import { BadRequest } from 'jitar';
 
-export default class InvalidData extends ValidationError
+export default class ValidationError extends BadRequest
 {
     #messages: Map<string, string>;
 
-    constructor(messages: Map<string, string> = new Map())
+    constructor(messages: Map<string, string>)
     {
         const keys = [...messages.keys()].join(', ');
 

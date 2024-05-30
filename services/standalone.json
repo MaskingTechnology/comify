@@ -1,17 +1,17 @@
 {
     "url": "http://127.0.0.1:3000",
     "setUp": [
-        "./integrations/jitar/setUpNode",
-        "./integrations/jitar/setUpGateway"
+        "./integrations/runtime/setUpNode",
+        "./integrations/runtime/setUpGateway"
     ],
     "tearDown": [
-        "./integrations/jitar/tearDownGateway",
-        "./integrations/jitar/tearDownNode"
+        "./integrations/runtime/tearDownGateway",
+        "./integrations/runtime/tearDownNode"
     ],
     "healthChecks": [
-        "./integrations/jitar/notificationHealthCheck",
-        "./integrations/jitar/fileStoreHealthCheck",
-        "./integrations/jitar/databaseHealthCheck"
+        "./integrations/runtime/notificationHealthCheck",
+        "./integrations/runtime/fileStoreHealthCheck",
+        "./integrations/runtime/databaseHealthCheck"
     ],
     "standalone":
     {
@@ -20,7 +20,7 @@
         "assets": ["index.html", "main.js", "assets/**/*", "webui/**/*"],
         "segments": ["webui"],
         "middlewares": [
-            "./integrations/jitar/authenticationMiddleware"
+            "./integrations/runtime/authenticationMiddleware"
         ]
     }
 }

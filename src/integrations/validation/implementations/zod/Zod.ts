@@ -1,9 +1,9 @@
 
-import { ZodError, ZodIssue, ZodType, z } from 'zod';
+import { ZodIssue, ZodType, ZodUnrecognizedKeysIssue, z } from 'zod';
+import ValidationResult from '../../definitions/ValidationResult.js';
 import { FieldTypes, MAX_EMAIL_LENGTH, MAX_URL_LENGTH } from '../../definitions/constants.js';
 import { Validator } from '../../definitions/interfaces.js';
-import { Message, ValidationSchema, Validations } from '../../definitions/types.js';
-import InvalidData from '../../errors/InvalidData.js';
+import { Message, Validations, type ValidationSchema } from '../../definitions/types.js';
 import UnknownValidator from '../../errors/UnknownValidator.js';
 
 type ValidatorFunction = (value: Validations[keyof Validations]) => z.ZodType<unknown, z.ZodTypeDef> | z.ZodArray<z.ZodType<unknown, z.ZodTypeDef>>;
@@ -27,27 +27,22 @@ export default class Zod implements Validator
         this.#validations.set(FieldTypes.URL, (value: Validations['URL']) => this.#validateUrl(value));
     }
 
-    validate(data: unknown, schema: ValidationSchema): void
+    validate(data: unknown, schema: ValidationSchema): ValidationResult
     {
-        try
+        const validator = this.#buildValidator(schema);
+
+        const result = validator.safeParse(data);
+
+        if (result.success === false)
         {
-            const validator = this.#buildValidator(schema);
+            const issues = result.error.issues;
 
-            validator.parse(data);
+            const messages = this.#getMessages(issues, schema);
+
+            return new ValidationResult(true, messages);
         }
-        catch (error: unknown)
-        {
-            if (error instanceof ZodError)
-            {
-                const issues = error.issues;
 
-                const messages = this.#getMessages(issues, schema);
-
-                throw new InvalidData(messages);
-            }
-
-            throw error;
-        }
+        return new ValidationResult(false);
     }
 
     #buildValidator(schema: ValidationSchema)
@@ -170,10 +165,14 @@ export default class Zod implements Validator
 
         for (const issue of issues)
         {
-            const field = issue.code === 'unrecognized_keys'
-                ? issue.keys.join(', ')
-                : String(issue.path[0]);
+            if (issue.code === 'unrecognized_keys')
+            {
+                this.#mapUnrecognizedKeys(issue, scheme, messages);
 
+                continue;
+            }
+
+            const field = String(issue.path[0]);
             const message = this.#getMessageByField(field, scheme);
 
             messages.set(field, message);
@@ -182,15 +181,20 @@ export default class Zod implements Validator
         return messages;
     }
 
+    #mapUnrecognizedKeys(issue: ZodUnrecognizedKeysIssue, scheme: ValidationSchema, messages: Map<string, string>)
+    {
+        for (const key of issue.keys)
+        {
+            const message = this.#getMessageByField(key, scheme);
+
+            messages.set(key, message);
+        }
+    }
+
     #getMessageByField(path: string, scheme: ValidationSchema)
     {
         const field = scheme[path] as Message;
 
-        if (field === undefined)
-        {
-            return 'Unrecognized field(s)';
-        }
-
-        return field.message ?? 'Invalid field';
+        return field?.message ?? 'Invalid field';
     }
 }

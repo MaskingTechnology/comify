@@ -1,10 +1,10 @@
 
 import type Requester from '../authentication/Requester';
 import createComic from '../comic/create';
-import removeComic from '../comic/remove';
+import eraseComic from '../comic/erase';
 import increaseCreatorPostCount from '../creator/increasePostCount';
 import createPost from './data/create';
-import removePost from './data/remove';
+import erasePost from './data/erase';
 
 export default async function create(requester: Requester, comicImageDataUrl: string): Promise<void>
 {
@@ -19,8 +19,8 @@ export default async function create(requester: Requester, comicImageDataUrl: st
     }
     catch (error: unknown)
     {
-        const undoComic = comic !== undefined ? removeComic(comic.id) : Promise.resolve();
-        const undoPost = post !== undefined ? removePost(post.id) : Promise.resolve();
+        const undoComic = comic !== undefined ? eraseComic(comic.id) : Promise.resolve();
+        const undoPost = post !== undefined ? erasePost(post.id) : Promise.resolve();
 
         await Promise.all([undoComic, undoPost]);
 
