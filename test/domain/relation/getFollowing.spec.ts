@@ -1,7 +1,7 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import getFollowing from '^/domain/relation/getFollowing';
+import getFollowing from '^/domain/relation/getFollowingAggregated/feature';
 
 import { DATABASES, REQUESTERS, VALUES } from './fixtures';
 

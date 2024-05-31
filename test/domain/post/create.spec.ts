@@ -1,10 +1,10 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { RECORD_TYPE as COMIC_RECORD_TYPE } from '^/domain/comic/definitions/constants';
-import { RECORD_TYPE as IMAGE_RECORD_TYPE } from '^/domain/image/definitions/constants';
-import create from '^/domain/post/create';
-import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions/constants';
+import { RECORD_TYPE as COMIC_RECORD_TYPE } from '^/domain/comic/definitions';
+import { RECORD_TYPE as IMAGE_RECORD_TYPE } from '^/domain/image/definitions';
+import create from '^/domain/post/create/feature';
+import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions';
 
 import database from '^/integrations/database/module';
 import fileStore from '^/integrations/filestore/module';

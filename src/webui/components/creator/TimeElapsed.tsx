@@ -1,12 +1,12 @@
 
-import type CreatorView from '^/domain/creator/view/CreatorView';
+import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
 
 import AvatarRow from './elementary/AvatarRow';
 import TimeElapsedColumn from './elementary/TimeElapsedColumn';
 
 type Props = {
     readonly creator: CreatorView;
-    readonly date: Date;
+    readonly date: string;
     readonly onCreatorClick: (creator: CreatorView) => void;
 };
 
