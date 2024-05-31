@@ -1,5 +1,5 @@
 
-import type Requester from '^/domain/authentication/Requester';
+import type { Requester } from '^/domain/authentication/types';
 import retrieveFollowerData from '^/domain/relation/getFollowing/feature';
 
 import type { DataModel } from '../types';

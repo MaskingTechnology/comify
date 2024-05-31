@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import johnDoe from '^/domain/authentication/johnDoe';
 import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 import get from '^/domain/post/getByIdAggregated/feature';
 
@@ -17,7 +16,7 @@ export function usePost()
     {
         if (postId !== undefined)
         {
-            const getPost = () => get(johnDoe, postId);
+            const getPost = () => get(requester, postId);
 
             awaitData(getPost, setPost);
         }

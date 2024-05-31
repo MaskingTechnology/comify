@@ -1,7 +1,6 @@
 
 import { useEffect, useState } from 'react';
 
-import johnDoe from '^/domain/authentication/johnDoe';
 import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
 import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
 import getFollowing from '^/domain/relation/getFollowingAggregated/feature';
@@ -14,7 +13,7 @@ export function useCreatorFollowing(creator: CreatorView)
 
     useEffect(() => 
     {
-        const getRelations = () => getFollowing(johnDoe, creator.id);
+        const getRelations = () => getFollowing(requester, creator.id);
 
         awaitData(getRelations, setRelations);
 

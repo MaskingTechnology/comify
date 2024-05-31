@@ -1,5 +1,5 @@
 
-import type Requester from '^/domain/authentication/Requester';
+import type { Requester } from '^/domain/authentication/types';
 import updateFollowerCount from '^/domain/creator/updateFollowerCount/feature';
 import updateFollowingCount from '^/domain/creator/updateFollowingCount/feature';
 

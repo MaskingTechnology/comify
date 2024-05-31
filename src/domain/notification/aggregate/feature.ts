@@ -1,5 +1,5 @@
 
-import type Requester from '^/domain/authentication/Requester';
+import type { Requester } from '^/domain/authentication/types';
 import getPostData from '^/domain/post/getByIdAggregated/feature';
 import getReactionData from '^/domain/reaction/getByIdAggregated/feature';
 import getRelationData from '^/domain/relation/getAggregated/feature';

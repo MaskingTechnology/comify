@@ -1,5 +1,4 @@
 
-import johnDoe from '^/domain/authentication/johnDoe';
 import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
 import createComicReaction from '^/domain/reaction/createComic/feature';
@@ -9,8 +8,8 @@ export function useCreateComicReaction(post: PostView, handleDone: (reaction?: R
 {
     return async (imageData: string) =>
     {
-        const reactionId = await createComicReaction(johnDoe, post.id, imageData);
-        const reaction = await getReaction(johnDoe, reactionId);
+        const reactionId = await createComicReaction(requester, post.id, imageData);
+        const reaction = await getReaction(requester, reactionId);
 
         handleDone(reaction);
     };

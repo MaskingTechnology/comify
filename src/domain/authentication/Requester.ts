@@ -1,20 +1,10 @@
 
-export default class Requester
-{
-    #id: string;
-    #fullName: string;
-    #nickname: string;
+import type { Requester } from './types';
 
-    public constructor(id: string, fullName: string, nickname: string)
-    {
-        this.#id = id;
-        this.#fullName = fullName;
-        this.#nickname = nickname;
-    }
+const requester: Requester = {
+    id: 'id',
+    fullName: 'full name',
+    nickname: 'nickname'
+};
 
-    public get id() { return this.#id; }
-
-    public get fullName() { return this.#fullName; }
-
-    public get nickname() { return this.#nickname; }
-}
+export default requester;

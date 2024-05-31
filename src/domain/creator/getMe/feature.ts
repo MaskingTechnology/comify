@@ -1,5 +1,5 @@
 
-import Requester from '^/domain/authentication/Requester';
+import { Requester } from '^/domain/authentication/types';
 
 import getById from '../getById/feature';
 import type { DataModel } from '../types';

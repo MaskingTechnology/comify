@@ -1,7 +1,6 @@
 
 import { useEffect, useState } from 'react';
 
-import johnDoe from '^/domain/authentication/johnDoe';
 import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 import getTimelinePosts from '^/domain/post/timelineAggregated/feature';
 
@@ -11,7 +10,7 @@ export function useTimelinePosts()
 {
     const [posts, setPosts] = useState<PostView[] | undefined>(undefined);
 
-    const getPosts = () => getTimelinePosts(johnDoe);
+    const getPosts = () => getTimelinePosts(requester);
 
     useEffect(() => awaitData(getPosts, setPosts), []);
 

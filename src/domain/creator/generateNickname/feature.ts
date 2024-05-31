@@ -1,7 +1,6 @@
 
-import getByNickname from '../getByNickname/feature';
-
 import TooManySimilarNicknames from './TooManySimilarNicknames';
+import retrieveByNickname from './retrieveByNickname';
 import retrieveByStartNickname from './retrieveByStartNickname';
 
 export default async function feature(nickname: string): Promise<string>
@@ -10,7 +9,7 @@ export default async function feature(nickname: string): Promise<string>
     const noSpacesNickname: string = strippedName.replaceAll(' ', '');
     const cleanNickname: string = noSpacesNickname.replaceAll('_', '');
 
-    const existingData = await getByNickname(cleanNickname);
+    const existingData = await retrieveByNickname(cleanNickname);
 
     if (existingData === undefined)
     {

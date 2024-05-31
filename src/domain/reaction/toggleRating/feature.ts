@@ -1,5 +1,5 @@
 
-import type Requester from '^/domain/authentication/Requester';
+import type { Requester } from '^/domain/authentication/types';
 import updateRating from '^/domain/rating/update/feature';
 
 import updateRatingCount from '../updateRatingCount/feature';

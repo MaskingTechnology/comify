@@ -1,5 +1,5 @@
 
-import type Requester from '^/domain/authentication/Requester';
+import type { Requester } from '^/domain/authentication/types';
 import updateCreatorPostCount from '^/domain/creator/updatePostCount/feature';
 
 import PostNotFound from '../PostNotFound';

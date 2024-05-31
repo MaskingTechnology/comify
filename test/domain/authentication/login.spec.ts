@@ -1,7 +1,7 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import login from '^/domain/authentication/login';
+import login from '^/domain/authentication/login/feature';
 import TooManySimilarNicknames from '^/domain/creator/generateNickname/TooManySimilarNicknames';
 
 import { DATABASES, FILE_STORES, HTTP_CLIENTS, IDENTITIES, VALUES } from './fixtures';

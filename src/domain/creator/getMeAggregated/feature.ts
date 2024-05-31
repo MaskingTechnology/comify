@@ -1,5 +1,5 @@
 
-import Requester from '^/domain/authentication/Requester';
+import { Requester } from '^/domain/authentication/types';
 
 import aggregate from '../aggregate/feature';
 import type { AggregatedData } from '../aggregate/types';

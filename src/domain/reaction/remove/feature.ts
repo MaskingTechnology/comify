@@ -1,5 +1,5 @@
 
-import type Requester from '^/domain/authentication/Requester';
+import type { Requester } from '^/domain/authentication/types';
 import updateReactionCount from '^/domain/post/updateReactionCount/feature';
 
 import ReactionNotFound from './ReactionNotFound';

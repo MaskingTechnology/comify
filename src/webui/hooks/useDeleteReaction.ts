@@ -1,5 +1,4 @@
 
-import johnDoe from '^/domain/authentication/johnDoe';
 import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
 import remove from '^/domain/reaction/remove/feature';
 
@@ -11,6 +10,6 @@ export function useDeleteReaction(reactions: ReactionView[], setReactions: (reac
 
         setReactions(result);
 
-        await remove(johnDoe, reaction.id);
+        await remove(requester, reaction.id);
     };
 }

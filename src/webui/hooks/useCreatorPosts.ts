@@ -1,7 +1,6 @@
 
 import { useEffect, useState } from 'react';
 
-import johnDoe from '^/domain/authentication/johnDoe';
 import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
 import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 import getCreatorPosts from '^/domain/post/getByCreatorAggregated/feature';
@@ -14,7 +13,7 @@ export function useCreatorPosts(creator: CreatorView)
 
     useEffect(() => 
     {
-        const getPosts = () => getCreatorPosts(johnDoe, creator.id);
+        const getPosts = () => getCreatorPosts(requester, creator.id);
 
         awaitData(getPosts, setPosts);
 

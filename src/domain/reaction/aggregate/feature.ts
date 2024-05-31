@@ -1,5 +1,5 @@
 
-import type Requester from '^/domain/authentication/Requester';
+import type { Requester } from '^/domain/authentication/types';
 import getComicData from '^/domain/comic/getByIdAggregated/feature';
 import getCommentData from '^/domain/comment/getById/feature';
 import ratingExists from '^/domain/rating/exists/feature';

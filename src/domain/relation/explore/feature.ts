@@ -1,5 +1,5 @@
 
-import type Requester from '^/domain/authentication/Requester';
+import type { Requester } from '^/domain/authentication/types';
 import getOtherCreators from '^/domain/creator/getOthers/feature';
 
 import getFollowing from '../getFollowing/feature';

@@ -1,5 +1,5 @@
 
-import type Requester from '^/domain/authentication/Requester';
+import type { Requester } from '^/domain/authentication/types';
 import createComic from '^/domain/comic/create/feature';
 import eraseComic from '^/domain/comic/erase/feature';
 

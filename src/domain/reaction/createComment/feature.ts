@@ -1,5 +1,5 @@
 
-import type Requester from '^/domain/authentication/Requester';
+import type { Requester } from '^/domain/authentication/types';
 import createComment from '^/domain/comment/create/feature';
 import eraseComment from '^/domain/comment/erase/feature';
 

@@ -1,7 +1,6 @@
 
 import { useEffect, useState } from 'react';
 
-import johnDoe from '^/domain/authentication/johnDoe';
 import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
 import getReactionsByPost from '^/domain/reaction/getByPostAggregated/feature';
@@ -14,7 +13,7 @@ export function useReactions(post: PostView)
 
     useEffect(() => 
     {
-        const getReactions = () => getReactionsByPost(johnDoe, post.id);
+        const getReactions = () => getReactionsByPost(requester, post.id);
 
         awaitData(getReactions, setReactions);
 

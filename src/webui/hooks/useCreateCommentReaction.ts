@@ -1,5 +1,4 @@
 
-import johnDoe from '^/domain/authentication/johnDoe';
 import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
 import createCommentReaction from '^/domain/reaction/createComment/feature';
@@ -9,8 +8,8 @@ export function useCreateCommentReaction(post: PostView, handleDone: (reaction?:
 {
     return async (imageData: string) =>
     {
-        const reactionId = await createCommentReaction(johnDoe, post.id, imageData);
-        const reaction = await getReaction(johnDoe, reactionId);
+        const reactionId = await createCommentReaction(requester, post.id, imageData);
+        const reaction = await getReaction(requester, reactionId);
 
         handleDone(reaction);
     };
