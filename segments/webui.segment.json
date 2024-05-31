@@ -1,7 +1,7 @@
 {
-    "./domain/authentication/getLoginUrl": { "default": {  "access": "public" } },
-    "./domain/authentication/login": { "default": {  "access": "public" } },
-    "./domain/authentication/logout": { "default": {  "access": "public" } },
+    "./domain/authentication/getLoginUrl/feature": { "default": {  "access": "public" } },
+    "./domain/authentication/login/feature": { "default": {  "access": "public" } },
+    "./domain/authentication/logout/feature": { "default": {  "access": "public" } },
 
     "./domain/creator/getByNicknameAggregated/feature": { "default": {  "access": "public" } },
     "./domain/creator/getMeAggregated/feature": { "default": {  "access": "public" } },
