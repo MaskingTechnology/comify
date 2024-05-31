@@ -27,8 +27,8 @@ export default function Element({ name, placeholder, value, pattern, title, size
         defaultValue={value}
         pattern={pattern}
         title={title}
-        onChange={onChange}
         ref={reference}
         required={required}
+        onChange={onChange}
     />;
 }

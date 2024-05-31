@@ -7,6 +7,6 @@ export function useEditProfile()
 
     return () =>
     {
-        navigate(`/editProfile`);
+        navigate(`/edit/profile`);
     };
 }
