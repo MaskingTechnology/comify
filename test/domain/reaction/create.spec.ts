@@ -27,47 +27,45 @@ describe('domain/reaction/create', () =>
 {
     it('should create a comment reaction', async () =>
     {
-        const reaction = await createCommentReaction(REQUESTERS.OWNER, VALUES.IDS.POST_EXISTING, VALUES.MESSAGES.COMMENT);
+        const reactionId = await createCommentReaction(REQUESTERS.OWNER, VALUES.IDS.POST_EXISTING, VALUES.MESSAGES.COMMENT);
 
-        const record = await database.readRecord(REACTION_RECORD_TYPE, reaction.id);
-        expect(record?.creatorId).toBe(REQUESTERS.OWNER.id);
-        expect(record?.postId).toBe(VALUES.IDS.POST_EXISTING);
-        expect(record?.comicId).toBeUndefined();
-        expect(record?.commentId).toBe(reaction.comment?.id);
-        expect(record?.ratingCount).toBe(0);
-        expect(record?.createdAt).toBeDefined();
+        const reaction = await database.readRecord(REACTION_RECORD_TYPE, reactionId);
+        expect(reaction?.creatorId).toBe(REQUESTERS.OWNER.id);
+        expect(reaction?.postId).toBe(VALUES.IDS.POST_EXISTING);
+        expect(reaction?.comicId).toBeUndefined();
+        expect(reaction?.ratingCount).toBe(0);
+        expect(reaction?.createdAt).toBeDefined();
 
-        const post = await database.readRecord(POST_RECORD_TYPE, record.postId as string);
+        const post = await database.readRecord(POST_RECORD_TYPE, reaction.postId as string);
         expect(post?.creatorId).toBe(REQUESTERS.OWNER.id);
         expect(post?.comicId).toBeDefined();
         expect(post?.createdAt).toBeDefined();
         expect(post?.ratingCount).toBe(0);
         expect(post?.reactionCount).toBe(1);
 
-        const comment = await database.readRecord(COMMENT_RECORD_TYPE, record.commentId as string);
+        const comment = await database.readRecord(COMMENT_RECORD_TYPE, reaction.commentId as string);
         expect(comment?.message).toBe(VALUES.MESSAGES.COMMENT);
     });
 
     it('should create a comic reaction', async () =>
     {
-        const reaction = await createComicReaction(REQUESTERS.OWNER, VALUES.IDS.POST_EXISTING, VALUES.DATA_URLS.COMIC);
+        const reactionId = await createComicReaction(REQUESTERS.OWNER, VALUES.IDS.POST_EXISTING, VALUES.DATA_URLS.COMIC);
 
-        const record = await database.readRecord(REACTION_RECORD_TYPE, reaction.id);
-        expect(record?.creatorId).toBe(REQUESTERS.OWNER.id);
-        expect(record?.postId).toBe(VALUES.IDS.POST_EXISTING);
-        expect(record?.comicId).toBe(reaction.comic?.id);
-        expect(record?.commentId).toBeUndefined();
-        expect(record?.ratingCount).toBe(0);
-        expect(record?.createdAt).toBeDefined();
+        const reaction = await database.readRecord(REACTION_RECORD_TYPE, reactionId);
+        expect(reaction?.creatorId).toBe(REQUESTERS.OWNER.id);
+        expect(reaction?.postId).toBe(VALUES.IDS.POST_EXISTING);
+        expect(reaction?.commentId).toBeUndefined();
+        expect(reaction?.ratingCount).toBe(0);
+        expect(reaction?.createdAt).toBeDefined();
 
-        const post = await database.readRecord(POST_RECORD_TYPE, record.postId as string);
+        const post = await database.readRecord(POST_RECORD_TYPE, reaction.postId as string);
         expect(post?.creatorId).toBe(REQUESTERS.OWNER.id);
         expect(post?.comicId).toBeDefined();
         expect(post?.createdAt).toBeDefined();
         expect(post?.ratingCount).toBe(0);
         expect(post?.reactionCount).toBe(1);
 
-        const comic = await database.readRecord(COMIC_RECORD_TYPE, record.comicId as string);
+        const comic = await database.readRecord(COMIC_RECORD_TYPE, reaction.comicId as string);
         expect(comic?.imageId).toBeDefined();
 
         const image = await database.readRecord(IMAGE_RECORD_TYPE, comic.imageId as string);

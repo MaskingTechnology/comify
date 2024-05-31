@@ -11,6 +11,7 @@ type DataModel = BaseDataModel &
     readonly postCount: number;
     readonly followerCount: number;
     readonly followingCount: number;
+    readonly popularity: number;
 };
 
 export type { CountOperation, DataModel };

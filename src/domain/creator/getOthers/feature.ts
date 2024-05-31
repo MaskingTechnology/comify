@@ -14,7 +14,7 @@ export default async function feature(ids: string[], order: SortOrder, search: s
         ]
     };
 
-    const sortField = order === SortOrder.POPULAR ? 'popularity' : 'createdAt';
+    const sortField = order === SortOrder.POPULAR ? 'popularity' : 'joinedAt';
 
     const query: QueryStatement = search !== undefined ? { ...defaultQuery, ...searchQuery } : defaultQuery;
     const recordSort: RecordSort = { [sortField]: SortDirections.ASCENDING };

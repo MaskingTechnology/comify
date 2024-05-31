@@ -14,6 +14,7 @@ export default async function createData(fullName: string, nickname: string, ema
         joinedAt: new Date().toISOString(),
         postCount: 0,
         followerCount: 0,
-        followingCount: 0
+        followingCount: 0,
+        popularity: 0
     };
 }
