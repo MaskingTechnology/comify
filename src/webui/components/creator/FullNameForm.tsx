@@ -1,12 +1,12 @@
 
-import UpdateButton from '^/webui/components/common/UpdateButton';
-import { Form, Input, Label, Panel, Row, TextBox } from '^/webui/designsystem';
 import { useRef } from 'react';
 
+import UpdateButton from '^/webui/components/common/UpdateButton';
+import { Form, Input, Label, Panel, Row, TextBox } from '^/webui/designsystem';
 
 export type Props = {
-    fullName: string;
-    onUpdateClick: (fullName: string) => Promise<void>;
+    readonly fullName: string;
+    readonly onUpdateClick: (fullName: string) => Promise<void>;
 };
 
 export default function Component({ fullName, onUpdateClick }: Props)
@@ -23,18 +23,18 @@ export default function Component({ fullName, onUpdateClick }: Props)
     return <Panel>
         <Form submitHandler={handleClick}>
             <Input
-                label={<Label value='FullName'></Label>}
+                label={<Label value='Full name'></Label>}
                 element={<TextBox
                     reference={inputRef}
                     name='fullName'
-                    value={''}
                     placeholder={fullName}
+                    value={''}
                     size='small'
                     required={true}
                 />}
             />
             <Row alignX='right'>
-                <UpdateButton></UpdateButton>
+                <UpdateButton />
             </Row>
         </Form>
     </Panel>;

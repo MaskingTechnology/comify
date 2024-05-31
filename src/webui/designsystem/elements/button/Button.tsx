@@ -20,9 +20,5 @@ export default function Element({ type, size, text, onClick }: Props)
     const disabled = type === 'disabled';
     const inputType = type === 'submit' ? 'submit' : 'button';
 
-    const clickHandler = onClick === undefined
-        ? () => { }
-        : onClick;
-
-    return <input type={inputType} onClick={clickHandler} className={className} disabled={disabled} value={text} />;
+    return <input type={inputType} onClick={onClick} className={className} disabled={disabled} value={text} />;
 }

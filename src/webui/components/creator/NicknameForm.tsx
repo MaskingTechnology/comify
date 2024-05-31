@@ -1,17 +1,19 @@
 
-import UpdateButton from '^/webui/components/common/UpdateButton';
-import { Form, Input, Label, Panel, Row, TextBox } from '^/webui/designsystem';
 import { useRef } from 'react';
 
+import UpdateButton from '^/webui/components/common/UpdateButton';
+import { Form, Input, Label, Panel, Row, TextBox } from '^/webui/designsystem';
+
 export type Props = {
-    nickname: string;
-    alreadyInUse: boolean;
-    onUpdateClick: (nickname: string) => Promise<void>;
+    readonly nickname: string;
+    readonly alreadyInUse: boolean;
+    readonly onUpdateClick: (nickname: string) => Promise<void>;
 };
 
 export default function Component({ nickname, alreadyInUse, onUpdateClick }: Props)
 {
     const inputRef = useRef<HTMLInputElement>(null);
+
     const handleClick = async () =>
     {
         const value = inputRef.current?.value ?? '';
@@ -22,7 +24,7 @@ export default function Component({ nickname, alreadyInUse, onUpdateClick }: Pro
     return <Panel>
         {
             alreadyInUse
-                ? <Panel type='error' padding='small'>Sorry, this nickname is already in use. </Panel>
+                ? <Panel type='error' padding='small'>Sorry, this nickname is already in use.</Panel>
                 : null
         }
         <Form submitHandler={handleClick}>
@@ -34,14 +36,14 @@ export default function Component({ nickname, alreadyInUse, onUpdateClick }: Pro
                     placeholder={nickname}
                     value={''}
                     pattern="^(?!.*[\s_]).+$"
-                    title='underscores and spaces not allowed'
+                    title='Underscores and spaces are not allowed'
                     size='small'
                     required={true}
                 />
                 }
             />
             <Row alignX='right'>
-                <UpdateButton></UpdateButton>
+                <UpdateButton />
             </Row>
         </Form>
     </Panel >;

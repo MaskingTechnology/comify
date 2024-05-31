@@ -1,16 +1,18 @@
 
-import johnDoe from '^/domain/authentication/johnDoe';
-import updateFullName from '^/domain/creator/updateFullName';
+import requester from '^/domain/authentication/requester';
+import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
+import updateFullName from '^/domain/creator/updateFullName/feature';
+
 import { useAppContext } from '../contexts';
 
 export function useUpdateFullName()
 {
-    const { setIdentity } = useAppContext();
+    const { setIdentity, identity } = useAppContext();
 
     return async (fullName: string) => 
     {
-        const updatedCreator = await updateFullName(johnDoe, fullName);
+        await updateFullName(requester, fullName);
 
-        setIdentity(updatedCreator);
+        setIdentity({ ...identity, fullName } as CreatorView);
     };
 }
