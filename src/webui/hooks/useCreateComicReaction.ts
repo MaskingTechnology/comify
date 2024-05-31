@@ -1,4 +1,5 @@
 
+import requester from '^/domain/authentication/requester';
 import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
 import createComicReaction from '^/domain/reaction/createComic/feature';

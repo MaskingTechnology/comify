@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import requester from '^/domain/authentication/requester';
 import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 import get from '^/domain/post/getByIdAggregated/feature';
 

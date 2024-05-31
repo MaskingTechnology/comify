@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useAppContext } from '^/webui/contexts';
 
+import requester from '^/domain/authentication/requester';
 import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 import remove from '^/domain/post/remove/feature';
 

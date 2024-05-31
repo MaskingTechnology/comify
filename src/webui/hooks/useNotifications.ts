@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from 'react';
 
+import requester from '^/domain/authentication/requester';
 import type { AggregatedData as NotificationView } from '^/domain/notification/aggregate/types';
 import getRecentNotifications from '^/domain/notification/getRecentAggregated/feature';
 

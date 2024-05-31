@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import requester from '^/domain/authentication/requester';
 import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
 import getMe from '^/domain/creator/getMeAggregated/feature';
 

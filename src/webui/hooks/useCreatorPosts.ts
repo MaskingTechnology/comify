@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from 'react';
 
+import requester from '^/domain/authentication/requester';
 import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
 import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 import getCreatorPosts from '^/domain/post/getByCreatorAggregated/feature';

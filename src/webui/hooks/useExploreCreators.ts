@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from 'react';
 
+import requester from '^/domain/authentication/requester';
 import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
 import exploreRelations from '^/domain/relation/exploreAggregated/feature';
 
