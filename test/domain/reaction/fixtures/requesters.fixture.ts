@@ -1,9 +1,8 @@
 
-import johnDoe from '^/domain/authentication/johnDoe';
-import Requester from '^/domain/authentication/Requester';
+import johnDoe from '^/domain/authentication/requester';
 
 export const REQUESTERS =
 {
     OWNER: johnDoe,
-    VIEWER: new Requester('1', 'Some Other', 'someOther')
+    VIEWER: { id: '1', fullName: 'Some Other', nickname: 'someOther' }
 };

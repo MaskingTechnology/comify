@@ -1,12 +1,12 @@
 
-import type RelationView from '^/domain/relation/view/RelationView';
+import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
 
 import CreatorTimeElapsed from '../creator/TimeElapsed';
 import FollowRow from './elementary/FollowRow';
 
 type Props = {
     readonly relation: RelationView;
-    readonly date: Date;
+    readonly date: string;
     readonly onFollowClick: (relation: RelationView) => Promise<void>;
     readonly onEditClick?: (relation: RelationView) => void;
     readonly onCreatorClick: (relation: RelationView) => void;
@@ -15,7 +15,7 @@ type Props = {
 export default function Component({ relation, date, onFollowClick, onEditClick, onCreatorClick }: Props)
 {
     return <FollowRow
-        isFollowing={relation.exists}
+        isFollowing={relation.established}
         isSelf={relation.self}
         onFollowClick={() => onFollowClick(relation)}
         onEditClick={onEditClick !== undefined ? () => onEditClick(relation) : undefined}

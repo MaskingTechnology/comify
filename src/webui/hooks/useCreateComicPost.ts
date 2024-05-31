@@ -1,8 +1,8 @@
 
 import { useNavigate } from 'react-router-dom';
 
-import johnDoe from '^/domain/authentication/johnDoe';
-import createPost from '^/domain/post/create';
+import requester from '^/domain/authentication/requester';
+import createPost from '^/domain/post/create/feature';
 
 import { useAppContext } from '^/webui/contexts';
 
@@ -13,7 +13,7 @@ export function useCreateComicPost()
 
     return async (imageData: string) =>
     {
-        await createPost(johnDoe, imageData);
+        await createPost(requester, imageData);
 
         navigate(`/profile/${identity?.nickname}`);
     };

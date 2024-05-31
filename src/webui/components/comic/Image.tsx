@@ -1,5 +1,5 @@
 
-import type ComicView from '^/domain/comic/view/ComicView';
+import type { AggregatedData as ComicView } from '^/domain/comic/aggregate/types';
 
 import { Image } from '^/webui/designsystem';
 

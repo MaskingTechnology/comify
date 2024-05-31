@@ -1,10 +1,10 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import login from '^/domain/authentication/login';
-import TooManySimilarNicknames from '^/domain/creator/errors/TooManySimilarNicknames';
+import login from '^/domain/authentication/login/feature';
+import TooManySimilarNicknames from '^/domain/creator/generateNickname/TooManySimilarNicknames';
 
-import { DATABASES, FILE_STORAGES, HTTP_CLIENTS, IDENTITIES, VALUES } from './fixtures';
+import { DATABASES, FILE_STORES, HTTP_CLIENTS, IDENTITIES, VALUES } from './fixtures';
 
 beforeEach(async () =>
 {
@@ -12,7 +12,7 @@ beforeEach(async () =>
 
     await Promise.all([
         DATABASES.withCreators(),
-        FILE_STORAGES.empty()
+        FILE_STORES.empty()
     ]);
 });
 

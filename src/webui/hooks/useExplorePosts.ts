@@ -1,9 +1,9 @@
 
 import { useEffect, useState } from 'react';
 
-import johnDoe from '^/domain/authentication/johnDoe';
-import explorePosts from '^/domain/post/explore';
-import type PostView from '^/domain/post/view/PostView';
+import requester from '^/domain/authentication/requester';
+import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
+import explorePosts from '^/domain/post/exploreAggregated/feature';
 
 import { awaitData } from '^/webui/utils';
 
@@ -11,7 +11,7 @@ export function useExplorePosts()
 {
     const [posts, setPosts] = useState<PostView[] | undefined>(undefined);
 
-    const getPosts = () => explorePosts(johnDoe);
+    const getPosts = () => explorePosts(requester);
 
     useEffect(() => awaitData(getPosts, setPosts), []);
 

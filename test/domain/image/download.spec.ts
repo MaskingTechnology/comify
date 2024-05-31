@@ -1,13 +1,15 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import download from '^/domain/image/download';
-import ImageNotDownloaded from '^/domain/image/errors/ImageNotDownloaded';
-import InvalidImage from '^/domain/image/errors/InvalidImage';
+import { RECORD_TYPE } from '^/domain/image/definitions';
+import download from '^/domain/image/download/feature';
+import ImageNotDownloaded from '^/domain/image/download/ImageNotDownloaded';
+import InvalidImage from '^/domain/image/validate/InvalidImage';
 
-import fileStorage from '^/integrations/filestorage/module';
+import database from '^/integrations/database/module';
+import fileStore from '^/integrations/filestore/module';
 
-import { DATABASES, FILE_STORAGES, HTTP_CLIENTS, URLS } from './fixtures';
+import { DATABASES, FILE_STORES, HTTP_CLIENTS, URLS } from './fixtures';
 
 HTTP_CLIENTS.withImages();
 
@@ -17,7 +19,7 @@ beforeEach(async () =>
 
     await Promise.all([
         DATABASES.empty(),
-        FILE_STORAGES.empty()
+        FILE_STORES.empty()
     ]);
 });
 
@@ -25,8 +27,9 @@ describe('domain/image/download', () =>
 {
     it('should download an image', async () =>
     {
-        const image = await download('test', URLS.VALID);
-        const data = await fileStorage.readFile(image.storageKey);
+        const imageId = await download('test', URLS.VALID);
+        const image = await database.readRecord(RECORD_TYPE, imageId);
+        const data = await fileStore.readFile(image.storageKey as string);
 
         expect(image.filename).toEqual('image.jpg');
         expect(image.mimeType).toEqual('image/jpeg');
@@ -43,15 +46,19 @@ describe('domain/image/download', () =>
 
     it('should fail to download an image with an invalid type', async () =>
     {
+        const messages = new Map([['mimeType', 'Invalid mime type']]);
+
         const promise = download('test', URLS.INVALID_TYPE);
 
-        await expect(promise).rejects.toStrictEqual(new InvalidImage('Invalid field(s): mimeType'));
+        await expect(promise).rejects.toStrictEqual(new InvalidImage(messages));
     });
 
     it('should fail to download an image that is to large', async () =>
     {
+        const messages = new Map([['size', 'Invalid size']]);
+
         const promise = download('test', URLS.INVALID_SIZE);
 
-        await expect(promise).rejects.toStrictEqual(new InvalidImage('Invalid field(s): size'));
+        await expect(promise).rejects.toStrictEqual(new InvalidImage(messages));
     });
 });

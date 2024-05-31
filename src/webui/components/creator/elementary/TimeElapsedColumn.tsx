@@ -5,7 +5,7 @@ import TimeElapsed from '../../common/TimeElapsed';
 
 type Props = {
     readonly fullName: string;
-    readonly date: Date;
+    readonly date: string;
     readonly onNameClick: () => void;
 };
 

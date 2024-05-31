@@ -1,9 +1,0 @@
-{
-    "./domain/comic/create": { "default": {  "access": "protected" } },
-    "./domain/comic/get": { "default": {  "access": "protected" } },
-    "./domain/comic/remove": { "default": {  "access": "protected" } },
-
-    "./domain/comic/data/create": { "default": {  "access": "private" } },
-    "./domain/comic/data/remove": { "default": {  "access": "private" } },
-    "./domain/comic/data/retrieve": { "default": {  "access": "private" } }
-}

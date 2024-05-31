@@ -1,19 +1,21 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import create from '^/domain/image/create';
-import InvalidDataURL from '^/domain/image/errors/InvalidDataURL';
-import InvalidImage from '^/domain/image/errors/InvalidImage';
+import create from '^/domain/image/create/feature';
+import InvalidDataURL from '^/domain/image/create/InvalidDataURL';
+import { RECORD_TYPE } from '^/domain/image/definitions';
+import InvalidImage from '^/domain/image/validate/InvalidImage';
 
-import fileStorage from '^/integrations/filestorage/module';
+import database from '^/integrations/database/module';
+import fileStore from '^/integrations/filestore/module';
 
-import { DATA_URLS, DATABASES, FILE_STORAGES } from './fixtures';
+import { DATA_URLS, DATABASES, FILE_STORES } from './fixtures';
 
 beforeEach(async () =>
 {
     await Promise.all([
         DATABASES.empty(),
-        FILE_STORAGES.empty()
+        FILE_STORES.empty()
     ]);
 });
 
@@ -21,8 +23,9 @@ describe('domain/image/create', () =>
 {
     it('should create an image from a valid data url', async () =>
     {
-        const image = await create('test', DATA_URLS.VALID);
-        const data = await fileStorage.readFile(image.storageKey);
+        const imageId = await create('test', DATA_URLS.VALID);
+        const image = await database.readRecord(RECORD_TYPE, imageId);
+        const data = await fileStore.readFile(image.storageKey as string);
 
         expect(image.filename).toEqual('dataUrl');
         expect(image.mimeType).toEqual('image/png');
@@ -38,13 +41,17 @@ describe('domain/image/create', () =>
 
     it('should fail to create an image with an invalid type', async () =>
     {
+        const messages = new Map([['mimeType', 'Invalid mime type']]);
+
         const promise = create('test', DATA_URLS.INVALID_TYPE);
-        expect(promise).rejects.toStrictEqual(new InvalidImage('Invalid field(s): mimeType'));
+        expect(promise).rejects.toStrictEqual(new InvalidImage(messages));
     });
 
     it('should fail to create an image that is to small', async () =>
     {
+        const messages = new Map([['size', 'Invalid size']]);
+
         const promise = create('test', DATA_URLS.INVALID_SIZE);
-        expect(promise).rejects.toStrictEqual(new InvalidImage('Invalid field(s): size'));
+        expect(promise).rejects.toStrictEqual(new InvalidImage(messages));
     });
 });

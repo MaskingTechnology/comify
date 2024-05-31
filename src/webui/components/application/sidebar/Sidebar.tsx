@@ -1,5 +1,5 @@
 
-import type CreatorView from '^/domain/creator/view/CreatorView';
+import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/feature';
 
 import Identity from '../Identity';
 import Logo from '../Logo';

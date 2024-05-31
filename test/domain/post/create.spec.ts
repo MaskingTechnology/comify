@@ -1,21 +1,21 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { RECORD_TYPE as COMIC_RECORD_TYPE } from '^/domain/comic/definitions/constants';
-import { RECORD_TYPE as IMAGE_RECORD_TYPE } from '^/domain/image/definitions/constants';
-import create from '^/domain/post/create';
-import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions/constants';
+import { RECORD_TYPE as COMIC_RECORD_TYPE } from '^/domain/comic/definitions';
+import { RECORD_TYPE as IMAGE_RECORD_TYPE } from '^/domain/image/definitions';
+import create from '^/domain/post/create/feature';
+import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions';
 
 import database from '^/integrations/database/module';
-import fileStorage from '^/integrations/filestorage/module';
+import fileStore from '^/integrations/filestore/module';
 
-import { DATABASES, DATA_URLS, FILE_STORAGES, REQUESTERS } from './fixtures';
+import { DATABASES, DATA_URLS, FILE_STORES, REQUESTERS } from './fixtures';
 
 beforeEach(async () =>
 {
     await Promise.all([
         DATABASES.withCreators(),
-        FILE_STORAGES.empty()
+        FILE_STORES.empty()
     ]);
 });
 
@@ -45,7 +45,7 @@ describe('domain/post/create', () =>
         expect(image?.mimeType).toEqual('image/jpeg');
         expect(image?.storageKey).toContain('comic/');
 
-        const data = await fileStorage.readFile(image.storageKey as string);
+        const data = await fileStore.readFile(image.storageKey as string);
         expect(data).toHaveLength(54);
     });
 

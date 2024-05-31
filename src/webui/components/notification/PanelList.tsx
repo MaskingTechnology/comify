@@ -1,6 +1,6 @@
 
-import type NotificationView from '^/domain/notification/view/NotificationView';
-import type RelationView from '^/domain/relation/view/RelationView';
+import type { AggregatedData as NotificationView } from '^/domain/notification/aggregate/types';
+import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
 
 import { Column } from '^/webui/designsystem';
 
