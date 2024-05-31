@@ -5,7 +5,9 @@ import type { DataModel } from '../types';
 
 export default function createData(followerId: string, followingId: string): DataModel
 {
-    const id = generateId();
-
-    return { id, followerId, followingId };
+    return {
+        id: generateId(),
+        followerId,
+        followingId
+    };
 }

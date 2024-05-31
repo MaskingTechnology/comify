@@ -11,7 +11,11 @@ export type Data = {
 
 export default function createData(storageKey: string, filename: string, mimeType: string, size: number): Data
 {
-    const id = generateId();
-
-    return { id, storageKey, filename, mimeType, size };
+    return {
+        id: generateId(),
+        storageKey,
+        filename,
+        mimeType,
+        size
+    };
 }

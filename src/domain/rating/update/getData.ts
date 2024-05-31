@@ -9,13 +9,11 @@ export type Data = {
 
 export default async function getData(creatorId: string, postId: string | undefined, reactionId: string | undefined): Promise<Data | undefined>
 {
-    const fields = ['id'];
-
     const query: RecordQuery = {
         creatorId: { EQUALS: creatorId },
         postId: { EQUALS: postId },
         reactionId: { EQUALS: reactionId }
     };
 
-    return database.findRecord(RECORD_TYPE, query, fields) as Promise<Data | undefined>;
+    return database.findRecord(RECORD_TYPE, query, ['id']) as Promise<Data | undefined>;
 }

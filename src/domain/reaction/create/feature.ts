@@ -1,5 +1,5 @@
 
-import updateReactionCount from '../../post/updateReactionCount/feature';
+import updateReactionCount from '^/domain/post/updateReactionCount/feature';
 
 import createData from './createData';
 import eraseData from './eraseData';
