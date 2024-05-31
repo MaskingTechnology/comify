@@ -1,5 +1,6 @@
 
-import identityProvider from '../authentication/module';
+import identityProvider from '^/integrations/authentication/module';
+
 import AuthenticationMiddleware from './middlewares/AuthenticationMiddleware';
 
 const authProcedures = {

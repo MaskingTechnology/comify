@@ -1,5 +1,6 @@
 
-import { getQueryParameter } from '../utilities/webbrowser';
+import { getQueryParameter } from '^/integrations/utilities/webbrowser';
+
 import RequesterMiddleware from './middlewares/RequesterMiddleware';
 
 const key = getQueryParameter('key');

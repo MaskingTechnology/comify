@@ -1,4 +1,4 @@
 
-import identityProvider from '../authentication/module';
+import identityProvider from '^/integrations/authentication/module';
 
 if (identityProvider.connected) await identityProvider.disconnect();
