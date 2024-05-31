@@ -1,5 +1,5 @@
 
-import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator/definitions/constants';
+import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator/definitions';
 import database from '^/integrations/database/module';
 
 import { RECORDS } from './records.fixture';

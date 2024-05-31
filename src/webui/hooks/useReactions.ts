@@ -1,10 +1,10 @@
 
 import { useEffect, useState } from 'react';
 
-import johnDoe from '^/domain/authentication/johnDoe';
-import type PostView from '^/domain/post/view/PostView';
-import getReactionsByPost from '^/domain/reaction/getByPost';
-import type ReactionView from '^/domain/reaction/view/ReactionView';
+import requester from '^/domain/authentication/requester';
+import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
+import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
+import getReactionsByPost from '^/domain/reaction/getByPostAggregated/feature';
 
 import { awaitData } from '^/webui/utils';
 
@@ -14,7 +14,7 @@ export function useReactions(post: PostView)
 
     useEffect(() => 
     {
-        const getReactions = () => getReactionsByPost(johnDoe, post.id);
+        const getReactions = () => getReactionsByPost(requester, post.id);
 
         awaitData(getReactions, setReactions);
 

@@ -1,7 +1,7 @@
 
 import { useEffect } from 'react';
 
-import getLoginUrl from '^/domain/authentication/getLoginUrl';
+import getLoginUrl from '^/domain/authentication/getLoginUrl/feature';
 
 import { awaitData } from '^/webui/utils';
 

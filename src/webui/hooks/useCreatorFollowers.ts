@@ -1,10 +1,10 @@
 
 import { useEffect, useState } from 'react';
 
-import johnDoe from '^/domain/authentication/johnDoe';
-import type CreatorView from '^/domain/creator/view/CreatorView';
-import getFollowers from '^/domain/relation/getFollowers';
-import type RelationView from '^/domain/relation/view/RelationView';
+import requester from '^/domain/authentication/requester';
+import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
+import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
+import getFollowers from '^/domain/relation/getFollowersAggregated/feature';
 
 import { awaitData } from '^/webui/utils';
 
@@ -14,7 +14,7 @@ export function useCreatorFollowers(creator: CreatorView)
 
     useEffect(() => 
     {
-        const getRelations = () => getFollowers(johnDoe, creator.id);
+        const getRelations = () => getFollowers(requester, creator.id);
 
         awaitData(getRelations, setRelations);
 

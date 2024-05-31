@@ -1,8 +1,8 @@
 
 import { useState } from 'react';
 
-import type PostView from '^/domain/post/view/PostView';
-import type ReactionView from '^/domain/reaction/view/ReactionView';
+import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
+import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
 
 import { LoadingContainer, OrderAndAddRow, ReactionPanelList } from '^/webui/components';
 import { Border, Column, Modal } from '^/webui/designsystem';

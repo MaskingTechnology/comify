@@ -1,3 +1,0 @@
-{
-    "./domain/rating/data/retrieve": { "default": {  "access": "protected" } }
-}

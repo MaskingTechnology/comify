@@ -1,5 +1,0 @@
-{
-    "./domain/relation/data/retrieve": { "default": {  "access": "protected" } },
-    "./domain/relation/data/retrieveByFollower": { "default": {  "access": "protected" } },
-    "./domain/relation/data/retrieveByFollowing": { "default": {  "access": "protected" } }
-}
