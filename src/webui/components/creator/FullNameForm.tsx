@@ -13,7 +13,7 @@ export default function Component({ fullName, onUpdateClick }: Props)
 {
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const handleClick = async () =>
+    const handleSubmit = async () =>
     {
         const value = inputRef.current?.value ?? '';
 
@@ -21,7 +21,7 @@ export default function Component({ fullName, onUpdateClick }: Props)
     };
 
     return <Panel>
-        <Form submitHandler={handleClick}>
+        <Form submitHandler={handleSubmit}>
             <Input
                 label={<Label value='Full name'></Label>}
                 element={<TextBox

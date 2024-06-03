@@ -14,7 +14,7 @@ export default function Component({ nickname, alreadyInUse, onUpdateClick }: Pro
 {
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const handleClick = async () =>
+    const handleSubmit = async () =>
     {
         const value = inputRef.current?.value ?? '';
 
@@ -27,7 +27,7 @@ export default function Component({ nickname, alreadyInUse, onUpdateClick }: Pro
                 ? <Panel type='error' padding='small'>Sorry, this nickname is already in use.</Panel>
                 : null
         }
-        <Form submitHandler={handleClick}>
+        <Form submitHandler={handleSubmit}>
             <Input
                 label={<Label value='Nickname'></Label>}
                 element={<TextBox
