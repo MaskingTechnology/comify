@@ -1,8 +1,8 @@
 
 import { Middleware, NextHandler, Request, Response, Unauthorized } from 'jitar';
 
-import { IdentityProvider, Session } from '../../authentication/module';
-import { generateKey } from '../../utilities/crypto';
+import { IdentityProvider, Session } from '^/integrations/authentication/module';
+import { generateKey } from '^/integrations/utilities/crypto';
 
 type AuthProcedures = {
     loginUrl: string;
