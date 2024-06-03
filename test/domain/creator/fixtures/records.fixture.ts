@@ -8,8 +8,7 @@ const DEFAULT_DATA = { portraitId: undefined, postCount: 0, followerCount: 0, fo
 
 export const RECORDS: Record<string, Array<RecordData>> =
 {
-    CREATORS:
-        [
-            { id: VALUES.IDS.CREATOR, fullName: VALUES.FULL_NAMES.CREATOR, nickname: VALUES.NICKNAMES.CREATOR, ...DEFAULT_DATA }
-        ]
+    CREATORS: [
+        { id: VALUES.IDS.CREATOR, fullName: VALUES.FULL_NAMES.CREATOR, nickname: VALUES.NICKNAMES.CREATOR, ...DEFAULT_DATA }
+    ]
 };

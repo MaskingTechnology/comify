@@ -3,11 +3,11 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator/definitions';
 import NicknameAlreadyExists from '^/domain/creator/updateNickname/NicknameAlreadyExists';
+import updateNickname from '^/domain/creator/updateNickname/feature';
 
 import database from '^/integrations/database/module';
 
-import updateNickname from '^/domain/creator/updateNickname/feature';
-import { DATABASES, QUERIES, REQUESTERS, VALUES } from './fixtures';
+import { DATABASES, REQUESTERS, VALUES } from './fixtures';
 
 beforeEach(async () =>
 {
@@ -16,11 +16,11 @@ beforeEach(async () =>
 
 describe('domain/creator/updatenickname', () =>
 {
-    it('should establish a relation', async () =>
+    it('should update the nickname', async () =>
     {
         await updateNickname(REQUESTERS.CREATOR, VALUES.NICKNAMES.NEW);
 
-        const creator = await database.findRecord(CREATOR_RECORD_TYPE, QUERIES.EXISTING_NICKNAME);
+        const creator = await database.readRecord(CREATOR_RECORD_TYPE, REQUESTERS.CREATOR.id);
         expect(creator?.nickname).toBe(VALUES.NICKNAMES.NEW);
     });
 
