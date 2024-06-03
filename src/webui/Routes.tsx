@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import { useAppContext } from './contexts';
 import CreateComicPost from './features/CreateComicPost';
+import EditProfile from './features/EditProfile';
 import Explore from './features/Explore';
 import Home from './features/Home';
 import Identify from './features/Identify';
@@ -35,6 +36,7 @@ export default function Component()
         <Route path="/notifications" element={protect(<Notifications />)} />
         <Route path="/create" element={protect(<CreateComicPost />)} />
         <Route path="/profile/:nickname" element={protect(<Profile />)} />
+        <Route path="/edit/profile" element={protect(<EditProfile />)} />
         <Route path="/post/:postId" element={protect(<PostDetails />)} />
         <Route path="/logout" element={protect(<Logout />)} />
 

@@ -5,6 +5,8 @@
 
     "./domain/creator/getByNicknameAggregated/feature": { "default": {  "access": "public" } },
     "./domain/creator/getMeAggregated/feature": { "default": {  "access": "public" } },
+    "./domain/creator/updateFullName/feature": { "default": {  "access": "public" }},
+    "./domain/creator/updateNickname/feature": { "default": {  "access": "public" }},
 
     "./domain/notification/getRecentAggregated/feature": { "default": {  "access": "public" } },
     

@@ -1,10 +1,12 @@
 
-import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
+import { useNavigate } from 'react-router-dom';
 
 export function useEditProfile()
 {
-    return (relation: RelationView) =>
+    const navigate = useNavigate();
+
+    return () =>
     {
-        console.log(`Edit profile of: ${relation.following.fullName}`);
+        navigate(`/edit/profile`);
     };
 }
