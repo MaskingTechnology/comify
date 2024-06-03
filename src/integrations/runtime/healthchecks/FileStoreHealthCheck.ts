@@ -1,6 +1,7 @@
 
 import { HealthCheck } from 'jitar';
-import { FileStore } from '../../filestore/definitions/interfaces';
+
+import { FileStore } from '^/integrations/filestore/definitions/interfaces';
 
 export default class FileStoreHealthCheck implements HealthCheck
 {
