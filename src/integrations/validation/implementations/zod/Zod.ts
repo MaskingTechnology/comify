@@ -108,7 +108,7 @@ export default class Zod implements Validator
 
     #validateDate(value: Validations['DATE'])
     {
-        const validation = z.date();
+        const validation = z.string().datetime();
 
         return this.#checkRequired(value, validation);
     }
