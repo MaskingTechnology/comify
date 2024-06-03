@@ -1,7 +1,7 @@
 
-import database from '../database/module';
-import fileStore from '../filestore/module';
-import notificationService from '../notification/module';
+import database from '^/integrations/database/module';
+import fileStore from '^/integrations/filestore/module';
+import notificationService from '^/integrations/notification/module';
 
 const disconnections = [];
 
