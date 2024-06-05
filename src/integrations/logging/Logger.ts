@@ -12,28 +12,73 @@ export default class Logger implements LogProcessor
         this.#debugEnabled = debugEnabled;
     }
 
-    logInfo(message: string): Promise<void>
+    logInfo(...message: unknown[]): Promise<void>
     {
-        return this.#processor.logInfo(message);
+        const messageString = this.#createMessage(message);
+
+        return this.#processor.logInfo(messageString);
     }
 
-    logWarn(message: string): Promise<void>
+    logWarn(...message: unknown[]): Promise<void>
     {
-        return this.#processor.logWarn(message);
+        const messageString = this.#createMessage(message);
+
+        return this.#processor.logWarn(messageString);
     }
 
-    logError(message: string): Promise<void>
+    logError(...message: unknown[]): Promise<void>
     {
-        return this.#processor.logError(message);
+        const messageString = this.#createMessage(message);
+
+        return this.#processor.logError(messageString);
     }
 
-    logDebug(message: string): Promise<void>
+    logDebug(...message: unknown[]): Promise<void>
     {
         if (this.#debugEnabled === false)
         {
             return Promise.resolve();
         }
 
-        return this.#processor.logDebug(message);
+        const messageString = this.#createMessage(message);
+
+        return this.#processor.logDebug(messageString);
+    }
+
+    #createMessage(message: unknown[]): string
+    {
+        return message.map(value => this.#interpretValue(value)).join(' ');
+    }
+
+    #interpretValue(value: unknown): string
+    {
+        switch (typeof value)
+        {
+            case 'string': return value;
+            case 'object': return this.#interpretObject(value);
+            case 'undefined': return 'undefined';
+            case 'function': return 'function';
+            default: return String(value);
+        }
+    }
+
+    #interpretObject(object: unknown): string
+    {
+        if (object === null)
+        {
+            return 'null';
+        }
+
+        if (Array.isArray(object))
+        {
+            return object.map(value => this.#interpretValue(value)).join(' ');
+        }
+
+        if (object instanceof Error)
+        {
+            return object.stack ?? object.message;
+        }
+
+        return JSON.stringify(object);
     }
 }
