@@ -1,4 +1,6 @@
 
+import logger from '^/integrations/logging/module';
+
 import type { Requester } from '^/domain/authentication/types';
 import updateCreatorPostCount from '^/domain/creator/updatePostCount/feature';
 
@@ -28,6 +30,8 @@ export default async function feature(requester: Requester, id: string): Promise
     }
     catch (error: unknown)
     {
+        logger.logError('Failed to remove post', error);
+
         if (creatorCount !== undefined)
         {
             await updateCreatorPostCount(requester.id, 'increase');

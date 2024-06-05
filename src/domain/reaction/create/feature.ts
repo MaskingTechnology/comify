@@ -1,4 +1,6 @@
 
+import logger from '^/integrations/logging/module';
+
 import updateReactionCount from '^/domain/post/updateReactionCount/feature';
 
 import createData from './createData';
@@ -21,6 +23,8 @@ export default async function feature(creatorId: string, postId: string, comicId
     }
     catch (error: unknown)
     {
+        logger.logError('Failed to create reaction', error);
+
         if (id !== undefined)
         {
             await eraseData(id);
