@@ -11,6 +11,8 @@ type Props = {
     readonly handleDone: (reaction?: ReactionView) => void;
 };
 
+const MESSAGE_MAX_LENGTH = 1000;
+
 export default function Feature({ post, handleDone }: Props)
 {
     const createComicReaction = useCreateComicReaction(post, handleDone);
@@ -21,7 +23,7 @@ export default function Feature({ post, handleDone }: Props)
             <ComicEditor onCreate={createComicReaction} onCancel={handleDone} />
         </Tab>
         <Tab title='Comment'>
-            <CommentForm onCreate={createCommentReaction} onCancel={handleDone} />
+            <CommentForm limit={MESSAGE_MAX_LENGTH} onCreate={createCommentReaction} onCancel={handleDone} />
         </Tab>
     </Tabs>;
 }

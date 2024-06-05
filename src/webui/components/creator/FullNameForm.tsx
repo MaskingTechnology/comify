@@ -9,6 +9,8 @@ export type Props = {
     readonly onUpdateClick: (fullName: string) => Promise<void>;
 };
 
+const FULL_NAME_MAX_LENGTH = 100;
+
 export default function Component({ fullName, onUpdateClick }: Props)
 {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -29,6 +31,7 @@ export default function Component({ fullName, onUpdateClick }: Props)
                     name='fullName'
                     placeholder={fullName}
                     value={''}
+                    limit={FULL_NAME_MAX_LENGTH}
                     size='small'
                     required={true}
                 />}
