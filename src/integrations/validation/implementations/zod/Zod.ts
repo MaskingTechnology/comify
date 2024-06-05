@@ -1,5 +1,6 @@
 
 import { ZodIssue, ZodType, ZodUnrecognizedKeysIssue, z } from 'zod';
+
 import ValidationResult from '../../definitions/ValidationResult.js';
 import { FieldTypes, MAX_EMAIL_LENGTH, MAX_URL_LENGTH } from '../../definitions/constants.js';
 import { Validator } from '../../definitions/interfaces.js';

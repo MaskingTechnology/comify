@@ -1,5 +1,6 @@
 
 import { Middleware, NextHandler, Request, Response } from 'jitar';
+
 export default class RequesterMiddleware implements Middleware
 {
     #authorization?: string;

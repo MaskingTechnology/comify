@@ -23,5 +23,8 @@ export * from './useReorderList';
 export * from './useTimelinePosts';
 export * from './useTogglePostRating';
 export * from './useToggleReactionRating';
+export * from './useUpdateFullName';
+export * from './useUpdateNickname';
 export * from './useViewPostDetails';
 export * from './useViewProfile';
+
