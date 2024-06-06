@@ -4,6 +4,7 @@ import updateReactionCount from '^/domain/post/updateReactionCount/feature';
 import createData from './createData';
 import eraseData from './eraseData';
 import insertData from './insertData';
+import validateData from './validateData';
 
 export default async function feature(creatorId: string, postId: string, comicId: string | undefined = undefined, commentId: string | undefined = undefined): Promise<string>
 {
@@ -12,6 +13,8 @@ export default async function feature(creatorId: string, postId: string, comicId
     try
     {
         const data = createData(creatorId, postId, comicId, commentId);
+
+        validateData(data);
 
         id = await insertData(data);
 

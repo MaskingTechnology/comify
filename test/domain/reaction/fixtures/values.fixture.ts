@@ -5,7 +5,9 @@ export const VALUES =
 {
     IDS: {
         COMIC: '1',
+        COMIC_MISSING: undefined,
         COMMENT: '1',
+        COMMENT_MISSING: undefined,
         IMAGE: '1',
 
         POST_EXISTING: '1',
