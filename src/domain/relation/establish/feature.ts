@@ -10,6 +10,7 @@ import createData from './createData';
 import dataExists from './dataExists';
 import eraseData from './eraseData';
 import insertData from './insertData';
+import validateData from './validateData';
 
 export default async function establish(requester: Requester, followingId: string): Promise<void>
 {
@@ -25,6 +26,8 @@ export default async function establish(requester: Requester, followingId: strin
     try
     {
         const data = createData(requester.id, followingId);
+
+        validateData(data);
 
         id = await insertData(data);
 

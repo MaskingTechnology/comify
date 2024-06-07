@@ -10,6 +10,9 @@ export type Props = {
     readonly onUpdateClick: (nickname: string) => Promise<void>;
 };
 
+const NICKNAME_MAX_LENGTH = 20;
+const NICKNAME_STRING_PATTERN = '^[a-z0-9_]+$';
+
 export default function Component({ nickname, alreadyInUse, onUpdateClick }: Props)
 {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -35,8 +38,9 @@ export default function Component({ nickname, alreadyInUse, onUpdateClick }: Pro
                     name='nickname'
                     placeholder={nickname}
                     value={''}
-                    pattern="^(?!.*[\s_]).+$"
-                    title='Underscores and spaces are not allowed'
+                    limit={NICKNAME_MAX_LENGTH}
+                    pattern={NICKNAME_STRING_PATTERN}
+                    title='Only alphanumeric characters are allowed.'
                     size='small'
                     required={true}
                 />

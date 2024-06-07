@@ -4,11 +4,12 @@ import { useState } from 'react';
 import { Button, Column, Panel, Row, TextArea } from '^/webui/designsystem';
 
 type Props = {
+    readonly limit?: number;
     readonly onCreate: (commentText: string) => Promise<void>;
     readonly onCancel: () => void;
 };
 
-export default function Component({ onCreate, onCancel }: Props)
+export default function Component({ limit, onCreate, onCancel }: Props)
 {
     const [creating, setCreating] = useState(false);
     const [comment, setComment] = useState('');
@@ -36,7 +37,7 @@ export default function Component({ onCreate, onCancel }: Props)
 
     return <Panel>
         <Column alignX='stretch'>
-            <TextArea name='comment' onChange={handleChange} />
+            <TextArea name='comment' limit={limit} onChange={handleChange} />
             <Row alignX='right'>
                 <Button type='secondary' text='Cancel' onClick={handleCancel} />
                 <Button type={creating ? 'disabled' : 'primary'} text={creating ? 'Creating' : 'Create'} onClick={handleCreate} />

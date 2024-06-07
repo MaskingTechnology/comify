@@ -3,6 +3,6 @@ export default class InvalidDataURL extends Error
 {
     constructor()
     {
-        super('Invalid data URL');
+        super('Value is not a valid data URL');
     }
 }
