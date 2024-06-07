@@ -1,5 +1,7 @@
 
-export default class NicknameNotFound extends Error
+import { NotFoundError } from '^/integrations/runtime/module';
+
+export default class NicknameNotFound extends NotFoundError
 {
     constructor(nickname: string)
     {

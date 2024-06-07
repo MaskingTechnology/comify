@@ -1,8 +1,12 @@
 
-export default class InvalidDataURL extends Error
+import { ValidationError } from '^/integrations/runtime/module';
+
+export default class InvalidDataURL extends ValidationError
 {
     constructor()
     {
-        super('Invalid data URL');
+        const messages = new Map().set('dataUrl', 'Invalid data URL');
+
+        super(messages);
     }
 }

@@ -1,5 +1,7 @@
 
-export default class TooManySimilarNicknames extends Error
+import { ServerError } from '^/integrations/runtime/module';
+
+export default class TooManySimilarNicknames extends ServerError
 {
     constructor(message?: string)
     {

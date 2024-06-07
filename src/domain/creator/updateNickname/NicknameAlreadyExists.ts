@@ -1,8 +1,12 @@
 
-export default class NicknameAlreadyExists extends Error
+import { ValidationError } from '^/integrations/runtime/module';
+
+export default class NicknameAlreadyExists extends ValidationError
 {
     constructor(nickname: string)
     {
-        super(`Nickname already exists '${nickname}'`);
+        const messages = new Map().set('nickname', `Nickname '${nickname}' already exists`);
+
+        super(messages);
     }
 }
