@@ -1,12 +1,10 @@
 
-import { ValidationError } from '^/integrations/runtime/module';
+import { BadRequest } from '^/integrations/runtime/module';
 
-export default class RelationAlreadyExists extends ValidationError
+export default class RelationAlreadyExists extends BadRequest
 {
     constructor(message?: string)
     {
-        const messages = new Map().set('followingId', message ?? 'Relation already exists');
-
-        super(messages);
+        super(message ?? 'Relation already exists');
     }
 }

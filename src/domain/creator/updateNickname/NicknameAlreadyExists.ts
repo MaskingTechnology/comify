@@ -1,12 +1,10 @@
 
-import { ValidationError } from '^/integrations/runtime/module';
+import { BadRequest } from '^/integrations/runtime/module';
 
-export default class NicknameAlreadyExists extends ValidationError
+export default class NicknameAlreadyExists extends BadRequest
 {
     constructor(nickname: string)
     {
-        const messages = new Map().set('nickname', `Nickname '${nickname}' already exists`);
-
-        super(messages);
+        super(`Nickname '${nickname}' already exists`);
     }
 }

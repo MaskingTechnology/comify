@@ -1,7 +1,7 @@
 
-import { ServerError } from '^/integrations/runtime/module';
+import { BadRequest } from '^/integrations/runtime/module';
 
-export default class TooManySimilarNicknames extends ServerError
+export default class TooManySimilarNicknames extends BadRequest
 {
     constructor(message?: string)
     {
