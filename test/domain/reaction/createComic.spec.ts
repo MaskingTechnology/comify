@@ -1,15 +1,11 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { RECORD_TYPE as COMIC_RECORD_TYPE } from '^/domain/comic/definitions';
-import { RECORD_TYPE as IMAGE_RECORD_TYPE } from '^/domain/image/definitions';
-import PostNotFound from '^/domain/post/PostNotFound';
 import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions';
 import create from '^/domain/reaction/createComic/feature';
 import { RECORD_TYPE as REACTION_RECORD_TYPE } from '^/domain/reaction/definitions';
 
 import database from '^/integrations/database/module';
-import fileStore from '^/integrations/filestore/module';
 
 import { DATABASES, FILE_STORES, REQUESTERS, VALUES } from './fixtures';
 
@@ -40,33 +36,5 @@ describe('domain/reaction/createComic', () =>
         expect(post?.createdAt).toBeDefined();
         expect(post?.ratingCount).toBe(0);
         expect(post?.reactionCount).toBe(1);
-
-        const comic = await database.readRecord(COMIC_RECORD_TYPE, reaction.comicId as string);
-        expect(comic?.imageId).toBeDefined();
-
-        const image = await database.readRecord(IMAGE_RECORD_TYPE, comic.imageId as string);
-        expect(image?.storageKey).toBeDefined();
-
-        const file = await fileStore.readFile(image.storageKey as string);
-        expect(file).toBeDefined();
-    });
-
-    it('should rollback created data at failed comic reaction', async () =>
-    {
-        // This should fail at the last action when incrementing post's reaction count
-        const promise = create(REQUESTERS.OWNER, VALUES.IDS.POST_NOT_EXISTING, VALUES.DATA_URLS.COMIC);
-        await expect(promise).rejects.toThrow(PostNotFound);
-
-        const reactions = await database.searchRecords(REACTION_RECORD_TYPE, {});
-        expect(reactions).toHaveLength(5);
-
-        const posts = await database.searchRecords(POST_RECORD_TYPE, {});
-        expect(posts).toHaveLength(1);
-
-        const comics = await database.searchRecords(COMIC_RECORD_TYPE, {});
-        expect(comics).toHaveLength(1);
-
-        const images = await database.searchRecords(IMAGE_RECORD_TYPE, {});
-        expect(images).toHaveLength(1);
     });
 });

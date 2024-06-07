@@ -1,8 +1,14 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import create from '^/domain/reaction/create/feature';
+import { RECORD_TYPE as COMMENT_RECORD_TYPE } from '^/domain/comment/definitions';
+import PostNotFound from '^/domain/post/PostNotFound';
+import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions';
 import InvalidReaction from '^/domain/reaction/create/InvalidReaction';
+import create from '^/domain/reaction/create/feature';
+import { RECORD_TYPE as REACTION_RECORD_TYPE } from '^/domain/reaction/definitions';
+
+import database from '^/integrations/database/module';
 
 import { DATABASES, FILE_STORES, REQUESTERS, VALUES } from './fixtures';
 
@@ -20,5 +26,21 @@ describe('domain/reaction/create', () =>
     {
         const promise = create(REQUESTERS.OWNER.id, VALUES.IDS.POST_EXISTING, VALUES.IDS.COMIC_MISSING, VALUES.IDS.COMMENT_MISSING);
         await expect(promise).rejects.toThrow(InvalidReaction);
+    });
+
+    it('should rollback created data at non-existing post comment reaction', async () =>
+    {
+        // This should fail at the last action when incrementing post's reaction count
+        const promise = create(REQUESTERS.OWNER.id, VALUES.IDS.POST_NOT_EXISTING, VALUES.MESSAGES.VALID_COMMENT);
+        await expect(promise).rejects.toThrow(PostNotFound);
+
+        const reactions = await database.searchRecords(REACTION_RECORD_TYPE, {});
+        expect(reactions).toHaveLength(5);
+
+        const posts = await database.searchRecords(POST_RECORD_TYPE, {});
+        expect(posts).toHaveLength(1);
+
+        const comments = await database.searchRecords(COMMENT_RECORD_TYPE, {});
+        expect(comments).toHaveLength(1);
     });
 });

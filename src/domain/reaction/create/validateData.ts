@@ -6,13 +6,15 @@ import { optionalIdValidation, requiredIdValidation } from '^/domain/definitions
 import InvalidReaction from './InvalidReaction';
 import { ValidationModel } from './types';
 
-const schema: ValidationSchema = {
+const schema: ValidationSchema =
+{
+    creatorId: requiredIdValidation,
     postId: requiredIdValidation,
     comicId: optionalIdValidation,
     commentId: optionalIdValidation
 };
 
-export default function validateData({ postId, comicId, commentId }: ValidationModel): void
+export default function validateData({ creatorId, postId, comicId, commentId }: ValidationModel): void
 {
     if (comicId === undefined && commentId === undefined)
     {
@@ -23,7 +25,7 @@ export default function validateData({ postId, comicId, commentId }: ValidationM
         throw new InvalidReaction(messages);
     }
 
-    const result = validator.validate({ postId }, schema);
+    const result = validator.validate({ creatorId, postId, comicId, commentId }, schema);
 
     if (result.invalid)
     {

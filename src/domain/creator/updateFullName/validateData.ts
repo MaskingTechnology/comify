@@ -5,7 +5,8 @@ import InvalidCreator from '../InvalidCreator';
 import { fullNameValidation } from '../definitions';
 import { ValidationModel } from './types';
 
-const schema: ValidationSchema = {
+const schema: ValidationSchema =
+{
     fullName: fullNameValidation
 };
 

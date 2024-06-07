@@ -5,7 +5,8 @@ import { MESSAGE_MAX_LENGTH } from '../definitions';
 import InvalidComment from './InvalidComment';
 import { ValidationModel } from './types';
 
-const schema: ValidationSchema = {
+const schema: ValidationSchema =
+{
     message:
     {
         message: 'Value is missing or too long',

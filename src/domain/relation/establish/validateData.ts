@@ -6,7 +6,8 @@ import { requiredIdValidation } from '^/domain/definitions';
 import InvalidRelation from './InvalidRelation';
 import { ValidationModel } from './types';
 
-const schema: ValidationSchema = {
+const schema: ValidationSchema =
+{
     followerId: requiredIdValidation,
     followingId: requiredIdValidation
 };

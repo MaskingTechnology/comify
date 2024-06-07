@@ -5,7 +5,8 @@ import { requiredStringValidation } from '../definitions';
 import { DataModel } from '../types';
 import InvalidImage from './InvalidImage';
 
-const schema: ValidationSchema = {
+const schema: ValidationSchema =
+{
     storageKey: requiredStringValidation,
     filename: requiredStringValidation,
     mimeType: requiredStringValidation,

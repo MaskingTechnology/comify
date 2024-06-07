@@ -6,7 +6,8 @@ import { requiredIdValidation } from '^/domain/definitions';
 import InvalidComic from './InvalidComic';
 import { ValidationModel } from './types';
 
-const schema: ValidationSchema = {
+const schema: ValidationSchema =
+{
     imageId: requiredIdValidation,
     structure:
     {

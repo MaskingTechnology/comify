@@ -5,7 +5,8 @@ import { optionalIdValidation } from '^/domain/definitions';
 import InvalidRating from './InvalidRating';
 import { ValidationModel } from './types';
 
-const schema: ValidationSchema = {
+const schema: ValidationSchema =
+{
     postId: optionalIdValidation,
     reactionId: optionalIdValidation,
 };

@@ -8,7 +8,8 @@ import InvalidImage from './InvalidImage';
 const TEN_B = 10;
 const FIVE_MB = 1024 * 1024 * 5;
 
-const schema: ValidationSchema = {
+const schema: ValidationSchema =
+{
     mimeType:
     {
         message: 'Value is not a valid mime type',
