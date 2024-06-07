@@ -9,9 +9,10 @@
         --padding-small: 1em;
         --padding-none: 0;
 
+        cursor: pointer;
+        display: inline-block;
         margin: var(--margin);
         padding: var(--padding);
-        cursor: pointer;
 
         &.padding-none
         {
