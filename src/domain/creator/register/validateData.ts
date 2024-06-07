@@ -11,7 +11,7 @@ const schema: ValidationSchema = {
     fullName: fullNameValidation,
     email:
     {
-        message: 'Invalid email',
+        message: 'Value is not a valid email',
         EMAIL:
         {
             required: true

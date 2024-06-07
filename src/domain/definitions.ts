@@ -8,7 +8,7 @@ export const SortOrder = {
 
 export const requiredIdValidation: Validation =
 {
-    message: 'Invalid id format',
+    message: 'Value is not a valid id format',
     STRING:
     {
         required: true,
@@ -18,7 +18,7 @@ export const requiredIdValidation: Validation =
 
 export const optionalIdValidation: Validation =
 {
-    message: 'Invalid id format',
+    message: 'Value is not a valid id format',
     STRING:
     {
         required: false,

@@ -5,7 +5,7 @@ import { RECORD_TYPE as COMIC_RECORD_TYPE } from '^/domain/comic/definitions';
 import { RECORD_TYPE as IMAGE_RECORD_TYPE } from '^/domain/image/definitions';
 import PostNotFound from '^/domain/post/PostNotFound';
 import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions';
-import createComicReaction from '^/domain/reaction/createComic/feature';
+import create from '^/domain/reaction/createComic/feature';
 import { RECORD_TYPE as REACTION_RECORD_TYPE } from '^/domain/reaction/definitions';
 
 import database from '^/integrations/database/module';
@@ -21,11 +21,11 @@ beforeEach(async () =>
     ]);
 });
 
-describe('domain/reaction/create', () =>
+describe('domain/reaction/createComic', () =>
 {
     it('should create a comic reaction', async () =>
     {
-        const reactionId = await createComicReaction(REQUESTERS.OWNER, VALUES.IDS.POST_EXISTING, VALUES.DATA_URLS.COMIC);
+        const reactionId = await create(REQUESTERS.OWNER, VALUES.IDS.POST_EXISTING, VALUES.DATA_URLS.COMIC);
 
         const reaction = await database.readRecord(REACTION_RECORD_TYPE, reactionId);
         expect(reaction?.creatorId).toBe(REQUESTERS.OWNER.id);
@@ -54,7 +54,7 @@ describe('domain/reaction/create', () =>
     it('should rollback created data at failed comic reaction', async () =>
     {
         // This should fail at the last action when incrementing post's reaction count
-        const promise = createComicReaction(REQUESTERS.OWNER, VALUES.IDS.POST_NOT_EXISTING, VALUES.DATA_URLS.COMIC);
+        const promise = create(REQUESTERS.OWNER, VALUES.IDS.POST_NOT_EXISTING, VALUES.DATA_URLS.COMIC);
         await expect(promise).rejects.toThrow(PostNotFound);
 
         const reactions = await database.searchRecords(REACTION_RECORD_TYPE, {});

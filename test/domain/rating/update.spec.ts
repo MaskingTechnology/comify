@@ -3,7 +3,6 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import update from '^/domain/rating/update/feature';
 
-
 import InvalidRating from '^/domain/rating/update/InvalidRating';
 import { DATABASES, REQUESTERS, VALUES } from './fixtures';
 
@@ -12,7 +11,7 @@ beforeEach(async () =>
     await DATABASES.empty();
 });
 
-describe('domain/creator/updateFullName', () =>
+describe('domain/rating/update', () =>
 {
     it('should not toggle without post id and reaction id', async () =>
     {
