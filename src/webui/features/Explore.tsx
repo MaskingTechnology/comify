@@ -6,7 +6,7 @@ import ExploreCreators from './ExploreCreators';
 
 export default function Feature()
 {
-    return <Tabs separator={<Ruler type='horizontal' size='small' />}>
+    return <Tabs separator={<Ruler direction='horizontal' size='small' />}>
         <Tab title='Comics'>
             <ExploreComics />
         </Tab>

@@ -3,16 +3,16 @@
 .ds
 {
     --font-family: 'Inter', sans-serif;
-}
 
-.ds-button
-{
-    --primary-background-color: #e06666;
-    --primary-foreground-color: #ffffff;
-    --secondary-background-color: #cccccc;
-}
+    .button
+    {
+        --primary-background-color: #e06666;
+        --primary-foreground-color: #ffffff;
+        --secondary-background-color: #cccccc;
+    }
 
-.ds-ruler
-{
-    --color: #f3f3f3;
+    .ruler
+    {
+        --color: #f3f3f3;
+    }
 }

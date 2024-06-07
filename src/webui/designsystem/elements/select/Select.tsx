@@ -12,8 +12,8 @@ export type Props = {
 
 export default function Element({ name, options, value, size, onChange }: Props)
 {
-    const className = 'ds-select'
-        + ' ds-select-size-' + (size ?? 'medium');
+    const className = 'select'
+        + ' size-' + (size ?? 'medium');
 
     return <select className={className} name={name} defaultValue={value} onChange={onChange}>
         {Array.from(options).map(([key, value]) => <option key={key} value={key}>{value}</option>)}

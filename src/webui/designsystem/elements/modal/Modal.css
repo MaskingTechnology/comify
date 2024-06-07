@@ -1,6 +1,9 @@
-.ds-modal
+.ds
 {
-    padding: 0;
-    border: 0;
-    min-width: 0;
+    .modal
+    {
+        padding: 0;
+        border: 0;
+        min-width: 0;
+    }
 }

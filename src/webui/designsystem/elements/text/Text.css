@@ -1,64 +1,67 @@
-.ds-text
+.ds
 {
-    --primary-color: var(--color-primary-foreground);
-    --secondary-color: var(--color-secondary-foreground);
+    .text
+    {
+        --primary-color: var(--color-primary-foreground);
+        --secondary-color: var(--color-secondary-foreground);
 
-    display: inline-block;
-}
+        display: inline-block;
 
-.ds-text.ds-text-primary
-{
-    color: var(--primary-color);
-}
+        &.type-primary
+        {
+            color: var(--primary-color);
+        }
 
-.ds-text.ds-text-secondary
-{
-    color: var(--secondary-color);
-}
+        &.type-secondary
+        {
+            color: var(--secondary-color);
+        }
 
-.ds-text.ds-text-size-small
-{
-    font-size: 0.9em;
-}
+        &.size-small
+        {
+            font-size: 0.9em;
+        }
 
-.ds-text.ds-text-size-medium
-{
-    font-size: 1em;
-}
+        &.size-medium
+        {
+            font-size: 1em;
+        }
 
-.ds-text.ds-text-size-large
-{
-    font-size: 1.2em;
-}
+        &.size-large
+        {
+            font-size: 1.2em;
+        }
 
-.ds-text.ds-text-weight-light
-{
-    font-weight: var(--font-weight-light);
-}
+        &.weight-light
+        {
+            font-weight: var(--font-weight-light);
+        }
 
-.ds-text.ds-text-weight-normal
-{
-    font-weight: var(--font-weight-normal);
-}
+        &.weight-normal
+        {
+            font-weight: var(--font-weight-normal);
+        }
 
-.ds-text.ds-text-weight-bold
-{
-    font-weight: var(--font-weight-bold);
-}
+        &.weight-bold
+        {
+            font-weight: var(--font-weight-bold);
+        }
 
-.ds-text.ds-text-wrap-none
-{
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
+        &.wrap-none
+        {
+            overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
 
-.ds-text.ds-text-wrap-normal
-{
-    white-space: normal;
-}
+        &.wrap-normal
+        {
+            white-space: normal;
+        }
 
-.ds-text.ds-text-wrap-break-word
-{
-    word-wrap: break-word;
+        &.wrap-break-word
+        {
+            word-wrap: break-word;
+        }
+    }
 }

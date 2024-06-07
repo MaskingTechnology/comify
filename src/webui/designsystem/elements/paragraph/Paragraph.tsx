@@ -9,8 +9,8 @@ export type Props = {
 
 export default function Element({ size, children }: Props)
 {
-    const className = 'ds-paragraph'
-        + ' ds-paragraph-size-' + (size ?? 'medium');
+    const className = 'paragraph'
+        + ' size-' + (size ?? 'medium');
 
     return <p className={className}>
         {children}

@@ -1,47 +1,50 @@
-.ds-textarea
+.ds
 {
-    --margin: 0;
+    .textarea
+    {
+        --margin: 0;
 
-    --padding-small: 0.4em;
-    --padding-medium: 0.8em;
-    --padding-large: 1.2em;
+        --padding-small: 0.4em;
+        --padding-medium: 0.8em;
+        --padding-large: 1.2em;
 
-    --border-style: solid;
-    --border-color: var(--color-border);
-    --border-width: var(--width-border);
+        --border-style: solid;
+        --border-color: var(--color-border);
+        --border-width: var(--width-border);
 
-    margin: var(--margin);
-    padding: var(--padding);
+        margin: var(--margin);
+        padding: var(--padding);
 
-    border-style: var(--border-style);
-    border-width: var(--border-width);
-    border-color: var(--border-color);
+        border-style: var(--border-style);
+        border-width: var(--border-width);
+        border-color: var(--border-color);
 
-    background-color: var(--color-input-background);
-    font-family: inherit;
-    font-size: inherit;
+        background-color: var(--color-input-background);
+        font-family: inherit;
+        font-size: inherit;
 
-    box-sizing: border-box;
-    resize: vertical;
-    width: 100%;
-}
+        box-sizing: border-box;
+        resize: vertical;
+        width: 100%;
 
-.ds-textarea:focus-visible
-{
-    outline-color: color-mix(in srgb, black 10%, var(--border-color));
-}
+        &:focus-visible
+        {
+            outline-color: color-mix(in srgb, black 10%, var(--border-color));
+        }
 
-.ds-textarea.ds-textarea-size-small
-{
-    padding: var(--padding-small);
-}
+        &.size-small
+        {
+            padding: var(--padding-small);
+        }
 
-.ds-textarea.ds-textarea-size-medium
-{
-    padding: var(--padding-medium);
-}
+        &.size-medium
+        {
+            padding: var(--padding-medium);
+        }
 
-.ds-textarea.ds-textarea-size-large
-{
-    padding: var(--padding-large);
+        &.size-large
+        {
+            padding: var(--padding-large);
+        }
+    }
 }

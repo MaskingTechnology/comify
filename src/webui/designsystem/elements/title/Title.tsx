@@ -9,10 +9,8 @@ export type Props = {
 
 export default function Element({ size, children }: Props)
 {
-    size ??= 'large';
-
-    const className = 'ds-title'
-        + ' ds-title-size-' + size;
+    const className = 'title'
+        + ' size-' + (size ?? 'large');
 
     switch (size)
     {

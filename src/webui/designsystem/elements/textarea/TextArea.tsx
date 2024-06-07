@@ -13,8 +13,8 @@ export type Props = {
 
 export default function Element({ name, placeholder, value, size, rows, onChange }: Props)
 {
-    const className = 'ds-textarea'
-        + ' ds-textarea-size-' + (size ?? 'medium');
+    const className = 'textarea'
+        + ' size-' + (size ?? 'medium');
 
     return <textarea
         className={className}

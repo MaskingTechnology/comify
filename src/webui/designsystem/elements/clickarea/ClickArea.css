@@ -1,33 +1,36 @@
-.ds-clickarea
+.ds
 {
-    --margin: 0;
+    .clickarea
+    {
+        --margin: 0;
 
-    --padding-large: 2em;
-    --padding-medium: 1.5em;
-    --padding-small: 1em;
-    --padding-none: 0;
+        --padding-large: 2em;
+        --padding-medium: 1.5em;
+        --padding-small: 1em;
+        --padding-none: 0;
 
-    margin: var(--margin);
-    padding: var(--padding);
-    cursor: pointer;
-}
+        margin: var(--margin);
+        padding: var(--padding);
+        cursor: pointer;
 
-.ds-clickarea.ds-clickarea-none
-{
-    padding: var(--padding-none);
-}
+        &.padding-none
+        {
+            padding: var(--padding-none);
+        }
 
-.ds-clickarea.ds-clickarea-small
-{
-    padding: var(--padding-small);
-}
+        &.padding-small
+        {
+            padding: var(--padding-small);
+        }
 
-.ds-clickarea.ds-clickarea-medium
-{
-    padding: var(--padding-medium);
-}
+        &.padding-medium
+        {
+            padding: var(--padding-medium);
+        }
 
-.ds-clickarea.ds-clickarea-large
-{
-    padding: var(--padding-large);
+        &.padding-large
+        {
+            padding: var(--padding-large);
+        }
+    }
 }

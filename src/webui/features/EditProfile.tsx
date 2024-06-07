@@ -17,7 +17,7 @@ export default function Feature()
     return <Column gap='medium' alignX='stretch'>
         <LoadingContainer data={identity}>
             <CreatorProfile creator={identity as CreatorView} />
-            <Ruler type='horizontal' size='small' />
+            <Ruler direction='horizontal' size='small' />
             <CreatorFullNameForm fullName={(identity as CreatorView).fullName} onUpdateClick={updateFullName} />
             <CreatorNicknameForm nickname={(identity as CreatorView).nickname} alreadyInUse={alreadyInUse} onUpdateClick={handler} />
         </LoadingContainer>

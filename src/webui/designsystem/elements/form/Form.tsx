@@ -19,7 +19,7 @@ export default function Element({ children, submitHandler }: Props)
         event.preventDefault();
     };
 
-    return <form onSubmit={handleSubmit} className='ds-form'>
+    return <form onSubmit={handleSubmit} className='form'>
         {children}
     </form>;
 }

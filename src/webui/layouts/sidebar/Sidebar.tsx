@@ -17,7 +17,7 @@ export default function Layout({ sidebar, children }: Props)
             <aside>
                 {sidebar}
             </aside>
-            <Ruler type='vertical' size='medium' />
+            <Ruler direction='vertical' size='medium' />
         </div>
         <div className='right'>
             <main>

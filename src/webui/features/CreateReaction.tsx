@@ -16,7 +16,7 @@ export default function Feature({ post, handleDone }: Props)
     const createComicReaction = useCreateComicReaction(post, handleDone);
     const createCommentReaction = useCreateCommentReaction(post, handleDone);
 
-    return <Tabs separator={<Ruler type='horizontal' size='small' />}>
+    return <Tabs separator={<Ruler direction='horizontal' size='small' />}>
         <Tab title='Comic'>
             <ComicEditor onCreate={createComicReaction} onCancel={handleDone} />
         </Tab>

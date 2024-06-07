@@ -1,24 +1,30 @@
-.ds-image.ds-image-fit-fill
+.ds
 {
-    object-fit: fill;
-}
+    .image
+    {
+        &.fit-fill
+        {
+            object-fit: fill;
+        }
 
-.ds-image.ds-image-fit-contain
-{
-    object-fit: contain;
-}
+        &.fit-contain
+        {
+            object-fit: contain;
+        }
 
-.ds-image.ds-image-fit-cover
-{
-    object-fit: cover;
-}
+        &.fit-cover
+        {
+            object-fit: cover;
+        }
 
-.ds-image.ds-image-fit-none
-{
-    object-fit: none;
-}
+        &.fit-none
+        {
+            object-fit: none;
+        }
 
-.ds-image.ds-image-fit-scale-down
-{
-    object-fit: scale-down;
+        &.fit-scale-down
+        {
+            object-fit: scale-down;
+        }
+    }
 }

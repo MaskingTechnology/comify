@@ -12,7 +12,7 @@ export default function Element({ size, source, alt }: Props)
     alt = alt ?? 'Avatar';
 
     return <img
-        className='ds-avatar'
+        className='avatar'
         alt={alt}
         src={source}
         width={size}

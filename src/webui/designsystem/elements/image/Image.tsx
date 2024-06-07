@@ -12,10 +12,8 @@ export type Props = {
 
 export default function Element({ source, title, alt, width, height, fit }: Props)
 {
-    fit ??= 'contain';
-
-    const className = 'ds-image'
-        + ' ds-image-fit-' + fit;
+    const className = 'image'
+        + ' fit-' + (fit ?? 'contain');
 
     return <img
         className={className}

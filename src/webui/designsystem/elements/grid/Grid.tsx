@@ -10,9 +10,9 @@ export type Props = {
 
 export default function Element({ layout, gap, children }: Props)
 {
-    const className = 'ds-grid'
-        + ' ds-grid-' + layout
-        + ' ds-grid-gap-' + (gap ?? 'medium');
+    const className = 'grid'
+        + ' layout-' + layout
+        + ' gap-' + (gap ?? 'medium');
 
     return <div className={className}>
         {children}

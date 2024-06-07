@@ -27,7 +27,7 @@
     width: 214px;
 }
 
-.sidebar-layout .left .ds-ruler
+.sidebar-layout .left .ruler
 {
     height: calc(100% - 2rem);
     flex-grow: 0;
