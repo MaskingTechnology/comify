@@ -1,4 +1,6 @@
 
+import logger from '^/integrations/logging/module';
+
 import type { Requester } from '^/domain/authentication/types';
 import createComic from '^/domain/comic/create/feature';
 import eraseComic from '^/domain/comic/erase/feature';
@@ -17,6 +19,8 @@ export default async function feature(requester: Requester, postId: string, imag
     }
     catch (error: unknown)
     {
+        logger.logError('Failed to create comic reaction', error);
+
         if (comicId !== undefined)
         {
             await eraseComic(comicId);

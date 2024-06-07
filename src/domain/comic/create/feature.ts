@@ -1,4 +1,6 @@
 
+import logger from '^/integrations/logging/module';
+
 import createImage from '^/domain/image/create/feature';
 import eraseImage from '^/domain/image/erase/feature';
 
@@ -21,6 +23,8 @@ export default async function feature(imageDataUrl: string, structure?: string):
     }
     catch (error: unknown)
     {
+        logger.logError('Failed to create comic', error);
+
         if (imageId !== undefined)
         {
             await eraseImage(imageId);
