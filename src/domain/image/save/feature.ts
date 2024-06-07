@@ -5,6 +5,7 @@ import fileExists from './fileExists';
 import generateStorageKey from './generateStorageKey';
 import insertData from './insertData';
 import insertFile from './insertFile';
+import validateData from './validateData';
 
 export default async function feature(type: string, image: Image): Promise<string>
 {
@@ -17,6 +18,8 @@ export default async function feature(type: string, image: Image): Promise<strin
     }
 
     const data = createData(storageKey, image.filename, image.mimeType, image.size);
+
+    validateData(data);
 
     return insertData(data);
 }

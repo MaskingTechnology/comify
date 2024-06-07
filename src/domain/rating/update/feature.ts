@@ -5,6 +5,7 @@ import createData from './createData';
 import eraseData from './eraseData';
 import getData from './getData';
 import insertData from './insertData';
+import validateData from './validateData';
 
 export default async function feature(requester: Requester, postId: string | undefined, reactionId: string | undefined): Promise<string | void>
 {
@@ -16,6 +17,8 @@ export default async function feature(requester: Requester, postId: string | und
     }
 
     const newData = createData(requester.id, postId, reactionId);
+
+    validateData(newData);
 
     return insertData(newData);
 }

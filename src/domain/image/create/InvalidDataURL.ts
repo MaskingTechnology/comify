@@ -1,12 +1,10 @@
 
-import { ValidationError } from '^/integrations/runtime/module';
+import { BadRequest } from '^/integrations/runtime/module';
 
-export default class InvalidDataURL extends ValidationError
+export default class InvalidDataURL extends BadRequest
 {
     constructor()
     {
-        const messages = new Map().set('dataUrl', 'Invalid data URL');
-
-        super(messages);
+        super('Value is not a valid data URL');
     }
 }
