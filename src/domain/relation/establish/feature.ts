@@ -1,4 +1,6 @@
 
+import logger from '^/integrations/logging/module';
+
 import type { Requester } from '^/domain/authentication/types';
 import updateFollowerCount from '^/domain/creator/updateFollowerCount/feature';
 import updateFollowingCount from '^/domain/creator/updateFollowingCount/feature';
@@ -35,6 +37,8 @@ export default async function establish(requester: Requester, followingId: strin
     }
     catch (error: unknown)
     {
+        logger.logError('Failed to establish relation', error);
+
         const undoRelation = id !== undefined ? eraseData(id) : Promise.resolve();
         const undoFollowerCount = followerCount !== undefined ? updateFollowerCount(followingId, 'decrease') : Promise.resolve();
 

@@ -1,4 +1,6 @@
 
+import logger from '^/integrations/logging/module';
+
 import type { Requester } from '^/domain/authentication/types';
 import createComment from '^/domain/comment/create/feature';
 import eraseComment from '^/domain/comment/erase/feature';
@@ -17,6 +19,8 @@ export default async function feature(requester: Requester, postId: string, mess
     }
     catch (error: unknown)
     {
+        logger.logError('Failed to create comment reaction', error);
+
         if (commentId !== undefined)
         {
             await eraseComment(commentId);

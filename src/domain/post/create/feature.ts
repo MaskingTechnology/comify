@@ -1,4 +1,6 @@
 
+import logger from '^/integrations/logging/module';
+
 import type { Requester } from '^/domain/authentication/types';
 import createComic from '^/domain/comic/create/feature';
 import eraseComic from '^/domain/comic/erase/feature';
@@ -24,6 +26,8 @@ export default async function feature(requester: Requester, comicImageDataUrl: s
     }
     catch (error: unknown)
     {
+        logger.logError('Failed to create post', error);
+
         const undoComic = comicId !== undefined ? eraseComic(comicId) : Promise.resolve();
         const undoPost = postId !== undefined ? erasePost(postId) : Promise.resolve();
 
