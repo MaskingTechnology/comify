@@ -1,6 +1,6 @@
 
 import { LogicalOperators, QueryOperators, SortDirections } from '../../definitions/constants.js';
-import { Database } from '../../definitions/interfaces.js';
+import { Driver } from '../../definitions/interfaces.js';
 import { QueryExpression, QueryMultiExpressionStatement, QueryOperator, QuerySingleExpressionStatement, QueryStatement, RecordData, RecordField, RecordQuery, RecordSort, RecordValue } from '../../definitions/types.js';
 import NotConnected from '../../errors/NotConnected.js';
 import RecordNotFound from '../../errors/RecordNotFound.js';
@@ -24,7 +24,7 @@ const LOGICAL_OPERATORS =
     [LogicalOperators.OR]: '||'
 };
 
-export default class Memory implements Database
+export default class Memory implements Driver
 {
     #memory: Map<string, RecordData[]> = new Map();
     #connected = false;

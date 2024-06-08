@@ -2,7 +2,7 @@
 import { Collection, Db, Document, Filter, MongoClient, Sort } from 'mongodb';
 
 import { ID, LogicalOperators, QueryOperators, SortDirections } from '../../definitions/constants.js';
-import { Database } from '../../definitions/interfaces.js';
+import { Driver } from '../../definitions/interfaces.js';
 import { QueryMultiExpressionStatement, QueryOperator, QuerySingleExpressionStatement, RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType, RecordValue } from '../../definitions/types.js';
 import DatabaseError from '../../errors/DatabaseError.js';
 import NotConnected from '../../errors/NotConnected.js';
@@ -36,7 +36,7 @@ const LOGICAL_OPERATORS =
 
 const MONGO_ID = '_id';
 
-export default class MongoDB implements Database
+export default class MongoDB implements Driver
 {
     #connectionString: string;
     #databaseName: string;

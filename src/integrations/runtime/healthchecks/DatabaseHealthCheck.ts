@@ -1,7 +1,7 @@
 
 import { HealthCheck } from 'jitar';
 
-import { Database } from '^/integrations/database/definitions/interfaces';
+import type Database from '^/integrations/database/Database';
 
 export default class DatabaseHealthCheck implements HealthCheck
 {
