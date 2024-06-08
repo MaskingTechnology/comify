@@ -8,5 +8,5 @@ export default async function feature(requester: Requester, postId: string, imag
 {
     const comicId = await createComic(imageData);
 
-    return await createReaction(requester.id, postId, comicId);
+    return createReaction(requester.id, postId, comicId);
 }

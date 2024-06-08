@@ -8,5 +8,5 @@ export default async function feature(requester: Requester, postId: string, mess
 {
     const commentId = await createComment(message);
 
-    return await createReaction(requester.id, postId, undefined, commentId);
+    return createReaction(requester.id, postId, undefined, commentId);
 }
