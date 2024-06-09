@@ -2,7 +2,7 @@
 import { Driver } from './definitions/interfaces.js';
 import { RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType } from './definitions/types.js';
 
-export default class Database
+export default class Database implements Driver
 {
     #driver: Driver;
 
