@@ -1,8 +1,6 @@
 
 import React from 'react';
 
-import { Ruler } from '^/webui/designsystem';
-
 import './Sidebar.css';
 
 type Props = {
@@ -13,16 +11,19 @@ type Props = {
 export default function Layout({ sidebar, children }: Props)
 {
     return <div className='ds sidebar-layout'>
-        <div className='left'>
-            <aside>
-                {sidebar}
-            </aside>
-            <Ruler direction='vertical' size='medium' />
+        <header>Header</header>
+        <div className='container'>
+            <div className="left">
+                <aside>
+                    {sidebar}
+                </aside>
+            </div>
+            <div className="right">
+                <main>
+                    {children}
+                </main>
+            </div>
         </div>
-        <div className='right'>
-            <main>
-                {children}
-            </main>
-        </div>
+        <footer>Footer</footer>
     </div>;
 }

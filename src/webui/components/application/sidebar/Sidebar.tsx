@@ -1,5 +1,5 @@
 
-import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/feature';
+import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
 
 import Identity from '../Identity';
 import Logo from '../Logo';
@@ -14,12 +14,12 @@ type Props = {
 export default function Component({ identity, onLogout }: Props)
 {
     return <div className='application-sidebar'>
-        <header>
+        <div className='logo'>
             <Logo />
-        </header>
+        </div>
         <Navigation identity={identity} />
-        <footer>
+        <div className='identity'>
             <Identity identity={identity} onLogout={onLogout} />
-        </footer>
+        </div>
     </div>;
 }

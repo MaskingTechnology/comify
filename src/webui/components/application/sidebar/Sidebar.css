@@ -4,23 +4,23 @@
     flex-direction: column;
     gap: 2rem;
     height: 100%;
-}
 
-.application-sidebar header
-{
-    flex-grow: 0;
-    flex-shrink: 0;
-}
+    .logo
+    {
+        flex-grow: 0;
+        flex-shrink: 0;
+    }
 
-.application-sidebar nav
-{
-    flex-grow: 1;
-    flex-shrink: 1;
-    overflow-y: auto;
-}
+    nav
+    {
+        flex-grow: 1;
+        flex-shrink: 1;
+        overflow-y: auto;
+    }
 
-.application-sidebar footer
-{
-    flex-grow: 0;
-    flex-shrink: 0;
+    .identity
+    {
+        flex-grow: 0;
+        flex-shrink: 0;
+    }
 }

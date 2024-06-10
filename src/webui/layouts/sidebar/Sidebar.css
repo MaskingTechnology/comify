@@ -1,51 +1,111 @@
 .sidebar-layout
 {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    gap: 40px;
-}
+    container-type: size;
 
-.sidebar-layout .left
-{
-    display: flex;
-    flex-direction: row;
-    flex-grow: 0;
-    flex-shrink: 0;
-    gap: 40px;
-    height: 100vh;
-    position: sticky;
-    top: 0;
-}
+    header
+    {
+        background-color: var(--background-color);
+        display: none;
+        height: 2.5em;
+        width: 100vw;
+        top: 0;
+        left: 0;
+        position: fixed;
+        z-index: 1000;
+    }
 
-.sidebar-layout .left aside
-{
-    flex-grow: 1;
-    flex-shrink: 1;
-    box-sizing: border-box;
-    padding: 1rem 0;
-    width: 214px;
-}
+    .container
+    {
+        display: flex;
+        flex-direction: row;
+        gap: 2em;
+        width: 100vw;
+        height: 100vh;
+        max-height: 100vh;
 
-.sidebar-layout .left .ruler
-{
-    height: calc(100% - 2rem);
-    flex-grow: 0;
-    flex-shrink: 0;
-    margin: 1rem 0;
-}
+        .left
+        {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            width: 30vw;
 
-.sidebar-layout .right
-{
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    flex-shrink: 1;
-    min-height: 100vh;
-}
+            aside
+            {
+                flex-shrink: 0;
+                flex-grow: 0;
+                padding: 1em 0;
+                width: 260px;
+            }
+        }
 
-.sidebar-layout .right main
-{
-    box-sizing: border-box;
-    padding: 1rem 0;
+        .right
+        {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            overflow-y: auto;
+            width: 70vw;
+
+            main
+            {
+                flex-shrink: 0;
+                flex-grow: 0;
+                padding: 1em 0;
+                width: 640px;
+            }
+        }
+    }
+
+    footer
+    {
+        background-color: var(--background-color);
+        display: none;
+        height: 4em;
+        width: 100vw;
+        bottom: 0;
+        left: 0;
+        position: sticky;
+        z-index: 1000;
+    }
+
+    @container (max-width: 959px)
+    {
+        .container
+        {
+            .left
+            {
+                display: none;
+            }
+
+            .right
+            {
+                width: 100vw;
+                padding: 0 1em;
+                margin: 2.5em 0 4em 0;
+
+                main
+                {
+                    width: 100%;
+                }
+            }
+        }
+
+        header,
+        footer
+        {
+            display: block;
+        }
+    }
+
+    @container (max-width: 499px)
+    {
+        .container
+        {
+            .right
+            {
+                padding: 0 0.5em;
+            }
+        }
+    }
 }

@@ -2,24 +2,25 @@
 {
     container-type: inline-size;
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
+    width: 100vw;
+    min-height: 100vh;
 
     .container
     {
         box-sizing: border-box;
-        padding: 1em;
+        padding: 1rem;
         width: 100vw;
         max-width: 696px;
+        text-align: center;
     }
 
-    @container (max-width: 500px)
+    @container (max-width: 499px)
     {
         .container
         {
-            padding: 0;
+            padding: 0.5rem;
         }
-
     }
 }
