@@ -13,6 +13,7 @@
         flex-grow: 1;
         flex-shrink: 1;
         gap: 2rem;
+        overflow: hidden;
 
         .logo
         {

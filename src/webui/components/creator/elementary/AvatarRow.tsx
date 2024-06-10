@@ -10,13 +10,13 @@ type Props = {
     readonly children: React.ReactNode;
 };
 
-function getActualSize(size: string): string
+function getWidth(size: string): string
 {
     switch (size)
     {
-        case 'small': return '36px';
-        case 'medium': return '50px';
-        case 'large': return '62px';
+        case 'small': return '2.2em';
+        case 'medium': return '3em';
+        case 'large': return '3.7em';
         default: return '';
     }
 }
@@ -24,11 +24,11 @@ function getActualSize(size: string): string
 export default function Component({ avatarSize, avatarUrl, children }: Props)
 {
     const gapSize = avatarSize === 'small' ? 'small' : 'medium';
-    const actualSize = getActualSize(avatarSize);
+    const width = getWidth(avatarSize);
     const source = avatarUrl ?? portraitImage;
 
     return <Row gap={gapSize}>
-        <Avatar size={actualSize} source={source} />
+        <Avatar source={source} width={width} />
         {children}
     </Row>;
 }
