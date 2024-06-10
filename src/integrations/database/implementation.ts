@@ -1,10 +1,10 @@
 
-import { Database } from './definitions/interfaces.js';
+import { Driver } from './definitions/interfaces.js';
 import UnknownImplementation from './errors/UnknownImplementation.js';
 import createMemoryDb from './implementations/memory/create.js';
 import createMongoDb from './implementations/mongodb/create.js';
 
-const implementations = new Map<string, () => Database>([
+const implementations = new Map<string, () => Driver>([
     ['memory', createMemoryDb],
     ['mongodb', createMongoDb],
 ]);

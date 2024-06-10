@@ -14,7 +14,7 @@ beforeEach(async () =>
     await DATABASES.withEverything();
 });
 
-describe('domain/creator/updatenickname', () =>
+describe('domain/creator/updateNickname', () =>
 {
     it('should update the nickname', async () =>
     {

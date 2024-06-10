@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator/definitions';
 import { RECORD_TYPE as RELATION_RECORD_TYPE } from '^/domain/relation/definitions';
+import InvalidRelation from '^/domain/relation/establish/InvalidRelation';
 import RelationAlreadyExists from '^/domain/relation/establish/RelationAlreadyExists';
 import establish from '^/domain/relation/establish/feature';
 
@@ -49,5 +50,12 @@ describe('domain/relation/establish', () =>
 
         const relation = await database.findRecord(RELATION_RECORD_TYPE, QUERIES.NON_EXISTING_RELATION);
         expect(relation).toBeUndefined();
+    });
+
+    it('should fail when invalid data is provided', async () =>
+    {
+        const promise = establish(REQUESTERS.FIRST, VALUES.IDS.INVALID);
+
+        await expect(promise).rejects.toThrow(InvalidRelation);
     });
 });

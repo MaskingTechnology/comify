@@ -8,10 +8,11 @@ export type Props = {
     readonly value?: string;
     readonly size?: 'large' | 'medium' | 'small';
     readonly rows?: number;
+    readonly limit?: number;
     readonly onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
 };
 
-export default function Element({ name, placeholder, value, size, rows, onChange }: Props)
+export default function Element({ name, placeholder, value, size, rows, limit, onChange }: Props)
 {
     const className = 'textarea'
         + ' size-' + (size ?? 'medium');
@@ -22,6 +23,7 @@ export default function Element({ name, placeholder, value, size, rows, onChange
         placeholder={placeholder}
         defaultValue={value}
         rows={rows}
+        maxLength={limit}
         onChange={onChange}>
     </textarea>;
 }

@@ -1,4 +1,6 @@
 
+import logger from '^/integrations/logging/module';
+
 import type { Requester } from '^/domain/authentication/types';
 import updateRating from '^/domain/rating/update/feature';
 
@@ -20,6 +22,8 @@ export default async function feature(requester: Requester, postId: string): Pro
     }
     catch (error)
     {
+        logger.logError('Failed to toggle rating', error);
+
         if (ratingId !== undefined) 
         {
             await updateRating(requester, postId, undefined);

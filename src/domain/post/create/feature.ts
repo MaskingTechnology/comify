@@ -1,7 +1,8 @@
 
+import logger from '^/integrations/logging/module';
+
 import type { Requester } from '^/domain/authentication/types';
 import createComic from '^/domain/comic/create/feature';
-import eraseComic from '^/domain/comic/erase/feature';
 import updateCreatorPostCount from '^/domain/creator/updatePostCount/feature';
 
 import createData from './createData';
@@ -10,11 +11,11 @@ import insertData from './insertData';
 
 export default async function feature(requester: Requester, comicImageDataUrl: string): Promise<void>
 {
-    let comicId, postId;
+    let postId;
 
     try
     {
-        comicId = await createComic(comicImageDataUrl);
+        const comicId = await createComic(comicImageDataUrl);
 
         const data = createData(requester.id, comicId);
 
@@ -24,10 +25,12 @@ export default async function feature(requester: Requester, comicImageDataUrl: s
     }
     catch (error: unknown)
     {
-        const undoComic = comicId !== undefined ? eraseComic(comicId) : Promise.resolve();
-        const undoPost = postId !== undefined ? erasePost(postId) : Promise.resolve();
+        logger.logError('Failed to create post', error);
 
-        await Promise.all([undoComic, undoPost]);
+        if (postId !== undefined)
+        {
+            await erasePost(postId);
+        }
 
         throw error;
     }

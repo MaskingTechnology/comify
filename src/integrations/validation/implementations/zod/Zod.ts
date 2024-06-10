@@ -4,10 +4,10 @@ import { ZodIssue, ZodType, ZodUnrecognizedKeysIssue, z } from 'zod';
 import ValidationResult from '../../definitions/ValidationResult.js';
 import { FieldTypes, MAX_EMAIL_LENGTH, MAX_URL_LENGTH } from '../../definitions/constants.js';
 import { Validator } from '../../definitions/interfaces.js';
-import { Message, Validations, type ValidationSchema } from '../../definitions/types.js';
+import { Message, Validation, ValidationTypes, type ValidationSchema } from '../../definitions/types.js';
 import UnknownValidator from '../../errors/UnknownValidator.js';
 
-type ValidatorFunction = (value: Validations[keyof Validations]) => z.ZodType<unknown, z.ZodTypeDef> | z.ZodArray<z.ZodType<unknown, z.ZodTypeDef>>;
+type ValidatorFunction = (value: ValidationTypes[keyof ValidationTypes]) => z.ZodType<unknown, z.ZodTypeDef> | z.ZodArray<z.ZodType<unknown, z.ZodTypeDef>>;
 
 // Zod is so type heavy that we've chosen for inferred types to be used.
 // This is a trade-off between readability and verbosity.
@@ -18,14 +18,14 @@ export default class Zod implements Validator
 
     constructor()
     {
-        this.#validations.set(FieldTypes.STRING, (value: Validations['STRING']) => this.#validateString(value));
-        this.#validations.set(FieldTypes.NUMBER, (value: Validations['NUMBER']) => this.#validateNumber(value));
-        this.#validations.set(FieldTypes.BOOLEAN, (value: Validations['BOOLEAN']) => this.#validateBoolean(value));
-        this.#validations.set(FieldTypes.DATE, (value: Validations['DATE']) => this.#validateDate(value));
-        this.#validations.set(FieldTypes.UUID, (value: Validations['UUID']) => this.#validateUuid(value));
-        this.#validations.set(FieldTypes.EMAIL, (value: Validations['EMAIL']) => this.#validateEmail(value));
-        this.#validations.set(FieldTypes.ARRAY, (value: Validations['ARRAY']) => this.#validateArray(value));
-        this.#validations.set(FieldTypes.URL, (value: Validations['URL']) => this.#validateUrl(value));
+        this.#validations.set(FieldTypes.STRING, (value: ValidationTypes['STRING']) => this.#validateString(value));
+        this.#validations.set(FieldTypes.NUMBER, (value: ValidationTypes['NUMBER']) => this.#validateNumber(value));
+        this.#validations.set(FieldTypes.BOOLEAN, (value: ValidationTypes['BOOLEAN']) => this.#validateBoolean(value));
+        this.#validations.set(FieldTypes.DATE, (value: ValidationTypes['DATE']) => this.#validateDate(value));
+        this.#validations.set(FieldTypes.UUID, (value: ValidationTypes['UUID']) => this.#validateUuid(value));
+        this.#validations.set(FieldTypes.EMAIL, (value: ValidationTypes['EMAIL']) => this.#validateEmail(value));
+        this.#validations.set(FieldTypes.ARRAY, (value: ValidationTypes['ARRAY']) => this.#validateArray(value));
+        this.#validations.set(FieldTypes.URL, (value: ValidationTypes['URL']) => this.#validateUrl(value));
     }
 
     validate(data: unknown, schema: ValidationSchema): ValidationResult
@@ -59,7 +59,7 @@ export default class Zod implements Validator
             ).strict();
     }
 
-    #getValidation(schema: Partial<Validations | Message>)
+    #getValidation(schema: Partial<Validation | Message>)
     {
         for (const [key, validation] of Object.entries(schema))
         {
@@ -78,7 +78,7 @@ export default class Zod implements Validator
         return z.never();
     }
 
-    #validateString(value: Validations['STRING'])
+    #validateString(value: ValidationTypes['STRING'])
     {
         let validation = z.string();
 
@@ -89,7 +89,7 @@ export default class Zod implements Validator
         return this.#checkRequired(value, validation);
     }
 
-    #validateNumber(value: Validations['NUMBER'])
+    #validateNumber(value: ValidationTypes['NUMBER'])
     {
         let validation = z.number();
 
@@ -99,35 +99,35 @@ export default class Zod implements Validator
         return this.#checkRequired(value, validation);
     }
 
-    #validateBoolean(value: Validations['BOOLEAN'])
+    #validateBoolean(value: ValidationTypes['BOOLEAN'])
     {
         const validation = z.boolean();
 
         return this.#checkRequired(value, validation);
     }
 
-    #validateDate(value: Validations['DATE'])
+    #validateDate(value: ValidationTypes['DATE'])
     {
-        const validation = z.date();
+        const validation = z.string().datetime();
 
         return this.#checkRequired(value, validation);
     }
 
-    #validateUuid(value: Validations['UUID'])
+    #validateUuid(value: ValidationTypes['UUID'])
     {
         const validation = z.string().uuid();
 
         return this.#checkRequired(value, validation);
     }
 
-    #validateEmail(value: Validations['EMAIL'])
+    #validateEmail(value: ValidationTypes['EMAIL'])
     {
         const validation = z.string().email().max(MAX_EMAIL_LENGTH);
 
         return this.#checkRequired(value, validation);
     }
 
-    #validateArray(value: Validations['ARRAY'])
+    #validateArray(value: ValidationTypes['ARRAY'])
     {
         let validation = value.validations === undefined
             ? z.array(z.unknown())
@@ -139,7 +139,7 @@ export default class Zod implements Validator
         return this.#checkRequired(value, validation);
     }
 
-    #validateUrl(value: Validations['URL'])
+    #validateUrl(value: ValidationTypes['URL'])
     {
         let validation = z.string().url().max(MAX_URL_LENGTH);
 
@@ -153,7 +153,7 @@ export default class Zod implements Validator
         return this.#checkRequired(value, validation);
     }
 
-    #checkRequired(value: Validations[keyof Validations], validation: ZodType)
+    #checkRequired(value: ValidationTypes[keyof ValidationTypes], validation: ZodType)
     {
         return value.required
             ? validation

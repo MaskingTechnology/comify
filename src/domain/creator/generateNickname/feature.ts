@@ -1,19 +1,20 @@
 
+import cleanNickname from '../cleanNickname/feature';
 import TooManySimilarNicknames from './TooManySimilarNicknames';
 import retrieveByNickname from './retrieveByNickname';
 import retrieveByStartNickname from './retrieveByStartNickname';
 
+const MAX_NICKNAME_NUMBER = 1000;
+
 export default async function feature(nickname: string): Promise<string>
 {
-    const strippedName: string = nickname.trim();
-    const noSpacesNickname: string = strippedName.replaceAll(' ', '');
-    const cleanNickname: string = noSpacesNickname.replaceAll('_', '');
+    const cleanedNickname = cleanNickname(nickname);
 
-    const existingData = await retrieveByNickname(cleanNickname);
+    const existingData = await retrieveByNickname(cleanedNickname);
 
     if (existingData === undefined)
     {
-        return cleanNickname;
+        return cleanedNickname;
     }
 
     const foundData = await retrieveByStartNickname(`${existingData.nickname}_`);
@@ -23,15 +24,15 @@ export default async function feature(nickname: string): Promise<string>
         return `${existingData.nickname}_001`;
     }
 
-    const oldNumber = parseInt(foundData.nickname.substring(cleanNickname.length + 1));
+    const oldNumber = parseInt(foundData.nickname.substring(cleanedNickname.length + 1));
     const newNumber = oldNumber + 1;
 
-    if (newNumber === 1000)
+    if (newNumber === MAX_NICKNAME_NUMBER)
     {
         throw new TooManySimilarNicknames();
     }
 
     const stringNumber = newNumber.toString().padStart(3, '0');
 
-    return `${cleanNickname}_${stringNumber}`;
+    return `${cleanedNickname}_${stringNumber}`;
 }

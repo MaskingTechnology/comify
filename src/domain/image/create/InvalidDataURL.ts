@@ -1,8 +1,10 @@
 
-export default class InvalidDataURL extends Error
+import { BadRequest } from '^/integrations/runtime/module';
+
+export default class InvalidDataURL extends BadRequest
 {
     constructor()
     {
-        super('Invalid data URL');
+        super('Value is not a valid data URL');
     }
 }
