@@ -10,7 +10,7 @@ type Props = {
 export default function Layout({ children }: Props)
 {
     return <main className='ds centered-layout'>
-        <div className='container'>
+        <div className='content'>
             {children}
         </div>
     </main>;

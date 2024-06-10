@@ -12,7 +12,7 @@ export default function Layout({ sidebar, children }: Props)
 {
     return <div className='ds sidebar-layout'>
         <header>Header</header>
-        <div className='container'>
+        <div className='content'>
             <div className="left">
                 <aside>
                     {sidebar}

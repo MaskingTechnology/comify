@@ -2,7 +2,7 @@
 {
     container-type: size;
 
-    header
+    & > header
     {
         background-color: var(--background-color);
         display: none;
@@ -14,7 +14,7 @@
         z-index: 1000;
     }
 
-    .container
+    & > .content
     {
         display: flex;
         flex-direction: row;
@@ -57,7 +57,7 @@
         }
     }
 
-    footer
+    & > footer
     {
         background-color: var(--background-color);
         display: none;
@@ -71,7 +71,7 @@
 
     @container (max-width: 959px)
     {
-        .container
+        & > .content
         {
             .left
             {
@@ -91,8 +91,8 @@
             }
         }
 
-        header,
-        footer
+        & > header,
+        & > footer
         {
             display: block;
         }
@@ -100,7 +100,7 @@
 
     @container (max-width: 499px)
     {
-        .container
+        & > .content
         {
             .right
             {

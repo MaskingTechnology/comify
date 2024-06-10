@@ -1,24 +1,40 @@
 .application-sidebar
 {
     display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    flex-direction: row;
+    gap: 2em;
     height: 100%;
+    width: 100%;
 
-    .logo
+    & > .content
     {
-        flex-grow: 0;
-        flex-shrink: 0;
-    }
-
-    nav
-    {
+        display: flex;
+        flex-direction: column;
         flex-grow: 1;
         flex-shrink: 1;
-        overflow-y: auto;
+        gap: 2rem;
+
+        .logo
+        {
+            flex-grow: 0;
+            flex-shrink: 0;
+        }
+
+        nav
+        {
+            flex-grow: 1;
+            flex-shrink: 1;
+            overflow-y: auto;
+        }
+
+        .identity
+        {
+            flex-grow: 0;
+            flex-shrink: 0;
+        }
     }
 
-    .identity
+    & > .ruler
     {
         flex-grow: 0;
         flex-shrink: 0;
