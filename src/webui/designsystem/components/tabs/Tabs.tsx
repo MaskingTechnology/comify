@@ -27,8 +27,8 @@ export default function Component({ separator, children, onChange }: Props)
         ? children
         : [children];
 
-    return <div className='ds-tabs'>
-        <div className='ds-tabs-nav'>
+    return <div className='tabs'>
+        <div className='nav'>
             {
                 tabs.map((element, index) =>
                 {
@@ -37,7 +37,7 @@ export default function Component({ separator, children, onChange }: Props)
                     const key = `tab-${index}-${element.props.title}`;
 
                     return (
-                        <div key={key} className={'ds-tabs-nav-item ' + style} onClick={handleClick}>
+                        <div key={key} className={'item ' + style} onClick={handleClick}>
                             {element.props.title}
                         </div>
                     );
@@ -46,9 +46,9 @@ export default function Component({ separator, children, onChange }: Props)
         </div>
         {
             separator !== undefined
-                ? <div className='ds-tabs-separator'>{separator}</div>
+                ? <div className='separator'>{separator}</div>
                 : null
         }
-        <div className="ds-tabs-content">{tabs[selected]}</div>
+        <div className="content">{tabs[selected]}</div>
     </div>;
 }

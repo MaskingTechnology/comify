@@ -24,7 +24,7 @@ export default function Element({ open, width, height, children }: Props)
             : ref.current?.close();
     }, [open]);
 
-    return <dialog ref={ref} className='ds-modal'>
+    return <dialog ref={ref} className='modal'>
         <form method='dialog' style={{ width, height }}>
             {children}
         </form>

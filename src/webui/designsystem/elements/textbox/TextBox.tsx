@@ -17,8 +17,8 @@ export type Props = {
 
 export default function Element({ name, placeholder, value, limit, pattern, title, size, reference, required, onChange }: Props)
 {
-    const className = 'ds-textbox'
-        + ' ds-textbox-size-' + (size ?? 'medium');
+    const className = 'textbox'
+        + ' size-' + (size ?? 'medium');
 
     return <input
         className={className}

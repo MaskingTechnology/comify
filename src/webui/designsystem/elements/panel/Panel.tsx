@@ -10,9 +10,9 @@ export type Props = {
 
 export default function Element({ type, padding, children }: Props)
 {
-    const className = 'ds-panel'
-        + ' ds-panel-' + (type ?? 'normal')
-        + ' ds-panel-padding-' + (padding ?? 'large');
+    const className = 'panel'
+        + ' type-' + (type ?? 'normal')
+        + ' padding-' + (padding ?? 'large');
 
     return <div className={className}>
         {children}

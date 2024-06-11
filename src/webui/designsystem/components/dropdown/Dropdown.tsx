@@ -41,17 +41,17 @@ export default function Component({ options, selected, onChange }: Props)
     };
 
     return (
-        <div className='ds-selection'>
-            <div className={showOptions ? 'ds-selection-text ds-selection-active' : 'ds-selection-text'} onClick={toggleOptions}>
+        <div className='selection'>
+            <div className={showOptions ? 'text active' : 'text'} onClick={toggleOptions}>
                 {selectedText}
             </div>
             {showOptions && (
-                <div className='ds-selection-options'>
+                <div className='options'>
                     {
                         Array.from(options).map(([key, value]) =>
                         {
                             return (
-                                <div className='ds-selection-option' data-key={key} key={key} onClick={handleOptionClick}>
+                                <div className='option' data-key={key} key={key} onClick={handleOptionClick}>
                                     {value}
                                 </div>
                             );

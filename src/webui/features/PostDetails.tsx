@@ -25,7 +25,7 @@ export default function Feature()
                 onCreatorClick={viewProfile}
                 onDeleteClick={deletePost}
             />
-            <Ruler type='horizontal' />
+            <Ruler direction='horizontal' />
             <Reactions post={post as PostView} />
         </LoadingContainer>
     </Column>;

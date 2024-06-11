@@ -3,9 +3,11 @@ import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/t
 
 import { Row } from '^/webui/designsystem';
 
-import CreatorIdentity from '../creator/FullIdentity';
+import CreatorIdentity from '../creator/ConciseIdentity';
 
 import LogoutButton from './LogoutButton';
+
+import Logo from './Logo';
 
 type Props = {
     readonly identity: CreatorView;
@@ -15,7 +17,10 @@ type Props = {
 export default function Component({ identity, onLogout }: Props)
 {
     return <Row alignX='justify' alignY='center'>
-        <CreatorIdentity creator={identity} />
-        <LogoutButton onLogout={onLogout} />
+        <Logo size='small' />
+        <Row gap='small' alignY='center'>
+            <CreatorIdentity creator={identity} />
+            <LogoutButton onLogout={onLogout} />
+        </Row>
     </Row>;
 }
