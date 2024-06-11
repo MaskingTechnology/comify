@@ -5,11 +5,12 @@ import './Sidebar.css';
 
 type Props = {
     readonly header: React.ReactNode;
+    readonly footer: React.ReactNode;
     readonly sidebar: React.ReactNode;
     readonly children: React.ReactNode;
 };
 
-export default function Layout({ header, sidebar, children }: Props)
+export default function Layout({ header, footer, sidebar, children }: Props)
 {
     return <div className='ds sidebar-layout'>
         <header>
@@ -27,6 +28,8 @@ export default function Layout({ header, sidebar, children }: Props)
                 </main>
             </div>
         </div>
-        <footer>Footer</footer>
+        <footer>
+            {footer}
+        </footer>
     </div>;
 }

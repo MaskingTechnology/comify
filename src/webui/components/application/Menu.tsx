@@ -12,7 +12,7 @@ import profileInactiveIcon from '^/webui/assets/images/navigation/profile-inacti
 import timelineActiveIcon from '^/webui/assets/images/navigation/timeline-active.svg';
 import timelineInactiveIcon from '^/webui/assets/images/navigation/timeline-inactive.svg';
 
-import Item from './Item';
+import Item from './MenuItem';
 
 type Props = {
     readonly identity: {
