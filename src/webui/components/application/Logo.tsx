@@ -2,7 +2,13 @@
 import logoImage from '^/webui/assets/images/logo.svg';
 import { Image } from '^/webui/designsystem';
 
-export default function Component()
+type Props = {
+    readonly size: 'small' | 'large';
+};
+
+export default function Component({ size }: Props)
 {
-    return <Image source={logoImage} height='2.2em' />;
+    const height = size === 'small' ? '1.5em' : '2.2em';
+
+    return <Image source={logoImage} height={height} />;
 }

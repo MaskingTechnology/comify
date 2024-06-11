@@ -13,7 +13,7 @@ export default function Component({ onGetIn }: Props)
     return <Panel>
         <Column gap='medium' alignX='stretch'>
             <Row alignX='justify' alignY='top' gap='medium' wrap='wrap'>
-                <Logo />
+                <Logo size='large' />
                 <Button type='primary' text='Get in' onClick={onGetIn} />
             </Row>
             <Image source={introductionImage} fit='contain' />

@@ -4,14 +4,17 @@ import React from 'react';
 import './Sidebar.css';
 
 type Props = {
+    readonly header: React.ReactNode;
     readonly sidebar: React.ReactNode;
     readonly children: React.ReactNode;
 };
 
-export default function Layout({ sidebar, children }: Props)
+export default function Layout({ header, sidebar, children }: Props)
 {
     return <div className='ds sidebar-layout'>
-        <header>Header</header>
+        <header>
+            {header}
+        </header>
         <div className='content'>
             <div className="left">
                 <aside>

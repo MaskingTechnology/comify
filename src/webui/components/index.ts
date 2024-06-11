@@ -1,4 +1,5 @@
 
+export { default as ApplicationHeader } from './application/Header';
 export { default as ApplicationIntroduction } from './application/Introduction';
 export { default as ApplicationLegalInfo } from './application/LegalInfo';
 export { default as ApplicationLogo } from './application/Logo';
@@ -20,4 +21,3 @@ export { default as PostPanelList } from './post/PanelList';
 export { default as ReactionPanelList } from './reaction/PanelList';
 export { default as RelationPanelList } from './relation/PanelList';
 export { default as RelationProfile } from './relation/Profile';
-

@@ -1,8 +1,9 @@
 
 import React from 'react';
 
-import portraitImage from '^/webui/assets/images/portrait.svg';
-import { Avatar, Row } from '^/webui/designsystem';
+import { Row } from '^/webui/designsystem';
+
+import Avatar from './Avatar';
 
 type Props = {
     readonly avatarSize: 'small' | 'medium' | 'large';
@@ -10,25 +11,12 @@ type Props = {
     readonly children: React.ReactNode;
 };
 
-function getWidth(size: string): string
-{
-    switch (size)
-    {
-        case 'small': return '2.2em';
-        case 'medium': return '3em';
-        case 'large': return '3.7em';
-        default: return '';
-    }
-}
-
 export default function Component({ avatarSize, avatarUrl, children }: Props)
 {
     const gapSize = avatarSize === 'small' ? 'small' : 'medium';
-    const width = getWidth(avatarSize);
-    const source = avatarUrl ?? portraitImage;
 
     return <Row gap={gapSize}>
-        <Avatar source={source} width={width} />
+        <Avatar url={avatarUrl} size={avatarSize} />
         {children}
     </Row>;
 }

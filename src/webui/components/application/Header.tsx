@@ -1,10 +1,11 @@
 
 import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
 
-import logoutIcon from '^/webui/assets/images/icons/logout.svg';
-import { ClickArea, Image, Row } from '^/webui/designsystem';
+import { Row } from '^/webui/designsystem';
 
-import CreatorIdentity from '../creator/FullIdentity';
+import CreatorIdentity from '../creator/ConciseIdentity';
+
+import Logo from './Logo';
 
 type Props = {
     readonly identity: CreatorView;
@@ -14,9 +15,7 @@ type Props = {
 export default function Component({ identity, onLogout }: Props)
 {
     return <Row alignX='justify' alignY='center'>
+        <Logo size='small' />
         <CreatorIdentity creator={identity} />
-        <ClickArea onClick={() => onLogout()}>
-            <Image source={logoutIcon} alt='Logout' width='16px' />
-        </ClickArea>
     </Row>;
 }

@@ -18,7 +18,7 @@ export default function Component({ identity, onLogout }: Props)
     return <div className='application-sidebar'>
         <div className='content'>
             <div className='logo'>
-                <Logo />
+                <Logo size='large' />
             </div>
             <Navigation identity={identity} />
             <div className='identity'>
