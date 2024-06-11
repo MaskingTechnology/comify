@@ -44,10 +44,12 @@ const records = await searchRecords(ITEM_COLLECTION, query, undefined, sort, lim
 
 *************************************************************************************/
 
+import sanitizer from '^/integrations/sanitizer/module';
+
 import Database from './Database.js';
 import implementation from './implementation.js';
 
-const database = new Database(implementation);
+const database = new Database(implementation, sanitizer);
 
 export * from './definitions/constants.js';
 export * from './definitions/types.js';
