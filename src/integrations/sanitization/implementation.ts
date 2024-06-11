@@ -7,9 +7,9 @@ const implementations = new Map<string, () => Sanitizer>([
     ['sanitize-html', createSanitizeHtml],
 ]);
 
-const DEFAULT_SANITIZER_IMPLEMENTATION = 'sanitize-html';
+const DEFAULT_SANITIZATION_IMPLEMENTATION = 'sanitize-html';
 
-const implementationName = process.env.SANITIZER_IMPLEMENTATION ?? DEFAULT_SANITIZER_IMPLEMENTATION;
+const implementationName = process.env.SANITIZATION_IMPLEMENTATION ?? DEFAULT_SANITIZATION_IMPLEMENTATION;
 const creator = implementations.get(implementationName.toLowerCase());
 
 if (creator === undefined)

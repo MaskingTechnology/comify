@@ -1,5 +1,5 @@
 
-import { Sanitizer } from '../sanitizer/definitions/interfaces';
+import { Sanitizer } from '^/integrations/sanitization/definitions/interfaces';
 
 import { Driver } from './definitions/interfaces.js';
 import { RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType } from './definitions/types.js';
