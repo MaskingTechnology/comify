@@ -43,7 +43,7 @@
         .right
         {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             justify-content: flex-start;
             overflow-y: auto;
             width: 70vw;
