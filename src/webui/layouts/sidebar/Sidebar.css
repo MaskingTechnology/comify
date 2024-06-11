@@ -1,13 +1,23 @@
 .sidebar-layout
 {
+    --header-height: 2.7em;
+    --footer-height: 4.4em;
+
+    --left-width: 30vw;
+    --right-width: 70vw;
+
+    --aside-width: 260px;
+    --main-width: 640px;
+
     container-type: size;
 
     & > header
     {
         background-color: var(--background-color);
+        border-bottom: 0.15em solid var(--border-color);
         display: none;
-        padding: 0.4em 1em;
-        height: 2.5em;
+        padding: 0.5em 1em;
+        height: var(--header-height);
         width: 100vw;
         top: 0;
         left: 0;
@@ -28,7 +38,7 @@
             display: flex;
             flex-direction: row;
             justify-content: flex-end;
-            width: 30vw;
+            width: var(--left-width);
 
             aside
             {
@@ -36,7 +46,7 @@
                 flex-shrink: 0;
                 flex-grow: 0;
                 padding: 1em 0;
-                width: 260px;
+                width: var(--aside-width);
             }
         }
 
@@ -46,14 +56,14 @@
             flex-direction: column;
             justify-content: flex-start;
             overflow-y: auto;
-            width: 70vw;
+            width: var(--right-width);
 
             main
             {
                 flex-shrink: 0;
                 flex-grow: 0;
                 padding: 1em 0;
-                width: 640px;
+                width: var(--main-width);
             }
         }
     }
@@ -61,9 +71,10 @@
     & > footer
     {
         background-color: var(--background-color);
+        border-top: 0.15em solid var(--border-color);
         display: none;
         padding: 0.4em 1em;
-        height: 4em;
+        height: var(--footer-height);
         width: 100vw;
         bottom: 0;
         left: 0;
@@ -84,7 +95,7 @@
             {
                 width: 100vw;
                 padding: 0 1em;
-                margin: 2.5em 0 4em 0;
+                margin: var(--header-height) 0 var(--footer-height) 0;
 
                 main
                 {
