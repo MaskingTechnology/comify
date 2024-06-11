@@ -1,14 +1,18 @@
 
+import { Sanitizer } from '^/integrations/sanitization/definitions/interfaces';
+
 import { Driver } from './definitions/interfaces.js';
 import { RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType } from './definitions/types.js';
 
 export default class Database implements Driver
 {
     #driver: Driver;
+    #sanitizer: Sanitizer;
 
-    constructor(driver: Driver)
+    constructor(driver: Driver, sanitizer: Sanitizer)
     {
         this.#driver = driver;
+        this.#sanitizer = sanitizer;
     }
 
     get connected() { return this.#driver.connected; }
@@ -25,7 +29,9 @@ export default class Database implements Driver
 
     createRecord(type: RecordType, data: RecordData): Promise<RecordId>
     {
-        return this.#driver.createRecord(type, data);
+        const cleanData = this.#sanitizer.sanitize(data);
+
+        return this.#driver.createRecord(type, cleanData);
     }
 
     readRecord(type: RecordType, id: RecordId, fields?: RecordField[]): Promise<RecordData>
@@ -35,7 +41,9 @@ export default class Database implements Driver
 
     updateRecord(type: RecordType, id: RecordId, data: RecordData): Promise<void>
     {
-        return this.#driver.updateRecord(type, id, data);
+        const cleanData = this.#sanitizer.sanitize(data);
+
+        return this.#driver.updateRecord(type, id, cleanData);
     }
 
     deleteRecord(type: RecordType, id: RecordId): Promise<void>
