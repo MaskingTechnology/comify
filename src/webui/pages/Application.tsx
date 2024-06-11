@@ -23,7 +23,7 @@ export default function Page({ children }: Props)
     const onLogout = () => navigate('/logout');
 
     const header = <ApplicationHeader identity={identity} onLogout={onLogout} />;
-    const footer = <ApplicationFooter />;
+    const footer = <ApplicationFooter identity={identity} />;
     const sidebar = <ApplicationSidebar identity={identity} onLogout={onLogout} />;
 
     return <SidebarLayout header={header} footer={footer} sidebar={sidebar}>

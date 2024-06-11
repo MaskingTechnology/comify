@@ -20,7 +20,7 @@ export default function Component({ identity, onLogout }: Props)
                 <Logo size='large' />
             </Cell>
             <Cell sizing='fluid'>
-                <Menu identity={identity} />
+                <Menu vertical={true} identity={identity} />
             </Cell>
             <Cell sizing='fixed'>
                 <Identity identity={identity} onLogout={onLogout} />

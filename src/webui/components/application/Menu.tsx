@@ -1,5 +1,5 @@
 
-import { Column } from '^/webui/designsystem';
+import { Column, Row } from '^/webui/designsystem';
 
 import createActiveIcon from '^/webui/assets/images/navigation/create-active.svg';
 import createInactiveIcon from '^/webui/assets/images/navigation/create-inactive.svg';
@@ -15,20 +15,26 @@ import timelineInactiveIcon from '^/webui/assets/images/navigation/timeline-inac
 import Item from './MenuItem';
 
 type Props = {
+    readonly vertical: boolean;
     readonly identity: {
         nickname: string;
     };
 };
 
-export default function Component({ identity }: Props)
+export default function Component({ vertical, identity }: Props)
 {
+    const Container = vertical ? Column : Row;
+
+    const gapSize = vertical ? 'medium' : 'large';
+    const alignX = vertical ? 'left' : 'center';
+
     return <nav>
-        <Column gap='medium'>
-            <Item title='Timeline' to='/timeline' activeIcon={timelineActiveIcon} inactiveIcon={timelineInactiveIcon} />
-            <Item title='Explore' to='/explore' activeIcon={exploreActiveIcon} inactiveIcon={exploreInactiveIcon} />
-            <Item title='Notifications' to='/notifications' activeIcon={notificationsActiveIcon} inactiveIcon={notificationsInactiveIcon} />
-            <Item title='Create' to='/create' activeIcon={createActiveIcon} inactiveIcon={createInactiveIcon} />
-            <Item title='Profile' to={`/profile/${identity.nickname}`} activeIcon={profileActiveIcon} inactiveIcon={profileInactiveIcon} />
-        </Column>
+        <Container gap={gapSize} alignX={alignX}>
+            <Item vertical={vertical} title='Timeline' to='/timeline' activeIcon={timelineActiveIcon} inactiveIcon={timelineInactiveIcon} />
+            <Item vertical={vertical} title='Explore' to='/explore' activeIcon={exploreActiveIcon} inactiveIcon={exploreInactiveIcon} />
+            <Item vertical={vertical} title='Notifications' to='/notifications' activeIcon={notificationsActiveIcon} inactiveIcon={notificationsInactiveIcon} />
+            <Item vertical={vertical} title='Create' to='/create' activeIcon={createActiveIcon} inactiveIcon={createInactiveIcon} />
+            <Item vertical={vertical} title='Profile' to={`/profile/${identity.nickname}`} activeIcon={profileActiveIcon} inactiveIcon={profileInactiveIcon} />
+        </Container>
     </nav>;
 }
