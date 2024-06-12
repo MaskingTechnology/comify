@@ -14,8 +14,8 @@ type Props = {
 
 export default function Component({ identity, onLogout }: Props)
 {
-    return <Row alignY='stretch' gap='large'>
-        <Column gap='large'>
+    return <Row alignY='stretch' alignX='justify' gap='large'>
+        <Column gap='large' alignX='stretch'>
             <Cell sizing='fixed'>
                 <Logo size='large' />
             </Cell>
