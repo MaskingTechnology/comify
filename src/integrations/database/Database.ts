@@ -1,5 +1,5 @@
 
-import { Sanitizer } from '^/integrations/sanitization/definitions/interfaces';
+import { sanitize } from '^/integrations/utilities/sanitize.js';
 
 import { Driver } from './definitions/interfaces.js';
 import { RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType } from './definitions/types.js';
@@ -7,12 +7,10 @@ import { RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType 
 export default class Database implements Driver
 {
     #driver: Driver;
-    #sanitizer: Sanitizer;
 
-    constructor(driver: Driver, sanitizer: Sanitizer)
+    constructor(driver: Driver)
     {
         this.#driver = driver;
-        this.#sanitizer = sanitizer;
     }
 
     get connected() { return this.#driver.connected; }
@@ -29,7 +27,7 @@ export default class Database implements Driver
 
     createRecord(type: RecordType, data: RecordData): Promise<RecordId>
     {
-        const cleanData = this.#sanitizer.sanitize(data);
+        const cleanData = sanitize(data);
 
         return this.#driver.createRecord(type, cleanData);
     }
@@ -41,7 +39,7 @@ export default class Database implements Driver
 
     updateRecord(type: RecordType, id: RecordId, data: RecordData): Promise<void>
     {
-        const cleanData = this.#sanitizer.sanitize(data);
+        const cleanData = sanitize(data);
 
         return this.#driver.updateRecord(type, id, cleanData);
     }
