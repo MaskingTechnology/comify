@@ -3,11 +3,16 @@
     --header-height: 2.7em;
     --footer-height: 4.4em;
 
-    --left-width: 30vw;
-    --right-width: 70vw;
-
     --aside-width: 260px;
     --main-width: 640px;
+
+    --content-gap: 2em;
+
+    --calc-gap-half: calc(var(--content-gap) / 2);
+    --calc-content-offset: calc((var(--main-width) - var(--aside-width) + var(--calc-gap-half)) / 2);
+
+    --left-width: calc(50vw - var(--calc-content-offset));
+    --right-width: calc(100vw - var(--left-width));
 
     container-type: size;
 
@@ -29,7 +34,7 @@
     {
         display: flex;
         flex-direction: row;
-        gap: 2em;
+        gap: var(--content-gap);
         width: 100vw;
         height: 100vh;
         max-height: 100vh;
