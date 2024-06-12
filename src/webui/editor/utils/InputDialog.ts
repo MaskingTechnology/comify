@@ -36,14 +36,14 @@ export default class InputDialog
         dialog.style.padding = '0';
 
         dialog.innerHTML = `<div class="ds">
-            <div class="ds-border ds-border-normal ds-border-size-large">
-                <div class="ds-panel ds-panel-normal ds-panel-padding-medium">
-                    <form class="ds-form" method="dialog">
-                        <div class="ds-column ds-column-gap-medium">
-                            <textarea class="ds-textarea ds-textarea-size-medium"></textarea>
-                            <div class="ds-row ds-row-gap-small ds-row-align-x-right">
-                                <button class="ds-button ds-button-secondary ds-button-size-small" value="cancel">Cancel</button>
-                                <button class="ds-button ds-button-primary ds-button-size-small" value="confirm">Confirm</button>
+            <div class="border type-normal size-large">
+                <div class="panel type-normal padding-medium">
+                    <form class="form" method="dialog">
+                        <div class="column gap-medium">
+                            <textarea class="textarea size-medium"></textarea>
+                            <div class="row gap-small align-x-right">
+                                <button class="button type-secondary size-small" value="cancel">Cancel</button>
+                                <button class="button type-primary size-small" value="confirm">Confirm</button>
                             </div>
                         </div>
                     </form>
