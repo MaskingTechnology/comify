@@ -7,7 +7,7 @@ type Props = {
     readonly open: boolean,
     readonly width?: string;
     readonly height?: string;
-    readonly children: React.ReactNode;
+    readonly children?: React.ReactNode;
 };
 
 export default function Element({ open, width, height, children }: Props)

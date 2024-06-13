@@ -20,10 +20,10 @@ export default function Feature({ post, handleDone }: Props)
 
     return <Tabs separator={<Ruler direction='horizontal' size='small' />}>
         <Tab title='Comic'>
-            <ComicEditor onCreate={createComicReaction} onCancel={handleDone} />
+            <ComicEditor onCreate={createComicReaction} onCancel={() => handleDone(undefined)} />
         </Tab>
         <Tab title='Comment'>
-            <CommentForm limit={MESSAGE_MAX_LENGTH} onCreate={createCommentReaction} onCancel={handleDone} />
+            <CommentForm limit={MESSAGE_MAX_LENGTH} onCreate={createCommentReaction} onCancel={() => handleDone(undefined)} />
         </Tab>
     </Tabs>;
 }

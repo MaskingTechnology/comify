@@ -6,6 +6,10 @@ import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/t
 type Context = {
     identity: CreatorView | undefined;
     setIdentity: (requester: CreatorView | undefined) => void;
+    modalContent: React.ReactNode | undefined;
+    modalOpen: boolean;
+    openModal: (content: React.ReactNode | undefined) => void;
+    closeModal: () => void;
 };
 
 export const AppContext = React.createContext({} as Context);
@@ -22,8 +26,26 @@ type Props = {
 export function AppContextProvider({ values, children }: Props)
 {
     const [identity, setIdentity] = useState<CreatorView | undefined>(values?.identity);
+    const [modalContent, setModalContent] = useState<React.ReactNode | undefined>(undefined);
+    const [modalOpen, setModalOpen] = useState<boolean>(false);
 
-    const contextValue = useMemo(() => ({ identity, setIdentity }), [identity]);
+    const openModal = (content: React.ReactNode | undefined) =>
+    {
+        setModalContent(content);
+        setModalOpen(true);
+    };
+
+    const closeModal = () =>
+    {
+        setModalContent(undefined);
+        setModalOpen(false);
+    };
+
+    const contextValue = useMemo(() =>
+    (
+        { identity, setIdentity, modalContent, modalOpen, openModal, closeModal }),
+        [identity, modalContent, modalOpen]
+    );
 
     return <AppContext.Provider value={contextValue}>
         {children}

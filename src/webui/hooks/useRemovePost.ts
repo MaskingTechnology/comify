@@ -7,7 +7,7 @@ import requester from '^/domain/authentication/requester';
 import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 import remove from '^/domain/post/remove/feature';
 
-export function useDeletePost()
+export function useRemovePost()
 {
     const navigate = useNavigate();
     const { identity } = useAppContext();
