@@ -10,7 +10,7 @@ import Reactions from './Reactions';
 
 export default function Feature()
 {
-    const { openModal, closeModal } = useAppContext();
+    const { showModal, closeModal } = useAppContext();
 
     const establishRelation = useEstablishRelation();
     const togglePostRating = useTogglePostRating();
@@ -26,7 +26,7 @@ export default function Feature()
             onConfirm={() => { closeModal(); removePost(post); }}
             onCancel={() => closeModal()} />;
 
-        openModal(panel);
+        showModal(panel);
     };
 
     return <Column gap='medium' alignX='stretch'>

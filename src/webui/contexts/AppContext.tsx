@@ -8,7 +8,7 @@ type Context = {
     setIdentity: (requester: CreatorView | undefined) => void;
     modalContent: React.ReactNode | undefined;
     modalOpen: boolean;
-    openModal: (content: React.ReactNode | undefined) => void;
+    showModal: (content: React.ReactNode | undefined) => void;
     closeModal: () => void;
 };
 
@@ -29,7 +29,7 @@ export function AppContextProvider({ values, children }: Props)
     const [modalContent, setModalContent] = useState<React.ReactNode | undefined>(undefined);
     const [modalOpen, setModalOpen] = useState<boolean>(false);
 
-    const openModal = (content: React.ReactNode | undefined) =>
+    const showModal = (content: React.ReactNode | undefined) =>
     {
         setModalContent(content);
         setModalOpen(true);
@@ -43,7 +43,7 @@ export function AppContextProvider({ values, children }: Props)
 
     const contextValue = useMemo(() =>
     (
-        { identity, setIdentity, modalContent, modalOpen, openModal, closeModal }),
+        { identity, setIdentity, modalContent, modalOpen, showModal, closeModal }),
         [identity, modalContent, modalOpen]
     );
 

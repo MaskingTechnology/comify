@@ -16,7 +16,7 @@ type Props = {
 
 export default function Feature({ post }: Props)
 {
-    const { openModal, closeModal } = useAppContext();
+    const { showModal, closeModal } = useAppContext();
 
     const establishRelation = useEstablishRelation();
     const viewProfile = useViewProfile();
@@ -42,7 +42,7 @@ export default function Feature({ post }: Props)
             handleDone={(reaction?: ReactionView) => { closeModal(); addReaction(reaction); }}
         />;
 
-        openModal(content);
+        showModal(content);
     };
 
     const deleteReaction = async (reaction: ReactionView) =>
@@ -52,7 +52,7 @@ export default function Feature({ post }: Props)
             onConfirm={() => { closeModal(); removeReaction(reaction); }}
             onCancel={() => closeModal()} />;
 
-        openModal(panel);
+        showModal(panel);
     };
 
     return <Column alignX='stretch'>
