@@ -55,18 +55,16 @@ export default function Feature({ post }: Props)
         openModal(panel);
     };
 
-    return <>
-        <Column alignX='stretch'>
-            <OrderAndAddRow selected='recent' reactionHandler={createReaction} />
-            <LoadingContainer data={reactions}>
-                <ReactionPanelList
-                    reactions={reactions as ReactionView[]}
-                    onFollowClick={establishRelation}
-                    onCreatorClick={viewProfile}
-                    onRatingClick={toggleReactionRating}
-                    onDeleteClick={deleteReaction}
-                />
-            </LoadingContainer>
-        </Column>
-    </>;
+    return <Column alignX='stretch'>
+        <OrderAndAddRow selected='recent' reactionHandler={createReaction} />
+        <LoadingContainer data={reactions}>
+            <ReactionPanelList
+                reactions={reactions as ReactionView[]}
+                onFollowClick={establishRelation}
+                onCreatorClick={viewProfile}
+                onRatingClick={toggleReactionRating}
+                onDeleteClick={deleteReaction}
+            />
+        </LoadingContainer>
+    </Column>;
 }

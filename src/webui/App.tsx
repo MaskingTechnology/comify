@@ -1,10 +1,8 @@
 
 import { BrowserRouter } from 'react-router-dom';
 
-import { ApplicationModal } from './components';
-
 import Routes from './Routes';
-import { ErrorBoundary } from './components';
+import { ApplicationModal, ErrorBoundary } from './components';
 import { useAppContext } from './contexts';
 import ErrorHandler from './features/ErrorHandler';
 import { Application, Guest } from './pages';
