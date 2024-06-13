@@ -8,7 +8,7 @@ type Props = {
 
 export default function Component({ open, children }: Props)
 {
-    return <Modal open={open}>
+    return <Modal sizing='full' open={open}>
         <Border type='normal' size='large' padding='small'>
             {children}
         </Border>
