@@ -49,6 +49,11 @@
             border-width: var(--size-small);
         }
 
+        &.padding-none
+        {
+            padding: 0;
+        }
+
         &.padding-small
         {
             padding: var(--padding-small);
