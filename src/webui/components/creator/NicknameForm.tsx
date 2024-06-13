@@ -34,7 +34,7 @@ export default function Component({ nickname, alreadyInUse, onUpdateClick }: Pro
             <Input
                 label={<Label value='Nickname'></Label>}
                 element={<TextBox
-                    reference={inputRef}
+                    ref={inputRef}
                     name='nickname'
                     placeholder={nickname}
                     value={''}
