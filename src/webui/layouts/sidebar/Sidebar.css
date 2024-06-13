@@ -3,6 +3,7 @@
     --header-height: 2.7em;
     --footer-height: 4.4em;
 
+    --modal-width: 700px;
     --aside-width: 260px;
     --main-width: 640px;
 
@@ -70,6 +71,12 @@
                 padding: 1em 0;
                 width: var(--main-width);
             }
+        }
+
+        .modal
+        {
+            margin-top: 2em;
+            max-width: var(--modal-width);
         }
     }
 

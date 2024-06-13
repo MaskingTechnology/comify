@@ -5,17 +5,16 @@ import './Modal.css';
 
 type Props = {
     readonly open: boolean,
-    readonly width?: string;
-    readonly height?: string;
-    readonly children: React.ReactNode;
+    readonly sizing?: 'full' | 'content';
+    readonly children?: React.ReactNode;
 };
 
-export default function Element({ open, width, height, children }: Props)
+export default function Element({ open, sizing, children }: Props)
 {
     const ref = useRef<HTMLDialogElement>(null);
 
-    width ??= 'auto';
-    height ??= 'auto';
+    const className = 'modal'
+        + ' sizing-' + (sizing ?? 'content');
 
     useEffect(() =>
     {
@@ -24,8 +23,8 @@ export default function Element({ open, width, height, children }: Props)
             : ref.current?.close();
     }, [open]);
 
-    return <dialog ref={ref} className='modal'>
-        <form method='dialog' style={{ width, height }}>
+    return <dialog ref={ref} className={className}>
+        <form method='dialog'>
             {children}
         </form>
     </dialog>;
