@@ -22,11 +22,11 @@ export function useExplorePosts()
     {
         offset += limit;
 
-        const newPosts = await explorePosts(requester, { limit, offset });
+        const nextPosts = await explorePosts(requester, { limit, offset });
 
-        setPosts(prevPosts => [...prevPosts as PostView[], ...newPosts]);
+        setPosts(prevPosts => [...(prevPosts ?? []), ...nextPosts]);
 
-        return newPosts.length < limit;
+        return nextPosts.length < limit;
     };
 
     return [posts, getMorePosts] as const;

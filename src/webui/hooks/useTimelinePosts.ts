@@ -22,11 +22,11 @@ export function useTimelinePosts()
     {
         offset += limit;
 
-        const newPosts = await getTimelinePosts(requester, { limit, offset });
+        const nextPosts = await getTimelinePosts(requester, { limit, offset });
 
-        setPosts(prevPosts => [...prevPosts as PostView[], ...newPosts]);
+        setPosts(prevPosts => [...(prevPosts ?? []), ...nextPosts]);
 
-        return newPosts.length < limit;
+        return nextPosts.length < limit;
     };
 
     return [posts, getMorePosts] as const;
