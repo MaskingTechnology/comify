@@ -10,7 +10,7 @@ export type Props = {
 
 export default function Element({ url, target, children }: Props)
 {
-    return <a className="ds-link" href={url} target={target}>
+    return <a className="link" href={url} target={target}>
         {children}
     </a>;
 }

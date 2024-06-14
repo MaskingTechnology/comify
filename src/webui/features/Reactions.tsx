@@ -1,12 +1,12 @@
 
-import { useState } from 'react';
 
 import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
 
-import { LoadingContainer, OrderAndAddRow, ReactionPanelList } from '^/webui/components';
-import { Border, Column, Modal } from '^/webui/designsystem';
-import { useDeleteReaction, useEstablishRelation, useReactions, useToggleReactionRating, useViewProfile } from '^/webui/hooks';
+import { ConfirmationPanel, LoadingContainer, OrderAndAddRow, ReactionPanelList } from '^/webui/components';
+import { useAppContext } from '^/webui/contexts';
+import { Column } from '^/webui/designsystem';
+import { useEstablishRelation, useReactions, useRemoveReaction, useToggleReactionRating, useViewProfile } from '^/webui/hooks';
 
 import CreateReaction from './CreateReaction';
 
@@ -16,7 +16,7 @@ type Props = {
 
 export default function Feature({ post }: Props)
 {
-    const [creating, setCreating] = useState<boolean>(false);
+    const { showModal, closeModal } = useAppContext();
 
     const establishRelation = useEstablishRelation();
     const viewProfile = useViewProfile();
@@ -24,42 +24,47 @@ export default function Feature({ post }: Props)
 
     const [reactions, setReactions] = useReactions(post);
 
-    const deleteReaction = useDeleteReaction(reactions as ReactionView[], setReactions);
+    const removeReaction = useRemoveReaction(reactions as ReactionView[], setReactions);
 
-    const openModal = () =>
+    const addReaction = (reaction?: ReactionView) =>
     {
-        setCreating(true);
+        if (reaction === undefined) return;
+
+        const result = [reaction, ...reactions as ReactionView[]];
+
+        setReactions(result);
     };
 
-    const closeModal = (reaction?: ReactionView) =>
+    const createReaction = () =>
     {
-        setCreating(false);
+        const content = <CreateReaction
+            post={post}
+            handleDone={(reaction?: ReactionView) => { closeModal(); addReaction(reaction); }}
+        />;
 
-        if (reaction !== undefined)
-        {
-            const result = [reaction, ...reactions as ReactionView[]];
-
-            setReactions(result);
-        }
+        showModal(content);
     };
 
-    return <>
-        <Modal open={creating} width='660px'>
-            <Border padding='small'>
-                <CreateReaction post={post} handleDone={closeModal} />
-            </Border>
-        </Modal>
-        <Column alignX='stretch'>
-            <OrderAndAddRow selected='recent' reactionHandler={openModal} />
-            <LoadingContainer data={reactions}>
-                <ReactionPanelList
-                    reactions={reactions as ReactionView[]}
-                    onFollowClick={establishRelation}
-                    onCreatorClick={viewProfile}
-                    onRatingClick={toggleReactionRating}
-                    onDeleteClick={deleteReaction}
-                />
-            </LoadingContainer>
-        </Column>
-    </>;
+    const deleteReaction = async (reaction: ReactionView) =>
+    {
+        const panel = <ConfirmationPanel
+            message='Are you sure you want to delete this reaction?'
+            onConfirm={() => { closeModal(); removeReaction(reaction); }}
+            onCancel={() => closeModal()} />;
+
+        showModal(panel);
+    };
+
+    return <Column alignX='stretch'>
+        <OrderAndAddRow selected='recent' reactionHandler={createReaction} />
+        <LoadingContainer data={reactions}>
+            <ReactionPanelList
+                reactions={reactions as ReactionView[]}
+                onFollowClick={establishRelation}
+                onCreatorClick={viewProfile}
+                onRatingClick={toggleReactionRating}
+                onDeleteClick={deleteReaction}
+            />
+        </LoadingContainer>
+    </Column>;
 }

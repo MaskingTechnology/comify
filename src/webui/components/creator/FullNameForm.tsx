@@ -45,7 +45,7 @@ export default function Component({ fullName, onUpdateClick }: Props)
             <Input
                 label={<Label value='fullName'></Label>}
                 element={<TextBox
-                    reference={inputRef}
+                    ref={inputRef}
                     name='fullName'
                     placeholder='new fullName'
                     value={fullName}

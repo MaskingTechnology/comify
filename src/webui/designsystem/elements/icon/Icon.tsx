@@ -9,5 +9,5 @@ export type Props = {
 
 export default function Element({ type }: Props)
 {
-    return <span className={'ds-icon ds-icon-' + type} />;
+    return <span className={'icon ' + type} />;
 }

@@ -1,4 +1,32 @@
-.ds-avatar
+.ds
 {
-    border-radius: 50%;
+    .avatar
+    {
+        border-radius: 50%;
+
+        &.fit-fill
+        {
+            object-fit: fill;
+        }
+
+        &.fit-contain
+        {
+            object-fit: contain;
+        }
+
+        &.fit-cover
+        {
+            object-fit: cover;
+        }
+
+        &.fit-none
+        {
+            object-fit: none;
+        }
+
+        &.fit-scale-down
+        {
+            object-fit: scale-down;
+        }
+    }
 }

@@ -12,11 +12,11 @@ export type Props = {
 
 export default function Element({ alignX, alignY, gap, wrap, children }: Props)
 {
-    const className = 'ds-row'
-        + ' ds-row-align-x-' + (alignX ?? 'left')
-        + ' ds-row-align-y-' + (alignY ?? 'top')
-        + ' ds-row-gap-' + (gap ?? 'medium')
-        + ' ds-row-wrap-' + (wrap ?? 'nowrap');
+    const className = 'row'
+        + ' align-x-' + (alignX ?? 'left')
+        + ' align-y-' + (alignY ?? 'top')
+        + ' gap-' + (gap ?? 'medium')
+        + ' wrap-' + (wrap ?? 'nowrap');
 
     return <div className={className}>
         {children}

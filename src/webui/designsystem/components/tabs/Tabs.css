@@ -1,58 +1,61 @@
-.ds-tabs
+.ds
 {
-    --margin: var(--margin-container);
+    .tabs
+    {
+        --margin: var(--margin-container);
 
-    --foreground-color: var(--color-primary-foreground);
+        --foreground-color: var(--color-primary-foreground);
 
-    --font-size-nav: 1.1em;
+        --font-size-nav: 1.1em;
 
-    --background-color-nav-item: transparent;
-    --background-color-nav-item-active: var(--background-color-nav-item);
-    --background-color-nav-item-hover: var(--color-background-hover);
-    --padding-nav-item: 0.5em 1em;
+        --background-color-nav-item: transparent;
+        --background-color-nav-item-active: var(--background-color-nav-item);
+        --background-color-nav-item-hover: var(--color-background-hover);
+        --padding-nav-item: 0.5em 1em;
 
-    --margin-separator: 0.2em 0 1em 0;
+        --margin-separator: 0.2em 0 1em 0;
 
-    display: flex;
-    flex-direction: column;
+        display: flex;
+        flex-direction: column;
 
-    margin: var(--margin);
-}
+        margin: var(--margin);
 
-.ds-tabs-nav
-{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+        .nav
+        {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
 
-    color: var(--foreground-color);
-    font-size: var(--font-size-nav);
-}
+            color: var(--foreground-color);
+            font-size: var(--font-size-nav);
 
-.ds-tabs-nav-item
-{
-    background: var(--background-color-nav-item);
+            .item
+            {
+                background: var(--background-color-nav-item);
 
-    cursor: pointer;
-    padding: var(--padding-nav-item);
-    width: 100%;
+                cursor: pointer;
+                padding: var(--padding-nav-item);
+                width: 100%;
 
-    text-align: center;
-}
+                text-align: center;
 
-.ds-tabs-nav-item:hover,
-.ds-tabs-nav-item.active:hover
-{
-    background: var(--background-color-nav-item-hover);
-}
+                &:hover,
+                &.active:hover
+                {
+                    background: var(--background-color-nav-item-hover);
+                }
 
-.ds-tabs-nav-item.active
-{
-    background: var(--background-color-nav-item-active);
-    font-weight: var(--font-weight-bold);
-}
+                &.active
+                {
+                    background: var(--background-color-nav-item-active);
+                    font-weight: var(--font-weight-bold);
+                }
+            }
+        }
 
-.ds-tabs-separator
-{
-    margin: var(--margin-separator);
+        .separator
+        {
+            margin: var(--margin-separator);
+        }
+    }
 }

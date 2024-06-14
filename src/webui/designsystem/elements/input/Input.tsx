@@ -14,7 +14,7 @@ export type Props = {
 export default function Element({ label, element }: Props) 
 {
     return (
-        <div className="ds-input">
+        <div className="input">
             {label}
             {element}
         </div>

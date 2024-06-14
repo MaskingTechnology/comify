@@ -7,7 +7,7 @@ export type Props = {
 
 export default function Element({ value }: Props)
 {
-    return <label className="ds-label">
+    return <label className="label">
         {value}
     </label>;
 }

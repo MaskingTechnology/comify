@@ -24,7 +24,7 @@ export default function Feature()
                 onFollowClick={establishRelation}
                 onEditClick={editProfile}
             />
-            <Tabs separator={<Ruler type='horizontal' size='small' />}>
+            <Tabs separator={<Ruler direction='horizontal' size='small' />}>
                 <Tab title={`Comics (${relation?.following.postCount})`}>
                     <CreatorComics creator={relation?.following as CreatorView} />
                 </Tab>

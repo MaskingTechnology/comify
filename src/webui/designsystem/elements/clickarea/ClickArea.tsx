@@ -9,8 +9,8 @@ export type Props = {
 
 export default function Element({ padding, onClick, children }: Props)
 {
-    const className = 'ds-clickarea'
-        + ' ds-clickarea-padding-' + (padding ?? 'none');
+    const className = 'clickarea'
+        + ' padding-' + (padding ?? 'none');
 
     return <div className={className} onClick={onClick}>
         {children}

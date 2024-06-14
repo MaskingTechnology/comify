@@ -1,7 +1,10 @@
-.ds-form
+.ds
 {
-    --margin: var(--margin-container);
+    .form
+    {
+        --margin: var(--margin-container);
 
-    margin: var(--margin);
-    min-width: 0;
+        margin: var(--margin);
+        min-width: 0;
+    }
 }

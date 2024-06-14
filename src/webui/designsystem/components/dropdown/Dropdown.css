@@ -1,66 +1,69 @@
-.ds-selection
+.ds
 {
-    --background-color: transparent;
-    --background-color-options: var(--color-primary-background);
-    --background-color-options-hover: var(--color-background-hover);
-    --arrow-color: var(--color-alert-foreground);
-    --border-color: var(--color-border);
+    .selection
+    {
+        --background-color: transparent;
+        --background-color-options: var(--color-primary-background);
+        --background-color-options-hover: var(--color-background-hover);
+        --arrow-color: var(--color-alert-foreground);
+        --border-color: var(--color-border);
 
-    display: inline-block;
-    position: relative;
+        display: inline-block;
+        position: relative;
 
-    min-width: fit-content;
+        min-width: fit-content;
 
-    cursor: pointer;
-}
+        cursor: pointer;
 
-.ds-selection-text
-{
-    background-color: var(--background-color);
+        .text
+        {
+            background-color: var(--background-color);
 
-    padding: 0.8em 2em 0.8em 0em;
-}
+            padding: 0.8em 2em 0.8em 0em;
 
-.ds-selection-text:after
-{
-    content: "";
+            &:after
+            {
+                content: "";
 
-    position: absolute;
-    right: 0.7em;
-    top: 1em;
+                position: absolute;
+                right: 0.7em;
+                top: 1.2em;
 
-    border: 0.45em solid transparent;
-    border-color: var(--arrow-color) transparent transparent transparent;
-}
+                border: 0.45em solid transparent;
+                border-color: var(--arrow-color) transparent transparent transparent;
+            }
 
-.ds-selection-text.ds-selection-active:after
-{
-    top: 0.9em;
+            &.active:after
+            {
+                top: 0.8em;
 
-    border-color: transparent transparent var(--arrow-color) transparent;
-}
+                border-color: transparent transparent var(--arrow-color) transparent;
+            }
+        }
 
-.ds-selection-options
-{
-    position: absolute;
+        .options
+        {
+            position: absolute;
 
-    min-width: fit-content;
-    white-space: nowrap;
-    text-align: left;
+            min-width: fit-content;
+            white-space: nowrap;
+            text-align: left;
 
-    background-color: var(--background-color-options);
-    border: 0.1em solid var(--border-color);
-}
+            background-color: var(--background-color-options);
+            border: 0.1em solid var(--border-color);
 
-.ds-selection-option
-{
-    padding: 0.8em 2em 0.8em 0.8em;
+            .option
+            {
+                padding: 0.8em 2em 0.8em 0.8em;
 
-    background: var(--color-primary-background);
-    cursor: pointer;
-}
+                background: var(--color-primary-background);
+                cursor: pointer;
 
-.ds-selection-option:hover
-{
-    background-color: var(--background-color-options-hover);
+                &:hover
+                {
+                    background-color: var(--background-color-options-hover);
+                }
+            }
+        }
+    }
 }

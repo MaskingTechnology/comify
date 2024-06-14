@@ -1,89 +1,93 @@
-.ds-column
+.ds
 {
-    --gap-small: 0.5em;
-    --gap-medium: 1em;
-    --gap-large: 2em;
+    .column
+    {
+        --gap-small: 0.5em;
+        --gap-medium: 1em;
+        --gap-large: 2em;
 
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-}
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        width: 100%;
 
-.ds-column > div,
-.ds-column > h1,
-.ds-column > h2,
-.ds-column > h3,
-.ds-column > p,
-.ds-column > form,
-.ds-column > label,
-.ds-column > input,
-.ds-column > textarea,
-.ds-column > select
-{
-    margin: 0;
-}
+        & > div,
+        & > h1,
+        & > h2,
+        & > h3,
+        & > p,
+        & > form,
+        & > label,
+        & > input,
+        & > textarea,
+        & > select
+        {
+            margin: 0;
+        }
 
-.ds-column.ds-column-align-y-top
-{
-    justify-content: flex-start;
-}
+        &.align-y-top
+        {
+            justify-content: flex-start;
+        }
 
-.ds-column.ds-column-align-y-center
-{
-    justify-content: center;
-}
+        &.align-y-center
+        {
+            justify-content: center;
+        }
 
-.ds-column.ds-column-align-y-bottom
-{
-    justify-content: flex-end;
-}
+        &.align-y-bottom
+        {
+            justify-content: flex-end;
+        }
 
-.ds-column.ds-column-align-y-justify
-{
-    justify-content: space-between;
-}
+        &.align-y-justify
+        {
+            justify-content: space-between;
+        }
 
-.ds-column.ds-column-align-x-left
-{
-    align-items: flex-start;
-}
+        &.align-x-left
+        {
+            align-items: flex-start;
+        }
 
-.ds-column.ds-column-align-x-center
-{
-    align-items: center;
-}
+        &.align-x-center
+        {
+            align-items: center;
+        }
 
-.ds-column.ds-column-align-x-right
-{
-    align-items: flex-end;
-}
+        &.align-x-right
+        {
+            align-items: flex-end;
+        }
 
-.ds-column.ds-column-align-x-stretch
-{
-    align-items: stretch;
-}
+        &.align-x-stretch
+        {
+            align-items: stretch;
+        }
 
-.ds-column.ds-column-gap-small
-{
-    gap: var(--gap-small);
-}
+        &.gap-small
+        {
+            gap: var(--gap-small);
+        }
 
-.ds-column.ds-column-gap-medium
-{
-    gap: var(--gap-medium);
-}
+        &.gap-medium
+        {
+            gap: var(--gap-medium);
+        }
 
-.ds-column.ds-column-gap-large
-{
-    gap: var(--gap-large);
-}
+        &.gap-large
+        {
+            gap: var(--gap-large);
+        }
 
-.ds-column.ds-column-wrap-nowrap
-{
-    flex-wrap: nowrap;
-}
+        &.wrap-nowrap
+        {
+            flex-wrap: nowrap;
+        }
 
-.ds-column.ds-column-wrap-wrap
-{
-    flex-wrap: wrap;
+        &.wrap-wrap
+        {
+            flex-wrap: wrap;
+        }
+    }
 }
