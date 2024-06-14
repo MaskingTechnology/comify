@@ -9,7 +9,7 @@ import { awaitData } from '^/webui/utils';
 
 export function useExploreCreators()
 {
-    const limit = 3;
+    const limit = 20;
     let offset = 0;
 
     const [relations, setRelations] = useState<RelationView[] | undefined>(undefined);
