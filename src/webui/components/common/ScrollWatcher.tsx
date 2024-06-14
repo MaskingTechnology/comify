@@ -21,25 +21,28 @@ export default function ScrollWatcher({ onTrigger, threshold, children }: Props)
 
         if (container === undefined) return;
 
-        let isLoading = false;
+        let isTriggering = false;
+
+        const trigger = async () =>
+        {
+            isTriggering = true;
+
+            const finished = await onTrigger();
+
+            if (finished) container.removeEventListener('scroll', handleScroll);
+
+            isTriggering = false;
+        };
 
         const handleScroll = async () =>
         {
-            console.log('loading', isLoading);
-
-            if (isLoading) return;
+            if (isTriggering) return;
 
             const { scrollTop, clientHeight, scrollHeight } = container;
 
             if (scrollTop + clientHeight >= scrollHeight * threshold)
             {
-                isLoading = true;
-
-                const finished = await onTrigger();
-
-                if (finished) container.removeEventListener('scroll', handleScroll);
-
-                isLoading = false;
+                await trigger();
             }
         };
 
