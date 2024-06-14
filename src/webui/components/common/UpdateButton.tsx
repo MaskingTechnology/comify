@@ -2,8 +2,7 @@
 import { Button } from '^/webui/designsystem';
 
 export type Props = {
-    state: string;
-    readonly onClick?: () => void;
+    readonly state: string;
 };
 
 export default function Component({ state }: Props)
