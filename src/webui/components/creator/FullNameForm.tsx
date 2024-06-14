@@ -43,12 +43,13 @@ export default function Component({ fullName, onUpdateClick }: Props)
     return <Panel>
         <Form submitHandler={handleSubmit}>
             <Input
-                label={<Label value='Full name'></Label>}
+                label={<Label value='fullName'></Label>}
                 element={<TextBox
                     reference={inputRef}
                     name='fullName'
-                    placeholder={fullName}
-                    value={''}
+                    placeholder='new fullName'
+                    value={fullName}
+                    limit={FULL_NAME_MAX_LENGTH}
                     size='small'
                     required={true}
                     onChange={handleChange}

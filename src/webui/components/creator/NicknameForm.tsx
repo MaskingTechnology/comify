@@ -11,6 +11,7 @@ export type Props = {
 };
 
 type States = 'disabled' | 'submitting' | 'enabled';
+
 const NICKNAME_MAX_LENGTH = 20;
 const NICKNAME_STRING_PATTERN = '^[a-z0-9_]+$';
 
@@ -48,17 +49,15 @@ export default function Component({ nickname, alreadyInUse, onUpdateClick }: Pro
         }
         <Form submitHandler={handleSubmit}>
             <Input
-                label={<Label value='Nickname'></Label>}
+                label={<Label value='nickname'></Label>}
                 element={<TextBox
                     reference={inputRef}
                     name='nickname'
                     placeholder='new nickname'
                     value={nickname}
-                    pattern="^(?!.*[\s_]).+$"
-                    title='Underscores and spaces are not allowed'
                     limit={NICKNAME_MAX_LENGTH}
-                    // pattern={NICKNAME_STRING_PATTERN}
-                    // title='Only alphanumeric characters are allowed.'
+                    pattern={NICKNAME_STRING_PATTERN}
+                    title='Only alphanumeric characters are allowed.'
                     size='small'
                     required={true}
                     onChange={handleChange}
