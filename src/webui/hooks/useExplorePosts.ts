@@ -9,11 +9,25 @@ import { awaitData } from '^/webui/utils';
 
 export function useExplorePosts()
 {
+    const limit = 6;
+    let offset = 0;
+
     const [posts, setPosts] = useState<PostView[] | undefined>(undefined);
 
-    const getPosts = () => explorePosts(requester);
+    const getInitialPosts = () => explorePosts(requester, { limit, offset });
 
-    useEffect(() => awaitData(getPosts, setPosts), []);
+    useEffect(() => awaitData(getInitialPosts, setPosts), []);
 
-    return [posts, setPosts] as const;
+    const getMorePosts = async () =>
+    {
+        offset += limit;
+
+        const newPosts = await explorePosts(requester, { limit, offset });
+
+        setPosts(prevPosts => [...prevPosts as PostView[], ...newPosts]);
+
+        return newPosts.length < limit;
+    };
+
+    return [posts, getMorePosts] as const;
 }
