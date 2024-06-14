@@ -16,6 +16,7 @@ export function useExploreCreators()
 
     const getInitialRelations = () => exploreRelations(requester, 'popular', undefined, { limit, offset });
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => awaitData(getInitialRelations, setRelations), []);
 
     const getMoreRelations = async () =>

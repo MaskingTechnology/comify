@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import getScrollContainer from '^/webui/utils/getScrollContainer';
 
-import EndResult from './EndResult';
 import Spinner from './Spinner';
 
 type Props = {
@@ -15,7 +14,6 @@ type Props = {
 export default function ScrollWatcher({ onTrigger, threshold, children }: Props)
 {
     const [isTriggering, setIsTriggering] = useState(false);
-    const [isFinished, setIsFinished] = useState(false);
     const ref = useRef(null);
 
     useEffect(() =>
@@ -41,7 +39,6 @@ export default function ScrollWatcher({ onTrigger, threshold, children }: Props)
             isTriggering = false;
 
             setIsTriggering(isTriggering);
-            setIsFinished(isFinished);
         };
 
         const handleScroll = async () =>
@@ -62,11 +59,11 @@ export default function ScrollWatcher({ onTrigger, threshold, children }: Props)
         {
             container.removeEventListener('scroll', handleScroll);
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return <div className={'scroll watcher'} ref={ref}>
         {children}
         {isTriggering && <Spinner />}
-        {isFinished && <EndResult />}
     </div>;
 }

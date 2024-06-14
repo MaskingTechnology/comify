@@ -16,6 +16,7 @@ export function useExplorePosts()
 
     const getInitialPosts = () => explorePosts(requester, { limit, offset });
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => awaitData(getInitialPosts, setPosts), []);
 
     const getMorePosts = async () =>
