@@ -15,6 +15,8 @@ export const VALUES =
         RELATION4: '4',
         RELATION5: '5',
         RELATION6: '6',
-        RELATION7: '7'
+        RELATION7: '7',
+
+        INVALID: 'A'.repeat(40)
     }
 };

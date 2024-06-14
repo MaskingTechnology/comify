@@ -1,4 +1,6 @@
 
+import logger from '^/integrations/logging/module';
+
 import type { Requester } from '^/domain/authentication/types';
 import updateReactionCount from '^/domain/post/updateReactionCount/feature';
 
@@ -28,6 +30,8 @@ export default async function feature(requester: Requester, id: string): Promise
     }
     catch (error: unknown)
     {
+        logger.logError('Failed to remove reaction', error);
+
         if (reactionCount !== undefined)
         {
             await updateReactionCount(reaction.postId, 'increase');

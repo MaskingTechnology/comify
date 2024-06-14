@@ -1,5 +1,7 @@
 
-export default class ReactionNotFound extends Error
+import { NotFound } from '^/integrations/runtime/module';
+
+export default class ReactionNotFound extends NotFound
 {
     constructor()
     {

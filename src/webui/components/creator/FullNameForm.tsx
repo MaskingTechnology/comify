@@ -9,6 +9,8 @@ export type Props = {
     readonly onUpdateClick: (fullName: string) => Promise<void>;
 };
 
+const FULL_NAME_MAX_LENGTH = 100;
+
 type States = 'disabled' | 'submitting' | 'enabled';
 
 export default function Component({ fullName, onUpdateClick }: Props)
@@ -45,8 +47,8 @@ export default function Component({ fullName, onUpdateClick }: Props)
                 element={<TextBox
                     reference={inputRef}
                     name='fullName'
-                    placeholder='new fullName'
-                    value={fullName}
+                    placeholder={fullName}
+                    value={''}
                     size='small'
                     required={true}
                     onChange={handleChange}
