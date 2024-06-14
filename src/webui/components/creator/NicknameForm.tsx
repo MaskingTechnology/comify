@@ -13,7 +13,7 @@ export type Props = {
 type States = 'disabled' | 'submitting' | 'enabled';
 
 const NICKNAME_MAX_LENGTH = 20;
-const NICKNAME_STRING_PATTERN = '^[a-z0-9_]+$';
+const NICKNAME_STRING_PATTERN = '^[a-zA-Z0-9]+$';
 
 export default function Component({ nickname, alreadyInUse, onUpdateClick }: Props)
 {
