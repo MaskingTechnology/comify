@@ -1,8 +1,9 @@
 
 import validator, { ValidationSchema } from '^/integrations/validation/module';
 
+import { Range } from '^/domain/types';
+
 import InvalidRange from './InvalidRange';
-import { Range } from './types';
 
 const schema: ValidationSchema =
 {
@@ -27,7 +28,7 @@ const schema: ValidationSchema =
     }
 };
 
-export default function validateData({ offset, limit }: Range): void
+export default function feature({ offset, limit }: Range): void
 {
     const result = validator.validate({ offset, limit }, schema);
 
