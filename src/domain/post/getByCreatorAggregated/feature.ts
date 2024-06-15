@@ -1,6 +1,7 @@
 
 import type { Requester } from '^/domain/authentication/types';
 import { Range } from '^/domain/types';
+import validateRange from '^/domain/validateRange';
 
 import aggregate from '../aggregate/feature';
 import type { AggregatedData } from '../aggregate/types';
@@ -10,7 +11,9 @@ export { type AggregatedData };
 
 export default async function feature(requester: Requester, creatorId: string, range: Range): Promise<AggregatedData[]>
 {
-    const data = await getByCreator(creatorId, range.offset, range.limit);
+    validateRange(range);
+
+    const data = await getByCreator(creatorId, range.limit, range.offset);
 
     return Promise.all(data.map(item => aggregate(requester, item)));
 }

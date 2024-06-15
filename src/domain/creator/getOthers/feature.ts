@@ -4,7 +4,7 @@ import database, { QueryStatement, RecordQuery, RecordSort, SortDirections } fro
 import { RECORD_TYPE, SortOrder } from '../definitions';
 import type { DataModel } from '../types';
 
-export default async function feature(ids: string[], order: SortOrder, search: string | undefined = undefined, offset: number, limit: number): Promise<DataModel[]>
+export default async function feature(ids: string[], order: SortOrder, search: string | undefined = undefined, limit: number, offset: number): Promise<DataModel[]>
 {
     const defaultQuery: RecordQuery = { id: { NOT_IN: ids } };
     const searchQuery: RecordQuery = {
