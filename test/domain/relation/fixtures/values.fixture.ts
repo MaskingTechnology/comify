@@ -19,5 +19,6 @@ export const VALUES =
 
         INVALID: 'A'.repeat(40)
     },
-    RANGE: { limit: 30, offset: 0 }
+    LIMIT: 30,
+    OFFSET: 0
 };
