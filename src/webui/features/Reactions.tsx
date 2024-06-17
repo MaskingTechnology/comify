@@ -3,7 +3,7 @@
 import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
 
-import { ConfirmationPanel, LoadingContainer, OrderAndAddRow, ReactionPanelList } from '^/webui/components';
+import { ConfirmationPanel, LoadingContainer, OrderAndAddRow, ReactionPanelList, ScrollWatcher } from '^/webui/components';
 import { useAppContext } from '^/webui/contexts';
 import { Column } from '^/webui/designsystem';
 import { useEstablishRelation, useReactions, useRemoveReaction, useToggleReactionRating, useViewProfile } from '^/webui/hooks';
@@ -14,6 +14,8 @@ type Props = {
     readonly post: PostView;
 };
 
+const THRESHOLD = 0.8;
+
 export default function Feature({ post }: Props)
 {
     const { showModal, closeModal } = useAppContext();
@@ -22,7 +24,7 @@ export default function Feature({ post }: Props)
     const viewProfile = useViewProfile();
     const toggleReactionRating = useToggleReactionRating();
 
-    const [reactions, setReactions] = useReactions(post);
+    const [reactions, setReactions, getMoreReactions] = useReactions(post);
 
     const removeReaction = useRemoveReaction(reactions as ReactionView[], setReactions);
 
@@ -58,13 +60,15 @@ export default function Feature({ post }: Props)
     return <Column alignX='stretch'>
         <OrderAndAddRow selected='recent' reactionHandler={createReaction} />
         <LoadingContainer data={reactions}>
-            <ReactionPanelList
-                reactions={reactions as ReactionView[]}
-                onFollowClick={establishRelation}
-                onCreatorClick={viewProfile}
-                onRatingClick={toggleReactionRating}
-                onDeleteClick={deleteReaction}
-            />
+            <ScrollWatcher onTrigger={getMoreReactions} threshold={THRESHOLD}>
+                <ReactionPanelList
+                    reactions={reactions as ReactionView[]}
+                    onFollowClick={establishRelation}
+                    onCreatorClick={viewProfile}
+                    onRatingClick={toggleReactionRating}
+                    onDeleteClick={deleteReaction}
+                />
+            </ScrollWatcher>
         </LoadingContainer>
     </Column>;
 }
