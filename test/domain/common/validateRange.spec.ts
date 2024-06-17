@@ -8,20 +8,34 @@ import { VALUES } from './fixtures';
 
 describe('domain/common/validateRange', () =>
 {
-    it('should not accept invalid ranges', () =>
+    it('should not accept a too small limit', () =>
     {
-        const test1 = () => validateRange(VALUES.RANGE.LIMIT_TOO_SMALL);
-        const test2 = () => validateRange(VALUES.RANGE.LIMIT_TOO_BIG);
-        const test3 = () => validateRange(VALUES.RANGE.OFFSET_TOO_SMALL);
+        const result = () => validateRange(VALUES.RANGE.LIMIT_TOO_SMALL);
 
-        expect(test1).toThrow(InvalidRange);
-        expect(test2).toThrow(InvalidRange);
-        expect(test3).toThrow(InvalidRange);
+        expect(result).toThrow(InvalidRange);
     });
 
-    it('should accept valid ranges', () =>
+    it('should not accept a too big limit', () =>
+    {
+        const result = () => validateRange(VALUES.RANGE.LIMIT_TOO_BIG);
+
+        expect(result).toThrow(InvalidRange);
+    });
+
+    it('should not accept a too small offset', () =>
+    {
+        const result = () => validateRange(VALUES.RANGE.OFFSET_TOO_SMALL);
+
+        expect(result).toThrow(InvalidRange);
+    });
+
+    it('should accept valid lower bounds', () =>
     {
         validateRange(VALUES.RANGE.LOWER_BOUNDS);
+    });
+
+    it('should accept valid upper bounds', () =>
+    {
         validateRange(VALUES.RANGE.UPPER_BOUNDS);
     });
 });
