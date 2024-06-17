@@ -6,9 +6,9 @@ import type { DataModel } from '../types';
 
 import retrieveData from './retrieveData';
 
-export default async function feature(requester: Requester, followingId: string): Promise<DataModel[]>
+export default async function feature(requester: Requester, followingId: string, limit: number, offset: number): Promise<DataModel[]>
 {
-    const data = await retrieveData(followingId);
+    const data = await retrieveData(followingId, limit, offset);
 
     return requester.id !== followingId
         ? translateToRequester(requester, data)

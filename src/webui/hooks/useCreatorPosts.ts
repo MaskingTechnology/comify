@@ -10,15 +10,29 @@ import { awaitData } from '^/webui/utils';
 
 export function useCreatorPosts(creator: CreatorView)
 {
+    const limit = 16;
+    let offset = 0;
+
     const [posts, setPosts] = useState<PostView[] | undefined>(undefined);
 
     useEffect(() => 
     {
-        const getPosts = () => getCreatorPosts(requester, creator.id);
+        const getInitialPosts = () => getCreatorPosts(requester, creator.id, { limit, offset });
 
-        awaitData(getPosts, setPosts);
-
+        awaitData(getInitialPosts, setPosts);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [creator]);
 
-    return [posts, setPosts] as const;
+    const getMorePosts = async () =>
+    {
+        offset += limit;
+
+        const nextPosts = await getCreatorPosts(requester, creator.id, { limit, offset });
+
+        setPosts(prevPosts => [...(prevPosts ?? []), ...nextPosts]);
+
+        return nextPosts.length < limit;
+    };
+
+    return [posts, getMorePosts] as const;
 }

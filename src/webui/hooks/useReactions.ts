@@ -10,15 +10,30 @@ import { awaitData } from '^/webui/utils';
 
 export function useReactions(post: PostView)
 {
+    const limit = 15;
+    let offset = 0;
+
     const [reactions, setReactions] = useState<ReactionView[] | undefined>(undefined);
 
-    useEffect(() => 
+    useEffect(() =>
     {
-        const getReactions = () => getReactionsByPost(requester, post.id);
+        const getInitialReactions = () => getReactionsByPost(requester, post.id, { limit, offset });
 
-        awaitData(getReactions, setReactions);
+        awaitData(getInitialReactions, setReactions);
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [post]);
 
-    return [reactions, setReactions] as const;
+    const getMoreReactions = async () =>
+    {
+        offset += limit;
+
+        const nextReactions = await getReactionsByPost(requester, post.id, { limit, offset });
+
+        setReactions(prevReactions => [...(prevReactions ?? []), ...nextReactions]);
+
+        return nextReactions.length < limit;
+    };
+
+    return [reactions, setReactions, getMoreReactions] as const;
 }

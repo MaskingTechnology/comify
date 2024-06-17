@@ -10,15 +10,29 @@ import { awaitData } from '^/webui/utils';
 
 export function useCreatorFollowers(creator: CreatorView)
 {
+    const limit = 12;
+    let offset = 0;
+
     const [relations, setRelations] = useState<RelationView[] | undefined>(undefined);
 
     useEffect(() => 
     {
-        const getRelations = () => getFollowers(requester, creator.id);
+        const getRelations = () => getFollowers(requester, creator.id, { limit, offset });
 
         awaitData(getRelations, setRelations);
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [creator]);
 
-    return [relations, setRelations] as const;
+    const getMoreRelations = async () =>
+    {
+        offset += limit;
+
+        const nextRelations = await getFollowers(requester, creator.id, { limit, offset });
+
+        setRelations(prevRelations => [...(prevRelations ?? []), ...nextRelations]);
+
+        return nextRelations.length < limit;
+    };
+
+    return [relations, getMoreRelations] as const;
 }

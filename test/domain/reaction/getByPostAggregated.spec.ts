@@ -13,11 +13,11 @@ beforeEach(async () =>
     ]);
 });
 
-describe('domain/reaction/getByPost', () =>
+describe('domain/reaction/getByPostAggregated', () =>
 {
     it('should not retrieve deleted reactions', async () =>
     {
-        const reactions = await getByPost(REQUESTERS.OWNER, VALUES.IDS.POST_EXISTING);
+        const reactions = await getByPost(REQUESTERS.OWNER, VALUES.IDS.POST_EXISTING, VALUES.RANGE);
         expect(reactions).not.toContainEqual({ id: VALUES.IDS.REACTION_DELETED });
     });
 });
