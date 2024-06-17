@@ -1,9 +1,9 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import getByPost from '^/domain/reaction/getByPost/feature';
+import getByPost from '^/domain/reaction/getByPostAggregated/feature';
 
-import { DATABASES, FILE_STORES, VALUES } from './fixtures';
+import { DATABASES, FILE_STORES, REQUESTERS, VALUES } from './fixtures';
 
 beforeEach(async () =>
 {
@@ -13,11 +13,11 @@ beforeEach(async () =>
     ]);
 });
 
-describe('domain/reaction/getByPost', () =>
+describe('domain/reaction/getByPostAggregated', () =>
 {
     it('should not retrieve deleted reactions', async () =>
     {
-        const reactions = await getByPost(VALUES.IDS.POST_EXISTING);
+        const reactions = await getByPost(REQUESTERS.OWNER, VALUES.IDS.POST_EXISTING);
         expect(reactions).not.toContainEqual({ id: VALUES.IDS.REACTION_DELETED });
     });
 });
