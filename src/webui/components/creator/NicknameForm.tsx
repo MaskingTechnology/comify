@@ -49,11 +49,11 @@ export default function Component({ nickname, alreadyInUse, onUpdateClick }: Pro
         }
         <Form submitHandler={handleSubmit}>
             <Input
-                label={<Label value='nickname'></Label>}
+                label={<Label value='Nickname'></Label>}
                 element={<TextBox
                     ref={inputRef}
                     name='nickname'
-                    placeholder='new nickname'
+                    placeholder='Your nickname'
                     value={nickname}
                     limit={NICKNAME_MAX_LENGTH}
                     pattern={NICKNAME_STRING_PATTERN}
