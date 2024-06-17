@@ -4,8 +4,3 @@ export type BaseDataModel = {
 };
 
 export type CountOperation = 'increase' | 'decrease';
-
-export type Range = {
-    offset: number;
-    limit: number;
-};

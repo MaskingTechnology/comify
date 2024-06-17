@@ -1,7 +1,7 @@
 
 import validator, { ValidationSchema } from '^/integrations/validation/module';
 
-import { Range } from '^/domain/types';
+import { Range } from '../types';
 
 import InvalidRange from './InvalidRange';
 
