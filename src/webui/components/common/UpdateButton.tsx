@@ -2,7 +2,7 @@
 import { Button } from '^/webui/designsystem';
 
 export type Props = {
-    readonly state: string;
+    readonly state: 'enabled' | 'submitting' | 'disabled';
 };
 
 export default function Component({ state }: Props)
