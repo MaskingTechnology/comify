@@ -11,12 +11,12 @@ export default function Element({ children, submitHandler }: Props)
 {
     const handleSubmit = (event: React.FormEvent<HTMLElement>) =>
     {
+        event.preventDefault();
+
         if (submitHandler)
         {
             submitHandler(event.target as HTMLFormElement);
         }
-
-        event.preventDefault();
     };
 
     return <form onSubmit={handleSubmit} className='form'>

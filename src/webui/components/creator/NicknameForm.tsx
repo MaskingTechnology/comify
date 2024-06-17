@@ -1,5 +1,5 @@
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 import UpdateButton from '^/webui/components/common/UpdateButton';
 import { Form, Input, Label, Panel, Row, TextBox } from '^/webui/designsystem';
@@ -10,18 +10,35 @@ export type Props = {
     readonly onUpdateClick: (nickname: string) => Promise<void>;
 };
 
+type States = 'disabled' | 'submitting' | 'enabled';
+
 const NICKNAME_MAX_LENGTH = 20;
-const NICKNAME_STRING_PATTERN = '^[a-z0-9_]+$';
+const NICKNAME_STRING_PATTERN = '^[a-zA-Z0-9]+$';
 
 export default function Component({ nickname, alreadyInUse, onUpdateClick }: Props)
 {
     const inputRef = useRef<HTMLInputElement>(null);
+    const [state, setState] = useState<States>('disabled');
+
+    const handleChange = () =>
+    {
+        const value = inputRef.current?.value ?? '';
+        const newState = value !== nickname ? 'enabled' : 'disabled';
+
+        setState(newState);
+    };
 
     const handleSubmit = async () =>
     {
         const value = inputRef.current?.value ?? '';
 
+        if (value === nickname) return;
+
+        setState('submitting');
+
         await onUpdateClick(value);
+
+        setState('disabled');
     };
 
     return <Panel>
@@ -36,18 +53,19 @@ export default function Component({ nickname, alreadyInUse, onUpdateClick }: Pro
                 element={<TextBox
                     ref={inputRef}
                     name='nickname'
-                    placeholder={nickname}
-                    value={''}
+                    placeholder='Your nickname'
+                    value={nickname}
                     limit={NICKNAME_MAX_LENGTH}
                     pattern={NICKNAME_STRING_PATTERN}
                     title='Only alphanumeric characters are allowed.'
                     size='small'
                     required={true}
+                    onChange={handleChange}
                 />
                 }
             />
             <Row alignX='right'>
-                <UpdateButton />
+                <UpdateButton key={'nickname'} state={state} />
             </Row>
         </Form>
     </Panel >;
