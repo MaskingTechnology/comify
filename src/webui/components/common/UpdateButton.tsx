@@ -2,14 +2,16 @@
 import { Button } from '^/webui/designsystem';
 
 export type Props = {
-    readonly onClick?: () => void;
+    readonly state: 'enabled' | 'submitting' | 'disabled';
 };
 
-export default function Component({ onClick }: Props)
+export default function Component({ state }: Props)
 {
+    const status = state === 'enabled' ? 'submit' : 'disabled';
+    const text = state === 'submitting' ? 'Updating' : 'Update';
+
     return <Button
-        type={'submit'}
-        text={'Update'}
-        onClick={onClick}
+        type={status}
+        text={text}
     />;
 }
