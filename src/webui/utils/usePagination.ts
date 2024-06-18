@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 type GetData<T> = (page: number) => Promise<T[]>;
 
-export function useLoadAndAppendData<T>(getData: GetData<T>, limit: number)
+export function usePagination<T>(getData: GetData<T>, limit: number)
 {
     const [data, setData] = useState<T[]>([]);
     const [page, setPage] = useState<number>(0);
@@ -39,12 +39,12 @@ export function useLoadAndAppendData<T>(getData: GetData<T>, limit: number)
         return cancel;
     };
 
-    const next = () =>
+    const nextPage = () =>
     {
         setPage(page + 1);
     };
 
     useEffect(loadData, [page]);
 
-    return [data, isLoading, isFinished, next, setData] as const;
+    return [data, isLoading, isFinished, nextPage, setData] as const;
 }
