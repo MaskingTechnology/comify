@@ -1,5 +1,9 @@
 
-export default function awaitData<T>(getData: () => Promise<T>, setData: (data: T) => void): () => void
+type GetData<T> = () => Promise<T>;
+type SetData<T> = (data: T) => void;
+type Cancel = () => void;
+
+export default function awaitData<T>(getData: GetData<T>, setData: SetData<T>): Cancel
 {
     let cancelled = false;
 

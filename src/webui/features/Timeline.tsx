@@ -1,7 +1,6 @@
 
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 
-import { LoadingContainer, OrderRow, PostPanelList, ScrollWatcher } from '^/webui/components';
+import { OrderRow, PostPanelList, ResultSet, ScrollLoader } from '^/webui/components';
 import { Column } from '^/webui/designsystem';
 import { useEstablishRelation, useReorderList, useTimelinePosts, useTogglePostRating, useViewPostDetails, useViewProfile } from '^/webui/hooks';
 
@@ -15,21 +14,21 @@ export default function Feature()
     const viewPostDetails = useViewPostDetails();
     const viewProfile = useViewProfile();
 
-    const [posts, getMorePosts] = useTimelinePosts();
+    const [posts, isLoading, isFinished, getMorePosts] = useTimelinePosts();
 
     return <Column gap='small' alignX='stretch'>
         <OrderRow selected='recent' onOrderChange={reorderList} />
-        <LoadingContainer data={posts}>
-            <ScrollWatcher onTrigger={getMorePosts} threshold={SCROLL_THRESHOLD}>
+        <ScrollLoader onScroll={getMorePosts} isLoading={isLoading} isFinished={isFinished}>
+            <ResultSet data={posts} isLoading={isLoading}>
                 <PostPanelList
-                    posts={posts as PostView[]}
+                    posts={posts}
                     onFollowClick={establishRelation}
                     onCreatorClick={viewProfile}
                     onComicClick={viewPostDetails}
                     onRatingClick={togglePostRating}
                     onReactionClick={viewPostDetails}
                 />
-            </ScrollWatcher>
-        </LoadingContainer>
+            </ResultSet>
+        </ScrollLoader>
     </Column>;
 }
