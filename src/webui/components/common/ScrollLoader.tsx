@@ -5,19 +5,22 @@ import { useScrollContainer } from '^/webui/utils';
 
 import Spinner from './Spinner';
 
-const SCROLL_THRESHOLD = 0.7;
+const DEFAULT_SCROLL_THRESHOLD = 0.7;
 
 type Props = {
     readonly onScroll: () => void;
     readonly isLoading: boolean;
     readonly isFinished: boolean;
+    readonly threshold?: number;
     readonly children: React.ReactNode;
 };
 
-export default function Component({ onScroll, isLoading, isFinished, children }: Props)
+export default function Component({ onScroll, isLoading, isFinished, threshold, children }: Props)
 {
     const ref = useRef<HTMLDivElement>(null);
     const container = useScrollContainer(ref);
+
+    threshold ??= DEFAULT_SCROLL_THRESHOLD;
 
     useEffect(() =>
     {
@@ -28,8 +31,9 @@ export default function Component({ onScroll, isLoading, isFinished, children }:
             if (isLoading) return;
 
             const { scrollTop, clientHeight, scrollHeight } = container;
+            const isAtThreshold = scrollTop + clientHeight >= scrollHeight * threshold;
 
-            if (scrollTop + clientHeight >= scrollHeight * SCROLL_THRESHOLD)
+            if (isAtThreshold)
             {
                 onScroll();
             }

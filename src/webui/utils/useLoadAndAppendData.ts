@@ -46,5 +46,5 @@ export function useLoadAndAppendData<T>(getData: GetData<T>, limit: number)
 
     useEffect(loadData, [page]);
 
-    return [data, isLoading, isFinished, next] as const;
+    return [data, isLoading, isFinished, next, setData] as const;
 }
