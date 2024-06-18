@@ -1,36 +1,29 @@
 
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
 import getCreator from '^/domain/creator/getByNicknameAggregated/feature';
-import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
 import getRelation from '^/domain/relation/getAggregated/feature';
 
 import { useAppContext } from '^/webui/contexts';
-import { awaitData } from '^/webui/utils';
+import { useLoadData } from '^/webui/utils';
 
 export function useCreator()
 {
     const { identity } = useAppContext();
     const { nickname } = useParams();
 
-    const [relation, setRelation] = useState<RelationView | undefined>(undefined);
-
-    useEffect(() =>
+    const getCreatorRelation = async () =>
     {
-        if (identity !== undefined && nickname !== undefined)
+        if (identity === undefined || nickname === undefined)
         {
-            const getCreatorRelation = async () =>
-            {
-                const creator: CreatorView = await getCreator(nickname);
-
-                return getRelation(identity.id, creator.id);
-            };
-
-            awaitData(getCreatorRelation, setRelation);
+            return undefined;
         }
-    }, [identity, nickname]);
 
-    return [relation, setRelation] as const;
+        const creator: CreatorView = await getCreator(nickname);
+
+        return getRelation(identity.id, creator.id);
+    };
+
+    return useLoadData(getCreatorRelation, [identity, nickname]);
 }

@@ -7,27 +7,29 @@ import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/t
 import getMe from '^/domain/creator/getMeAggregated/feature';
 
 import { useAppContext } from '^/webui/contexts';
-import { awaitData } from '^/webui/utils';
 
 export function useIdentify()
 {
     const navigate = useNavigate();
     const context = useAppContext();
 
-    useEffect(() => 
+    const getIdentity = () => getMe(requester);
+
+    const setIdentity = (identity: CreatorView) =>
     {
-        const getIdentity = () => getMe(requester);
+        const redirectLocation = window.sessionStorage.getItem('redirect');
 
-        const setIdentity = (identity: CreatorView) =>
-        {
-            const redirectLocation = window.sessionStorage.getItem('redirect');
+        context.setIdentity(identity);
 
-            context.setIdentity(identity);
+        navigate(redirectLocation ?? '/timeline');
+    };
 
-            navigate(redirectLocation ?? '/timeline');
-        };
+    const identify = async () =>
+    {
+        const identity = await getIdentity();
 
-        awaitData(getIdentity, setIdentity);
+        setIdentity(identity);
+    };
 
-    }, [context, navigate]);
+    useEffect(() => { identify(); }, []);
 }

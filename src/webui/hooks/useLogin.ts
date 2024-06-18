@@ -3,14 +3,15 @@ import { useEffect } from 'react';
 
 import getLoginUrl from '^/domain/authentication/getLoginUrl/feature';
 
-import { awaitData } from '^/webui/utils';
 
 const IGNORE_PATHS = ['/', '/login', '/identify'];
 
 export function useLogin()
 {
-    const setLoginUrl = (loginUrl: string) =>
+    const login = async () =>
     {
+        const loginUrl = await getLoginUrl();
+
         const pathname = window.location.pathname;
         const search = window.location.search;
         const hash = window.location.hash;
@@ -24,5 +25,6 @@ export function useLogin()
         window.location.href = loginUrl;
     };
 
-    useEffect(() => awaitData(getLoginUrl, setLoginUrl), []);
+
+    useEffect(() => { login(); }, []);
 }

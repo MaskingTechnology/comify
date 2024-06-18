@@ -1,9 +1,9 @@
 
-import { useEffect, useState } from 'react';
+import { DependencyList, useEffect, useState } from 'react';
 
 type GetData<T> = (page: number) => Promise<T[]>;
 
-export function usePagination<T>(getData: GetData<T>, limit: number)
+export function usePagination<T>(getData: GetData<T>, limit: number, deps: DependencyList = [])
 {
     const [data, setData] = useState<T[]>([]);
     const [page, setPage] = useState<number>(0);
@@ -44,7 +44,7 @@ export function usePagination<T>(getData: GetData<T>, limit: number)
         setPage(page + 1);
     };
 
-    useEffect(loadData, [page]);
+    useEffect(loadData, [page, ...deps]);
 
     return [data, isLoading, isFinished, nextPage, setData] as const;
 }
