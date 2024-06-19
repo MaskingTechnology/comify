@@ -1,11 +1,15 @@
 
 import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
 
-import { LoadingContainer, OrderAndSearchRow, RelationPanelList, ScrollWatcher } from '^/webui/components';
+import { OrderAndSearchRow, RelationPanelList, ResultSet, ScrollLoader } from '^/webui/components';
 import { Column } from '^/webui/designsystem';
-import { useEstablishRelation, useExploreCreators, useReorderList, useViewProfile } from '^/webui/hooks';
 
-const THRESHOLD = 0.7;
+import useEstablishRelation from './hooks/useEstablishRelation';
+import useExploreCreators from './hooks/useExploreCreators';
+import useReorderList from './hooks/useReorderList';
+import useViewProfile from './hooks/useViewProfile';
+
+const SCROLL_THRESHOLD = 0.7;
 
 export default function Feature()
 {
@@ -13,18 +17,18 @@ export default function Feature()
     const reorderList = useReorderList();
     const viewProfile = useViewProfile();
 
-    const [relations, getMoreRelations] = useExploreCreators();
+    const [relations, isLoading, isFinished, getMoreRelations] = useExploreCreators();
 
     return <Column gap='small' alignX='stretch'>
         <OrderAndSearchRow selected='popular' onOrderChange={reorderList} />
-        <LoadingContainer data={relations}>
-            <ScrollWatcher onTrigger={getMoreRelations} threshold={THRESHOLD}>
+        <ScrollLoader onScroll={getMoreRelations} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
+            <ResultSet data={relations} isLoading={isLoading}>
                 <RelationPanelList
                     relations={relations as RelationView[]}
                     onFollowClick={establishRelation}
                     onCreatorClick={viewProfile}
                 />
-            </ScrollWatcher>
-        </LoadingContainer>
+            </ResultSet>
+        </ScrollLoader>
     </Column>;
 }

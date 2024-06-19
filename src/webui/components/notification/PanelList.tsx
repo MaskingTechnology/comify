@@ -4,7 +4,6 @@ import type { AggregatedData as RelationView } from '^/domain/relation/aggregate
 
 import { Column } from '^/webui/designsystem';
 
-import NoResults from "../common/NoResults";
 import Panel from './Panel';
 
 type Props = {
@@ -15,11 +14,6 @@ type Props = {
 
 export default function Component({ notifications, onFollowClick, onCreatorClick }: Props)
 {
-    if (notifications.length === 0)
-    {
-        return <NoResults />;
-    }
-
     return <Column gap='medium' alignX='stretch'>
         {
             notifications.map(notification =>

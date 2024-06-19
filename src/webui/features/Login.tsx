@@ -1,5 +1,5 @@
 
-import { useLogin } from '^/webui/hooks';
+import useLogin from './hooks/useLogin';
 
 export default function Feature()
 {

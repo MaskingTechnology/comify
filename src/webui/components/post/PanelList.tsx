@@ -4,7 +4,6 @@ import type { AggregatedData as RelationView } from '^/domain/relation/aggregate
 
 import { Column } from '^/webui/designsystem';
 
-import NoResults from '../common/NoResults';
 import LargePanel from './LargePanel';
 
 type Props = {
@@ -18,11 +17,6 @@ type Props = {
 
 export default function Component({ posts, onFollowClick, onCreatorClick, onComicClick, onRatingClick, onReactionClick }: Props)
 {
-    if (posts.length === 0)
-    {
-        return <NoResults />;
-    }
-
     return <Column gap='medium' alignX='stretch'>
         {
             posts.map(post =>

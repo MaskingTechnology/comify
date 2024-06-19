@@ -1,12 +1,16 @@
 
-
 import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
 
-import { ConfirmationPanel, LoadingContainer, OrderAndAddRow, ReactionPanelList, ScrollWatcher } from '^/webui/components';
+import { ConfirmationPanel, OrderAndAddRow, ReactionPanelList, ResultSet, ScrollLoader } from '^/webui/components';
 import { useAppContext } from '^/webui/contexts';
 import { Column } from '^/webui/designsystem';
-import { useEstablishRelation, useReactions, useRemoveReaction, useToggleReactionRating, useViewProfile } from '^/webui/hooks';
+
+import useEstablishRelation from './hooks/useEstablishRelation';
+import useReactions from './hooks/useReactions';
+import useRemoveReaction from './hooks/useRemoveReaction';
+import useToggleReactionRating from './hooks/useToggleReactionRating';
+import useViewProfile from './hooks/useViewProfile';
 
 import CreateReaction from './CreateReaction';
 
@@ -14,7 +18,7 @@ type Props = {
     readonly post: PostView;
 };
 
-const THRESHOLD = 0.8;
+const SCROLL_THRESHOLD = 0.8;
 
 export default function Feature({ post }: Props)
 {
@@ -24,7 +28,7 @@ export default function Feature({ post }: Props)
     const viewProfile = useViewProfile();
     const toggleReactionRating = useToggleReactionRating();
 
-    const [reactions, setReactions, getMoreReactions] = useReactions(post);
+    const [reactions, isLoading, isFinished, getMoreReactions, setReactions] = useReactions(post);
 
     const removeReaction = useRemoveReaction(reactions as ReactionView[], setReactions);
 
@@ -59,8 +63,8 @@ export default function Feature({ post }: Props)
 
     return <Column alignX='stretch'>
         <OrderAndAddRow selected='recent' reactionHandler={createReaction} />
-        <LoadingContainer data={reactions}>
-            <ScrollWatcher onTrigger={getMoreReactions} threshold={THRESHOLD}>
+        <ScrollLoader onScroll={getMoreReactions} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
+            <ResultSet data={reactions} isLoading={isLoading}>
                 <ReactionPanelList
                     reactions={reactions as ReactionView[]}
                     onFollowClick={establishRelation}
@@ -68,7 +72,7 @@ export default function Feature({ post }: Props)
                     onRatingClick={toggleReactionRating}
                     onDeleteClick={deleteReaction}
                 />
-            </ScrollWatcher>
-        </LoadingContainer>
+            </ResultSet>
+        </ScrollLoader>
     </Column>;
 }

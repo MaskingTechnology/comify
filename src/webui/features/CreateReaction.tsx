@@ -4,7 +4,9 @@ import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate
 
 import { ComicEditor, CommentForm } from '^/webui/components';
 import { Ruler, Tab, Tabs } from '^/webui/designsystem';
-import { useCreateComicReaction, useCreateCommentReaction } from '^/webui/hooks';
+
+import useCreateComicReaction from './hooks/useCreateComicReaction';
+import useCreateCommentReaction from './hooks/useCreateCommentReaction';
 
 type Props = {
     readonly post: PostView;

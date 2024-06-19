@@ -3,10 +3,11 @@ import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/t
 
 import { CreatorFullNameForm, CreatorNicknameForm, LoadingContainer } from '^/webui/components';
 import CreatorProfile from '^/webui/components/creator/Profile';
+import { useAppContext } from '^/webui/contexts';
 import { Column, Ruler } from '^/webui/designsystem';
 
-import { useAppContext } from '../contexts';
-import { useUpdateFullName, useUpdateNickname } from '../hooks';
+import useUpdateFullName from './hooks/useUpdateFullName';
+import useUpdateNickname from './hooks/useUpdateNickname';
 
 export default function Feature()
 {
