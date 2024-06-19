@@ -1,7 +1,13 @@
 
 import { OrderRow, PostPanelList, ResultSet, ScrollLoader } from '^/webui/components';
 import { Column } from '^/webui/designsystem';
-import { useEstablishRelation, useExplorePosts, useReorderList, useTogglePostRating, useViewPostDetails, useViewProfile } from '^/webui/hooks';
+
+import useEstablishRelation from './hooks/useEstablishRelation';
+import useExplorePosts from './hooks/useExplorePosts';
+import useReorderList from './hooks/useReorderList';
+import useTogglePostRating from './hooks/useTogglePostRating';
+import useViewPostDetails from './hooks/useViewPostDetails';
+import useViewProfile from './hooks/useViewProfile';
 
 const SCROLL_THRESHOLD = 0.7;
 

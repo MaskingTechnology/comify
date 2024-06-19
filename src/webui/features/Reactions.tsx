@@ -6,7 +6,12 @@ import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate
 import { ConfirmationPanel, OrderAndAddRow, ReactionPanelList, ResultSet, ScrollLoader } from '^/webui/components';
 import { useAppContext } from '^/webui/contexts';
 import { Column } from '^/webui/designsystem';
-import { useEstablishRelation, useReactions, useRemoveReaction, useToggleReactionRating, useViewProfile } from '^/webui/hooks';
+
+import useEstablishRelation from './hooks/useEstablishRelation';
+import useReactions from './hooks/useReactions';
+import useRemoveReaction from './hooks/useRemoveReaction';
+import useToggleReactionRating from './hooks/useToggleReactionRating';
+import useViewProfile from './hooks/useViewProfile';
 
 import CreateReaction from './CreateReaction';
 

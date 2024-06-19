@@ -2,7 +2,13 @@
 
 import { OrderRow, PostPanelList, ResultSet, ScrollLoader } from '^/webui/components';
 import { Column } from '^/webui/designsystem';
-import { useEstablishRelation, useReorderList, useTimelinePosts, useTogglePostRating, useViewPostDetails, useViewProfile } from '^/webui/hooks';
+
+import useEstablishRelation from './hooks/useEstablishRelation';
+import useReorderList from './hooks/useReorderList';
+import useTimelinePosts from './hooks/useTimelinePosts';
+import useTogglePostRating from './hooks/useTogglePostRating';
+import useViewPostDetails from './hooks/useViewPostDetails';
+import useViewProfile from './hooks/useViewProfile';
 
 const SCROLL_THRESHOLD = 0.7;
 
@@ -18,7 +24,7 @@ export default function Feature()
 
     return <Column gap='small' alignX='stretch'>
         <OrderRow selected='recent' onOrderChange={reorderList} />
-        <ScrollLoader onScroll={getMorePosts} isLoading={isLoading} isFinished={isFinished}>
+        <ScrollLoader onScroll={getMorePosts} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
             <ResultSet data={posts} isLoading={isLoading}>
                 <PostPanelList
                     posts={posts}

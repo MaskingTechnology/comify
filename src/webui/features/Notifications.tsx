@@ -3,7 +3,10 @@ import type { AggregatedData as NotificationView } from '^/domain/notification/a
 
 import { LoadingContainer, NotificationPanelList } from '^/webui/components';
 import { Column } from '^/webui/designsystem';
-import { useEstablishRelation, useNotifications, useViewProfile } from '^/webui/hooks';
+
+import useEstablishRelation from './hooks/useEstablishRelation';
+import useNotifications from './hooks/useNotifications';
+import useViewProfile from './hooks/useViewProfile';
 
 export default function Feature()
 {

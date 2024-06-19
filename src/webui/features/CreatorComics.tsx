@@ -3,7 +3,10 @@ import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/t
 
 import { PostPanelGrid, ResultSet, ScrollLoader } from '^/webui/components';
 import { Column } from '^/webui/designsystem';
-import { useCreatorPosts, useTogglePostRating, useViewPostDetails } from '^/webui/hooks';
+
+import useCreatorPosts from './hooks/useCreatorPosts';
+import useTogglePostRating from './hooks/useTogglePostRating';
+import useViewPostDetails from './hooks/useViewPostDetails';
 
 type Props = {
     readonly creator: CreatorView;

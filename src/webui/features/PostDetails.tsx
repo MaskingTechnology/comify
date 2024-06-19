@@ -4,7 +4,12 @@ import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 import { ConfirmationPanel, LoadingContainer, PostDetailsPanel } from '^/webui/components';
 import { useAppContext } from '^/webui/contexts';
 import { Column, Ruler } from '^/webui/designsystem';
-import { useEstablishRelation, usePost, useRemovePost, useTogglePostRating, useViewProfile } from '^/webui/hooks';
+
+import useEstablishRelation from './hooks/useEstablishRelation';
+import usePost from './hooks/usePost';
+import useRemovePost from './hooks/useRemovePost';
+import useTogglePostRating from './hooks/useTogglePostRating';
+import useViewProfile from './hooks/useViewProfile';
 
 import Reactions from './Reactions';
 

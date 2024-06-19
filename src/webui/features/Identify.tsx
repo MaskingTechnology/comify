@@ -1,5 +1,5 @@
 
-import { useIdentify } from '^/webui/hooks';
+import useIdentify from './hooks/useIdentify';
 
 export default function Feature()
 {

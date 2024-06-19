@@ -3,7 +3,11 @@ import type { AggregatedData as RelationView } from '^/domain/relation/aggregate
 
 import { OrderAndSearchRow, RelationPanelList, ResultSet, ScrollLoader } from '^/webui/components';
 import { Column } from '^/webui/designsystem';
-import { useEstablishRelation, useExploreCreators, useReorderList, useViewProfile } from '^/webui/hooks';
+
+import useEstablishRelation from './hooks/useEstablishRelation';
+import useExploreCreators from './hooks/useExploreCreators';
+import useReorderList from './hooks/useReorderList';
+import useViewProfile from './hooks/useViewProfile';
 
 const SCROLL_THRESHOLD = 0.7;
 

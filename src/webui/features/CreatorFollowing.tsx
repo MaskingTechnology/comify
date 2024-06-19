@@ -3,7 +3,11 @@ import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/t
 
 import { OrderAndSearchRow, RelationPanelList, ResultSet, ScrollLoader } from '^/webui/components';
 import { Column } from '^/webui/designsystem';
-import { useCreatorFollowing, useEstablishRelation, useReorderList, useViewProfile } from '^/webui/hooks';
+
+import useCreatorFollowing from './hooks/useCreatorFollowing';
+import useEstablishRelation from './hooks/useEstablishRelation';
+import useReorderList from './hooks/useReorderList';
+import useViewProfile from './hooks/useViewProfile';
 
 type Props = {
     readonly creator: CreatorView;

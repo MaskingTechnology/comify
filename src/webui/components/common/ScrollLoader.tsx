@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef } from 'react';
 
-import { useScrollContainer } from '^/webui/utils';
+import { useScrollContainer } from '^/webui/hooks';
 
 import Spinner from './Spinner';
 
@@ -45,7 +45,7 @@ export default function Component({ onScroll, isLoading, isFinished, threshold, 
 
         return () => container.removeEventListener('scroll', handleScroll);
 
-    }, [container, isLoading, isFinished]);
+    }, [container, onScroll, isLoading, isFinished, threshold]);
 
     return <div className='scroll-loader' ref={ref}>
         {children}
