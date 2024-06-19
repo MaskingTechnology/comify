@@ -1,5 +1,5 @@
 
-import { DependencyList, useEffect, useState } from 'react';
+import { DependencyList, useCallback, useEffect, useState } from 'react';
 
 type GetData<T> = (page: number) => Promise<T[]>;
 
@@ -10,7 +10,7 @@ export function usePagination<T>(getData: GetData<T>, limit: number, deps: Depen
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isFinished, setIsFinished] = useState<boolean>(false);
 
-    const loadData = () =>
+    const loadData = useCallback(() =>
     {
         let cancelled = false;
 
@@ -20,11 +20,11 @@ export function usePagination<T>(getData: GetData<T>, limit: number, deps: Depen
 
             const data = await getData(page);
 
-            setIsLoading(false);
-
             if (data.length < limit) setIsFinished(true);
 
             if (cancelled) return;
+
+            setIsLoading(false);
 
             setData(currentData => [...currentData, ...data]);
         };
@@ -37,15 +37,27 @@ export function usePagination<T>(getData: GetData<T>, limit: number, deps: Depen
         load();
 
         return cancel;
-    };
 
-    const nextPage = () =>
+    }, [getData, limit, page]);
+
+    const nextPage = useCallback(() =>
     {
         setPage(page + 1);
-    };
+
+    }, [page]);
+
+    const reset = useCallback(() =>
+    {
+        setData([]);
+        setIsFinished(false);
+        setPage(0);
+
+    }, []);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(loadData, [page, getData, limit, ...deps]);
+    useEffect(reset, [getData, limit, ...deps]);
+
+    useEffect(loadData, [getData, loadData, page]);
 
     return [data, isLoading, isFinished, nextPage, setData] as const;
 }
