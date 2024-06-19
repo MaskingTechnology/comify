@@ -1,10 +1,12 @@
 
 import type { Requester } from '^/domain/authentication/types';
 
-import get from '../get/feature';
 import { DataModel } from '../types';
 
-export default async function feature(requester: Requester, data: DataModel[]): Promise<DataModel[]>
+import translate from './translate';
+import { Mapping } from './types';
+
+export default async function feature(requester: Requester, mapping: Mapping, data: DataModel[]): Promise<DataModel[]>
 {
-    return Promise.all(data.map(item => get(requester.id, item.followerId)));
+    return Promise.all(data.map(item => translate(requester, mapping, item)));
 }

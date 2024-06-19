@@ -10,7 +10,5 @@ export default async function feature(requester: Requester, followingId: string,
 {
     const data = await retrieveData(followingId, limit, offset);
 
-    return requester.id !== followingId
-        ? translateToRequester(requester, data)
-        : data;
+    return translateToRequester(requester, 'follower', data);
 }
