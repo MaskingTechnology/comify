@@ -1,18 +1,20 @@
 
-import React, { useContext, useMemo, useState } from 'react';
+import { ReactNode, createContext, useContext } from 'react';
 
 import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
+
+import useAppContextValue from './hooks/useAppContextValue';
 
 type Context = {
     identity: CreatorView | undefined;
     setIdentity: (requester: CreatorView | undefined) => void;
-    modalContent: React.ReactNode | undefined;
+    modalContent: ReactNode | undefined;
     modalOpen: boolean;
-    showModal: (content: React.ReactNode | undefined) => void;
+    showModal: (content: ReactNode | undefined) => void;
     closeModal: () => void;
 };
 
-export const AppContext = React.createContext({} as Context);
+export const AppContext = createContext({} as Context);
 export const useAppContext = () => useContext(AppContext);
 
 type Props = {
@@ -20,32 +22,12 @@ type Props = {
     {
         identity: CreatorView | undefined;
     };
-    readonly children: React.ReactNode;
+    readonly children: ReactNode;
 };
 
 export function AppContextProvider({ values, children }: Props)
 {
-    const [identity, setIdentity] = useState<CreatorView | undefined>(values?.identity);
-    const [modalContent, setModalContent] = useState<React.ReactNode | undefined>(undefined);
-    const [modalOpen, setModalOpen] = useState<boolean>(false);
-
-    const showModal = (content: React.ReactNode | undefined) =>
-    {
-        setModalContent(content);
-        setModalOpen(true);
-    };
-
-    const closeModal = () =>
-    {
-        setModalContent(undefined);
-        setModalOpen(false);
-    };
-
-    const contextValue = useMemo(() =>
-    (
-        { identity, setIdentity, modalContent, modalOpen, showModal, closeModal }),
-        [identity, modalContent, modalOpen]
-    );
+    const contextValue = useAppContextValue(values?.identity);
 
     return <AppContext.Provider value={contextValue}>
         {children}
