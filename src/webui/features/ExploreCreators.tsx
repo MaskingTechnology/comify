@@ -20,7 +20,7 @@ export default function Feature()
     const [relations, isLoading, isFinished, getMoreRelations] = useExploreCreators();
 
     return <Column gap='small' alignX='stretch'>
-        <OrderAndSearchRow selected='popular' onOrderChange={reorderList} />
+        <OrderAndSearchRow selected='popular' onOrderChange={reorderList} onSearchChange={() => { }} />
         <ScrollLoader onScroll={getMoreRelations} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
             <ResultSet data={relations} isLoading={isLoading}>
                 <RelationPanelList
