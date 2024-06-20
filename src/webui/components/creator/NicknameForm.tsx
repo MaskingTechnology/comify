@@ -1,45 +1,22 @@
 
-import { useRef, useState } from 'react';
+import { useCallback } from 'react';
 
-import UpdateButton from '^/webui/components/common/UpdateButton';
-import { Form, Input, Label, Panel, Row, TextBox } from '^/webui/designsystem';
+import { Input, Label, Panel, TextBox } from '^/webui/designsystem';
+
+import Form from '../common/Form';
 
 export type Props = {
     readonly nickname: string;
     readonly alreadyInUse: boolean;
-    readonly onUpdateClick: (nickname: string) => Promise<void>;
+    readonly onUpdate: (nickname: string) => Promise<void>;
 };
-
-type States = 'disabled' | 'submitting' | 'enabled';
 
 const NICKNAME_MAX_LENGTH = 20;
 const NICKNAME_STRING_PATTERN = '^[a-zA-Z0-9]+$';
 
-export default function Component({ nickname, alreadyInUse, onUpdateClick }: Props)
+export default function Component({ nickname, alreadyInUse, onUpdate }: Props)
 {
-    const inputRef = useRef<HTMLInputElement>(null);
-    const [state, setState] = useState<States>('disabled');
-
-    const handleChange = () =>
-    {
-        const value = inputRef.current?.value ?? '';
-        const newState = value !== nickname ? 'enabled' : 'disabled';
-
-        setState(newState);
-    };
-
-    const handleSubmit = async () =>
-    {
-        const value = inputRef.current?.value ?? '';
-
-        if (value === nickname) return;
-
-        setState('submitting');
-
-        await onUpdateClick(value);
-
-        setState('disabled');
-    };
+    const handleSubmit = useCallback((data: FormData) => onUpdate(data.get('nickname') as string), [onUpdate]);
 
     return <Panel>
         {
@@ -47,11 +24,10 @@ export default function Component({ nickname, alreadyInUse, onUpdateClick }: Pro
                 ? <Panel type='error' padding='small'>Sorry, this nickname is already in use.</Panel>
                 : null
         }
-        <Form submitHandler={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
             <Input
                 label={<Label value='Nickname'></Label>}
                 element={<TextBox
-                    ref={inputRef}
                     name='nickname'
                     placeholder='Your nickname'
                     value={nickname}
@@ -60,13 +36,9 @@ export default function Component({ nickname, alreadyInUse, onUpdateClick }: Pro
                     title='Only alphanumeric characters are allowed.'
                     size='small'
                     required={true}
-                    onChange={handleChange}
                 />
                 }
             />
-            <Row alignX='right'>
-                <UpdateButton key={'nickname'} state={state} />
-            </Row>
         </Form>
     </Panel >;
 }

@@ -1,9 +1,9 @@
 
 import { useEffect, useState } from 'react';
 
-export type ChangeHandler = (value: string) => void;
+type ChangeHandler<T> = (value: T) => void;
 
-export default function useDebounceValue(initialValue: string, onChange: ChangeHandler, delay: number = 500)
+export function useDebouncedValue<T>(initialValue: T, onChange: ChangeHandler<T>, delay: number = 500)
 {
     const [value, setValue] = useState(initialValue);
     const [debouncedValue, setDebouncedValue] = useState(initialValue);

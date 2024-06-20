@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { forwardRef } from 'react';
 import './Form.css';
 
 export type Props = {
@@ -7,7 +7,9 @@ export type Props = {
     readonly submitHandler?: (form: HTMLFormElement) => void;
 };
 
-export default function Element({ children, submitHandler }: Props)
+type Ref = HTMLFormElement;
+
+export default forwardRef<Ref, Props>(function Element({ children, submitHandler }, ref)
 {
     const handleSubmit = (event: React.FormEvent<HTMLElement>) =>
     {
@@ -19,7 +21,7 @@ export default function Element({ children, submitHandler }: Props)
         }
     };
 
-    return <form onSubmit={handleSubmit} className='form'>
+    return <form onSubmit={handleSubmit} className='form' ref={ref}>
         {children}
     </form>;
-}
+});

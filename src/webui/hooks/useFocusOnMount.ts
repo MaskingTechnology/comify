@@ -1,11 +1,11 @@
 
 import { RefObject, useEffect } from 'react';
 
-export function useFocusOnMount(ref: RefObject<HTMLElement>)
+export function useFocusOnMount(elementRef: RefObject<HTMLElement>)
 {
     useEffect(() =>
     {
-        ref.current?.focus();
+        elementRef.current?.focus();
 
-    }, [ref]);
+    }, [elementRef]);
 }
