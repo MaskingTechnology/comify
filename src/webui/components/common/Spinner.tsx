@@ -5,7 +5,7 @@ type Props = {
     readonly active?: boolean;
 };
 
-export default function Component({ active = true }: Props)
+export default function Component({ active }: Props)
 {
     return <Panel type='transparent' padding='large'>
         <Row alignX='center'>
