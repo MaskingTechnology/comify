@@ -1,20 +1,20 @@
 
-import { useCallback } from 'react';
-
 import { Input, Label, Panel, TextBox } from '^/webui/designsystem';
 
 import Form from '../common/Form';
 
+import useFullNameFormHandler, { SubmitHandler } from './hooks/useFullNameFormHandler';
+
 export type Props = {
     readonly fullName: string;
-    readonly onSubmit: (fullName: string) => Promise<void>;
+    readonly onSubmit: SubmitHandler;
 };
 
 const FULL_NAME_MAX_LENGTH = 100;
 
 export default function Component({ fullName, onSubmit }: Props)
 {
-    const handleSubmit = useCallback((data: FormData) => onSubmit(data.get('fullName') as string), [onSubmit]);
+    const handleSubmit = useFullNameFormHandler(onSubmit);
 
     return <Panel>
         <Form onSubmit={handleSubmit}>

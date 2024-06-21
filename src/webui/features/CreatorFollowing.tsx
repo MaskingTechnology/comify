@@ -25,7 +25,7 @@ export default function Feature({ creator }: Props)
 
     return <Column gap='small' alignX='stretch'>
         <OrderAndSearchRow selected='recent' onOrderChange={reorderList} onSearchChange={() => { }} />
-        <ScrollLoader onScroll={getMoreRelations} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
+        <ScrollLoader onLoad={getMoreRelations} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
             <ResultSet data={relations} isLoading={isLoading}>
                 <RelationPanelList
                     relations={relations}

@@ -23,7 +23,7 @@ export default function Feature()
 
     return <Column gap='small' alignX='stretch'>
         <OrderRow selected='popular' onOrderChange={reorderList} />
-        <ScrollLoader onScroll={getMorePosts} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
+        <ScrollLoader onLoad={getMorePosts} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
             <ResultSet data={posts} isLoading={isLoading}>
                 <PostPanelList
                     posts={posts}

@@ -46,17 +46,18 @@ export function usePagination<T>(getData: GetData<T>, limit: number, deps: Depen
 
     }, [page]);
 
-    const reset = () =>
+    const reset = useCallback(() =>
     {
         setData([]);
         setIsFinished(false);
         setPage(0);
-    };
+
+    }, []);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(reset, [getData, limit, ...deps]);
 
     useEffect(loadData, [getData, loadData, page]);
 
-    return [data, isLoading, isFinished, nextPage, setData] as const;
+    return [data, isLoading, isFinished, nextPage, setData, reset] as const;
 }

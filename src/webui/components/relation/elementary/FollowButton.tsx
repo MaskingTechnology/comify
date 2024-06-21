@@ -2,11 +2,11 @@
 
 import { Button } from '^/webui/designsystem';
 
-import useEstablish from '../hooks/useEstablish';
+import useEstablish, { EstablishHandler } from '../hooks/useEstablish';
 
 type Props = {
     readonly isFollowing: boolean;
-    readonly onClick: () => Promise<void>;
+    readonly onClick: EstablishHandler;
 };
 
 export default function Component({ isFollowing, onClick }: Props)

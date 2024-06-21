@@ -1,21 +1,21 @@
 
 import { ReactNode } from 'react';
 
-import useLoadOnScroll from './hooks/useLoadOnScroll';
+import useLoadOnScroll, { LoadHandler } from './hooks/useLoadOnScroll';
 
 import Spinner from './Spinner';
 
 type Props = {
-    readonly onScroll: () => void;
+    readonly onLoad: LoadHandler;
     readonly isLoading: boolean;
     readonly isFinished: boolean;
     readonly threshold?: number;
     readonly children: ReactNode;
 };
 
-export default function Component({ onScroll, isLoading, isFinished, threshold, children }: Props)
+export default function Component({ onLoad, isLoading, isFinished, threshold, children }: Props)
 {
-    const [childRef] = useLoadOnScroll(onScroll, isLoading, isFinished, threshold);
+    const [childRef] = useLoadOnScroll(onLoad, isLoading, isFinished, threshold);
 
     return <div className='scroll-loader' ref={childRef}>
         {children}

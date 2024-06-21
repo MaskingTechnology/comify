@@ -1,14 +1,14 @@
 
-import { useCallback } from 'react';
-
 import { Input, Label, Panel, TextBox } from '^/webui/designsystem';
 
 import Form from '../common/Form';
 
+import useNicknameFormHandler, { SubmitHandler } from './hooks/useNicknameFormHandler';
+
 export type Props = {
     readonly nickname: string;
     readonly alreadyInUse: boolean;
-    readonly onSubmit: (nickname: string) => Promise<void>;
+    readonly onSubmit: SubmitHandler;
 };
 
 const NICKNAME_MAX_LENGTH = 20;
@@ -16,7 +16,7 @@ const NICKNAME_STRING_PATTERN = '^[a-zA-Z0-9]+$';
 
 export default function Component({ nickname, alreadyInUse, onSubmit }: Props)
 {
-    const handleSubmit = useCallback((data: FormData) => onSubmit(data.get('nickname') as string), [onSubmit]);
+    const handleSubmit = useNicknameFormHandler(onSubmit);
 
     return <Panel>
         {

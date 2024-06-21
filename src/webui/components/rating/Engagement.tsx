@@ -2,13 +2,14 @@
 import { ClickArea, Row } from '^/webui/designsystem';
 
 import CompactNumber from '../common/CompactNumber';
+
 import Icon from './elementary/Icon';
-import useEngagement from './hooks/useEngagement';
+import useEngagement, { EngageHandler } from './hooks/useEngagement';
 
 type Props = {
     readonly isEngaged: boolean;
     readonly count: number;
-    readonly onClick: () => Promise<boolean>;
+    readonly onClick: EngageHandler;
 };
 
 export default function Component({ isEngaged, count, onClick }: Props)

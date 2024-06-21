@@ -22,7 +22,7 @@ export default function Feature({ creator }: Props)
     const [posts, isLoading, isFinished, getMorePosts] = useCreatorPosts(creator);
 
     return <Column gap='small' alignX='stretch'>
-        <ScrollLoader onScroll={getMorePosts} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
+        <ScrollLoader onLoad={getMorePosts} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
             <ResultSet data={posts} isLoading={isLoading}>
                 <PostPanelGrid
                     posts={posts}
