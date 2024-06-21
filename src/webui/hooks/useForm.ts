@@ -1,11 +1,12 @@
 
-import { RefObject, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 type States = 'pristine' | 'dirty' | 'submitting';
 type SubmitHandler = (data: FormData) => Promise<void>;
 
-export function useForm(formRef: RefObject<HTMLFormElement>, submitData: SubmitHandler)
+export function useForm(submitData: SubmitHandler)
 {
+    const formRef = useRef<HTMLFormElement>(null);
     const [formData, setFormData] = useState<FormData>(new FormData());
     const [state, setState] = useState<States>('pristine');
 
@@ -77,5 +78,5 @@ export function useForm(formRef: RefObject<HTMLFormElement>, submitData: SubmitH
 
     useEffect(() => updateFormData(), [updateFormData]);
 
-    return [state, handleSubmit] as const;
+    return [formRef, state, handleSubmit] as const;
 }

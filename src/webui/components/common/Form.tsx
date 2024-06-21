@@ -1,5 +1,5 @@
 
-import { ReactNode, useRef } from 'react';
+import { ReactNode } from 'react';
 
 import { Button, Form, Row } from '^/webui/designsystem';
 
@@ -12,8 +12,7 @@ export type Props = {
 
 export default function Component({ onSubmit, children }: Props)
 {
-    const formRef = useRef<HTMLFormElement>(null);
-    const [state, handleSubmit] = useForm(formRef, onSubmit);
+    const [formRef, state, handleSubmit] = useForm(onSubmit);
 
     return <Form ref={formRef} submitHandler={handleSubmit}>
         {children}

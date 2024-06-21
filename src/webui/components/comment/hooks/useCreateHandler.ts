@@ -1,24 +1,25 @@
 
-import { RefObject, useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 export type CreateHandler = (commentText: string) => Promise<void>;
 export type CancelHandler = () => void;
 
-export default function useCreateHandler(ref: RefObject<HTMLTextAreaElement>, onCreate: CreateHandler, onCancel: CancelHandler)
+export default function useCreateHandler(onCreate: CreateHandler, onCancel: CancelHandler)
 {
+    const inputRef = useRef<HTMLTextAreaElement>(null);
     const [creating, setCreating] = useState(false);
 
     const handleCreate = useCallback(async () =>
     {
         setCreating(true);
 
-        const comment = ref.current?.value ?? '';
+        const comment = inputRef.current?.value ?? '';
 
         await onCreate(comment);
 
         setCreating(false);
 
-    }, [onCreate, ref]);
+    }, [onCreate, inputRef]);
 
     const handleCancel = useCallback(() =>
     {
@@ -28,5 +29,5 @@ export default function useCreateHandler(ref: RefObject<HTMLTextAreaElement>, on
 
     }, [onCancel]);
 
-    return [creating, handleCreate, handleCancel] as const;
+    return [inputRef, creating, handleCreate, handleCancel] as const;
 }

@@ -12,7 +12,7 @@ import useUpdateNickname from './hooks/useUpdateNickname';
 export default function Feature()
 {
     const updateFullName = useUpdateFullName();
-    const [alreadyInUse, handleUpdate] = useUpdateNickname();
+    const [alreadyInUse, updateNickname] = useUpdateNickname();
     const { identity } = useAppContext();
 
     return <Column gap='medium' alignX='stretch'>
@@ -20,7 +20,7 @@ export default function Feature()
             <CreatorProfile creator={identity as CreatorView} />
             <Ruler direction='horizontal' size='small' />
             <CreatorFullNameForm fullName={(identity as CreatorView).fullName} onSubmit={updateFullName} />
-            <CreatorNicknameForm nickname={(identity as CreatorView).nickname} alreadyInUse={alreadyInUse} onSubmit={handleUpdate} />
+            <CreatorNicknameForm nickname={(identity as CreatorView).nickname} alreadyInUse={alreadyInUse} onSubmit={updateNickname} />
         </LoadingContainer>
     </Column>;
 }
