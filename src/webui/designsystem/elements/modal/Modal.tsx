@@ -1,12 +1,12 @@
 
-import React, { useEffect, useRef } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 
 import './Modal.css';
 
 type Props = {
     readonly open: boolean,
     readonly sizing?: 'full' | 'content';
-    readonly children?: React.ReactNode;
+    readonly children?: ReactNode;
 };
 
 export default function Element({ open, sizing, children }: Props)

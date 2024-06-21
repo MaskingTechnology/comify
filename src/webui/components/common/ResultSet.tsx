@@ -1,11 +1,12 @@
 
-import React from 'react';
+import { ReactNode } from 'react';
+
 import NoResults from './NoResults';
 
 type Props = {
     data: unknown[],
     isLoading: boolean,
-    children: React.ReactNode;
+    children: ReactNode;
 };
 
 export default function Component({ data, isLoading, children }: Props)

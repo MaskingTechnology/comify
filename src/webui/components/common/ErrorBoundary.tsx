@@ -1,20 +1,20 @@
 
-import React from 'react';
+import { ComponentType, Component as ReactComponent, ReactNode } from 'react';
 
 type ViewProps = {
     error: unknown;
 };
 
 type Props = {
-    readonly element: React.ComponentType<ViewProps>;
-    readonly children: React.ReactNode;
+    readonly element: ComponentType<ViewProps>;
+    readonly children: ReactNode;
 };
 
 export type State = {
     error: unknown;
 };
 
-export default class Component extends React.Component<Props, State>
+export default class Component extends ReactComponent<Props, State>
 {
     #promiseHandler = (event: PromiseRejectionEvent) =>
     {
@@ -45,7 +45,7 @@ export default class Component extends React.Component<Props, State>
         window.removeEventListener('unhandledrejection', this.#promiseHandler);
     }
 
-    render(): React.ReactNode
+    render(): ReactNode
     {
         if (this.state.error !== undefined)
         {

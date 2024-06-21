@@ -1,9 +1,11 @@
 
+import { ReactNode } from 'react';
+
 import { Border, Modal } from '^/webui/designsystem';
 
 type Props = {
     readonly open: boolean,
-    readonly children?: React.ReactNode;
+    readonly children?: ReactNode;
 };
 
 export default function Component({ open, children }: Props)

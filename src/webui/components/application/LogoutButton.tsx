@@ -1,5 +1,4 @@
 
-
 import logoutIcon from '^/webui/assets/images/icons/logout.svg';
 import { ClickArea, Image } from '^/webui/designsystem';
 

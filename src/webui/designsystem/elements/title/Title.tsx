@@ -1,10 +1,10 @@
 
-import React from 'react';
+import { ReactNode } from 'react';
 import './Title.css';
 
 export type Props = {
     readonly size?: 'large' | 'medium' | 'small';
-    readonly children: React.ReactNode;
+    readonly children: ReactNode;
 };
 
 export default function Element({ size, children }: Props)

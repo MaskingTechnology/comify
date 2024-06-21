@@ -1,13 +1,13 @@
 
-import React from 'react';
+import { ReactNode } from 'react';
 
 import './Sidebar.css';
 
 type Props = {
-    readonly header: React.ReactNode;
-    readonly footer: React.ReactNode;
-    readonly sidebar: React.ReactNode;
-    readonly children: React.ReactNode;
+    readonly header: ReactNode;
+    readonly footer: ReactNode;
+    readonly sidebar: ReactNode;
+    readonly children: ReactNode;
 };
 
 export default function Layout({ header, footer, sidebar, children }: Props)
