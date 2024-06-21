@@ -17,7 +17,7 @@ export default function Component({ onLoad, isLoading, isFinished, threshold, ch
 {
     const [childRef] = useLoadOnScroll(onLoad, isLoading, isFinished, threshold);
 
-    return <div className='scroll-loader' ref={childRef}>
+    return <div ref={childRef}>
         {children}
         {isLoading && <Spinner />}
     </div>;
