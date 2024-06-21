@@ -1,7 +1,7 @@
 
 import useRefreshOnPull from './hooks/useRefreshOnPull';
 
-import RefreshIndicator from './elementary/RefreshIndicator';
+import Spinner from './Spinner';
 
 export type Props = {
     readonly onRefresh: () => void;
@@ -14,7 +14,7 @@ export default function Component({ onRefresh, children }: Props)
 
     return <div ref={containerRef} style={{ touchAction: 'none' }} >
         <div style={{ overflow: 'hidden', height: `${distance}px` }} >
-            <RefreshIndicator readyToRefresh={readyToRefresh} />
+            <Spinner active={readyToRefresh} />
         </div>
         {children}
     </div>;
