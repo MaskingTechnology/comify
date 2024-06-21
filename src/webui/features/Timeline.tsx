@@ -1,5 +1,5 @@
 
-import { OrderRow, PostPanelList, ResultSet, ScrollLoader } from '^/webui/components';
+import { OrderRow, PostPanelList, PullToRefresh, ResultSet, ScrollLoader } from '^/webui/components';
 import { Column } from '^/webui/designsystem';
 
 import useEstablishRelation from './hooks/useEstablishRelation';
@@ -23,17 +23,19 @@ export default function Feature()
 
     return <Column gap='small' alignX='stretch'>
         <OrderRow selected='recent' onOrderChange={reorderList} />
-        <ScrollLoader onScroll={getMorePosts} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
-            <ResultSet data={posts} isLoading={isLoading}>
-                <PostPanelList
-                    posts={posts}
-                    onFollowClick={establishRelation}
-                    onCreatorClick={viewProfile}
-                    onComicClick={viewPostDetails}
-                    onRatingClick={togglePostRating}
-                    onReactionClick={viewPostDetails}
-                />
-            </ResultSet>
-        </ScrollLoader>
+        <PullToRefresh onRefresh={getMorePosts}>
+            <ScrollLoader onScroll={getMorePosts} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
+                <ResultSet data={posts} isLoading={isLoading}>
+                    <PostPanelList
+                        posts={posts}
+                        onFollowClick={establishRelation}
+                        onCreatorClick={viewProfile}
+                        onComicClick={viewPostDetails}
+                        onRatingClick={togglePostRating}
+                        onReactionClick={viewPostDetails}
+                    />
+                </ResultSet>
+            </ScrollLoader>
+        </PullToRefresh>
     </Column>;
 }
