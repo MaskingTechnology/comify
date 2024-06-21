@@ -1,5 +1,6 @@
 
 import { ReactNode } from 'react';
+
 import './Paragraph.css';
 
 export type Props = {
@@ -7,10 +8,10 @@ export type Props = {
     readonly children: ReactNode;
 };
 
-export default function Element({ size, children }: Props)
+export default function Element({ size = 'medium', children }: Props)
 {
     const className = 'paragraph'
-        + ' size-' + (size ?? 'medium');
+        + ' size-' + size;
 
     return <p className={className}>
         {children}

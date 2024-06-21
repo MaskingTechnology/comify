@@ -1,5 +1,6 @@
 
 import { ChangeEventHandler, forwardRef } from 'react';
+
 import './TextBox.css';
 
 export type Props = {
@@ -16,10 +17,10 @@ export type Props = {
 
 type Ref = HTMLInputElement;
 
-export default forwardRef<Ref, Props>(function Element({ name, placeholder, value, limit, pattern, title, size, required, onChange }, ref)
+export default forwardRef<Ref, Props>(function Element({ name, placeholder, value, limit, pattern, title, size = 'medium', required, onChange }, ref)
 {
     const className = 'textbox'
-        + ' size-' + (size ?? 'medium');
+        + ' size-' + size;
 
     return <input
         className={className}

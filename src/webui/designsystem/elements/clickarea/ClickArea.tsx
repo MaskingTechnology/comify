@@ -1,5 +1,6 @@
 
 import { ReactNode } from 'react';
+
 import './ClickArea.css';
 
 export type Props = {
@@ -8,10 +9,10 @@ export type Props = {
     readonly children?: ReactNode;
 };
 
-export default function Element({ padding, onClick, children }: Props)
+export default function Element({ padding = 'none', onClick, children }: Props)
 {
     const className = 'clickarea'
-        + ' padding-' + (padding ?? 'none');
+        + ' padding-' + padding;
 
     return <div className={className} onClick={onClick}>
         {children}

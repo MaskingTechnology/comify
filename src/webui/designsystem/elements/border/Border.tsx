@@ -1,5 +1,6 @@
 
 import { ReactNode } from 'react';
+
 import './Border.css';
 
 export type Props = {
@@ -9,12 +10,12 @@ export type Props = {
     readonly children?: ReactNode;
 };
 
-export default function Element({ type, size, padding, children }: Props)
+export default function Element({ type = 'normal', size = 'large', padding = 'large', children }: Props)
 {
     const className = 'border'
-        + ' type-' + (type ?? 'normal')
-        + ' size-' + (size ?? 'large')
-        + ' padding-' + (padding ?? 'large');
+        + ' type-' + type
+        + ' size-' + size
+        + ' padding-' + padding;
 
     return <div className={className}>
         {children}
