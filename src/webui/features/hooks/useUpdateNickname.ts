@@ -13,7 +13,7 @@ export default function useUpdateNickname()
     const [alreadyInUse, setAlreadyInUse] = useState<boolean>(false);
     const { setIdentity, identity } = useAppContext();
 
-    const handler = useCallback(async (nickname: string) => 
+    const handleUpdate = useCallback(async (nickname: string) => 
     {
         try
         {
@@ -35,5 +35,5 @@ export default function useUpdateNickname()
         }
     }, [setIdentity, identity]);
 
-    return { alreadyInUse, handler };
+    return [alreadyInUse, handleUpdate] as const;
 }    

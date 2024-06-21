@@ -59,5 +59,5 @@ export function usePagination<T>(getData: GetData<T>, limit: number, deps: Depen
 
     useEffect(loadData, [getData, loadData, page]);
 
-    return [data, isLoading, isFinished, nextPage, setData] as const;
+    return [data, isLoading, isFinished, nextPage, setData, reset] as const;
 }

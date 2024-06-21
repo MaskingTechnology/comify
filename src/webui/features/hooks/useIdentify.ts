@@ -1,5 +1,5 @@
 
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import requester from '^/domain/authentication/requester';
@@ -13,33 +13,26 @@ export default function useIdentify()
     const navigate = useNavigate();
     const context = useAppContext();
 
-    const getIdentity = useCallback(() =>
+    const identify = () =>
     {
-        return getMe(requester);
+        const setIdentity = (identity: CreatorView) =>
+        {
+            const redirectLocation = window.sessionStorage.getItem('redirect');
 
-    }, []);
+            context.setIdentity(identity);
 
-    const setIdentity = useCallback((identity: CreatorView) =>
-    {
-        const redirectLocation = window.sessionStorage.getItem('redirect');
+            navigate(redirectLocation ?? '/timeline');
+        };
 
-        context.setIdentity(identity);
+        const getIdentity = async () =>
+        {
+            const identity = await getMe(requester);
 
-        navigate(redirectLocation ?? '/timeline');
+            setIdentity(identity);
+        };
 
-    }, [context, navigate]);
+        getIdentity();
+    };
 
-    const identify = useCallback(async () =>
-    {
-        const identity = await getIdentity();
-
-        setIdentity(identity);
-
-    }, [getIdentity, setIdentity]);
-
-    useEffect(() =>
-    {
-        identify();
-
-    }, [identify]);
+    useEffect(identify, [navigate, context]);
 }
