@@ -16,8 +16,6 @@ export default function Component({ onRefresh, children }: Props)
         startY.current = event.touches[0].clientY;
 
         setIsDragging(true);
-
-        event.preventDefault();
     };
 
     const handleTouchMove = (event: TouchEvent<HTMLDivElement>) =>
@@ -27,19 +25,19 @@ export default function Component({ onRefresh, children }: Props)
         const currentY = event.touches[0].clientY;
         const distance = currentY - startY.current;
 
-        event.preventDefault();
-
         if (distance > 0)
         {
-            setDragDistance(distance);
+            const calculatedDistance = 128 * (1 - Math.exp((-0.4 * distance) / 128));
+
+            setDragDistance(calculatedDistance);
         }
     };
 
     const handleTouchEnd = () =>
     {
-        if (dragDistance > 100)
+        if (dragDistance > 50)
         {
-            //onRefresh();
+            onRefresh();
         }
 
         setIsDragging(false);
@@ -59,7 +57,7 @@ export default function Component({ onRefresh, children }: Props)
                     transition: isDragging ? 'none' : 'transform 0.3s ease-out'
                 }}
             >
-                {dragDistance > 100 && <div className="refresh-indicator">Refreshing...</div>}
+                {dragDistance > 50 && <div className="refresh-indicator">Refreshing...</div>}
                 <div className="content">
                     {children}
                 </div>
