@@ -19,7 +19,7 @@ function getContent(notification: NotificationView)
 {
     switch (notification.type)
     {
-        case 'started-following': return <StartedFollowing isFollowing={notification.relation.exists} />;
+        case 'started-following': return <StartedFollowing isFollowing={notification.relation.established} />;
         case 'rated-post': return <RatedPost comicDataUrl={notification.post?.comic.image.dataUrl as string} />;
         case 'rated-reaction': return <RatedReaction />;
     }
