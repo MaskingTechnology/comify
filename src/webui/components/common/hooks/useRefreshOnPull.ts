@@ -5,7 +5,7 @@ const MAX_PULL_DISTANCE = 128;
 const REFRESH_THRESHOLD = 60;
 const RESISTANCE_COEFFICIENT = 0.6;
 
-export default function useRefreshOnPull(onRefresh: () => void)
+export default function useRefreshOnPull(conversionFactor: number, onRefresh: () => void)
 {
     const containerRef = useRef<HTMLDivElement>(null);
     const [distance, setDistance] = useState<number>(0);
@@ -18,7 +18,7 @@ export default function useRefreshOnPull(onRefresh: () => void)
 
         const decay = Math.exp((-RESISTANCE_COEFFICIENT * differenceY) / MAX_PULL_DISTANCE);
 
-        return MAX_PULL_DISTANCE * (1 - decay);
+        return MAX_PULL_DISTANCE * (1 - decay) / conversionFactor;
     };
 
     const handleStart = useCallback((event: TouchEvent) =>
@@ -38,7 +38,7 @@ export default function useRefreshOnPull(onRefresh: () => void)
 
             setDistance(distance);
 
-            distance > REFRESH_THRESHOLD
+            distance > (REFRESH_THRESHOLD / conversionFactor)
                 ? setAtThreshold(true)
                 : setAtThreshold(false);
         }
@@ -52,7 +52,7 @@ export default function useRefreshOnPull(onRefresh: () => void)
 
         const distance = calculateDistance(dragDistance);
 
-        if (distance > REFRESH_THRESHOLD)
+        if (distance > (REFRESH_THRESHOLD / conversionFactor))
         {
             onRefresh();
         }
