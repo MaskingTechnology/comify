@@ -1,5 +1,6 @@
 
 import { ReactNode } from 'react';
+
 import './Grid.css';
 
 export type Props = {
@@ -8,11 +9,11 @@ export type Props = {
     readonly children: ReactNode;
 };
 
-export default function Element({ layout, gap, children }: Props)
+export default function Element({ layout, gap = 'medium', children }: Props)
 {
     const className = 'grid'
         + ' layout-' + layout
-        + ' gap-' + (gap ?? 'medium');
+        + ' gap-' + gap;
 
     return <div className={className}>
         {children}

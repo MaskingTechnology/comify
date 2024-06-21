@@ -1,5 +1,6 @@
 
 import { ChangeEventHandler, forwardRef } from 'react';
+
 import './TextArea.css';
 
 export type Props = {
@@ -14,10 +15,10 @@ export type Props = {
 
 type Ref = HTMLTextAreaElement;
 
-export default forwardRef<Ref, Props>(function Element({ name, placeholder, value, size, rows, limit, onChange }, ref)
+export default forwardRef<Ref, Props>(function Element({ name, placeholder, value, size = 'medium', rows, limit, onChange }, ref)
 {
     const className = 'textarea'
-        + ' size-' + (size ?? 'medium');
+        + ' size-' + size;
 
     return <textarea
         className={className}

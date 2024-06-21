@@ -1,5 +1,6 @@
 
 import { ChangeEventHandler, forwardRef } from 'react';
+
 import './Select.css';
 
 export type Props = {
@@ -12,10 +13,10 @@ export type Props = {
 
 type Ref = HTMLSelectElement;
 
-export default forwardRef<Ref, Props>(function Element({ name, options, value, size, onChange }, ref)
+export default forwardRef<Ref, Props>(function Element({ name, options, value, size = 'medium', onChange }, ref)
 {
     const className = 'select'
-        + ' size-' + (size ?? 'medium');
+        + ' size-' + size;
 
     return <select
         className={className}
