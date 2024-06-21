@@ -21,9 +21,9 @@ export default function Feature()
 
     const [posts, isLoading, isFinished, getMorePosts, , refresh] = useTimelinePosts();
 
-    return <PullToRefresh onRefresh={refresh}>
-        <Column gap='small' alignX='stretch'>
-            <OrderRow selected='recent' onOrderChange={reorderList} />
+    return <Column gap='small' alignX='stretch'>
+        <OrderRow selected='recent' onOrderChange={reorderList} />
+        <PullToRefresh onRefresh={refresh}>
             <ScrollLoader onLoad={getMorePosts} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
                 <ResultSet data={posts} isLoading={isLoading}>
                     <PostPanelList
@@ -36,6 +36,6 @@ export default function Feature()
                     />
                 </ResultSet>
             </ScrollLoader>
-        </Column>
-    </PullToRefresh>;
+        </PullToRefresh>
+    </Column>;
 }

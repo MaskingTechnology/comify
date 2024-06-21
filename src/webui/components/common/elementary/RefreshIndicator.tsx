@@ -1,5 +1,7 @@
 
-import { Row, Text } from '^/webui/designsystem';
+import { Row } from '^/webui/designsystem';
+
+import Spinner from '../Spinner';
 
 export type Props = {
     readonly readyToRefresh: boolean;
@@ -7,7 +9,7 @@ export type Props = {
 
 export default function Component({ readyToRefresh }: Props)
 {
-    return <Row alignX='center' alignY='center'>
-        {readyToRefresh && <Text value='Release to refresh...' size='small' />}
+    return <Row alignX='center' alignY='top'>
+        <Spinner active={readyToRefresh} />
     </Row>;
 }

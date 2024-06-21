@@ -2,8 +2,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 const MAX_PULL_DISTANCE = 128;
-const REFRESH_THRESHOLD = 50;
-const RESISTANCE_COEFFICIENT = 0.4;
+const REFRESH_THRESHOLD = 60;
+const RESISTANCE_COEFFICIENT = 0.6;
 
 export default function useRefreshOnPull(onRefresh: () => void)
 {
