@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
 
-import { ConfirmationPanel, OrderAndAddRow, ReactionPanelList, ResultSet, ScrollLoader } from '^/webui/components';
+import { ConfirmationPanel, OrderAndAddRow, PullToRefresh, ReactionPanelList, ResultSet, ScrollLoader } from '^/webui/components';
 import { useAppContext } from '^/webui/contexts';
 import { Column } from '^/webui/designsystem';
 
@@ -30,7 +30,7 @@ export default function Feature({ post }: Props)
     const viewProfile = useViewProfile();
     const toggleReactionRating = useToggleReactionRating();
 
-    const [reactions, isLoading, isFinished, getMoreReactions, setReactions] = useReactions(post);
+    const [reactions, isLoading, isFinished, getMoreReactions, setReactions, refresh] = useReactions(post);
 
     const removeReaction = useRemoveReaction(reactions as ReactionView[], setReactions);
 
@@ -68,16 +68,18 @@ export default function Feature({ post }: Props)
 
     return <Column alignX='stretch'>
         <OrderAndAddRow selected='recent' reactionHandler={createReaction} />
-        <ScrollLoader onLoad={getMoreReactions} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
-            <ResultSet data={reactions} isLoading={isLoading}>
-                <ReactionPanelList
-                    reactions={reactions as ReactionView[]}
-                    onFollowClick={establishRelation}
-                    onCreatorClick={viewProfile}
-                    onRatingClick={toggleReactionRating}
-                    onDeleteClick={deleteReaction}
-                />
-            </ResultSet>
-        </ScrollLoader>
+        <PullToRefresh onRefresh={refresh}>
+            <ScrollLoader onLoad={getMoreReactions} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
+                <ResultSet data={reactions} isLoading={isLoading}>
+                    <ReactionPanelList
+                        reactions={reactions as ReactionView[]}
+                        onFollowClick={establishRelation}
+                        onCreatorClick={viewProfile}
+                        onRatingClick={toggleReactionRating}
+                        onDeleteClick={deleteReaction}
+                    />
+                </ResultSet>
+            </ScrollLoader>
+        </PullToRefresh>
     </Column>;
 }

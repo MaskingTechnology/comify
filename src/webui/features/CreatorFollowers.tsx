@@ -1,7 +1,7 @@
 
 import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
 
-import { OrderAndSearchRow, RelationPanelList, ResultSet, ScrollLoader } from '^/webui/components';
+import { OrderAndSearchRow, PullToRefresh, RelationPanelList, ResultSet, ScrollLoader } from '^/webui/components';
 import { Column } from '^/webui/designsystem';
 
 import useCreatorFollowers from './hooks/useCreatorFollowers';
@@ -21,18 +21,20 @@ export default function Feature({ creator }: Props)
     const establishRelation = useEstablishRelation();
     const reorderList = useReorderList();
 
-    const [relations, isLoading, isFinished, getMoreRelations] = useCreatorFollowers(creator);
+    const [relations, isLoading, isFinished, getMoreRelations, , refresh] = useCreatorFollowers(creator);
 
-    return <Column gap='small' alignX='stretch'>
-        <OrderAndSearchRow selected='recent' onOrderChange={reorderList} onSearchChange={() => { }} />
-        <ScrollLoader onLoad={getMoreRelations} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
-            <ResultSet data={relations} isLoading={isLoading}>
-                <RelationPanelList
-                    relations={relations}
-                    onFollowClick={establishRelation}
-                    onCreatorClick={viewProfile}
-                />
-            </ResultSet>
-        </ScrollLoader>
-    </Column>;
+    return <PullToRefresh onRefresh={refresh}>
+        <Column gap='small' alignX='stretch'>
+            <OrderAndSearchRow selected='recent' onOrderChange={reorderList} onSearchChange={() => {}} />
+            <ScrollLoader onLoad={getMoreRelations} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
+                <ResultSet data={relations} isLoading={isLoading}>
+                    <RelationPanelList
+                        relations={relations}
+                        onFollowClick={establishRelation}
+                        onCreatorClick={viewProfile}
+                    />
+                </ResultSet>
+            </ScrollLoader>
+        </Column>
+    </PullToRefresh >;
 }

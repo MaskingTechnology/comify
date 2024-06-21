@@ -1,7 +1,7 @@
 
 import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
 
-import { PostPanelGrid, ResultSet, ScrollLoader } from '^/webui/components';
+import { PostPanelGrid, PullToRefresh, ResultSet, ScrollLoader } from '^/webui/components';
 import { Column } from '^/webui/designsystem';
 
 import useCreatorPosts from './hooks/useCreatorPosts';
@@ -19,18 +19,20 @@ export default function Feature({ creator }: Props)
     const viewPostDetails = useViewPostDetails();
     const togglePostRating = useTogglePostRating();
 
-    const [posts, isLoading, isFinished, getMorePosts] = useCreatorPosts(creator);
+    const [posts, isLoading, isFinished, getMorePosts, , refresh] = useCreatorPosts(creator);
 
-    return <Column gap='small' alignX='stretch'>
-        <ScrollLoader onLoad={getMorePosts} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
-            <ResultSet data={posts} isLoading={isLoading}>
-                <PostPanelGrid
-                    posts={posts}
-                    onComicClick={viewPostDetails}
-                    onRatingClick={togglePostRating}
-                    onReactionClick={viewPostDetails}
-                />
-            </ResultSet>
-        </ScrollLoader>
-    </Column>;
+    return <PullToRefresh onRefresh={refresh}>
+        <Column gap='small' alignX='stretch'>
+            <ScrollLoader onLoad={getMorePosts} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
+                <ResultSet data={posts} isLoading={isLoading}>
+                    <PostPanelGrid
+                        posts={posts}
+                        onComicClick={viewPostDetails}
+                        onRatingClick={togglePostRating}
+                        onReactionClick={viewPostDetails}
+                    />
+                </ResultSet>
+            </ScrollLoader>
+        </Column>
+    </PullToRefresh>;
 }

@@ -1,7 +1,7 @@
 
 import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
 
-import { OrderAndSearchRow, RelationPanelList, ResultSet, ScrollLoader } from '^/webui/components';
+import { OrderAndSearchRow, PullToRefresh, RelationPanelList, ResultSet, ScrollLoader } from '^/webui/components';
 import { Column } from '^/webui/designsystem';
 
 import useEstablishRelation from './hooks/useEstablishRelation';
@@ -17,18 +17,20 @@ export default function Feature()
     const reorderList = useReorderList();
     const viewProfile = useViewProfile();
 
-    const [relations, isLoading, isFinished, getMoreRelations] = useExploreCreators();
+    const [relations, isLoading, isFinished, getMoreRelations, , refresh] = useExploreCreators();
 
     return <Column gap='small' alignX='stretch'>
-        <OrderAndSearchRow selected='popular' onOrderChange={reorderList} onSearchChange={() => { }} />
-        <ScrollLoader onLoad={getMoreRelations} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
-            <ResultSet data={relations} isLoading={isLoading}>
-                <RelationPanelList
-                    relations={relations as RelationView[]}
-                    onFollowClick={establishRelation}
-                    onCreatorClick={viewProfile}
-                />
-            </ResultSet>
-        </ScrollLoader>
+        <OrderAndSearchRow selected='popular' onOrderChange={reorderList} onSearchChange={() => {}} />
+        <PullToRefresh onRefresh={refresh}>
+            <ScrollLoader onLoad={getMoreRelations} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
+                <ResultSet data={relations} isLoading={isLoading}>
+                    <RelationPanelList
+                        relations={relations as RelationView[]}
+                        onFollowClick={establishRelation}
+                        onCreatorClick={viewProfile}
+                    />
+                </ResultSet>
+            </ScrollLoader>
+        </PullToRefresh>
     </Column>;
 }
