@@ -1,10 +1,9 @@
 
-import { useState } from 'react';
-
 import { ClickArea, Row } from '^/webui/designsystem';
 
 import CompactNumber from '../common/CompactNumber';
 import Icon from './elementary/Icon';
+import useEngagement from './hooks/useEngagement';
 
 type Props = {
     readonly isEngaged: boolean;
@@ -14,19 +13,7 @@ type Props = {
 
 export default function Component({ isEngaged, count, onClick }: Props)
 {
-    const [isRated, setIsRated] = useState<boolean>(isEngaged);
-    const [ratingCount, setRatingCount] = useState<number>(count);
-
-    const handleClick = async () =>
-    {
-        const isRated = await onClick();
-
-        isRated
-            ? setRatingCount(ratingCount + 1)
-            : setRatingCount(ratingCount - 1);
-
-        setIsRated(isRated);
-    };
+    const [isRated, ratingCount, handleClick] = useEngagement(isEngaged, count, onClick);
 
     return <ClickArea onClick={handleClick}>
         <Row gap='small' alignX='left' alignY='center'>
