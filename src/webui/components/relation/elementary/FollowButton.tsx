@@ -1,42 +1,21 @@
 
-import { useState } from 'react';
 
 import { Button } from '^/webui/designsystem';
+
+import useEstablish from '../hooks/useEstablish';
 
 type Props = {
     readonly isFollowing: boolean;
     readonly onClick: () => Promise<void>;
 };
 
-type States = 'unestablished' | 'establishing' | 'established';
-
 export default function Component({ isFollowing, onClick }: Props)
 {
-    const [status, setStatus] = useState<States>(isFollowing ? 'established' : 'unestablished');
-
-    const handleClick = async () =>  
-    {
-        setStatus('establishing');
-
-        await onClick();
-
-        setStatus('established');
-    };
-
-    const state = status !== 'unestablished' ? 'disabled' : 'secondary';
-
-    let text: string;
-
-    switch (status)
-    {
-        case 'establishing': text = 'Establishing'; break;
-        case 'established': text = 'Following'; break;
-        default: text = 'Follow';
-    }
+    const [status, handleClick] = useEstablish(isFollowing, onClick);
 
     return <Button
-        type={state}
-        text={text}
+        type={status !== 'unestablished' ? 'disabled' : 'secondary'}
+        text={status !== 'unestablished' ? 'Following' : 'Follow'}
         onClick={handleClick}
     />;
 }
