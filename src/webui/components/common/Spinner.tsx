@@ -1,11 +1,15 @@
 
 import { Panel, Row, Spinner } from '^/webui/designsystem';
 
-export default function Component()
+type Props = {
+    readonly active?: boolean;
+};
+
+export default function Component({ active }: Props)
 {
     return <Panel type='transparent' padding='large'>
         <Row alignX='center'>
-            <Spinner />
+            <Spinner active={active} />
         </Row>
     </Panel>;
 }

@@ -19,8 +19,15 @@
             height: var(--size);
             border-radius: 50%;
             border: var(--thickness) solid var(--color);
-            border-color: var(--color) transparent var(--color) transparent;
-            animation: ds-spinner var(--speed) linear infinite;
+            border-color: transparent var(--color) transparent var(--color);
+        }
+
+        &.active
+        {
+            &:after
+            {
+                animation: ds-spinner var(--speed) linear infinite;
+            }
         }
     }
 }
