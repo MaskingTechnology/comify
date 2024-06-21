@@ -1,37 +1,42 @@
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export function usePathParam(index: number, defaultValue?: string)
 {
     const navigate = useNavigate();
     const { pathname } = useLocation();
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState<string | undefined>(undefined);
 
-    useEffect(() =>
+    const getPathParts = useCallback(() =>
     {
-        const currentPath = pathname.endsWith('/')
+        const path = pathname.endsWith('/')
             ? pathname.slice(0, -1)
             : pathname;
 
-        const pathParts = currentPath.split('/');
+        return path.split('/');
+
+    }, [pathname]);
+
+    useEffect(() =>
+    {
+        const pathParts = getPathParts();
         const paramValue = pathParts[index];
 
-        setValue(paramValue ?? defaultValue ?? '');
-    }, [index, defaultValue, pathname]);
+        setValue(paramValue ?? defaultValue);
+
+    }, [index, defaultValue, getPathParts]);
 
     useEffect(() =>
     {
-        const currentPath = pathname.endsWith('/')
-            ? pathname.slice(0, -1)
-            : pathname;
+        if (value === undefined) return;
 
-        const pathParts = currentPath.split('/');
-        pathParts[index] = value ?? '';
+        const pathParts = getPathParts();
+        pathParts[index] = value;
 
         navigate(pathParts.join('/'), { replace: true });
 
-    }, [index, navigate, pathname, value]);
+    }, [index, value, getPathParts, navigate]);
 
     return [value, setValue] as const;
 }
