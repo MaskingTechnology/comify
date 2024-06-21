@@ -23,9 +23,9 @@ export default function Feature({ creator }: Props)
 
     const [relations, isLoading, isFinished, getMoreRelations, , refresh] = useCreatorFollowing(creator);
 
-    return <PullToRefresh onRefresh={refresh}>
-        <Column gap='small' alignX='stretch'>
-            <OrderAndSearchRow selected='recent' onOrderChange={reorderList} onSearchChange={() => {}} />
+    return <Column gap='small' alignX='stretch'>
+        <OrderAndSearchRow selected='recent' onOrderChange={reorderList} onSearchChange={() => {}} />
+        <PullToRefresh onRefresh={refresh}>
             <ScrollLoader onLoad={getMoreRelations} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
                 <ResultSet data={relations} isLoading={isLoading}>
                     <RelationPanelList
@@ -35,6 +35,6 @@ export default function Feature({ creator }: Props)
                     />
                 </ResultSet>
             </ScrollLoader>
-        </Column>
-    </PullToRefresh>;
+        </PullToRefresh>
+    </Column>;
 }
