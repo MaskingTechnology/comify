@@ -1,5 +1,4 @@
 
-import { useRef } from 'react';
 
 import { Button, Column, Panel, Row } from '^/webui/designsystem';
 
@@ -13,8 +12,7 @@ type Props = {
 
 export default function Component({ onCreate, onCancel }: Props)
 {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const editor = useEditor(canvasRef);
+    const [canvasRef, editor] = useEditor();
     const [creating, handleCreate, handleCancel] = useCreateHandler(editor, onCreate, onCancel);
 
     return <Panel>

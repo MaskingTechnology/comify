@@ -1,5 +1,5 @@
 
-import { RefObject, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { useScrollContainer } from './useScrollContainer';
 
@@ -7,11 +7,9 @@ export type LoadHandler = () => void;
 
 const DEFAULT_SCROLL_THRESHOLD = 0.7;
 
-export default function useLoadOnScroll(ref: RefObject<HTMLElement>, onLoad: LoadHandler, isLoading: boolean, isFinished: boolean, threshold?: number)
+export default function useLoadOnScroll(onLoad: LoadHandler, isLoading: boolean, isFinished: boolean, threshold: number = DEFAULT_SCROLL_THRESHOLD)
 {
-    const container = useScrollContainer(ref);
-
-    threshold ??= DEFAULT_SCROLL_THRESHOLD;
+    const [childRef, container] = useScrollContainer();
 
     useEffect(() =>
     {
@@ -37,4 +35,6 @@ export default function useLoadOnScroll(ref: RefObject<HTMLElement>, onLoad: Loa
         return () => container.removeEventListener('scroll', handleScroll);
 
     }, [container, onLoad, isLoading, isFinished, threshold]);
+
+    return [childRef] as const;
 }

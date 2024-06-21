@@ -1,15 +1,16 @@
 
-import { RefObject, useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { Editor } from '^/webui/editor';
 
-export default function useEditor(ref: RefObject<HTMLCanvasElement>)
+export default function useEditor()
 {
+    const canvasRef = useRef<HTMLCanvasElement>(null);
     const [editor, setEditor] = useState<Editor | undefined>(undefined);
 
     useEffect(() =>
     {
-        const canvas = ref.current;
+        const canvas = canvasRef.current;
 
         if (canvas === null) return;
 
@@ -20,7 +21,7 @@ export default function useEditor(ref: RefObject<HTMLCanvasElement>)
 
         return () => { editor.stop(); };
 
-    }, [ref]);
+    }, [canvasRef]);
 
-    return editor;
+    return [canvasRef, editor] as const;
 }

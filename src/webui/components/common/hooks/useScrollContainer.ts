@@ -1,38 +1,38 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const SCROLL_PROPERTIES = ['overflow', 'auto', 'scroll'];
 
-export function useScrollContainer(ref: React.RefObject<HTMLElement>)
+export function useScrollContainer()
 {
+    const childRef = useRef<HTMLDivElement>(null);
     const [container, setContainer] = useState<HTMLElement | undefined>(undefined);
-
-    const getScrollContainer = useCallback((): HTMLElement | undefined =>
-    {
-        let parent = ref.current?.parentElement;
-
-        while (parent)
-        {
-            const { overflowY } = window.getComputedStyle(parent);
-
-            if (SCROLL_PROPERTIES.includes(overflowY))
-            {
-                return parent;
-            }
-
-            parent = parent.parentElement;
-        }
-
-        return undefined;
-
-    }, [ref]);
 
     useEffect(() =>
     {
+        const getScrollContainer = () =>
+        {
+            let parent = childRef.current?.parentElement;
+
+            while (parent)
+            {
+                const { overflowY } = window.getComputedStyle(parent);
+
+                if (SCROLL_PROPERTIES.includes(overflowY))
+                {
+                    return parent;
+                }
+
+                parent = parent.parentElement;
+            }
+
+            return undefined;
+        };
+
         const container = getScrollContainer();
 
         setContainer(container);
 
-    }, [getScrollContainer, ref]);
+    }, [childRef]);
 
-    return container;
+    return [childRef, container] as const;
 }

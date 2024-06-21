@@ -1,5 +1,5 @@
 
-import { ReactNode, useRef } from 'react';
+import { ReactNode } from 'react';
 
 import useLoadOnScroll from './hooks/useLoadOnScroll';
 
@@ -15,11 +15,9 @@ type Props = {
 
 export default function Component({ onScroll, isLoading, isFinished, threshold, children }: Props)
 {
-    const ref = useRef<HTMLDivElement>(null);
+    const [childRef] = useLoadOnScroll(onScroll, isLoading, isFinished, threshold);
 
-    useLoadOnScroll(ref, onScroll, isLoading, isFinished, threshold);
-
-    return <div className='scroll-loader' ref={ref}>
+    return <div className='scroll-loader' ref={childRef}>
         {children}
         {isLoading && <Spinner />}
     </div>;

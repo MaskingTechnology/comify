@@ -60,7 +60,7 @@ export function useForm(formRef: RefObject<HTMLFormElement>, submitData: SubmitH
 
     }, [formRef, state, submitData, updateFormData]);
 
-    const listenForChanges = useCallback(() =>
+    const listenForChanges = () =>
     {
         const form = formRef.current;
 
@@ -71,10 +71,9 @@ export function useForm(formRef: RefObject<HTMLFormElement>, submitData: SubmitH
         form.addEventListener('input', changeHandler);
 
         return () => form.removeEventListener('input', changeHandler);
+    };
 
-    }, [formRef, updateState]);
-
-    useEffect(() => listenForChanges(), [listenForChanges]);
+    useEffect(listenForChanges, [formRef, updateState]);
 
     useEffect(() => updateFormData(), [updateFormData]);
 
