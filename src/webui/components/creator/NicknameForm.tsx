@@ -12,7 +12,7 @@ export type Props = {
 };
 
 const NICKNAME_MAX_LENGTH = 20;
-const NICKNAME_STRING_PATTERN = '^[a-zA-Z0-9]+$';
+const NICKNAME_STRING_PATTERN = '^[a-z0-9]+$';
 
 export default function Component({ nickname, alreadyInUse, onSubmit }: Props)
 {
@@ -33,7 +33,7 @@ export default function Component({ nickname, alreadyInUse, onSubmit }: Props)
                     value={nickname}
                     limit={NICKNAME_MAX_LENGTH}
                     pattern={NICKNAME_STRING_PATTERN}
-                    title='Only alphanumeric characters are allowed.'
+                    title='Only lowercase characters and numbers are allowed.'
                     size='small'
                     required={true}
                 />
