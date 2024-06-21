@@ -1,4 +1,6 @@
 
+import { useCallback } from 'react';
+
 import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
 
@@ -32,16 +34,17 @@ export default function Feature({ post }: Props)
 
     const removeReaction = useRemoveReaction(reactions as ReactionView[], setReactions);
 
-    const addReaction = (reaction?: ReactionView) =>
+    const addReaction = useCallback((reaction?: ReactionView) =>
     {
         if (reaction === undefined) return;
 
         const result = [reaction, ...reactions as ReactionView[]];
 
         setReactions(result);
-    };
 
-    const createReaction = () =>
+    }, [reactions, setReactions]);
+
+    const createReaction = useCallback(() =>
     {
         const content = <CreateReaction
             post={post}
@@ -49,9 +52,10 @@ export default function Feature({ post }: Props)
         />;
 
         showModal(content);
-    };
 
-    const deleteReaction = async (reaction: ReactionView) =>
+    }, [addReaction, closeModal, post, showModal]);
+
+    const deleteReaction = useCallback(async (reaction: ReactionView) =>
     {
         const panel = <ConfirmationPanel
             message='Are you sure you want to delete this reaction?'
@@ -59,11 +63,12 @@ export default function Feature({ post }: Props)
             onCancel={() => closeModal()} />;
 
         showModal(panel);
-    };
+
+    }, [showModal, closeModal, removeReaction]);
 
     return <Column alignX='stretch'>
         <OrderAndAddRow selected='recent' reactionHandler={createReaction} />
-        <ScrollLoader onScroll={getMoreReactions} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
+        <ScrollLoader onLoad={getMoreReactions} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
             <ResultSet data={reactions} isLoading={isLoading}>
                 <ReactionPanelList
                     reactions={reactions as ReactionView[]}

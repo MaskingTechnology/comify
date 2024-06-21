@@ -24,8 +24,8 @@ export default function Feature({ creator }: Props)
     const [relations, isLoading, isFinished, getMoreRelations] = useCreatorFollowers(creator);
 
     return <Column gap='small' alignX='stretch'>
-        <OrderAndSearchRow selected='recent' onOrderChange={reorderList} />
-        <ScrollLoader onScroll={getMoreRelations} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
+        <OrderAndSearchRow selected='recent' onOrderChange={reorderList} onSearchChange={() => { }} />
+        <ScrollLoader onLoad={getMoreRelations} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
             <ResultSet data={relations} isLoading={isLoading}>
                 <RelationPanelList
                     relations={relations}

@@ -1,26 +1,22 @@
 
 import { Row, TextBox } from '^/webui/designsystem';
 
+import { useDebouncedValue } from '^/webui/hooks';
+
 import OrderSelection from './elementary/OrderSelection';
 
 type Props = {
     readonly selected?: 'recent' | 'popular';
-    readonly onOrderChange?: (oldKey: string, newKey: string) => void;
-    readonly onSearchChange?: (newValue: string) => void;
+    readonly onOrderChange: (oldKey: string, newKey: string) => void;
+    readonly onSearchChange: (newValue: string) => void;
 };
 
 export default function Component({ selected, onOrderChange, onSearchChange }: Props)
 {
-    function handleSearchChange(value: string)
-    {
-        if (onSearchChange)
-        {
-            onSearchChange(value);
-        }
-    }
+    const [, setValue] = useDebouncedValue<string>('', onSearchChange);
 
     return <Row alignX='justify' alignY='center'>
         <OrderSelection key='creators' selected={selected} onChange={onOrderChange} />
-        <TextBox name='search' placeholder='Search' size='small' onChange={(event) => handleSearchChange(event.target.value)} />
+        <TextBox name='search' placeholder='Search' size='small' onChange={(event) => setValue(event.target.value)} />
     </Row>;
 }

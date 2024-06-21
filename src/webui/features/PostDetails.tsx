@@ -1,4 +1,6 @@
 
+import { useCallback } from 'react';
+
 import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 
 import { ConfirmationPanel, LoadingContainer, PostDetailsPanel } from '^/webui/components';
@@ -24,7 +26,7 @@ export default function Feature()
 
     const [post] = usePost();
 
-    const deletePost = async (post: PostView) =>
+    const deletePost = useCallback(async (post: PostView) =>
     {
         const panel = <ConfirmationPanel
             message='Are you sure you want to delete this post?'
@@ -32,7 +34,8 @@ export default function Feature()
             onCancel={() => closeModal()} />;
 
         showModal(panel);
-    };
+
+    }, [showModal, closeModal, removePost]);
 
     return <Column gap='medium' alignX='stretch'>
         <LoadingContainer data={post}>
