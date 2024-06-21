@@ -8,15 +8,15 @@ import Form from '../common/Form';
 export type Props = {
     readonly nickname: string;
     readonly alreadyInUse: boolean;
-    readonly onUpdate: (nickname: string) => Promise<void>;
+    readonly onSubmit: (nickname: string) => Promise<void>;
 };
 
 const NICKNAME_MAX_LENGTH = 20;
 const NICKNAME_STRING_PATTERN = '^[a-zA-Z0-9]+$';
 
-export default function Component({ nickname, alreadyInUse, onUpdate }: Props)
+export default function Component({ nickname, alreadyInUse, onSubmit }: Props)
 {
-    const handleSubmit = useCallback((data: FormData) => onUpdate(data.get('nickname') as string), [onUpdate]);
+    const handleSubmit = useCallback((data: FormData) => onSubmit(data.get('nickname') as string), [onSubmit]);
 
     return <Panel>
         {

@@ -19,8 +19,8 @@ export default function Feature()
         <LoadingContainer data={identity}>
             <CreatorProfile creator={identity as CreatorView} />
             <Ruler direction='horizontal' size='small' />
-            <CreatorFullNameForm fullName={(identity as CreatorView).fullName} onUpdate={updateFullName} />
-            <CreatorNicknameForm nickname={(identity as CreatorView).nickname} alreadyInUse={alreadyInUse} onUpdate={handler} />
+            <CreatorFullNameForm fullName={(identity as CreatorView).fullName} onSubmit={updateFullName} />
+            <CreatorNicknameForm nickname={(identity as CreatorView).nickname} alreadyInUse={alreadyInUse} onSubmit={handler} />
         </LoadingContainer>
     </Column>;
 }

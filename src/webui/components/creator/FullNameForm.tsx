@@ -7,14 +7,14 @@ import Form from '../common/Form';
 
 export type Props = {
     readonly fullName: string;
-    readonly onUpdate: (fullName: string) => Promise<void>;
+    readonly onSubmit: (fullName: string) => Promise<void>;
 };
 
 const FULL_NAME_MAX_LENGTH = 100;
 
-export default function Component({ fullName, onUpdate }: Props)
+export default function Component({ fullName, onSubmit }: Props)
 {
-    const handleSubmit = useCallback((data: FormData) => onUpdate(data.get('fullName') as string), [onUpdate]);
+    const handleSubmit = useCallback((data: FormData) => onSubmit(data.get('fullName') as string), [onSubmit]);
 
     return <Panel>
         <Form onSubmit={handleSubmit}>
