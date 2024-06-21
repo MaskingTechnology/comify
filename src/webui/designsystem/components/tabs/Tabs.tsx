@@ -1,11 +1,11 @@
 
-import React, { useState } from 'react';
+import { ReactElement, ReactNode, useState } from 'react';
 import { Props as TabProps } from './Tab';
 import './Tabs.css';
 
 export type Props = {
-    readonly separator?: React.ReactNode;
-    readonly children: React.ReactElement<TabProps> | React.ReactElement<TabProps>[];
+    readonly separator?: ReactNode;
+    readonly children: ReactElement<TabProps> | ReactElement<TabProps>[];
     readonly onChange?: (oldIndex: number, newIndex: number) => void;
 };
 

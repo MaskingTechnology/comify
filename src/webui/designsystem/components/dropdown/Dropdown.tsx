@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import { MouseEvent, useState } from 'react';
 import './Dropdown.css';
 
 export type Props = {
@@ -22,7 +22,7 @@ export default function Component({ options, selected, onChange }: Props)
         setShowOptions(!showOptions);
     };
 
-    const handleOptionClick = (event: React.MouseEvent) =>
+    const handleOptionClick = (event: MouseEvent) =>
     {
         const target = event.target as HTMLElement;
 

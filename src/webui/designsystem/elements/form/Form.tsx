@@ -1,9 +1,9 @@
 
-import React, { forwardRef } from 'react';
+import { FormEvent, ReactNode, forwardRef } from 'react';
 import './Form.css';
 
 export type Props = {
-    readonly children: React.ReactNode;
+    readonly children: ReactNode;
     readonly submitHandler?: (form: HTMLFormElement) => void;
 };
 
@@ -11,7 +11,7 @@ type Ref = HTMLFormElement;
 
 export default forwardRef<Ref, Props>(function Element({ children, submitHandler }, ref)
 {
-    const handleSubmit = (event: React.FormEvent<HTMLElement>) =>
+    const handleSubmit = (event: FormEvent<HTMLElement>) =>
     {
         event.preventDefault();
 

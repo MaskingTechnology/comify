@@ -1,5 +1,5 @@
 
-import React from 'react';
+import { ReactNode } from 'react';
 import './Row.css';
 
 export type Props = {
@@ -7,7 +7,7 @@ export type Props = {
     readonly alignY?: 'top' | 'center' | 'bottom' | 'stretch';
     readonly gap?: 'large' | 'medium' | 'small' | 'none';
     readonly wrap?: 'wrap' | 'nowrap';
-    readonly children: React.ReactNode;
+    readonly children: ReactNode;
 };
 
 export default function Element({ alignX, alignY, gap, wrap, children }: Props)

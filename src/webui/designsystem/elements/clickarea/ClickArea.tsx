@@ -1,10 +1,11 @@
 
+import { ReactNode } from 'react';
 import './ClickArea.css';
 
 export type Props = {
     readonly padding?: 'large' | 'medium' | 'small' | 'none';
     readonly onClick?: () => void;
-    readonly children?: React.ReactNode;
+    readonly children?: ReactNode;
 };
 
 export default function Element({ padding, onClick, children }: Props)

@@ -1,5 +1,5 @@
 
-import React from 'react';
+import { ReactNode } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { useAppContext } from './contexts';
@@ -20,7 +20,7 @@ export default function Component()
 {
     const { identity } = useAppContext();
 
-    const protect = (node: React.ReactNode) =>
+    const protect = (node: ReactNode) =>
     {
         return identity === undefined ? <Login /> : node;
     };

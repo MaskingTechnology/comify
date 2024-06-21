@@ -1,10 +1,10 @@
 
-import React from 'react';
+import { ReactNode } from 'react';
 
 import { CenteredLayout } from '^/webui/layouts';
 
 type Props = {
-    readonly children?: React.ReactNode;
+    readonly children?: ReactNode;
 };
 
 export default function Page({ children }: Props)

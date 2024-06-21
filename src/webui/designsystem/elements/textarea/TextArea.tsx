@@ -1,5 +1,5 @@
 
-import React, { forwardRef } from 'react';
+import { ChangeEventHandler, forwardRef } from 'react';
 import './TextArea.css';
 
 export type Props = {
@@ -9,7 +9,7 @@ export type Props = {
     readonly size?: 'large' | 'medium' | 'small';
     readonly rows?: number;
     readonly limit?: number;
-    readonly onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
+    readonly onChange?: ChangeEventHandler<HTMLTextAreaElement>;
 };
 
 type Ref = HTMLTextAreaElement;
