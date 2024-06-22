@@ -8,7 +8,7 @@ import ExploreCreators from './ExploreCreators';
 
 export default function Feature()
 {
-    const [tab, setTab] = usePathParam(2, 'comics');
+    const [tab, setTab] = usePathParam('tab', 'comics');
 
     const separator = <Ruler direction='horizontal' size='small' />;
 

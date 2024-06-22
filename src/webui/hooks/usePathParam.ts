@@ -1,42 +1,51 @@
 
 import { useCallback, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
-export function usePathParam(index: number, defaultValue?: string)
+export function usePathParam(paramName: string, defaultValue?: string)
 {
     const navigate = useNavigate();
+    const params = useParams();
     const { pathname } = useLocation();
     const [value, setValue] = useState<string | undefined>(undefined);
 
-    const getPathParts = useCallback(() =>
+    const getPathInfo = useCallback(() =>
     {
-        const path = pathname.endsWith('/')
-            ? pathname.slice(0, -1)
-            : pathname;
+        const path = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+        const parts = path.split('/');
 
-        return path.split('/');
+        const paramValue = params[paramName];
+        const paramIndex = parts.indexOf(paramValue ?? '###');
 
-    }, [pathname]);
+        return { parts, paramValue, paramIndex };
+
+    }, [params, paramName, pathname]);
 
     useEffect(() =>
     {
-        const pathParts = getPathParts();
-        const paramValue = pathParts[index];
+        const { paramValue } = getPathInfo();
 
         setValue(paramValue ?? defaultValue);
 
-    }, [index, defaultValue, getPathParts]);
+    }, [defaultValue, getPathInfo]);
 
     useEffect(() =>
     {
         if (value === undefined) return;
 
-        const pathParts = getPathParts();
-        pathParts[index] = value;
+        const { parts, paramIndex, paramValue } = getPathInfo();
 
-        navigate(pathParts.join('/'), { replace: true });
+        if (paramValue === value) return;
 
-    }, [index, value, getPathParts, navigate]);
+        paramIndex === -1
+            ? parts.push(value)
+            : parts[paramIndex] = value;
+
+        const newPath = parts.join('/');
+
+        navigate(newPath);
+
+    }, [value, navigate, getPathInfo]);
 
     return [value, setValue] as const;
 }

@@ -17,7 +17,7 @@ import CreatorFollowing from './CreatorFollowing';
 
 export default function Feature()
 {
-    const [tab, setTab] = usePathParam(3, 'comics');
+    const [tab, setTab] = usePathParam('tab', 'comics');
 
     const establishRelation = useEstablishRelation();
     const editProfile = useEditProfile();
