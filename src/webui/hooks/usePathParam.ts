@@ -1,5 +1,5 @@
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 export function usePathParam(paramName: string, defaultValue?: string)
@@ -23,15 +23,17 @@ export function usePathParam(paramName: string, defaultValue?: string)
 
     }, [parameters, paramValue]);
 
-    const createPath = useCallback(() =>
+    const path = useMemo(() =>
     {
         if (value === undefined) return;
 
-        paramIndex === -1
-            ? parameters.push(value)
-            : parameters[paramIndex] = value;
+        const newParameters = [...parameters];
 
-        return parameters.join('/');
+        paramIndex === -1
+            ? newParameters.push(value)
+            : newParameters[paramIndex] = value;
+
+        return newParameters.join('/');
 
     }, [value, parameters, paramIndex]);
 
@@ -43,11 +45,9 @@ export function usePathParam(paramName: string, defaultValue?: string)
 
     useEffect(() =>
     {
-        const newPath = createPath();
+        if (path === undefined) return;
 
-        if (newPath === undefined) return;
-
-        navigate(newPath);
+        navigate(path);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [value]);
