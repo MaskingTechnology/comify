@@ -19,17 +19,10 @@ export function usePathParam(paramName: string, defaultValue?: string)
 
         return { parts, paramValue, paramIndex };
 
-    }, [params, paramName, pathname]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [pathname]);
 
-    useEffect(() =>
-    {
-        const { paramValue } = getPathInfo();
-
-        setValue(paramValue ?? defaultValue);
-
-    }, [defaultValue, getPathInfo]);
-
-    useEffect(() =>
+    const createPath = useCallback(() =>
     {
         if (value === undefined) return;
 
@@ -41,11 +34,29 @@ export function usePathParam(paramName: string, defaultValue?: string)
             ? parts.push(value)
             : parts[paramIndex] = value;
 
-        const newPath = parts.join('/');
+        return parts.join('/');
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [value, getPathInfo]);
+
+    useEffect(() =>
+    {
+        const { paramValue } = getPathInfo();
+
+        setValue(paramValue ?? defaultValue);
+
+    }, [defaultValue, getPathInfo]);
+
+    useEffect(() =>
+    {
+        const newPath = createPath();
+
+        if (newPath === undefined) return;
 
         navigate(newPath);
 
-    }, [value, navigate, getPathInfo]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [value]);
 
     return [value, setValue] as const;
 }
