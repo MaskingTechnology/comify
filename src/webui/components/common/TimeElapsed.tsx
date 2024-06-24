@@ -8,11 +8,8 @@ type Props = {
     readonly weight?: 'light' | 'normal' | 'bold';
 };
 
-export default function Component({ date, size, weight }: Props)
+export default function Component({ date, size = 'medium', weight = 'normal' }: Props)
 {
-    size ??= 'medium';
-    weight ??= 'normal';
-
     const value = timeElapsed(date);
 
     return <Text value={value} type='secondary' size={size} weight={weight} />;

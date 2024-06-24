@@ -9,12 +9,12 @@ type Props = {
     readonly children?: ReactNode;
 };
 
-export default function Element({ open, sizing, children }: Props)
+export default function Element({ open, sizing = 'content', children }: Props)
 {
     const ref = useRef<HTMLDialogElement>(null);
 
     const className = 'modal'
-        + ' sizing-' + (sizing ?? 'content');
+        + ' sizing-' + sizing;
 
     useEffect(() =>
     {
