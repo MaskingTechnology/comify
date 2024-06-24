@@ -10,11 +10,11 @@ type Props = {
     readonly children: ReactNode;
 };
 
-const CONVERSION_FACTOR = 16;
+const DISPLAY_HEIGHT_EM = 8;
 
 export default function Component({ onRefresh, children }: Props)
 {
-    const [containerRef, distance, readyToRefresh] = useRefreshOnPull(CONVERSION_FACTOR, onRefresh);
+    const [containerRef, distance, readyToRefresh] = useRefreshOnPull(DISPLAY_HEIGHT_EM, onRefresh);
 
     return <div ref={containerRef} style={{ touchAction: 'none' }} >
         <div style={{ overflow: 'hidden', height: `${distance}em` }} >
