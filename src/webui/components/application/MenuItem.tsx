@@ -1,5 +1,5 @@
 
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { Column, Image, Row, Text } from '^/webui/designsystem';
 
@@ -13,9 +13,6 @@ type Props = {
 
 export default function Component({ vertical, title, to, activeIcon, inactiveIcon }: Props)
 {
-    const location = useLocation();
-    const isActive = location.pathname === to;
-
     const Container = vertical ? Row : Column;
 
     const gapSize = vertical ? 'medium' : 'small';
@@ -24,9 +21,11 @@ export default function Component({ vertical, title, to, activeIcon, inactiveIco
     const textSize = vertical ? 'large' : 'small';
 
     return <NavLink style={{ 'textDecoration': 'none' }} to={to}>
-        <Container gap={gapSize} alignX={alignX} alignY='center'>
-            <Image source={isActive ? activeIcon : inactiveIcon} width={iconSize} />
-            <Text value={title} type={isActive ? 'primary' : 'secondary'} size={textSize} weight={isActive ? 'bold' : 'normal'} />
-        </Container>
+        {({ isActive }) => (
+            <Container gap={gapSize} alignX={alignX} alignY='center'>
+                <Image source={isActive ? activeIcon : inactiveIcon} width={iconSize} />
+                <Text value={title} type={isActive ? 'primary' : 'secondary'} size={textSize} weight={isActive ? 'bold' : 'normal'} />
+            </Container>
+        )}
     </NavLink>;
 }
