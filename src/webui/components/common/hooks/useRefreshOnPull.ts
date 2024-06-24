@@ -14,14 +14,14 @@ export default function useRefreshOnPull(displayHeight: number, onRefresh: () =>
 
     const thresholdDistance = displayHeight * REFRESH_THRESHOLD / MAX_PULL_DISTANCE;
 
-    const calculateDistance = (differenceY: number) =>
+    const calculateDistance = useCallback((differenceY: number) =>
     {
         // We use the exponential easing function to calculate the distance the user has pulled the container.
 
         const decay = Math.exp((-RESISTANCE_COEFFICIENT * differenceY) / MAX_PULL_DISTANCE);
 
         return (1 - decay) * displayHeight;
-    };
+    }, [displayHeight]);
 
     const handleStart = useCallback((event: TouchEvent) =>
     {
@@ -45,7 +45,7 @@ export default function useRefreshOnPull(displayHeight: number, onRefresh: () =>
                 : setAtThreshold(false);
         }
 
-    }, []);
+    }, [thresholdDistance, calculateDistance]);
 
     const handleEnd = useCallback((event: TouchEvent) =>
     {
@@ -61,7 +61,7 @@ export default function useRefreshOnPull(displayHeight: number, onRefresh: () =>
 
         setDistance(0);
 
-    }, [onRefresh]);
+    }, [onRefresh, thresholdDistance, calculateDistance]);
 
     const bindEvents = () =>
     {
