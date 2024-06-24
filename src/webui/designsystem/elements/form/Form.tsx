@@ -3,7 +3,7 @@ import { FormEvent, ReactNode, forwardRef } from 'react';
 
 import './Form.css';
 
-export type Props = {
+type Props = {
     readonly children: ReactNode;
     readonly submitHandler?: (form: HTMLFormElement) => void;
 };

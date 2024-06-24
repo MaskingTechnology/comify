@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 
 import './Row.css';
 
-export type Props = {
+type Props = {
     readonly alignX?: 'left' | 'center' | 'right' | 'justify';
     readonly alignY?: 'top' | 'center' | 'bottom' | 'stretch';
     readonly gap?: 'large' | 'medium' | 'small' | 'none';

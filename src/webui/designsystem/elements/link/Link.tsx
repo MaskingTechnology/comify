@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 
 import './Link.css';
 
-export type Props = {
+type Props = {
     readonly url?: string;
     readonly target?: string;
     readonly children: ReactNode;

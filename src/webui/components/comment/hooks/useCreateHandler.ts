@@ -1,8 +1,8 @@
 
 import { useCallback, useRef, useState } from 'react';
 
-export type CreateHandler = (commentText: string) => Promise<void>;
-export type CancelHandler = () => void;
+type CreateHandler = (commentText: string) => Promise<void>;
+type CancelHandler = () => void;
 
 export default function useCreateHandler(onCreate: CreateHandler, onCancel: CancelHandler)
 {

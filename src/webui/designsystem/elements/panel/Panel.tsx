@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 
 import './Panel.css';
 
-export type Props = {
+type Props = {
     readonly type?: 'normal' | 'alert' | 'warning' | 'success' | 'error' | 'transparent';
     readonly padding?: 'large' | 'medium' | 'small';
     readonly children?: ReactNode;

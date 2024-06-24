@@ -10,7 +10,7 @@ type Props = {
     readonly children: ReactNode;
 };
 
-export type State = {
+type State = {
     error: unknown;
 };
 

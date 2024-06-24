@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 
 import './Border.css';
 
-export type Props = {
+type Props = {
     readonly type?: 'normal' | 'dashed' | 'dotted';
     readonly size?: 'large' | 'medium' | 'small';
     readonly padding?: 'large' | 'medium' | 'small' | 'none';

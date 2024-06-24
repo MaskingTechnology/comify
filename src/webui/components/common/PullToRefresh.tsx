@@ -5,7 +5,7 @@ import useRefreshOnPull from './hooks/useRefreshOnPull';
 
 import Spinner from './Spinner';
 
-export type Props = {
+type Props = {
     readonly onRefresh: () => void;
     readonly children: ReactNode;
 };

@@ -5,7 +5,7 @@ import Form from '../common/Form';
 
 import useFullNameFormHandler, { SubmitHandler } from './hooks/useFullNameFormHandler';
 
-export type Props = {
+type Props = {
     readonly fullName: string;
     readonly onSubmit: SubmitHandler;
 };

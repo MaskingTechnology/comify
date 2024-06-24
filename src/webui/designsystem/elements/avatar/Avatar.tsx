@@ -1,7 +1,7 @@
 
 import './Avatar.css';
 
-export type Props = {
+type Props = {
     readonly source: string;
     readonly title?: string;
     readonly alt?: string;
