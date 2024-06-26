@@ -20,13 +20,13 @@ describe('domain/post/create', () =>
 {
     it('should create an image from a valid data url', async () =>
     {
-        await create(REQUESTERS.CREATOR, DATA_URLS.COMIC_IMAGE);
+        await create(REQUESTERS.CREATOR1, DATA_URLS.COMIC_IMAGE);
 
         const posts = await database.searchRecords(POST_RECORD_TYPE, {});
         expect(posts.length).toBe(1);
 
         const post = posts[0];
-        expect(post?.creatorId).toBe(REQUESTERS.CREATOR.id);
+        expect(post?.creatorId).toBe(REQUESTERS.CREATOR1.id);
         expect(post?.comicId).toBeDefined();
         expect(post?.createdAt).toBeDefined();
         expect(post?.ratingCount).toBe(0);

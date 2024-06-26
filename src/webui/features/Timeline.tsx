@@ -1,31 +1,17 @@
 
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 
-import { LoadingContainer, OrderRow, PostPanelList } from '^/webui/components';
-import { Column } from '^/webui/designsystem';
-import { useEstablishRelation, useReorderList, useTimelinePosts, useTogglePostRating, useViewPostDetails, useViewProfile } from '^/webui/hooks';
+import { Ruler, Tab, Tabs } from '^/webui/designsystem';
+import TimelineEverything from './TimelineEverything';
+import TimelineFollowing from './TimelineFollowing';
 
 export default function Feature()
 {
-    const establishRelation = useEstablishRelation();
-    const togglePostRating = useTogglePostRating();
-    const reorderList = useReorderList();
-    const viewPostDetails = useViewPostDetails();
-    const viewProfile = useViewProfile();
-
-    const [posts] = useTimelinePosts();
-
-    return <Column gap='small' alignX='stretch'>
-        <OrderRow selected='recent' onOrderChange={reorderList} />
-        <LoadingContainer data={posts}>
-            <PostPanelList
-                posts={posts as PostView[]}
-                onFollowClick={establishRelation}
-                onCreatorClick={viewProfile}
-                onComicClick={viewPostDetails}
-                onRatingClick={togglePostRating}
-                onReactionClick={viewPostDetails}
-            />
-        </LoadingContainer>
-    </Column>;
+    return <Tabs separator={<Ruler direction='horizontal' size='small' />}>
+        <Tab title='Everything'>
+            <TimelineEverything />
+        </Tab>
+        <Tab title='Following'>
+            <TimelineFollowing />
+        </Tab>
+    </Tabs>;
 }

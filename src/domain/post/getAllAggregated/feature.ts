@@ -3,11 +3,11 @@ import type { Requester } from '^/domain/authentication/types';
 
 import aggregate from '../aggregate/feature';
 import type { AggregatedData } from '../aggregate/types';
-import timeline from '../timeline/feature';
+import getAll from '../getAll/feature';
 
 export default async function feature(requester: Requester): Promise<AggregatedData[]>
 {
-    const data = await timeline(requester);
+    const data = await getAll(requester);
 
     return Promise.all(data.map(item => aggregate(requester, item)));
 }

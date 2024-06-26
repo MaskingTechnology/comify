@@ -18,7 +18,7 @@ describe('domain/post/remove', () =>
 {
     it('should soft delete a post', async () =>
     {
-        await remove(REQUESTERS.CREATOR, VALUES.IDS.POST_RATED);
+        await remove(REQUESTERS.CREATOR1, VALUES.IDS.POST_RATED);
 
         const reaction = await database.readRecord(RECORD_TYPE, VALUES.IDS.POST_RATED);
         expect(reaction.deleted).toBeTruthy();
@@ -26,7 +26,7 @@ describe('domain/post/remove', () =>
 
     it('should not delete an already deleted post', async () =>
     {
-        const promise = remove(REQUESTERS.CREATOR, VALUES.IDS.POST_DELETED);
+        const promise = remove(REQUESTERS.CREATOR1, VALUES.IDS.POST_DELETED);
         await expect(promise).rejects.toThrow(PostNotFound);
     });
 

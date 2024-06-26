@@ -14,7 +14,8 @@
     "./domain/post/exploreAggregated/feature": { "default": {  "access": "public" } },
     "./domain/post/getByIdAggregated/feature": { "default": {  "access": "public" } },
     "./domain/post/getByCreatorAggregated/feature": { "default": {  "access": "public" } },
-    "./domain/post/timelineAggregated/feature": { "default": {  "access": "public" } },
+    "./domain/post/getAllAggregated/feature": { "default": { "access": "public"}},
+    "./domain/post/getByFollowingAggregated/feature": { "default": {  "access": "public" } },
     "./domain/post/remove/feature": { "default": {  "access": "public" } },
     "./domain/post/toggleRating/feature": { "default": {  "access": "public" } },
 

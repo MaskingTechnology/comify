@@ -2,6 +2,7 @@
 import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator/definitions';
 import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions';
 import { RECORD_TYPE as RATING_RECORD_TYPE } from '^/domain/rating/definitions';
+import { RECORD_TYPE as RELATION_RECORD_TYPE } from '^/domain/relation/definitions';
 
 import database from '^/integrations/database/module';
 
@@ -34,6 +35,27 @@ async function withPostsAndRatings(): Promise<void>
     });
 }
 
+async function withCreatorsAndRelations(): Promise<void>
+{
+    database.clear();
+
+    RECORDS.CREATORS.forEach(async (creator) =>
+    {
+        await database.createRecord(CREATOR_RECORD_TYPE, { ...creator });
+    });
+
+    RECORDS.RELATIONS.forEach(async (relation) =>
+    {
+        await database.createRecord(RELATION_RECORD_TYPE, { ...relation });
+    });
+
+    RECORDS.POSTS.forEach(async (post) =>
+    {
+        await database.createRecord(POST_RECORD_TYPE, { ...post });
+    });
+
+}
+
 async function withPostsAndCreators(): Promise<void>
 {
     database.clear();
@@ -49,4 +71,4 @@ async function withPostsAndCreators(): Promise<void>
     });
 }
 
-export const DATABASES = { withCreators, withPostsAndRatings, withPostsAndCreators };
+export const DATABASES = { withCreators, withPostsAndRatings, withPostsAndCreators, withCreatorsAndRelations };
