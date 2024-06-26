@@ -1,5 +1,5 @@
 
-import React from 'react';
+import { ReactNode } from 'react';
 
 import { Row } from '^/webui/designsystem';
 
@@ -8,7 +8,7 @@ import Avatar from './Avatar';
 type Props = {
     readonly avatarSize: 'small' | 'medium' | 'large';
     readonly avatarUrl?: string;
-    readonly children: React.ReactNode;
+    readonly children: ReactNode;
 };
 
 export default function Component({ avatarSize, avatarUrl, children }: Props)

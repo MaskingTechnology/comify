@@ -1,16 +1,17 @@
 
-import React from 'react';
+import { ReactNode } from 'react';
+
 import './Title.css';
 
-export type Props = {
+type Props = {
     readonly size?: 'large' | 'medium' | 'small';
-    readonly children: React.ReactNode;
+    readonly children: ReactNode;
 };
 
-export default function Element({ size, children }: Props)
+export default function Element({ size = 'large', children }: Props)
 {
     const className = 'title'
-        + ' size-' + (size ?? 'large');
+        + ' size-' + size;
 
     switch (size)
     {

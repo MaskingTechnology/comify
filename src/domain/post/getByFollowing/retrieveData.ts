@@ -4,7 +4,7 @@ import database, { RecordQuery, RecordSort, SortDirections } from '^/integration
 import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';
 
-export default async function retrieveData(creatorIds: string[]): Promise<DataModel[]>
+export default async function retrieveData(creatorIds: string[], limit: number, offset: number): Promise<DataModel[]>
 {
     const query: RecordQuery =
     {
@@ -14,5 +14,5 @@ export default async function retrieveData(creatorIds: string[]): Promise<DataMo
 
     const sort: RecordSort = { createdAt: SortDirections.DESCENDING };
 
-    return database.searchRecords(RECORD_TYPE, query, undefined, sort) as Promise<DataModel[]>;
+    return database.searchRecords(RECORD_TYPE, query, undefined, sort, limit, offset) as Promise<DataModel[]>;
 }

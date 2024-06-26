@@ -1,5 +1,6 @@
 
-import React, { forwardRef } from 'react';
+import { ChangeEventHandler, forwardRef } from 'react';
+
 import './TextBox.css';
 
 export type Props = {
@@ -11,15 +12,15 @@ export type Props = {
     readonly title?: string;
     readonly size?: 'large' | 'medium' | 'small';
     readonly required?: boolean;
-    readonly onChange?: React.ChangeEventHandler<HTMLInputElement>;
+    readonly onChange?: ChangeEventHandler<HTMLInputElement>;
 };
 
 type Ref = HTMLInputElement;
 
-export default forwardRef<Ref, Props>(function Element({ name, placeholder, value, limit, pattern, title, size, required, onChange }, ref)
+export default forwardRef<Ref, Props>(function Element({ name, placeholder, value, limit, pattern, title, size = 'medium', required, onChange }, ref)
 {
     const className = 'textbox'
-        + ' size-' + (size ?? 'medium');
+        + ' size-' + size;
 
     return <input
         className={className}

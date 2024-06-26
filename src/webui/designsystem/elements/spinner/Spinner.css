@@ -3,9 +3,9 @@
     .spinner
     {
         --color: var(--color-border);
-        --size: 2rem;
+        --size: 2em;
         --speed: 1.2s;
-        --thickness: 0.3rem;
+        --thickness: 0.3em;
 
         display: inline-block;
         width: var(--size);
@@ -19,8 +19,15 @@
             height: var(--size);
             border-radius: 50%;
             border: var(--thickness) solid var(--color);
-            border-color: var(--color) transparent var(--color) transparent;
-            animation: ds-spinner var(--speed) linear infinite;
+            border-color: transparent var(--color) transparent var(--color);
+        }
+
+        &.active
+        {
+            &:after
+            {
+                animation: ds-spinner var(--speed) linear infinite;
+            }
         }
     }
 }

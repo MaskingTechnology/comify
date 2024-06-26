@@ -1,20 +1,21 @@
 
-import React from 'react';
+import { ReactNode } from 'react';
+
 import './Border.css';
 
-export type Props = {
+type Props = {
     readonly type?: 'normal' | 'dashed' | 'dotted';
     readonly size?: 'large' | 'medium' | 'small';
     readonly padding?: 'large' | 'medium' | 'small' | 'none';
-    readonly children?: React.ReactNode;
+    readonly children?: ReactNode;
 };
 
-export default function Element({ type, size, padding, children }: Props)
+export default function Element({ type = 'normal', size = 'large', padding = 'large', children }: Props)
 {
     const className = 'border'
-        + ' type-' + (type ?? 'normal')
-        + ' size-' + (size ?? 'large')
-        + ' padding-' + (padding ?? 'large');
+        + ' type-' + type
+        + ' size-' + size
+        + ' padding-' + padding;
 
     return <div className={className}>
         {children}

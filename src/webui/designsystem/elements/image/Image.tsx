@@ -1,7 +1,7 @@
 
 import './Image.css';
 
-export type Props = {
+type Props = {
     readonly source: string;
     readonly title?: string;
     readonly alt?: string;
@@ -10,10 +10,10 @@ export type Props = {
     readonly fit?: 'fill' | 'contain' | 'cover' | 'none' | 'scale-down';
 };
 
-export default function Element({ source, title, alt, width, height, fit }: Props)
+export default function Element({ source, title, alt, width, height, fit = 'contain' }: Props)
 {
     const className = 'image'
-        + ' fit-' + (fit ?? 'contain');
+        + ' fit-' + fit;
 
     const style = { width, height };
 

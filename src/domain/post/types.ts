@@ -12,4 +12,3 @@ type DataModel = BaseDataModel &
 };
 
 export type { CountOperation, DataModel };
-

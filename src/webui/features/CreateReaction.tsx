@@ -4,7 +4,9 @@ import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate
 
 import { ComicEditor, CommentForm } from '^/webui/components';
 import { Ruler, Tab, Tabs } from '^/webui/designsystem';
-import { useCreateComicReaction, useCreateCommentReaction } from '^/webui/hooks';
+
+import useCreateComicReaction from './hooks/useCreateComicReaction';
+import useCreateCommentReaction from './hooks/useCreateCommentReaction';
 
 type Props = {
     readonly post: PostView;
@@ -19,10 +21,10 @@ export default function Feature({ post, handleDone }: Props)
     const createCommentReaction = useCreateCommentReaction(post, handleDone);
 
     return <Tabs separator={<Ruler direction='horizontal' size='small' />}>
-        <Tab title='Comic'>
+        <Tab id='comic' title='Comic'>
             <ComicEditor onCreate={createComicReaction} onCancel={() => handleDone(undefined)} />
         </Tab>
-        <Tab title='Comment'>
+        <Tab id='comment' title='Comment'>
             <CommentForm limit={MESSAGE_MAX_LENGTH} onCreate={createCommentReaction} onCancel={() => handleDone(undefined)} />
         </Tab>
     </Tabs>;

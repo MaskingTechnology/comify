@@ -1,8 +1,9 @@
 
-import React, { useState } from 'react';
+import { MouseEvent, useState } from 'react';
+
 import './Dropdown.css';
 
-export type Props = {
+type Props = {
     readonly options: Map<string, string>;
     readonly selected?: string; // Key of the selected option
     readonly onChange?: (oldKey: string, newKey: string) => void;
@@ -22,7 +23,7 @@ export default function Component({ options, selected, onChange }: Props)
         setShowOptions(!showOptions);
     };
 
-    const handleOptionClick = (event: React.MouseEvent) =>
+    const handleOptionClick = (event: MouseEvent) =>
     {
         const target = event.target as HTMLElement;
 

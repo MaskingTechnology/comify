@@ -35,4 +35,6 @@ export const VALUES =
     STORAGE_KEYS: {
         IMAGE: 'comic/1'
     },
+
+    RANGE: { limit: 30, offset: 0 }
 };
