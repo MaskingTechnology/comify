@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 
 import './Title.css';
 
-export type Props = {
+type Props = {
     readonly size?: 'large' | 'medium' | 'small';
     readonly children: ReactNode;
 };

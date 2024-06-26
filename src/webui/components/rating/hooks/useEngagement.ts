@@ -1,7 +1,7 @@
 
 import { useCallback, useState } from 'react';
 
-export type EngageHandler = () => Promise<boolean>;
+type EngageHandler = () => Promise<boolean>;
 
 export default function useEngagement(isEngaged: boolean, count: number, engage: EngageHandler)
 {

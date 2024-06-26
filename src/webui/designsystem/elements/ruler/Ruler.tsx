@@ -1,7 +1,7 @@
 
 import './Ruler.css';
 
-export type Props = {
+type Props = {
     readonly direction: 'horizontal' | 'vertical';
     readonly size?: 'small' | 'medium' | 'large';
 };

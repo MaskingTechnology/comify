@@ -4,7 +4,7 @@ import { ReactElement, ReactNode, useEffect, useMemo, useState } from 'react';
 import { Props as TabProps } from './Tab';
 import './Tabs.css';
 
-export type Props = {
+type Props = {
     readonly separator?: ReactNode;
     readonly selectedId?: string;
     readonly children: ReactElement<TabProps> | ReactElement<TabProps>[];

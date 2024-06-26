@@ -3,7 +3,7 @@ import { MouseEvent, useState } from 'react';
 
 import './Dropdown.css';
 
-export type Props = {
+type Props = {
     readonly options: Map<string, string>;
     readonly selected?: string; // Key of the selected option
     readonly onChange?: (oldKey: string, newKey: string) => void;

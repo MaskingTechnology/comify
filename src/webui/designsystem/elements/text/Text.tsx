@@ -1,7 +1,7 @@
 
 import './Text.css';
 
-export type Props = {
+type Props = {
     readonly value: string;
     readonly type?: 'primary' | 'secondary';
     readonly size?: 'large' | 'medium' | 'small';

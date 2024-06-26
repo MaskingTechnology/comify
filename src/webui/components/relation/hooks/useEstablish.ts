@@ -1,8 +1,8 @@
 
 import { useCallback, useState } from 'react';
 
-export type States = 'unestablished' | 'establishing' | 'established';
-export type EstablishHandler = () => Promise<void>;
+type States = 'unestablished' | 'establishing' | 'established';
+type EstablishHandler = () => Promise<void>;
 
 export default function useEstablish(isFollowing: boolean, establish: EstablishHandler)
 {

@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 
 import './Cell.css';
 
-export type Props = {
+type Props = {
     readonly sizing?: 'fixed' | 'fluid';
     readonly children: ReactNode;
 };

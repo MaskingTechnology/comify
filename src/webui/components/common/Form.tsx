@@ -5,7 +5,7 @@ import { Button, Form, Row } from '^/webui/designsystem';
 
 import { useForm } from '^/webui/hooks';
 
-export type Props = {
+type Props = {
     readonly onSubmit: (data: FormData) => Promise<void>;
     readonly children: ReactNode;
 };

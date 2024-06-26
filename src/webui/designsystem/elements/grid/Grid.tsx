@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 
 import './Grid.css';
 
-export type Props = {
+type Props = {
     readonly layout: 'two-columns' | 'three-columns' | 'four-columns';
     readonly gap?: 'large' | 'medium' | 'small' | 'none';
     readonly children: ReactNode;

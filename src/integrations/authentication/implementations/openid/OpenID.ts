@@ -5,7 +5,7 @@ import { IdentityProvider } from '../../definitions/interfaces.js';
 import { Identity, Session } from '../../definitions/types.js';
 import NotConnected from '../../errors/NotConnected.js';
 
-export type OpenIDConfiguration = {
+type OpenIDConfiguration = {
     issuer: string;
     clientId: string;
     clientSecret: string;

@@ -5,7 +5,7 @@ import Form from '../common/Form';
 
 import useNicknameFormHandler, { SubmitHandler } from './hooks/useNicknameFormHandler';
 
-export type Props = {
+type Props = {
     readonly nickname: string;
     readonly alreadyInUse: boolean;
     readonly onSubmit: SubmitHandler;

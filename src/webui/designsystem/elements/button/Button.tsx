@@ -1,7 +1,7 @@
 
 import './Button.css';
 
-export type Props = {
+type Props = {
     readonly type?: 'submit' | 'primary' | 'secondary' | 'disabled';
     readonly size?: 'large' | 'medium' | 'small';
     readonly text: string;
