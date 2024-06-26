@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 import { useScrollContainer } from './useScrollContainer';
 
-type LoadHandler = () => void;
+export type LoadHandler = () => void;
 
 const DEFAULT_SCROLL_THRESHOLD = 0.7;
 
