@@ -5,6 +5,7 @@ body
 {
     background-color: var(--background-color);
 
+    overscroll-behavior: none;
     padding: 0;
     margin: 0;
 }

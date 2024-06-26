@@ -16,7 +16,7 @@ export default function Component({ onRefresh, children }: Props)
 {
     const [containerRef, distance, readyToRefresh] = useRefreshOnPull(DISPLAY_HEIGHT_EM, onRefresh);
 
-    return <div ref={containerRef} style={{ touchAction: 'none' }} >
+    return <div ref={containerRef} >
         <div style={{ overflow: 'hidden', height: `${distance}em` }} >
             <Spinner active={readyToRefresh} />
         </div>

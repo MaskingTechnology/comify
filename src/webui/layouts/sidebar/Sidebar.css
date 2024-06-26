@@ -62,6 +62,7 @@
             flex-direction: column;
             justify-content: flex-start;
             overflow-y: auto;
+            overscroll-behavior: none;
             width: var(--right-width);
 
             main
