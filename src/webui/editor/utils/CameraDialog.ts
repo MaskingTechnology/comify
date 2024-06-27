@@ -1,8 +1,6 @@
 
 import Camera from './Camera';
 
-const CAPTURE_IMAGE_TYPE = 'image/jpeg';
-
 export default class CameraDialog
 {
     static readonly #dialog = this.#createDialog();

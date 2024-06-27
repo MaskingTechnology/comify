@@ -20,7 +20,7 @@ export default class Camera
     {
         if ('permissions' in navigator)
         {
-            // @ts-ignore
+            // @ts-expect-error The `name` property does not contain the value 'camera'
             const result = await navigator.permissions.query({ name: 'camera' });
 
             return result.state === 'granted';
@@ -32,7 +32,7 @@ export default class Camera
     static async canBeUsed(): Promise<boolean>
     {
         return this.isAvailable()
-            && await this.hasPermission();
+            && this.hasPermission();
     }
 
     async start(): Promise<void>
