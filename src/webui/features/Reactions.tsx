@@ -1,12 +1,18 @@
 
-import { useState } from 'react';
+import { useCallback } from 'react';
 
 import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
 
-import { LoadingContainer, OrderAndAddRow, ReactionPanelList } from '^/webui/components';
-import { Border, Column, Modal } from '^/webui/designsystem';
-import { useDeleteReaction, useEstablishRelation, useReactions, useToggleReactionRating, useViewProfile } from '^/webui/hooks';
+import { ConfirmationPanel, OrderAndAddRow, PullToRefresh, ReactionPanelList, ResultSet, ScrollLoader } from '^/webui/components';
+import { useAppContext } from '^/webui/contexts';
+import { Column } from '^/webui/designsystem';
+
+import useEstablishRelation from './hooks/useEstablishRelation';
+import useReactions from './hooks/useReactions';
+import useRemoveReaction from './hooks/useRemoveReaction';
+import useToggleReactionRating from './hooks/useToggleReactionRating';
+import useViewProfile from './hooks/useViewProfile';
 
 import CreateReaction from './CreateReaction';
 
@@ -14,52 +20,66 @@ type Props = {
     readonly post: PostView;
 };
 
+const SCROLL_THRESHOLD = 0.8;
+
 export default function Feature({ post }: Props)
 {
-    const [creating, setCreating] = useState<boolean>(false);
+    const { showModal, closeModal } = useAppContext();
 
     const establishRelation = useEstablishRelation();
     const viewProfile = useViewProfile();
     const toggleReactionRating = useToggleReactionRating();
 
-    const [reactions, setReactions] = useReactions(post);
+    const [reactions, isLoading, isFinished, getMoreReactions, setReactions, refresh] = useReactions(post);
 
-    const deleteReaction = useDeleteReaction(reactions as ReactionView[], setReactions);
+    const removeReaction = useRemoveReaction(reactions as ReactionView[], setReactions);
 
-    const openModal = () =>
+    const addReaction = useCallback((reaction?: ReactionView) =>
     {
-        setCreating(true);
-    };
+        if (reaction === undefined) return;
 
-    const closeModal = (reaction?: ReactionView) =>
+        const result = [reaction, ...reactions as ReactionView[]];
+
+        setReactions(result);
+
+    }, [reactions, setReactions]);
+
+    const createReaction = useCallback(() =>
     {
-        setCreating(false);
+        const content = <CreateReaction
+            post={post}
+            handleDone={(reaction?: ReactionView) => { closeModal(); addReaction(reaction); }}
+        />;
 
-        if (reaction !== undefined)
-        {
-            const result = [reaction, ...reactions as ReactionView[]];
+        showModal(content);
 
-            setReactions(result);
-        }
-    };
+    }, [addReaction, closeModal, post, showModal]);
 
-    return <>
-        <Modal open={creating} width='660px'>
-            <Border padding='small'>
-                <CreateReaction post={post} handleDone={closeModal} />
-            </Border>
-        </Modal>
-        <Column alignX='stretch'>
-            <OrderAndAddRow selected='recent' reactionHandler={openModal} />
-            <LoadingContainer data={reactions}>
-                <ReactionPanelList
-                    reactions={reactions as ReactionView[]}
-                    onFollowClick={establishRelation}
-                    onCreatorClick={viewProfile}
-                    onRatingClick={toggleReactionRating}
-                    onDeleteClick={deleteReaction}
-                />
-            </LoadingContainer>
-        </Column>
-    </>;
+    const deleteReaction = useCallback(async (reaction: ReactionView) =>
+    {
+        const panel = <ConfirmationPanel
+            message='Are you sure you want to delete this reaction?'
+            onConfirm={() => { closeModal(); removeReaction(reaction); }}
+            onCancel={() => closeModal()} />;
+
+        showModal(panel);
+
+    }, [showModal, closeModal, removeReaction]);
+
+    return <Column alignX='stretch'>
+        <OrderAndAddRow selected='recent' reactionHandler={createReaction} />
+        <PullToRefresh onRefresh={refresh}>
+            <ScrollLoader onLoad={getMoreReactions} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
+                <ResultSet data={reactions} isLoading={isLoading}>
+                    <ReactionPanelList
+                        reactions={reactions as ReactionView[]}
+                        onFollowClick={establishRelation}
+                        onCreatorClick={viewProfile}
+                        onRatingClick={toggleReactionRating}
+                        onDeleteClick={deleteReaction}
+                    />
+                </ResultSet>
+            </ScrollLoader>
+        </PullToRefresh>
+    </Column>;
 }

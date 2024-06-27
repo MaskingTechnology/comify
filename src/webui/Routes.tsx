@@ -1,5 +1,5 @@
 
-import React from 'react';
+import { ReactNode } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { useAppContext } from './contexts';
@@ -20,7 +20,7 @@ export default function Component()
 {
     const { identity } = useAppContext();
 
-    const protect = (node: React.ReactNode) =>
+    const protect = (node: ReactNode) =>
     {
         return identity === undefined ? <Login /> : node;
     };
@@ -32,10 +32,10 @@ export default function Component()
         <Route path="/identify" element={<Identify />} />
 
         <Route path="/timeline" element={protect(<Timeline />)} />
-        <Route path="/explore" element={protect(<Explore />)} />
+        <Route path="/explore/:tab?" element={protect(<Explore />)} />
         <Route path="/notifications" element={protect(<Notifications />)} />
         <Route path="/create" element={protect(<CreateComicPost />)} />
-        <Route path="/profile/:nickname" element={protect(<Profile />)} />
+        <Route path="/profile/:nickname/:tab?" element={protect(<Profile />)} />
         <Route path="/edit/profile" element={protect(<EditProfile />)} />
         <Route path="/post/:postId" element={protect(<PostDetails />)} />
         <Route path="/logout" element={protect(<Logout />)} />

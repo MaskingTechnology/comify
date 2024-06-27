@@ -1,10 +1,10 @@
 
-import React from 'react';
+import { ReactNode } from 'react';
 
 import './Centered.css';
 
 type Props = {
-    readonly children?: React.ReactNode;
+    readonly children?: ReactNode;
 };
 
 export default function Layout({ children }: Props)

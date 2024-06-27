@@ -1,5 +1,5 @@
 
-import React from 'react';
+import { ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ApplicationFooter, ApplicationHeader, ApplicationSidebar } from '^/webui/components';
@@ -7,7 +7,7 @@ import { useAppContext } from '^/webui/contexts/AppContext';
 import { SidebarLayout } from '^/webui/layouts';
 
 type Props = {
-    readonly children?: React.ReactNode;
+    readonly children?: ReactNode;
 };
 
 export default function Page({ children }: Props)

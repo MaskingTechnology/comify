@@ -1,16 +1,17 @@
 
-import React from 'react';
+import { ReactNode } from 'react';
+
 import './Cell.css';
 
-export type Props = {
+type Props = {
     readonly sizing?: 'fixed' | 'fluid';
-    readonly children: React.ReactNode;
+    readonly children: ReactNode;
 };
 
-export default function Element({ sizing, children }: Props)
+export default function Element({ sizing = 'fluid', children }: Props)
 {
     const className = 'cell'
-        + ' sizing-' + (sizing ?? 'fluid');
+        + ' sizing-' + sizing;
 
     return <div className={className}>
         {children}

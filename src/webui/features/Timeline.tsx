@@ -1,9 +1,15 @@
 
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
-
-import { LoadingContainer, OrderRow, PostPanelList } from '^/webui/components';
+import { OrderRow, PostPanelList, PullToRefresh, ResultSet, ScrollLoader } from '^/webui/components';
 import { Column } from '^/webui/designsystem';
-import { useEstablishRelation, useReorderList, useTimelinePosts, useTogglePostRating, useViewPostDetails, useViewProfile } from '^/webui/hooks';
+
+import useEstablishRelation from './hooks/useEstablishRelation';
+import useReorderList from './hooks/useReorderList';
+import useTimelinePosts from './hooks/useTimelinePosts';
+import useTogglePostRating from './hooks/useTogglePostRating';
+import useViewPostDetails from './hooks/useViewPostDetails';
+import useViewProfile from './hooks/useViewProfile';
+
+const SCROLL_THRESHOLD = 0.7;
 
 export default function Feature()
 {
@@ -13,19 +19,23 @@ export default function Feature()
     const viewPostDetails = useViewPostDetails();
     const viewProfile = useViewProfile();
 
-    const [posts] = useTimelinePosts();
+    const [posts, isLoading, isFinished, getMorePosts, , refresh] = useTimelinePosts();
 
     return <Column gap='small' alignX='stretch'>
         <OrderRow selected='recent' onOrderChange={reorderList} />
-        <LoadingContainer data={posts}>
-            <PostPanelList
-                posts={posts as PostView[]}
-                onFollowClick={establishRelation}
-                onCreatorClick={viewProfile}
-                onComicClick={viewPostDetails}
-                onRatingClick={togglePostRating}
-                onReactionClick={viewPostDetails}
-            />
-        </LoadingContainer>
+        <PullToRefresh onRefresh={refresh}>
+            <ScrollLoader onLoad={getMorePosts} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
+                <ResultSet data={posts} isLoading={isLoading}>
+                    <PostPanelList
+                        posts={posts}
+                        onFollowClick={establishRelation}
+                        onCreatorClick={viewProfile}
+                        onComicClick={viewPostDetails}
+                        onRatingClick={togglePostRating}
+                        onReactionClick={viewPostDetails}
+                    />
+                </ResultSet>
+            </ScrollLoader>
+        </PullToRefresh>
     </Column>;
 }

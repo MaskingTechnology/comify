@@ -1,28 +1,22 @@
 
-import { useRef } from 'react';
+import { Input, Label, Panel, TextBox } from '^/webui/designsystem';
 
-import UpdateButton from '^/webui/components/common/UpdateButton';
-import { Form, Input, Label, Panel, Row, TextBox } from '^/webui/designsystem';
+import Form from '../common/Form';
 
-export type Props = {
+import useNicknameFormHandler, { SubmitHandler } from './hooks/useNicknameFormHandler';
+
+type Props = {
     readonly nickname: string;
     readonly alreadyInUse: boolean;
-    readonly onUpdateClick: (nickname: string) => Promise<void>;
+    readonly onSubmit: SubmitHandler;
 };
 
 const NICKNAME_MAX_LENGTH = 20;
-const NICKNAME_STRING_PATTERN = '^[a-z0-9_]+$';
+const NICKNAME_STRING_PATTERN = '^[a-z0-9]+$';
 
-export default function Component({ nickname, alreadyInUse, onUpdateClick }: Props)
+export default function Component({ nickname, alreadyInUse, onSubmit }: Props)
 {
-    const inputRef = useRef<HTMLInputElement>(null);
-
-    const handleSubmit = async () =>
-    {
-        const value = inputRef.current?.value ?? '';
-
-        await onUpdateClick(value);
-    };
+    const handleSubmit = useNicknameFormHandler(onSubmit);
 
     return <Panel>
         {
@@ -30,25 +24,21 @@ export default function Component({ nickname, alreadyInUse, onUpdateClick }: Pro
                 ? <Panel type='error' padding='small'>Sorry, this nickname is already in use.</Panel>
                 : null
         }
-        <Form submitHandler={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
             <Input
                 label={<Label value='Nickname'></Label>}
                 element={<TextBox
-                    reference={inputRef}
                     name='nickname'
-                    placeholder={nickname}
-                    value={''}
+                    placeholder='Your nickname'
+                    value={nickname}
                     limit={NICKNAME_MAX_LENGTH}
                     pattern={NICKNAME_STRING_PATTERN}
-                    title='Only alphanumeric characters are allowed.'
+                    title='Only lowercase characters and numbers are allowed.'
                     size='small'
                     required={true}
                 />
                 }
             />
-            <Row alignX='right'>
-                <UpdateButton />
-            </Row>
         </Form>
     </Panel >;
 }

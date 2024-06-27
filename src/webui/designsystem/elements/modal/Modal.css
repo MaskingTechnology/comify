@@ -2,8 +2,18 @@
 {
     .modal
     {
-        padding: 0;
         border: 0;
+        padding: 0;
         min-width: 0;
+
+        &.sizing-full
+        {
+            width: 100%;
+        }
+
+        &.sizing-content
+        {
+            width: fit-content
+        }
     }
 }

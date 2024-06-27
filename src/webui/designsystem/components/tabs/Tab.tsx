@@ -1,9 +1,10 @@
 
-import React from 'react';
+import { ReactNode } from 'react';
 
 export type Props = {
-    readonly title: React.ReactNode;
-    readonly children: React.ReactNode;
+    readonly id: string;
+    readonly title: ReactNode;
+    readonly children: ReactNode;
 };
 
 export default function Component({ children }: Props)

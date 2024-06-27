@@ -1,44 +1,34 @@
 
-import { useRef } from 'react';
+import { Input, Label, Panel, TextBox } from '^/webui/designsystem';
 
-import UpdateButton from '^/webui/components/common/UpdateButton';
-import { Form, Input, Label, Panel, Row, TextBox } from '^/webui/designsystem';
+import Form from '../common/Form';
 
-export type Props = {
+import useFullNameFormHandler, { SubmitHandler } from './hooks/useFullNameFormHandler';
+
+type Props = {
     readonly fullName: string;
-    readonly onUpdateClick: (fullName: string) => Promise<void>;
+    readonly onSubmit: SubmitHandler;
 };
 
 const FULL_NAME_MAX_LENGTH = 100;
 
-export default function Component({ fullName, onUpdateClick }: Props)
+export default function Component({ fullName, onSubmit }: Props)
 {
-    const inputRef = useRef<HTMLInputElement>(null);
-
-    const handleSubmit = async () =>
-    {
-        const value = inputRef.current?.value ?? '';
-
-        await onUpdateClick(value);
-    };
+    const handleSubmit = useFullNameFormHandler(onSubmit);
 
     return <Panel>
-        <Form submitHandler={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
             <Input
                 label={<Label value='Full name'></Label>}
                 element={<TextBox
-                    reference={inputRef}
                     name='fullName'
-                    placeholder={fullName}
-                    value={''}
+                    placeholder='Your full name'
+                    value={fullName}
                     limit={FULL_NAME_MAX_LENGTH}
                     size='small'
                     required={true}
                 />}
             />
-            <Row alignX='right'>
-                <UpdateButton />
-            </Row>
         </Form>
     </Panel>;
 }

@@ -1,18 +1,19 @@
 
-import React from 'react';
+import { ReactNode } from 'react';
+
 import './Panel.css';
 
-export type Props = {
+type Props = {
     readonly type?: 'normal' | 'alert' | 'warning' | 'success' | 'error' | 'transparent';
     readonly padding?: 'large' | 'medium' | 'small';
-    readonly children?: React.ReactNode;
+    readonly children?: ReactNode;
 };
 
-export default function Element({ type, padding, children }: Props)
+export default function Element({ type = 'normal', padding = 'large', children }: Props)
 {
     const className = 'panel'
-        + ' type-' + (type ?? 'normal')
-        + ' padding-' + (padding ?? 'large');
+        + ' type-' + type
+        + ' padding-' + padding;
 
     return <div className={className}>
         {children}

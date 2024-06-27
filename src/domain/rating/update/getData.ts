@@ -3,7 +3,7 @@ import database, { RecordQuery } from '^/integrations/database/module';
 
 import { RECORD_TYPE } from '../definitions';
 
-export type Data = {
+type Data = {
     readonly id: string;
 };
 
