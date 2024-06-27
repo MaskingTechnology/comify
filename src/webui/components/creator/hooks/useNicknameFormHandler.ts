@@ -1,7 +1,7 @@
 
 import { useCallback } from 'react';
 
-type SubmitHandler = (nickname: string) => Promise<void>;
+export type SubmitHandler = (nickname: string) => Promise<void>;
 
 export default function useNicknameFormHandler(onSubmit: SubmitHandler)
 {

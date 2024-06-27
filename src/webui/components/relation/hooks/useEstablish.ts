@@ -2,7 +2,7 @@
 import { useCallback, useState } from 'react';
 
 type States = 'unestablished' | 'establishing' | 'established';
-type EstablishHandler = () => Promise<void>;
+export type EstablishHandler = () => Promise<void>;
 
 export default function useEstablish(isFollowing: boolean, establish: EstablishHandler)
 {

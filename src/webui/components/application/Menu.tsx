@@ -32,8 +32,8 @@ export default function Component({ vertical, identity }: Props)
         <Container gap={gapSize} alignX={alignX}>
             <Item vertical={vertical} title='Timeline' to='/timeline' activeIcon={timelineActiveIcon} inactiveIcon={timelineInactiveIcon} />
             <Item vertical={vertical} title='Explore' to='/explore' activeIcon={exploreActiveIcon} inactiveIcon={exploreInactiveIcon} />
-            <Item vertical={vertical} title='Notifications' to='/notifications' activeIcon={notificationsActiveIcon} inactiveIcon={notificationsInactiveIcon} />
             <Item vertical={vertical} title='Create' to='/create' activeIcon={createActiveIcon} inactiveIcon={createInactiveIcon} />
+            <Item vertical={vertical} title='Notifications' to='/notifications' activeIcon={notificationsActiveIcon} inactiveIcon={notificationsInactiveIcon} />
             <Item vertical={vertical} title='Profile' to={`/profile/${identity.nickname}`} activeIcon={profileActiveIcon} inactiveIcon={profileInactiveIcon} />
         </Container>
     </nav>;

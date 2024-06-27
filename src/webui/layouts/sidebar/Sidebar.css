@@ -1,6 +1,6 @@
 .sidebar-layout
 {
-    --header-height: 2.7em;
+    --header-height: 3.4em;
     --footer-height: 4.4em;
 
     --modal-width: 700px;
@@ -16,18 +16,20 @@
     --right-width: calc(100vw - var(--left-width));
 
     container-type: size;
+    height: 100dvh;
+    overflow: hidden;
 
     & > header
     {
         background-color: var(--background-color);
-        border-bottom: 0.15em solid var(--border-color);
+        border-bottom: 0.1em solid var(--border-color);
         display: none;
         padding: 0.5em 1em;
         height: var(--header-height);
         width: 100vw;
         top: 0;
         left: 0;
-        position: fixed;
+        position: absolute;
         z-index: 1000;
     }
 
@@ -62,6 +64,7 @@
             flex-direction: column;
             justify-content: flex-start;
             overflow-y: auto;
+            overscroll-behavior: none;
             width: var(--right-width);
 
             main
@@ -83,14 +86,13 @@
     & > footer
     {
         background-color: var(--background-color);
-        border-top: 0.15em solid var(--border-color);
+        border-top: 0.1em solid var(--border-color);
         display: none;
         padding: 0.4em 1em;
-        height: var(--footer-height);
         width: 100vw;
-        bottom: 0;
         left: 0;
-        position: sticky;
+        bottom: 0;
+        position: absolute;
         z-index: 1000;
     }
 
@@ -107,11 +109,14 @@
             {
                 width: 100vw;
                 padding: 0 1em;
-                margin: var(--header-height) 0 var(--footer-height) 0;
+                position: absolute;
+                top: var(--header-height);
+                bottom: var(--footer-height);
 
                 main
                 {
                     width: 100%;
+
                 }
             }
         }

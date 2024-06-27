@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 import { useScrollContainer } from './useScrollContainer';
 
-type LoadHandler = () => void;
+export type LoadHandler = () => void;
 
 const DEFAULT_SCROLL_THRESHOLD = 0.7;
 
@@ -15,15 +15,19 @@ export default function useLoadOnScroll(onLoad: LoadHandler, isLoading: boolean,
     {
         if (container === undefined) return;
 
+        let requestedLoad = false;
+
         const handleScroll = async () =>
         {
-            if (isLoading) return;
+            if (requestedLoad || isLoading) return;
 
             const { scrollTop, clientHeight, scrollHeight } = container;
             const isAtThreshold = scrollTop + clientHeight >= scrollHeight * threshold;
 
             if (isAtThreshold)
             {
+                requestedLoad = true;
+
                 onLoad();
             }
         };

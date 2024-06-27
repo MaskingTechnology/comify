@@ -14,7 +14,7 @@ type Props = {
 
 export default function Component({ relation, onFollowClick, onEditClick, onCreatorClick }: Props)
 {
-    return <Panel>
+    return <Panel padding='medium'>
         <Counters
             relation={relation}
             onFollowClick={onFollowClick}

@@ -3,8 +3,8 @@ import { useCallback, useState } from 'react';
 
 import type { Editor } from '^/webui/editor';
 
-type CreateHandler = (imageData: string) => Promise<void>;
-type CancelHandler = () => void;
+export type CreateHandler = (imageData: string) => Promise<void>;
+export type CancelHandler = () => void;
 
 export default function useCreateHandler(editor: Editor | undefined, onCreate: CreateHandler, onCancel?: CancelHandler)
 {
