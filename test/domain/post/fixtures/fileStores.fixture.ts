@@ -1,5 +1,7 @@
 
 import fileStore from '^/integrations/filestore/module';
+import { FILES } from './files.fixture';
+import { VALUES } from './values.fixture';
 
 fileStore.connect();
 
@@ -8,4 +10,13 @@ async function empty(): Promise<void>
     await fileStore.clear();
 }
 
-export const FILE_STORES = { empty };
+async function withImage(): Promise<void>
+{
+    await fileStore.clear();
+
+    const input = FILES.IMAGE.toString('base64');
+    console.log(input);
+    await fileStore.writeFile(VALUES.STORAGE_KEYS.IMAGE, FILES.IMAGE);
+}
+
+export const FILE_STORES = { empty, withImage };

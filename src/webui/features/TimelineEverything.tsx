@@ -1,9 +1,14 @@
 
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
-
+import { PostPanelList, PullToRefresh, ResultSet, ScrollLoader } from '^/webui/components';
 import { Column } from '^/webui/designsystem';
-import { LoadingContainer, PostPanelList } from '../components';
-import { useEstablishRelation, usePostsAll, useTogglePostRating, useViewPostDetails, useViewProfile } from '../hooks';
+
+import useEstablishRelation from './hooks/useEstablishRelation';
+import usePostsAll from './hooks/usePostsAll';
+import useTogglePostRating from './hooks/useTogglePostRating';
+import useViewPostDetails from './hooks/useViewPostDetails';
+import useViewProfile from './hooks/useViewProfile';
+
+const SCROLL_THRESHOLD = 0.7;
 
 export default function Feature()
 {
@@ -12,18 +17,22 @@ export default function Feature()
     const viewPostDetails = useViewPostDetails();
     const togglePostRating = useTogglePostRating();
 
-    const [posts] = usePostsAll();
+    const [posts, isLoading, isFinished, getMorePosts, , refresh] = usePostsAll();
 
     return <Column gap='small' alignX='stretch'>
-        <LoadingContainer data={posts}>
-            <PostPanelList
-                posts={posts as PostView[]}
-                onFollowClick={establishRelation}
-                onCreatorClick={viewProfile}
-                onComicClick={viewPostDetails}
-                onRatingClick={togglePostRating}
-                onReactionClick={viewPostDetails}
-            />
-        </LoadingContainer>
+        <PullToRefresh onRefresh={refresh}>
+            <ScrollLoader onLoad={getMorePosts} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
+                <ResultSet data={posts} isLoading={isLoading}>
+                    <PostPanelList
+                        posts={posts}
+                        onFollowClick={establishRelation}
+                        onRatingClick={togglePostRating}
+                        onReactionClick={viewPostDetails}
+                        onCreatorClick={viewProfile}
+                        onComicClick={viewPostDetails}
+                    />
+                </ResultSet>
+            </ScrollLoader>
+        </PullToRefresh>
     </Column>;
 }

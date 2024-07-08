@@ -1,5 +1,7 @@
 
+import { RECORD_TYPE as COMIC_RECORD_TYPE } from '^/domain/comic/definitions';
 import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator/definitions';
+import { RECORD_TYPE as IMAGE_RECORD_TYPE } from '^/domain/image/definitions';
 import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions';
 import { RECORD_TYPE as RATING_RECORD_TYPE } from '^/domain/rating/definitions';
 import { RECORD_TYPE as RELATION_RECORD_TYPE } from '^/domain/relation/definitions';
@@ -35,7 +37,7 @@ async function withPostsAndRatings(): Promise<void>
     });
 }
 
-async function withCreatorsAndRelations(): Promise<void>
+async function withCreatorsPostsAndRelations(): Promise<void>
 {
     database.clear();
 
@@ -47,6 +49,16 @@ async function withCreatorsAndRelations(): Promise<void>
     RECORDS.RELATIONS.forEach(async (relation) =>
     {
         await database.createRecord(RELATION_RECORD_TYPE, { ...relation });
+    });
+
+    RECORDS.IMAGES.forEach(async (image) =>
+    {
+        await database.createRecord(IMAGE_RECORD_TYPE, { ...image });
+    });
+
+    RECORDS.COMICS.forEach(async (comic) =>
+    {
+        await database.createRecord(COMIC_RECORD_TYPE, { ...comic });
     });
 
     RECORDS.POSTS.forEach(async (post) =>
@@ -71,4 +83,4 @@ async function withPostsAndCreators(): Promise<void>
     });
 }
 
-export const DATABASES = { withCreators, withPostsAndRatings, withPostsAndCreators, withCreatorsAndRelations };
+export const DATABASES = { withCreators, withPostsAndRatings, withPostsAndCreators, withCreatorsPostsAndRelations };

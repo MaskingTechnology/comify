@@ -31,7 +31,7 @@ export default function Component()
         <Route path="/login" element={<Login />} />
         <Route path="/identify" element={<Identify />} />
 
-        <Route path="/timeline" element={protect(<Timeline />)} />
+        <Route path="/timeline/:tab?" element={protect(<Timeline />)} />
         <Route path="/explore/:tab?" element={protect(<Explore />)} />
         <Route path="/notifications" element={protect(<Notifications />)} />
         <Route path="/create" element={protect(<CreateComicPost />)} />

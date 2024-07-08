@@ -2,17 +2,17 @@
 import { useCallback } from 'react';
 
 import requester from '^/domain/authentication/requester';
-import getTimelinePosts from '^/domain/post/timelineAggregated/feature';
+import getPostsAll from '^/domain/post/getAllAggregated/feature';
 
 import { usePagination } from '^/webui/hooks';
 
-export default function useTimelinePosts()
+export default function usePostsAll()
 {
     const limit = 6;
 
     const getData = useCallback((page: number) =>
     {
-        return getTimelinePosts(requester, { limit, offset: page * limit });
+        return getPostsAll(requester, { limit, offset: page * limit });
 
     }, []);
 

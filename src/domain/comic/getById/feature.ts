@@ -6,5 +6,6 @@ import type { DataModel } from '../types';
 
 export default async function feature(id: string): Promise<DataModel>
 {
+
     return database.readRecord(RECORD_TYPE, id) as Promise<DataModel>;
 }
