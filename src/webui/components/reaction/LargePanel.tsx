@@ -20,7 +20,7 @@ type Props = {
 
 export default function LargePanel({ reaction, onFollowClick, onCreatorClick, onRatingClick, onDeleteClick }: Props)
 {
-    return <Panel>
+    return <Panel padding='medium'>
         <Column gap='medium' alignX='stretch'>
             <TimeElapsed
                 date={reaction.createdAt}

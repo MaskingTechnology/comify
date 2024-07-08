@@ -19,7 +19,7 @@ type Props = {
 
 export default function Component({ post, onFollowClick, onCreatorClick, onRatingClick, onDeleteClick }: Props)
 {
-    return <Panel>
+    return <Panel padding='medium'>
         <Column gap='medium' alignX='stretch'>
             <TimeElapsed
                 date={post.createdAt}
