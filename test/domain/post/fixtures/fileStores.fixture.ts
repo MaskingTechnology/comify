@@ -14,8 +14,6 @@ async function withImage(): Promise<void>
 {
     await fileStore.clear();
 
-    const input = FILES.IMAGE.toString('base64');
-
     await fileStore.writeFile(VALUES.STORAGE_KEYS.IMAGE, FILES.IMAGE);
 }
 
