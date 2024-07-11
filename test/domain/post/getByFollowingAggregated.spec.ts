@@ -9,13 +9,13 @@ beforeEach(async () =>
 
         DATABASES.withCreatorsPostsAndRelations(),
         FILE_STORES.withImage()
-    ]
-    );
+
+    ]);
 });
 
-describe('domain/post/getbyfollowingaggregated', () =>
+describe('domain/post/getByFollowingAggregated', () =>
 {
-    it('should give all posts for the timeline of all followers of requester1', async () =>
+    it('should get  all posts from creators following the requester', async () =>
     {
         const result = await getByFollowingAggregated(REQUESTERS.CREATOR1, { offset: 0, limit: 7 });
 
