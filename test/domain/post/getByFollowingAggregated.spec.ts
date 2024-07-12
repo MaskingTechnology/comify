@@ -15,7 +15,7 @@ beforeEach(async () =>
 
 describe('domain/post/getByFollowingAggregated', () =>
 {
-    it('should get all posts from everyone following creator1', async () =>
+    it('should get posts from everyone followed by the requester', async () =>
     {
         const result = await getByFollowingAggregated(REQUESTERS.CREATOR1, { offset: 0, limit: 7 });
 
