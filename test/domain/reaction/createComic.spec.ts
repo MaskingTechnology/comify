@@ -21,7 +21,7 @@ describe('domain/reaction/createComic', () =>
 {
     it('should create a comic reaction', async () =>
     {
-        const reactionId = await create(REQUESTERS.OWNER, VALUES.IDS.POST_EXISTING, VALUES.DATA_URLS.COMIC);
+        const reactionId = await create(REQUESTERS.OWNER, VALUES.IDS.POST_EXISTING, VALUES.COMIC_DATA_URL);
 
         const reaction = await database.readRecord(REACTION_RECORD_TYPE, reactionId);
         expect(reaction?.creatorId).toBe(REQUESTERS.OWNER.id);

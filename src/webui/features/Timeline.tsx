@@ -1,41 +1,23 @@
 
-import { OrderRow, PostPanelList, PullToRefresh, ResultSet, ScrollLoader } from '^/webui/components';
-import { Column } from '^/webui/designsystem';
+import { Ruler, Tab, Tabs } from '^/webui/designsystem';
 
-import useEstablishRelation from './hooks/useEstablishRelation';
-import useReorderList from './hooks/useReorderList';
-import useTimelinePosts from './hooks/useTimelinePosts';
-import useTogglePostRating from './hooks/useTogglePostRating';
-import useViewPostDetails from './hooks/useViewPostDetails';
-import useViewProfile from './hooks/useViewProfile';
+import { usePathParam } from '^/webui/hooks';
 
-const SCROLL_THRESHOLD = 0.7;
+import TimelineEverything from './TimelineEverything';
+import TimelineFollowing from './TimelineFollowing';
 
 export default function Feature()
 {
-    const establishRelation = useEstablishRelation();
-    const togglePostRating = useTogglePostRating();
-    const reorderList = useReorderList();
-    const viewPostDetails = useViewPostDetails();
-    const viewProfile = useViewProfile();
+    const [tab, setTab] = usePathParam('tab', 'everything');
 
-    const [posts, isLoading, isFinished, getMorePosts, , refresh] = useTimelinePosts();
+    const separator = <Ruler direction='horizontal' size='small' />;
 
-    return <Column gap='small' alignX='stretch'>
-        <OrderRow selected='recent' onOrderChange={reorderList} />
-        <PullToRefresh onRefresh={refresh}>
-            <ScrollLoader onLoad={getMorePosts} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
-                <ResultSet data={posts} isLoading={isLoading}>
-                    <PostPanelList
-                        posts={posts}
-                        onFollowClick={establishRelation}
-                        onCreatorClick={viewProfile}
-                        onComicClick={viewPostDetails}
-                        onRatingClick={togglePostRating}
-                        onReactionClick={viewPostDetails}
-                    />
-                </ResultSet>
-            </ScrollLoader>
-        </PullToRefresh>
-    </Column>;
+    return <Tabs selectedId={tab} onChange={setTab} separator={separator}>
+        <Tab id='everything' title='Everything'>
+            <TimelineEverything />
+        </Tab>
+        <Tab id='following' title='Following'>
+            <TimelineFollowing />
+        </Tab>
+    </Tabs>;
 }
