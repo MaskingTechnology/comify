@@ -14,7 +14,7 @@ beforeEach(async () =>
 
 describe('domain/post/getallAggregated', () =>
 {
-    it('should give all posts except it`s own posts for creator1', async () =>
+    it('should give all posts except those created by the requester', async () =>
     {
         const result = await getAllAggregated(REQUESTERS.CREATOR1, { offset: 0, limit: 7 });
 
