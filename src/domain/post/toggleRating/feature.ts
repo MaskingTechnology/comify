@@ -2,6 +2,8 @@
 import logger from '^/integrations/logging/module';
 
 import type { Requester } from '^/domain/authentication/types';
+import createNotification from '^/domain/notification/create/feature';
+import getPost from '^/domain/post/getById/feature';
 import updateRating from '^/domain/rating/update/feature';
 
 import updateRatingCount from '../updateRatingCount/feature';
@@ -14,9 +16,19 @@ export default async function feature(requester: Requester, postId: string): Pro
     {
         ratingId = await updateRating(requester, postId, undefined);
 
-        ratingId !== undefined
-            ? await updateRatingCount(postId, 'increase')
-            : await updateRatingCount(postId, 'decrease');
+        if (ratingId !== undefined)
+        {
+            await updateRatingCount(postId, 'increase');
+
+            const post = await getPost(postId);
+
+            await createNotification(requester, 'rated-post', post.creatorId, postId);
+
+        }
+        else
+        {
+            await updateRatingCount(postId, 'decrease');
+        }
 
         return ratingId !== undefined;
     }

@@ -5,11 +5,12 @@ import type { Requester } from '^/domain/authentication/types';
 import updateFollowerCount from '^/domain/creator/updateFollowerCount/feature';
 import updateFollowingCount from '^/domain/creator/updateFollowingCount/feature';
 
-import RelationAlreadyExists from './RelationAlreadyExists';
+import createNotification from '^/domain/notification/create/feature';
 import createData from './createData';
 import dataExists from './dataExists';
 import eraseData from './eraseData';
 import insertData from './insertData';
+import RelationAlreadyExists from './RelationAlreadyExists';
 import validateData from './validateData';
 
 export default async function establish(requester: Requester, followingId: string): Promise<void>
@@ -34,6 +35,8 @@ export default async function establish(requester: Requester, followingId: strin
         followerCount = await updateFollowerCount(followingId, 'increase');
 
         await updateFollowingCount(requester.id, 'increase');
+
+        await createNotification(requester, 'started-following', followingId);
     }
     catch (error: unknown)
     {
