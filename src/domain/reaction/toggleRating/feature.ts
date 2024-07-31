@@ -16,21 +16,20 @@ export default async function feature(requester: Requester, reactionId: string):
     {
         ratingId = await updateRating(requester, undefined, reactionId);
 
-        if (ratingId !== undefined)
-        {
-            await updateRatingCount(reactionId, 'increase');
-
-            const reaction = await getReaction(reactionId);
-
-            await createNotification(requester, 'rated-reaction', reaction.creatorId, undefined, reactionId);
-
-        }
-        else
+        if (ratingId === undefined)
         {
             await updateRatingCount(reactionId, 'decrease');
+
+            return false;
         }
 
-        return ratingId !== undefined;
+        await updateRatingCount(reactionId, 'increase');
+
+        const reaction = await getReaction(reactionId);
+
+        await createNotification(requester, 'rated-reaction', reaction.creatorId, undefined, reactionId);
+
+        return true;
     }
     catch (error)
     {

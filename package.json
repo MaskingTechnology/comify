@@ -27,7 +27,6 @@
     "dist"
   ],
   "dependencies": {
-    "ci": "^2.3.0",
     "dayjs": "^1.11.11",
     "jitar": "^0.7.5",
     "minio": "^8.0.1",

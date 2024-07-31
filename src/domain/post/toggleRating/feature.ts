@@ -16,21 +16,20 @@ export default async function feature(requester: Requester, postId: string): Pro
     {
         ratingId = await updateRating(requester, postId, undefined);
 
-        if (ratingId !== undefined)
-        {
-            await updateRatingCount(postId, 'increase');
-
-            const post = await getPost(postId);
-
-            await createNotification(requester, 'rated-post', post.creatorId, postId);
-
-        }
-        else
+        if (ratingId === undefined)
         {
             await updateRatingCount(postId, 'decrease');
+
+            return false;
         }
 
-        return ratingId !== undefined;
+        await updateRatingCount(postId, 'increase');
+
+        const post = await getPost(postId);
+
+        await createNotification(requester, 'rated-post', post.creatorId, postId);
+
+        return true;
     }
     catch (error)
     {
