@@ -13,7 +13,7 @@ export default function Feature()
     const separator = <Ruler direction='horizontal' size='small' />;
 
     return <Tabs selectedId={tab} onChange={setTab} separator={separator}>
-        <Tab id='foryou' title='For You'>
+        <Tab id='foryou' title='For you'>
             <TimelineForYou />
         </Tab>
         <Tab id='following' title='Following'>
