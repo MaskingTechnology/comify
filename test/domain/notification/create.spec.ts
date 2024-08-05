@@ -66,8 +66,6 @@ describe('domain/notification/create', () =>
 
     it('should do nothing on failure', async () =>
     {
-        //    This can functionally not be tested because there is no retrieveRecord involved   
-        //    await create(REQUESTERS.CREATOR2, Types.RATED_REACTION, VALUES.IDS.CREATOR3, undefined, VALUES.IDS.REACTION_INVALID);
-
+        //    This only fail on integration level, so there's nothing to do here.
     });
 });

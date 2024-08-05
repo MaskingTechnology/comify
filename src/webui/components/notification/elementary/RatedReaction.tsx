@@ -1,6 +1,7 @@
 
 import { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
-import { Image, Row, Text } from '^/webui/designsystem';
+import RatedComicReaction from '../elementary/RatedComicReaction';
+import RatedCommentReaction from '../elementary/RatedCommentReaction';
 
 type Props = {
     readonly reaction: ReactionView;
@@ -8,12 +9,7 @@ type Props = {
 
 export default function Component({ reaction }: Props)
 {
-    return <Row gap='medium' alignX="justify">
-        <Text value='I like your reaction.' />
-        {
-            reaction.comic
-                ? <Image source={reaction.comic.image.dataUrl} width='150px' />
-                : <Text value={reaction.comment?.message as string} />
-        }
-    </Row>;
+    return reaction.comic !== undefined
+        ? RatedComicReaction({ reaction })
+        : RatedCommentReaction({ reaction });
 }

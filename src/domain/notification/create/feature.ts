@@ -9,6 +9,11 @@ import insertData from './insertData';
 
 export default async function feature(requester: Requester, type: Types, receiverId: string, postId?: string, reactionId?: string): Promise<void>
 {
+    if (requester.id === receiverId)
+    {
+        return;
+    }
+
     const data = createData(type, requester.id, receiverId, postId, reactionId);
 
     try
