@@ -2,7 +2,9 @@
 import logger from '^/integrations/logging/module';
 
 import type { Requester } from '^/domain/authentication/types';
+import createNotification from '^/domain/notification/create/feature';
 import updateRating from '^/domain/rating/update/feature';
+import getReaction from '^/domain/reaction/getById/feature';
 
 import updateRatingCount from '../updateRatingCount/feature';
 
@@ -14,11 +16,20 @@ export default async function feature(requester: Requester, reactionId: string):
     {
         ratingId = await updateRating(requester, undefined, reactionId);
 
-        ratingId !== undefined
-            ? await updateRatingCount(reactionId, 'increase')
-            : await updateRatingCount(reactionId, 'decrease');
+        if (ratingId === undefined)
+        {
+            await updateRatingCount(reactionId, 'decrease');
 
-        return ratingId !== undefined;
+            return false;
+        }
+
+        await updateRatingCount(reactionId, 'increase');
+
+        const reaction = await getReaction(reactionId);
+
+        await createNotification(requester, 'rated-reaction', reaction.creatorId, undefined, reactionId);
+
+        return true;
     }
     catch (error)
     {

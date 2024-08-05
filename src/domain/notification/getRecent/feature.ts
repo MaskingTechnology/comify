@@ -1,8 +1,17 @@
 
+import database, { RecordQuery, RecordSort, SortDirections } from '^/integrations/database/module';
+
+import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default async function feature(recipientId: string): Promise<DataModel[]>
+export default async function feature(recipientId: string, limit: number, offset: number): Promise<DataModel[]>
 {
-    return [];
+    const query: RecordQuery =
+    {
+        receiverId: { EQUALS: recipientId }
+    };
+
+    const sort: RecordSort = { createdAt: SortDirections.DESCENDING };
+
+    return database.searchRecords(RECORD_TYPE, query, undefined, sort, limit, offset) as Promise<DataModel[]>;
 }
