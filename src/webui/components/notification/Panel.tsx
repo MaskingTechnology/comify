@@ -1,5 +1,6 @@
 
 import type { AggregatedData as NotificationView } from '^/domain/notification/aggregate/types';
+import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
 import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
 
 import { Column, Panel } from '^/webui/designsystem';
@@ -21,7 +22,7 @@ function getContent(notification: NotificationView)
     {
         case 'started-following': return <StartedFollowing isFollowing={notification.relation.established} />;
         case 'rated-post': return <RatedPost comicDataUrl={notification.post?.comic.image.dataUrl as string} />;
-        case 'rated-reaction': return <RatedReaction />;
+        case 'rated-reaction': return <RatedReaction reaction={notification.reaction as ReactionView} />;
     }
 }
 
