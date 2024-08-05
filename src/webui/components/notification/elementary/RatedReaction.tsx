@@ -10,6 +10,6 @@ type Props = {
 export default function Component({ reaction }: Props)
 {
     return reaction.comic !== undefined
-        ? RatedComicReaction({ reaction })
-        : RatedCommentReaction({ reaction });
+        ? <RatedComicReaction comicDataUrl={reaction.comic.image.dataUrl} />
+        : <RatedCommentReaction comment={reaction.comment?.message as string} />;
 }

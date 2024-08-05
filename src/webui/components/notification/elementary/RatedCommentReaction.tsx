@@ -1,18 +1,17 @@
 
-import { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
 import { Border, Column, Text } from '^/webui/designsystem';
 
 type Props = {
-    readonly reaction: ReactionView;
+    readonly comment: string;
 };
 
-export default function Component({ reaction }: Props)
+export default function Component({ comment }: Props)
 {
 
     return <Column alignX='stretch' alignY='justify' gap='medium'>
         <Text value='I like your reaction.' />
         <Border size='small' padding='small'>
-            <Text size='small' wrap='normal' value={reaction.comment?.message as string} />
+            <Text size='small' wrap='normal' value={comment} />
         </Border>
     </Column>;
 }
