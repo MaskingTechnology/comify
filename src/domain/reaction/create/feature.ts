@@ -27,7 +27,7 @@ export default async function feature(creatorId: string, postId: string, comicId
 
         const post = await retrievePost(postId);
 
-        await createNotification(creatorId, Types.ADDED_REACTION, post.creatorId, postId, undefined);
+        await createNotification(creatorId, Types.ADDED_REACTION, post.creatorId, postId);
 
         return id;
     }
