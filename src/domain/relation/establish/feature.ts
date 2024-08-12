@@ -36,7 +36,7 @@ export default async function establish(requester: Requester, followingId: strin
 
         await updateFollowingCount(requester.id, 'increase');
 
-        await createNotification(requester, 'started-following', followingId);
+        await createNotification(requester.id, 'started-following', followingId);
     }
     catch (error: unknown)
     {

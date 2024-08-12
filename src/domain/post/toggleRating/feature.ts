@@ -27,7 +27,7 @@ export default async function feature(requester: Requester, postId: string): Pro
 
         const post = await getPost(postId);
 
-        await createNotification(requester, 'rated-post', post.creatorId, postId);
+        await createNotification(requester.id, 'rated-post', post.creatorId, postId);
 
         return true;
     }

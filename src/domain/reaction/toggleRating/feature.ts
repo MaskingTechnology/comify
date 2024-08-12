@@ -27,7 +27,7 @@ export default async function feature(requester: Requester, reactionId: string):
 
         const reaction = await getReaction(reactionId);
 
-        await createNotification(requester, 'rated-reaction', reaction.creatorId, undefined, reactionId);
+        await createNotification(requester.id, 'rated-reaction', reaction.creatorId, undefined, reactionId);
 
         return true;
     }
