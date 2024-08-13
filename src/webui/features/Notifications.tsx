@@ -6,6 +6,7 @@ import { Column } from '^/webui/designsystem';
 
 import useEstablishRelation from './hooks/useEstablishRelation';
 import useNotifications from './hooks/useNotifications';
+import useViewPostDetails from './hooks/useViewPostDetails';
 import useViewProfile from './hooks/useViewProfile';
 
 const SCROLL_THRESHOLD = 0.7;
@@ -14,6 +15,7 @@ export default function Feature()
 {
     const establishRelation = useEstablishRelation();
     const viewProfile = useViewProfile();
+    const viewPostDetails = useViewPostDetails();
 
     const [notifications, isLoading, isFinished, getMoreNotifications, , refresh] = useNotifications();
 
@@ -25,6 +27,7 @@ export default function Feature()
                         notifications={notifications as NotificationView[]}
                         onFollowClick={establishRelation}
                         onCreatorClick={viewProfile}
+                        onComicClick={viewPostDetails}
                     />
                 </ResultSet>
             </ScrollLoader>

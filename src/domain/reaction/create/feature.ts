@@ -3,6 +3,9 @@ import logger from '^/integrations/logging/module';
 
 import updateReactionCount from '^/domain/post/updateReactionCount/feature';
 
+import createNotification from '^/domain/notification/create/feature';
+import { Types } from '^/domain/notification/definitions';
+import retrievePost from '^/domain/post/getById/feature';
 import createData from './createData';
 import eraseData from './eraseData';
 import insertData from './insertData';
@@ -21,6 +24,10 @@ export default async function feature(creatorId: string, postId: string, comicId
         id = await insertData(data);
 
         await updateReactionCount(postId, 'increase');
+
+        const post = await retrievePost(postId);
+
+        await createNotification(Types.ADDED_REACTION, creatorId, post.creatorId, postId);
 
         return id;
     }
