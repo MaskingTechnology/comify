@@ -6,6 +6,7 @@ import updateFollowerCount from '^/domain/creator/updateFollowerCount/feature';
 import updateFollowingCount from '^/domain/creator/updateFollowingCount/feature';
 
 import createNotification from '^/domain/notification/create/feature';
+import { Types } from '^/domain/notification/definitions';
 import createData from './createData';
 import dataExists from './dataExists';
 import eraseData from './eraseData';
@@ -36,7 +37,7 @@ export default async function establish(requester: Requester, followingId: strin
 
         await updateFollowingCount(requester.id, 'increase');
 
-        await createNotification(requester.id, 'started-following', followingId);
+        await createNotification(Types.STARTED_FOLLOWING, requester.id, followingId);
     }
     catch (error: unknown)
     {
