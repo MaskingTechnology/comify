@@ -1,7 +1,6 @@
 
 import logger from '^/integrations/logging/module';
 
-
 import type { Types } from '../definitions';
 import createData from './createData';
 import insertData from './insertData';

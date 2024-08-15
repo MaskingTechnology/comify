@@ -9,7 +9,8 @@ type Data = {
 
 export default async function getData(creatorId: string, postId: string | undefined, reactionId: string | undefined): Promise<Data | undefined>
 {
-    const query: RecordQuery = {
+    const query: RecordQuery =
+    {
         creatorId: { EQUALS: creatorId },
         postId: { EQUALS: postId },
         reactionId: { EQUALS: reactionId }
