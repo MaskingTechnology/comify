@@ -14,6 +14,7 @@ import NotFound from './features/NotFound';
 import Notifications from './features/Notifications';
 import PostDetails from './features/PostDetails';
 import Profile from './features/Profile';
+import ReactionDetails from './features/ReactionDetails';
 import Timeline from './features/Timeline';
 
 export default function Component()
@@ -38,6 +39,7 @@ export default function Component()
         <Route path="/profile/:nickname/:tab?" element={protect(<Profile />)} />
         <Route path="/edit/profile" element={protect(<EditProfile />)} />
         <Route path="/post/:postId" element={protect(<PostDetails />)} />
+        <Route path="/post/:postId/reaction/:reactionId" element={protect(<ReactionDetails />)} />
         <Route path="/logout" element={protect(<Logout />)} />
 
         <Route path="*" element={<NotFound />} />

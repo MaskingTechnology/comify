@@ -22,6 +22,7 @@ export default async function feature(requester: Requester, data: DataModel): Pr
         createdAt: data.createdAt,
         ratingCount: data.ratingCount,
         creator: relationData,
+        postId: data.postId,
         hasRated,
         comic: comicData,
         comment: commentData,

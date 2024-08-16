@@ -5,11 +5,12 @@ import RatedCommentReaction from '../elementary/RatedCommentReaction';
 
 type Props = {
     readonly reaction: ReactionView;
+    readonly onReactionClick: (reaction: ReactionView) => void;
 };
 
-export default function Component({ reaction }: Props)
+export default function Component({ reaction, onReactionClick }: Props)
 {
     return reaction.comic !== undefined
-        ? <RatedComicReaction comicDataUrl={reaction.comic.image.dataUrl} />
-        : <RatedCommentReaction comment={reaction.comment?.message as string} />;
+        ? <RatedComicReaction reaction={reaction} onReactionClick={onReactionClick} />
+        : <RatedCommentReaction reaction={reaction} onReactionClick={onReactionClick} />;
 }

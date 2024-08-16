@@ -5,7 +5,7 @@ import type { AggregatedData as RelationData } from '^/domain/relation/aggregate
 
 import type { DataModel } from '../types';
 
-type AggregatedData = Pick<DataModel, 'id' | 'createdAt' | 'ratingCount'> &
+type AggregatedData = Pick<DataModel, 'id' | 'createdAt' | 'ratingCount' | 'postId'> &
 {
     readonly creator: RelationData;
     readonly hasRated: boolean;

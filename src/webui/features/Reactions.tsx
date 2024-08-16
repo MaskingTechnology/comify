@@ -10,7 +10,7 @@ import { Column } from '^/webui/designsystem';
 
 import useEstablishRelation from './hooks/useEstablishRelation';
 import useReactions from './hooks/useReactions';
-import useRemoveReaction from './hooks/useRemoveReaction';
+import useRemoveReactionFromList from './hooks/useRemoveReactionFromList';
 import useToggleReactionRating from './hooks/useToggleReactionRating';
 import useViewProfile from './hooks/useViewProfile';
 
@@ -32,7 +32,7 @@ export default function Feature({ post }: Props)
 
     const [reactions, isLoading, isFinished, getMoreReactions, setReactions, refresh] = useReactions(post);
 
-    const removeReaction = useRemoveReaction(reactions as ReactionView[], setReactions);
+    const removeReaction = useRemoveReactionFromList(reactions as ReactionView[], setReactions);
 
     const addReaction = useCallback((reaction?: ReactionView) =>
     {
