@@ -27,7 +27,7 @@ function getContent(notification: NotificationView, onReactionClick: (reaction: 
         case 'started-following': return <StartedFollowing isFollowing={notification.relation.established} />;
         case 'rated-post': return <RatedPost post={notification.post as PostView} onComicClick={onComicClick} />;
         case 'rated-reaction': return <RatedReaction reaction={notification.reaction as ReactionView} onReactionClick={onReactionClick} />;
-        case 'added-reaction': return <AddedReaction notification={notification as NotificationView} onReactionClick={onReactionClick} />;
+        case 'added-reaction': return <AddedReaction notification={notification} onReactionClick={onReactionClick} />;
     }
 }
 
