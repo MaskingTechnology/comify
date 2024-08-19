@@ -4,10 +4,9 @@ import { useCallback } from 'react';
 import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
 
-import { ConfirmationPanel, LoadingContainer, PostDetailsPanel } from '../components';
-import LargePanel from '../components/reaction/LargePanel';
+import { ConfirmationPanel, LoadingContainer, PostDetailsPanel, ReactionLargePanel, SingleReactionRow } from '../components';
 import { useAppContext } from '../contexts';
-import { ClickArea, Column, Row, Ruler, Text } from '../designsystem';
+import { Column, Ruler } from '../designsystem';
 import useEstablishRelation from './hooks/useEstablishRelation';
 import usePost from './hooks/usePost';
 import useReaction from './hooks/useReaction';
@@ -66,14 +65,9 @@ export default function Feature()
             />
         </LoadingContainer>
         <Ruler direction='horizontal' />
-        <Row alignY='stretch' alignX='justify' >
-            <Text value='single reaction' />
-            <ClickArea onClick={() => viewPost(post as PostView)}>
-                <Text value='all reactions' />
-            </ClickArea>
-        </Row>
+        <SingleReactionRow onPostClick={() => viewPost(post as PostView)} />
         <LoadingContainer data={(reaction)}>
-            <LargePanel
+            <ReactionLargePanel
                 key={reaction?.id}
                 reaction={reaction as ReactionView}
                 onFollowClick={establishRelation}

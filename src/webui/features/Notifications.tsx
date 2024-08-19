@@ -30,7 +30,7 @@ export default function Feature()
                         onFollowClick={establishRelation}
                         onCreatorClick={viewProfile}
                         onReactionClick={viewReactionDetails}
-                        onComicClick={viewPostDetails}
+                        onPostClick={viewPostDetails}
                     />
                 </ResultSet>
             </ScrollLoader>

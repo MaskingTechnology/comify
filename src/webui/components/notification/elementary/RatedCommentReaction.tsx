@@ -10,7 +10,6 @@ type Props = {
 
 export default function Component({ reaction, onReactionClick }: Props)
 {
-
     return <Column alignX='stretch' alignY='justify' gap='medium'>
         <Text value='I like your reaction.' />
         <ClickArea onClick={() => onReactionClick(reaction)} >
