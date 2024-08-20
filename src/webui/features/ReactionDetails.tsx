@@ -66,7 +66,7 @@ export default function Feature()
             />
         </LoadingContainer>
         <Ruler direction='horizontal' />
-        <SingleReactionRow onShowClick={() => viewPostDetails(post as PostView)} />
+        <SingleReactionRow onShowAllClick={() => viewPostDetails(post as PostView)} />
         <LoadingContainer data={(reaction)}>
             <ReactionLargePanel
                 key={reaction?.id}
