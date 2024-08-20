@@ -16,21 +16,22 @@ type Props = {
     readonly notification: NotificationView;
     readonly onFollowClick: (relation: RelationView) => Promise<void>;
     readonly onCreatorClick: (relation: RelationView) => void;
-    readonly onComicClick: (post: PostView) => void;
+    readonly onReactionClick: (reaction: ReactionView) => void;
+    readonly onPostClick: (post: PostView) => void;
 };
 
-function getContent(notification: NotificationView, onComicClick: (post: PostView) => void)
+function getContent(notification: NotificationView, onReactionClick: (reaction: ReactionView) => void, onPostClick: (post: PostView) => void)
 {
     switch (notification.type)
     {
         case 'started-following': return <StartedFollowing isFollowing={notification.relation.established} />;
-        case 'rated-post': return <RatedPost comicDataUrl={notification.post?.comic.image.dataUrl as string} />;
-        case 'rated-reaction': return <RatedReaction reaction={notification.reaction as ReactionView} />;
-        case 'added-reaction': return <AddedReaction post={notification.post as PostView} onComicClick={onComicClick} />;
+        case 'rated-post': return <RatedPost post={notification.post as PostView} onPostClick={onPostClick} />;
+        case 'rated-reaction': return <RatedReaction reaction={notification.reaction as ReactionView} onReactionClick={onReactionClick} />;
+        case 'added-reaction': return <AddedReaction notification={notification} onReactionClick={onReactionClick} />;
     }
 }
 
-export default function Component({ notification, onFollowClick, onCreatorClick, onComicClick }: Props)
+export default function Component({ notification, onFollowClick, onCreatorClick, onReactionClick, onPostClick }: Props)
 {
     return <Panel>
         <Column gap='medium' alignX='stretch'>
@@ -40,7 +41,7 @@ export default function Component({ notification, onFollowClick, onCreatorClick,
                 onFollowClick={onFollowClick}
                 onCreatorClick={onCreatorClick}
             />
-            {getContent(notification, onComicClick)}
+            {getContent(notification, onReactionClick, onPostClick)}
         </Column>
     </Panel>;
 }
