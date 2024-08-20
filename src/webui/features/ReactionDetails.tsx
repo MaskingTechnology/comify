@@ -7,6 +7,7 @@ import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate
 import { ConfirmationPanel, LoadingContainer, PostDetailsPanel, ReactionLargePanel, SingleReactionRow } from '../components';
 import { useAppContext } from '../contexts';
 import { Column, Ruler } from '../designsystem';
+
 import useEstablishRelation from './hooks/useEstablishRelation';
 import usePost from './hooks/usePost';
 import useReaction from './hooks/useReaction';
@@ -27,7 +28,7 @@ export default function Feature()
     const viewProfile = useViewProfile();
     const removePost = useRemovePost();
     const removeReaction = useRemoveReaction();
-    const viewPost = useViewPostDetails();
+    const viewPostDetails = useViewPostDetails();
 
     const [post] = usePost();
     const [reaction] = useReaction();
@@ -65,7 +66,7 @@ export default function Feature()
             />
         </LoadingContainer>
         <Ruler direction='horizontal' />
-        <SingleReactionRow onPostClick={() => viewPost(post as PostView)} />
+        <SingleReactionRow onShowClick={() => viewPostDetails(post as PostView)} />
         <LoadingContainer data={(reaction)}>
             <ReactionLargePanel
                 key={reaction?.id}
