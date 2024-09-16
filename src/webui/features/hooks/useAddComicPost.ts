@@ -3,18 +3,18 @@ import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import requester from '^/domain/authentication/requester';
-import createPost from '^/domain/post/create/feature';
+import addPost from '^/domain/post/add/feature';
 
 import { useAppContext } from '^/webui/contexts';
 
-export default function useCreateComicPost()
+export default function useAddComicPost()
 {
     const navigate = useNavigate();
     const { identity } = useAppContext();
 
     return useCallback(async (imageData: string) =>
     {
-        await createPost(requester, imageData);
+        await addPost(requester, imageData);
 
         navigate(`/profile/${identity?.nickname}`);
 

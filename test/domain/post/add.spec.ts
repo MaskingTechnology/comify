@@ -1,7 +1,7 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import create from '^/domain/post/create/feature';
+import add from '^/domain/post/add/feature';
 import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions';
 
 import database from '^/integrations/database/module';
@@ -16,11 +16,11 @@ beforeEach(async () =>
     ]);
 });
 
-describe('domain/post/create', () =>
+describe('domain/post/add', () =>
 {
-    it('should create an image from a valid data url', async () =>
+    it('should add a post', async () =>
     {
-        await create(REQUESTERS.CREATOR1, DATA_URLS.COMIC_IMAGE);
+        await add(REQUESTERS.CREATOR1, DATA_URLS.COMIC_IMAGE);
 
         const posts = await database.searchRecords(POST_RECORD_TYPE, {});
         expect(posts.length).toBe(1);
@@ -33,10 +33,10 @@ describe('domain/post/create', () =>
         expect(post?.reactionCount).toBe(0);
     });
 
-    it('should rollback created data at failure', async () =>
+    it('should rollback at failure', async () =>
     {
         // This should fail at the last action when incrementing the creator's post count
-        const promise = create(REQUESTERS.UNKNOWN, DATA_URLS.COMIC_IMAGE);
+        const promise = add(REQUESTERS.UNKNOWN, DATA_URLS.COMIC_IMAGE);
         await expect(promise).rejects.toThrow('Record not found');
 
         const posts = await database.searchRecords(POST_RECORD_TYPE, {});

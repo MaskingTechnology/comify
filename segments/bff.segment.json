@@ -7,10 +7,8 @@
     "./domain/creator/getMeAggregated/feature": { "default": {  "access": "public" } },
     "./domain/creator/updateFullName/feature": { "default": {  "access": "public" }},
     "./domain/creator/updateNickname/feature": { "default": {  "access": "public" }},
-
-    "./domain/notification/getRecentAggregated/feature": { "default": {  "access": "public" } },
-    
-    "./domain/post/create/feature": { "default": {  "access": "public" } },
+ 
+    "./domain/post/add/feature": { "default": {  "access": "public" } },
     "./domain/post/exploreAggregated/feature": { "default": {  "access": "public" } },
     "./domain/post/getByIdAggregated/feature": { "default": {  "access": "public" } },
     "./domain/post/getByCreatorAggregated/feature": { "default": {  "access": "public" } },
