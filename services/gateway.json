@@ -1,5 +1,5 @@
 {
-    "url": "http://127.0.0.1:3000",
+    "url": "http://127.0.0.1:2000",
     "setUp": [
         "./integrations/runtime/setUpGateway"
     ],
@@ -8,7 +8,7 @@
     ],
     "gateway":
     {
-        "repository": "http://127.0.0.1:2000",
+        "repository": "http://127.0.0.1:1000",
         "trustKey": "${JITAR_TRUST_KEY}",
         "middlewares": [
             "./integrations/runtime/authenticationMiddleware"
