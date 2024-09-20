@@ -3,7 +3,7 @@ import database, { RecordQuery } from '^/integrations/database/module';
 
 import { RECORD_TYPE } from '../definitions';
 
-export default async function feature(creatorId: string, postId: string | undefined, reactionId: string | undefined): Promise<boolean>
+export default async function feature(creatorId: string, postId: string | undefined = undefined, reactionId: string | undefined = undefined): Promise<boolean>
 {
     const query: RecordQuery =
     {
