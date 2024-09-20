@@ -28,5 +28,8 @@
     "./domain/relation/establish/feature": { "default": { "access": "public" }},
     "./domain/relation/getAggregated/feature": { "default": {  "access": "public" } },
     "./domain/relation/getFollowersAggregated/feature": { "default": {  "access": "public" } },
-    "./domain/relation/getFollowingAggregated/feature": { "default": {  "access": "public" } }
+    "./domain/relation/getFollowingAggregated/feature": { "default": {  "access": "public" } },
+
+    "./domain/notification/getRecentAggregated/feature": { "default": {  "access": "public" } },
+    "./domain/notification/getByIdAggregated/feature": { "default": {  "access": "public" } }
 }

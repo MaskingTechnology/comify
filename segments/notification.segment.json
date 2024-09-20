@@ -1,5 +1,5 @@
 {
-    "./domain/notification/getRecentAggregated/feature": { "default": {  "access": "public" } },
-    "./domain/notification/getByIdAggregated/feature": { "default": {  "access": "public" } },
-    "./domain/notification/create/feature": { "default": {  "access": "public" } }
+    "./domain/notification/create/feature": { "default": {  "access": "protected" } },
+    "./domain/notification/getById/feature": { "default": {  "access": "protected" } },
+    "./domain/notification/getRecent/feature": { "default": {  "access": "protected" } }
 }
