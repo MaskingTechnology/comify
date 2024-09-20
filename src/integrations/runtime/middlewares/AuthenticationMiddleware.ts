@@ -12,6 +12,7 @@ type AuthProcedures = {
 
 const IDENTITY_PARAMETER = 'identity';
 const REQUESTER_PARAMETER = '*requester';
+const JITAR_TRUST_HEADER_KEY = 'X-Jitar-Trust-Key';
 
 const sessions = new Map<string, Session>();
 
@@ -32,6 +33,11 @@ export default class AuthenticationMiddleware implements Middleware
 
     async handle(request: Request, next: NextHandler): Promise<Response>
     {
+        if (request.hasHeader(JITAR_TRUST_HEADER_KEY))
+        {
+            return next();
+        }
+
         switch (request.fqn)
         {
             case this.#authProcedures.loginUrl: return this.#getLoginUrl();

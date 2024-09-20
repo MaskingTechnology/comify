@@ -7,7 +7,7 @@ import getData from './getData';
 import insertData from './insertData';
 import validateData from './validateData';
 
-export default async function feature(requester: Requester, postId: string | undefined, reactionId: string | undefined): Promise<string | void>
+export default async function feature(requester: Requester, postId: string | undefined = undefined, reactionId: string | undefined = undefined): Promise<string | void>
 {
     const data = await getData(requester.id, postId, reactionId);
 

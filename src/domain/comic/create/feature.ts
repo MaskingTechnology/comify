@@ -4,10 +4,10 @@ import createImage from '^/domain/image/create/feature';
 import { IMAGE_TYPE } from '../definitions';
 
 import createData from './createData';
-import insert from './insertData';
+import insertData from './insertData';
 import validateData from './validateData';
 
-export default async function feature(imageDataUrl: string, structure?: string): Promise<string>
+export default async function feature(imageDataUrl: string, structure: string | undefined = undefined): Promise<string>
 {
     const imageId = await createImage(IMAGE_TYPE, imageDataUrl);
 
@@ -15,5 +15,5 @@ export default async function feature(imageDataUrl: string, structure?: string):
 
     validateData(data);
 
-    return insert(data);
+    return insertData(data);
 }

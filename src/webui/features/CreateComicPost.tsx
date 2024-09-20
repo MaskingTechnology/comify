@@ -2,13 +2,13 @@
 import { ComicEditor } from '^/webui/components';
 import { Column } from '^/webui/designsystem';
 
-import useCreateComicPost from './hooks/useCreateComicPost';
+import useAddComicPost from './hooks/useAddComicPost';
 
 export default function Feature()
 {
-    const createComicPost = useCreateComicPost();
+    const addComicPost = useAddComicPost();
 
     return <Column alignX='stretch'>
-        <ComicEditor onCreate={createComicPost} />
+        <ComicEditor onCreate={addComicPost} />
     </Column>;
 }

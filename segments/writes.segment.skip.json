@@ -1,0 +1,21 @@
+{
+    "./domain/comic/create/feature": { "default": {  "access": "protected" } },
+    "./domain/comic/erase/feature": { "default": {  "access": "protected" } },
+
+    "./domain/comment/create/feature": { "default": {  "access": "protected" } },
+    "./domain/comment/erase/feature": { "default": {  "access": "protected" } },
+
+    "./domain/creator/create/feature": { "default": {  "access": "protected" } },
+    "./domain/creator/update/feature": { "default": {  "access": "protected" } },
+
+    "./domain/image/save/feature": { "default": {  "access": "protected" } },
+    "./domain/image/erase/feature": { "default": {  "access": "protected" } },
+
+    "./domain/post/create/feature": { "default": {  "access": "protected" } },
+    "./domain/post/erase/feature": { "default": {  "access": "protected" } },
+
+    "./domain/rating/update/feature": { "default": {  "access": "protected" } },
+
+    "./domain/reaction/remove/removeData": { "default": {  "access": "protected" } },
+    "./domain/reaction/update/feature": { "default": {  "access": "protected" } }
+}
