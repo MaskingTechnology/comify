@@ -5,7 +5,7 @@ import createData from './createData';
 import insertData from './insertData';
 import validateData from './validateData';
 
-export default async function feature(fullName: string, nickname: string, email: string, portraitId?: string): Promise<DataModel>
+export default async function feature(fullName: string, nickname: string, email: string, portraitId: string | undefined = undefined): Promise<DataModel>
 {
     const data = await createData(fullName, nickname, email, portraitId);
 

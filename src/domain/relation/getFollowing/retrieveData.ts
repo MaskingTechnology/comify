@@ -4,7 +4,7 @@ import database, { RecordQuery } from '^/integrations/database/module';
 import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';
 
-export default async function feature(followerId: string, limit?: number, offset?: number): Promise<DataModel[]>
+export default async function feature(followerId: string, limit: number | undefined = undefined, offset: number | undefined = undefined): Promise<DataModel[]>
 {
     const query: RecordQuery =
     {
