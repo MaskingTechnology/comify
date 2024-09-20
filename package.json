@@ -19,8 +19,8 @@
     "changelog-debug": "auto-changelog --template changelog.hbs -p --template json --output changelog-data.json",
     "review": "npm run compile && npm run lint && npm run test",
     "rebuild": "npm run clean && npm run build && npm run standalone",
-
     "standalone": "node --experimental-network-imports --env-file=development.env dist/jitar.js --config=services/standalone.json --bodylimit=512000",
+    "proxy": "node --experimental-network-imports --env-file=development.env dist/jitar.js --config=services/proxy.json --bodylimit=512000",
     "repository": "node --experimental-network-imports --env-file=development.env dist/jitar.js --config=services/repository.json --bodylimit=512000",
     "gateway": "node --experimental-network-imports --env-file=development.env dist/jitar.js --config=services/gateway.json --bodylimit=512000",
     "bff": "node --experimental-network-imports --env-file=development.env dist/jitar.js --config=services/bff.json --bodylimit=512000",
@@ -44,7 +44,8 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.0",
     "sanitize-html": "^2.13.0",
-    "web-push": "^3.6.7"
+    "web-push": "^3.6.7",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@jitar/plugin-vite": "^0.7.5",
