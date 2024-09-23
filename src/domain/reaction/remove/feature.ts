@@ -5,7 +5,7 @@ import type { Requester } from '^/domain/authentication/types';
 import updateReactionCount from '^/domain/post/updateReactionCount/feature';
 
 import ReactionNotFound from './ReactionNotFound';
-import removeData from './removeData';
+import deleteData from './deleteData';
 import retrieveOwnedData from './retrieveOwnedData';
 
 export default async function feature(requester: Requester, id: string): Promise<void>
@@ -26,7 +26,7 @@ export default async function feature(requester: Requester, id: string): Promise
     {
         reactionCount = await updateReactionCount(reaction.postId, 'decrease');
 
-        await removeData(reaction.id);
+        await deleteData(reaction.id);
     }
     catch (error: unknown)
     {

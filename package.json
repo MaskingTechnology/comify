@@ -19,6 +19,7 @@
     "changelog-debug": "auto-changelog --template changelog.hbs -p --template json --output changelog-data.json",
     "review": "npm run compile && npm run lint && npm run test",
     "rebuild": "npm run clean && npm run build && npm run standalone",
+    
     "standalone": "node --experimental-network-imports --env-file=development.env dist/jitar.js --config=services/standalone.json --bodylimit=512000",
     "proxy": "node --experimental-network-imports --env-file=development.env dist/jitar.js --config=services/proxy.json --bodylimit=512000",
     "repository": "node --experimental-network-imports --env-file=development.env dist/jitar.js --config=services/repository.json --bodylimit=512000",
