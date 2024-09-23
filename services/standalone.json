@@ -18,7 +18,7 @@
         "trustKey": "${JITAR_TRUST_KEY}",
         "serveIndexOnNotFound": true,
         "assets": ["index.html", "main.js", "assets/**/*", "webui/**/*"],
-        "segments": ["bff", "notification"],
+        "segments": ["bff"],
         "middlewares": [
             "./integrations/runtime/authenticationMiddleware"
         ]

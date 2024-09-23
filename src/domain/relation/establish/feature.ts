@@ -14,7 +14,7 @@ import insertData from './insertData';
 import RelationAlreadyExists from './RelationAlreadyExists';
 import validateData from './validateData';
 
-export default async function establish(requester: Requester, followingId: string): Promise<void>
+export default async function feature(requester: Requester, followingId: string): Promise<void>
 {
     const relationExists = await dataExists(requester.id, followingId);
 
