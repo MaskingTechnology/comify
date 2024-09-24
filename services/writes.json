@@ -6,15 +6,14 @@
     "tearDown": [
         "./integrations/runtime/tearDownNode"
     ],
-    "healthChecks": [
-        "./integrations/runtime/fileStoreHealthCheck",
-        "./integrations/runtime/databaseHealthCheck"
-    ],
     "worker":
     {
-        "repository": "http://127.0.0.1:1000",
         "gateway": "http://127.0.0.1:2000",
         "trustKey": "${JITAR_TRUST_KEY}",
-        "segments": ["writes"]
+        "segments": ["writes"],
+        "healthChecks": [
+            "./integrations/runtime/fileStoreHealthCheck",
+            "./integrations/runtime/databaseHealthCheck"
+        ]
     }
 }

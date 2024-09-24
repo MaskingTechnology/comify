@@ -10,7 +10,8 @@ const JITAR_MIDDLEWARES = ['./integrations/runtime/requesterMiddleware'];
 export default defineConfig({
   publicDir: 'src/webui/public',
   build: {
-    assetsDir: 'webui'
+    assetsDir: 'webui',
+    emptyOutDir: false
   },
   server: {
     proxy: {
@@ -19,7 +20,14 @@ export default defineConfig({
   },
   plugins: [
     react(),
-    jitar('src', 'domain', JITAR_URL, JITAR_SEGMENTS, JITAR_MIDDLEWARES),
-    tsconfigPaths()
+    tsconfigPaths(),
+    jitar({
+      sourceDir: 'src',
+      targetDir: 'dist',
+      jitarDir: 'domain',
+      jitarUrl: 'http://localhost:3000',
+      segments: JITAR_SEGMENTS,
+      middleware: JITAR_MIDDLEWARES
+    })
   ]
 });

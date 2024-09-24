@@ -8,18 +8,19 @@
         "./integrations/runtime/tearDownGateway",
         "./integrations/runtime/tearDownNode"
     ],
-    "healthChecks": [
-        "./integrations/runtime/notificationHealthCheck",
-        "./integrations/runtime/fileStoreHealthCheck",
-        "./integrations/runtime/databaseHealthCheck"
-    ],
     "standalone":
     {
-        "trustKey": "${JITAR_TRUST_KEY}",
+        "segments": ["bff"],
+
         "serveIndexOnNotFound": true,
         "assets": ["index.html", "main.js", "assets/**/*", "webui/**/*"],
-        "segments": ["bff"],
-        "middlewares": [
+        
+        "healthChecks": [
+            "./integrations/runtime/notificationHealthCheck",
+            "./integrations/runtime/fileStoreHealthCheck",
+            "./integrations/runtime/databaseHealthCheck"
+        ],
+        "middleware": [
             "./integrations/runtime/authenticationMiddleware"
         ]
     }
