@@ -8,20 +8,19 @@
         "./integrations/runtime/tearDownGateway",
         "./integrations/runtime/tearDownNode"
     ],
+    "healthChecks": [
+        "./integrations/runtime/notificationHealthCheck",
+        "./integrations/runtime/fileStoreHealthCheck",
+        "./integrations/runtime/databaseHealthCheck"
+    ],
+    "middleware": [
+        "./integrations/runtime/authenticationMiddleware"
+    ],
     "standalone":
     {
         "segments": ["bff"],
 
         "serveIndexOnNotFound": true,
-        "assets": ["index.html", "main.js", "assets/**/*", "webui/**/*"],
-        
-        "healthChecks": [
-            "./integrations/runtime/notificationHealthCheck",
-            "./integrations/runtime/fileStoreHealthCheck",
-            "./integrations/runtime/databaseHealthCheck"
-        ],
-        "middleware": [
-            "./integrations/runtime/authenticationMiddleware"
-        ]
+        "assets": ["index.html", "main.js", "assets/**/*", "webui/**/*"]
     }
 }

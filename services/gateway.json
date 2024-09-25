@@ -6,11 +6,11 @@
     "tearDown": [
         "./integrations/runtime/tearDownGateway"
     ],
+    "middleware": [
+        "./integrations/runtime/authenticationMiddleware"
+    ],
     "gateway":
     {
-        "trustKey": "${JITAR_TRUST_KEY}",
-        "middleware": [
-            "./integrations/runtime/authenticationMiddleware"
-        ]
+        "trustKey": "${JITAR_TRUST_KEY}"
     }
 }
