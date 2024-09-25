@@ -32,8 +32,6 @@
     "./domain/post/getByFollowingAggregated/feature": { "default": {  "access": "public" } },
     "./domain/post/remove/feature": { "default": {  "access": "public" } },
     "./domain/post/toggleRating/feature": { "default": {  "access": "public" } },
-    "./domain/post/updateRatingCount/feature": { "default": {  "access": "private" }},
-    "./domain/post/updateReactionCount/feature": { "default": {  "access": "private" }},
 
     "./domain/reaction/aggregate/feature": { "default": {  "access": "private" } },
     "./domain/reaction/createComic/feature": { "default": {  "access": "public" } },
