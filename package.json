@@ -22,15 +22,15 @@
     "review": "npm run compile && npm run lint && npm run test",
     "rebuild": "npm run clean && npm run build && npm run standalone",
 
-    "standalone": "jitar start --env-file=development.env --service=services/standalone.json",
+    "standalone": "jitar start --env-file=development.env --service=services/standalone.json --http-body-limit=512000",
     "repository": "jitar start --env-file=development.env --service=services/repository.json",
-    "proxy": "jitar start --env-file=development.env --service=services/proxy.json",
-    "gateway": "jitar start --env-file=development.env --service=services/gateway.json",
-    "bff": "jitar start --env-file=development.env --service=services/bff.json",
-    "notification": "jitar start --env-file=development.env --service=services/notification.json",
-    "notification2": "jitar start --env-file=development.env --service=services/notification2.json",
-    "reads": "jitar start --env-file=development.env --service=services/reads.json",
-    "writes": "jitar start --env-file=development.env --service=services/writes.json"
+    "proxy": "jitar start --env-file=development.env --service=services/proxy.json --http-body-limit=512000",
+    "gateway": "jitar start --env-file=development.env --service=services/gateway.json --http-body-limit=512000",
+    "bff": "jitar start --env-file=development.env --service=services/bff.json --http-body-limit=512000",
+    "notification": "jitar start --env-file=development.env --service=services/notification.json --http-body-limit=512000",
+    "notification2": "jitar start --env-file=development.env --service=services/notification2.json --http-body-limit=512000",
+    "reads": "jitar start --env-file=development.env --service=services/reads.json --http-body-limit=512000",
+    "writes": "jitar start --env-file=development.env --service=services/writes.json --http-body-limit=512000"
   },
   "files": [
     "CHANGELOG.md",
