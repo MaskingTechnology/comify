@@ -7,7 +7,7 @@
     "dev": "vite --host",
     "copy-assets": "cpx src/assets/**/* dist/assets",
     "build": "npm run build-domain && npm run build-webui",
-    "build-domain": "rm -rf dist && tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json && jitar build && npm run copy-assets",
+    "build-domain": "rm -rf dist && tsc -p tsconfig.jitar.json && tsc-alias -p tsconfig.jitar.json && jitar build && npm run copy-assets",
     "build-webui": "vite build",
     "compile": "tsc -p tsconfig.compile.json",
     "clean": "rm -rf dist",
@@ -39,7 +39,7 @@
   ],
   "dependencies": {
     "dayjs": "^1.11.13",
-    "jitar": "^0.7.6",
+    "jitar": "^0.8.2",
     "minio": "^8.0.1",
     "mongodb": "^6.9.0",
     "openid-client": "^5.7.0",
@@ -51,7 +51,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@jitar/plugin-vite": "^0.7.6",
+    "@jitar/plugin-vite": "^0.8.2",
     "@types/node": "20.14.9",
     "@types/react": "^18.3.8",
     "@types/react-dom": "^18.3.0",
