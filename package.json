@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite --host",
     "copy-assets": "cpx src/assets/**/* dist/assets",
-    "build": "vite build && tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json && npm run copy-assets",
+    "build": "npm run build-domain && npm run build-webui",
+    "build-domain": "rm -rf dist && tsc -p tsconfig.jitar.json && tsc-alias -p tsconfig.jitar.json && jitar build && npm run copy-assets",
+    "build-webui": "vite build",
     "compile": "tsc -p tsconfig.compile.json",
     "clean": "rm -rf dist",
     "docker-up": "docker compose --env-file development.env up",
@@ -19,16 +21,16 @@
     "changelog-debug": "auto-changelog --template changelog.hbs -p --template json --output changelog-data.json",
     "review": "npm run compile && npm run lint && npm run test",
     "rebuild": "npm run clean && npm run build && npm run standalone",
-    
-    "standalone": "node --experimental-network-imports --env-file=development.env dist/jitar.js --config=services/standalone.json --bodylimit=512000",
-    "proxy": "node --experimental-network-imports --env-file=development.env dist/jitar.js --config=services/proxy.json --bodylimit=512000",
-    "repository": "node --experimental-network-imports --env-file=development.env dist/jitar.js --config=services/repository.json --bodylimit=512000",
-    "gateway": "node --experimental-network-imports --env-file=development.env dist/jitar.js --config=services/gateway.json --bodylimit=512000",
-    "bff": "node --experimental-network-imports --env-file=development.env dist/jitar.js --config=services/bff.json --bodylimit=512000",
-    "notification": "node --experimental-network-imports --env-file=development.env dist/jitar.js --config=services/notification.json --bodylimit=512000",
-    "notification2": "node --experimental-network-imports --env-file=development.env dist/jitar.js --config=services/notification2.json --bodylimit=512000",
-    "reads": "node --experimental-network-imports --env-file=development.env dist/jitar.js --config=services/reads.json --bodylimit=512000",
-    "writes": "node --experimental-network-imports --env-file=development.env dist/jitar.js --config=services/writes.json --bodylimit=512000"
+
+    "standalone": "jitar start --env-file=development.env --service=services/standalone.json --http-body-limit=512000",
+    "repository": "jitar start --env-file=development.env --service=services/repository.json",
+    "proxy": "jitar start --env-file=development.env --service=services/proxy.json --http-body-limit=512000",
+    "gateway": "jitar start --env-file=development.env --service=services/gateway.json --http-body-limit=512000",
+    "bff": "jitar start --env-file=development.env --service=services/bff.json --http-body-limit=512000",
+    "notification": "jitar start --env-file=development.env --service=services/notification.json --http-body-limit=512000",
+    "notification2": "jitar start --env-file=development.env --service=services/notification2.json --http-body-limit=512000",
+    "reads": "jitar start --env-file=development.env --service=services/reads.json --http-body-limit=512000",
+    "writes": "jitar start --env-file=development.env --service=services/writes.json --http-body-limit=512000"
   },
   "files": [
     "CHANGELOG.md",
@@ -37,7 +39,7 @@
   ],
   "dependencies": {
     "dayjs": "^1.11.13",
-    "jitar": "^0.7.6",
+    "jitar": "^0.8.2",
     "minio": "^8.0.1",
     "mongodb": "^6.9.0",
     "openid-client": "^5.7.0",
@@ -49,7 +51,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@jitar/plugin-vite": "^0.7.6",
+    "@jitar/plugin-vite": "^0.8.2",
     "@types/node": "20.14.9",
     "@types/react": "^18.3.8",
     "@types/react-dom": "^18.3.0",

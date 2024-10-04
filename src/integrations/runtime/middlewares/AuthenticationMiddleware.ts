@@ -1,8 +1,10 @@
 
-import { Middleware, NextHandler, Request, Response, Unauthorized } from 'jitar';
+import { Middleware, NextHandler, Request, Response } from 'jitar';
 
 import { IdentityProvider, Session } from '^/integrations/authentication/module';
 import { generateKey } from '^/integrations/utilities/crypto';
+
+import Unauthorized from '../errors/Unauthorized';
 
 type AuthProcedures = {
     loginUrl: string;
@@ -47,6 +49,52 @@ export default class AuthenticationMiddleware implements Middleware
         }
     }
 
+    async #getLoginUrl(): Promise<Response>
+    {
+        const url = await this.#identityProvider.getLoginUrl();
+
+        return new Response(200, url);
+    }
+
+    async #createSession(request: Request, next: NextHandler): Promise<Response>
+    {
+        const data = Object.fromEntries(request.args);
+        const session = await this.#identityProvider.login(data);
+
+        request.args.clear();
+        request.setArgument(IDENTITY_PARAMETER, session.identity);
+
+        const response = await next();
+
+        session.key = generateKey();
+        session.requester = response.result;
+
+        sessions.set(session.key, session);
+
+        this.#setAuthorizationHeader(response, session);
+        this.#setRedirectHeader(response, session.key);
+
+        return response;
+    }
+
+    async #destroySession(request: Request, next: NextHandler): Promise<Response>
+    {
+        const key = this.#extractAuthorizationKey(request);
+
+        if (key === undefined)
+        {
+            throw new Unauthorized('Invalid authorization key');
+        }
+
+        const session = this.#getSession(key);
+
+        await this.#identityProvider.logout(session);
+
+        sessions.delete(key);
+
+        return next();
+    }
+
     async #handleRequest(request: Request, next: NextHandler): Promise<Response>
     {
         const storedSession = this.#authorize(request);
@@ -88,40 +136,12 @@ export default class AuthenticationMiddleware implements Middleware
             return;
         }
 
-        throw new Unauthorized('Unauthorized');
+        throw new Unauthorized('Not a public resource');
     }
 
     #authorizeProtected(key: string): Session
     {
         return this.#getSession(key);
-    }
-
-    async #getLoginUrl(): Promise<Response>
-    {
-        const url = await this.#identityProvider.getLoginUrl();
-
-        return new Response(url);
-    }
-
-    async #createSession(request: Request, next: NextHandler): Promise<Response>
-    {
-        const data = Object.fromEntries(request.args);
-        const session = await this.#identityProvider.login(data);
-
-        request.args.clear();
-        request.setArgument(IDENTITY_PARAMETER, session.identity);
-
-        const response = await next();
-
-        session.key = generateKey();
-        session.requester = response.result;
-
-        sessions.set(session.key, session);
-
-        this.#setAuthorizationHeader(response, session);
-        this.#setRedirectHeader(response, session.key);
-
-        return response;
     }
 
     #getSession(key: string): Session
@@ -160,24 +180,6 @@ export default class AuthenticationMiddleware implements Middleware
         {
             throw new Unauthorized('Session expired');
         }
-    }
-
-    async #destroySession(request: Request, next: NextHandler): Promise<Response>
-    {
-        const key = this.#extractAuthorizationKey(request);
-
-        if (key === undefined)
-        {
-            throw new Unauthorized('Invalid authorization key');
-        }
-
-        const session = this.#getSession(key);
-
-        await this.#identityProvider.logout(session);
-
-        sessions.delete(key);
-
-        return next();
     }
 
     #extractAuthorizationKey(request: Request): string | undefined

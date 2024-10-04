@@ -12,7 +12,6 @@
     ],
     "worker":
     {
-        "repository": "http://127.0.0.1:1000",
         "gateway": "http://127.0.0.1:2000",
         "trustKey": "${JITAR_TRUST_KEY}",
         "segments": ["reads"]
