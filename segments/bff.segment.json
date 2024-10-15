@@ -12,9 +12,6 @@
     "./domain/creator/register/feature": { "default": {  "access": "private" }},
     "./domain/creator/updateFullName/feature": { "default": {  "access": "public" }},
     "./domain/creator/updateNickname/feature": { "default": {  "access": "public" }},
-    "./domain/creator/updateFollowerCount/feature": { "default": {  "access": "private" }},
-    "./domain/creator/updateFollowingCount/feature": { "default": {  "access": "private" }},
-    "./domain/creator/updatePostCount/feature": { "default": {  "access": "private" }},
  
     "./domain/image/create/feature": { "default": {  "access": "private" } },
     "./domain/image/download/feature": { "default": {  "access": "private" } },
@@ -40,7 +37,6 @@
     "./domain/reaction/getByPostAggregated/feature": { "default": {  "access": "public" } },
     "./domain/reaction/remove/feature": { "default": {  "access": "public" } },
     "./domain/reaction/toggleRating/feature": { "default": {  "access": "public" } },
-    "./domain/reaction/updateRatingCount/feature": { "default": {  "access": "private" }},
  
     "./domain/relation/aggregate/feature": { "default": {  "access": "private" } },
     "./domain/relation/exploreAggregated/feature": { "default": {  "access": "public" } },

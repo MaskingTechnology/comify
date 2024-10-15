@@ -60,6 +60,7 @@ export function usePagination<T>(getData: GetData<T>, limit: number, deps: Depen
         resetData();
         loadData();
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(resetData, [resetData, limit, ...deps]);
