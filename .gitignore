@@ -13,6 +13,7 @@ coverage
 dist
 dist-ssr
 *.local
+.nx
 
 # Editor directories and files
 !.vscode/extensions.json
