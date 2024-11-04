@@ -5,6 +5,7 @@ export const VALUES =
         COMIC: 'C1',
         IMAGE: 'I1',
         POST_RATED: 'P1',
+        POST_DELETED: 'P2',
 
         REACTION_LIKED: 'R1',
 
@@ -15,6 +16,7 @@ export const VALUES =
         NOTIFICATION2: 'N2',
         NOTIFICATION3: 'N3',
         NOTIFICATION4: 'N4',
+        NOTIFICATION5: 'N5',
 
         CREATOR1: 'CR1',
         CREATOR2: 'CR2',
