@@ -36,7 +36,7 @@ describe('domain/notification/getallAggregated', () =>
 
     });
 
-    it('should give the valid posts only for requester1', async () =>
+    it('should give only the posts without errors for requester1', async () =>
     {
         const result = await getRecentAggregated(REQUESTERS.CREATOR1, { offset: 0, limit: 7 });
 
