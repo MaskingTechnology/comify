@@ -21,6 +21,6 @@
         "segments": ["bff"],
 
         "serveIndexOnNotFound": true,
-        "assets": ["index.html", "main.js", "assets/**/*", "webui/**/*"]
+        "assets": ["index.html", "main.js", "assets/**/*", "webui/**/*", "registerSW.js", "sw.js", "workbox-*.js", "manifest.webmanifest" ]
     }
 }

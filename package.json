@@ -21,7 +21,6 @@
     "changelog-debug": "auto-changelog --template changelog.hbs -p --template json --output changelog-data.json",
     "review": "npm run compile && npm run lint && npm run test",
     "rebuild": "npm run clean && npm run build && npm run standalone",
-
     "standalone": "jitar start --env-file=development.env --service=services/standalone.json --http-body-limit=512000",
     "repository": "jitar start --env-file=development.env --service=services/repository.json",
     "proxy": "jitar start --env-file=development.env --service=services/proxy.json --http-body-limit=512000",
@@ -69,6 +68,7 @@
     "tsc-alias": "^1.8.10",
     "typescript": "5.6.2",
     "vite": "^5.4.6",
+    "vite-plugin-pwa": "^0.20.5",
     "vite-tsconfig-paths": "^5.0.1",
     "vitest": "^2.1.1"
   },
