@@ -15,7 +15,7 @@ beforeEach(async () =>
 
 describe('domain/notification/getallAggregated', () =>
 {
-    it('should give all posts for the requester2', async () =>
+    it('should give all notifications for the requester2', async () =>
     {
         const result = await getRecentAggregated(REQUESTERS.CREATOR2, { offset: 0, limit: 7 });
 
@@ -36,7 +36,7 @@ describe('domain/notification/getallAggregated', () =>
 
     });
 
-    it('should give only the posts without errors for requester1', async () =>
+    it('should give only the notifications without aggregation errors for requester1', async () =>
     {
         const result = await getRecentAggregated(REQUESTERS.CREATOR1, { offset: 0, limit: 7 });
 
