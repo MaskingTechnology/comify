@@ -27,41 +27,10 @@ export default defineConfig({
     react(),
     VitePWA({
       strategies: 'generateSW',
+      manifest: false,
       workbox: {
         globPatterns: ['/', 'index.html', 'assets/*', 'webui/**/*.{js,css,html,png,svg}']
       },
-      manifest: {
-        "name": "Comify",
-        "short_name": "Comify",
-        "theme_color": "#ffffff",
-
-        "icons": [
-
-          {
-            "src": "/assets/appicon32.png",
-            "type": "image/png",
-            "sizes": "32x32"
-          },
-
-          {
-            "src": "/assets/appicon192.png",
-            "type": "image/png",
-            "sizes": "192x192"
-          },
-
-          {
-            "src": "/assets/appicon512.png",
-            "type": "image/png",
-            "sizes": "512x512"
-          }
-
-        ],
-
-        "id": "/",
-
-        "display": "standalone"
-
-      }
     }),
     tsconfigPaths(),
     jitar(jitarConfig)
