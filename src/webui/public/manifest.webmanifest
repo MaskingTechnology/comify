@@ -31,5 +31,11 @@
     "id": "/",
 
     "display": "standalone"
+   "description": "Take or upload a picture. Add speech bubbles. Share with friends."
+   "background_color": "#ffffff",
+   "dir": "ltr",
+   "lang": "en-US",
+   "orientation": "portrait-primary",
+   
 
   }
