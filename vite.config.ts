@@ -32,6 +32,16 @@ export default defineConfig({
         globPatterns: ['/', 'index.html', 'assets/*', 'webui/**/*.{js,css,html,png,svg}']
       },
     }),
+    {
+      name: 'add-manifest-link',
+      transformIndexHtml(html)
+      {
+        return html.replace(
+          '</head>',
+          '<link rel="manifest" href="/manifest.webmanifest"></head>'
+        );
+      }
+    },
     tsconfigPaths(),
     jitar(jitarConfig)
   ]
