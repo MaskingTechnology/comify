@@ -23,6 +23,7 @@ export const RECORDS: Record<string, Array<RecordData>> =
 
     POSTS: [
         { id: VALUES.IDS.POST_RATED, creatorId: REQUESTERS.CREATOR1.id, comicId: VALUES.IDS.COMIC, createdAt: new Date(), ratingCount: 10, reactionCount: 0, deleted: false },
+        { id: VALUES.IDS.POST_DELETED, creatorId: REQUESTERS.CREATOR1.id, comicId: VALUES.IDS.COMIC, createdAt: new Date(), ratingCount: 5, reactionCount: 1, deleted: true },
     ],
 
     REACTIONS: [
@@ -37,8 +38,9 @@ export const RECORDS: Record<string, Array<RecordData>> =
     NOTIFICATIONS: [
         { id: VALUES.IDS.NOTIFICATION1, createdAt: new Date(), type: Types.STARTED_FOLLOWING, senderId: VALUES.IDS.CREATOR1, receiverId: VALUES.IDS.CREATOR2, postId: undefined, reactionId: undefined },
         { id: VALUES.IDS.NOTIFICATION2, createdAt: new Date(), type: Types.STARTED_FOLLOWING, senderId: VALUES.IDS.CREATOR2, receiverId: VALUES.IDS.CREATOR1, postId: undefined, reactionId: undefined },
-        { id: VALUES.IDS.NOTIFICATION3, createdAt: new Date('01-05-2024'), type: Types.RATED_POST, senderId: VALUES.IDS.CREATOR3, receiverId: VALUES.IDS.CREATOR1, postId: VALUES.IDS.POST_RATED, reactionId: undefined },
-        { id: VALUES.IDS.NOTIFICATION4, createdAt: new Date('01-04-2024'), type: Types.RATED_REACTION, senderId: VALUES.IDS.CREATOR2, receiverId: VALUES.IDS.CREATOR1, postId: undefined, reactionId: VALUES.IDS.REACTION_LIKED }
+        { id: VALUES.IDS.NOTIFICATION3, createdAt: new Date('01-05-2024'), type: Types.RATED_POST, senderId: VALUES.IDS.CREATOR3, receiverId: VALUES.IDS.CREATOR2, postId: VALUES.IDS.POST_RATED, reactionId: undefined },
+        { id: VALUES.IDS.NOTIFICATION4, createdAt: new Date('01-04-2024'), type: Types.RATED_REACTION, senderId: VALUES.IDS.CREATOR2, receiverId: VALUES.IDS.CREATOR1, postId: undefined, reactionId: VALUES.IDS.REACTION_LIKED },
+        { id: VALUES.IDS.NOTIFICATION5, createdAt: new Date('01-03-2024'), type: Types.RATED_POST, senderId: VALUES.IDS.CREATOR1, receiverId: VALUES.IDS.CREATOR1, postId: VALUES.IDS.POST_DELETED, reactionId: undefined },
     ],
 
 };
