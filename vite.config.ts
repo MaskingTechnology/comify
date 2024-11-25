@@ -29,7 +29,11 @@ export default defineConfig({
       strategies: 'generateSW',
       manifest: false,
       workbox: {
-        globPatterns: ['/', 'index.html', 'assets/*', 'webui/**/*.{js,css,html,png,svg}']
+        additionalManifestEntries:
+          [
+            { url: '/manifest.webmanifest', revision: null }
+          ],
+        globPatterns: ['index.html', 'registerSW.js', 'assets/*', 'webui/**/*.{js,css,html,png,svg}']
       },
     }),
     {
