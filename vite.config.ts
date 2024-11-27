@@ -1,6 +1,7 @@
 import jitar, { JitarConfig } from '@jitar/plugin-vite';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
+import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 const JITAR_URL = 'http://localhost:3000';
@@ -24,6 +25,27 @@ export default defineConfig({
   },
   plugins: [
     react(),
+    VitePWA({
+      strategies: 'generateSW',
+      manifest: false,
+      workbox: {
+        additionalManifestEntries:
+          [
+            { url: '/manifest.webmanifest', revision: null }
+          ],
+        globPatterns: ['index.html', 'registerSW.js', 'assets/*', 'webui/**/*.{js,css,html,png,svg}']
+      },
+    }),
+    {
+      name: 'add-manifest-link',
+      transformIndexHtml(html)
+      {
+        return html.replace(
+          '</head>',
+          '<link rel="manifest" href="/manifest.webmanifest"></head>'
+        );
+      }
+    },
     tsconfigPaths(),
     jitar(jitarConfig)
   ]

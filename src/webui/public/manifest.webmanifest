@@ -1,0 +1,41 @@
+
+{
+    "name": "Comify",
+    "short_name": "Comify",
+    "theme_color": "#ffffff",
+
+    "icons": [
+
+      {
+        "src": "/assets/appicon32.png",
+        "type": "image/png",
+        "sizes": "32x32"
+      },
+
+      {
+        "src": "/assets/appicon192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+
+      {
+        "src": "/assets/appicon512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+
+    ],
+
+   "start_url": "/",
+
+    "id": "/",
+
+    "display": "standalone",
+    "description": "Take or upload a picture. Add speech bubbles. Share with friends.",
+    "background_color": "#ffffff",
+    "dir": "ltr",
+    "lang": "en-US",
+    "orientation": "portrait-primary"
+   
+
+  }
