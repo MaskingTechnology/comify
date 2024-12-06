@@ -36,7 +36,7 @@ describe('domain/relation/establish', () =>
     {
         const promise = establish(REQUESTERS.FIRST, VALUES.IDS.CREATOR2);
 
-        expect(promise).rejects.toStrictEqual(new RelationAlreadyExists());
+        await expect(promise).rejects.toStrictEqual(new RelationAlreadyExists());
     });
 
     it('Should rollback created data after failure', async () =>

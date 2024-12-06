@@ -27,6 +27,6 @@ describe('domain/creator/updateFullName', () =>
     it('should not accept an invalid full name', async () =>
     {
         const promise = updateFullName(REQUESTERS.CREATOR, VALUES.FULL_NAMES.INVALID);
-        expect(promise).rejects.toThrow(InvalidCreator);
+        await expect(promise).rejects.toThrow(InvalidCreator);
     });
 });

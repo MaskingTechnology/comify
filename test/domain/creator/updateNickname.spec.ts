@@ -28,6 +28,6 @@ describe('domain/creator/updateNickname', () =>
     {
         const promise = updateNickname(REQUESTERS.CREATOR, VALUES.NICKNAMES.DUPLICATE);
 
-        expect(promise).rejects.toStrictEqual(new NicknameAlreadyExists(VALUES.NICKNAMES.DUPLICATE));
+        await expect(promise).rejects.toStrictEqual(new NicknameAlreadyExists(VALUES.NICKNAMES.DUPLICATE));
     });
 });
