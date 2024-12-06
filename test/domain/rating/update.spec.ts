@@ -17,20 +17,20 @@ describe('domain/rating/update', () =>
     {
         const promise = update(REQUESTERS.CREATOR, VALUES.IDS.POST_EMPTY, VALUES.IDS.REACTION_EMPTY);
 
-        expect(promise).rejects.toThrow(InvalidRating);
+        await expect(promise).rejects.toThrow(InvalidRating);
     });
 
     it('should not toggle without invalid post id', async () =>
     {
         const promise = update(REQUESTERS.CREATOR, VALUES.IDS.POST_INVALID, VALUES.IDS.REACTION_EMPTY);
 
-        expect(promise).rejects.toThrow(InvalidRating);
+        await expect(promise).rejects.toThrow(InvalidRating);
     });
 
     it('should not toggle without invalid comment id', async () =>
     {
         const promise = update(REQUESTERS.CREATOR, VALUES.IDS.POST_EMPTY, VALUES.IDS.REACTION_INVALID);
 
-        expect(promise).rejects.toThrow(InvalidRating);
+        await expect(promise).rejects.toThrow(InvalidRating);
     });
 });

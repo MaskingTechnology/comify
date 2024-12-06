@@ -36,7 +36,7 @@ describe('integrations/database/implementation', () =>
         it('should throw an error when a record is not found', async () =>
         {
             const promise = database.readRecord(RECORD_TYPES.PIZZAS, VALUES.IDS.NON_EXISTING);
-            expect(promise).rejects.toStrictEqual(new RecordNotFound());
+            await expect(promise).rejects.toStrictEqual(new RecordNotFound());
         });
     });
 
@@ -49,13 +49,13 @@ describe('integrations/database/implementation', () =>
             await database.deleteRecord(RECORD_TYPES.FRUITS, id);
 
             const promise = database.readRecord(RECORD_TYPES.FRUITS, id);
-            expect(promise).rejects.toStrictEqual(new RecordNotFound());
+            await expect(promise).rejects.toStrictEqual(new RecordNotFound());
         });
 
         it('should throw an error when the record cannot be deleted', async () =>
         {
             const promise = database.deleteRecord(RECORD_TYPES.PIZZAS, VALUES.IDS.NON_EXISTING);
-            expect(promise).rejects.toStrictEqual(new RecordNotFound());
+            await expect(promise).rejects.toStrictEqual(new RecordNotFound());
         });
     });
 
@@ -74,7 +74,7 @@ describe('integrations/database/implementation', () =>
         it('should throw an error when record cannot be updated', async () =>
         {
             const promise = database.updateRecord(RECORD_TYPES.FRUITS, VALUES.IDS.NON_EXISTING, {});
-            expect(promise).rejects.toStrictEqual(new RecordNotUpdated());
+            await expect(promise).rejects.toStrictEqual(new RecordNotUpdated());
         });
     });
 

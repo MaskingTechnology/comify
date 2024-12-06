@@ -38,7 +38,7 @@ describe('integrations/filestore/implementation', () =>
         it('should not read non-existing files', async () =>
         {
             const promise = fileStore.readFile(VALUES.FILENAMES.UNKNOWN);
-            expect(promise).rejects.toStrictEqual(new FileNotFound(VALUES.FILENAMES.UNKNOWN));
+            await expect(promise).rejects.toStrictEqual(new FileNotFound(VALUES.FILENAMES.UNKNOWN));
         });
     });
 
@@ -68,13 +68,13 @@ describe('integrations/filestore/implementation', () =>
             await fileStore.deleteFile(VALUES.FILENAMES.HELLO);
 
             const promise = fileStore.readFile(VALUES.FILENAMES.HELLO);
-            expect(promise).rejects.toStrictEqual(new FileNotFound(VALUES.FILENAMES.HELLO));
+            await expect(promise).rejects.toStrictEqual(new FileNotFound(VALUES.FILENAMES.HELLO));
         });
 
         it('should not delete non-existing files', async () =>
         {
             const promise = fileStore.deleteFile(VALUES.FILENAMES.UNKNOWN);
-            expect(promise).rejects.toStrictEqual(new FileNotFound(VALUES.FILENAMES.UNKNOWN));
+            await expect(promise).rejects.toStrictEqual(new FileNotFound(VALUES.FILENAMES.UNKNOWN));
         });
     });
 });

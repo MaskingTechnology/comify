@@ -47,7 +47,7 @@ describe('domain/authentication', () =>
         it('should NOT register with too many occurrences nickname', async () =>
         {
             const promise = login(IDENTITIES.TOO_MANY_SIMILAR_NICKNAMES);
-            expect(promise).rejects.toStrictEqual(new TooManySimilarNicknames());
+            await expect(promise).rejects.toStrictEqual(new TooManySimilarNicknames());
         });
 
         it('should register with spaces in nickname', async () =>
