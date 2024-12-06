@@ -47,7 +47,7 @@ describe('integrations/notification/implementation', () =>
         it('should not remove a non-existing subscription', async () =>
         {
             const promise = notificationService.unsubscribe(VALUES.RECIPIENTS.UNKNOWN);
-            expect(promise).rejects.toStrictEqual(new SubscriptionNotFound(VALUES.RECIPIENTS.UNKNOWN));
+            await expect(promise).rejects.toStrictEqual(new SubscriptionNotFound(VALUES.RECIPIENTS.UNKNOWN));
         });
     });
 
@@ -65,7 +65,7 @@ describe('integrations/notification/implementation', () =>
         it('should not send a notification to a non-existing subscription', async () =>
         {
             const promise = notificationService.sendNotification(VALUES.RECIPIENTS.UNKNOWN, VALUES.NOTIFICATION.TITLE, VALUES.NOTIFICATION.BODY);
-            expect(promise).rejects.toStrictEqual(new SubscriptionNotFound(VALUES.RECIPIENTS.UNKNOWN));
+            await expect(promise).rejects.toStrictEqual(new SubscriptionNotFound(VALUES.RECIPIENTS.UNKNOWN));
         });
     });
 });
