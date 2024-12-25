@@ -8,7 +8,7 @@ import aggregate from '../aggregate/feature';
 import type { AggregatedData } from '../aggregate/types';
 import getAll from '../getAll/feature';
 
-export default async function feature(requester: Requester, range: Range): Promise<AggregatedData[]>
+export default async function index(requester: Requester, range: Range): Promise<AggregatedData[]>
 {
     validateRange(range);
 

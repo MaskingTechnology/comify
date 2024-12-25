@@ -2,7 +2,7 @@
 import { useCallback } from 'react';
 
 import requester from '^/domain/authentication/requester';
-import getPostsAll from '^/domain/post/getAllAggregated/feature';
+import getPostsAll from '^/domain/post/getAllAggregated';
 
 import { usePagination } from '^/webui/hooks';
 
