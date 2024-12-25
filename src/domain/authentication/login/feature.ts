@@ -1,5 +1,5 @@
 
-import { Identity } from '^/integrations/authentication/module';
+import { Identity } from '^/integrations/authentication';
 
 import getCreatorByEmail from '^/domain/creator/getByEmail/feature';
 import registerCreator from '^/domain/creator/register/feature';

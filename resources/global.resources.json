@@ -1,5 +1,5 @@
 [
-    "./integrations/authentication/module",
+    "./integrations/authentication",
     "./integrations/database/module",
     "./integrations/filestore/module",
     "./integrations/notification/module"

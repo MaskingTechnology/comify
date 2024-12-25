@@ -1,7 +1,7 @@
 
 import { Middleware, NextHandler, Request, Response } from 'jitar';
 
-import { IdentityProvider, Session } from '^/integrations/authentication/module';
+import { IdentityProvider, Session } from '^/integrations/authentication';
 import { generateKey } from '^/integrations/utilities/crypto';
 
 import Unauthorized from '../errors/Unauthorized';

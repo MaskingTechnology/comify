@@ -1,5 +1,5 @@
 {
-    "./domain/comic/getById/feature": { "default": {  "access": "protected" } },
+    "./domain/comic/getById": { "default": {  "access": "protected" } },
 
     "./domain/comment/getById/feature": { "default": {  "access": "protected" } },
 

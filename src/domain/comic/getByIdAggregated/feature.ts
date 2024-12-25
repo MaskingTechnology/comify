@@ -1,7 +1,7 @@
 
 import aggregate from '../aggregate/feature';
 import type { AggregatedData } from '../aggregate/types';
-import getById from '../getById/feature';
+import getById from '../getById';
 
 export default async function feature(id: string): Promise<AggregatedData>
 {

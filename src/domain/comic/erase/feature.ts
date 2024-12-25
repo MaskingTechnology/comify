@@ -1,7 +1,7 @@
 
 import eraseImage from '^/domain/image/erase/feature';
 
-import getById from '../getById/feature';
+import getById from '../getById';
 
 import eraseData from './eraseData';
 
