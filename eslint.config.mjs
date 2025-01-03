@@ -1,7 +1,5 @@
 import eslint from '@eslint/js';
 import tsparser from '@typescript-eslint/parser';
-import react from 'eslint-plugin-react';
-import reactHooks from 'eslint-plugin-react-hooks';
 import sonarjs from 'eslint-plugin-sonarjs';
 import tseslint from 'typescript-eslint';
 
@@ -10,25 +8,20 @@ export default tseslint.config({
         "**/dist/**/*",
         "**/node_modules/**/*",
         "**/coverage/**/*",
-        "**/*config*"
+        "**/templates/**/*",
+        "**/test/**/fixtures/**/*",
+        "*config*"
     ],
     extends: [
         eslint.configs.recommended,
         ...tseslint.configs.recommended,
         ...tseslint.configs.stylistic,
         sonarjs.configs.recommended,
-        react.configs.recommended,
-        reactHooks.configs.recommended
     ],
     languageOptions: {
         parser: tsparser
     },
-    plugins: {
-        'react': react,
-        'react-hooks': reactHooks,
-        'sonarjs': sonarjs,
-        '@typescript-eslint': tseslint.plugin
-    },
+    plugins: {},
     rules: {
         "@typescript-eslint/no-unsafe-function-type": "off",
         "@typescript-eslint/consistent-type-definitions": "off",
@@ -36,7 +29,9 @@ export default tseslint.config({
         "semi": ["error", "always"],
         "eol-last": ["error", "always"],
         "brace-style": ["error", "allman", { "allowSingleLine": true }],
-        "react/jsx-uses-react": "off",
-        "react/react-in-jsx-scope": "off"
+
+        "sonarjs/assertions-in-tests": "off",
+        // "sonarjs/slow-regex": "off",
+        // "sonarjs/duplicates-in-character-class": "off"
     }
 });
