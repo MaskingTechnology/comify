@@ -1,4 +1,6 @@
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { Collection, Db, Document, Filter, MongoClient, Sort } from 'mongodb';
 
 import { ID, LogicalOperators, QueryOperators, SortDirections } from '../../definitions/constants.js';
@@ -182,10 +184,8 @@ export default class MongoDB implements Driver
         return; // Deliberately not implemented
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any, sonarjs/cognitive-complexity
     #buildMongoQuery(query: RecordQuery): Filter<any> 
     {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const mongoQuery: Filter<any> = {};
         const multiStatements = query as QueryMultiExpressionStatement;
         const singleStatements = query as QuerySingleExpressionStatement;
@@ -195,7 +195,6 @@ export default class MongoDB implements Driver
             if (key === 'AND' || key === 'OR')
             {
                 const singleMultiStatements = multiStatements[key] ?? [];
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 const multiMongoQuery: Filter<any>[] = [];
 
                 for (const statement of singleMultiStatements)
@@ -246,7 +245,6 @@ export default class MongoDB implements Driver
         return mongoSort;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async #getCollection<T>(name: RecordType): Promise<Collection<T extends Document ? any : any>>
     {
         if (this.#database === undefined)

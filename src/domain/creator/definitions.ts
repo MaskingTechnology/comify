@@ -1,7 +1,7 @@
 
 import type { Validation } from '^/integrations/validation/module';
 
-import { SortOrder } from '../definitions';
+import { SortOrder, SortOrderEnum } from '../definitions';
 
 export const RECORD_TYPE = 'creator';
 export const IMAGE_TYPE = 'portrait';
@@ -18,4 +18,4 @@ export const fullNameValidation: Validation = {
     }
 };
 
-export { SortOrder };
+export { SortOrderEnum, type SortOrder };
