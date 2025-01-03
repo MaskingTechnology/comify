@@ -32,6 +32,7 @@ export default function useLoadOnScroll(onLoad: LoadHandler, isLoading: boolean,
             }
         };
 
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         isFinished
             ? container.removeEventListener('scroll', handleScroll)
             : container.addEventListener('scroll', handleScroll);

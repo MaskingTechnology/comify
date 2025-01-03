@@ -4,7 +4,7 @@ import { RecordData } from '^/integrations/database/module';
 import { REQUESTERS } from './requesters.fixture';
 import { VALUES } from './values.fixture';
 
-export const RECORDS: Record<string, Array<RecordData>> =
+export const RECORDS: Record<string, RecordData[]> =
 {
     CREATORS: [
         { id: VALUES.IDS.CREATOR1, fullName: VALUES.FULL_NAMES.CREATOR1, nickname: VALUES.NICKNAMES.CREATOR1, email: VALUES.EMAILS.CREATOR1 },

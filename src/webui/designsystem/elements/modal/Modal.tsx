@@ -18,6 +18,7 @@ export default function Element({ open, sizing = 'content', children }: Props)
 
     useEffect(() =>
     {
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         open
             ? ref.current?.showModal()
             : ref.current?.close();

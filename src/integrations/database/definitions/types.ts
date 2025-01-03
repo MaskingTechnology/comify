@@ -1,4 +1,6 @@
 
+/* eslint sonarjs/redundant-type-aliases: "off" */
+
 import { QueryOperators, SortDirections } from './constants';
 
 export type RecordType = string;

@@ -1,11 +1,11 @@
 
 import { RecordData } from '^/integrations/database/module';
 
-import { Types } from '^/domain/notification/definitions';
+import { TypesEnum } from '^/domain/notification/definitions';
 import { REQUESTERS } from './requesters.fixture';
 import { VALUES } from './values.fixture';
 
-export const RECORDS: Record<string, Array<RecordData>> =
+export const RECORDS: Record<string, RecordData[]> =
 {
     CREATORS: [
         { id: VALUES.IDS.CREATOR1, fullName: VALUES.FULL_NAMES.CREATOR1, nickname: VALUES.NICKNAMES.CREATOR1, email: VALUES.EMAILS.CREATOR1, portraitId: undefined, joinedAt: new Date(), postCount: 0, followerCount: 1, followingCount: 1, popularity: 0 },
@@ -36,11 +36,11 @@ export const RECORDS: Record<string, Array<RecordData>> =
     ],
 
     NOTIFICATIONS: [
-        { id: VALUES.IDS.NOTIFICATION1, createdAt: new Date(), type: Types.STARTED_FOLLOWING, senderId: VALUES.IDS.CREATOR1, receiverId: VALUES.IDS.CREATOR2, postId: undefined, reactionId: undefined },
-        { id: VALUES.IDS.NOTIFICATION2, createdAt: new Date(), type: Types.STARTED_FOLLOWING, senderId: VALUES.IDS.CREATOR2, receiverId: VALUES.IDS.CREATOR1, postId: undefined, reactionId: undefined },
-        { id: VALUES.IDS.NOTIFICATION3, createdAt: new Date('01-05-2024'), type: Types.RATED_POST, senderId: VALUES.IDS.CREATOR3, receiverId: VALUES.IDS.CREATOR2, postId: VALUES.IDS.POST_RATED, reactionId: undefined },
-        { id: VALUES.IDS.NOTIFICATION4, createdAt: new Date('01-04-2024'), type: Types.RATED_REACTION, senderId: VALUES.IDS.CREATOR2, receiverId: VALUES.IDS.CREATOR1, postId: undefined, reactionId: VALUES.IDS.REACTION_LIKED },
-        { id: VALUES.IDS.NOTIFICATION5, createdAt: new Date('01-03-2024'), type: Types.RATED_POST, senderId: VALUES.IDS.CREATOR1, receiverId: VALUES.IDS.CREATOR1, postId: VALUES.IDS.POST_DELETED, reactionId: undefined },
+        { id: VALUES.IDS.NOTIFICATION1, createdAt: new Date(), type: TypesEnum.STARTED_FOLLOWING, senderId: VALUES.IDS.CREATOR1, receiverId: VALUES.IDS.CREATOR2, postId: undefined, reactionId: undefined },
+        { id: VALUES.IDS.NOTIFICATION2, createdAt: new Date(), type: TypesEnum.STARTED_FOLLOWING, senderId: VALUES.IDS.CREATOR2, receiverId: VALUES.IDS.CREATOR1, postId: undefined, reactionId: undefined },
+        { id: VALUES.IDS.NOTIFICATION3, createdAt: new Date('01-05-2024'), type: TypesEnum.RATED_POST, senderId: VALUES.IDS.CREATOR3, receiverId: VALUES.IDS.CREATOR2, postId: VALUES.IDS.POST_RATED, reactionId: undefined },
+        { id: VALUES.IDS.NOTIFICATION4, createdAt: new Date('01-04-2024'), type: TypesEnum.RATED_REACTION, senderId: VALUES.IDS.CREATOR2, receiverId: VALUES.IDS.CREATOR1, postId: undefined, reactionId: VALUES.IDS.REACTION_LIKED },
+        { id: VALUES.IDS.NOTIFICATION5, createdAt: new Date('01-03-2024'), type: TypesEnum.RATED_POST, senderId: VALUES.IDS.CREATOR1, receiverId: VALUES.IDS.CREATOR1, postId: VALUES.IDS.POST_DELETED, reactionId: undefined },
     ],
 
 };

@@ -1,6 +1,7 @@
 
-import { SortOrder } from '../definitions';
+import { SortOrder, SortOrderEnum } from '../definitions';
 
 export const RECORD_TYPE = 'relation';
 
-export { SortOrder };
+export { SortOrderEnum, type SortOrder };
+

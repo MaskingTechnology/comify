@@ -5,7 +5,7 @@ import { type Point } from '../utils/Geometry';
 export default abstract class Bubble extends Element
 {
     #pointer: Point = { x: 0, y: 0 };
-    #text: string = '';
+    #text = '';
 
     get pointer() { return this.#pointer; }
 

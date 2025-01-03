@@ -1,7 +1,7 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { Types } from '^/domain/notification/definitions';
+import { TypesEnum } from '^/domain/notification/definitions';
 import getRecentAggregated from '^/domain/notification/getRecentAggregated/feature';
 import { DATABASES, FILE_STORES, REQUESTERS, VALUES } from './fixtures';
 
@@ -24,12 +24,12 @@ describe('domain/notification/getallAggregated', () =>
         const notification1 = result[0];
         const notification2 = result[1];
 
-        expect(notification1.type).toBe(Types.STARTED_FOLLOWING);
+        expect(notification1.type).toBe(TypesEnum.STARTED_FOLLOWING);
         expect(notification1.post).toBe(undefined);
         expect(notification1.reaction).toBe(undefined);
         expect(notification1.relation.following.id).toBe(VALUES.IDS.CREATOR1);
 
-        expect(notification2.type).toBe(Types.RATED_POST);
+        expect(notification2.type).toBe(TypesEnum.RATED_POST);
         expect(notification2.post?.id).toBe(VALUES.IDS.POST_RATED);
         expect(notification2.reaction).toBe(undefined);
         expect(notification2.relation.following.id).toBe(VALUES.IDS.CREATOR3);
@@ -45,12 +45,12 @@ describe('domain/notification/getallAggregated', () =>
         const notification1 = result[0];
         const notification2 = result[1];
 
-        expect(notification1.type).toBe(Types.STARTED_FOLLOWING);
+        expect(notification1.type).toBe(TypesEnum.STARTED_FOLLOWING);
         expect(notification1.post).toBe(undefined);
         expect(notification1.reaction).toBe(undefined);
         expect(notification1.relation.following.id).toBe(VALUES.IDS.CREATOR2);
 
-        expect(notification2.type).toBe(Types.RATED_REACTION);
+        expect(notification2.type).toBe(TypesEnum.RATED_REACTION);
         expect(notification2.post).toBe(undefined);
         expect(notification2.reaction?.id).toBe(VALUES.IDS.REACTION_LIKED);
         expect(notification2.relation.following.id).toBe(VALUES.IDS.CREATOR2);

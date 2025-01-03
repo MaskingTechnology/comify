@@ -6,15 +6,17 @@ import { NotificationService } from '^/integrations/notification/definitions/int
 export default class NotificationHealthCheck implements HealthCheck
 {
     #notificationService: NotificationService;
+    #name = 'notifications';
+    #timeout = 5000;
 
     constructor(notificationService: NotificationService)
     {
         this.#notificationService = notificationService;
     }
 
-    get name() { return 'notifications'; }
+    get name() { return this.#name; }
 
-    get timeout() { return 5000; }
+    get timeout() { return this.#timeout; }
 
     async isHealthy(): Promise<boolean>
     {

@@ -14,7 +14,7 @@ type ValidatorFunction = (value: ValidationTypes[keyof ValidationTypes]) => z.Zo
 
 export default class Zod implements Validator
 {
-    #validations: Map<string, ValidatorFunction> = new Map();
+    #validations = new Map<string, ValidatorFunction>();
 
     constructor()
     {

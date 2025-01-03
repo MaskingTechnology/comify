@@ -2,7 +2,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import create from '^/domain/notification/create/feature';
-import { RECORD_TYPE as NOTIFICATION_RECORD_TYPE, Types } from '^/domain/notification/definitions';
+import { RECORD_TYPE as NOTIFICATION_RECORD_TYPE, TypesEnum } from '^/domain/notification/definitions';
 
 import database from '^/integrations/database/module';
 
@@ -20,14 +20,14 @@ describe('domain/notification/create', () =>
 {
     it('should create a notification by liking a post', async () =>
     {
-        await create(Types.RATED_POST, VALUES.IDS.CREATOR1, VALUES.IDS.CREATOR2, VALUES.IDS.POST_RATED);
+        await create(TypesEnum.RATED_POST, VALUES.IDS.CREATOR1, VALUES.IDS.CREATOR2, VALUES.IDS.POST_RATED);
 
         const notifications = await database.searchRecords(NOTIFICATION_RECORD_TYPE, {});
         expect(notifications).toHaveLength(1);
 
         const notification = notifications[0];
-        expect(notification.type).toBe(Types.RATED_POST);
-        expect(notification.createdAt).toBeDefined;
+        expect(notification.type).toBe(TypesEnum.RATED_POST);
+        expect(notification.createdAt).toBeDefined();
         expect(notification.senderId).toBe(REQUESTERS.CREATOR1.id);
         expect(notification.receiverId).toBe(VALUES.IDS.CREATOR2);
         expect(notification?.postId).toBe(VALUES.IDS.POST_RATED);
@@ -36,14 +36,14 @@ describe('domain/notification/create', () =>
 
     it('should create a notification by liking a comic reaction', async () =>
     {
-        await create(Types.RATED_REACTION, VALUES.IDS.CREATOR1, VALUES.IDS.CREATOR2, undefined, VALUES.IDS.REACTION_LIKED);
+        await create(TypesEnum.RATED_REACTION, VALUES.IDS.CREATOR1, VALUES.IDS.CREATOR2, undefined, VALUES.IDS.REACTION_LIKED);
 
         const notifications = await database.searchRecords(NOTIFICATION_RECORD_TYPE, {});
         expect(notifications).toHaveLength(1);
 
         const notification = notifications[0];
-        expect(notification.type).toBe(Types.RATED_REACTION);
-        expect(notification.createdAt).toBeDefined;
+        expect(notification.type).toBe(TypesEnum.RATED_REACTION);
+        expect(notification.createdAt).toBeDefined();
         expect(notification.senderId).toBe(REQUESTERS.CREATOR1.id);
         expect(notification.receiverId).toBe(VALUES.IDS.CREATOR2);
         expect(notification?.postId).toBe(undefined);
@@ -52,28 +52,28 @@ describe('domain/notification/create', () =>
 
     it('should create a notification when someone gets followed', async () =>
     {
-        await create(Types.STARTED_FOLLOWING, VALUES.IDS.CREATOR1, VALUES.IDS.CREATOR2);
+        await create(TypesEnum.STARTED_FOLLOWING, VALUES.IDS.CREATOR1, VALUES.IDS.CREATOR2);
 
         const notifications = await database.searchRecords(NOTIFICATION_RECORD_TYPE, {});
         expect(notifications).toHaveLength(1);
 
         const notification = notifications[0];
-        expect(notification.type).toBe(Types.STARTED_FOLLOWING);
-        expect(notification.createdAt).toBeDefined;
+        expect(notification.type).toBe(TypesEnum.STARTED_FOLLOWING);
+        expect(notification.createdAt).toBeDefined();
         expect(notification.senderId).toBe(REQUESTERS.CREATOR1.id);
         expect(notification.receiverId).toBe(VALUES.IDS.CREATOR2);
     });
 
     it('should create a notification when a reaction is added to a post', async () =>
     {
-        await create(Types.ADDED_REACTION, VALUES.IDS.CREATOR1, VALUES.IDS.CREATOR2);
+        await create(TypesEnum.ADDED_REACTION, VALUES.IDS.CREATOR1, VALUES.IDS.CREATOR2);
 
         const notifications = await database.searchRecords(NOTIFICATION_RECORD_TYPE, {});
         expect(notifications).toHaveLength(1);
 
         const notification = notifications[0];
-        expect(notification.type).toBe(Types.ADDED_REACTION);
-        expect(notification.createdAt).toBeDefined;
+        expect(notification.type).toBe(TypesEnum.ADDED_REACTION);
+        expect(notification.createdAt).toBeDefined();
         expect(notification.senderId).toBe(VALUES.IDS.CREATOR1);
         expect(notification.receiverId).toBe(VALUES.IDS.CREATOR2);
     });

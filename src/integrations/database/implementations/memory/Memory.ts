@@ -26,7 +26,7 @@ const LOGICAL_OPERATORS =
 
 export default class Memory implements Driver
 {
-    #memory: Map<string, RecordData[]> = new Map();
+    #memory = new Map<string, RecordData[]>();
     #connected = false;
     recordId = 0;
 
@@ -168,6 +168,7 @@ export default class Memory implements Driver
         const statementCode = this.#buildStatementCode(query);
         const functionCode = statementCode === '' ? 'true' : statementCode;
 
+        // eslint-disable-next-line sonarjs/code-eval
         return new Function('record', `return ${functionCode}`) as FilterFunction;
     }
 

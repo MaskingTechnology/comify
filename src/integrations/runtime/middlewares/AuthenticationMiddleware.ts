@@ -176,7 +176,7 @@ export default class AuthenticationMiddleware implements Middleware
 
             return newSession;
         }
-        catch (error)
+        catch
         {
             throw new Unauthorized('Session expired');
         }

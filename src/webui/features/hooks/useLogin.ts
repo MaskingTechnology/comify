@@ -19,6 +19,7 @@ export default function useLogin()
 
             const currentLocation = pathname + search + hash;
 
+            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
             IGNORE_PATHS.includes(pathname)
                 ? window.sessionStorage.removeItem('redirect')
                 : window.sessionStorage.setItem('redirect', currentLocation);

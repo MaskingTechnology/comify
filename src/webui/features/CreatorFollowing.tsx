@@ -24,6 +24,7 @@ export default function Feature({ creator }: Props)
     const [relations, isLoading, isFinished, getMoreRelations, , refresh] = useCreatorFollowing(creator);
 
     return <Column gap='small' alignX='stretch'>
+        { /* eslint-disable-next-line @typescript-eslint/no-empty-function */}
         <OrderAndSearchRow selected='recent' onOrderChange={reorderList} onSearchChange={() => {}} />
         <PullToRefresh onRefresh={refresh}>
             <ScrollLoader onLoad={getMoreRelations} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>

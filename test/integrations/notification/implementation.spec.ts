@@ -55,7 +55,7 @@ describe('integrations/notification/implementation', () =>
     {
         it('should send a notification to an existing subscription', async () =>
         {
-            const notifications = notificationService.subscriptions.get(VALUES.RECIPIENTS.FIRST) as Array<unknown>;
+            const notifications = notificationService.subscriptions.get(VALUES.RECIPIENTS.FIRST) as unknown[];
 
             await notificationService.sendNotification(VALUES.RECIPIENTS.FIRST, VALUES.NOTIFICATION.TITLE, VALUES.NOTIFICATION.BODY);
 

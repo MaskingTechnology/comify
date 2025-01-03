@@ -5,7 +5,7 @@ import { VALUES } from './values.fixture';
 
 const DEFAULT_DATA = { portraitId: undefined, postCount: 0, followerCount: 0, followingCount: 0 };
 
-export const RECORDS: Record<string, Array<RecordData>> =
+export const RECORDS: Record<string, RecordData[]> =
 {
     CREATORS: [
         { id: VALUES.IDS.CREATOR1, fullName: 'Creator 1', nickname: 'creator1', email: 'creator1@mail.com', joinedAt: new Date(2024, 5, 23), popularity: 0, ...DEFAULT_DATA },
