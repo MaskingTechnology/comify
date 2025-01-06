@@ -7,7 +7,7 @@ import getReactionsByPost from '^/domain/reaction/getByPostAggregated/feature';
 
 import { usePagination } from '^/webui/hooks';
 
-export default function useReactions(post: PostView)
+export default function usePostReactions(post: PostView)
 {
     const limit = 15;
 

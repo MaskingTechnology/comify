@@ -14,9 +14,12 @@ type Props = {
     readonly onCreatorClick: (relation: RelationView) => void;
     readonly onReactionClick: (reaction: ReactionView) => void;
     readonly onPostClick: (post: PostView) => void;
+    readonly onReactionHighlightClick: (notification: NotificationView) => void;
+    readonly onPostHighlightClick: (notification: NotificationView) => void;
+    readonly onNotificationClick: (notification: NotificationView) => void;
 };
 
-export default function Component({ notifications, onFollowClick, onCreatorClick, onReactionClick, onPostClick }: Props)
+export default function Component({ notifications, onFollowClick, onCreatorClick, onReactionClick, onPostClick, onReactionHighlightClick, onPostHighlightClick, onNotificationClick }: Props)
 {
     return <Column gap='medium' alignX='stretch'>
         {
@@ -28,6 +31,9 @@ export default function Component({ notifications, onFollowClick, onCreatorClick
                     onCreatorClick={onCreatorClick}
                     onReactionClick={onReactionClick}
                     onPostClick={onPostClick}
+                    onReactionHighlightClick={onReactionHighlightClick}
+                    onPostHighlightClick={onPostHighlightClick}
+                    onNotificationClick={onNotificationClick}
                 />
             )
         }

@@ -10,7 +10,7 @@ export default function useViewReactionDetails()
 
     return useCallback((reaction: ReactionView) =>
     {
-        navigate(`/post/${reaction.postId}/reaction/${reaction.id}`);
+        navigate(`/reaction/${reaction.id}`);
 
     }, [navigate]);
 }

@@ -9,6 +9,8 @@ export const VALUES =
         COMMENT: '1',
         COMMENT_MISSING: undefined,
         IMAGE: '1',
+        POST_MISSING: undefined,
+        REACTION_MISSING: undefined,
 
         POST_EXISTING: '1',
         POST_NOT_EXISTING: '2',
@@ -20,7 +22,8 @@ export const VALUES =
         REACTION_UNRATED: '3',
         REACTION_NOT_EXISTING: '4',
         REACTION_COMIC: '5',
-        REACTION_COMMENT: '6'
+        REACTION_COMMENT: '6',
+        REACTION_EXISTING: '7'
     },
 
     MESSAGES: {

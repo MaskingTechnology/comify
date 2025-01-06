@@ -24,6 +24,7 @@ export { default as NotificationPanelList } from './notification/PanelList';
 export { default as PostDetailsPanel } from './post/DetailsPanel';
 export { default as PostPanelGrid } from './post/PanelGrid';
 export { default as PostPanelList } from './post/PanelList';
+export { default as ReactionDetailsPanel } from './reaction/DetailsPanel';
 export { default as ReactionLargePanel } from './reaction/LargePanel';
 export { default as ReactionPanelList } from './reaction/PanelList';
 export { default as SingleReactionRow } from './reaction/SingleReactionRow';

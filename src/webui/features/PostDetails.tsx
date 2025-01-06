@@ -13,7 +13,7 @@ import useRemovePost from './hooks/useRemovePost';
 import useTogglePostRating from './hooks/useTogglePostRating';
 import useViewProfile from './hooks/useViewProfile';
 
-import Reactions from './Reactions';
+import PostReactions from './PostReactions';
 
 export default function Feature()
 {
@@ -47,7 +47,7 @@ export default function Feature()
                 onDeleteClick={deletePost}
             />
             <Ruler direction='horizontal' />
-            <Reactions post={post as PostView} />
+            <PostReactions post={post as PostView} />
         </LoadingContainer>
     </Column>;
 }

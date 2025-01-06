@@ -1,24 +1,24 @@
 
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
 import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
 
 import { ComicEditor, CommentForm } from '^/webui/components';
 import { Ruler, Tab, Tabs } from '^/webui/designsystem';
 
-import useCreateComicReaction from './hooks/useCreateComicReaction';
-import useCreateCommentReaction from './hooks/useCreateCommentReaction';
+import useCreateComicReaction from './hooks/useCreateReactionComicReaction';
+import useCreateCommentReaction from './hooks/useCreateReactionCommentReaction';
 
 type Props = {
-    readonly post: PostView;
+    readonly reaction: ReactionView;
     readonly handleDone: (reaction?: ReactionView) => void;
 };
 
+
 const MESSAGE_MAX_LENGTH = 1000;
 
-export default function Feature({ post, handleDone }: Props)
+export default function Feature({ reaction, handleDone }: Props)
 {
-    const createComicReaction = useCreateComicReaction(post, handleDone);
-    const createCommentReaction = useCreateCommentReaction(post, handleDone);
+    const createComicReaction = useCreateComicReaction(reaction, handleDone);
+    const createCommentReaction = useCreateCommentReaction(reaction, handleDone);
 
     return <Tabs separator={<Ruler direction='horizontal' size='small' />}>
         <Tab id='comic' title='Comic'>

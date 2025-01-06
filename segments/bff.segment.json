@@ -35,6 +35,7 @@
     "./domain/reaction/createComment/feature": { "default": {  "access": "public" } },
     "./domain/reaction/getByIdAggregated/feature": { "default": {  "access": "public" } },
     "./domain/reaction/getByPostAggregated/feature": { "default": {  "access": "public" } },
+    "./domain/reaction/getByReactionAggregated/feature": { "default": { "access": "public"} },
     "./domain/reaction/remove/feature": { "default": {  "access": "public" } },
     "./domain/reaction/toggleRating/feature": { "default": {  "access": "public" } },
  

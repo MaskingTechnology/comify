@@ -11,7 +11,7 @@ export const RECORDS: Record<string, Array<RecordData>> =
     ],
 
     COMMENTS: [
-        { id: VALUES.IDS.COMMENT, message: VALUES.MESSAGES.COMMENT }
+        { id: VALUES.IDS.COMMENT, message: VALUES.MESSAGES.VALID_COMMENT }
     ],
 
     CREATORS: [
@@ -27,11 +27,16 @@ export const RECORDS: Record<string, Array<RecordData>> =
     ],
 
     REACTIONS: [
-        { id: VALUES.IDS.REACTION_DELETED, creatorId: REQUESTERS.OWNER.id, postId: VALUES.IDS.POST_EXISTING, comicId: undefined, commentId: undefined, ratingCount: 0, createdAt: new Date(), deleted: true },
-        { id: VALUES.IDS.REACTION_COMIC, creatorId: REQUESTERS.OWNER.id, postId: VALUES.IDS.POST_EXISTING, comicId: VALUES.IDS.COMIC, commentId: undefined, ratingCount: 0, createdAt: new Date(), deleted: false },
-        { id: VALUES.IDS.REACTION_COMMENT, creatorId: REQUESTERS.OWNER.id, postId: VALUES.IDS.POST_EXISTING, comicId: undefined, commentId: VALUES.IDS.COMMENT, ratingCount: 0, createdAt: new Date(), deleted: false },
-        { id: VALUES.IDS.REACTION_RATED, creatorId: REQUESTERS.OWNER.id, postId: VALUES.IDS.POST_EXISTING, comicId: undefined, commentId: VALUES.IDS.COMMENT, ratingCount: 10, createdAt: new Date() },
-        { id: VALUES.IDS.REACTION_UNRATED, creatorId: REQUESTERS.OWNER.id, postId: VALUES.IDS.POST_EXISTING, comicId: undefined, commentId: VALUES.IDS.COMMENT, ratingCount: 0, createdAt: new Date(), deleted: false }
+        { id: VALUES.IDS.REACTION_DELETED, creatorId: REQUESTERS.OWNER.id, postId: VALUES.IDS.POST_EXISTING, comicId: undefined, commentId: undefined, ratingCount: 0, reactionCount: 0, createdAt: new Date(), deleted: true },
+        { id: VALUES.IDS.REACTION_COMIC, creatorId: REQUESTERS.OWNER.id, postId: VALUES.IDS.POST_EXISTING, comicId: VALUES.IDS.COMIC, commentId: undefined, ratingCount: 0, reactionCount: 0, createdAt: new Date(), deleted: false },
+        { id: VALUES.IDS.REACTION_COMMENT, creatorId: REQUESTERS.OWNER.id, postId: VALUES.IDS.POST_EXISTING, comicId: undefined, commentId: VALUES.IDS.COMMENT, ratingCount: 0, reactionCount: 0, createdAt: new Date(), deleted: false },
+        { id: VALUES.IDS.REACTION_RATED, creatorId: REQUESTERS.OWNER.id, postId: VALUES.IDS.POST_EXISTING, comicId: undefined, commentId: VALUES.IDS.COMMENT, ratingCount: 10, reactionCount: 0, createdAt: new Date(), deleted: false },
+        { id: VALUES.IDS.REACTION_UNRATED, creatorId: REQUESTERS.OWNER.id, postId: VALUES.IDS.POST_EXISTING, comicId: undefined, commentId: VALUES.IDS.COMMENT, ratingCount: 0, reactionCount: 0, createdAt: new Date(), deleted: false },
+        { id: VALUES.IDS.REACTION_DELETED, creatorId: REQUESTERS.OWNER.id, reactionId: VALUES.IDS.REACTION_EXISTING, comicId: undefined, commentId: undefined, ratingCount: 0, reactionCount: 0, createdAt: new Date(), deleted: true },
+        { id: VALUES.IDS.REACTION_COMIC, creatorId: REQUESTERS.OWNER.id, reactionId: VALUES.IDS.REACTION_EXISTING, comicId: VALUES.IDS.COMIC, commentId: undefined, ratingCount: 0, reactionCount: 0, createdAt: new Date(), deleted: false },
+        { id: VALUES.IDS.REACTION_COMMENT, creatorId: REQUESTERS.OWNER.id, reactionId: VALUES.IDS.REACTION_EXISTING, comicId: undefined, commentId: VALUES.IDS.COMMENT, ratingCount: 0, reactionCount: 0, createdAt: new Date(), deleted: false },
+        { id: VALUES.IDS.REACTION_RATED, creatorId: REQUESTERS.OWNER.id, reactionId: VALUES.IDS.REACTION_EXISTING, comicId: undefined, commentId: VALUES.IDS.COMMENT, ratingCount: 10, reactionCount: 0, createdAt: new Date(), deleted: false },
+        { id: VALUES.IDS.REACTION_UNRATED, creatorId: REQUESTERS.OWNER.id, reactionId: VALUES.IDS.REACTION_EXISTING, comicId: undefined, commentId: VALUES.IDS.COMMENT, ratingCount: 0, reactionCount: 0, createdAt: new Date(), deleted: false }
     ],
 
     RATINGS: [

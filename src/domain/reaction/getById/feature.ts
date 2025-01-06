@@ -1,10 +1,24 @@
 
-import database from '^/integrations/database/module';
+import database, { RecordQuery } from '^/integrations/database/module';
 
 import { RECORD_TYPE } from '../definitions';
+import ReactionNotFound from '../ReactionNotFound';
 import type { DataModel } from '../types';
 
 export default async function feature(id: string): Promise<DataModel>
 {
-    return database.readRecord(RECORD_TYPE, id) as Promise<DataModel>;
+    const query: RecordQuery =
+    {
+        id: { 'EQUALS': id },
+        deleted: { 'EQUALS': false }
+    };
+
+    const record = await database.findRecord(RECORD_TYPE, query);
+
+    if (record === undefined)
+    {
+        throw new ReactionNotFound();
+    }
+
+    return record as DataModel;
 }

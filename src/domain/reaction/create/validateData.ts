@@ -9,13 +9,23 @@ import { ValidationModel } from './types';
 const schema: ValidationSchema =
 {
     creatorId: requiredIdValidation,
-    postId: requiredIdValidation,
+    postId: optionalIdValidation,
+    reactionId: optionalIdValidation,
     comicId: optionalIdValidation,
     commentId: optionalIdValidation
 };
 
-export default function validateData({ creatorId, postId, comicId, commentId }: ValidationModel): void
+export default function validateData({ creatorId, postId, reactionId, comicId, commentId }: ValidationModel): void
 {
+    if (postId === undefined && reactionId === undefined)
+    {
+        const messages = new Map()
+            .set('postId', 'Either postId or reactionId must be provided')
+            .set('reactionId', 'Either postId or reactionId must be provided');
+
+        throw new InvalidReaction(messages);
+    }
+
     if (comicId === undefined && commentId === undefined)
     {
         const messages = new Map()

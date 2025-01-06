@@ -19,13 +19,14 @@ beforeEach(async () =>
 
 describe('domain/reaction/createComic', () =>
 {
-    it('should create a comic reaction', async () =>
+    it('should create a comic reaction on a post', async () =>
     {
-        const reactionId = await create(REQUESTERS.OWNER, VALUES.IDS.POST_EXISTING, VALUES.COMIC_DATA_URL);
+        const reactionId = await create(REQUESTERS.OWNER, VALUES.COMIC_DATA_URL, VALUES.IDS.POST_EXISTING);
 
         const reaction = await database.readRecord(REACTION_RECORD_TYPE, reactionId);
         expect(reaction?.creatorId).toBe(REQUESTERS.OWNER.id);
         expect(reaction?.postId).toBe(VALUES.IDS.POST_EXISTING);
+        expect(reaction?.reactionId).toBeUndefined();
         expect(reaction?.commentId).toBeUndefined();
         expect(reaction?.ratingCount).toBe(0);
         expect(reaction?.createdAt).toBeDefined();
@@ -36,5 +37,25 @@ describe('domain/reaction/createComic', () =>
         expect(post?.createdAt).toBeDefined();
         expect(post?.ratingCount).toBe(0);
         expect(post?.reactionCount).toBe(1);
+    });
+
+    it('should create a comic reaction on a reaction', async () =>
+    {
+        const reactionId = await create(REQUESTERS.OWNER, VALUES.COMIC_DATA_URL, undefined, VALUES.IDS.REACTION_COMIC);
+
+        const reaction = await database.readRecord(REACTION_RECORD_TYPE, reactionId);
+        expect(reaction?.creatorId).toBe(REQUESTERS.OWNER.id);
+        expect(reaction?.postId).toBeUndefined();
+        expect(reaction?.reactionId).toBe(VALUES.IDS.REACTION_COMIC);
+        expect(reaction?.commentId).toBeUndefined();
+        expect(reaction?.ratingCount).toBe(0);
+        expect(reaction?.createdAt).toBeDefined();
+
+        const reaction1 = await database.readRecord(REACTION_RECORD_TYPE, reaction.reactionId as string);
+        expect(reaction1?.creatorId).toBe(REQUESTERS.OWNER.id);
+        expect(reaction1?.comicId).toBeDefined();
+        expect(reaction1?.createdAt).toBeDefined();
+        expect(reaction1?.ratingCount).toBe(0);
+        expect(reaction1?.reactionCount).toBe(1);
     });
 });
