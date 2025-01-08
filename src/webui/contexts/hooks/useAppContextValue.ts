@@ -1,13 +1,13 @@
 
 import { useMemo, useState } from 'react';
 
-import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
+import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
 
 import { useModal } from '^/webui/hooks/useModal';
 
-export default function useAppContextValue(initialIdentity: CreatorView | undefined)
+export default function useAppContextValue(initialIdentity: AggregatedCreatorData | undefined)
 {
-    const [identity, setIdentity] = useState<CreatorView | undefined>(initialIdentity);
+    const [identity, setIdentity] = useState<AggregatedCreatorData | undefined>(initialIdentity);
     const [modalContent, modalOpen, showModal, closeModal] = useModal();
 
     return useMemo(() => (

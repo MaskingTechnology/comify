@@ -1,9 +1,9 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions';
-import create from '^/domain/reaction/createComment/feature';
-import { RECORD_TYPE as REACTION_RECORD_TYPE } from '^/domain/reaction/definitions';
+import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post';
+import { RECORD_TYPE as REACTION_RECORD_TYPE } from '^/domain/reaction';
+import create from '^/domain/reaction/createWithComment';
 
 import database from '^/integrations/database/module';
 

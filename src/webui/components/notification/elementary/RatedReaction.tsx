@@ -1,11 +1,11 @@
 
-import { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
+import { AggregatedData as AggregatedReactionData } from '^/domain/reaction/aggregate';
 import RatedComicReaction from '../elementary/RatedComicReaction';
 import RatedCommentReaction from '../elementary/RatedCommentReaction';
 
 type Props = {
-    readonly reaction: ReactionView;
-    readonly onReactionClick: (reaction: ReactionView) => void;
+    readonly reaction: AggregatedReactionData;
+    readonly onReactionClick: (reaction: AggregatedReactionData) => void;
 };
 
 export default function Component({ reaction, onReactionClick }: Props)

@@ -2,7 +2,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { SortOrder } from '^/domain/relation/definitions';
-import explore from '^/domain/relation/exploreAggregated/feature';
+import explore from '^/domain/relation/exploreAggregated';
 
 import { DATABASES, REQUESTERS, VALUES } from './fixtures';
 

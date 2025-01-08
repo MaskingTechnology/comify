@@ -1,5 +1,5 @@
 
-import johnDoe from '^/domain/authentication/requester';
+import { requester } from '^/domain/authentication';
 
 import { RECORDS } from './records.fixture';
 
@@ -10,5 +10,5 @@ export const REQUESTERS =
 {
     FIRST: { id: CREATOR1.id as string, fullName: CREATOR1.fullName as string, nickname: CREATOR1.nickname as string },
     SECOND: { id: CREATOR2.id as string, fullName: CREATOR2.fullName as string, nickname: CREATOR2.nickname as string },
-    UNKNOWN: johnDoe
+    UNKNOWN: requester
 };

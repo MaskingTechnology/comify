@@ -2,9 +2,9 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import requester from '^/domain/authentication/requester';
-import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
-import getMe from '^/domain/creator/getMeAggregated/feature';
+import { requester } from '^/domain/authentication';
+import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
+import getMe from '^/domain/creator/getMeAggregated';
 
 import { useAppContext } from '^/webui/contexts';
 
@@ -15,7 +15,7 @@ export default function useIdentify()
 
     const identify = () =>
     {
-        const setIdentity = (identity: CreatorView) =>
+        const setIdentity = (identity: AggregatedCreatorData) =>
         {
             const redirectLocation = window.sessionStorage.getItem('redirect');
 

@@ -4,9 +4,9 @@ import identityProvider from '^/integrations/authentication';
 import AuthenticationMiddleware from './middlewares/AuthenticationMiddleware';
 
 const authProcedures = {
-    loginUrl: 'domain/authentication/getLoginUrl/feature',
-    login: 'domain/authentication/login/feature',
-    logout: 'domain/authentication/logout/feature'
+    loginUrl: 'domain/authentication/getLoginUrl',
+    login: 'domain/authentication/login',
+    logout: 'domain/authentication/logout'
 };
 
 const redirectUrl = process.env.AUTHENTICATION_CLIENT_URI || 'undefined';

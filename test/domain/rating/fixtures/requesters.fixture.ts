@@ -1,5 +1,5 @@
 
-import requester from '^/domain/authentication/requester';
+import { requester } from '^/domain/authentication';
 
 export const REQUESTERS =
 {

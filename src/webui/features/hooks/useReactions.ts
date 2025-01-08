@@ -1,13 +1,13 @@
 
 import { useCallback } from 'react';
 
-import requester from '^/domain/authentication/requester';
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
-import getReactionsByPost from '^/domain/reaction/getByPostAggregated/feature';
+import { requester } from '^/domain/authentication';
+import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
+import getReactionsByPost from '^/domain/reaction/getByPostAggregated';
 
 import { usePagination } from '^/webui/hooks';
 
-export default function useReactions(post: PostView)
+export default function useReactions(post: AggregatedPostData)
 {
     const limit = 15;
 

@@ -1,6 +1,6 @@
 
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
-import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
+import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
+import type { AggregatedData as AggregatedReactionData } from '^/domain/reaction/aggregate';
 
 import { ComicEditor, CommentForm } from '^/webui/components';
 import { Ruler, Tab, Tabs } from '^/webui/designsystem';
@@ -9,8 +9,8 @@ import useCreateComicReaction from './hooks/useCreateComicReaction';
 import useCreateCommentReaction from './hooks/useCreateCommentReaction';
 
 type Props = {
-    readonly post: PostView;
-    readonly handleDone: (reaction?: ReactionView) => void;
+    readonly post: AggregatedPostData;
+    readonly handleDone: (reaction?: AggregatedReactionData) => void;
 };
 
 const MESSAGE_MAX_LENGTH = 1000;

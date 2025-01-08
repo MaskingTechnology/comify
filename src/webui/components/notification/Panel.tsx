@@ -1,8 +1,8 @@
 
-import type { AggregatedData as NotificationView } from '^/domain/notification/aggregate/types';
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
-import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
-import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
+import type { AggregatedData as AggregatedNotificationData } from '^/domain/notification/aggregate';
+import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
+import type { AggregatedData as AggregatedReactionData } from '^/domain/reaction/aggregate';
+import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
 import { Column, Panel } from '^/webui/designsystem';
 
@@ -13,20 +13,20 @@ import RatedReaction from './elementary/RatedReaction';
 import StartedFollowing from './elementary/StartedFollowing';
 
 type Props = {
-    readonly notification: NotificationView;
-    readonly onFollowClick: (relation: RelationView) => Promise<void>;
-    readonly onCreatorClick: (relation: RelationView) => void;
-    readonly onReactionClick: (reaction: ReactionView) => void;
-    readonly onPostClick: (post: PostView) => void;
+    readonly notification: AggregatedNotificationData;
+    readonly onFollowClick: (relation: AggregatedRelationData) => Promise<void>;
+    readonly onCreatorClick: (relation: AggregatedRelationData) => void;
+    readonly onReactionClick: (reaction: AggregatedReactionData) => void;
+    readonly onPostClick: (post: AggregatedPostData) => void;
 };
 
-function getContent(notification: NotificationView, onReactionClick: (reaction: ReactionView) => void, onPostClick: (post: PostView) => void)
+function getContent(notification: AggregatedNotificationData, onReactionClick: (reaction: AggregatedReactionData) => void, onPostClick: (post: AggregatedPostData) => void)
 {
     switch (notification.type)
     {
         case 'started-following': return <StartedFollowing isFollowing={notification.relation.established} />;
-        case 'rated-post': return <RatedPost post={notification.post as PostView} onPostClick={onPostClick} />;
-        case 'rated-reaction': return <RatedReaction reaction={notification.reaction as ReactionView} onReactionClick={onReactionClick} />;
+        case 'rated-post': return <RatedPost post={notification.post as AggregatedPostData} onPostClick={onPostClick} />;
+        case 'rated-reaction': return <RatedReaction reaction={notification.reaction as AggregatedReactionData} onReactionClick={onReactionClick} />;
         case 'added-reaction': return <AddedReaction notification={notification} onReactionClick={onReactionClick} />;
     }
 }

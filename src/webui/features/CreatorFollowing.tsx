@@ -1,5 +1,5 @@
 
-import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
+import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
 
 import { OrderAndSearchRow, PullToRefresh, RelationPanelList, ResultSet, ScrollLoader } from '^/webui/components';
 import { Column } from '^/webui/designsystem';
@@ -10,7 +10,7 @@ import useReorderList from './hooks/useReorderList';
 import useViewProfile from './hooks/useViewProfile';
 
 type Props = {
-    readonly creator: CreatorView;
+    readonly creator: AggregatedCreatorData;
 };
 
 const SCROLL_THRESHOLD = 0.9;
@@ -24,7 +24,7 @@ export default function Feature({ creator }: Props)
     const [relations, isLoading, isFinished, getMoreRelations, , refresh] = useCreatorFollowing(creator);
 
     return <Column gap='small' alignX='stretch'>
-        <OrderAndSearchRow selected='recent' onOrderChange={reorderList} onSearchChange={() => {}} />
+        <OrderAndSearchRow selected='recent' onOrderChange={reorderList} onSearchChange={() => { }} />
         <PullToRefresh onRefresh={refresh}>
             <ScrollLoader onLoad={getMoreRelations} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
                 <ResultSet data={relations} isLoading={isLoading}>

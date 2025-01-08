@@ -1,5 +1,5 @@
 
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
+import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
 
 import { ClickArea, Column, Panel, Row } from '^/webui/designsystem';
 
@@ -8,7 +8,7 @@ import TimeElapsed from '../common/TimeElapsed';
 import EngagementsRow from './elementary/EngagementRow';
 
 type Props = {
-    readonly post: PostView;
+    readonly post: AggregatedPostData;
     readonly onComicClick: () => void;
     readonly onRatingClick: () => Promise<boolean>;
     readonly onReactionClick: () => void;

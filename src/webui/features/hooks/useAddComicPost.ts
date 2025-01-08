@@ -2,8 +2,8 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import requester from '^/domain/authentication/requester';
-import addPost from '^/domain/post/add/feature';
+import { requester } from '^/domain/authentication';
+import addPost from '^/domain/post/add';
 
 import { useAppContext } from '^/webui/contexts';
 

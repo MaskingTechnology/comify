@@ -1,9 +1,8 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { RECORD_TYPE as REACTION_RECORD_TYPE } from '^/domain/reaction/definitions';
-import ReactionNotFound from '^/domain/reaction/remove/ReactionNotFound';
-import remove from '^/domain/reaction/remove/feature';
+import { RECORD_TYPE as REACTION_RECORD_TYPE } from '^/domain/reaction';
+import remove, { ReactionNotFound } from '^/domain/reaction/remove';
 
 import database from '^/integrations/database/module';
 

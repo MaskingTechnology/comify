@@ -1,8 +1,8 @@
 
 import { useCallback } from 'react';
 
-import requester from '^/domain/authentication/requester';
-import exploreRelations from '^/domain/relation/exploreAggregated/feature';
+import { requester } from '^/domain/authentication';
+import exploreRelations from '^/domain/relation/exploreAggregated';
 
 import { usePagination } from '^/webui/hooks';
 

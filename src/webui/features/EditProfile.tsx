@@ -1,5 +1,5 @@
 
-import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
+import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
 
 import { CreatorFullNameForm, CreatorNicknameForm, LoadingContainer } from '^/webui/components';
 import CreatorProfile from '^/webui/components/creator/Profile';
@@ -17,10 +17,10 @@ export default function Feature()
 
     return <Column gap='medium' alignX='stretch'>
         <LoadingContainer data={identity}>
-            <CreatorProfile creator={identity as CreatorView} />
+            <CreatorProfile creator={identity as AggregatedCreatorData} />
             <Ruler direction='horizontal' size='small' />
-            <CreatorFullNameForm fullName={(identity as CreatorView).fullName} onSubmit={updateFullName} />
-            <CreatorNicknameForm nickname={(identity as CreatorView).nickname} alreadyInUse={alreadyInUse} onSubmit={updateNickname} />
+            <CreatorFullNameForm fullName={(identity as AggregatedCreatorData).fullName} onSubmit={updateFullName} />
+            <CreatorNicknameForm nickname={(identity as AggregatedCreatorData).nickname} alreadyInUse={alreadyInUse} onSubmit={updateNickname} />
         </LoadingContainer>
     </Column>;
 }

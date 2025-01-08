@@ -1,8 +1,8 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import create from '^/domain/notification/create/feature';
-import { RECORD_TYPE as NOTIFICATION_RECORD_TYPE, Types } from '^/domain/notification/definitions';
+import { RECORD_TYPE as NOTIFICATION_RECORD_TYPE, Types } from '^/domain/notification';
+import create from '^/domain/notification/create';
 
 import database from '^/integrations/database/module';
 

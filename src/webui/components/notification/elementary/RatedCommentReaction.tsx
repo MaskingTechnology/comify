@@ -1,11 +1,11 @@
 
 import { Border, ClickArea, Column, Text } from '^/webui/designsystem';
 
-import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
+import type { AggregatedData as AggregatedReactionData } from '^/domain/reaction/aggregate';
 
 type Props = {
-    readonly reaction: ReactionView;
-    readonly onReactionClick: (reaction: ReactionView) => void;
+    readonly reaction: AggregatedReactionData;
+    readonly onReactionClick: (reaction: AggregatedReactionData) => void;
 };
 
 export default function Component({ reaction, onReactionClick }: Props)

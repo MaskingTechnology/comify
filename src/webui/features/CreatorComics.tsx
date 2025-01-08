@@ -1,5 +1,5 @@
 
-import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
+import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
 
 import { PostPanelGrid, PullToRefresh, ResultSet, ScrollLoader } from '^/webui/components';
 import { Column } from '^/webui/designsystem';
@@ -9,7 +9,7 @@ import useTogglePostRating from './hooks/useTogglePostRating';
 import useViewPostDetails from './hooks/useViewPostDetails';
 
 type Props = {
-    readonly creator: CreatorView;
+    readonly creator: AggregatedCreatorData;
 };
 
 const SCROLL_THRESHOLD = 0.9;

@@ -1,8 +1,7 @@
 
 import { describe, expect, it } from 'vitest';
 
-import validateRange from '^/domain/common/validateRange/feature';
-import InvalidRange from '^/domain/common/validateRange/InvalidRange';
+import validateRange, { InvalidRange } from '^/domain/common/validateRange';
 
 import { VALUES } from './fixtures';
 

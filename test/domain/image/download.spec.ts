@@ -1,9 +1,8 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { RECORD_TYPE } from '^/domain/image/definitions';
-import download from '^/domain/image/download/feature';
-import ImageNotDownloaded from '^/domain/image/download/ImageNotDownloaded';
+import { RECORD_TYPE } from '^/domain/image';
+import download, { ImageNotDownloaded } from '^/domain/image/download';
 import InvalidImage from '^/domain/image/validate/InvalidImage';
 
 import database from '^/integrations/database/module';
