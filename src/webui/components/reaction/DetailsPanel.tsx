@@ -6,9 +6,9 @@ import { Column, Panel, Row } from '^/webui/designsystem';
 
 import Comment from '^/webui/components/comment/Comment';
 import Image from '../comic/Image';
-import RatingEngagement from '../rating/Engagement';
 import TimeElapsed from '../relation/TimeElapsed';
 import DeleteButton from './DeleteButton';
+import EngagementRow from './elementary/EngagementRow';
 
 type Props = {
     readonly reaction: ReactionView;
@@ -16,9 +16,10 @@ type Props = {
     readonly onCreatorClick: (relation: RelationView) => void;
     readonly onRatingClick: (reaction: ReactionView) => Promise<boolean>;
     readonly onDeleteClick: (reaction: ReactionView) => Promise<void>;
+    readonly onReactionClick: (reaction: ReactionView) => void;
 };
 
-export default function Component({ reaction, onFollowClick, onCreatorClick, onRatingClick, onDeleteClick }: Props)
+export default function Component({ reaction, onFollowClick, onCreatorClick, onRatingClick, onReactionClick, onDeleteClick }: Props)
 {
     return <Panel padding='medium'>
         <Column gap='medium' alignX='stretch'>
@@ -41,10 +42,12 @@ export default function Component({ reaction, onFollowClick, onCreatorClick, onR
                     : null
             }
             <Row alignX='justify'>
-                <RatingEngagement
-                    isEngaged={reaction.hasRated}
-                    count={reaction.ratingCount}
-                    onClick={() => onRatingClick(reaction)}
+                <EngagementRow
+                    isRated={reaction.hasRated}
+                    ratingCount={reaction.ratingCount}
+                    reactionCount={reaction.reactionCount}
+                    onRatingClick={() => onRatingClick(reaction)}
+                    onReactionClick={() => onReactionClick(reaction)}
                 />
                 {
                     reaction.creator.self

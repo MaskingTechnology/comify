@@ -65,6 +65,7 @@ export default function Feature()
                 onRatingClick={togglePostRating}
                 onCreatorClick={viewProfile}
                 onDeleteClick={deletePost}
+                onReactionClick={viewPostDetails}
             />
         </LoadingContainer>
         <Ruler direction='horizontal' />

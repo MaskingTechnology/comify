@@ -12,7 +12,11 @@ import useReaction from './hooks/useReaction';
 import useRemoveReaction from './hooks/useRemoveReaction';
 import useToggleReactionRating from './hooks/useToggleReactionRating';
 import useViewProfile from './hooks/useViewProfile';
+import useViewReactionDetails from './hooks/useViewReactionDetails';
 
+import useGoBack from './hooks/useGoBack';
+
+import BackRow from '../components/common/BackRow';
 import ReactionReactions from './ReactionReactions';
 
 export default function Feature()
@@ -22,7 +26,9 @@ export default function Feature()
     const establishRelation = useEstablishRelation();
     const toggleReactionRating = useToggleReactionRating();
     const viewProfile = useViewProfile();
+    const viewReactionDetails = useViewReactionDetails();
     const removeReaction = useRemoveReaction();
+    const goBack = useGoBack();
 
     const [reaction] = useReaction();
 
@@ -38,12 +44,17 @@ export default function Feature()
     }, [showModal, closeModal, removeReaction]);
 
     return <Column gap='medium' alignX='stretch'>
+        <BackRow
+            reaction={reaction as ReactionView}
+            onClick={goBack}
+        />
         <LoadingContainer data={reaction}>
             <ReactionDetailsPanel
                 reaction={reaction as ReactionView}
                 onFollowClick={establishRelation}
                 onRatingClick={toggleReactionRating}
                 onCreatorClick={viewProfile}
+                onReactionClick={viewReactionDetails}
                 onDeleteClick={deleteReaction}
             />
             <Ruler direction='horizontal' />

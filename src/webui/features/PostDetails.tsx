@@ -11,6 +11,7 @@ import useEstablishRelation from './hooks/useEstablishRelation';
 import usePost from './hooks/usePost';
 import useRemovePost from './hooks/useRemovePost';
 import useTogglePostRating from './hooks/useTogglePostRating';
+import useViewPostDetails from './hooks/useViewPostDetails';
 import useViewProfile from './hooks/useViewProfile';
 
 import PostReactions from './PostReactions';
@@ -23,6 +24,7 @@ export default function Feature()
     const togglePostRating = useTogglePostRating();
     const viewProfile = useViewProfile();
     const removePost = useRemovePost();
+    const viewPostDetails = useViewPostDetails();
 
     const [post] = usePost();
 
@@ -44,6 +46,7 @@ export default function Feature()
                 onFollowClick={establishRelation}
                 onRatingClick={togglePostRating}
                 onCreatorClick={viewProfile}
+                onReactionClick={viewPostDetails}
                 onDeleteClick={deletePost}
             />
             <Ruler direction='horizontal' />

@@ -5,7 +5,7 @@ import type { AggregatedData as RelationView } from '^/domain/relation/aggregate
 import { Column, Panel, Row } from '^/webui/designsystem';
 
 import ComicImage from '../comic/Image';
-import RatingEngagement from '../rating/Engagement';
+import EngagementRow from '../post/elementary/EngagementRow';
 import TimeElapsed from '../relation/TimeElapsed';
 import DeleteButton from './DeleteButton';
 
@@ -15,9 +15,10 @@ type Props = {
     readonly onCreatorClick: (relation: RelationView) => void;
     readonly onRatingClick: (post: PostView) => Promise<boolean>;
     readonly onDeleteClick: (post: PostView) => Promise<void>;
+    readonly onReactionClick: (post: PostView) => void;
 };
 
-export default function Component({ post, onFollowClick, onCreatorClick, onRatingClick, onDeleteClick }: Props)
+export default function Component({ post, onFollowClick, onCreatorClick, onRatingClick, onReactionClick, onDeleteClick }: Props)
 {
     return <Panel padding='medium'>
         <Column gap='medium' alignX='stretch'>
@@ -29,10 +30,12 @@ export default function Component({ post, onFollowClick, onCreatorClick, onRatin
             />
             <ComicImage comic={post.comic} />
             <Row alignX='justify'>
-                <RatingEngagement
-                    isEngaged={post.hasRated}
-                    count={post.ratingCount}
-                    onClick={() => onRatingClick(post)}
+                <EngagementRow
+                    isRated={post.hasRated}
+                    ratingCount={post.ratingCount}
+                    reactionCount={post.reactionCount}
+                    onRatingClick={() => onRatingClick(post)}
+                    onReactionClick={() => onReactionClick(post)}
                 />
                 {
                     post.creator.self

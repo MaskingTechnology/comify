@@ -6,9 +6,9 @@ import Image from '^/webui/components/comic/Image';
 import { ClickArea, Column, Panel, Row } from '^/webui/designsystem';
 
 import Comment from '../comment/Comment';
-import RatingEngagement from '../rating/Engagement';
 import TimeElapsed from '../relation/TimeElapsed';
 import DeleteButton from './DeleteButton';
+import EngagementRow from './elementary/EngagementRow';
 
 type Props = {
     readonly reaction: ReactionView;
@@ -46,10 +46,12 @@ export default function Component({ reaction, onFollowClick, onCreatorClick, onR
                     : null
             }
             <Row alignX='justify'>
-                <RatingEngagement
-                    isEngaged={reaction.hasRated}
-                    count={reaction.ratingCount}
-                    onClick={() => onRatingClick(reaction)}
+                <EngagementRow
+                    isRated={reaction.hasRated}
+                    ratingCount={reaction.ratingCount}
+                    reactionCount={reaction.reactionCount}
+                    onRatingClick={() => onRatingClick(reaction)}
+                    onReactionClick={() => onReactionClick(reaction)}
                 />
                 {
                     reaction.creator.self
