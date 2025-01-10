@@ -1,5 +1,5 @@
 
-import fileStore from '^/integrations/filestore/module';
+import fileStore from '^/integrations/filestore';
 
 import { FILES } from './files.fixture';
 import { VALUES } from './values.fixture';

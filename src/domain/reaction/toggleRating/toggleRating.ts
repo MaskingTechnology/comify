@@ -1,5 +1,5 @@
 
-import logger from '^/integrations/logging/module';
+import logger from '^/integrations/logging';
 
 import { Requester } from '^/domain/authentication';
 import { Types } from '^/domain/notification';

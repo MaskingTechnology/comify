@@ -5,7 +5,7 @@ import { PostNotFound } from '^/domain/post';
 import { RECORD_TYPE as REACTION_RECORD_TYPE } from '^/domain/reaction';
 import create, { InvalidReaction } from '^/domain/reaction/create';
 
-import database from '^/integrations/database/module';
+import database from '^/integrations/database';
 
 import { DATABASES, FILE_STORES, REQUESTERS, VALUES } from './fixtures';
 

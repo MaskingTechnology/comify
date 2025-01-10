@@ -1,7 +1,7 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import notificationService, { SubscriptionNotFound } from '^/integrations/notification/module';
+import notificationService, { SubscriptionNotFound } from '^/integrations/notification';
 
 import { NOTIFICATION_SERVICES, VALUES } from './fixtures';
 

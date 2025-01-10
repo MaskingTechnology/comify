@@ -1,5 +1,5 @@
 
-import database, { RecordQuery, RecordSort, SortDirections } from '^/integrations/database/module';
+import database, { RecordQuery, RecordSort, SortDirections } from '^/integrations/database';
 
 import { Requester } from '^/domain/authentication';
 

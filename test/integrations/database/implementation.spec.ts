@@ -1,7 +1,7 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import database, { RecordNotFound, RecordNotUpdated } from '^/integrations/database/module';
+import database, { RecordNotFound, RecordNotUpdated } from '^/integrations/database';
 
 import { DATABASES, QUERIES, RECORDS, RECORD_TYPES, RESULTS, SORTS, VALUES } from './fixtures';
 

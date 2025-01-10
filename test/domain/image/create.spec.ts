@@ -5,8 +5,8 @@ import { RECORD_TYPE } from '^/domain/image';
 import create, { InvalidDataURL } from '^/domain/image/create';
 import InvalidImage from '^/domain/image/validate/InvalidImage';
 
-import database from '^/integrations/database/module';
-import fileStore from '^/integrations/filestore/module';
+import database from '^/integrations/database';
+import fileStore from '^/integrations/filestore';
 
 import { DATA_URLS, DATABASES, FILE_STORES } from './fixtures';
 

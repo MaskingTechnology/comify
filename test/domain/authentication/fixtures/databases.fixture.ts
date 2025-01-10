@@ -1,6 +1,6 @@
 
 import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator';
-import database from '^/integrations/database/module';
+import database from '^/integrations/database';
 
 import { RECORDS } from './records.fixture';
 

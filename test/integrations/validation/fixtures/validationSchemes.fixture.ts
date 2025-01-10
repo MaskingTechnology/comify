@@ -1,5 +1,5 @@
 
-import { ValidationSchema } from '^/integrations/validation/module';
+import { ValidationSchema } from '^/integrations/validation';
 
 import { VALUES } from './values.fixture';
 

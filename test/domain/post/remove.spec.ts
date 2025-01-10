@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { PostNotFound, RECORD_TYPE } from '^/domain/post';
 import remove from '^/domain/post/remove';
 
-import database from '^/integrations/database/module';
+import database from '^/integrations/database';
 
 import { DATABASES, REQUESTERS, VALUES } from './fixtures';
 

@@ -1,5 +1,5 @@
 
-import notificationService from '^/integrations/notification/module';
+import notificationService from '^/integrations/notification';
 
 import { VALUES } from './values.fixture';
 

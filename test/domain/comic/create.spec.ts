@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import create from '^/domain/comic/create/create';
 import { RECORD_TYPE as COMIC_RECORD_TYPE } from '^/domain/comic/definitions';
 
-import database from '^/integrations/database/module';
+import database from '^/integrations/database';
 
 import { DATABASES, FILE_STORES, VALUES } from './fixtures';
 

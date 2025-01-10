@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { RECORD_TYPE } from '^/domain/comment';
 import create, { InvalidComment } from '^/domain/comment/create';
 
-import database from '^/integrations/database/module';
+import database from '^/integrations/database';
 
 import { VALUES } from './fixtures';
 

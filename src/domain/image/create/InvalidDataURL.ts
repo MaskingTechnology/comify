@@ -1,5 +1,5 @@
 
-import { BadRequest } from '^/integrations/runtime/module';
+import { BadRequest } from '^/integrations/runtime';
 
 export default class InvalidDataURL extends BadRequest
 {

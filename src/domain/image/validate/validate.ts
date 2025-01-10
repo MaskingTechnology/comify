@@ -1,5 +1,5 @@
 
-import validator, { ValidationSchema } from '^/integrations/validation/module';
+import validator, { ValidationSchema } from '^/integrations/validation';
 
 import type { MetaData } from '../types';
 

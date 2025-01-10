@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { RECORD_TYPE as REACTION_RECORD_TYPE } from '^/domain/reaction';
 import remove, { ReactionNotFound } from '^/domain/reaction/remove';
 
-import database from '^/integrations/database/module';
+import database from '^/integrations/database';
 
 import { DATABASES, REQUESTERS, VALUES } from './fixtures';
 

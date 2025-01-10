@@ -7,7 +7,7 @@ import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post';
 import { RECORD_TYPE as RATING_RECORD_TYPE } from '^/domain/rating';
 import { RECORD_TYPE as REACTION_RECORD_TYPE } from '^/domain/reaction';
 
-import database from '^/integrations/database/module';
+import database from '^/integrations/database';
 
 import { RECORDS } from './records.fixture';
 
