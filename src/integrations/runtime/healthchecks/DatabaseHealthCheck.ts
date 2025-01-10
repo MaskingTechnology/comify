@@ -5,16 +5,18 @@ import type { Database } from '^/integrations/database/module';
 
 export default class DatabaseHealthCheck implements HealthCheck
 {
-    #database: Database;
+    readonly #database: Database;
+    readonly #name = 'database';
+    readonly #timeout = 5000;
 
     constructor(database: Database)
     {
         this.#database = database;
     }
 
-    get name() { return 'database'; }
+    get name() { return this.#name; }
 
-    get timeout() { return 5000; }
+    get timeout() { return this.#timeout; }
 
     async isHealthy(): Promise<boolean>
     {

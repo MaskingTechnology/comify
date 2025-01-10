@@ -1,6 +1,7 @@
 
-import { SortOrder } from '../definitions';
+import { SortOrder, SortOrders } from '../definitions';
 
 export const RECORD_TYPE = 'relation';
 
-export { SortOrder };
+export { SortOrders, type SortOrder };
+

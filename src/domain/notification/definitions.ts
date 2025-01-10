@@ -10,4 +10,4 @@ export const Types = {
 
 type TypeKeys = keyof typeof Types;
 
-export type Types = typeof Types[TypeKeys]; 
+export type Type = typeof Types[TypeKeys]; 
