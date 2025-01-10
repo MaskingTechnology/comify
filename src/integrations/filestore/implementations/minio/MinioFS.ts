@@ -1,9 +1,9 @@
 
 import { Client, ClientOptions } from 'minio';
 
-import { FileStore } from '../../definitions/interfaces.js';
-import FileNotFound from '../../errors/FileNotFound.js';
-import NotConnected from '../../errors/NotConnected.js';
+import { FileStore } from '../../definitions/interfaces';
+import FileNotFound from '../../errors/FileNotFound';
+import NotConnected from '../../errors/NotConnected';
 
 const BUCKET_NAME = 'comify';
 

@@ -1,6 +1,6 @@
 
 import type ValidationResult from './ValidationResult';
-import { ValidationSchema } from './types.js';
+import { ValidationSchema } from './types';
 
 export interface Validator
 {

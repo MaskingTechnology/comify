@@ -1,8 +1,8 @@
 
-import { Driver } from './definitions/interfaces.js';
-import UnknownImplementation from './errors/UnknownImplementation.js';
-import createMemoryDb from './implementations/memory/create.js';
-import createMongoDb from './implementations/mongodb/create.js';
+import { Driver } from './definitions/interfaces';
+import UnknownImplementation from './errors/UnknownImplementation';
+import createMemoryDb from './implementations/memory/create';
+import createMongoDb from './implementations/mongodb/create';
 
 const implementations = new Map<string, () => Driver>([
     ['memory', createMemoryDb],

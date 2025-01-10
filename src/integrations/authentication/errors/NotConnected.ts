@@ -1,5 +1,5 @@
 
-import AuthenticationError from './AuthenticationError.js';
+import AuthenticationError from './AuthenticationError';
 
 export default class NotConnected extends AuthenticationError
 {

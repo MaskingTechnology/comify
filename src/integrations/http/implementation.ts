@@ -1,7 +1,7 @@
 
-import { Http } from './definitions/interfaces.js';
-import UnknownImplementation from './errors/UnknownImplementation.js';
-import createFetch from './implementations/fetch/create.js';
+import { Http } from './definitions/interfaces';
+import UnknownImplementation from './errors/UnknownImplementation';
+import createFetch from './implementations/fetch/create';
 
 const implementations = new Map<string, () => Http>([
     ['fetch', createFetch]

@@ -1,6 +1,6 @@
 
-import database from '^/integrations/database/index.js';
+import database from '^/integrations/database';
 
-import DatabaseHealthCheck from './healthchecks/DatabaseHealthCheck.js';
+import DatabaseHealthCheck from './healthchecks/DatabaseHealthCheck';
 
 export default new DatabaseHealthCheck(database);

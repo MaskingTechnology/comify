@@ -1,9 +1,9 @@
 
 import { AuthorizationParameters, BaseClient, ClientMetadata, Issuer } from 'openid-client';
 
-import { IdentityProvider } from '../../definitions/interfaces.js';
-import { Identity, Session } from '../../definitions/types.js';
-import NotConnected from '../../errors/NotConnected.js';
+import { IdentityProvider } from '../../definitions/interfaces';
+import { Identity, Session } from '../../definitions/types';
+import NotConnected from '../../errors/NotConnected';
 
 type OpenIDConfiguration = {
     issuer: string;
