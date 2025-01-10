@@ -5,9 +5,9 @@ import { NotificationService } from '^/integrations/notification/definitions/int
 
 export default class NotificationHealthCheck implements HealthCheck
 {
-    #notificationService: NotificationService;
-    #name = 'notifications';
-    #timeout = 5000;
+    readonly #notificationService: NotificationService;
+    readonly #name = 'notifications';
+    readonly #timeout = 5000;
 
     constructor(notificationService: NotificationService)
     {

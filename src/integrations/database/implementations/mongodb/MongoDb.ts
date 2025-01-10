@@ -1,5 +1,5 @@
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint @typescript-eslint/no-explicit-any: "off" */
 
 import { Collection, Db, Document, Filter, MongoClient, Sort } from 'mongodb';
 

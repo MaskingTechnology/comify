@@ -5,9 +5,9 @@ import type { Database } from '^/integrations/database/module';
 
 export default class DatabaseHealthCheck implements HealthCheck
 {
-    #database: Database;
-    #name = 'database';
-    #timeout = 5000;
+    readonly #database: Database;
+    readonly #name = 'database';
+    readonly #timeout = 5000;
 
     constructor(database: Database)
     {

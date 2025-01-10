@@ -3,7 +3,7 @@ import logger from '^/integrations/logging/module';
 
 import type { Requester } from '^/domain/authentication/types';
 import createNotification from '^/domain/notification/create/feature';
-import { TypesEnum } from '^/domain/notification/definitions';
+import { Types } from '^/domain/notification/definitions';
 import getPost from '^/domain/post/getById/feature';
 import updateRating from '^/domain/rating/update/feature';
 
@@ -28,7 +28,7 @@ export default async function feature(requester: Requester, postId: string): Pro
 
         const post = await getPost(postId);
 
-        await createNotification(TypesEnum.RATED_POST, requester.id, post.creatorId, postId);
+        await createNotification(Types.RATED_POST, requester.id, post.creatorId, postId);
 
         return true;
     }

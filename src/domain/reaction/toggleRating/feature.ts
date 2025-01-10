@@ -3,7 +3,7 @@ import logger from '^/integrations/logging/module';
 
 import type { Requester } from '^/domain/authentication/types';
 import createNotification from '^/domain/notification/create/feature';
-import { TypesEnum } from '^/domain/notification/definitions';
+import { Types } from '^/domain/notification/definitions';
 import updateRating from '^/domain/rating/update/feature';
 import getReaction from '^/domain/reaction/getById/feature';
 
@@ -28,7 +28,7 @@ export default async function feature(requester: Requester, reactionId: string):
 
         const reaction = await getReaction(reactionId);
 
-        await createNotification(TypesEnum.RATED_REACTION, requester.id, reaction.creatorId, undefined, reactionId);
+        await createNotification(Types.RATED_REACTION, requester.id, reaction.creatorId, undefined, reactionId);
 
         return true;
     }

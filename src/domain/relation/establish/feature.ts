@@ -6,7 +6,7 @@ import updateFollowerCount from '^/domain/creator/updateFollowerCount/feature';
 import updateFollowingCount from '^/domain/creator/updateFollowingCount/feature';
 
 import createNotification from '^/domain/notification/create/feature';
-import { TypesEnum } from '^/domain/notification/definitions';
+import { Types } from '^/domain/notification/definitions';
 import createData from './createData';
 import dataExists from './dataExists';
 import eraseData from './eraseData';
@@ -37,7 +37,7 @@ export default async function feature(requester: Requester, followingId: string)
 
         await updateFollowingCount(requester.id, 'increase');
 
-        await createNotification(TypesEnum.STARTED_FOLLOWING, requester.id, followingId);
+        await createNotification(Types.STARTED_FOLLOWING, requester.id, followingId);
     }
     catch (error: unknown)
     {
