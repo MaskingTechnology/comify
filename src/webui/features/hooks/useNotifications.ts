@@ -1,8 +1,8 @@
 
 import { useCallback } from 'react';
 
-import requester from '^/domain/authentication/requester';
-import getRecentNotifications from '^/domain/notification/getRecentAggregated/feature';
+import { requester } from '^/domain/authentication';
+import getRecentNotifications from '^/domain/notification/getRecentAggregated';
 
 import { usePagination } from '^/webui/hooks';
 

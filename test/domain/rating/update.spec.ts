@@ -1,9 +1,8 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import update from '^/domain/rating/update/feature';
+import update, { InvalidRating } from '^/domain/rating/update';
 
-import InvalidRating from '^/domain/rating/update/InvalidRating';
 import { DATABASES, REQUESTERS, VALUES } from './fixtures';
 
 beforeEach(async () =>

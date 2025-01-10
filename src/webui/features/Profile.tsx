@@ -1,6 +1,6 @@
 
-import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
-import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
+import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
+import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
 import { LoadingContainer, RelationProfile } from '^/webui/components';
 import { Column, Ruler, Tab, Tabs } from '^/webui/designsystem';
@@ -29,19 +29,19 @@ export default function Feature()
     return <Column gap='medium' alignX='stretch'>
         <LoadingContainer data={relation}>
             <RelationProfile
-                relation={relation as RelationView}
+                relation={relation as AggregatedRelationData}
                 onFollowClick={establishRelation}
                 onEditClick={editProfile}
             />
             <Tabs selectedId={tab} onChange={setTab} separator={separator}>
                 <Tab id='comics' title={`Comics (${relation?.following.postCount})`}>
-                    <CreatorComics creator={relation?.following as CreatorView} />
+                    <CreatorComics creator={relation?.following as AggregatedCreatorData} />
                 </Tab>
                 <Tab id='followers' title={`Followers (${relation?.following.followerCount})`}>
-                    <CreatorFollowers creator={relation?.following as CreatorView} />
+                    <CreatorFollowers creator={relation?.following as AggregatedCreatorData} />
                 </Tab>
                 <Tab id='following' title={`Following (${relation?.following.followingCount})`}>
-                    <CreatorFollowing creator={relation?.following as CreatorView} />
+                    <CreatorFollowing creator={relation?.following as AggregatedCreatorData} />
                 </Tab>
             </Tabs>
         </LoadingContainer>

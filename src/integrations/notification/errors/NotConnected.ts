@@ -1,5 +1,5 @@
 
-import NotificationError from './NotificationError.js';
+import NotificationError from './NotificationError';
 
 export default class NotConnected extends NotificationError
 {

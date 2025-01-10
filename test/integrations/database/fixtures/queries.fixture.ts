@@ -1,5 +1,5 @@
 
-import { RecordQuery } from '^/integrations/database/module';
+import { RecordQuery } from '^/integrations/database';
 
 import { RECORDS } from './records.fixture';
 

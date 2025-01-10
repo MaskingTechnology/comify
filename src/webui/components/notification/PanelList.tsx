@@ -1,19 +1,19 @@
 
-import type { AggregatedData as NotificationView } from '^/domain/notification/aggregate/types';
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
-import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
-import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
+import type { AggregatedData as AggregatedNotificationData } from '^/domain/notification/aggregate';
+import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
+import type { AggregatedData as AggregatedReactionData } from '^/domain/reaction/aggregate';
+import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
 import { Column } from '^/webui/designsystem';
 
 import Panel from './Panel';
 
 type Props = {
-    readonly notifications: NotificationView[];
-    readonly onFollowClick: (relation: RelationView) => Promise<void>;
-    readonly onCreatorClick: (relation: RelationView) => void;
-    readonly onReactionClick: (reaction: ReactionView) => void;
-    readonly onPostClick: (post: PostView) => void;
+    readonly notifications: AggregatedNotificationData[];
+    readonly onFollowClick: (relation: AggregatedRelationData) => Promise<void>;
+    readonly onCreatorClick: (relation: AggregatedRelationData) => void;
+    readonly onReactionClick: (reaction: AggregatedReactionData) => void;
+    readonly onPostClick: (post: AggregatedPostData) => void;
 };
 
 export default function Component({ notifications, onFollowClick, onCreatorClick, onReactionClick, onPostClick }: Props)

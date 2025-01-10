@@ -1,5 +1,5 @@
 
-import type { AggregatedData as NotificationView } from '^/domain/notification/aggregate/types';
+import type { AggregatedData as AggregatedNotificationData } from '^/domain/notification/aggregate';
 
 import { NotificationPanelList, PullToRefresh, ResultSet, ScrollLoader } from '^/webui/components';
 import { Column } from '^/webui/designsystem';
@@ -26,7 +26,7 @@ export default function Feature()
             <ScrollLoader onLoad={getMoreNotifications} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD} >
                 <ResultSet data={notifications} isLoading={isLoading}>
                     <NotificationPanelList
-                        notifications={notifications as NotificationView[]}
+                        notifications={notifications as AggregatedNotificationData[]}
                         onFollowClick={establishRelation}
                         onCreatorClick={viewProfile}
                         onReactionClick={viewReactionDetails}

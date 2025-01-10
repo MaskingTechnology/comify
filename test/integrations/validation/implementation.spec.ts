@@ -1,7 +1,7 @@
 
 import { describe, expect, it } from 'vitest';
 
-import validator, { ValidationSchema } from '^/integrations/validation/module';
+import validator, { ValidationSchema } from '^/integrations/validation';
 
 import { VALIDATION_SCHEMES, VALUES } from './fixtures';
 

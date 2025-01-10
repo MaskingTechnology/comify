@@ -1,5 +1,5 @@
 
-import type { Validation } from '^/integrations/validation/module';
+import type { Validation } from '^/integrations/validation';
 
 export const SortOrders = {
     POPULAR: 'popular',

@@ -1,7 +1,7 @@
 
-import type { Requester } from '^/domain/authentication/types';
+import { Requester } from '^/domain/authentication';
 
-import get from '../get/feature';
+import get from '../get';
 import { DataModel } from '../types';
 
 import { Mapping } from './types';

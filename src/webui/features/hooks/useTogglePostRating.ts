@@ -1,13 +1,13 @@
 
 import { useCallback } from 'react';
 
-import requester from '^/domain/authentication/requester';
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
-import toggleRating from '^/domain/post/toggleRating/feature';
+import { requester } from '^/domain/authentication';
+import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
+import toggleRating from '^/domain/post/toggleRating';
 
 export default function useTogglePostRating()
 {
-    return useCallback((post: PostView) =>
+    return useCallback((post: AggregatedPostData) =>
     {
         return toggleRating(requester, post.id);
 

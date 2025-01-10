@@ -1,5 +1,5 @@
 
-import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
+import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
 
 import { Cell, Column, Row, Ruler } from '^/webui/designsystem';
 
@@ -8,7 +8,7 @@ import Logo from './Logo';
 import Menu from './Menu';
 
 type Props = {
-    readonly identity: CreatorView;
+    readonly identity: AggregatedCreatorData;
     readonly onLogout: () => void;
 };
 

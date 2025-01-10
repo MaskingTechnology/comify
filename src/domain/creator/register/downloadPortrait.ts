@@ -1,5 +1,5 @@
 
-import downloadImage from '^/domain/image/download/feature';
+import downloadImage from '^/domain/image/download';
 
 import { IMAGE_TYPE } from '../definitions';
 

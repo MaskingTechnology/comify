@@ -2,13 +2,13 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
+import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
 
 export default function useViewPostDetails()
 {
     const navigate = useNavigate();
 
-    return useCallback((post: PostView) =>
+    return useCallback((post: AggregatedPostData) =>
     {
         navigate(`/post/${post.id}`);
 

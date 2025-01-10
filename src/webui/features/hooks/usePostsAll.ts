@@ -1,8 +1,8 @@
 
 import { useCallback } from 'react';
 
-import requester from '^/domain/authentication/requester';
-import getPostsAll from '^/domain/post/getAllAggregated/feature';
+import { requester } from '^/domain/authentication';
+import getPostsAll from '^/domain/post/getAllAggregated';
 
 import { usePagination } from '^/webui/hooks';
 

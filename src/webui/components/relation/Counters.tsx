@@ -1,11 +1,11 @@
 
-import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
+import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
 import CreatorCounters from '../creator/Counters';
 import FollowRow from './elementary/FollowRow';
 
 type Props = {
-    readonly relation: RelationView;
+    readonly relation: AggregatedRelationData;
     readonly onFollowClick: () => Promise<void>;
     readonly onEditClick?: () => void;
     readonly onCreatorClick: () => void;

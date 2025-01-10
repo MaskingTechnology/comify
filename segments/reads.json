@@ -1,0 +1,29 @@
+{
+    "./domain/comic/getById": { "default": {  "access": "protected" } },
+
+    "./domain/comment/getById": { "default": {  "access": "protected" } },
+
+    "./domain/creator/getById": { "default": {  "access": "protected" } },
+    "./domain/creator/getByEmail": { "default": {  "access": "protected" } },
+    "./domain/creator/getByNickname": { "default": {  "access": "protected" } },
+    "./domain/creator/getMe": { "default": {  "access": "protected" } },
+
+    "./domain/image/getById": { "default": {  "access": "protected" } },
+
+    "./domain/post/explore": { "default": {  "access": "protected" } },
+    "./domain/post/getAll": { "default": {  "access": "protected" } },
+    "./domain/post/getByCreator": { "default": {  "access": "protected" } },
+    "./domain/post/getByFollowing": { "default": {  "access": "protected" } },
+    "./domain/post/getById": { "default": {  "access": "protected" } },
+
+    "./domain/rating/exists": { "default": {  "access": "protected" } },
+
+    "./domain/reaction/getById": { "default": {  "access": "protected" } },
+    "./domain/reaction/getByPost": { "default": {  "access": "protected" } },
+
+    "./domain/relation/establish": { "default": {  "access": "protected" } },
+    "./domain/relation/explore": { "default": {  "access": "protected" } },
+    "./domain/relation/get": { "default": {  "access": "protected" } },
+    "./domain/relation/getFollowers": { "default": {  "access": "protected" } },
+    "./domain/relation/getFollowing": { "default": {  "access": "protected" } }
+}

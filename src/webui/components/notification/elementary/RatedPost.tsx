@@ -1,11 +1,11 @@
 
 import { ClickArea, Image, Row, Text } from '^/webui/designsystem';
 
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
+import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
 
 type Props = {
-    readonly post: PostView;
-    readonly onPostClick: (post: PostView) => void;
+    readonly post: AggregatedPostData;
+    readonly onPostClick: (post: AggregatedPostData) => void;
 };
 
 export default function Component({ post, onPostClick }: Props)

@@ -1,4 +1,4 @@
 
-import identityProvider from '^/integrations/authentication/module';
+import identityProvider from '^/integrations/authentication';
 
 await identityProvider.connect();

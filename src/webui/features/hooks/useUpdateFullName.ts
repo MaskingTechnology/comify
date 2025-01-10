@@ -1,9 +1,9 @@
 
 import { useCallback } from 'react';
 
-import requester from '^/domain/authentication/requester';
-import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
-import updateFullName from '^/domain/creator/updateFullName/feature';
+import { requester } from '^/domain/authentication';
+import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
+import updateFullName from '^/domain/creator/updateFullName';
 
 import { useAppContext } from '^/webui/contexts';
 
@@ -15,7 +15,7 @@ export default function useUpdateFullName()
     {
         await updateFullName(requester, fullName);
 
-        setIdentity({ ...identity, fullName } as CreatorView);
+        setIdentity({ ...identity, fullName } as AggregatedCreatorData);
 
     }, [setIdentity, identity]);
 }

@@ -1,13 +1,13 @@
 
 import { useCallback } from 'react';
 
-import requester from '^/domain/authentication/requester';
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
-import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
-import createComicReaction from '^/domain/reaction/createComic/feature';
-import getReaction from '^/domain/reaction/getByIdAggregated/feature';
+import { requester } from '^/domain/authentication';
+import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
+import type { AggregatedData as AggregatedReactionData } from '^/domain/reaction/aggregate';
+import createComicReaction from '^/domain/reaction/createWithComic';
+import getReaction from '^/domain/reaction/getByIdAggregated';
 
-export default function useCreateComicReaction(post: PostView, handleDone: (reaction?: ReactionView) => void)
+export default function useCreateComicReaction(post: AggregatedPostData, handleDone: (reaction?: AggregatedReactionData) => void)
 {
     return useCallback(async (imageData: string) =>
     {

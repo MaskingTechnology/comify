@@ -1,8 +1,8 @@
 
-import johnDoe from '^/domain/authentication/requester';
+import { requester } from '^/domain/authentication';
 
 export const REQUESTERS =
 {
-    OWNER: johnDoe,
+    OWNER: requester,
     VIEWER: { id: '1', fullName: 'Some Other', nickname: 'someOther' }
 };

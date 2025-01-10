@@ -1,11 +1,10 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator/definitions';
-import NicknameAlreadyExists from '^/domain/creator/updateNickname/NicknameAlreadyExists';
-import updateNickname from '^/domain/creator/updateNickname/feature';
+import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator';
+import updateNickname, { NicknameAlreadyExists } from '^/domain/creator/updateNickname';
 
-import database from '^/integrations/database/module';
+import database from '^/integrations/database';
 
 import { DATABASES, REQUESTERS, VALUES } from './fixtures';
 

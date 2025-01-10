@@ -2,9 +2,9 @@
 import { useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 
-import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
-import getCreator from '^/domain/creator/getByNicknameAggregated/feature';
-import getRelation from '^/domain/relation/getAggregated/feature';
+import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
+import getCreator from '^/domain/creator/getByNicknameAggregated';
+import getRelation from '^/domain/relation/getAggregated';
 
 import { useAppContext } from '^/webui/contexts';
 import { useLoadData } from '^/webui/hooks';
@@ -21,7 +21,7 @@ export default function useCreator()
             return undefined;
         }
 
-        const creator: CreatorView = await getCreator(nickname);
+        const creator: AggregatedCreatorData = await getCreator(nickname);
 
         return getRelation(identity.id, creator.id);
 

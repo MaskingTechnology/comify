@@ -1,8 +1,8 @@
 
 import { useCallback } from 'react';
 
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
-import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
+import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
+import type { AggregatedData as AggregatedReactionData } from '^/domain/reaction/aggregate';
 
 import { ConfirmationPanel, OrderAndAddRow, PullToRefresh, ReactionPanelList, ResultSet, ScrollLoader } from '^/webui/components';
 import { useAppContext } from '^/webui/contexts';
@@ -17,7 +17,7 @@ import useViewProfile from './hooks/useViewProfile';
 import CreateReaction from './CreateReaction';
 
 type Props = {
-    readonly post: PostView;
+    readonly post: AggregatedPostData;
 };
 
 const SCROLL_THRESHOLD = 0.8;
@@ -32,13 +32,13 @@ export default function Feature({ post }: Props)
 
     const [reactions, isLoading, isFinished, getMoreReactions, setReactions, refresh] = useReactions(post);
 
-    const removeReaction = useRemoveReactionFromList(reactions as ReactionView[], setReactions);
+    const removeReaction = useRemoveReactionFromList(reactions as AggregatedReactionData[], setReactions);
 
-    const addReaction = useCallback((reaction?: ReactionView) =>
+    const addReaction = useCallback((reaction?: AggregatedReactionData) =>
     {
         if (reaction === undefined) return;
 
-        const result = [reaction, ...reactions as ReactionView[]];
+        const result = [reaction, ...reactions as AggregatedReactionData[]];
 
         setReactions(result);
 
@@ -48,14 +48,14 @@ export default function Feature({ post }: Props)
     {
         const content = <CreateReaction
             post={post}
-            handleDone={(reaction?: ReactionView) => { closeModal(); addReaction(reaction); }}
+            handleDone={(reaction?: AggregatedReactionData) => { closeModal(); addReaction(reaction); }}
         />;
 
         showModal(content);
 
     }, [addReaction, closeModal, post, showModal]);
 
-    const deleteReaction = useCallback(async (reaction: ReactionView) =>
+    const deleteReaction = useCallback(async (reaction: AggregatedReactionData) =>
     {
         const panel = <ConfirmationPanel
             message='Are you sure you want to delete this reaction?'
@@ -72,7 +72,7 @@ export default function Feature({ post }: Props)
             <ScrollLoader onLoad={getMoreReactions} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
                 <ResultSet data={reactions} isLoading={isLoading}>
                     <ReactionPanelList
-                        reactions={reactions as ReactionView[]}
+                        reactions={reactions as AggregatedReactionData[]}
                         onFollowClick={establishRelation}
                         onCreatorClick={viewProfile}
                         onRatingClick={toggleReactionRating}

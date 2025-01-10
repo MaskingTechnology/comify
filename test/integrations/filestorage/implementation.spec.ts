@@ -1,7 +1,7 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import fileStore, { FileNotFound } from '^/integrations/filestore/module';
+import fileStore, { FileNotFound } from '^/integrations/filestore';
 
 import { FILES, FILE_STORES, VALUES } from './fixtures';
 

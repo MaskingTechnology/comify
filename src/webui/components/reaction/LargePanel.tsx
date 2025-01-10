@@ -1,6 +1,6 @@
 
-import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
-import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
+import type { AggregatedData as AggregatedReactionData } from '^/domain/reaction/aggregate';
+import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
 import Image from '^/webui/components/comic/Image';
 import { Column, Panel, Row } from '^/webui/designsystem';
@@ -11,11 +11,11 @@ import TimeElapsed from '../relation/TimeElapsed';
 import DeleteButton from './DeleteButton';
 
 type Props = {
-    readonly reaction: ReactionView;
-    readonly onFollowClick: (relation: RelationView) => Promise<void>;
-    readonly onCreatorClick: (relation: RelationView) => void;
-    readonly onRatingClick: (reaction: ReactionView) => Promise<boolean>;
-    readonly onDeleteClick: (relation: ReactionView) => Promise<void>;
+    readonly reaction: AggregatedReactionData;
+    readonly onFollowClick: (relation: AggregatedRelationData) => Promise<void>;
+    readonly onCreatorClick: (relation: AggregatedRelationData) => void;
+    readonly onRatingClick: (reaction: AggregatedReactionData) => Promise<boolean>;
+    readonly onDeleteClick: (relation: AggregatedReactionData) => Promise<void>;
 };
 
 export default function Component({ reaction, onFollowClick, onCreatorClick, onRatingClick, onDeleteClick }: Props)

@@ -1,12 +1,12 @@
 
-import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
+import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
 
 import { Column } from '^/webui/designsystem';
 
 import Menu from './Menu';
 
 type Props = {
-    readonly identity: CreatorView;
+    readonly identity: AggregatedCreatorData;
 };
 
 export default function Component({ identity }: Props)

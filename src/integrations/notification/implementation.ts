@@ -1,8 +1,8 @@
 
-import { NotificationService } from './definitions/interfaces.js';
-import UnknownImplementation from './errors/UnknownImplementation.js';
-import createMemory from './implementations/memory/create.js';
-import createWebPush from './implementations/webpush/create.js';
+import { NotificationService } from './definitions/interfaces';
+import UnknownImplementation from './errors/UnknownImplementation';
+import createMemory from './implementations/memory/create';
+import createWebPush from './implementations/webpush/create';
 
 const implementations = new Map<string, () => NotificationService>([
     ['memory', createMemory],

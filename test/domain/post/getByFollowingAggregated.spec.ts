@@ -1,5 +1,5 @@
 
-import getByFollowingAggregated from '^/domain/post/getByFollowingAggregated/feature';
+import getByFollowingAggregated from '^/domain/post/getByFollowingAggregated';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { DATABASES, FILE_STORES, REQUESTERS } from './fixtures';
 

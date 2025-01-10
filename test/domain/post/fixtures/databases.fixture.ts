@@ -1,12 +1,12 @@
 
-import { RECORD_TYPE as COMIC_RECORD_TYPE } from '^/domain/comic/definitions';
-import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator/definitions';
-import { RECORD_TYPE as IMAGE_RECORD_TYPE } from '^/domain/image/definitions';
-import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions';
-import { RECORD_TYPE as RATING_RECORD_TYPE } from '^/domain/rating/definitions';
-import { RECORD_TYPE as RELATION_RECORD_TYPE } from '^/domain/relation/definitions';
+import { RECORD_TYPE as COMIC_RECORD_TYPE } from '^/domain/comic';
+import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator';
+import { RECORD_TYPE as IMAGE_RECORD_TYPE } from '^/domain/image';
+import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post';
+import { RECORD_TYPE as RATING_RECORD_TYPE } from '^/domain/rating';
+import { RECORD_TYPE as RELATION_RECORD_TYPE } from '^/domain/relation';
 
-import database from '^/integrations/database/module';
+import database from '^/integrations/database';
 
 import { RECORDS } from './records.fixture';
 
