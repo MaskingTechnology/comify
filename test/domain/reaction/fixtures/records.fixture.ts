@@ -4,7 +4,7 @@ import { RecordData } from '^/integrations/database/module';
 import { REQUESTERS } from './requesters.fixture';
 import { VALUES } from './values.fixture';
 
-export const RECORDS: Record<string, Array<RecordData>> =
+export const RECORDS: Record<string, RecordData[]> =
 {
     COMICS: [
         { id: VALUES.IDS.COMIC, imageId: VALUES.IDS.IMAGE }

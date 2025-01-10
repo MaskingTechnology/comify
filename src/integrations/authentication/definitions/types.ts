@@ -7,6 +7,7 @@ type Identity = {
     email_verified: boolean;
 };
 
+// eslint-disable-next-line sonarjs/redundant-type-aliases
 type Token = string;
 
 type Session = {

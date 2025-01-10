@@ -1,4 +1,6 @@
 
+/* eslint @typescript-eslint/no-explicit-any: "off" */
+
 import { Collection, Db, Document, Filter, MongoClient, Sort } from 'mongodb';
 
 import { ID, LogicalOperators, QueryOperators, SortDirections } from '../../definitions/constants.js';
@@ -51,10 +53,7 @@ export default class MongoDB implements Driver
         this.#databaseName = databaseName;
     }
 
-    get connected()
-    {
-        return this.#connected;
-    }
+    get connected() { return this.#connected; }
 
     async connect(): Promise<void>
     {
@@ -62,13 +61,13 @@ export default class MongoDB implements Driver
         {
             this.#client = await this.#createClient(this.#connectionString);
 
-            this.#client.on('open', () => { this.#connected = true; });
             this.#client.on('close', () => { this.#connected = false; });
-
             this.#client.on('serverHeartbeatSucceeded', () => { this.#connected = true; });
             this.#client.on('serverHeartbeatFailed', () => { this.#connected = false; });
 
             this.#database = this.#getDatabase(this.#databaseName);
+
+            this.#connected = true;
         }
         catch (error: unknown)
         {
@@ -182,10 +181,8 @@ export default class MongoDB implements Driver
         return; // Deliberately not implemented
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any, sonarjs/cognitive-complexity
     #buildMongoQuery(query: RecordQuery): Filter<any> 
     {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const mongoQuery: Filter<any> = {};
         const multiStatements = query as QueryMultiExpressionStatement;
         const singleStatements = query as QuerySingleExpressionStatement;
@@ -195,7 +192,6 @@ export default class MongoDB implements Driver
             if (key === 'AND' || key === 'OR')
             {
                 const singleMultiStatements = multiStatements[key] ?? [];
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 const multiMongoQuery: Filter<any>[] = [];
 
                 for (const statement of singleMultiStatements)
@@ -246,7 +242,6 @@ export default class MongoDB implements Driver
         return mongoSort;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async #getCollection<T>(name: RecordType): Promise<Collection<T extends Document ? any : any>>
     {
         if (this.#database === undefined)
@@ -269,16 +264,7 @@ export default class MongoDB implements Driver
 
     async #createClient(connectionString: string): Promise<MongoClient>
     {
-        try
-        {
-            return await MongoClient.connect(connectionString);
-        }
-        catch (error: unknown)
-        {
-            const message = error instanceof Error ? error.message : undefined;
-
-            throw new NotConnected(message);
-        }
+        return MongoClient.connect(connectionString);
     }
 
     #buildRecordData(data: Document, fields?: RecordField[]): RecordData

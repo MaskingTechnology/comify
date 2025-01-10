@@ -29,8 +29,10 @@ export function usePathParam(paramName: string, defaultValue?: string)
 
         const newParameters = [...parameters];
 
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         paramIndex === -1
             ? newParameters.push(value)
+            // eslint-disable-next-line sonarjs/no-nested-assignment
             : newParameters[paramIndex] = value;
 
         return newParameters.join('/');
