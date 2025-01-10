@@ -1,6 +1,5 @@
 
-import { requester } from '^/domain/authentication';
-import { Requester } from '^/domain/authentication/types';
+import { requester, Requester } from '^/domain/authentication';
 
 import { VALUES } from './values.fixture';
 

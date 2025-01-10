@@ -3,7 +3,6 @@ import { useCallback, useState } from 'react';
 
 import { requester } from '^/domain/authentication';
 import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
-//import updateNickname, { NicknameAlreadyExists } from '^/domain/creator/updateNickname';
 import updateNickname from '^/domain/creator/updateNickname';
 import NicknameAlreadyExists from '^/domain/creator/updateNickname/NicknameAlreadyExists';
 

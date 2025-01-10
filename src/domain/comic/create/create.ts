@@ -1,5 +1,5 @@
 
-import createImage from '^/domain/image/create/create';
+import createImage from '^/domain/image/create';
 
 import { IMAGE_TYPE } from '../definitions';
 

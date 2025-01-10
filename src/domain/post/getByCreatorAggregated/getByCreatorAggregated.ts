@@ -1,7 +1,8 @@
 
+import logger from '^/integrations/logging';
+
 import { Requester } from '^/domain/authentication';
 import validateRange, { Range } from '^/domain/common/validateRange';
-import logger from '^/integrations/logging';
 
 import aggregate, { AggregatedData } from '../aggregate';
 import getByCreator from '../getByCreator';

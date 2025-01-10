@@ -1,5 +1,5 @@
 
-import getImageData from '^/domain/image/getById/getById';
+import getImageData from '^/domain/image/getById';
 
 import type { DataModel } from '../types';
 import type { AggregatedData } from './types';

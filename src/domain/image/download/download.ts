@@ -1,5 +1,5 @@
 
-import save from '../save/save';
+import save from '../save';
 import validate from '../validate/validate';
 import downloadImage from './downloadImage';
 import getMetaData from './getMetaData';

@@ -1,11 +1,11 @@
 
 import logger from '^/integrations/logging';
 
-import updateReactionCount from '^/domain/post/updateReactionCount';
-
 import { Types } from '^/domain/notification';
 import createNotification from '^/domain/notification/create';
 import retrievePost from '^/domain/post/getById';
+import updateReactionCount from '^/domain/post/updateReactionCount';
+
 import createData from './createData';
 import eraseData from './eraseData';
 import insertData from './insertData';

@@ -4,9 +4,9 @@ import logger from '^/integrations/logging';
 import { Requester } from '^/domain/authentication';
 import updateFollowerCount from '^/domain/creator/updateFollowerCount';
 import updateFollowingCount from '^/domain/creator/updateFollowingCount';
-
 import { Types } from '^/domain/notification';
 import createNotification from '^/domain/notification/create';
+
 import createData from './createData';
 import dataExists from './dataExists';
 import eraseData from './eraseData';

@@ -1,6 +1,6 @@
 
 import { Requester } from '^/domain/authentication';
-import createComic from '^/domain/comic/create/create';
+import createComic from '^/domain/comic/create';
 
 import createReaction from '../create';
 
