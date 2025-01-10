@@ -51,10 +51,7 @@ export default class MongoDB implements Driver
         this.#databaseName = databaseName;
     }
 
-    get connected()
-    {
-        return this.#connected;
-    }
+    get connected() { return this.#connected; }
 
     async connect(): Promise<void>
     {
@@ -62,7 +59,6 @@ export default class MongoDB implements Driver
         {
             this.#client = await this.#createClient(this.#connectionString);
 
-            this.#client.on('open', () => { this.#connected = true; });
             this.#client.on('close', () => { this.#connected = false; });
 
             this.#client.on('serverHeartbeatSucceeded', () => { this.#connected = true; });
@@ -271,7 +267,11 @@ export default class MongoDB implements Driver
     {
         try
         {
-            return await MongoClient.connect(connectionString);
+            const client = await MongoClient.connect(connectionString);
+
+            this.#connected = true;
+
+            return client;
         }
         catch (error: unknown)
         {
