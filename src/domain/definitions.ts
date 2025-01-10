@@ -1,7 +1,7 @@
 
 import type { Validation } from '^/integrations/validation/module';
 
-export const SortOrder = {
+export const SortOrders = {
     POPULAR: 'popular',
     RECENT: 'recent'
 } as const;
@@ -26,6 +26,6 @@ export const optionalIdValidation: Validation =
     }
 };
 
-type SortOrderKeys = keyof typeof SortOrder;
+type SortOrderKeys = keyof typeof SortOrders;
 
-export type SortOrder = typeof SortOrder[SortOrderKeys];
+export type SortOrder = typeof SortOrders[SortOrderKeys];

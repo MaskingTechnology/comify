@@ -27,7 +27,7 @@ describe('domain/notification/create', () =>
 
         const notification = notifications[0];
         expect(notification.type).toBe(Types.RATED_POST);
-        expect(notification.createdAt).toBeDefined;
+        expect(notification.createdAt).toBeDefined();
         expect(notification.senderId).toBe(REQUESTERS.CREATOR1.id);
         expect(notification.receiverId).toBe(VALUES.IDS.CREATOR2);
         expect(notification?.postId).toBe(VALUES.IDS.POST_RATED);
@@ -43,7 +43,7 @@ describe('domain/notification/create', () =>
 
         const notification = notifications[0];
         expect(notification.type).toBe(Types.RATED_REACTION);
-        expect(notification.createdAt).toBeDefined;
+        expect(notification.createdAt).toBeDefined();
         expect(notification.senderId).toBe(REQUESTERS.CREATOR1.id);
         expect(notification.receiverId).toBe(VALUES.IDS.CREATOR2);
         expect(notification?.postId).toBe(undefined);
@@ -59,7 +59,7 @@ describe('domain/notification/create', () =>
 
         const notification = notifications[0];
         expect(notification.type).toBe(Types.STARTED_FOLLOWING);
-        expect(notification.createdAt).toBeDefined;
+        expect(notification.createdAt).toBeDefined();
         expect(notification.senderId).toBe(REQUESTERS.CREATOR1.id);
         expect(notification.receiverId).toBe(VALUES.IDS.CREATOR2);
     });
@@ -73,7 +73,7 @@ describe('domain/notification/create', () =>
 
         const notification = notifications[0];
         expect(notification.type).toBe(Types.ADDED_REACTION);
-        expect(notification.createdAt).toBeDefined;
+        expect(notification.createdAt).toBeDefined();
         expect(notification.senderId).toBe(VALUES.IDS.CREATOR1);
         expect(notification.receiverId).toBe(VALUES.IDS.CREATOR2);
     });

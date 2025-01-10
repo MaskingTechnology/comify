@@ -12,6 +12,7 @@ export default function useEngagement(isEngaged: boolean, count: number, engage:
     {
         const isRated = await engage();
 
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         isRated
             ? setRatingCount(ratingCount + 1)
             : setRatingCount(ratingCount - 1);

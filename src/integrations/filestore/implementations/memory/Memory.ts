@@ -5,7 +5,7 @@ import NotConnected from '../../errors/NotConnected.js';
 
 export default class Memory implements FileStore
 {
-    #files: Map<string, Buffer> = new Map();
+    #files = new Map<string, Buffer>();
     #connected = false;
 
     get connected() { return this.#connected; }

@@ -1,7 +1,7 @@
 
 import database, { QueryStatement, RecordQuery, RecordSort, SortDirections } from '^/integrations/database/module';
 
-import { RECORD_TYPE, SortOrder } from '../definitions';
+import { RECORD_TYPE, SortOrder, SortOrders } from '../definitions';
 import type { DataModel } from '../types';
 
 export default async function getOthers(ids: string[], order: SortOrder, search: string | undefined = undefined, limit: number, offset: number): Promise<DataModel[]>
@@ -14,7 +14,7 @@ export default async function getOthers(ids: string[], order: SortOrder, search:
         ]
     };
 
-    const sortField = order === SortOrder.POPULAR ? 'popularity' : 'joinedAt';
+    const sortField = order === SortOrders.POPULAR ? 'popularity' : 'joinedAt';
 
     const query: QueryStatement = search !== undefined ? { ...defaultQuery, ...searchQuery } : defaultQuery;
     const recordSort: RecordSort = { [sortField]: SortDirections.ASCENDING };

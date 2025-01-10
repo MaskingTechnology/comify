@@ -6,7 +6,7 @@ export default class Logger implements LogProcessor
     #processor: LogProcessor;
     #debugEnabled: boolean;
 
-    constructor(processor: LogProcessor, debugEnabled: boolean = false)
+    constructor(processor: LogProcessor, debugEnabled = false)
     {
         this.#processor = processor;
         this.#debugEnabled = debugEnabled;

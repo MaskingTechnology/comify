@@ -20,6 +20,7 @@ export default function Feature()
     const [relations, isLoading, isFinished, getMoreRelations, , refresh] = useExploreCreators();
 
     return <Column gap='small' alignX='stretch'>
+        { /* eslint-disable-next-line @typescript-eslint/no-empty-function */}
         <OrderAndSearchRow selected='popular' onOrderChange={reorderList} onSearchChange={() => { }} />
         <PullToRefresh onRefresh={refresh}>
             <ScrollLoader onLoad={getMoreRelations} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
