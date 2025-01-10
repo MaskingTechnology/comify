@@ -51,10 +51,7 @@ export default class MongoDB implements Driver
         this.#databaseName = databaseName;
     }
 
-    get connected()
-    {
-        return this.#connected;
-    }
+    get connected() { return this.#connected; }
 
     async connect(): Promise<void>
     {
@@ -62,13 +59,13 @@ export default class MongoDB implements Driver
         {
             this.#client = await this.#createClient(this.#connectionString);
 
-            this.#client.on('open', () => { this.#connected = true; });
             this.#client.on('close', () => { this.#connected = false; });
-
             this.#client.on('serverHeartbeatSucceeded', () => { this.#connected = true; });
             this.#client.on('serverHeartbeatFailed', () => { this.#connected = false; });
 
             this.#database = this.#getDatabase(this.#databaseName);
+
+            this.#connected = true;
         }
         catch (error: unknown)
         {
@@ -269,16 +266,7 @@ export default class MongoDB implements Driver
 
     async #createClient(connectionString: string): Promise<MongoClient>
     {
-        try
-        {
-            return await MongoClient.connect(connectionString);
-        }
-        catch (error: unknown)
-        {
-            const message = error instanceof Error ? error.message : undefined;
-
-            throw new NotConnected(message);
-        }
+        return MongoClient.connect(connectionString);
     }
 
     #buildRecordData(data: Document, fields?: RecordField[]): RecordData
