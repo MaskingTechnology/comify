@@ -1,15 +1,15 @@
 
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
+import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
 
 import { Grid } from '^/webui/designsystem';
 
 import SmallPanel from './SmallPanel';
 
 type Props = {
-    readonly posts: PostView[];
-    readonly onComicClick: (post: PostView) => void;
-    readonly onRatingClick: (post: PostView) => Promise<boolean>;
-    readonly onReactionClick: (post: PostView) => void;
+    readonly posts: AggregatedPostData[];
+    readonly onComicClick: (post: AggregatedPostData) => void;
+    readonly onRatingClick: (post: AggregatedPostData) => Promise<boolean>;
+    readonly onReactionClick: (post: AggregatedPostData) => void;
 };
 
 export default function Component({ posts, onComicClick, onRatingClick, onReactionClick }: Props)

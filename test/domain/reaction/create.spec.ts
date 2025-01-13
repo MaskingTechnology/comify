@@ -2,12 +2,12 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import PostNotFound from '^/domain/post/PostNotFound';
-import create from '^/domain/reaction/create/feature';
+import create from '^/domain/reaction/create';
 import InvalidReaction from '^/domain/reaction/create/InvalidReaction';
 import { RECORD_TYPE as REACTION_RECORD_TYPE } from '^/domain/reaction/definitions';
 import ReactionNotFound from '^/domain/reaction/ReactionNotFound';
 
-import database from '^/integrations/database/module';
+import database from '^/integrations/database';
 
 import { DATABASES, FILE_STORES, REQUESTERS, VALUES } from './fixtures';
 

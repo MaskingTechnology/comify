@@ -2,8 +2,8 @@
 import { useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 
-import requester from '^/domain/authentication/requester';
-import get from '^/domain/post/getByIdAggregated/feature';
+import { requester } from '^/domain/authentication';
+import get from '^/domain/post/getByIdAggregated';
 
 import { useLoadData } from '^/webui/hooks';
 

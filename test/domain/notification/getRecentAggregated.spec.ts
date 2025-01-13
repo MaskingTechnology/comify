@@ -1,8 +1,8 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { Types } from '^/domain/notification/definitions';
-import getRecentAggregated from '^/domain/notification/getRecentAggregated/feature';
+import { Types } from '^/domain/notification';
+import getRecentAggregated from '^/domain/notification/getRecentAggregated';
 import { DATABASES, FILE_STORES, REQUESTERS, VALUES } from './fixtures';
 
 beforeEach(async () =>

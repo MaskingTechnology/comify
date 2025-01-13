@@ -1,9 +1,9 @@
 
 import { useCallback, useState } from 'react';
 
-import requester from '^/domain/authentication/requester';
-import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
-import updateNickname from '^/domain/creator/updateNickname/feature';
+import { requester } from '^/domain/authentication';
+import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
+import updateNickname from '^/domain/creator/updateNickname';
 import NicknameAlreadyExists from '^/domain/creator/updateNickname/NicknameAlreadyExists';
 
 import { useAppContext } from '^/webui/contexts';
@@ -19,7 +19,7 @@ export default function useUpdateNickname()
         {
             await updateNickname(requester, nickname);
 
-            setIdentity({ ...identity, nickname } as CreatorView);
+            setIdentity({ ...identity, nickname } as AggregatedCreatorData);
             setAlreadyInUse(false);
         }
         catch (error: unknown)

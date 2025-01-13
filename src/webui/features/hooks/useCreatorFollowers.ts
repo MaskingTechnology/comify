@@ -1,13 +1,13 @@
 
 import { useCallback } from 'react';
 
-import requester from '^/domain/authentication/requester';
-import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
-import getFollowers from '^/domain/relation/getFollowersAggregated/feature';
+import { requester } from '^/domain/authentication';
+import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
+import getFollowers from '^/domain/relation/getFollowersAggregated';
 
 import { usePagination } from '^/webui/hooks';
 
-export default function useCreatorFollowers(creator: CreatorView)
+export default function useCreatorFollowers(creator: AggregatedCreatorData)
 {
     const limit = 12;
 

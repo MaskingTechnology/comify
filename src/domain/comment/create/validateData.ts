@@ -1,5 +1,5 @@
 
-import validator, { ValidationSchema } from '^/integrations/validation/module';
+import validator, { ValidationSchema } from '^/integrations/validation';
 
 import { MESSAGE_MAX_LENGTH } from '../definitions';
 import InvalidComment from './InvalidComment';

@@ -1,11 +1,11 @@
 
-import { AggregatedData as NotificationView } from '^/domain/notification/aggregate/types';
+import { AggregatedData as AggregatedReactionData } from '^/domain/notification/aggregate';
 import RatedComicReaction from '../elementary/RatedComicReaction';
 import RatedCommentReaction from '../elementary/RatedCommentReaction';
 
 type Props = {
-    readonly notification: NotificationView;
-    readonly onReactionClick: (notification: NotificationView) => void;
+    readonly notification: AggregatedReactionData;
+    readonly onReactionClick: (notification: AggregatedReactionData) => void;
 };
 
 export default function Component({ notification, onReactionClick }: Props)

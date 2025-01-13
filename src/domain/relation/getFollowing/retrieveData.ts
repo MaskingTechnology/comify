@@ -1,10 +1,10 @@
 
-import database, { RecordQuery } from '^/integrations/database/module';
+import database, { RecordQuery } from '^/integrations/database';
 
 import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';
 
-export default async function feature(followerId: string, limit: number | undefined = undefined, offset: number | undefined = undefined): Promise<DataModel[]>
+export default async function retrieveData(followerId: string, limit: number | undefined = undefined, offset: number | undefined = undefined): Promise<DataModel[]>
 {
     const query: RecordQuery =
     {

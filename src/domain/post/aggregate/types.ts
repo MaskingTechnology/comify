@@ -1,12 +1,12 @@
 
-import type { AggregatedData as ComicData } from '^/domain/comic/aggregate/types';
-import type { AggregatedData as RelationData } from '^/domain/relation/aggregate/types';
+import type { AggregatedData as AggregatedComicData } from '^/domain/comic/aggregate';
+import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
 type AggregatedData = {
     readonly id: string;
     readonly createdAt: string;
-    readonly creator: RelationData;
-    readonly comic: ComicData;
+    readonly creator: AggregatedRelationData;
+    readonly comic: AggregatedComicData;
     readonly ratingCount: number;
     readonly reactionCount: number;
     readonly hasRated: boolean;

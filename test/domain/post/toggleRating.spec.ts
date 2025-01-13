@@ -1,11 +1,11 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import PostNotFound from '^/domain/post/PostNotFound';
-import toggleRating from '^/domain/post/toggleRating/feature';
-import { RECORD_TYPE } from '^/domain/rating/definitions';
+import { PostNotFound } from '^/domain/post';
+import toggleRating from '^/domain/post/toggleRating';
+import { RECORD_TYPE } from '^/domain/rating';
 
-import database from '^/integrations/database/module';
+import database from '^/integrations/database';
 
 import { DATABASES, QUERIES, REQUESTERS, VALUES } from './fixtures';
 

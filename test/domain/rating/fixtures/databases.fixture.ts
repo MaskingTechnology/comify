@@ -1,5 +1,5 @@
 
-import database from '^/integrations/database/module';
+import database from '^/integrations/database';
 
 database.connect();
 

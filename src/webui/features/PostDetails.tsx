@@ -1,7 +1,7 @@
 
 import { useCallback } from 'react';
 
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
+import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
 
 import { ConfirmationPanel, LoadingContainer, PostDetailsPanel } from '^/webui/components';
 import { useAppContext } from '^/webui/contexts';
@@ -28,7 +28,7 @@ export default function Feature()
 
     const [post] = usePost();
 
-    const deletePost = useCallback(async (post: PostView) =>
+    const deletePost = useCallback(async (post: AggregatedPostData) =>
     {
         const panel = <ConfirmationPanel
             message='Are you sure you want to delete this post?'
@@ -42,7 +42,7 @@ export default function Feature()
     return <Column gap='medium' alignX='stretch'>
         <LoadingContainer data={post}>
             <PostDetailsPanel
-                post={post as PostView}
+                post={post as AggregatedPostData}
                 onFollowClick={establishRelation}
                 onRatingClick={togglePostRating}
                 onCreatorClick={viewProfile}
@@ -50,7 +50,7 @@ export default function Feature()
                 onDeleteClick={deletePost}
             />
             <Ruler direction='horizontal' />
-            <PostReactions post={post as PostView} />
+            <PostReactions post={post as AggregatedPostData} />
         </LoadingContainer>
     </Column>;
 }

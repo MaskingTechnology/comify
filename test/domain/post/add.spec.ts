@@ -1,10 +1,10 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import add from '^/domain/post/add/feature';
-import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post/definitions';
+import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post';
+import add from '^/domain/post/add';
 
-import database from '^/integrations/database/module';
+import database from '^/integrations/database';
 
 import { DATABASES, DATA_URLS, FILE_STORES, REQUESTERS } from './fixtures';
 

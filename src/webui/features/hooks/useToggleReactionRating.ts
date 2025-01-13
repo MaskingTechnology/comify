@@ -1,13 +1,13 @@
 
 import { useCallback } from 'react';
 
-import requester from '^/domain/authentication/requester';
-import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
-import toggleRating from '^/domain/reaction/toggleRating/feature';
+import { requester } from '^/domain/authentication';
+import type { AggregatedData as AggregatedReactionData } from '^/domain/reaction/aggregate';
+import toggleRating from '^/domain/reaction/toggleRating';
 
 export default function useToggleReactionRating()
 {
-    return useCallback((reaction: ReactionView) =>
+    return useCallback((reaction: AggregatedReactionData) =>
     {
         return toggleRating(requester, reaction.id);
 

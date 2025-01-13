@@ -1,5 +1,5 @@
 
-import httpClient from '^/integrations/http/module';
+import httpClient from '^/integrations/http';
 
 import ImageNotDownloaded from './ImageNotDownloaded';
 

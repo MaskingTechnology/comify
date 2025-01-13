@@ -1,13 +1,13 @@
 
 import { useCallback } from 'react';
 
-import requester from '^/domain/authentication/requester';
-import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
-import establishRelation from '^/domain/relation/establish/feature';
+import { requester } from '^/domain/authentication';
+import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
+import establishRelation from '^/domain/relation/establish';
 
 export default function useEstablishRelation()
 {
-    return useCallback((relation: RelationView) =>
+    return useCallback((relation: AggregatedRelationData) =>
     {
         return establishRelation(requester, relation.following.id);
 

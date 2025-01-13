@@ -1,10 +1,10 @@
 
-import type { AggregatedData as ComicView } from '^/domain/comic/aggregate/types';
+import type { AggregatedData as AggregatedComicData } from '^/domain/comic/aggregate';
 
 import { Image } from '^/webui/designsystem';
 
 type Props = {
-    readonly comic: ComicView;
+    readonly comic: AggregatedComicData;
 };
 
 export default function Component({ comic }: Props)

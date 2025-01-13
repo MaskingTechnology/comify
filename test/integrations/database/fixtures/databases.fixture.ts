@@ -1,5 +1,5 @@
 
-import database from '^/integrations/database/module';
+import database from '^/integrations/database';
 
 import { RECORD_TYPES, RECORDS } from './records.fixture';
 

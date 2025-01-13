@@ -1,6 +1,6 @@
 
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
-import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
+import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
+import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
 import { Column, Panel, Row } from '^/webui/designsystem';
 
@@ -10,12 +10,12 @@ import TimeElapsed from '../relation/TimeElapsed';
 import DeleteButton from './DeleteButton';
 
 type Props = {
-    readonly post: PostView;
-    readonly onFollowClick: (relation: RelationView) => Promise<void>;
-    readonly onCreatorClick: (relation: RelationView) => void;
-    readonly onRatingClick: (post: PostView) => Promise<boolean>;
-    readonly onDeleteClick: (post: PostView) => Promise<void>;
-    readonly onReactionClick: (post: PostView) => void;
+    readonly post: AggregatedPostData;
+    readonly onFollowClick: (relation: AggregatedRelationData) => Promise<void>;
+    readonly onCreatorClick: (relation: AggregatedRelationData) => void;
+    readonly onRatingClick: (post: AggregatedPostData) => Promise<boolean>;
+    readonly onDeleteClick: (post: AggregatedPostData) => Promise<void>;
+    readonly onReactionClick: (post: AggregatedPostData) => void;
 };
 
 export default function Component({ post, onFollowClick, onCreatorClick, onRatingClick, onReactionClick, onDeleteClick }: Props)

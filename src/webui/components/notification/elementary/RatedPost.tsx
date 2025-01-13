@@ -1,11 +1,11 @@
 
 import { ClickArea, Image, Row, Text } from '^/webui/designsystem';
 
-import type { AggregatedData as NotificationView } from '^/domain/notification/aggregate/types';
+import type { AggregatedData as AggregatedPostData } from '^/domain/notification/aggregate';
 
 type Props = {
-    readonly notification: NotificationView;
-    readonly onPostClick: (notification: NotificationView) => void;
+    readonly notification: AggregatedPostData;
+    readonly onPostClick: (notification: AggregatedPostData) => void;
 };
 
 export default function Component({ notification, onPostClick }: Props)

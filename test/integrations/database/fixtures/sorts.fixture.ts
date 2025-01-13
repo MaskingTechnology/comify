@@ -1,5 +1,5 @@
 
-import { RecordSort, SortDirections } from '^/integrations/database/module';
+import { RecordSort, SortDirections } from '^/integrations/database';
 
 export const SORTS: Record<string, RecordSort> =
 {

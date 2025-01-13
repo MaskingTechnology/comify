@@ -1,5 +1,5 @@
 
-import validator, { ValidationSchema } from '^/integrations/validation/module';
+import validator, { ValidationSchema } from '^/integrations/validation';
 
 import { optionalIdValidation } from '^/domain/definitions';
 import InvalidRating from './InvalidRating';

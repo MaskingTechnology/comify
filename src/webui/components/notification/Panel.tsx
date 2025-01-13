@@ -1,8 +1,6 @@
 
-import type { AggregatedData as NotificationView } from '^/domain/notification/aggregate/types';
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
-import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
-import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
+import type { AggregatedData as AggregatedNotificationData } from '^/domain/notification/aggregate';
+import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
 import { Column, Panel } from '^/webui/designsystem';
 
@@ -14,17 +12,13 @@ import RatedReaction from './elementary/RatedReaction';
 import StartedFollowing from './elementary/StartedFollowing';
 
 type Props = {
-    readonly notification: NotificationView;
-    readonly onFollowClick: (relation: RelationView) => Promise<void>;
-    readonly onCreatorClick: (relation: RelationView) => void;
-    readonly onReactionClick: (reaction: ReactionView) => void;
-    readonly onPostClick: (post: PostView) => void;
-    readonly onPostHighlightClick: (notification: NotificationView) => void;
-    readonly onReactionHighlightClick: (notification: NotificationView) => void;
-    readonly onNotificationClick: (notification: NotificationView) => void;
+    readonly notification: AggregatedNotificationData;
+    readonly onFollowClick: (relation: AggregatedRelationData) => Promise<void>;
+    readonly onCreatorClick: (relation: AggregatedRelationData) => void;
+    readonly onNotificationClick: (notification: AggregatedNotificationData) => void;
 };
 
-function getContent(notification: NotificationView, onReactionClick: (reaction: ReactionView) => void, onPostClick: (post: PostView) => void, onReactionHighlightClick: (notification: NotificationView) => void, onPostHighlightClick: (notification: NotificationView) => void, onNotificationClick: (notification: NotificationView) => void)
+function getContent(notification: AggregatedNotificationData, onNotificationClick: (notification: AggregatedNotificationData) => void)
 {
     switch (notification.type)
     {
@@ -36,7 +30,7 @@ function getContent(notification: NotificationView, onReactionClick: (reaction: 
     }
 }
 
-export default function Component({ notification, onFollowClick, onCreatorClick, onReactionClick, onPostClick, onPostHighlightClick, onReactionHighlightClick, onNotificationClick }: Props)
+export default function Component({ notification, onFollowClick, onCreatorClick, onNotificationClick }: Props)
 {
     return <Panel>
         <Column gap='medium' alignX='stretch'>
@@ -46,7 +40,7 @@ export default function Component({ notification, onFollowClick, onCreatorClick,
                 onFollowClick={onFollowClick}
                 onCreatorClick={onCreatorClick}
             />
-            {getContent(notification, onReactionClick, onPostClick, onReactionHighlightClick, onPostHighlightClick, onNotificationClick)}
+            {getContent(notification, onNotificationClick)}
         </Column>
     </Panel>;
 }

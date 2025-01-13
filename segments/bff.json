@@ -1,0 +1,35 @@
+{
+    "./domain/authentication/getLoginUrl": { "default": {  "access": "public" } },
+    "./domain/authentication/login": { "default": {  "access": "public" } },
+    "./domain/authentication/logout": { "default": {  "access": "public" } },
+
+    "./domain/creator/getByNicknameAggregated": { "default": {  "access": "public" } },
+    "./domain/creator/getMeAggregated": { "default": {  "access": "public" } },
+    "./domain/creator/updateFullName": { "default": {  "access": "public" }},
+    "./domain/creator/updateNickname": { "default": {  "access": "public" }},
+
+    "./domain/notification/getRecentAggregated": { "default": {  "access": "public" } },
+    "./domain/notification/getByIdAggregated": { "default": {  "access": "public" } },
+
+    "./domain/post/add": { "default": {  "access": "public" } },
+    "./domain/post/exploreAggregated": { "default": {  "access": "public" } },
+    "./domain/post/getByIdAggregated": { "default": {  "access": "public" } },
+    "./domain/post/getByCreatorAggregated": { "default": {  "access": "public" } },
+    "./domain/post/getAllAggregated": { "default": { "access": "public"}},
+    "./domain/post/getByFollowingAggregated": { "default": {  "access": "public" } },
+    "./domain/post/remove": { "default": {  "access": "public" } },
+    "./domain/post/toggleRating": { "default": {  "access": "public" } },
+
+    "./domain/reaction/createWithComic": { "default": {  "access": "public" } },
+    "./domain/reaction/createWithComment": { "default": {  "access": "public" } },
+    "./domain/reaction/getByIdAggregated": { "default": {  "access": "public" } },
+    "./domain/reaction/getByPostAggregated": { "default": {  "access": "public" } },
+    "./domain/reaction/remove": { "default": {  "access": "public" } },
+    "./domain/reaction/toggleRating": { "default": {  "access": "public" } },
+ 
+    "./domain/relation/exploreAggregated": { "default": {  "access": "public" } },
+    "./domain/relation/establish": { "default": { "access": "public" }},
+    "./domain/relation/getAggregated": { "default": {  "access": "public" } },
+    "./domain/relation/getFollowersAggregated": { "default": {  "access": "public" } },
+    "./domain/relation/getFollowingAggregated": { "default": {  "access": "public" } }
+}

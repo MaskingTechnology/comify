@@ -1,13 +1,11 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator/definitions';
-import { RECORD_TYPE as RELATION_RECORD_TYPE } from '^/domain/relation/definitions';
-import InvalidRelation from '^/domain/relation/establish/InvalidRelation';
-import RelationAlreadyExists from '^/domain/relation/establish/RelationAlreadyExists';
-import establish from '^/domain/relation/establish/feature';
+import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator';
+import { RECORD_TYPE as RELATION_RECORD_TYPE } from '^/domain/relation';
+import establish, { InvalidRelation, RelationAlreadyExists } from '^/domain/relation/establish';
 
-import database from '^/integrations/database/module';
+import database from '^/integrations/database';
 
 import { DATABASES, QUERIES, REQUESTERS, VALUES } from './fixtures';
 

@@ -1,0 +1,7 @@
+[
+    "./integrations/authentication",
+    "./integrations/database",
+    "./integrations/filestore",
+    "./integrations/logging",
+    "./integrations/notification"
+]

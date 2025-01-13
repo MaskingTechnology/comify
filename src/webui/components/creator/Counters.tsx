@@ -1,12 +1,12 @@
 
-import type { AggregatedData as CreatorView } from '^/domain/creator/aggregate/types';
+import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
 
 import AvatarRow from './elementary/AvatarRow';
 import CountersColumn from './elementary/CountersColumn';
 
 type Props = {
-    readonly creator: CreatorView;
-    readonly onCreatorClick: (creator: CreatorView) => void;
+    readonly creator: AggregatedCreatorData;
+    readonly onCreatorClick: (creator: AggregatedCreatorData) => void;
 };
 
 export default function Component({ creator, onCreatorClick }: Props)

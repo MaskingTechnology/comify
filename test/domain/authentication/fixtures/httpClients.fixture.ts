@@ -1,5 +1,5 @@
 
-import httpClient, { HTTP_METHODS } from '^/integrations/http/module';
+import httpClient, { HTTP_METHODS } from '^/integrations/http';
 
 import { IMAGES } from './images.fixture';
 import { VALUES } from './values.fixture';

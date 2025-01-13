@@ -1,18 +1,18 @@
 
-import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
-import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
+import type { AggregatedData as AggregatedReactionData } from '^/domain/reaction/aggregate';
+import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
 import { Column } from '^/webui/designsystem';
 
 import LargePanel from './LargePanel';
 
 type Props = {
-    readonly reactions: ReactionView[];
-    readonly onFollowClick: (relation: RelationView) => Promise<void>;
-    readonly onCreatorClick: (relation: RelationView) => void;
-    readonly onRatingClick: (reaction: ReactionView) => Promise<boolean>;
-    readonly onDeleteClick: (reaction: ReactionView) => Promise<void>;
-    readonly onReactionClick: (reaction: ReactionView) => void;
+    readonly reactions: AggregatedReactionData[];
+    readonly onFollowClick: (relation: AggregatedRelationData) => Promise<void>;
+    readonly onCreatorClick: (relation: AggregatedRelationData) => void;
+    readonly onRatingClick: (reaction: AggregatedReactionData) => Promise<boolean>;
+    readonly onDeleteClick: (reaction: AggregatedReactionData) => Promise<void>;
+    readonly onReactionClick: (reaction: AggregatedReactionData) => void;
 };
 
 export default function Component({ reactions, onFollowClick, onCreatorClick, onRatingClick, onDeleteClick, onReactionClick }: Props)

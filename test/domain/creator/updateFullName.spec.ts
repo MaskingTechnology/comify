@@ -1,11 +1,11 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
+import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator';
 import InvalidCreator from '^/domain/creator/InvalidCreator';
-import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator/definitions';
-import updateFullName from '^/domain/creator/updateFullName/feature';
+import updateFullName from '^/domain/creator/updateFullName';
 
-import database from '^/integrations/database/module';
+import database from '^/integrations/database';
 
 import { DATABASES, REQUESTERS, VALUES } from './fixtures';
 

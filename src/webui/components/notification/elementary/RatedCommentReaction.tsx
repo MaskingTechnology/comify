@@ -1,7 +1,7 @@
 
 import { Border, ClickArea, Column, Text } from '^/webui/designsystem';
 
-import type { AggregatedData as NotificationView } from '^/domain/notification/aggregate/types';
+import type { AggregatedData as NotificationView } from '^/domain/notification/aggregate';
 
 type Props = {
     readonly notification: NotificationView;

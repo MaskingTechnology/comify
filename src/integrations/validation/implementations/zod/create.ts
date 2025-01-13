@@ -1,5 +1,5 @@
 
-import Zod from './Zod.js';
+import Zod from './Zod';
 
 export default function create(): Zod
 {

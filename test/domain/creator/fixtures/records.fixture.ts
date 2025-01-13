@@ -1,5 +1,5 @@
 
-import { RecordData } from '^/integrations/database/module';
+import { RecordData } from '^/integrations/database';
 
 import { VALUES } from './values.fixture';
 

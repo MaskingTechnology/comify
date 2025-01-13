@@ -1,6 +1,6 @@
 
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
-import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
+import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
+import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
 import { ClickArea, Column, Panel } from '^/webui/designsystem';
 
@@ -9,12 +9,12 @@ import TimeElapsed from '../relation/TimeElapsed';
 import EngagementsRow from './elementary/EngagementRow';
 
 type Props = {
-    readonly post: PostView;
-    readonly onFollowClick: (relation: RelationView) => Promise<void>;
-    readonly onCreatorClick: (relation: RelationView) => void;
-    readonly onComicClick: (post: PostView) => void;
-    readonly onRatingClick: (post: PostView) => Promise<boolean>;
-    readonly onReactionClick: (post: PostView) => void;
+    readonly post: AggregatedPostData;
+    readonly onFollowClick: (relation: AggregatedRelationData) => Promise<void>;
+    readonly onCreatorClick: (relation: AggregatedRelationData) => void;
+    readonly onComicClick: (post: AggregatedPostData) => void;
+    readonly onRatingClick: (post: AggregatedPostData) => Promise<boolean>;
+    readonly onReactionClick: (post: AggregatedPostData) => void;
 };
 
 export default function Component({ post, onFollowClick, onCreatorClick, onComicClick, onRatingClick, onReactionClick }: Props)

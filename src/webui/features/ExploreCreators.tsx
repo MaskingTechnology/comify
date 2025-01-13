@@ -1,5 +1,5 @@
 
-import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
+import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
 import { OrderAndSearchRow, PullToRefresh, RelationPanelList, ResultSet, ScrollLoader } from '^/webui/components';
 import { Column } from '^/webui/designsystem';
@@ -21,12 +21,12 @@ export default function Feature()
 
     return <Column gap='small' alignX='stretch'>
         { /* eslint-disable-next-line @typescript-eslint/no-empty-function */}
-        <OrderAndSearchRow selected='popular' onOrderChange={reorderList} onSearchChange={() => {}} />
+        <OrderAndSearchRow selected='popular' onOrderChange={reorderList} onSearchChange={() => { }} />
         <PullToRefresh onRefresh={refresh}>
             <ScrollLoader onLoad={getMoreRelations} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
                 <ResultSet data={relations} isLoading={isLoading}>
                     <RelationPanelList
-                        relations={relations as RelationView[]}
+                        relations={relations as AggregatedRelationData[]}
                         onFollowClick={establishRelation}
                         onCreatorClick={viewProfile}
                     />

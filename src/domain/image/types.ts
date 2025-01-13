@@ -1,6 +1,10 @@
 
 import { BaseDataModel } from '../types';
 
+type ImageData = {
+    readonly dataUrl: string;
+};
+
 type MetaData = {
     readonly filename: string;
     readonly mimeType: string;
@@ -17,4 +21,4 @@ type Image = MetaData &
     readonly buffer: Buffer;
 };
 
-export type { DataModel, Image, MetaData };
+export type { DataModel, Image, ImageData, MetaData };

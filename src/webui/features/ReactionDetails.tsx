@@ -1,20 +1,19 @@
 
 import { useCallback } from 'react';
 
-import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
+import type { AggregatedData as AggregatedReactionData } from '^/domain/reaction/aggregate';
 
 import { ConfirmationPanel, LoadingContainer, ReactionDetailsPanel } from '^/webui/components';
 import { useAppContext } from '^/webui/contexts';
 import { Column, Ruler } from '^/webui/designsystem';
 
 import useEstablishRelation from './hooks/useEstablishRelation';
+import useGoBack from './hooks/useGoBack';
 import useReaction from './hooks/useReaction';
 import useRemoveReaction from './hooks/useRemoveReaction';
 import useToggleReactionRating from './hooks/useToggleReactionRating';
 import useViewProfile from './hooks/useViewProfile';
 import useViewReactionDetails from './hooks/useViewReactionDetails';
-
-import useGoBack from './hooks/useGoBack';
 
 import BackRow from '../components/common/BackRow';
 import ReactionReactions from './ReactionReactions';
@@ -32,7 +31,7 @@ export default function Feature()
 
     const [reaction] = useReaction();
 
-    const deleteReaction = useCallback(async (reaction: ReactionView) =>
+    const deleteReaction = useCallback(async (reaction: AggregatedReactionData) =>
     {
         const panel = <ConfirmationPanel
             message='Are you sure you want to delete this reaction?'
@@ -44,10 +43,10 @@ export default function Feature()
     }, [showModal, closeModal, removeReaction]);
 
     return <Column gap='medium' alignX='stretch'>
-        <BackRow onClick={() => goBack(reaction as ReactionView)} />
+        <BackRow onClick={() => goBack(reaction as AggregatedReactionData)} />
         <LoadingContainer data={reaction}>
             <ReactionDetailsPanel
-                reaction={reaction as ReactionView}
+                reaction={reaction as AggregatedReactionData}
                 onFollowClick={establishRelation}
                 onRatingClick={toggleReactionRating}
                 onCreatorClick={viewProfile}
@@ -55,7 +54,7 @@ export default function Feature()
                 onDeleteClick={deleteReaction}
             />
             <Ruler direction='horizontal' />
-            <ReactionReactions reaction={reaction as ReactionView} />
+            <ReactionReactions reaction={reaction as AggregatedReactionData} />
         </LoadingContainer>
     </Column>;
 }

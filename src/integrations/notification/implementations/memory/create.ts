@@ -1,5 +1,5 @@
 
-import Memory from './Memory.js';
+import Memory from './Memory';
 
 export default function create(): Memory
 {
