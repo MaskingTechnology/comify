@@ -1,48 +1,35 @@
 
 import { useCallback } from 'react';
 
-import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
 import type { AggregatedData as AggregatedReactionData } from '^/domain/reaction/aggregate';
 
-import { ConfirmationPanel, LoadingContainer, PostDetailsPanel, ReactionLargePanel, SingleReactionRow } from '../components';
-import { useAppContext } from '../contexts';
-import { Column, Ruler } from '../designsystem';
+import { ConfirmationPanel, LoadingContainer, ReactionDetailsPanel } from '^/webui/components';
+import { useAppContext } from '^/webui/contexts';
+import { Column, Ruler } from '^/webui/designsystem';
 
 import useEstablishRelation from './hooks/useEstablishRelation';
-import usePost from './hooks/usePost';
+import useGoBack from './hooks/useGoBack';
 import useReaction from './hooks/useReaction';
-import useRemovePost from './hooks/useRemovePost';
 import useRemoveReaction from './hooks/useRemoveReaction';
-import useTogglePostRating from './hooks/useTogglePostRating';
 import useToggleReactionRating from './hooks/useToggleReactionRating';
-import useViewPostDetails from './hooks/useViewPostDetails';
 import useViewProfile from './hooks/useViewProfile';
+import useViewReactionDetails from './hooks/useViewReactionDetails';
+
+import BackRow from '../components/common/BackRow';
+import ReactionReactions from './ReactionReactions';
 
 export default function Feature()
 {
     const { showModal, closeModal } = useAppContext();
 
     const establishRelation = useEstablishRelation();
-    const togglePostRating = useTogglePostRating();
     const toggleReactionRating = useToggleReactionRating();
     const viewProfile = useViewProfile();
-    const removePost = useRemovePost();
+    const viewReactionDetails = useViewReactionDetails();
     const removeReaction = useRemoveReaction();
-    const viewPostDetails = useViewPostDetails();
+    const goBack = useGoBack();
 
-    const [post] = usePost();
     const [reaction] = useReaction();
-
-    const deletePost = useCallback(async (post: AggregatedPostData) =>
-    {
-        const panel = <ConfirmationPanel
-            message='Are you sure you want to delete this post?'
-            onConfirm={() => { closeModal(); removePost(post); }}
-            onCancel={() => closeModal()} />;
-
-        showModal(panel);
-
-    }, [showModal, closeModal, removePost]);
 
     const deleteReaction = useCallback(async (reaction: AggregatedReactionData) =>
     {
@@ -56,26 +43,18 @@ export default function Feature()
     }, [showModal, closeModal, removeReaction]);
 
     return <Column gap='medium' alignX='stretch'>
-        <LoadingContainer data={post}>
-            <PostDetailsPanel
-                post={post as AggregatedPostData}
-                onFollowClick={establishRelation}
-                onRatingClick={togglePostRating}
-                onCreatorClick={viewProfile}
-                onDeleteClick={deletePost}
-            />
-        </LoadingContainer>
-        <Ruler direction='horizontal' />
-        <SingleReactionRow onShowClick={() => viewPostDetails(post as AggregatedPostData)} />
-        <LoadingContainer data={(reaction)}>
-            <ReactionLargePanel
-                key={reaction?.id}
+        <BackRow onClick={() => goBack(reaction as AggregatedReactionData)} />
+        <LoadingContainer data={reaction}>
+            <ReactionDetailsPanel
                 reaction={reaction as AggregatedReactionData}
                 onFollowClick={establishRelation}
-                onCreatorClick={viewProfile}
                 onRatingClick={toggleReactionRating}
+                onCreatorClick={viewProfile}
+                onReactionClick={viewReactionDetails}
                 onDeleteClick={deleteReaction}
             />
+            <Ruler direction='horizontal' />
+            <ReactionReactions reaction={reaction as AggregatedReactionData} />
         </LoadingContainer>
     </Column>;
 }

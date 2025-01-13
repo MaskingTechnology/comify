@@ -1,19 +1,21 @@
 
 import { ClickArea, Image, Row, Text } from '^/webui/designsystem';
 
-import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
+import type { AggregatedData as AggregatedPostData } from '^/domain/notification/aggregate';
 
 type Props = {
-    readonly post: AggregatedPostData;
-    readonly onPostClick: (post: AggregatedPostData) => void;
+    readonly notification: AggregatedPostData;
+    readonly onPostClick: (notification: AggregatedPostData) => void;
 };
 
-export default function Component({ post, onPostClick }: Props)
+export default function Component({ notification, onPostClick }: Props)
 {
+    const dataUrl = notification.targetPost?.comic.image.dataUrl as string;
+
     return <Row gap='medium' alignX='justify'>
         <Text value='I like your comic.' />
-        <ClickArea onClick={() => onPostClick(post)} >
-            <Image source={post.comic.image.dataUrl} width='150px' />
+        <ClickArea onClick={() => onPostClick(notification)} >
+            <Image source={dataUrl} width='150px' />
         </ClickArea>
     </Row>;
 }

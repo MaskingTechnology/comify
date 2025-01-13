@@ -1,10 +1,11 @@
 
 import logger from '^/integrations/logging';
 
-import { Requester } from '^/domain/authentication';
-import updateReactionCount from '^/domain/post/updateReactionCount';
+import type { Requester } from '^/domain/authentication/types';
+import updatePostReactionCount from '^/domain/post/updateReactionCount';
+import ReactionNotFound from '^/domain/reaction/ReactionNotFound';
+import updateReactionReactionCount from '^/domain/reaction/updateReactionCount';
 
-import ReactionNotFound from './ReactionNotFound';
 import deleteData from './deleteData';
 import retrieveOwnedData from './retrieveOwnedData';
 
@@ -20,11 +21,20 @@ export default async function remove(requester: Requester, id: string): Promise<
         throw new ReactionNotFound();
     }
 
-    let reactionCount;
+    let postReactionCount;
+    let reactionReactionCount;
 
     try
     {
-        reactionCount = await updateReactionCount(reaction.postId, 'decrease');
+        if (reaction.postId !== undefined)
+        {
+            postReactionCount = await updatePostReactionCount(reaction.postId, 'decrease');
+        }
+
+        if (reaction.reactionId !== undefined)
+        {
+            reactionReactionCount = await updateReactionReactionCount(reaction.reactionId, 'decrease');
+        }
 
         await deleteData(reaction.id);
     }
@@ -32,9 +42,14 @@ export default async function remove(requester: Requester, id: string): Promise<
     {
         logger.logError('Failed to remove reaction', error);
 
-        if (reactionCount !== undefined)
+        if (postReactionCount !== undefined)
         {
-            await updateReactionCount(reaction.postId, 'increase');
+            await updatePostReactionCount(reaction.postId as string, 'increase');
+        }
+
+        if (reactionReactionCount !== undefined)
+        {
+            await updateReactionReactionCount(reaction.reactionId as string, 'increase');
         }
 
         throw error;

@@ -25,13 +25,13 @@ describe('domain/notification/getallAggregated', () =>
         const notification2 = result[1];
 
         expect(notification1.type).toBe(Types.STARTED_FOLLOWING);
-        expect(notification1.post).toBe(undefined);
-        expect(notification1.reaction).toBe(undefined);
+        expect(notification1.targetPost).toBe(undefined);
+        expect(notification1.targetReaction).toBe(undefined);
         expect(notification1.relation.following.id).toBe(VALUES.IDS.CREATOR1);
 
         expect(notification2.type).toBe(Types.RATED_POST);
-        expect(notification2.post?.id).toBe(VALUES.IDS.POST_RATED);
-        expect(notification2.reaction).toBe(undefined);
+        expect(notification2.targetPost?.id).toBe(VALUES.IDS.POST_RATED);
+        expect(notification2.targetReaction).toBe(undefined);
         expect(notification2.relation.following.id).toBe(VALUES.IDS.CREATOR3);
 
     });
@@ -46,13 +46,13 @@ describe('domain/notification/getallAggregated', () =>
         const notification2 = result[1];
 
         expect(notification1.type).toBe(Types.STARTED_FOLLOWING);
-        expect(notification1.post).toBe(undefined);
-        expect(notification1.reaction).toBe(undefined);
+        expect(notification1.targetPost).toBe(undefined);
+        expect(notification1.targetReaction).toBe(undefined);
         expect(notification1.relation.following.id).toBe(VALUES.IDS.CREATOR2);
 
         expect(notification2.type).toBe(Types.RATED_REACTION);
-        expect(notification2.post).toBe(undefined);
-        expect(notification2.reaction?.id).toBe(VALUES.IDS.REACTION_LIKED);
+        expect(notification2.targetPost).toBe(undefined);
+        expect(notification2.targetReaction?.id).toBe(VALUES.IDS.REACTION_LIKED);
         expect(notification2.relation.following.id).toBe(VALUES.IDS.CREATOR2);
 
     });

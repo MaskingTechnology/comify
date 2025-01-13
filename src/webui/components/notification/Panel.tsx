@@ -1,13 +1,12 @@
 
 import type { AggregatedData as AggregatedNotificationData } from '^/domain/notification/aggregate';
-import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
-import type { AggregatedData as AggregatedReactionData } from '^/domain/reaction/aggregate';
 import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
 import { Column, Panel } from '^/webui/designsystem';
 
 import TimeElapsed from '../relation/TimeElapsed';
-import AddedReaction from './elementary/AddedReaction';
+import AddedPostReaction from './elementary/AddedPostReaction';
+import AddedReactionReaction from './elementary/AddedReactionReaction';
 import RatedPost from './elementary/RatedPost';
 import RatedReaction from './elementary/RatedReaction';
 import StartedFollowing from './elementary/StartedFollowing';
@@ -16,22 +15,22 @@ type Props = {
     readonly notification: AggregatedNotificationData;
     readonly onFollowClick: (relation: AggregatedRelationData) => Promise<void>;
     readonly onCreatorClick: (relation: AggregatedRelationData) => void;
-    readonly onReactionClick: (reaction: AggregatedReactionData) => void;
-    readonly onPostClick: (post: AggregatedPostData) => void;
+    readonly onNotificationClick: (notification: AggregatedNotificationData) => void;
 };
 
-function getContent(notification: AggregatedNotificationData, onReactionClick: (reaction: AggregatedReactionData) => void, onPostClick: (post: AggregatedPostData) => void)
+function getContent(notification: AggregatedNotificationData, onNotificationClick: (notification: AggregatedNotificationData) => void)
 {
     switch (notification.type)
     {
         case 'started-following': return <StartedFollowing isFollowing={notification.relation.established} />;
-        case 'rated-post': return <RatedPost post={notification.post as AggregatedPostData} onPostClick={onPostClick} />;
-        case 'rated-reaction': return <RatedReaction reaction={notification.reaction as AggregatedReactionData} onReactionClick={onReactionClick} />;
-        case 'added-reaction': return <AddedReaction notification={notification} onReactionClick={onReactionClick} />;
+        case 'rated-post': return <RatedPost notification={notification} onPostClick={onNotificationClick} />;
+        case 'rated-reaction': return <RatedReaction notification={notification} onReactionClick={onNotificationClick} />;
+        case 'added-reaction-post': return <AddedPostReaction notification={notification} onPostHighlightClick={onNotificationClick} />;
+        case 'added-reaction-reaction': return <AddedReactionReaction notification={notification} onReactionHighlightClick={onNotificationClick} />;
     }
 }
 
-export default function Component({ notification, onFollowClick, onCreatorClick, onReactionClick, onPostClick }: Props)
+export default function Component({ notification, onFollowClick, onCreatorClick, onNotificationClick }: Props)
 {
     return <Panel>
         <Column gap='medium' alignX='stretch'>
@@ -41,7 +40,7 @@ export default function Component({ notification, onFollowClick, onCreatorClick,
                 onFollowClick={onFollowClick}
                 onCreatorClick={onCreatorClick}
             />
-            {getContent(notification, onReactionClick, onPostClick)}
+            {getContent(notification, onNotificationClick)}
         </Column>
     </Panel>;
 }

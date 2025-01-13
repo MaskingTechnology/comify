@@ -9,10 +9,11 @@ import type { AggregatedData } from './types';
 
 export default async function aggregate(requester: Requester, data: DataModel): Promise<AggregatedData>
 {
-    const [relationData, postData, reactionData] = await Promise.all([
+    const [relationData, postData, targetReactionData, sourceReactionData] = await Promise.all([
         getRelationData(data.receiverId, data.senderId),
-        data.postId ? getPostData(requester, data.postId) : undefined,
-        data.reactionId ? getReactionData(requester, data.reactionId) : undefined
+        data.targetPostId ? getPostData(requester, data.targetPostId) : undefined,
+        data.targetReactionId ? getReactionData(requester, data.targetReactionId) : undefined,
+        data.sourceReactionId ? getReactionData(requester, data.sourceReactionId) : undefined
     ]);
 
     return {
@@ -20,7 +21,8 @@ export default async function aggregate(requester: Requester, data: DataModel): 
         createdAt: data.createdAt,
         type: data.type,
         relation: relationData,
-        post: postData,
-        reaction: reactionData
+        targetPost: postData,
+        targetReaction: targetReactionData,
+        sourceReaction: sourceReactionData
     };
 }

@@ -1,16 +1,17 @@
 
-import { AggregatedData as AggregatedReactionData } from '^/domain/reaction/aggregate';
+import { AggregatedData as AggregatedReactionData } from '^/domain/notification/aggregate';
+
 import RatedComicReaction from '../elementary/RatedComicReaction';
 import RatedCommentReaction from '../elementary/RatedCommentReaction';
 
 type Props = {
-    readonly reaction: AggregatedReactionData;
-    readonly onReactionClick: (reaction: AggregatedReactionData) => void;
+    readonly notification: AggregatedReactionData;
+    readonly onReactionClick: (notification: AggregatedReactionData) => void;
 };
 
-export default function Component({ reaction, onReactionClick }: Props)
+export default function Component({ notification, onReactionClick }: Props)
 {
-    return reaction.comic !== undefined
-        ? <RatedComicReaction reaction={reaction} onReactionClick={onReactionClick} />
-        : <RatedCommentReaction reaction={reaction} onReactionClick={onReactionClick} />;
+    return notification.targetReaction?.comic !== undefined
+        ? <RatedComicReaction notification={notification} onReactionClick={onReactionClick} />
+        : <RatedCommentReaction notification={notification} onReactionClick={onReactionClick} />;
 }

@@ -21,7 +21,7 @@ describe('domain/reaction/createComment', () =>
 {
     it('should create a comment reaction', async () =>
     {
-        const reactionId = await create(REQUESTERS.OWNER, VALUES.IDS.POST_EXISTING, VALUES.MESSAGES.VALID_COMMENT);
+        const reactionId = await create(REQUESTERS.OWNER, VALUES.MESSAGES.VALID_COMMENT, VALUES.IDS.POST_EXISTING);
 
         const reaction = await database.readRecord(REACTION_RECORD_TYPE, reactionId);
         expect(reaction?.creatorId).toBe(REQUESTERS.OWNER.id);

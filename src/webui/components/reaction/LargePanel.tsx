@@ -3,12 +3,12 @@ import type { AggregatedData as AggregatedReactionData } from '^/domain/reaction
 import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
 import Image from '^/webui/components/comic/Image';
-import { Column, Panel, Row } from '^/webui/designsystem';
+import { ClickArea, Column, Panel, Row } from '^/webui/designsystem';
 
 import Comment from '../comment/Comment';
-import RatingEngagement from '../rating/Engagement';
 import TimeElapsed from '../relation/TimeElapsed';
 import DeleteButton from './DeleteButton';
+import EngagementRow from './elementary/EngagementRow';
 
 type Props = {
     readonly reaction: AggregatedReactionData;
@@ -16,9 +16,10 @@ type Props = {
     readonly onCreatorClick: (relation: AggregatedRelationData) => void;
     readonly onRatingClick: (reaction: AggregatedReactionData) => Promise<boolean>;
     readonly onDeleteClick: (relation: AggregatedReactionData) => Promise<void>;
+    readonly onReactionClick: (reaction: AggregatedReactionData) => void;
 };
 
-export default function Component({ reaction, onFollowClick, onCreatorClick, onRatingClick, onDeleteClick }: Props)
+export default function Component({ reaction, onFollowClick, onCreatorClick, onRatingClick, onDeleteClick, onReactionClick }: Props)
 {
     return <Panel padding='medium'>
         <Column gap='medium' alignX='stretch'>
@@ -30,19 +31,27 @@ export default function Component({ reaction, onFollowClick, onCreatorClick, onR
             />
             {
                 reaction.comment !== undefined
-                    ? <Comment text={reaction.comment.message} />
+                    ?
+                    <ClickArea onClick={() => onReactionClick(reaction)} >
+                        <Comment text={reaction.comment.message} />
+                    </ClickArea>
                     : null
             }
             {
                 reaction.comic !== undefined
-                    ? <Image comic={reaction.comic} />
+                    ?
+                    <ClickArea onClick={() => onReactionClick(reaction)} >
+                        <Image comic={reaction.comic} />
+                    </ClickArea>
                     : null
             }
             <Row alignX='justify'>
-                <RatingEngagement
-                    isEngaged={reaction.hasRated}
-                    count={reaction.ratingCount}
-                    onClick={() => onRatingClick(reaction)}
+                <EngagementRow
+                    isRated={reaction.hasRated}
+                    ratingCount={reaction.ratingCount}
+                    reactionCount={reaction.reactionCount}
+                    onRatingClick={() => onRatingClick(reaction)}
+                    onReactionClick={() => onReactionClick(reaction)}
                 />
                 {
                     reaction.creator.self

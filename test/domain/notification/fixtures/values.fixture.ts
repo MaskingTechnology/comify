@@ -6,8 +6,10 @@ export const VALUES =
         IMAGE: 'I1',
         POST_RATED: 'P1',
         POST_DELETED: 'P2',
+        POST_REACTION: 'P3',
 
         REACTION_LIKED: 'R1',
+        REACTION_REACTION: 'R2',
 
         RATING1: '1',
         RATING2: '2',

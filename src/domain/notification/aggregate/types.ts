@@ -8,8 +8,9 @@ import { DataModel } from '../types';
 type AggregatedData = Pick<DataModel, 'id' | 'createdAt' | 'type'> &
 {
     readonly relation: AggregatedRelationData;
-    readonly post?: AggregatedPostData;
-    readonly reaction?: AggregatedReactionData;
+    readonly targetPost?: AggregatedPostData;
+    readonly targetReaction?: AggregatedReactionData;
+    readonly sourceReaction?: AggregatedReactionData;
 };
 
 export type { AggregatedData };

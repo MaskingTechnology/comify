@@ -28,7 +28,7 @@ export default async function toggleRating(requester: Requester, postId: string)
 
         const post = await getPost(postId);
 
-        await createNotification(Types.RATED_POST, requester.id, post.creatorId, postId);
+        await createNotification(Types.RATED_POST, requester.id, post.creatorId, postId, undefined);
 
         return true;
     }

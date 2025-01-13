@@ -9,12 +9,13 @@ import { useAppContext } from '^/webui/contexts';
 import { Column } from '^/webui/designsystem';
 
 import useEstablishRelation from './hooks/useEstablishRelation';
-import useReactions from './hooks/useReactions';
+import useReactions from './hooks/usePostReactions';
 import useRemoveReactionFromList from './hooks/useRemoveReactionFromList';
 import useToggleReactionRating from './hooks/useToggleReactionRating';
 import useViewProfile from './hooks/useViewProfile';
+import useViewReactionDetails from './hooks/useViewReactionDetails';
 
-import CreateReaction from './CreateReaction';
+import CreatePostReaction from './CreatePostReaction';
 
 type Props = {
     readonly post: AggregatedPostData;
@@ -28,6 +29,7 @@ export default function Feature({ post }: Props)
 
     const establishRelation = useEstablishRelation();
     const viewProfile = useViewProfile();
+    const viewReactionDetails = useViewReactionDetails();
     const toggleReactionRating = useToggleReactionRating();
 
     const [reactions, isLoading, isFinished, getMoreReactions, setReactions, refresh] = useReactions(post);
@@ -46,7 +48,7 @@ export default function Feature({ post }: Props)
 
     const createReaction = useCallback(() =>
     {
-        const content = <CreateReaction
+        const content = <CreatePostReaction
             post={post}
             handleDone={(reaction?: AggregatedReactionData) => { closeModal(); addReaction(reaction); }}
         />;
@@ -77,6 +79,7 @@ export default function Feature({ post }: Props)
                         onCreatorClick={viewProfile}
                         onRatingClick={toggleReactionRating}
                         onDeleteClick={deleteReaction}
+                        onReactionClick={viewReactionDetails}
                     />
                 </ResultSet>
             </ScrollLoader>

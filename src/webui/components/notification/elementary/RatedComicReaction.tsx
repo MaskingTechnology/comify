@@ -1,19 +1,21 @@
 
 import { ClickArea, Image, Row, Text } from '^/webui/designsystem';
 
-import type { AggregatedData as AggregatedReactionData } from '^/domain/reaction/aggregate';
+import type { AggregatedData as AggregatedNotificationData } from '^/domain/notification/aggregate';
 
 type Props = {
-    readonly reaction: AggregatedReactionData;
-    readonly onReactionClick: (reaction: AggregatedReactionData) => void;
+    readonly notification: AggregatedNotificationData;
+    readonly onReactionClick: (notification: AggregatedNotificationData) => void;
 };
 
-export default function Component({ reaction, onReactionClick }: Props)
+export default function Component({ notification, onReactionClick }: Props)
 {
+    const dataUrl = notification.targetReaction?.comic?.image.dataUrl as string;
+
     return <Row alignX='justify' alignY='stretch' gap='medium'>
         <Text value='I like your reaction.' />
-        <ClickArea onClick={() => onReactionClick(reaction)} >
-            <Image source={reaction.comic?.image.dataUrl as string} width='150px' />
+        <ClickArea onClick={() => onReactionClick(notification)} >
+            <Image source={dataUrl} width='150px' />
         </ClickArea>
     </Row>;
 }

@@ -31,7 +31,7 @@ describe('domain/post/toggleRating', () =>
     {
         // This should fail at the last action when changing the post's rating count
         const promise = toggleRating(REQUESTERS.OWNER, VALUES.IDS.REACTION_NOT_EXISTING);
-        await expect(promise).rejects.toThrow('Record not found');
+        await expect(promise).rejects.toThrow('Reaction not found');
 
         const rating = await database.findRecord(RATING_RECORD_TYPE, QUERIES.RATING_NOT_EXISTING);
         expect(rating).toBeUndefined();

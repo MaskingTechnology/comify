@@ -4,14 +4,14 @@ import { useCallback } from 'react';
 import { requester } from '^/domain/authentication';
 import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
 import type { AggregatedData as AggregatedReactionData } from '^/domain/reaction/aggregate';
-import createComicReaction from '^/domain/reaction/createWithComic';
+import createCommentReaction from '^/domain/reaction/createWithComment';
 import getReaction from '^/domain/reaction/getByIdAggregated';
 
-export default function useCreateComicReaction(post: AggregatedPostData, handleDone: (reaction?: AggregatedReactionData) => void)
+export default function useCreateCommentReaction(post: AggregatedPostData, handleDone: (reaction?: AggregatedReactionData) => void)
 {
-    return useCallback(async (imageData: string) =>
+    return useCallback(async (comment: string) =>
     {
-        const reactionId = await createComicReaction(requester, post.id, imageData);
+        const reactionId = await createCommentReaction(requester, comment, post.id);
         const reaction = await getReaction(requester, reactionId);
 
         handleDone(reaction);
