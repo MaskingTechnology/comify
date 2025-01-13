@@ -1,19 +1,15 @@
 
-import { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
 import { Button } from '^/webui/designsystem';
 
 type Props = {
-    readonly reaction: ReactionView;
-    readonly onClick: (reaction: ReactionView) => void;
-    readonly text: string;
+    readonly onClick: () => void;
 };
 
-export default function Component({ reaction, onClick, text }: Props)
+export default function Component({ onClick }: Props)
 {
     return <Button
         type={'secondary'}
-        size='small'
-        text={text}
-        onClick={() => onClick(reaction)}
+        text='Back'
+        onClick={onClick}
     />;
 }

@@ -1,22 +1,16 @@
 
-import { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
 
 import { Row } from '^/webui/designsystem';
 
 import BackButton from './BackButton';
 
 type Props = {
-    readonly reaction: ReactionView;
-    readonly onClick: (reaction: ReactionView) => void;
+    readonly onClick: () => void;
 };
 
-export default function Component({ reaction, onClick }: Props)
+export default function Component({ onClick }: Props)
 {
     return <Row alignX='justify' gap='small'>
-        <BackButton
-            reaction={reaction}
-            text={'Back'}
-            onClick={onClick}
-        />
+        <BackButton onClick={onClick} />
     </Row>;
 }

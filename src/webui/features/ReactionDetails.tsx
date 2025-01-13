@@ -44,10 +44,7 @@ export default function Feature()
     }, [showModal, closeModal, removeReaction]);
 
     return <Column gap='medium' alignX='stretch'>
-        <BackRow
-            reaction={reaction as ReactionView}
-            onClick={goBack}
-        />
+        <BackRow onClick={() => goBack(reaction as ReactionView)} />
         <LoadingContainer data={reaction}>
             <ReactionDetailsPanel
                 reaction={reaction as ReactionView}
