@@ -1,8 +1,8 @@
 
 import { useCallback } from 'react';
 
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
-import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
+import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
+import type { AggregatedData as AggregatedReactionData } from '^/domain/reaction/aggregate';
 
 import { ConfirmationPanel, LoadingContainer, PostDetailsPanel, ReactionLargePanel, SingleReactionRow } from '../components';
 import { useAppContext } from '../contexts';
@@ -35,7 +35,7 @@ export default function Feature()
     const [post] = usePost();
     const [highlight] = useHighlightReaction();
 
-    const deletePost = useCallback(async (post: PostView) =>
+    const deletePost = useCallback(async (post: AggregatedPostData) =>
     {
         const panel = <ConfirmationPanel
             message='Are you sure you want to delete this post?'
@@ -46,7 +46,7 @@ export default function Feature()
 
     }, [showModal, closeModal, removePost]);
 
-    const deleteHighlight = useCallback(async (highlight: ReactionView) =>
+    const deleteHighlight = useCallback(async (highlight: AggregatedReactionData) =>
     {
         const panel = <ConfirmationPanel
             message='Are you sure you want to delete this reaction?'
@@ -60,7 +60,7 @@ export default function Feature()
     return <Column gap='medium' alignX='stretch'>
         <LoadingContainer data={post}>
             <PostDetailsPanel
-                post={post as PostView}
+                post={post as AggregatedPostData}
                 onFollowClick={establishRelation}
                 onRatingClick={togglePostRating}
                 onCreatorClick={viewProfile}
@@ -69,11 +69,11 @@ export default function Feature()
             />
         </LoadingContainer>
         <Ruler direction='horizontal' />
-        <SingleReactionRow onShowClick={() => viewPostDetails(post as PostView)} />
+        <SingleReactionRow onShowClick={() => viewPostDetails(post as AggregatedPostData)} />
         <LoadingContainer data={(highlight)}>
             <ReactionLargePanel
                 key={highlight?.id}
-                reaction={highlight as ReactionView}
+                reaction={highlight as AggregatedReactionData}
                 onFollowClick={establishRelation}
                 onCreatorClick={viewProfile}
                 onRatingClick={toggleReactionRating}

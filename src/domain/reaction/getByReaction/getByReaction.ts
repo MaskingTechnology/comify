@@ -1,10 +1,10 @@
 
-import database, { RecordQuery, RecordSort, SortDirections } from '^/integrations/database/module';
+import database, { RecordQuery, RecordSort, SortDirections } from '^/integrations/database';
 
 import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';
 
-export default async function feature(reactionId: string, limit: number, offset: number): Promise<DataModel[]>
+export default async function getByReaction(reactionId: string, limit: number, offset: number): Promise<DataModel[]>
 {
     const query: RecordQuery =
     {

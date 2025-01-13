@@ -1,10 +1,10 @@
 
-import getById from '../getById/feature';
-import update from '../update/feature';
+import getById from '../getById';
+import update from '../update';
 
 import type { CountOperation } from '../types';
 
-export default async function feature(id: string, operation: CountOperation): Promise<number>
+export default async function updateReactionCount(id: string, operation: CountOperation): Promise<number>
 {
     const data = await getById(id);
 

@@ -2,11 +2,11 @@
 import { useCallback } from 'react';
 
 import requester from '^/domain/authentication/requester';
-import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
-import createCommentReaction from '^/domain/reaction/createComment/feature';
-import getReaction from '^/domain/reaction/getByIdAggregated/feature';
+import type { AggregatedData as AggregatedReactionData } from '^/domain/reaction/aggregate';
+import createCommentReaction from '^/domain/reaction/createWithComment';
+import getReaction from '^/domain/reaction/getByIdAggregated';
 
-export default function useCreateCommentReaction(sourceReaction: ReactionView, handleDone: (reaction?: ReactionView) => void)
+export default function useCreateCommentReaction(sourceReaction: AggregatedReactionData, handleDone: (reaction?: AggregatedReactionData) => void)
 {
     return useCallback(async (comment: string) =>
     {

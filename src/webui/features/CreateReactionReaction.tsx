@@ -1,5 +1,5 @@
 
-import type { AggregatedData as ReactionView } from '^/domain/reaction/aggregate/types';
+import type { AggregatedData as AggregatedReactionData } from '^/domain/reaction/aggregate';
 
 import { ComicEditor, CommentForm } from '^/webui/components';
 import { Ruler, Tab, Tabs } from '^/webui/designsystem';
@@ -8,8 +8,8 @@ import useCreateComicReaction from './hooks/useCreateReactionComicReaction';
 import useCreateCommentReaction from './hooks/useCreateReactionCommentReaction';
 
 type Props = {
-    readonly reaction: ReactionView;
-    readonly handleDone: (reaction?: ReactionView) => void;
+    readonly reaction: AggregatedReactionData;
+    readonly handleDone: (reaction?: AggregatedReactionData) => void;
 };
 
 

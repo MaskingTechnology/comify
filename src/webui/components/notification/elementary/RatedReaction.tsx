@@ -1,5 +1,6 @@
 
 import { AggregatedData as AggregatedReactionData } from '^/domain/notification/aggregate';
+
 import RatedComicReaction from '../elementary/RatedComicReaction';
 import RatedCommentReaction from '../elementary/RatedCommentReaction';
 

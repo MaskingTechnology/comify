@@ -1,10 +1,10 @@
 
-import type { AggregatedData as NotificationView } from '^/domain/notification/aggregate/types';
+import type { AggregatedData as AggregatedNotificationData } from '^/domain/notification/aggregate';
 import { Border, ClickArea, Column, Text } from '^/webui/designsystem';
 
 type Props = {
-    readonly notification: NotificationView;
-    readonly onReactionHighlightClick: (notification: NotificationView) => void;
+    readonly notification: AggregatedNotificationData;
+    readonly onReactionHighlightClick: (notification: AggregatedNotificationData) => void;
 };
 
 export default function Component({ notification, onReactionHighlightClick }: Props)

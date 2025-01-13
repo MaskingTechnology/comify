@@ -4,7 +4,7 @@ import logger from '^/integrations/logging';
 import type { Requester } from '^/domain/authentication/types';
 import updatePostReactionCount from '^/domain/post/updateReactionCount';
 import ReactionNotFound from '^/domain/reaction/ReactionNotFound';
-import updateReactionReactionCount from '^/domain/reaction/updateReactionCount/feature';
+import updateReactionReactionCount from '^/domain/reaction/updateReactionCount';
 
 import deleteData from './deleteData';
 import retrieveOwnedData from './retrieveOwnedData';

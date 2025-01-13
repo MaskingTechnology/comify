@@ -1,11 +1,10 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import PostNotFound from '^/domain/post/PostNotFound';
+import { PostNotFound } from '^/domain/post';
+import { RECORD_TYPE as REACTION_RECORD_TYPE, ReactionNotFound } from '^/domain/reaction';
 import create from '^/domain/reaction/create';
 import InvalidReaction from '^/domain/reaction/create/InvalidReaction';
-import { RECORD_TYPE as REACTION_RECORD_TYPE } from '^/domain/reaction/definitions';
-import ReactionNotFound from '^/domain/reaction/ReactionNotFound';
 
 import database from '^/integrations/database';
 

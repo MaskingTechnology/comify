@@ -1,7 +1,7 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import getByReaction from '^/domain/reaction/getByReactionAggregated/feature';
+import getByReaction from '^/domain/reaction/getByReactionAggregated';
 
 import { DATABASES, FILE_STORES, REQUESTERS, VALUES } from './fixtures';
 
