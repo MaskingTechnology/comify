@@ -10,12 +10,12 @@ type Props = {
 
 export default function Component({ notification, onPostClick }: Props)
 {
-    const dataurl = notification.targetPost?.comic.image.dataUrl as string;
+    const dataUrl = notification.targetPost?.comic.image.dataUrl as string;
 
     return <Row gap='medium' alignX='justify'>
         <Text value='I like your comic.' />
         <ClickArea onClick={() => onPostClick(notification)} >
-            <Image source={dataurl} width='150px' />
+            <Image source={dataUrl} width='150px' />
         </ClickArea>
     </Row>;
 }

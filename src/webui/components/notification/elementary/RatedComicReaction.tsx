@@ -10,12 +10,12 @@ type Props = {
 
 export default function Component({ notification, onReactionClick }: Props)
 {
-    const dataurl = notification.targetReaction?.comic?.image.dataUrl as string;
+    const dataUrl = notification.targetReaction?.comic?.image.dataUrl as string;
 
     return <Row alignX='justify' alignY='stretch' gap='medium'>
         <Text value='I like your reaction.' />
         <ClickArea onClick={() => onReactionClick(notification)} >
-            <Image source={dataurl} width='150px' />
+            <Image source={dataUrl} width='150px' />
         </ClickArea>
     </Row>;
 }
