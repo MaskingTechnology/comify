@@ -1,7 +1,6 @@
 
-import logger from '^/integrations/logging';
-
 import { Requester } from '^/domain/authentication';
+import filterResolved from '^/domain/common/filterResolved';
 import validateRange, { Range } from '^/domain/common/validateRange';
 
 import aggregate, { AggregatedData } from '../aggregate';
@@ -15,22 +14,7 @@ export default async function getByCreatorAggregated(requester: Requester, creat
 
     const data = await getByCreator(creatorId, range.limit, range.offset);
 
-    const posts: AggregatedData[] = [];
+    const aggregates = data.map(item => aggregate(requester, item));
 
-    const promises = Promise.allSettled(data.map(item => aggregate(requester, item)));
-
-    (await promises).forEach((promise) =>
-    {
-        if (promise.status === 'rejected')
-        {
-            logger.logError('Error on aggregating Post', promise.reason);
-
-            return;
-        }
-
-        posts.push(promise.value);
-
-    });
-
-    return posts;
+    return filterResolved(aggregates);
 }
