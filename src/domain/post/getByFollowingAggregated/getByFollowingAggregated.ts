@@ -1,7 +1,7 @@
 
 import { Requester } from '^/domain/authentication';
+import filterResolved from '^/domain/common/filterResolved';
 import validateRange, { Range } from '^/domain/common/validateRange';
-import logger from '^/integrations/logging';
 
 import aggregate, { AggregatedData } from '../aggregate';
 import getByFollowing from '../getByFollowing';
@@ -12,21 +12,7 @@ export default async function getByFollowingAggregated(requester: Requester, ran
 
     const data = await getByFollowing(requester, range.limit, range.offset);
 
-    const posts: AggregatedData[] = [];
+    const aggregates = data.map(item => aggregate(requester, item));
 
-    const promises = await Promise.allSettled(data.map(item => aggregate(requester, item)));
-
-    promises.forEach((promise) =>
-    {
-        if (promise.status === 'rejected')
-        {
-            logger.logError('Error aggrgating Post', promise.reason);
-
-            return;
-        }
-
-        posts.push(promise.value);
-    });
-
-    return posts;
+    return filterResolved(aggregates);
 }
