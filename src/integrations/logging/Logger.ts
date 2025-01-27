@@ -3,8 +3,8 @@ import { LogProcessor } from './definitions/interfaces';
 
 export default class Logger implements LogProcessor
 {
-    #processor: LogProcessor;
-    #debugEnabled: boolean;
+    readonly #processor: LogProcessor;
+    readonly #debugEnabled: boolean;
 
     constructor(processor: LogProcessor, debugEnabled = false)
     {

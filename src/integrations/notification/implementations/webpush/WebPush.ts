@@ -13,7 +13,7 @@ type VapidDetails = {
 
 export default class WebPush implements NotificationService
 {
-    #configuration: VapidDetails;
+    readonly #configuration: VapidDetails;
     #subscriptions?: Map<string, PushSubscription>;
 
     constructor(configuration: VapidDetails)

@@ -1,8 +1,8 @@
 
 export default class ValidationResult
 {
-    #invalid: boolean;
-    #messages: Map<string, string>;
+    readonly #invalid: boolean;
+    readonly #messages: Map<string, string>;
 
     constructor(invalid: boolean, messages = new Map<string, string>())
     {

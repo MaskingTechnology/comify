@@ -5,7 +5,7 @@ import NotConnected from '../../errors/NotConnected';
 
 export default class Memory implements FileStore
 {
-    #files = new Map<string, Buffer>();
+    readonly #files = new Map<string, Buffer>();
     #connected = false;
 
     get connected() { return this.#connected; }

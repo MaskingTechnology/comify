@@ -40,8 +40,8 @@ const MONGO_ID = '_id';
 
 export default class MongoDB implements Driver
 {
-    #connectionString: string;
-    #databaseName: string;
+    readonly #connectionString: string;
+    readonly #databaseName: string;
 
     #client?: MongoClient;
     #database?: Db;

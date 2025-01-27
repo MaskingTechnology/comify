@@ -9,7 +9,7 @@ const BUCKET_NAME = 'comify';
 
 export default class MinioFS implements FileStore
 {
-    #configuration: ClientOptions;
+    readonly #configuration: ClientOptions;
     #client?: Client;
 
     constructor(configuration: ClientOptions)

@@ -16,7 +16,7 @@ type State = {
 
 export default class Component extends ReactComponent<Props, State>
 {
-    #promiseHandler = (event: PromiseRejectionEvent) =>
+    readonly #promiseHandler = (event: PromiseRejectionEvent) =>
     {
         this.setState({ error: event.reason });
 

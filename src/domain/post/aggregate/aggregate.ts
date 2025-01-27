@@ -12,7 +12,7 @@ export default async function aggregate(requester: Requester, data: DataModel): 
     const [creatorData, comicData, hasRated] = await Promise.all([
         getRelationData(requester.id, data.creatorId),
         getComicData(data.comicId),
-        ratingExists(requester.id, data.id, undefined),
+        ratingExists(requester.id, data.id),
     ]);
 
     return {
