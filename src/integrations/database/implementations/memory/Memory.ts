@@ -26,7 +26,7 @@ const LOGICAL_OPERATORS =
 
 export default class Memory implements Driver
 {
-    #memory = new Map<string, RecordData[]>();
+    readonly #memory = new Map<string, RecordData[]>();
     #connected = false;
     recordId = 0;
 

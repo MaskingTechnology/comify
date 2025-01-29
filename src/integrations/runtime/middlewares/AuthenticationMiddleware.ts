@@ -20,10 +20,10 @@ const sessions = new Map<string, Session>();
 
 export default class AuthenticationMiddleware implements Middleware
 {
-    #identityProvider: IdentityProvider;
-    #authProcedures: AuthProcedures;
-    #redirectUrl: string;
-    #whiteList: string[];
+    readonly #identityProvider: IdentityProvider;
+    readonly #authProcedures: AuthProcedures;
+    readonly #redirectUrl: string;
+    readonly #whiteList: string[];
 
     constructor(identityProvider: IdentityProvider, authProcedures: AuthProcedures, redirectUrl: string, whiteList: string[])
     {

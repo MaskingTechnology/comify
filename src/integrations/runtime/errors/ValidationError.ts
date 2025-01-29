@@ -3,7 +3,7 @@ import { BadRequest } from 'jitar';
 
 export default class ValidationError extends BadRequest
 {
-    #messages: Map<string, string>;
+    readonly #messages: Map<string, string>;
 
     constructor(messages: Map<string, string>)
     {

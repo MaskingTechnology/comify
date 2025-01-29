@@ -6,13 +6,13 @@ import type { SortOrder } from '../definitions';
 import getFollowing from '../getFollowing';
 import type { DataModel } from '../types';
 
-export default async function explore(requester: Requester, order: SortOrder, search: string | undefined = undefined, limit: number, offset: number): Promise<DataModel[]>
+export default async function explore(requester: Requester, order: SortOrder, limit: number, offset: number, search: string | undefined = undefined): Promise<DataModel[]>
 {
     const followingData = await getFollowing(requester, requester.id);
     const followingIds = followingData.map(data => data.followingId);
     followingIds.push(requester.id);
 
-    const creatorData = await getOtherCreators(followingIds, order, search, limit, offset);
+    const creatorData = await getOtherCreators(followingIds, order, limit, offset, search);
 
     return creatorData.map(data =>
     {

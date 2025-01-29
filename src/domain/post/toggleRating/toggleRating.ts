@@ -15,7 +15,7 @@ export default async function toggleRating(requester: Requester, postId: string)
 
     try
     {
-        ratingId = await updateRating(requester, postId, undefined);
+        ratingId = await updateRating(requester, postId);
 
         if (ratingId === undefined)
         {
@@ -28,7 +28,7 @@ export default async function toggleRating(requester: Requester, postId: string)
 
         const post = await getPost(postId);
 
-        await createNotification(Types.RATED_POST, requester.id, post.creatorId, postId, undefined);
+        await createNotification(Types.RATED_POST, requester.id, post.creatorId, postId);
 
         return true;
     }
@@ -38,7 +38,7 @@ export default async function toggleRating(requester: Requester, postId: string)
 
         if (ratingId !== undefined) 
         {
-            await updateRating(requester, postId, undefined);
+            await updateRating(requester, postId);
         }
 
         throw error;

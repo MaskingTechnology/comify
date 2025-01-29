@@ -6,7 +6,7 @@ import { RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType 
 
 export default class Database implements Driver
 {
-    #driver: Driver;
+    readonly #driver: Driver;
 
     constructor(driver: Driver)
     {
