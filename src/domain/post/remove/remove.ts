@@ -2,11 +2,11 @@
 import logger from '^/integrations/logging';
 
 import { Requester } from '^/domain/authentication';
-import updateCreatorPostCount from '^/domain/creator/updatePostCount';
 
 import PostNotFound from '../PostNotFound';
 import removeData from './deleteData';
 import ownsData from './ownsData';
+import publishEvent from './publishEvent';
 
 export default async function remove(requester: Requester, id: string): Promise<void>
 {
@@ -20,22 +20,15 @@ export default async function remove(requester: Requester, id: string): Promise<
         throw new PostNotFound();
     }
 
-    let creatorCount;
-
     try
     {
-        creatorCount = await updateCreatorPostCount(requester.id, 'decrease');
-
         await removeData(id);
+
+        publishEvent(requester.id, id);
     }
     catch (error: unknown)
     {
         logger.logError('Failed to remove post', error);
-
-        if (creatorCount !== undefined)
-        {
-            await updateCreatorPostCount(requester.id, 'increase');
-        }
 
         throw error;
     }

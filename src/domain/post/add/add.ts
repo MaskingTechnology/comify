@@ -3,10 +3,11 @@ import logger from '^/integrations/logging';
 
 import { Requester } from '^/domain/authentication';
 import createComic from '^/domain/comic/create';
-import updateCreatorPostCount from '^/domain/creator/updatePostCount';
 
 import createPost from '../create';
 import erasePost from '../erase';
+
+import publishEvent from './publishEvent';
 
 export default async function add(requester: Requester, comicImageDataUrl: string): Promise<void>
 {
@@ -18,7 +19,7 @@ export default async function add(requester: Requester, comicImageDataUrl: strin
 
         postId = await createPost(requester.id, comicId);
 
-        await updateCreatorPostCount(requester.id, 'increase');
+        publishEvent(requester.id, postId);
     }
     catch (error: unknown)
     {
