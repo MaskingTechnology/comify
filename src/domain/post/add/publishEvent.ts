@@ -4,11 +4,11 @@ import eventBroker from '^/integrations/eventbroker';
 import { EVENT_CHANNEL } from '../definitions';
 
 import { EVENT_NAME } from './definitions';
-import { AddedEvent } from './types';
+import { AddedPublication } from './types';
 
 export default async function publishEvent(requesterId: string, postId: string): Promise<void>
 {
-    const event: AddedEvent = {
+    const publication: AddedPublication = {
         channel: EVENT_CHANNEL,
         name: EVENT_NAME,
         data: {
@@ -17,5 +17,5 @@ export default async function publishEvent(requesterId: string, postId: string):
         }
     };
 
-    return eventBroker.publish(event);
+    return eventBroker.publish(publication);
 }

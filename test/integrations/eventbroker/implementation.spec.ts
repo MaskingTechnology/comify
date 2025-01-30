@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import eventBroker from '^/integrations/eventbroker';
 
-import { createSubscription, EVENT_BROKERS, EVENTS } from './fixtures';
+import { createSubscription, EVENT_BROKERS, EVENTS, PUBLICATIONS } from './fixtures';
 
 beforeEach(async () =>
 {
@@ -19,12 +19,12 @@ describe('integrations/eventbroker/implementation', () =>
             const subscription1 = createSubscription(EVENTS.FIRST_CREATED);
             const subscription2 = createSubscription(EVENTS.FIRST_CREATED);
 
-            await eventBroker.publish(EVENTS.FIRST_CREATED);
+            await eventBroker.publish(PUBLICATIONS.FIRST_CREATED);
 
             const [data1, data2] = await Promise.all([subscription1, subscription2]);
 
-            expect(data1).toStrictEqual(EVENTS.FIRST_CREATED.data);
-            expect(data2).toStrictEqual(EVENTS.FIRST_CREATED.data);
+            expect(data1).toStrictEqual(PUBLICATIONS.FIRST_CREATED.data);
+            expect(data2).toStrictEqual(PUBLICATIONS.FIRST_CREATED.data);
         });
 
         it('should publish to different channels', async () =>
@@ -32,13 +32,13 @@ describe('integrations/eventbroker/implementation', () =>
             const firstSubscription = createSubscription(EVENTS.FIRST_CREATED);
             const secondSubscription = createSubscription(EVENTS.SECOND_CREATED);
 
-            await eventBroker.publish(EVENTS.FIRST_CREATED);
-            await eventBroker.publish(EVENTS.SECOND_CREATED);
+            await eventBroker.publish(PUBLICATIONS.FIRST_CREATED);
+            await eventBroker.publish(PUBLICATIONS.SECOND_CREATED);
 
             const [firstData, secondData] = await Promise.all([firstSubscription, secondSubscription]);
 
-            expect(firstData).toStrictEqual(EVENTS.FIRST_CREATED.data);
-            expect(secondData).toStrictEqual(EVENTS.SECOND_CREATED.data);
+            expect(firstData).toStrictEqual(PUBLICATIONS.FIRST_CREATED.data);
+            expect(secondData).toStrictEqual(PUBLICATIONS.SECOND_CREATED.data);
         });
     });
 });

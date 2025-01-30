@@ -1,6 +1,6 @@
 
 import { Driver } from './definitions/interfaces';
-import { Event, EventHandler } from './definitions/types';
+import { Publication, Subscription } from './definitions/types';
 
 export default class EventBroker implements Driver
 {
@@ -23,19 +23,19 @@ export default class EventBroker implements Driver
         return this.#driver.disconnect();
     }
 
-    publish<T>(event: Event<T>): Promise<void>
+    publish<T>(publication: Publication<T>): Promise<void>
     {
-        return this.#driver.publish(event);
+        return this.#driver.publish(publication);
     }
 
-    subscribe<T>(event: Event<T>, handler: EventHandler<T>): Promise<void>
+    subscribe<T>(subscription: Subscription<T>): Promise<void>
     {
-        return this.#driver.subscribe(event, handler);
+        return this.#driver.subscribe(subscription);
     }
 
-    unsubscribe<T>(event: Event<T>, handler: EventHandler<T>): Promise<void>
+    unsubscribe<T>(subscription: Subscription<T>): Promise<void>
     {
-        return this.#driver.unsubscribe(event, handler);
+        return this.#driver.unsubscribe(subscription);
     }
 
     clear(): Promise<void>

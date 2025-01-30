@@ -1,30 +1,21 @@
 
-const EVENT_CHANNELS =
+const CHANNELS =
 {
     FIRST: 'first',
     SECOND: 'second'
 };
 
-const EVENT_NAMES =
+const NAMES =
 {
     CREATED: 'created',
     UPDATED: 'updated'
 };
 
-const EVENT_DATA =
-{
-    FIRST_CREATED: 'first-created',
-    FIRST_UPDATED: 'first-updated',
-
-    SECOND_CREATED: 'second-created',
-    SECOND_UPDATED: 'second-updated'
-};
-
 export const EVENTS =
 {
-    FIRST_CREATED: { channel: EVENT_CHANNELS.FIRST, name: EVENT_NAMES.CREATED, data: EVENT_DATA.FIRST_CREATED },
-    FIRST_UPDATED: { channel: EVENT_CHANNELS.FIRST, name: EVENT_NAMES.UPDATED, data: EVENT_DATA.FIRST_UPDATED },
+    FIRST_CREATED: { channel: CHANNELS.FIRST, name: NAMES.CREATED },
+    FIRST_UPDATED: { channel: CHANNELS.FIRST, name: NAMES.UPDATED },
 
-    SECOND_CREATED: { channel: EVENT_CHANNELS.SECOND, name: EVENT_NAMES.CREATED, data: EVENT_DATA.SECOND_CREATED },
-    SECOND_UPDATED: { channel: EVENT_CHANNELS.SECOND, name: EVENT_NAMES.UPDATED, data: EVENT_DATA.SECOND_UPDATED }
+    SECOND_CREATED: { channel: CHANNELS.SECOND, name: NAMES.CREATED },
+    SECOND_UPDATED: { channel: CHANNELS.SECOND, name: NAMES.UPDATED }
 };

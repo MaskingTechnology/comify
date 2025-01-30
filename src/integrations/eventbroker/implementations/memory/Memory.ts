@@ -2,14 +2,14 @@
 import { EventEmitter } from 'events';
 
 import { Driver } from '../../definitions/interfaces';
-import { Event, EventHandler } from '../../definitions/types';
+import { Event, Publication, Subscription } from '../../definitions/types';
 
 export default class Memory implements Driver
 {
     #connected = false;
     #emitters = new Map<string, EventEmitter>();
 
-    get connected() { return this.#connected; }
+    get connected() { return true; /*this.#connected;*/ }
 
     async connect(): Promise<void>
     {
@@ -21,25 +21,25 @@ export default class Memory implements Driver
         this.#connected = false;
     }
 
-    async publish<T>(event: Event<T>): Promise<void>
+    async publish<T>(publication: Publication<T>): Promise<void>
     {
-        const emitter = this.#getEmitter(event);
+        const emitter = this.#getEmitter(publication);
 
-        emitter.emit(event.name, event.data);
+        emitter.emit(publication.name, publication.data);
     }
 
-    async subscribe<T>(event: Event<T>, handler: EventHandler<T>): Promise<void>
+    async subscribe<T>(subscription: Subscription<T>): Promise<void>
     {
-        const emitter = this.#getEmitter(event);
+        const emitter = this.#getEmitter(subscription);
 
-        emitter.on(event.name, handler);
+        emitter.on(subscription.name, subscription.handler);
     }
 
-    async unsubscribe<T>(event: Event<T>, handler: EventHandler<T>): Promise<void>
+    async unsubscribe<T>(subscription: Subscription<T>): Promise<void>
     {
-        const emitter = this.#getEmitter(event);
+        const emitter = this.#getEmitter(subscription);
 
-        emitter.off(event.name, handler);
+        emitter.off(subscription.name, subscription.handler);
     }
 
     async clear(): Promise<void>
@@ -47,7 +47,7 @@ export default class Memory implements Driver
         this.#emitters.clear();
     }
 
-    #getEmitter<T>(event: Event<T>): EventEmitter
+    #getEmitter<T>(event: Event): EventEmitter
     {
         if (this.#emitters.has(event.channel) === false)
         {

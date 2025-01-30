@@ -1,5 +1,5 @@
 
-import { Event, EventHandler } from './types';
+import { Publication, Subscription } from './types';
 
 export interface Driver
 {
@@ -8,9 +8,9 @@ export interface Driver
     connect(): Promise<void>;
     disconnect(): Promise<void>;
 
-    publish<T>(event: Event<T>): Promise<void>;
-    subscribe<T>(event: Event<T>, handler: EventHandler<T>): Promise<void>;
-    unsubscribe<T>(event: Event<T>, handler: EventHandler<T>): Promise<void>;
+    publish<T>(publication: Publication<T>): Promise<void>;
+    subscribe<T>(subscription: Subscription<T>): Promise<void>;
+    unsubscribe<T>(subscription: Subscription<T>): Promise<void>;
 
     clear(): Promise<void>;
 }

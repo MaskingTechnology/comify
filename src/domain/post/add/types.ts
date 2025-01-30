@@ -1,9 +1,12 @@
 
-import { Event } from '^/integrations/eventbroker';
+import { Publication, Subscription } from '^/integrations/eventbroker';
 
-export type AddedEvent = Event<{
+export type AddedEventData = {
     requesterId: string;
     postId: string;
-}>;
+};
+
+export type AddedPublication = Publication<AddedEventData>;
+export type AddedSubscription = Subscription<AddedEventData>;
 
 export type AddedEventHandler = (requesterId: string, postId: string) => void;
