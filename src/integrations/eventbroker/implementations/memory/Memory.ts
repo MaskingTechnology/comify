@@ -6,10 +6,11 @@ import { Event, Publication, Subscription } from '../../definitions/types';
 
 export default class Memory implements Driver
 {
-    #connected = false;
-    #emitters = new Map<string, EventEmitter>();
+    readonly #emitters = new Map<string, EventEmitter>();
 
-    get connected() { return true; /*this.#connected;*/ }
+    #connected = true; //false;
+
+    get connected() { return this.#connected; }
 
     async connect(): Promise<void>
     {
@@ -47,7 +48,7 @@ export default class Memory implements Driver
         this.#emitters.clear();
     }
 
-    #getEmitter<T>(event: Event): EventEmitter
+    #getEmitter(event: Event): EventEmitter
     {
         if (this.#emitters.has(event.channel) === false)
         {

@@ -6,7 +6,7 @@ import { EVENT_CHANNEL } from '../definitions';
 import { EVENT_NAME } from './definitions';
 import { AddedEventHandler, AddedSubscription } from './types';
 
-export default async function subscribeEvent(handler: AddedEventHandler): Promise<void>
+export default async function subscribe(handler: AddedEventHandler): Promise<void>
 {
     const subscription: AddedSubscription = {
         channel: EVENT_CHANNEL,

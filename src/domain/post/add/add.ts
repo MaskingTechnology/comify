@@ -7,7 +7,7 @@ import createComic from '^/domain/comic/create';
 import createPost from '../create';
 import erasePost from '../erase';
 
-import publishEvent from './publishEvent';
+import publish from './publish';
 
 export default async function add(requester: Requester, comicImageDataUrl: string): Promise<void>
 {
@@ -19,7 +19,7 @@ export default async function add(requester: Requester, comicImageDataUrl: strin
 
         postId = await createPost(requester.id, comicId);
 
-        publishEvent(requester.id, postId);
+        publish(requester.id, postId);
     }
     catch (error: unknown)
     {

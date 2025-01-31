@@ -21,7 +21,6 @@
     "./domain/reaction/getById": { "default": {  "access": "protected" } },
     "./domain/reaction/getByPost": { "default": {  "access": "protected" } },
 
-    "./domain/relation/establish": { "default": {  "access": "protected" } },
     "./domain/relation/explore": { "default": {  "access": "protected" } },
     "./domain/relation/get": { "default": {  "access": "protected" } },
     "./domain/relation/getFollowers": { "default": {  "access": "protected" } },

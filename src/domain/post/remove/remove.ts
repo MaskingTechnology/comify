@@ -4,9 +4,10 @@ import logger from '^/integrations/logging';
 import { Requester } from '^/domain/authentication';
 
 import PostNotFound from '../PostNotFound';
+
 import removeData from './deleteData';
 import ownsData from './ownsData';
-import publishEvent from './publishEvent';
+import publish from './publish';
 
 export default async function remove(requester: Requester, id: string): Promise<void>
 {
@@ -24,7 +25,7 @@ export default async function remove(requester: Requester, id: string): Promise<
     {
         await removeData(id);
 
-        publishEvent(requester.id, id);
+        publish(requester.id, id);
     }
     catch (error: unknown)
     {

@@ -2,15 +2,17 @@
 import logger from '^/integrations/logging';
 
 import { Requester } from '^/domain/authentication';
-import { Types } from '^/domain/notification';
-import createNotification from '^/domain/notification/create';
 import getPost from '^/domain/post/getById';
 import updateRating from '^/domain/rating/update';
 
 import updateRatingCount from '../updateRatingCount';
 
+import publish from './publish';
+
 export default async function toggleRating(requester: Requester, postId: string): Promise<boolean>
 {
+    const post = await getPost(postId);
+
     let ratingId;
 
     try
@@ -26,9 +28,7 @@ export default async function toggleRating(requester: Requester, postId: string)
 
         await updateRatingCount(postId, 'increase');
 
-        const post = await getPost(postId);
-
-        await createNotification(Types.RATED_POST, requester.id, post.creatorId, postId);
+        publish(requester.id, post.creatorId, post.id);
 
         return true;
     }
