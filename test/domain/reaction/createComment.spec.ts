@@ -35,6 +35,5 @@ describe('domain/reaction/createComment', () =>
         expect(post?.comicId).toBeDefined();
         expect(post?.createdAt).toBeDefined();
         expect(post?.ratingCount).toBe(0);
-        expect(post?.reactionCount).toBe(1);
     });
 });

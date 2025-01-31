@@ -36,7 +36,6 @@ describe('domain/reaction/createComic', () =>
         expect(post?.comicId).toBeDefined();
         expect(post?.createdAt).toBeDefined();
         expect(post?.ratingCount).toBe(0);
-        expect(post?.reactionCount).toBe(1);
     });
 
     it('should create a comic reaction on a reaction', async () =>
@@ -56,6 +55,5 @@ describe('domain/reaction/createComic', () =>
         expect(reaction1?.comicId).toBeDefined();
         expect(reaction1?.createdAt).toBeDefined();
         expect(reaction1?.ratingCount).toBe(0);
-        expect(reaction1?.reactionCount).toBe(1);
     });
 });

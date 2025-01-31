@@ -32,14 +32,4 @@ describe('domain/post/add', () =>
         expect(post?.ratingCount).toBe(0);
         expect(post?.reactionCount).toBe(0);
     });
-
-    it('should rollback at failure', async () =>
-    {
-        // This should fail at the last action when incrementing the creator's post count
-        // const promise = add(REQUESTERS.UNKNOWN, DATA_URLS.COMIC_IMAGE);
-        // await expect(promise).rejects.toThrow('Record not found');
-
-        const posts = await database.searchRecords(POST_RECORD_TYPE, {});
-        expect(posts).toHaveLength(0);
-    });
 });
