@@ -2,12 +2,12 @@
 import logger from '^/integrations/logging';
 
 import { Requester } from '^/domain/authentication';
-import { Types } from '^/domain/notification';
-import createNotification from '^/domain/notification/create';
 import updateRating from '^/domain/rating/update';
 import getReaction from '^/domain/reaction/getById';
 
 import updateRatingCount from '../updateRatingCount';
+
+import publish from './publish';
 
 export default async function toggleRating(requester: Requester, reactionId: string): Promise<boolean>
 {
@@ -28,7 +28,7 @@ export default async function toggleRating(requester: Requester, reactionId: str
 
         const reaction = await getReaction(reactionId);
 
-        await createNotification(Types.RATED_REACTION, requester.id, reaction.creatorId, undefined, reactionId);
+        publish(requester.id, reaction.creatorId, reaction.id);
 
         return true;
     }

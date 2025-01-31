@@ -1,17 +1,14 @@
 
 import logger from '^/integrations/logging';
 
-import createNotification from '^/domain/notification/create';
-import { Types } from '^/domain/notification/definitions';
 import retrievePost from '^/domain/post/getById';
-import updatePostReactionCount from '^/domain/post/updateReactionCount';
 
 import retrieveReaction from '../getById';
-import updateReactionReactionCount from '../updateReactionCount';
 
 import createData from './createData';
 import eraseData from './eraseData';
 import insertData from './insertData';
+import publish from './publish';
 import validateData from './validateData';
 
 export default async function feature(creatorId: string, postId: string | undefined = undefined, reactionId: string | undefined = undefined, comicId: string | undefined = undefined, commentId: string | undefined = undefined): Promise<string>
@@ -28,20 +25,16 @@ export default async function feature(creatorId: string, postId: string | undefi
 
         if (postId !== undefined)
         {
-            await updatePostReactionCount(postId, 'increase');
-
             const post = await retrievePost(postId);
 
-            await createNotification(Types.ADDED_REACTION_POST, creatorId, post.creatorId, postId, undefined, id);
+            publish(creatorId, id, post.creatorId, post.id);
         }
 
         if (reactionId !== undefined)
         {
-            await updateReactionReactionCount(reactionId, 'increase');
-
             const reaction = await retrieveReaction(reactionId);
 
-            await createNotification(Types.ADDED_REACTION_REACTION, creatorId, reaction.creatorId, undefined, reactionId, id);
+            publish(creatorId, id, reaction.creatorId, undefined, reaction.id);
         }
 
         return id;
