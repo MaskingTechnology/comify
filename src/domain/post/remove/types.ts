@@ -2,11 +2,12 @@
 import { Publication, Subscription } from '^/integrations/eventbroker';
 
 export type RemovedEventData = {
-    requesterId: string;
+    creatorId: string;
     postId: string;
+    parentId?: string;
 };
 
 export type RemovedPublication = Publication<RemovedEventData>;
 export type RemovedSubscription = Subscription<RemovedEventData>;
 
-export type RemovedEventHandler = (requesterId: string, postId: string) => void;
+export type RemovedEventHandler = (eventData: RemovedEventData) => void;

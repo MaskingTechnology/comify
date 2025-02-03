@@ -11,16 +11,12 @@
     "./domain/image/save": { "default": {  "access": "protected" } },
     "./domain/image/erase": { "default": {  "access": "protected" } },
 
-    "./domain/post/create": { "default": {  "access": "protected" } },
+    "./domain/post/create/insertData": { "default": {  "access": "protected" } },
     "./domain/post/erase": { "default": {  "access": "protected" } },
     "./domain/post/remove/deleteData": { "default": { "access": "protected" }},
     "./domain/post/update": { "default": {  "access": "protected" } },
 
     "./domain/rating/update": { "default": {  "access": "protected" } },
-
-    "./domain/reaction/create": { "default": {  "access": "protected" } },
-    "./domain/reaction/remove/deleteData": { "default": {  "access": "protected" } },
-    "./domain/reaction/update": { "default": {  "access": "protected" } },
 
     "./domain/relation/establish/insertData": { "default": {  "access": "protected" } },
     "./domain/relation/establish/eraseData": { "default": {  "access": "protected" } }

@@ -3,11 +3,10 @@ import { useCallback } from 'react';
 
 import { requester } from '^/domain/authentication';
 import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
-import type { AggregatedData as AggregatedReactionData } from '^/domain/reaction/aggregate';
-import createCommentReaction from '^/domain/reaction/createWithComment';
-import getReaction from '^/domain/reaction/getByIdAggregated';
+import createCommentReaction from '^/domain/post/createWithComment';
+import getReaction from '^/domain/post/getByIdAggregated';
 
-export default function useCreateCommentReaction(post: AggregatedPostData, handleDone: (reaction?: AggregatedReactionData) => void)
+export default function useCreateCommentReaction(post: AggregatedPostData, handleDone: (reaction?: AggregatedPostData) => void)
 {
     return useCallback(async (comment: string) =>
     {

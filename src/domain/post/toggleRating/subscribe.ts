@@ -11,7 +11,7 @@ export default async function subscribe(handler: RatedEventHandler): Promise<voi
     const subscription: RatedSubscription = {
         channel: EVENT_CHANNEL,
         name: EVENT_NAME,
-        handler: (data) => handler(data.requesterId, data.creatorId, data.postId)
+        handler
     };
 
     return eventBroker.subscribe(subscription);

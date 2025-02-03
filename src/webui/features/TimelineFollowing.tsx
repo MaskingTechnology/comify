@@ -29,7 +29,7 @@ export default function Feature()
                         onRatingClick={togglePostRating}
                         onReactionClick={viewPostDetails}
                         onCreatorClick={viewProfile}
-                        onComicClick={viewPostDetails}
+                        onContentClick={viewPostDetails}
                     />
                 </ResultSet>
             </ScrollLoader>

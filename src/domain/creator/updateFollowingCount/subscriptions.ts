@@ -6,7 +6,7 @@ import updateFollowingCount from './updateFollowingCount';
 async function subscribe(): Promise<void>
 {
     await Promise.all([
-        subscribeToRelationEstablished((requesterId) => updateFollowingCount(requesterId, 'increase'))
+        subscribeToRelationEstablished(({ followerId }) => updateFollowingCount(followerId, 'increase'))
     ]);
 }
 

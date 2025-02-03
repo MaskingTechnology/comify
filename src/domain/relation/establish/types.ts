@@ -13,4 +13,4 @@ export type EstablishedEventData = {
 export type EstablishedPublication = Publication<EstablishedEventData>;
 export type EstablishedSubscription = Subscription<EstablishedEventData>;
 
-export type EstablishedEventHandler = (followerId: string, followingId: string) => void;
+export type EstablishedEventHandler = (eventData: EstablishedEventData) => void;

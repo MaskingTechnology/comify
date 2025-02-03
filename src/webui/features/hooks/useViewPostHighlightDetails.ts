@@ -10,7 +10,7 @@ export default function useViewPostHighlightDetails()
 
     return useCallback((notification: NotificationView) =>
     {
-        navigate(`/post/${notification.targetPost?.id}/highlight/${notification.sourceReaction?.id}`);
+        navigate(`/post/${notification.post?.parentId}/highlight/${notification.post?.id}`);
 
     }, [navigate]);
 }

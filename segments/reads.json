@@ -15,11 +15,9 @@
     "./domain/post/getByCreator": { "default": {  "access": "protected" } },
     "./domain/post/getByFollowing": { "default": {  "access": "protected" } },
     "./domain/post/getById": { "default": {  "access": "protected" } },
+    "./domain/post/getByParent": { "default": {  "access": "protected" } },
 
     "./domain/rating/exists": { "default": {  "access": "protected" } },
-
-    "./domain/reaction/getById": { "default": {  "access": "protected" } },
-    "./domain/reaction/getByPost": { "default": {  "access": "protected" } },
 
     "./domain/relation/explore": { "default": {  "access": "protected" } },
     "./domain/relation/get": { "default": {  "access": "protected" } },

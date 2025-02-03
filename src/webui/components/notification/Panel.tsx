@@ -1,14 +1,13 @@
 
+import { Types } from '^/domain/notification';
 import type { AggregatedData as AggregatedNotificationData } from '^/domain/notification/aggregate';
 import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
 import { Column, Panel } from '^/webui/designsystem';
 
 import TimeElapsed from '../relation/TimeElapsed';
-import AddedPostReaction from './elementary/AddedPostReaction';
-import AddedReactionReaction from './elementary/AddedReactionReaction';
 import RatedPost from './elementary/RatedPost';
-import RatedReaction from './elementary/RatedReaction';
+import ReactedToPost from './elementary/ReactedToPost';
 import StartedFollowing from './elementary/StartedFollowing';
 
 type Props = {
@@ -22,11 +21,9 @@ function getContent(notification: AggregatedNotificationData, onNotificationClic
 {
     switch (notification.type)
     {
-        case 'started-following': return <StartedFollowing isFollowing={notification.relation.established} />;
-        case 'rated-post': return <RatedPost notification={notification} onPostClick={onNotificationClick} />;
-        case 'rated-reaction': return <RatedReaction notification={notification} onReactionClick={onNotificationClick} />;
-        case 'added-reaction-post': return <AddedPostReaction notification={notification} onPostHighlightClick={onNotificationClick} />;
-        case 'added-reaction-reaction': return <AddedReactionReaction notification={notification} onReactionHighlightClick={onNotificationClick} />;
+        case Types.STARTED_FOLLOWING: return <StartedFollowing isFollowing={notification.relation.established} />;
+        case Types.RATED_POST: return <RatedPost post={notification.post!} onClick={() => onNotificationClick(notification)} />;
+        case Types.REACTED_TO_POST: return <ReactedToPost post={notification.post!} onClick={() => onNotificationClick(notification)} />;
     }
 }
 

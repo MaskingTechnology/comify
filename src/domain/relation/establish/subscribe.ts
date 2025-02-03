@@ -11,7 +11,7 @@ export default async function subscribe(handler: EstablishedEventHandler): Promi
     const subscription: EstablishedSubscription = {
         channel: EVENT_CHANNEL,
         name: EVENT_NAME,
-        handler: (data) => handler(data.followerId, data.followingId)
+        handler
     };
 
     return eventBroker.subscribe(subscription);

@@ -2,7 +2,7 @@
 import { Publication, Subscription } from '^/integrations/eventbroker';
 
 export type RatedEventData = {
-    requesterId: string;
+    raterId: string;
     creatorId: string;
     postId: string;
 };
@@ -10,4 +10,4 @@ export type RatedEventData = {
 export type RatedPublication = Publication<RatedEventData>;
 export type RatedSubscription = Subscription<RatedEventData>;
 
-export type RatedEventHandler = (requesterId: string, creatorId: string, postId: string) => void;
+export type RatedEventHandler = (eventData: RatedEventData) => void;

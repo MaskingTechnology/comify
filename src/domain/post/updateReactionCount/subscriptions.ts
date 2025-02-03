@@ -1,18 +1,23 @@
 
-import { subscribe as subscribeToReactionCreated } from '^/domain/reaction/create';
+import { subscribe as subscribeToPostCreated } from '^/domain/post/create';
+import { subscribe as subscribeToPostRemoved } from '^/domain/post/remove';
 
 import updateReactionCount from './updateReactionCount';
 
 async function subscribe(): Promise<void>
 {
-    await subscribeToReactionCreated((creatorId, reactionId, targetCreatorId, targetPostId) =>
+    await subscribeToPostCreated(({ parentId }) =>
     {
-        if (targetPostId === undefined)
-        {
-            return;
-        }
+        if (parentId === undefined) return;
 
-        return updateReactionCount(targetPostId, 'increase');
+        return updateReactionCount(parentId, 'increase');
+    });
+
+    await subscribeToPostRemoved(({ parentId }) =>
+    {
+        if (parentId === undefined) return;
+
+        return updateReactionCount(parentId, 'decrease');
     });
 }
 

@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 
 import { requester } from '^/domain/authentication';
 import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
-import getReactionsByPost from '^/domain/reaction/getByPostAggregated';
+import getReactionsByPost from '^/domain/post/getByParentAggregated';
 
 import { usePagination } from '^/webui/hooks';
 

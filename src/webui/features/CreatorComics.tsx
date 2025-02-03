@@ -27,7 +27,7 @@ export default function Feature({ creator }: Props)
                 <ResultSet data={posts} isLoading={isLoading}>
                     <PostPanelGrid
                         posts={posts}
-                        onComicClick={viewPostDetails}
+                        onContentClick={viewPostDetails}
                         onRatingClick={togglePostRating}
                         onReactionClick={viewPostDetails}
                     />

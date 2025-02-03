@@ -1,5 +1,5 @@
 
-import { subscribe as subscribeToPostAdded } from '^/domain/post/add';
+import { subscribe as subscribeToPostAdded } from '^/domain/post/create';
 import { subscribe as subscribeToPostRemoved } from '^/domain/post/remove';
 
 import updatePostCount from './updatePostCount';
@@ -7,8 +7,8 @@ import updatePostCount from './updatePostCount';
 async function subscribe(): Promise<void>
 {
     await Promise.all([
-        subscribeToPostAdded((requesterId) => updatePostCount(requesterId, 'increase')),
-        subscribeToPostRemoved((requesterId) => updatePostCount(requesterId, 'decrease'))
+        subscribeToPostAdded(({ creatorId }) => updatePostCount(creatorId, 'increase')),
+        subscribeToPostRemoved(({ creatorId }) => updatePostCount(creatorId, 'decrease'))
     ]);
 }
 

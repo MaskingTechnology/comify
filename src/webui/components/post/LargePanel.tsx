@@ -4,7 +4,8 @@ import type { AggregatedData as AggregatedRelationData } from '^/domain/relation
 
 import { ClickArea, Column, Panel } from '^/webui/designsystem';
 
-import ComicImage from '../comic/Image';
+import Comic from '../comic/Image';
+import Comment from '../comment/Comment';
 import TimeElapsed from '../relation/TimeElapsed';
 import EngagementsRow from './elementary/EngagementRow';
 
@@ -12,12 +13,12 @@ type Props = {
     readonly post: AggregatedPostData;
     readonly onFollowClick: (relation: AggregatedRelationData) => Promise<void>;
     readonly onCreatorClick: (relation: AggregatedRelationData) => void;
-    readonly onComicClick: (post: AggregatedPostData) => void;
+    readonly onContentClick: (post: AggregatedPostData) => void;
     readonly onRatingClick: (post: AggregatedPostData) => Promise<boolean>;
     readonly onReactionClick: (post: AggregatedPostData) => void;
 };
 
-export default function Component({ post, onFollowClick, onCreatorClick, onComicClick, onRatingClick, onReactionClick }: Props)
+export default function Component({ post, onFollowClick, onCreatorClick, onContentClick, onRatingClick, onReactionClick }: Props)
 {
     return <Panel padding='medium'>
         <Column gap='medium' alignX='stretch'>
@@ -27,8 +28,9 @@ export default function Component({ post, onFollowClick, onCreatorClick, onComic
                 onFollowClick={onFollowClick}
                 onCreatorClick={onCreatorClick}
             />
-            <ClickArea onClick={() => onComicClick(post)}>
-                <ComicImage comic={post.comic} />
+            <ClickArea onClick={() => onContentClick(post)}>
+                {post.comic !== undefined && <Comic comic={post.comic} />}
+                {post.comment !== undefined && <Comment text={post.comment.message} />}
             </ClickArea>
             <EngagementsRow
                 isRated={post.hasRated}

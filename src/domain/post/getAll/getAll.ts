@@ -11,8 +11,9 @@ export async function getAll(requester: Requester, limit: number, offset: number
 {
     const query: RecordQuery =
     {
-        creatorId: { NOT_EQUALS: requester.id },
-        deleted: { EQUALS: false }
+        deleted: { EQUALS: false },
+        parentId: { EQUALS: null },
+        creatorId: { NOT_EQUALS: requester.id }
     };
 
     const sort: RecordSort = { createdAt: SortDirections.DESCENDING };

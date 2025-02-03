@@ -2,7 +2,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post';
-import add from '^/domain/post/add';
+import add from '^/domain/post/create';
 
 import database from '^/integrations/database';
 

@@ -5,17 +5,17 @@ import { Type } from '../definitions';
 import createData from './createData';
 import insertData from './insertData';
 
-export default async function feature(type: Type, senderId: string, receiverId: string, targetPostId: string | undefined = undefined, targetReactionId: string | undefined = undefined, sourceReactionId: string | undefined = undefined): Promise<void>
+export default async function feature(type: Type, senderId: string, receiverId: string, postId: string | undefined = undefined): Promise<void>
 {
     if (senderId === receiverId)
     {
         return;
     }
 
-    const data = createData(type, senderId, receiverId, targetPostId, targetReactionId, sourceReactionId);
-
     try
     {
+        const data = createData(type, senderId, receiverId, postId);
+
         await insertData(data);
     }
     catch (error: unknown)

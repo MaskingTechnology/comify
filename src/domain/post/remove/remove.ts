@@ -3,6 +3,7 @@ import logger from '^/integrations/logging';
 
 import { Requester } from '^/domain/authentication';
 
+import getById from '../getById';
 import PostNotFound from '../PostNotFound';
 
 import removeData from './deleteData';
@@ -14,6 +15,7 @@ export default async function remove(requester: Requester, id: string): Promise<
     // We only delete the post itself and do not cascade it towards the reactions as it doesn't add
     // any value, and it would make the code more complex.
 
+    const post = await getById(id);
     const isOwner = await ownsData(id, requester.id);
 
     if (isOwner === false)
@@ -25,7 +27,7 @@ export default async function remove(requester: Requester, id: string): Promise<
     {
         await removeData(id);
 
-        publish(requester.id, id);
+        publish(requester.id, post.id, post.parentId);
     }
     catch (error: unknown)
     {

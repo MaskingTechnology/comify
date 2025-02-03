@@ -8,8 +8,9 @@ export default async function getByCreator(creatorId: string, limit: number, off
 {
     const query: RecordQuery =
     {
-        creatorId: { 'EQUALS': creatorId },
-        deleted: { 'EQUALS': false }
+        deleted: { 'EQUALS': false },
+        parentId: { 'EQUALS': null },
+        creatorId: { 'EQUALS': creatorId }
     };
 
     const sort: RecordSort = { createdAt: SortDirections.DESCENDING };

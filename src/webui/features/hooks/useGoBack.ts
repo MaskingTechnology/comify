@@ -2,7 +2,7 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import type { AggregatedData as AggregatedReactionData } from '^/domain/reaction/aggregate';
+import type { AggregatedData as AggregatedReactionData } from '^/domain/post/aggregate';
 
 export default function useGoBack()
 {
@@ -10,15 +10,12 @@ export default function useGoBack()
 
     return useCallback((reaction: AggregatedReactionData) =>
     {
-        if (reaction.postId !== undefined)
+        if (reaction.parentId === undefined)
         {
-            navigate(`/post/${reaction.postId}`);
-        }
-        else
-        {
-            navigate(`/reaction/${reaction.reactionId}`);
+            return navigate('/');
         }
 
+        return navigate(`/post/${reaction.parentId}`);
 
     }, [navigate]);
 }

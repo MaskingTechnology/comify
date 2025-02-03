@@ -1,6 +1,7 @@
 
 import { Requester } from '^/domain/authentication';
 import getComicData from '^/domain/comic/getByIdAggregated';
+import getCommentData from '^/domain/comment/getById';
 import ratingExists from '^/domain/rating/exists';
 import getRelationData from '^/domain/relation/getAggregated';
 
@@ -9,10 +10,11 @@ import type { AggregatedData } from './types';
 
 export default async function aggregate(requester: Requester, data: DataModel): Promise<AggregatedData>
 {
-    const [creatorData, comicData, hasRated] = await Promise.all([
+    const [creatorData, hasRated, comicData, commentData] = await Promise.all([
         getRelationData(requester.id, data.creatorId),
-        getComicData(data.comicId),
-        ratingExists(requester.id, data.id),
+        ratingExists(requester.id, undefined, data.id),
+        data.comicId ? getComicData(data.comicId) : Promise.resolve(undefined),
+        data.commentId ? getCommentData(data.commentId) : Promise.resolve(undefined),
     ]);
 
     return {
@@ -20,6 +22,8 @@ export default async function aggregate(requester: Requester, data: DataModel): 
         createdAt: data.createdAt,
         creator: creatorData,
         comic: comicData,
+        comment: commentData,
+        parentId: data.parentId,
         ratingCount: data.ratingCount,
         reactionCount: data.reactionCount,
         hasRated
