@@ -3,7 +3,7 @@ import database, { RecordQuery } from '^/integrations/database';
 
 import { RECORD_TYPE } from '../definitions';
 
-export default async function dataExists(followerId: string, followingId: string): Promise<boolean>
+export default async function exists(followerId: string, followingId: string): Promise<boolean>
 {
     const query: RecordQuery =
     {

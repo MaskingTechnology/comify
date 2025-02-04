@@ -9,11 +9,14 @@ import PostNotFound from '../PostNotFound';
 import deleteData from './deleteData';
 import isNotOwner from './isNotOwner';
 import publish from './publish';
+import undeleteData from './undeleteData';
 
 export default async function remove(requester: Requester, id: string): Promise<void>
 {
     // We only delete the post itself and do not cascade it towards the reactions as it doesn't add
     // any value, and it would make the code more complex.
+
+    let deleted = false;
 
     try
     {
@@ -26,11 +29,18 @@ export default async function remove(requester: Requester, id: string): Promise<
 
         await deleteData(id);
 
-        publish(requester.id, post.id, post.parentId);
+        deleted = true;
+
+        await publish(requester.id, post.id, post.parentId);
     }
     catch (error: unknown)
     {
         logger.logError('Failed to remove post', error);
+
+        if (deleted)
+        {
+            await undeleteData(id);
+        }
 
         throw error;
     }

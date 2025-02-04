@@ -19,6 +19,6 @@
     "./domain/rating/create": { "default": {  "access": "protected" } },
     "./domain/rating/erase": { "default": {  "access": "protected" } },
 
-    "./domain/relation/establish/insertData": { "default": {  "access": "protected" } },
-    "./domain/relation/establish/eraseData": { "default": {  "access": "protected" } }
+    "./domain/relation/create": { "default": {  "access": "protected" } },
+    "./domain/relation/erase": { "default": {  "access": "protected" } }
 }

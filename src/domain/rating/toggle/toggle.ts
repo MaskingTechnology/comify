@@ -15,14 +15,14 @@ export default async function toggle(requester: Requester, postId: string): Prom
     {
         await erase(data.id);
 
-        publish(requester.id, postId, false);
+        await publish(requester.id, postId, false);
 
         return false;
     }
 
     await create(requester.id, postId);
 
-    publish(requester.id, postId, true);
+    await publish(requester.id, postId, true);
 
     return true;
 }

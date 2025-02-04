@@ -19,6 +19,7 @@
 
     "./domain/rating/exists": { "default": {  "access": "protected" } },
 
+    "./domain/relation/exists": { "default": {  "access": "protected" } },
     "./domain/relation/explore": { "default": {  "access": "protected" } },
     "./domain/relation/get": { "default": {  "access": "protected" } },
     "./domain/relation/getFollowers": { "default": {  "access": "protected" } },
