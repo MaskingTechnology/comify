@@ -11,8 +11,6 @@ export default function createData(creatorId: string, comicId?: string, commentI
         creatorId,
         comicId,
         commentId,
-        createdAt: new Date().toISOString(),
-        ratingCount: 0,
-        reactionCount: 0
+        createdAt: new Date().toISOString()
     };
 }

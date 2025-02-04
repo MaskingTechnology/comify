@@ -8,10 +8,6 @@ type DataModel = BaseDataModel &
     readonly email: string;
     readonly portraitId?: string;
     readonly joinedAt: string;
-    readonly postCount: number;
-    readonly followerCount: number;
-    readonly followingCount: number;
-    readonly popularity: number;
 };
 
 export type { CountOperation, DataModel };

@@ -7,9 +7,11 @@
     "./domain/creator/getMeAggregated": { "default": {  "access": "public" } },
     "./domain/creator/updateFullName": { "default": {  "access": "public" } },
     "./domain/creator/updateNickname": { "default": {  "access": "public" } },
-    "./domain/creator/updateFollowerCount": { "subscriptions": {  "access": "private" } },
-    "./domain/creator/updateFollowingCount": { "subscriptions": {  "access": "private" } },
-    "./domain/creator/updatePostCount": { "subscriptions": {  "access": "private" } },
+
+    "./domain/creator.metrics/create": { "subscriptions": {  "access": "private" } },
+    "./domain/creator.metrics/updateFollowerCount": { "subscriptions": {  "access": "private" } },
+    "./domain/creator.metrics/updateFollowingCount": { "subscriptions": {  "access": "private" } },
+    "./domain/creator.metrics/updatePostCount": { "subscriptions": {  "access": "private" } },
 
     "./domain/notification/notify": { "subscriptions": {  "access": "private" } },
     "./domain/notification/getRecentAggregated": { "default": {  "access": "public" } },
@@ -25,8 +27,10 @@
     "./domain/post/getAllAggregated": { "default": { "access": "public"}},
     "./domain/post/getByFollowingAggregated": { "default": {  "access": "public" } },
     "./domain/post/remove": { "default": {  "access": "public" }, "subscribe": {  "access": "private" } },
-    "./domain/post/updateRatingCount": { "subscriptions": {  "access": "private" } },
-    "./domain/post/updateReactionCount": { "subscriptions": {  "access": "private" } },
+
+    "./domain/post.metrics/create": { "subscriptions": {  "access": "private" } },
+    "./domain/post.metrics/updateRatingCount": { "subscriptions": {  "access": "private" } },
+    "./domain/post.metrics/updateReactionCount": { "subscriptions": {  "access": "private" } },
 
     "./domain/rating/toggle": { "default": { "access": "public" }, "subscribe": {  "access": "private" } },
 

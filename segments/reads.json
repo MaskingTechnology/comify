@@ -8,6 +8,8 @@
     "./domain/creator/getByNickname": { "default": {  "access": "protected" } },
     "./domain/creator/getMe": { "default": {  "access": "protected" } },
 
+    "./domain/creator.metrics/getByCreator": { "default": {  "access": "protected" } },
+
     "./domain/image/getById": { "default": {  "access": "protected" } },
 
     "./domain/post/explore": { "default": {  "access": "protected" } },
@@ -16,6 +18,8 @@
     "./domain/post/getByFollowing": { "default": {  "access": "protected" } },
     "./domain/post/getById": { "default": {  "access": "protected" } },
     "./domain/post/getByParent": { "default": {  "access": "protected" } },
+
+    "./domain/post.metrics/getByPost": { "default": {  "access": "protected" } },
 
     "./domain/rating/exists": { "default": {  "access": "protected" } },
 
