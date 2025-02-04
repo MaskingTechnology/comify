@@ -1,6 +1,6 @@
 
 import { subscribe as subscribeToPostCreated } from '^/domain/post/create';
-import { subscribe as subscribeToPostRated } from '^/domain/post/toggleRating';
+import { subscribe as subscribeToPostRated } from '^/domain/rating/toggle';
 import { subscribe as subscribeToRelationEstablished } from '^/domain/relation/establish';
 
 import reactedToPost from './createdPost';
@@ -10,9 +10,9 @@ import startedFollowing from './startedFollowing';
 async function subscribe(): Promise<void>
 {
     await Promise.all([
-        subscribeToPostRated(({ raterId, creatorId, postId }) => ratedPost(raterId, creatorId, postId)),
+        subscribeToPostRated(({ creatorId, postId, rated }) => ratedPost(creatorId, postId, rated)),
+        subscribeToPostCreated(({ creatorId, postId, parentId }) => reactedToPost(creatorId, postId, parentId)),
         subscribeToRelationEstablished(({ followerId, followingId }) => startedFollowing(followerId, followingId)),
-        subscribeToPostCreated(({ creatorId, parentCreatorId, postId }) => reactedToPost(creatorId, parentCreatorId, postId))
     ]);
 }
 

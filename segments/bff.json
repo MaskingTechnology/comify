@@ -25,8 +25,10 @@
     "./domain/post/getAllAggregated": { "default": { "access": "public"}},
     "./domain/post/getByFollowingAggregated": { "default": {  "access": "public" } },
     "./domain/post/remove": { "default": {  "access": "public" }, "subscribe": {  "access": "private" } },
-    "./domain/post/toggleRating": { "default": {  "access": "public" }, "subscribe": {  "access": "private" } },
+    "./domain/post/updateRatingCount": { "subscriptions": {  "access": "private" } },
     "./domain/post/updateReactionCount": { "subscriptions": {  "access": "private" } },
+
+    "./domain/rating/toggle": { "default": { "access": "public" }, "subscribe": {  "access": "private" } },
 
     "./domain/relation/exploreAggregated": { "default": {  "access": "public" } },
     "./domain/relation/establish": { "default": { "access": "public" }, "subscribe": {  "access": "private" } },

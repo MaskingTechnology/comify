@@ -1,9 +1,18 @@
 
 import { Types } from '../definitions';
 
+import getPost from '^/domain/post/getById';
+
 import create from '../create';
 
-export default async function ratedPost(senderId: string, receiverId: string, postId: string): Promise<void>
+export default async function ratedPost(creatorId: string, postId: string, rated: boolean): Promise<void>
 {
-    return create(Types.RATED_POST, senderId, receiverId, postId);
+    if (rated === false)
+    {
+        return;
+    }
+
+    const post = await getPost(postId);
+
+    return create(Types.RATED_POST, creatorId, post.creatorId, postId);
 }

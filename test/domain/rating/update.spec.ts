@@ -1,7 +1,7 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import update, { InvalidRating } from '^/domain/rating/update';
+import update, { InvalidRating } from '^/domain/rating/toggle';
 
 import { DATABASES, REQUESTERS, VALUES } from './fixtures';
 

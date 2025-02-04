@@ -1,14 +1,18 @@
 
 import { Types } from '../definitions';
 
+import getPost from '^/domain/post/getById';
+
 import create from '../create';
 
-export default async function createdPost(senderId: string, receiverId: string | undefined, postId: string): Promise<void>
+export default async function createdPost(creatorId: string, postId: string, parentId?: string): Promise<void>
 {
-    if (receiverId === undefined)
+    if (parentId === undefined)
     {
         return;
     }
 
-    return create(Types.REACTED_TO_POST, senderId, receiverId, postId);
+    const parentPost = await getPost(parentId);
+
+    return create(Types.REACTED_TO_POST, creatorId, parentPost.creatorId, postId);
 }

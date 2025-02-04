@@ -9,7 +9,6 @@ export type CreatedEventData = {
     creatorId: string;
     postId: string;
     parentId?: string;
-    parentCreatorId?: string;
 };
 
 export type CreatedPublication = Publication<CreatedEventData>;
