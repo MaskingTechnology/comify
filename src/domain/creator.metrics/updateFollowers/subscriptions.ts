@@ -1,7 +1,7 @@
 
 import { subscribe as subscribeToRelationEstablished } from '^/domain/relation/establish';
 
-import updateFollowerCount from './updateFollowerCount';
+import updateFollowerCount from './updateFollowers';
 
 async function subscribe(): Promise<void>
 {

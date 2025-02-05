@@ -8,9 +8,9 @@ export default function createData(creatorId: string): DataModel
     return {
         id: generateId(),
         creatorId,
-        postCount: 0,
-        followerCount: 0,
-        followingCount: 0,
+        posts: 0,
+        followers: 0,
+        following: 0,
         popularity: 0
     };
 }

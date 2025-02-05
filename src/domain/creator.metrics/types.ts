@@ -4,11 +4,10 @@ import { BaseDataModel, CountOperation } from '../types';
 type DataModel = BaseDataModel &
 {
     readonly creatorId: string;
-    readonly postCount: number;
-    readonly followerCount: number;
-    readonly followingCount: number;
+    readonly posts: number;
+    readonly followers: number;
+    readonly following: number;
     readonly popularity: number;
 };
 
 export type { CountOperation, DataModel };
-

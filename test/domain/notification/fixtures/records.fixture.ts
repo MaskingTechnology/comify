@@ -21,9 +21,9 @@ const CREATORS: CreatorDataModel[] = [
 ];
 
 const CREATOR_METRICS: CreatorMetricsDataModel[] = [
-    { id: VALUES.IDS.CREATOR1, creatorId: VALUES.IDS.CREATOR1, followerCount: 1, followingCount: 1, postCount: 1, popularity: 0 },
-    { id: VALUES.IDS.CREATOR2, creatorId: VALUES.IDS.CREATOR2, followerCount: 1, followingCount: 1, postCount: 1, popularity: 0 },
-    { id: VALUES.IDS.CREATOR3, creatorId: VALUES.IDS.CREATOR3, followerCount: 0, followingCount: 0, postCount: 0, popularity: 0 }
+    { id: VALUES.IDS.CREATOR1, creatorId: VALUES.IDS.CREATOR1, followers: 1, following: 1, posts: 1, popularity: 0 },
+    { id: VALUES.IDS.CREATOR2, creatorId: VALUES.IDS.CREATOR2, followers: 1, following: 1, posts: 1, popularity: 0 },
+    { id: VALUES.IDS.CREATOR3, creatorId: VALUES.IDS.CREATOR3, followers: 0, following: 0, posts: 0, popularity: 0 }
 ];
 
 const RELATIONS: RelationDataModel[] = [

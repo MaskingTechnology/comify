@@ -9,9 +9,9 @@
     "./domain/creator/updateNickname": { "default": {  "access": "public" } },
 
     "./domain/creator.metrics/create": { "subscriptions": {  "access": "private" } },
-    "./domain/creator.metrics/updateFollowerCount": { "subscriptions": {  "access": "private" } },
-    "./domain/creator.metrics/updateFollowingCount": { "subscriptions": {  "access": "private" } },
-    "./domain/creator.metrics/updatePostCount": { "subscriptions": {  "access": "private" } },
+    "./domain/creator.metrics/updateFollowers": { "subscriptions": {  "access": "private" } },
+    "./domain/creator.metrics/updateFollowing": { "subscriptions": {  "access": "private" } },
+    "./domain/creator.metrics/updatePosts": { "subscriptions": {  "access": "private" } },
 
     "./domain/notification/notify": { "subscriptions": {  "access": "private" } },
     "./domain/notification/getRecentAggregated": { "default": {  "access": "public" } },

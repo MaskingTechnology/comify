@@ -7,7 +7,7 @@ import { AggregatedData } from './types';
 
 export default async function aggregate(data: DataModel): Promise<AggregatedData>
 {
-    const [portraitData, metrics] = await Promise.all([
+    const [portraitData, metricsData] = await Promise.all([
         data.portraitId !== undefined ? getImageData(data.portraitId) : Promise.resolve(undefined),
         getMetrics(data.id)
     ]);
@@ -18,8 +18,6 @@ export default async function aggregate(data: DataModel): Promise<AggregatedData
         nickname: data.nickname,
         portrait: portraitData,
         joinedAt: data.joinedAt,
-        postCount: metrics.postCount,
-        followerCount: metrics.followerCount,
-        followingCount: metrics.followingCount
+        metrics: metricsData
     };
 }

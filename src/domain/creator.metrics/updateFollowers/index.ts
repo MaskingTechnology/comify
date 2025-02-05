@@ -1,4 +1,4 @@
 
-export { default } from './updateFollowerCount';
+export { default } from './updateFollowers';
 
 export { default as subscriptions } from './subscriptions';

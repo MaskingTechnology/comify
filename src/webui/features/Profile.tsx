@@ -34,13 +34,13 @@ export default function Feature()
                 onEditClick={editProfile}
             />
             <Tabs selectedId={tab} onChange={setTab} separator={separator}>
-                <Tab id='comics' title={`Comics (${relation?.following.postCount})`}>
+                <Tab id='comics' title={`Comics (${relation?.following.metrics.posts})`}>
                     <CreatorComics creator={relation?.following as AggregatedCreatorData} />
                 </Tab>
-                <Tab id='followers' title={`Followers (${relation?.following.followerCount})`}>
+                <Tab id='followers' title={`Followers (${relation?.following.metrics.followers})`}>
                     <CreatorFollowers creator={relation?.following as AggregatedCreatorData} />
                 </Tab>
-                <Tab id='following' title={`Following (${relation?.following.followingCount})`}>
+                <Tab id='following' title={`Following (${relation?.following.metrics.following})`}>
                     <CreatorFollowing creator={relation?.following as AggregatedCreatorData} />
                 </Tab>
             </Tabs>

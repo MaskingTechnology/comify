@@ -1,12 +1,12 @@
 
 import { subscribe as subscribeToRelationEstablished } from '^/domain/relation/establish';
 
-import updateFollowingCount from './updateFollowingCount';
+import updateFollowing from './updateFollowing';
 
 async function subscribe(): Promise<void>
 {
     await Promise.all([
-        subscribeToRelationEstablished(({ followerId }) => updateFollowingCount(followerId, 'increase'))
+        subscribeToRelationEstablished(({ followerId }) => updateFollowing(followerId, 'increase'))
     ]);
 }
 

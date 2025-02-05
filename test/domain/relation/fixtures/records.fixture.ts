@@ -17,12 +17,12 @@ const CREATORS: CreatorDataModel[] = [
 ];
 
 const CREATOR_METRICS: CreatorMetricsDataModel[] = [
-    { id: VALUES.IDS.CREATOR1, creatorId: VALUES.IDS.CREATOR1, postCount: 0, followerCount: 0, followingCount: 0, popularity: 0 },
-    { id: VALUES.IDS.CREATOR2, creatorId: VALUES.IDS.CREATOR2, postCount: 0, followerCount: 0, followingCount: 0, popularity: 0 },
-    { id: VALUES.IDS.CREATOR3, creatorId: VALUES.IDS.CREATOR3, postCount: 0, followerCount: 0, followingCount: 0, popularity: 0 },
-    { id: VALUES.IDS.CREATOR4, creatorId: VALUES.IDS.CREATOR4, postCount: 0, followerCount: 0, followingCount: 0, popularity: 0 },
-    { id: VALUES.IDS.CREATOR5, creatorId: VALUES.IDS.CREATOR5, postCount: 0, followerCount: 0, followingCount: 0, popularity: 0 },
-    { id: VALUES.IDS.CREATOR6, creatorId: VALUES.IDS.CREATOR6, postCount: 0, followerCount: 0, followingCount: 0, popularity: 0 }
+    { id: VALUES.IDS.CREATOR1, creatorId: VALUES.IDS.CREATOR1, posts: 0, followers: 0, following: 0, popularity: 0 },
+    { id: VALUES.IDS.CREATOR2, creatorId: VALUES.IDS.CREATOR2, posts: 0, followers: 0, following: 0, popularity: 0 },
+    { id: VALUES.IDS.CREATOR3, creatorId: VALUES.IDS.CREATOR3, posts: 0, followers: 0, following: 0, popularity: 0 },
+    { id: VALUES.IDS.CREATOR4, creatorId: VALUES.IDS.CREATOR4, posts: 0, followers: 0, following: 0, popularity: 0 },
+    { id: VALUES.IDS.CREATOR5, creatorId: VALUES.IDS.CREATOR5, posts: 0, followers: 0, following: 0, popularity: 0 },
+    { id: VALUES.IDS.CREATOR6, creatorId: VALUES.IDS.CREATOR6, posts: 0, followers: 0, following: 0, popularity: 0 }
 ];
 
 const RELATIONS: RelationDataModel[] = [

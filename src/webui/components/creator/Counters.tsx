@@ -16,9 +16,9 @@ export default function Component({ creator, onCreatorClick }: Props)
             fullName={creator.fullName}
             nickname={creator.nickname}
             onNameClick={() => onCreatorClick(creator)}
-            postCount={creator.postCount}
-            followerCount={creator.followerCount}
-            followingCount={creator.followingCount}
+            postCount={creator.metrics.posts}
+            followerCount={creator.metrics.followers}
+            followingCount={creator.metrics.following}
         />
     </AvatarRow>;
 }
