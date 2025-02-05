@@ -1,7 +1,7 @@
 
 import { subscribe as subscribeToRatingToggled } from '^/domain/rating/toggle';
 
-import updateRatingCount from './updateRatingCount';
+import updateRatings from './updateRatings';
 
 async function subscribe(): Promise<void>
 {
@@ -9,7 +9,7 @@ async function subscribe(): Promise<void>
     {
         const operation = rated ? 'increase' : 'decrease';
 
-        return updateRatingCount(postId, operation);
+        return updateRatings(postId, operation);
     });
 }
 

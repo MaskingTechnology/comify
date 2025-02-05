@@ -2,7 +2,7 @@
 import { subscribe as subscribeToPostCreated } from '^/domain/post/create';
 import { subscribe as subscribeToPostRemoved } from '^/domain/post/remove';
 
-import updateReactionCount from './updateReactionCount';
+import updateReactions from './updateReactions';
 
 async function subscribe(): Promise<void>
 {
@@ -10,14 +10,14 @@ async function subscribe(): Promise<void>
     {
         if (parentId === undefined) return;
 
-        return updateReactionCount(parentId, 'increase');
+        return updateReactions(parentId, 'increase');
     });
 
     await subscribeToPostRemoved(({ parentId }) =>
     {
         if (parentId === undefined) return;
 
-        return updateReactionCount(parentId, 'decrease');
+        return updateReactions(parentId, 'decrease');
     });
 }
 

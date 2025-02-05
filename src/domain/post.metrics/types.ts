@@ -4,8 +4,8 @@ import { BaseDataModel, CountOperation } from '../types';
 type DataModel = BaseDataModel &
 {
     readonly postId: string;
-    readonly ratingCount: number;
-    readonly reactionCount: number;
+    readonly ratings: number;
+    readonly reactions: number;
     readonly popularity: number;
 };
 

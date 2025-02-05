@@ -45,10 +45,10 @@ const POSTS: (PostDataModel & { deleted: boolean; })[] = [
 ];
 
 const POST_METRICS: PostMetricsDataModel[] = [
-    { id: VALUES.IDS.POST_RATED, postId: VALUES.IDS.POST_RATED, ratingCount: 1, reactionCount: 0, popularity: 0 },
-    { id: VALUES.IDS.POST_UNRATED, postId: VALUES.IDS.POST_UNRATED, ratingCount: 0, reactionCount: 0, popularity: 0 },
-    { id: VALUES.IDS.POST_EXTRA1, postId: VALUES.IDS.POST_EXTRA1, ratingCount: 0, reactionCount: 0, popularity: 0 },
-    { id: VALUES.IDS.POST_DELETED, postId: VALUES.IDS.POST_DELETED, ratingCount: 0, reactionCount: 0, popularity: 0 }
+    { id: VALUES.IDS.POST_RATED, postId: VALUES.IDS.POST_RATED, ratings: 1, reactions: 0, popularity: 0 },
+    { id: VALUES.IDS.POST_UNRATED, postId: VALUES.IDS.POST_UNRATED, ratings: 0, reactions: 0, popularity: 0 },
+    { id: VALUES.IDS.POST_EXTRA1, postId: VALUES.IDS.POST_EXTRA1, ratings: 0, reactions: 0, popularity: 0 },
+    { id: VALUES.IDS.POST_DELETED, postId: VALUES.IDS.POST_DELETED, ratings: 0, reactions: 0, popularity: 0 }
 ];
 
 const RATINGS: RatingDataModel[] = [

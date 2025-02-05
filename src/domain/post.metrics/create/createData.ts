@@ -8,8 +8,8 @@ export default function createData(postId: string): DataModel
     return {
         id: generateId(),
         postId,
-        ratingCount: 0,
-        reactionCount: 0,
+        ratings: 0,
+        reactions: 0,
         popularity: 0
     };
 }

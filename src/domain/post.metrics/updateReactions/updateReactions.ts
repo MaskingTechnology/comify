@@ -8,11 +8,11 @@ export default async function updateReactionCount(postId: string, operation: Cou
 {
     const data = await getByPost(postId);
 
-    const reactionCount = operation === 'increase'
-        ? data.reactionCount + 1
-        : data.reactionCount - 1;
+    const reactions = operation === 'increase'
+        ? data.reactions + 1
+        : data.reactions - 1;
 
-    await update(data.id, { reactionCount });
+    await update(data.id, { reactions });
 
-    return reactionCount;
+    return reactions;
 }

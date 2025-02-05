@@ -29,8 +29,8 @@
     "./domain/post/remove": { "default": {  "access": "public" }, "subscribe": {  "access": "private" } },
 
     "./domain/post.metrics/create": { "subscriptions": {  "access": "private" } },
-    "./domain/post.metrics/updateRatingCount": { "subscriptions": {  "access": "private" } },
-    "./domain/post.metrics/updateReactionCount": { "subscriptions": {  "access": "private" } },
+    "./domain/post.metrics/updateRatings": { "subscriptions": {  "access": "private" } },
+    "./domain/post.metrics/updateReactions": { "subscriptions": {  "access": "private" } },
 
     "./domain/rating/toggle": { "default": { "access": "public" }, "subscribe": {  "access": "private" } },
 

@@ -1,6 +1,7 @@
 
 import type { AggregatedData as AggregatedComicData } from '^/domain/comic/aggregate';
 import type { DataModel as CommentData } from '^/domain/comment';
+import type { DataModel as MetricsData } from '^/domain/post.metrics';
 import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
 type AggregatedData = {
@@ -10,8 +11,7 @@ type AggregatedData = {
     readonly comic?: AggregatedComicData;
     readonly comment?: CommentData;
     readonly parentId?: string;
-    readonly ratingCount: number;
-    readonly reactionCount: number;
+    readonly metrics: MetricsData;
     readonly hasRated: boolean;
 };
 
