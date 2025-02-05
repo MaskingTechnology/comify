@@ -6,19 +6,23 @@ import updateReactions from './updateReactions';
 
 async function subscribe(): Promise<void>
 {
-    await subscribeToPostCreated(({ parentId }) =>
-    {
-        if (parentId === undefined) return;
+    await Promise.all([
 
-        return updateReactions(parentId, 'increase');
-    });
+        subscribeToPostCreated(({ parentId }) =>
+        {
+            if (parentId === undefined) return;
 
-    await subscribeToPostRemoved(({ parentId }) =>
-    {
-        if (parentId === undefined) return;
+            return updateReactions(parentId, 'increase');
+        }),
 
-        return updateReactions(parentId, 'decrease');
-    });
+        subscribeToPostRemoved(({ parentId }) =>
+        {
+            if (parentId === undefined) return;
+
+            return updateReactions(parentId, 'decrease');
+        })
+
+    ]);
 }
 
 export default subscribe();

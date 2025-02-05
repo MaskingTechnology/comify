@@ -5,12 +5,16 @@ import updateRatings from './updateRatings';
 
 async function subscribe(): Promise<void>
 {
-    await subscribeToRatingToggled(({ postId, rated }) =>
-    {
-        const operation = rated ? 'increase' : 'decrease';
+    await Promise.all([
 
-        return updateRatings(postId, operation);
-    });
+        subscribeToRatingToggled(({ postId, rated }) =>
+        {
+            const operation = rated ? 'increase' : 'decrease';
+
+            return updateRatings(postId, operation);
+        })
+
+    ]);
 }
 
 export default subscribe();
