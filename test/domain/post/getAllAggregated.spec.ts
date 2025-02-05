@@ -1,7 +1,7 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import getAllAggregated from '^/domain/post/getAllAggregated';
+import getAllAggregated from '^/domain/post/getRecommendedAggregated';
 import { DATA_URLS, DATABASES, FILE_STORES, REQUESTERS } from './fixtures';
 
 beforeEach(async () =>

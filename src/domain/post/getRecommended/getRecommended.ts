@@ -7,7 +7,7 @@ import { RECORD_TYPE } from '../definitions';
 
 import type { DataModel } from '../types';
 
-export async function getAll(requester: Requester, limit: number, offset: number): Promise<DataModel[]>
+export default async function getRecommended(requester: Requester, limit: number, offset: number): Promise<DataModel[]>
 {
     const query: RecordQuery =
     {

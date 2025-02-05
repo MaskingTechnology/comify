@@ -4,13 +4,13 @@ import filterResolved from '^/domain/common/filterResolved';
 import validateRange, { Range } from '^/domain/common/validateRange';
 
 import aggregate, { AggregatedData } from '../aggregate';
-import getAll from '../getAll';
+import getRecommended from '../getRecommended';
 
-export default async function getAllAggregated(requester: Requester, range: Range): Promise<AggregatedData[]>
+export default async function getRecommendedAggregated(requester: Requester, range: Range): Promise<AggregatedData[]>
 {
     validateRange(range);
 
-    const data = await getAll(requester, range.limit, range.offset);
+    const data = await getRecommended(requester, range.limit, range.offset);
 
     const aggregates = data.map(item => aggregate(requester, item));
 

@@ -3,7 +3,7 @@ import { PostPanelList, PullToRefresh, ResultSet, ScrollLoader } from '^/webui/c
 import { Column } from '^/webui/designsystem';
 
 import useEstablishRelation from './hooks/useEstablishRelation';
-import usePostsAll from './hooks/usePostsAll';
+import usePostsRecommended from './hooks/usePostsRecommended';
 import useTogglePostRating from './hooks/useTogglePostRating';
 import useViewPostDetails from './hooks/useViewPostDetails';
 import useViewProfile from './hooks/useViewProfile';
@@ -17,7 +17,7 @@ export default function Feature()
     const viewPostDetails = useViewPostDetails();
     const togglePostRating = useTogglePostRating();
 
-    const [posts, isLoading, isFinished, getMorePosts, , refresh] = usePostsAll();
+    const [posts, isLoading, isFinished, getMorePosts, , refresh] = usePostsRecommended();
 
     return <Column gap='small' alignX='stretch'>
         <PullToRefresh onRefresh={refresh}>
