@@ -10,7 +10,7 @@ import { VALUES } from './fixtures';
 
 describe('domain/comment/create', () =>
 {
-    it('should create a comment reaction', async () =>
+    it('should create a comment', async () =>
     {
         const reactionId = await create(VALUES.MESSAGES.VALID_COMMENT);
 

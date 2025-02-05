@@ -10,7 +10,7 @@ export default async function aggregate(requester: Requester, data: DataModel): 
 {
     const [relationData, postData] = await Promise.all([
         getRelationData(data.receiverId, data.senderId),
-        data.postId ? getPostData(requester, data.postId) : undefined
+        data.postId ? getPostData(requester, data.postId) : Promise.resolve(undefined)
     ]);
 
     return {

@@ -2,7 +2,8 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { RECORD_TYPE as RELATION_RECORD_TYPE } from '^/domain/relation';
-import establish, { InvalidRelation, RelationAlreadyExists } from '^/domain/relation/establish';
+import { InvalidRelation } from '^/domain/relation/create';
+import establish, { RelationAlreadyExists } from '^/domain/relation/establish';
 
 import database from '^/integrations/database';
 

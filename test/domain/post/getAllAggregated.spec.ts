@@ -20,6 +20,6 @@ describe('domain/post/getallAggregated', () =>
 
         expect(result).toHaveLength(1);
         expect(result[0].creator.following.id).toBe(REQUESTERS.CREATOR2.id);
-        expect(result[0].comic.image.dataUrl).toBe(DATA_URLS.COMIC_IMAGE);
+        expect(result[0].comic?.image.dataUrl).toBe(DATA_URLS.COMIC_IMAGE);
     });
 });

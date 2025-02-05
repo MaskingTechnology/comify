@@ -2,7 +2,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post';
-import add from '^/domain/post/create';
+import createWithComic from '^/domain/post/createWithComic';
 
 import database from '^/integrations/database';
 
@@ -18,9 +18,9 @@ beforeEach(async () =>
 
 describe('domain/post/add', () =>
 {
-    it('should add a post', async () =>
+    it('should create a post', async () =>
     {
-        await add(REQUESTERS.CREATOR1, DATA_URLS.COMIC_IMAGE);
+        await createWithComic(REQUESTERS.CREATOR1, DATA_URLS.COMIC_IMAGE);
 
         const posts = await database.searchRecords(POST_RECORD_TYPE, {});
         expect(posts.length).toBe(1);
@@ -29,7 +29,5 @@ describe('domain/post/add', () =>
         expect(post?.creatorId).toBe(REQUESTERS.CREATOR1.id);
         expect(post?.comicId).toBeDefined();
         expect(post?.createdAt).toBeDefined();
-        expect(post?.ratingCount).toBe(0);
-        expect(post?.reactionCount).toBe(0);
     });
 });

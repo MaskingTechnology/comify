@@ -17,5 +17,9 @@ export const VALUES =
         CREATOR: 'testcreator',
         NEW: 'testcreatornew',
         DUPLICATE: 'testcreator'
+    },
+
+    EMAILS: {
+        CREATOR: 'testcreator@example.com'
     }
 };

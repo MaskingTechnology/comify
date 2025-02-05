@@ -4,11 +4,11 @@ import database, { RecordQuery, RecordSort, SortDirections } from '^/integration
 import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';
 
-export default async function getRecent(recipientId: string, limit: number, offset: number): Promise<DataModel[]>
+export default async function getRecent(receiverId: string, limit: number, offset: number): Promise<DataModel[]>
 {
     const query: RecordQuery =
     {
-        receiverId: { EQUALS: recipientId }
+        receiverId: { EQUALS: receiverId }
     };
 
     const sort: RecordSort = { createdAt: SortDirections.DESCENDING };
