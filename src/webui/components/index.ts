@@ -8,6 +8,7 @@ export { default as ApplicationModal } from './application/Modal';
 export { default as ApplicationSidebar } from './application/Sidebar';
 export { default as ComicEditor } from './comic/Editor';
 export { default as CommentForm } from './comment/Form';
+export { default as BackRow } from './common/BackRow';
 export { default as ConfirmationPanel } from './common/ConfirmationPanel';
 export { default as ErrorBoundary } from './common/ErrorBoundary';
 export { default as LoadingContainer } from './common/LoadingContainer';
@@ -28,4 +29,3 @@ export { default as PostPanelList } from './post/PanelList';
 export { default as SingleReactionRow } from './reaction/SingleReactionRow';
 export { default as RelationPanelList } from './relation/PanelList';
 export { default as RelationProfile } from './relation/Profile';
-

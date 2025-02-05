@@ -11,8 +11,9 @@ type AggregatedData = {
     readonly comic?: AggregatedComicData;
     readonly comment?: CommentData;
     readonly parentId?: string;
+    readonly hasParent: boolean;
     readonly metrics: MetricsData;
-    readonly hasRated: boolean;
+    readonly isRated: boolean;
 };
 
 export type { AggregatedData };

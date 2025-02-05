@@ -25,7 +25,7 @@ export default function Component({ post, onContentClick, onRatingClick, onReact
             </ClickArea>
             <Row alignX='justify'>
                 <EngagementsRow
-                    isRated={post.hasRated}
+                    isRated={post.isRated}
                     ratingCount={post.metrics.ratings}
                     reactionCount={post.metrics.reactions}
                     onRatingClick={onRatingClick}

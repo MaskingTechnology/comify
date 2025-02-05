@@ -33,7 +33,7 @@ export default function Component({ post, onFollowClick, onCreatorClick, onConte
                 {post.comment !== undefined && <Comment text={post.comment.message} />}
             </ClickArea>
             <EngagementsRow
-                isRated={post.hasRated}
+                isRated={post.isRated}
                 ratingCount={post.metrics.ratings}
                 reactionCount={post.metrics.reactions}
                 onRatingClick={() => onRatingClick(post)}
