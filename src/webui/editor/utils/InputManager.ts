@@ -131,7 +131,7 @@ export default class InputManager
 
     #extractInputPosition(event: InputEvent): InputPosition
     {
-        if (event instanceof TouchEvent)
+        if (window.TouchEvent !== undefined && event instanceof window.TouchEvent)
         {
             const touch = event.touches[0];
 
@@ -143,6 +143,6 @@ export default class InputManager
             return touch;
         }
 
-        return event;
+        return event as MouseEvent;
     }
 }
