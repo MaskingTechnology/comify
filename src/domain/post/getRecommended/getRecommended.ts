@@ -12,7 +12,7 @@ export default async function getRecommended(requester: Requester, limit: number
     const query: RecordQuery =
     {
         deleted: { EQUALS: false },
-        parentId: { EQUALS: null },
+        parentId: { EQUALS: undefined },
         creatorId: { NOT_EQUALS: requester.id }
     };
 

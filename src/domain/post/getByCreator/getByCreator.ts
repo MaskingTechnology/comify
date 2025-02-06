@@ -9,7 +9,7 @@ export default async function getByCreator(creatorId: string, limit: number, off
     const query: RecordQuery =
     {
         deleted: { 'EQUALS': false },
-        parentId: { 'EQUALS': null },
+        parentId: { 'EQUALS': undefined },
         creatorId: { 'EQUALS': creatorId }
     };
 

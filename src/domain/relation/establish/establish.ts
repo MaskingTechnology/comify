@@ -27,7 +27,7 @@ export default async function establish(requester: Requester, followingId: strin
 
         await publish(requester.id, followingId);
     }
-    catch (error: unknown)
+    catch (error)
     {
         logger.logError('Failed to establish relation', error);
 

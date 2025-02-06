@@ -24,7 +24,7 @@ export default async function create(creatorId: string, comicId?: string, commen
 
         return postId;
     }
-    catch (error: unknown)
+    catch (error)
     {
         logger.logError('Failed to create post', error);
 

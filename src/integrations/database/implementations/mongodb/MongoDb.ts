@@ -69,7 +69,7 @@ export default class MongoDB implements Driver
 
             this.#connected = true;
         }
-        catch (error: unknown)
+        catch (error)
         {
             const message = error instanceof Error ? error.message : UNKNOWN_ERROR;
 
@@ -92,7 +92,7 @@ export default class MongoDB implements Driver
             this.#client = undefined;
             this.#database = undefined;
         }
-        catch (error: unknown)
+        catch (error)
         {
             const message = error instanceof Error ? error.message : UNKNOWN_ERROR;
 
@@ -112,7 +112,7 @@ export default class MongoDB implements Driver
         {
             await collection.insertOne({ _id: id, ...dataCopy });
         }
-        catch (error: unknown)
+        catch (error)
         {
             const message = error instanceof Error ? error.message : UNKNOWN_ERROR;
 

@@ -9,7 +9,7 @@ export default async function retrieveData(excludedCreatorIds: string[], limit: 
     const query: RecordQuery =
     {
         deleted: { 'EQUALS': false },
-        parentId: { 'EQUALS': null },
+        parentId: { 'EQUALS': undefined },
         creatorId: { NOT_IN: excludedCreatorIds }
     };
 

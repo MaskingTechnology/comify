@@ -7,6 +7,7 @@ import ratingExists from '^/domain/rating/exists';
 import getRelationData from '^/domain/relation/getAggregated';
 
 import type { DataModel } from '../types';
+
 import type { AggregatedData } from './types';
 
 export default async function aggregate(requester: Requester, data: DataModel): Promise<AggregatedData>

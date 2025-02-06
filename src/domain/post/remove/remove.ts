@@ -33,7 +33,7 @@ export default async function remove(requester: Requester, id: string): Promise<
 
         await publish(requester.id, post.id, post.parentId);
     }
-    catch (error: unknown)
+    catch (error)
     {
         logger.logError('Failed to remove post', error);
 

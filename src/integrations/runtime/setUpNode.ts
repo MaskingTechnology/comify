@@ -13,7 +13,7 @@ try
         notificationService.connect()
     ]);
 }
-catch (error: unknown)
+catch (error)
 {
     const disconnections = [];
 
