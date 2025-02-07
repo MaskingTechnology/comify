@@ -3,7 +3,7 @@ import { generateId } from '^/integrations/utilities/crypto';
 
 import { DataModel } from '../types';
 
-export default function createData(type: string, senderId: string, receiverId: string, targetPostId: string | undefined = undefined, targetReactionId: string | undefined = undefined, sourceReactionId: string | undefined = undefined): DataModel
+export default function createData(type: string, senderId: string, receiverId: string, postId: string | undefined = undefined): DataModel
 {
     return {
         id: generateId(),
@@ -11,8 +11,6 @@ export default function createData(type: string, senderId: string, receiverId: s
         type,
         senderId,
         receiverId,
-        targetPostId,
-        targetReactionId,
-        sourceReactionId
+        postId
     };
 }

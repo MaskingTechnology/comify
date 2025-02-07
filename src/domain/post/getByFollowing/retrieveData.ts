@@ -8,8 +8,9 @@ export default async function retrieveData(creatorIds: string[], limit: number, 
 {
     const query: RecordQuery =
     {
-        creatorId: { 'IN': creatorIds },
-        deleted: { 'EQUALS': false }
+        deleted: { 'EQUALS': false },
+        parentId: { 'EQUALS': undefined },
+        creatorId: { 'IN': creatorIds }
     };
 
     const sort: RecordSort = { createdAt: SortDirections.DESCENDING };

@@ -5,8 +5,7 @@ type DataModel = BaseDataModel &
 {
     readonly id: string;
     readonly creatorId: string;
-    readonly postId: string | undefined;
-    readonly reactionId: string | undefined;
+    readonly postId: string;
     readonly createdAt: string;
 };
 

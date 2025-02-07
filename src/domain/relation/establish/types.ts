@@ -1,6 +1,12 @@
 
-import { DataModel } from '../types';
+import { Publication, Subscription } from '^/integrations/eventbroker';
 
-type ValidationModel = Pick<DataModel, 'followerId' | 'followingId'>;
+export type EstablishedEventData = {
+    followerId: string;
+    followingId: string;
+};
 
-export type { ValidationModel };
+export type EstablishedPublication = Publication<EstablishedEventData>;
+export type EstablishedSubscription = Subscription<EstablishedEventData>;
+
+export type EstablishedEventHandler = (eventData: EstablishedEventData) => void;

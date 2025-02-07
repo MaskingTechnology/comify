@@ -1,46 +1,66 @@
 
 import { RecordData } from '^/integrations/database';
 
-import { Types } from '^/domain/notification';
-import { REQUESTERS } from './requesters.fixture';
+import { DataModel as ComicDataModel } from '^/domain/comic';
+import { DataModel as CreatorDataModel } from '^/domain/creator';
+import { DataModel as CreatorMetricsDataModel } from '^/domain/creator.metrics';
+import { DataModel as ImageDataModel } from '^/domain/image';
+import { DataModel as NotificationDataModel, Types } from '^/domain/notification';
+import { DataModel as PostDataModel } from '^/domain/post';
+import { DataModel as PostMetricsModel } from '^/domain/post.metrics';
+import { DataModel as RatingDataModel } from '^/domain/rating';
+import { DataModel as RelationDataModel } from '^/domain/relation';
+
 import { VALUES } from './values.fixture';
 
-export const RECORDS: Record<string, RecordData[]> =
-{
-    CREATORS: [
-        { id: VALUES.IDS.CREATOR1, fullName: VALUES.FULL_NAMES.CREATOR1, nickname: VALUES.NICKNAMES.CREATOR1, email: VALUES.EMAILS.CREATOR1, portraitId: undefined, joinedAt: new Date(), postCount: 0, followerCount: 1, followingCount: 1, popularity: 0 },
-        { id: VALUES.IDS.CREATOR2, fullName: VALUES.FULL_NAMES.CREATOR2, nickname: VALUES.NICKNAMES.CREATOR2, email: VALUES.EMAILS.CREATOR2, portraitId: undefined, joinedAt: new Date(), postCount: 1, followerCount: 1, followingCount: 1, popularity: 0 },
-        { id: VALUES.IDS.CREATOR3, fullName: VALUES.FULL_NAMES.CREATOR3, nickname: VALUES.NICKNAMES.CREATOR3, email: VALUES.EMAILS.CREATOR3, portraitId: undefined, joinedAt: new Date(), postCount: 0, followerCount: 0, followingCount: 0, popularity: 0 },
-    ],
+const CREATORS: CreatorDataModel[] = [
+    { id: VALUES.IDS.CREATOR1, fullName: VALUES.FULL_NAMES.CREATOR1, nickname: VALUES.NICKNAMES.CREATOR1, email: VALUES.EMAILS.CREATOR1, portraitId: undefined, joinedAt: new Date().toISOString() },
+    { id: VALUES.IDS.CREATOR2, fullName: VALUES.FULL_NAMES.CREATOR2, nickname: VALUES.NICKNAMES.CREATOR2, email: VALUES.EMAILS.CREATOR2, portraitId: undefined, joinedAt: new Date().toISOString() },
+    { id: VALUES.IDS.CREATOR3, fullName: VALUES.FULL_NAMES.CREATOR3, nickname: VALUES.NICKNAMES.CREATOR3, email: VALUES.EMAILS.CREATOR3, portraitId: undefined, joinedAt: new Date().toISOString() }
+];
 
-    IMAGES: [
-        { id: VALUES.IDS.IMAGE, storageKey: VALUES.STORAGE_KEYS.IMAGE, filename: VALUES.FILENAMES.FIRST, mimeType: 'image/png' }
-    ],
+const CREATOR_METRICS: CreatorMetricsDataModel[] = [
+    { id: VALUES.IDS.CREATOR1, creatorId: VALUES.IDS.CREATOR1, followers: 1, following: 1, posts: 1, popularity: 0 },
+    { id: VALUES.IDS.CREATOR2, creatorId: VALUES.IDS.CREATOR2, followers: 1, following: 1, posts: 1, popularity: 0 },
+    { id: VALUES.IDS.CREATOR3, creatorId: VALUES.IDS.CREATOR3, followers: 0, following: 0, posts: 0, popularity: 0 }
+];
 
-    COMICS: [
-        { id: VALUES.IDS.COMIC, imageId: VALUES.IDS.IMAGE }
-    ],
+const RELATIONS: RelationDataModel[] = [
+    { id: VALUES.IDS.RELATION1, followerId: VALUES.IDS.CREATOR1, followingId: VALUES.IDS.CREATOR2 },
+    { id: VALUES.IDS.RELATION2, followerId: VALUES.IDS.CREATOR2, followingId: VALUES.IDS.CREATOR1 }
+];
 
-    POSTS: [
-        { id: VALUES.IDS.POST_RATED, creatorId: REQUESTERS.CREATOR1.id, comicId: VALUES.IDS.COMIC, createdAt: new Date(), ratingCount: 10, reactionCount: 0, deleted: false },
-        { id: VALUES.IDS.POST_DELETED, creatorId: REQUESTERS.CREATOR1.id, comicId: VALUES.IDS.COMIC, createdAt: new Date(), ratingCount: 5, reactionCount: 1, deleted: true },
-    ],
+const IMAGES: ImageDataModel[] = [
+    { id: VALUES.IDS.IMAGE, storageKey: VALUES.STORAGE_KEYS.IMAGE, filename: VALUES.FILENAMES.FIRST, mimeType: 'image/png', size: 0 }
+];
 
-    REACTIONS: [
-        { id: VALUES.IDS.REACTION_LIKED, createdAt: new Date(), creatorId: VALUES.IDS.CREATOR2, postId: VALUES.IDS.POST_RATED, comicId: VALUES.IDS.COMIC, commentId: undefined, RatingCount: 1, deleted: false },
-    ],
+const COMICS: ComicDataModel[] = [
+    { id: VALUES.IDS.COMIC, imageId: VALUES.IDS.IMAGE }
+];
 
-    RATINGS: [
-        { id: VALUES.IDS.RATING1, createdAt: new Date(), creatorId: VALUES.IDS.CREATOR3, postId: VALUES.IDS.POST_RATED, reactionId: undefined },
-        { id: VALUES.IDS.RATING2, createdAt: new Date(), creatorId: VALUES.IDS.CREATOR2, postId: undefined, reactionId: VALUES.IDS.REACTION_LIKED },
-    ],
+const POSTS: (PostDataModel & { deleted: boolean; })[] = [
+    { id: VALUES.IDS.POST_RATED, creatorId: VALUES.IDS.CREATOR1, comicId: VALUES.IDS.COMIC, createdAt: new Date().toISOString(), deleted: false },
+    { id: VALUES.IDS.POST_DELETED, creatorId: VALUES.IDS.CREATOR1, comicId: VALUES.IDS.COMIC, createdAt: new Date().toISOString(), deleted: true },
+    { id: VALUES.IDS.REACTION_LIKED, creatorId: VALUES.IDS.CREATOR2, comicId: VALUES.IDS.COMIC, parentId: VALUES.IDS.POST_RATED, createdAt: new Date().toISOString(), deleted: false }
+];
 
-    NOTIFICATIONS: [
-        { id: VALUES.IDS.NOTIFICATION1, createdAt: new Date(), type: Types.STARTED_FOLLOWING, senderId: VALUES.IDS.CREATOR1, receiverId: VALUES.IDS.CREATOR2, targetPostId: undefined, targetReactionId: undefined },
-        { id: VALUES.IDS.NOTIFICATION2, createdAt: new Date(), type: Types.STARTED_FOLLOWING, senderId: VALUES.IDS.CREATOR2, receiverId: VALUES.IDS.CREATOR1, targetPostId: undefined, targetReactionId: undefined },
-        { id: VALUES.IDS.NOTIFICATION3, createdAt: new Date('01-05-2024'), type: Types.RATED_POST, senderId: VALUES.IDS.CREATOR3, receiverId: VALUES.IDS.CREATOR2, targetPostId: VALUES.IDS.POST_RATED, targetReactionId: undefined },
-        { id: VALUES.IDS.NOTIFICATION4, createdAt: new Date('01-04-2024'), type: Types.RATED_REACTION, senderId: VALUES.IDS.CREATOR2, receiverId: VALUES.IDS.CREATOR1, targetPostId: undefined, targetReactionId: VALUES.IDS.REACTION_LIKED },
-        { id: VALUES.IDS.NOTIFICATION5, createdAt: new Date('01-03-2024'), type: Types.RATED_POST, senderId: VALUES.IDS.CREATOR1, receiverId: VALUES.IDS.CREATOR1, targetPostId: VALUES.IDS.POST_DELETED, targetReactionId: undefined },
-    ],
+const POST_METRICS: PostMetricsModel[] = [
+    { id: VALUES.IDS.POST_RATED, postId: VALUES.IDS.POST_RATED, ratings: 1, reactions: 0, popularity: 0 },
+    { id: VALUES.IDS.POST_DELETED, postId: VALUES.IDS.POST_DELETED, ratings: 0, reactions: 0, popularity: 0 },
+    { id: VALUES.IDS.REACTION_LIKED, postId: VALUES.IDS.REACTION_LIKED, ratings: 0, reactions: 1, popularity: 0 }
+];
 
-};
+const RATINGS: RatingDataModel[] = [
+    { id: VALUES.IDS.RATING1, createdAt: new Date().toISOString(), creatorId: VALUES.IDS.CREATOR3, postId: VALUES.IDS.POST_RATED },
+    { id: VALUES.IDS.RATING2, createdAt: new Date().toISOString(), creatorId: VALUES.IDS.CREATOR2, postId: VALUES.IDS.REACTION_LIKED }
+];
+
+const NOTIFICATIONS: NotificationDataModel[] = [
+    { id: VALUES.IDS.NOTIFICATION1, createdAt: new Date().toISOString(), type: Types.STARTED_FOLLOWING, senderId: VALUES.IDS.CREATOR1, receiverId: VALUES.IDS.CREATOR2, postId: undefined },
+    { id: VALUES.IDS.NOTIFICATION2, createdAt: new Date().toISOString(), type: Types.STARTED_FOLLOWING, senderId: VALUES.IDS.CREATOR2, receiverId: VALUES.IDS.CREATOR1, postId: undefined },
+    { id: VALUES.IDS.NOTIFICATION3, createdAt: new Date('01-05-2024').toISOString(), type: Types.RATED_POST, senderId: VALUES.IDS.CREATOR3, receiverId: VALUES.IDS.CREATOR2, postId: VALUES.IDS.POST_RATED },
+    { id: VALUES.IDS.NOTIFICATION4, createdAt: new Date('01-04-2024').toISOString(), type: Types.RATED_POST, senderId: VALUES.IDS.CREATOR2, receiverId: VALUES.IDS.CREATOR1, postId: VALUES.IDS.REACTION_LIKED },
+    { id: VALUES.IDS.NOTIFICATION5, createdAt: new Date('01-03-2024').toISOString(), type: Types.RATED_POST, senderId: VALUES.IDS.CREATOR1, receiverId: VALUES.IDS.CREATOR1, postId: VALUES.IDS.POST_DELETED }
+];
+
+export const RECORDS: Record<string, RecordData[]> = { CREATORS, CREATOR_METRICS, RELATIONS, IMAGES, COMICS, POSTS, POST_METRICS, RATINGS, NOTIFICATIONS };

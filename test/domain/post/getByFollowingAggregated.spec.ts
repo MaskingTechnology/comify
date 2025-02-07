@@ -6,10 +6,8 @@ import { DATABASES, FILE_STORES, REQUESTERS } from './fixtures';
 beforeEach(async () =>
 {
     await Promise.all([
-
         DATABASES.withCreatorsPostsAndRelations(),
         FILE_STORES.withImage()
-
     ]);
 });
 
@@ -23,4 +21,3 @@ describe('domain/post/getByFollowingAggregated', () =>
         expect(result[0].creator.following.id).toBe(REQUESTERS.CREATOR2.id);
     });
 });
-

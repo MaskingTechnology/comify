@@ -52,7 +52,7 @@ export default class MinioFS implements FileStore
 
             return true;
         }
-        catch (error: unknown)
+        catch (error)
         {
             const customError = this.#handleError(error, path);
 
@@ -73,7 +73,7 @@ export default class MinioFS implements FileStore
         {
             await client.putObject(BUCKET_NAME, path, data);
         }
-        catch (error: unknown)
+        catch (error)
         {
             throw this.#handleError(error, path);
         }
@@ -90,7 +90,7 @@ export default class MinioFS implements FileStore
 
             return Buffer.concat(chunks);
         }
-        catch (error: unknown)
+        catch (error)
         {
             throw this.#handleError(error, path);
         }
@@ -104,7 +104,7 @@ export default class MinioFS implements FileStore
         {
             await client.removeObject(BUCKET_NAME, path);
         }
-        catch (error: unknown)
+        catch (error)
         {
             throw this.#handleError(error, path);
         }

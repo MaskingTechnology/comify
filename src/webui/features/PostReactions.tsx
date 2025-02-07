@@ -2,18 +2,16 @@
 import { useCallback } from 'react';
 
 import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
-import type { AggregatedData as AggregatedReactionData } from '^/domain/reaction/aggregate';
 
-import { ConfirmationPanel, OrderAndAddRow, PullToRefresh, ReactionPanelList, ResultSet, ScrollLoader } from '^/webui/components';
+import { OrderAndAddRow, PostPanelList, PullToRefresh, ResultSet, ScrollLoader } from '^/webui/components';
 import { useAppContext } from '^/webui/contexts';
 import { Column } from '^/webui/designsystem';
 
 import useEstablishRelation from './hooks/useEstablishRelation';
 import useReactions from './hooks/usePostReactions';
-import useRemoveReactionFromList from './hooks/useRemoveReactionFromList';
-import useToggleReactionRating from './hooks/useToggleReactionRating';
+import useTogglePostRating from './hooks/useTogglePostRating';
+import useViewPostDetails from './hooks/useViewPostDetails';
 import useViewProfile from './hooks/useViewProfile';
-import useViewReactionDetails from './hooks/useViewReactionDetails';
 
 import CreatePostReaction from './CreatePostReaction';
 
@@ -29,18 +27,16 @@ export default function Feature({ post }: Props)
 
     const establishRelation = useEstablishRelation();
     const viewProfile = useViewProfile();
-    const viewReactionDetails = useViewReactionDetails();
-    const toggleReactionRating = useToggleReactionRating();
+    const viewPostDetails = useViewPostDetails();
+    const togglePostRating = useTogglePostRating();
 
     const [reactions, isLoading, isFinished, getMoreReactions, setReactions, refresh] = useReactions(post);
 
-    const removeReaction = useRemoveReactionFromList(reactions as AggregatedReactionData[], setReactions);
-
-    const addReaction = useCallback((reaction?: AggregatedReactionData) =>
+    const addReaction = useCallback((reaction?: AggregatedPostData) =>
     {
         if (reaction === undefined) return;
 
-        const result = [reaction, ...reactions as AggregatedReactionData[]];
+        const result = [reaction, ...reactions as AggregatedPostData[]];
 
         setReactions(result);
 
@@ -50,36 +46,25 @@ export default function Feature({ post }: Props)
     {
         const content = <CreatePostReaction
             post={post}
-            handleDone={(reaction?: AggregatedReactionData) => { closeModal(); addReaction(reaction); }}
+            handleDone={(reaction?: AggregatedPostData) => { closeModal(); addReaction(reaction); }}
         />;
 
         showModal(content);
 
     }, [addReaction, closeModal, post, showModal]);
 
-    const deleteReaction = useCallback(async (reaction: AggregatedReactionData) =>
-    {
-        const panel = <ConfirmationPanel
-            message='Are you sure you want to delete this reaction?'
-            onConfirm={() => { closeModal(); removeReaction(reaction); }}
-            onCancel={() => closeModal()} />;
-
-        showModal(panel);
-
-    }, [showModal, closeModal, removeReaction]);
-
     return <Column alignX='stretch'>
         <OrderAndAddRow selected='recent' reactionHandler={createReaction} />
         <PullToRefresh onRefresh={refresh}>
             <ScrollLoader onLoad={getMoreReactions} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
                 <ResultSet data={reactions} isLoading={isLoading}>
-                    <ReactionPanelList
-                        reactions={reactions as AggregatedReactionData[]}
+                    <PostPanelList
+                        posts={reactions as AggregatedPostData[]}
                         onFollowClick={establishRelation}
                         onCreatorClick={viewProfile}
-                        onRatingClick={toggleReactionRating}
-                        onDeleteClick={deleteReaction}
-                        onReactionClick={viewReactionDetails}
+                        onRatingClick={togglePostRating}
+                        onContentClick={viewPostDetails}
+                        onReactionClick={viewPostDetails}
                     />
                 </ResultSet>
             </ScrollLoader>

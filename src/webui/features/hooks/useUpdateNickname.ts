@@ -22,7 +22,7 @@ export default function useUpdateNickname()
             setIdentity({ ...identity, nickname } as AggregatedCreatorData);
             setAlreadyInUse(false);
         }
-        catch (error: unknown)
+        catch (error)
         {
             if (error instanceof NicknameAlreadyExists)
             {

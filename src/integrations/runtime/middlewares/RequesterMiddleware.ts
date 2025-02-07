@@ -28,7 +28,7 @@ export default class RequesterMiddleware implements Middleware
 
             return response;
         }
-        catch (error: unknown)
+        catch (error)
         {
             if (error?.constructor?.name === 'Unauthorized')
             {

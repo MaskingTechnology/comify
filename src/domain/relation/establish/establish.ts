@@ -2,51 +2,39 @@
 import logger from '^/integrations/logging';
 
 import { Requester } from '^/domain/authentication';
-import updateFollowerCount from '^/domain/creator/updateFollowerCount';
-import updateFollowingCount from '^/domain/creator/updateFollowingCount';
-import { Types } from '^/domain/notification';
-import createNotification from '^/domain/notification/create';
 
-import createData from './createData';
-import dataExists from './dataExists';
-import eraseData from './eraseData';
-import insertData from './insertData';
+import create from '../create';
+import erase from '../erase';
+import exists from '../exists';
+
+import publish from './publish';
 import RelationAlreadyExists from './RelationAlreadyExists';
-import validateData from './validateData';
 
 export default async function establish(requester: Requester, followingId: string): Promise<void>
 {
-    const relationExists = await dataExists(requester.id, followingId);
-
-    if (relationExists)
-    {
-        throw new RelationAlreadyExists();
-    }
-
-    let id, followerCount;
+    let id;
 
     try
     {
-        const data = createData(requester.id, followingId);
+        const relationExists = await exists(requester.id, followingId);
 
-        validateData(data);
+        if (relationExists)
+        {
+            throw new RelationAlreadyExists();
+        }
 
-        id = await insertData(data);
+        id = await create(requester.id, followingId);
 
-        followerCount = await updateFollowerCount(followingId, 'increase');
-
-        await updateFollowingCount(requester.id, 'increase');
-
-        await createNotification(Types.STARTED_FOLLOWING, requester.id, followingId);
+        await publish(requester.id, followingId);
     }
-    catch (error: unknown)
+    catch (error)
     {
         logger.logError('Failed to establish relation', error);
 
-        const undoRelation = id !== undefined ? eraseData(id) : Promise.resolve();
-        const undoFollowerCount = followerCount !== undefined ? updateFollowerCount(followingId, 'decrease') : Promise.resolve();
-
-        await Promise.all([undoRelation, undoFollowerCount]);
+        if (id !== undefined)
+        {
+            await erase(id);
+        }
 
         throw error;
     }

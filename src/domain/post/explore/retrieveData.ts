@@ -8,8 +8,9 @@ export default async function retrieveData(excludedCreatorIds: string[], limit: 
 {
     const query: RecordQuery =
     {
-        creatorId: { NOT_IN: excludedCreatorIds },
-        deleted: { 'EQUALS': false }
+        deleted: { 'EQUALS': false },
+        parentId: { 'EQUALS': undefined },
+        creatorId: { NOT_IN: excludedCreatorIds }
     };
 
     const sort: RecordSort = { createdAt: SortDirections.DESCENDING };
