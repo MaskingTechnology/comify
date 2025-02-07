@@ -1,9 +1,8 @@
 
-import { Types } from '../definitions';
-
 import getPost from '^/domain/post/getById';
 
 import create from '../create';
+import { Types } from '../definitions';
 
 export default async function createdPost(creatorId: string, postId: string, parentId?: string): Promise<void>
 {

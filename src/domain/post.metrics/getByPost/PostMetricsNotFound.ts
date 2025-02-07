@@ -5,6 +5,6 @@ export default class PostMetricsNotFound extends NotFound
 {
     constructor()
     {
-        super('Creator metrics not found');
+        super('Post metrics not found');
     }
 }

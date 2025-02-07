@@ -7,7 +7,7 @@ import type { DataModel } from '../types';
 type AggregatedData = Omit<DataModel, 'email' | 'portraitId'> &
 {
     readonly portrait?: ImageData;
-    metrics: metricsData;
+    readonly metrics: metricsData;
 };
 
 export type { AggregatedData };

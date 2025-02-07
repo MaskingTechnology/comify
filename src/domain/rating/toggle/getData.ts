@@ -2,12 +2,9 @@
 import database, { RecordQuery } from '^/integrations/database';
 
 import { RECORD_TYPE } from '../definitions';
+import { DataModel } from '../types';
 
-type Data = {
-    readonly id: string;
-};
-
-export default async function getData(creatorId: string, postId: string): Promise<Data | undefined>
+export default async function getData(creatorId: string, postId: string): Promise<DataModel | undefined>
 {
     const query: RecordQuery =
     {
@@ -15,5 +12,5 @@ export default async function getData(creatorId: string, postId: string): Promis
         postId: { EQUALS: postId }
     };
 
-    return database.findRecord(RECORD_TYPE, query, ['id']) as Promise<Data | undefined>;
+    return database.findRecord(RECORD_TYPE, query) as Promise<DataModel | undefined>;
 }

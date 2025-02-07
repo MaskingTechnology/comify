@@ -10,7 +10,7 @@ export default async function getByPost(postId: string): Promise<DataModel>
 {
     const query = { postId: { EQUALS: postId } };
 
-    const data = database.findRecord(RECORD_TYPE, query) as Promise<DataModel>;
+    const data = await database.findRecord(RECORD_TYPE, query) as DataModel;
 
     if (data === undefined)
     {

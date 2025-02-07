@@ -1,7 +1,7 @@
 
 import { useCallback } from 'react';
 
-import type { AggregatedData as AggregatedPostData, AggregatedData as AggregatedReactionData } from '^/domain/post/aggregate';
+import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
 
 import { ConfirmationPanel, LoadingContainer, PostDetailsPanel, PostLargePanel, SingleReactionRow } from '../components';
 import { useAppContext } from '../contexts';
@@ -55,7 +55,7 @@ export default function Feature()
         <LoadingContainer data={(highlight)}>
             <PostLargePanel
                 key={highlight?.id}
-                post={highlight as AggregatedReactionData}
+                post={highlight as AggregatedPostData}
                 onFollowClick={establishRelation}
                 onCreatorClick={viewProfile}
                 onRatingClick={togglePostRating}

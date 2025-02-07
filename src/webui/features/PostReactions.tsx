@@ -1,7 +1,7 @@
 
 import { useCallback } from 'react';
 
-import type { AggregatedData as AggregatedPostData, AggregatedData as AggregatedReactionData } from '^/domain/post/aggregate';
+import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
 
 import { OrderAndAddRow, PostPanelList, PullToRefresh, ResultSet, ScrollLoader } from '^/webui/components';
 import { useAppContext } from '^/webui/contexts';
@@ -32,11 +32,11 @@ export default function Feature({ post }: Props)
 
     const [reactions, isLoading, isFinished, getMoreReactions, setReactions, refresh] = useReactions(post);
 
-    const addReaction = useCallback((reaction?: AggregatedReactionData) =>
+    const addReaction = useCallback((reaction?: AggregatedPostData) =>
     {
         if (reaction === undefined) return;
 
-        const result = [reaction, ...reactions as AggregatedReactionData[]];
+        const result = [reaction, ...reactions as AggregatedPostData[]];
 
         setReactions(result);
 
@@ -46,7 +46,7 @@ export default function Feature({ post }: Props)
     {
         const content = <CreatePostReaction
             post={post}
-            handleDone={(reaction?: AggregatedReactionData) => { closeModal(); addReaction(reaction); }}
+            handleDone={(reaction?: AggregatedPostData) => { closeModal(); addReaction(reaction); }}
         />;
 
         showModal(content);
@@ -59,7 +59,7 @@ export default function Feature({ post }: Props)
             <ScrollLoader onLoad={getMoreReactions} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
                 <ResultSet data={reactions} isLoading={isLoading}>
                     <PostPanelList
-                        posts={reactions as AggregatedReactionData[]}
+                        posts={reactions as AggregatedPostData[]}
                         onFollowClick={establishRelation}
                         onCreatorClick={viewProfile}
                         onRatingClick={togglePostRating}
