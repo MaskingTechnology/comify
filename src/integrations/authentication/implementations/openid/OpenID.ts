@@ -27,10 +27,10 @@ type OpenIDConfiguration = {
 
 export default class OpenID implements IdentityProvider
 {
-    #configuration: OpenIDConfiguration;
+    readonly #configuration: OpenIDConfiguration;
     #config?: Configuration;
 
-    #codeVerifier = randomPKCECodeVerifier();
+    readonly #codeVerifier = randomPKCECodeVerifier();
 
     constructor(configuration: OpenIDConfiguration)
     {
