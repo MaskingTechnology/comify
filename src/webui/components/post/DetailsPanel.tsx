@@ -4,7 +4,8 @@ import type { AggregatedData as AggregatedRelationData } from '^/domain/relation
 
 import { Column, Panel, Row } from '^/webui/designsystem';
 
-import ComicImage from '../comic/Image';
+import Comic from '../comic/Image';
+import Comment from '../comment/Comment';
 import EngagementRow from '../post/elementary/EngagementRow';
 import TimeElapsed from '../relation/TimeElapsed';
 import DeleteButton from './DeleteButton';
@@ -28,12 +29,13 @@ export default function Component({ post, onFollowClick, onCreatorClick, onRatin
                 onFollowClick={() => onFollowClick(post.creator)}
                 onCreatorClick={() => onCreatorClick(post.creator)}
             />
-            <ComicImage comic={post.comic} />
+            {post.comic !== undefined && <Comic comic={post.comic} />}
+            {post.comment !== undefined && <Comment text={post.comment.message} />}
             <Row alignX='justify'>
                 <EngagementRow
-                    isRated={post.hasRated}
-                    ratingCount={post.ratingCount}
-                    reactionCount={post.reactionCount}
+                    isRated={post.isRated}
+                    ratingCount={post.metrics.ratings}
+                    reactionCount={post.metrics.reactions}
                     onRatingClick={() => onRatingClick(post)}
                     onReactionClick={() => onReactionClick(post)}
                 />

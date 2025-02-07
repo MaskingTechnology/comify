@@ -10,12 +10,12 @@ type Props = {
     readonly posts: AggregatedPostData[];
     readonly onFollowClick: (relation: AggregatedRelationData) => Promise<void>;
     readonly onCreatorClick: (relation: AggregatedRelationData) => void;
-    readonly onComicClick: (post: AggregatedPostData) => void;
+    readonly onContentClick: (post: AggregatedPostData) => void;
     readonly onRatingClick: (post: AggregatedPostData) => Promise<boolean>;
     readonly onReactionClick: (post: AggregatedPostData) => void;
 };
 
-export default function Component({ posts, onFollowClick, onCreatorClick, onComicClick, onRatingClick, onReactionClick }: Props)
+export default function Component({ posts, onFollowClick, onCreatorClick, onContentClick, onRatingClick, onReactionClick }: Props)
 {
     return <Column gap='medium' alignX='stretch'>
         {
@@ -25,7 +25,7 @@ export default function Component({ posts, onFollowClick, onCreatorClick, onComi
                     post={post}
                     onFollowClick={onFollowClick}
                     onCreatorClick={onCreatorClick}
-                    onComicClick={onComicClick}
+                    onContentClick={onContentClick}
                     onRatingClick={onRatingClick}
                     onReactionClick={onReactionClick}
                 />

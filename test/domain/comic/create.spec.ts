@@ -18,7 +18,7 @@ beforeEach(async () =>
 
 describe('domain/comic/create', () =>
 {
-    it('should create a comic reaction', async () =>
+    it('should create a comic', async () =>
     {
         const comicId = await create(VALUES.DATA_URLS.COMIC);
 

@@ -2,39 +2,44 @@
 import logger from '^/integrations/logging';
 
 import { Requester } from '^/domain/authentication';
-import updateCreatorPostCount from '^/domain/creator/updatePostCount';
 
+import getById from '../getById';
 import PostNotFound from '../PostNotFound';
-import removeData from './deleteData';
-import ownsData from './ownsData';
+
+import deleteData from './deleteData';
+import isNotOwner from './isNotOwner';
+import publish from './publish';
+import undeleteData from './undeleteData';
 
 export default async function remove(requester: Requester, id: string): Promise<void>
 {
-    // We only delete the post itself and do not cascade it towards the reactions as it doesn't add
+    // We only delete the post itself and do not cascade it towards it's children as it doesn't add
     // any value, and it would make the code more complex.
 
-    const isOwner = await ownsData(id, requester.id);
-
-    if (isOwner === false)
-    {
-        throw new PostNotFound();
-    }
-
-    let creatorCount;
+    let deleted = false;
 
     try
     {
-        creatorCount = await updateCreatorPostCount(requester.id, 'decrease');
+        const post = await getById(id);
 
-        await removeData(id);
+        if (isNotOwner(post, requester.id))
+        {
+            throw new PostNotFound();
+        }
+
+        await deleteData(id);
+
+        deleted = true;
+
+        await publish(requester.id, post.id, post.parentId);
     }
-    catch (error: unknown)
+    catch (error)
     {
         logger.logError('Failed to remove post', error);
 
-        if (creatorCount !== undefined)
+        if (deleted)
         {
-            await updateCreatorPostCount(requester.id, 'increase');
+            await undeleteData(id);
         }
 
         throw error;

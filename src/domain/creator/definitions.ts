@@ -4,6 +4,7 @@ import type { Validation } from '^/integrations/validation';
 import { SortOrder, SortOrders } from '../definitions';
 
 export const RECORD_TYPE = 'creator';
+export const EVENT_CHANNEL = 'creator';
 export const IMAGE_TYPE = 'portrait';
 
 export const NICKNAME_STRING_PATTERN = '^[a-z0-9_]+$';

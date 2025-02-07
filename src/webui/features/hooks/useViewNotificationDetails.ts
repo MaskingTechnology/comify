@@ -2,21 +2,20 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import type { AggregatedData as NotificationView } from '^/domain/notification/aggregate/types';
+import { Types } from '^/domain/notification';
+import type { AggregatedData as AggregatedNotificationData } from '^/domain/notification/aggregate/types';
 
 export default function useViewNotificationDetails()
 {
     const navigate = useNavigate();
 
-    return useCallback((notification: NotificationView) =>
+    return useCallback((notification: AggregatedNotificationData) =>
     {
 
         switch (notification.type)
         {
-            case 'added-reaction-reaction': return navigate(`/reaction/${notification.targetReaction?.id}/highlight/${notification.sourceReaction?.id}`);
-            case 'rated-reaction': return navigate(`/reaction/${notification.targetReaction?.id}`);
-            case 'added-reaction-post': return navigate(`/post/${notification.targetPost?.id}/highlight/${notification.sourceReaction?.id}`);
-            case 'rated-post': return navigate(`/post/${notification.targetPost?.id}`);
+            case Types.REACTED_TO_POST: return navigate(`/post/${notification.post?.parentId}/highlight/${notification.post?.id}`);
+            case Types.RATED_POST: return navigate(`/post/${notification.post?.id}`);
         }
 
     }, [navigate]);

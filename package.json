@@ -25,12 +25,12 @@
     "standalone": "jitar start --env-file=development.env --service=services/standalone.json --http-body-limit=512000",
     "repository": "jitar start --env-file=development.env --service=services/repository.json",
     "proxy": "jitar start --env-file=development.env --service=services/proxy.json --http-body-limit=512000",
-    "gateway": "jitar start --env-file=development.env --service=services/gateway.json --http-body-limit=512000",
-    "bff": "jitar start --env-file=development.env --service=services/bff.json --http-body-limit=512000",
-    "notification": "jitar start --env-file=development.env --service=services/notification.json --http-body-limit=512000",
-    "notification2": "jitar start --env-file=development.env --service=services/notification2.json --http-body-limit=512000",
-    "reads": "jitar start --env-file=development.env --service=services/reads.json --http-body-limit=512000",
-    "writes": "jitar start --env-file=development.env --service=services/writes.json --http-body-limit=512000"
+    "gateway": "jitar start --env-file=development.env --service=services/gateway.json --http-body-limit=640000",
+    "bff": "jitar start --env-file=development.env --service=services/bff.json --http-body-limit=640000",
+    "notification": "jitar start --env-file=development.env --service=services/notification.json --http-body-limit=640000",
+    "notification2": "jitar start --env-file=development.env --service=services/notification2.json --http-body-limit=640000",
+    "reads": "jitar start --env-file=development.env --service=services/reads.json --http-body-limit=640000",
+    "writes": "jitar start --env-file=development.env --service=services/writes.json --http-body-limit=640000"
   },
   "files": [
     "CHANGELOG.md",

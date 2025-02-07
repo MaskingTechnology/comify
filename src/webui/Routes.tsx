@@ -15,8 +15,6 @@ import Notifications from './features/Notifications';
 import PostDetails from './features/PostDetails';
 import PostHighlight from './features/PostHighlight';
 import Profile from './features/Profile';
-import ReactionDetails from './features/ReactionDetails';
-import ReactionHighlight from './features/ReactionHighlight';
 import Timeline from './features/Timeline';
 
 export default function Component()
@@ -41,8 +39,6 @@ export default function Component()
         <Route path="/profile/:nickname/:tab?" element={protect(<Profile />)} />
         <Route path="/edit/profile" element={protect(<EditProfile />)} />
         <Route path="/post/:postId" element={protect(<PostDetails />)} />
-        <Route path="/reaction/:reactionId" element={protect(<ReactionDetails />)} />
-        <Route path="/reaction/:reactionId/highlight/:highlightId" element={protect(<ReactionHighlight />)} />
         <Route path="/post/:postId/highlight/:highlightId" element={protect(<PostHighlight />)} />
         <Route path="/logout" element={protect(<Logout />)} />
 

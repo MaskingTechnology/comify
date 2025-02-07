@@ -11,10 +11,9 @@ async function withEverything(): Promise<void>
 {
     database.clear();
 
-    RECORDS.CREATORS.forEach(async (creator) =>
-    {
-        await database.createRecord(CREATOR_RECORD_TYPE, { ...creator });
-    });
+    const promises = RECORDS.CREATORS.map(creator => database.createRecord(CREATOR_RECORD_TYPE, { ...creator }));
+
+    await Promise.all(promises);
 }
 
 export const DATABASES = { withEverything };

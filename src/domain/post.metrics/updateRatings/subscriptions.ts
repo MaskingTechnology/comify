@@ -1,0 +1,20 @@
+
+import { subscribe as subscribeToRatingToggled } from '^/domain/rating/toggle';
+
+import updateRatings from './updateRatings';
+
+async function subscribe(): Promise<void>
+{
+    await Promise.all([
+
+        subscribeToRatingToggled(({ postId, rated }) =>
+        {
+            const operation = rated ? 'increase' : 'decrease';
+
+            return updateRatings(postId, operation);
+        })
+
+    ]);
+}
+
+export default subscribe();

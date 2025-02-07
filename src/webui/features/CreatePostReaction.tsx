@@ -1,6 +1,5 @@
 
-import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
-import type { AggregatedData as AggregatedReactionData } from '^/domain/reaction/aggregate';
+import type { AggregatedData as AggregatedPostData, AggregatedData as AggregatedReactionData } from '^/domain/post/aggregate';
 
 import { ComicEditor, CommentForm } from '^/webui/components';
 import { Ruler, Tab, Tabs } from '^/webui/designsystem';

@@ -1,19 +1,43 @@
 
+import logger from '^/integrations/logging';
+
 import create from '../create';
 import { FULL_NAME_MAX_LENGTH } from '../definitions';
+import erase from '../erase';
 import generateNickname from '../generateNickname';
 import type { DataModel } from '../types';
 
 import downloadPortrait from './downloadPortrait';
+import publish from './publish';
 
 export default async function register(fullName: string, nickname: string, email: string, portraitUrl: string | undefined = undefined): Promise<DataModel>
 {
-    const truncatedFullName = fullName.substring(0, FULL_NAME_MAX_LENGTH);
-    const generatedNickname = await generateNickname(nickname);
+    let data;
 
-    const portraitId = portraitUrl !== undefined
-        ? await downloadPortrait(portraitUrl)
-        : undefined;
+    try
+    {
+        const truncatedFullName = fullName.substring(0, FULL_NAME_MAX_LENGTH);
+        const generatedNickname = await generateNickname(nickname);
 
-    return create(truncatedFullName, generatedNickname, email, portraitId);
+        const portraitId = portraitUrl !== undefined
+            ? await downloadPortrait(portraitUrl)
+            : undefined;
+
+        data = await create(truncatedFullName, generatedNickname, email, portraitId);
+
+        await publish(data.id);
+
+        return data;
+    }
+    catch (error)
+    {
+        logger.logError('Failed to register creator', error);
+
+        if (data !== undefined)
+        {
+            erase(data.id);
+        }
+
+        throw error;
+    }
 }
