@@ -1,21 +1,16 @@
 
 import
 {
-    Configuration, DiscoveryRequestOptions,
-    allowInsecureRequests,
-    authorizationCodeGrant,
-    buildAuthorizationUrl,
-    calculatePKCECodeChallenge,
-    discovery,
-    fetchUserInfo,
-    randomPKCECodeVerifier,
-    refreshTokenGrant,
-    tokenRevocation
+    allowInsecureRequests, authorizationCodeGrant, buildAuthorizationUrl, calculatePKCECodeChallenge, discovery,
+    fetchUserInfo, randomPKCECodeVerifier, refreshTokenGrant, tokenRevocation
 } from 'openid-client';
 
-import { IdentityProvider } from '../../definitions/interfaces.js';
-import { Identity, Session } from '../../definitions/types.js';
-import NotConnected from '../../errors/NotConnected.js';
+import type { Configuration, DiscoveryRequestOptions, IDToken, TokenEndpointResponse, TokenEndpointResponseHelpers } from 'openid-client';
+
+import { IdentityProvider } from '../../definitions/interfaces';
+import { Identity, Session } from '../../definitions/types';
+import LoginFailed from '../../errors/LoginFailed';
+import NotConnected from '../../errors/NotConnected';
 
 type OpenIDConfiguration = {
     issuer: string;
@@ -27,39 +22,39 @@ type OpenIDConfiguration = {
 
 export default class OpenID implements IdentityProvider
 {
-    readonly #configuration: OpenIDConfiguration;
-    #config?: Configuration;
+    readonly #providerConfiguration: OpenIDConfiguration;
+    #clientConfiguration?: Configuration;
 
     readonly #codeVerifier = randomPKCECodeVerifier();
 
     constructor(configuration: OpenIDConfiguration)
     {
-        this.#configuration = configuration;
+        this.#providerConfiguration = configuration;
     }
 
     get connected(): boolean
     {
-        return this.#config !== undefined;
+        return this.#clientConfiguration !== undefined;
     }
 
     async connect(): Promise<void>
     {
-        const issuer = new URL(this.#configuration.issuer);
-        const clientId = this.#configuration.clientId;
-        const clientSecret = this.#configuration.clientSecret;
+        const issuer = new URL(this.#providerConfiguration.issuer);
+        const clientId = this.#providerConfiguration.clientId;
+        const clientSecret = this.#providerConfiguration.clientSecret;
         const requestOptions = this.#getRequestOptions();
 
-        this.#config = await discovery(issuer, clientId, clientSecret, undefined, requestOptions);
+        this.#clientConfiguration = await discovery(issuer, clientId, clientSecret, undefined, requestOptions);
     }
 
     async disconnect(): Promise<void>
     {
-        this.#config = undefined;
+        this.#clientConfiguration = undefined;
     }
 
     async getLoginUrl(): Promise<string>
     {
-        const redirect_uri = this.#configuration.redirectUri;
+        const redirect_uri = this.#providerConfiguration.redirectUri;
         const scope = 'openid profile email';
         const code_challenge = await calculatePKCECodeChallenge(this.#codeVerifier);
         const code_challenge_method = 'S256';
@@ -71,41 +66,41 @@ export default class OpenID implements IdentityProvider
             code_challenge_method
         };
 
-        const config = this.#getConfig();
-        const redirectTo = buildAuthorizationUrl(config, parameters);
+        const clientConfiguration = this.#getClientConfiguration();
+        const redirectTo = buildAuthorizationUrl(clientConfiguration, parameters);
 
         return redirectTo.href;
     }
 
     async login(data: Record<string, unknown>): Promise<Session>
     {
-        const config = this.#getConfig();
-        const currentUrl = new URL(`${this.#configuration.redirectUri}?session_state=${data.session_state}&iss=${data.iss}&code=${data.code}`);
+        const clientConfiguration = this.#getClientConfiguration();
+        const currentUrl = new URL(`${this.#providerConfiguration.redirectUri}?session_state=${data.session_state}&iss=${data.iss}&code=${data.code}`);
 
-        const tokens = await authorizationCodeGrant(config, currentUrl, {
+        const tokens = await authorizationCodeGrant(clientConfiguration, currentUrl, {
             pkceCodeVerifier: this.#codeVerifier,
             idTokenExpected: true
         });
 
-        const access_token = tokens.access_token as string;
-        const claims = tokens.claims();
+        const access_token = tokens.access_token;
+        const claims = this.#getClaims(tokens);
 
-        const sub = claims!.sub as string;
-        const expires = claims!.exp as number * 1000;
+        const sub = claims.sub;
+        const expires = claims.exp * 1000;
 
-        const userInfo = await fetchUserInfo(config, access_token, sub);
+        const userInfo = await fetchUserInfo(clientConfiguration, access_token, sub);
 
         const identity: Identity = {
             name: userInfo.name as string,
-            nickname: userInfo.nickname as string,
-            picture: userInfo.picture as string,
+            nickname: userInfo.nickname,
+            picture: userInfo.picture,
             email: userInfo.email as string,
             email_verified: userInfo.email_verified as boolean
         };
 
         return {
             identity: identity,
-            accessToken: tokens.access_token as string,
+            accessToken: tokens.access_token,
             refreshToken: tokens.refresh_token as string,
             expires: new Date(expires)
         };
@@ -113,16 +108,16 @@ export default class OpenID implements IdentityProvider
 
     async refresh(session: Session): Promise<Session>
     {
-        const config = this.#getConfig();
+        const config = this.#getClientConfiguration();
         const tokens = await refreshTokenGrant(config, session.refreshToken);
 
-        const claims = tokens.claims();
-        const expires = claims!.exp as number * 1000;
+        const claims = this.#getClaims(tokens);
+        const expires = claims.exp * 1000;
 
         return {
             requester: session.requester,
             identity: session.identity,
-            accessToken: tokens.access_token as string,
+            accessToken: tokens.access_token,
             refreshToken: tokens.refresh_token as string,
             expires: new Date(expires)
         };
@@ -130,30 +125,42 @@ export default class OpenID implements IdentityProvider
 
     logout(session: Session): Promise<void>
     {
-        const config = this.#getConfig();
+        const config = this.#getClientConfiguration();
 
         return tokenRevocation(config, session.refreshToken);
     }
 
-    #getConfig(): Configuration
+    #getClientConfiguration(): Configuration
     {
-        if (this.#config === undefined)
+        if (this.#clientConfiguration === undefined)
         {
             throw new NotConnected('OpenID client not connected');
         }
 
-        return this.#config;
+        return this.#clientConfiguration;
     }
 
     #getRequestOptions(): DiscoveryRequestOptions
     {
         const options: DiscoveryRequestOptions = {};
 
-        if (this.#configuration.allowInsecureRequests)
+        if (this.#providerConfiguration.allowInsecureRequests)
         {
             options.execute = [allowInsecureRequests];
         }
 
         return options;
+    }
+
+    #getClaims(tokens: TokenEndpointResponse & TokenEndpointResponseHelpers): IDToken
+    {
+        const claims = tokens.claims();
+
+        if (claims === undefined)
+        {
+            throw new LoginFailed('No claims in ID token');
+        }
+
+        return claims;
     }
 }
