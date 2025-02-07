@@ -13,16 +13,6 @@ beforeEach(async () =>
 
 describe('domain/relation/exploreAggregated', () =>
 {
-    /* This test is disabled because the popularity system is not implemented yet */
-    // it('should explore relations based on popularity', async () =>
-    // {
-    //     const relations = await explore(REQUESTERS.FIRST, SortOrders.POPULAR, VALUES.RANGE);
-    //     expect(relations).toHaveLength(3);
-    //     expect(relations[0].following?.id).toBe(VALUES.IDS.CREATOR5);
-    //     expect(relations[1].following?.id).toBe(VALUES.IDS.CREATOR4);
-    //     expect(relations[2].following?.id).toBe(VALUES.IDS.CREATOR6);
-    // });
-
     it('should explore relations based on recent', async () =>
     {
         const relations = await explore(REQUESTERS.FIRST, SortOrders.RECENT, VALUES.RANGE);

@@ -4,7 +4,7 @@ import { Publication, Subscription } from './definitions/types';
 
 export default class EventBroker implements Driver
 {
-    #driver: Driver;
+    readonly #driver: Driver;
 
     constructor(driver: Driver)
     {

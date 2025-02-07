@@ -8,7 +8,7 @@ export default class Memory implements Driver
 {
     readonly #emitters = new Map<string, EventEmitter>();
 
-    #connected = true; //false;
+    #connected = true;
 
     get connected() { return this.#connected; }
 

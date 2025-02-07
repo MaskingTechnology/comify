@@ -5,13 +5,12 @@ import { DataModel as ComicDataModel } from '^/domain/comic';
 import { DataModel as CreatorDataModel } from '^/domain/creator';
 import { DataModel as CreatorMetricsDataModel } from '^/domain/creator.metrics';
 import { DataModel as ImageDataModel } from '^/domain/image';
-import { DataModel as NotificationDataModel } from '^/domain/notification';
+import { DataModel as NotificationDataModel, Types } from '^/domain/notification';
 import { DataModel as PostDataModel } from '^/domain/post';
 import { DataModel as PostMetricsModel } from '^/domain/post.metrics';
 import { DataModel as RatingDataModel } from '^/domain/rating';
 import { DataModel as RelationDataModel } from '^/domain/relation';
 
-import { Types } from '^/domain/notification';
 import { VALUES } from './values.fixture';
 
 const CREATORS: CreatorDataModel[] = [
