@@ -1,5 +1,6 @@
 
-import React from 'react';
+import { ChangeEventHandler, forwardRef } from 'react';
+
 import './TextArea.css';
 
 export type Props = {
@@ -8,13 +9,16 @@ export type Props = {
     readonly value?: string;
     readonly size?: 'large' | 'medium' | 'small';
     readonly rows?: number;
-    readonly onChange?: React.ChangeEventHandler<HTMLTextAreaElement>;
+    readonly limit?: number;
+    readonly onChange?: ChangeEventHandler<HTMLTextAreaElement>;
 };
 
-export default function Element({ name, placeholder, value, size, rows, onChange }: Props)
+type Ref = HTMLTextAreaElement;
+
+export default forwardRef<Ref, Props>(function Element({ name, placeholder, value, size = 'medium', rows, limit, onChange }, ref)
 {
-    const className = 'ds-textarea'
-        + ' ds-textarea-size-' + (size ?? 'medium');
+    const className = 'textarea'
+        + ' size-' + size;
 
     return <textarea
         className={className}
@@ -22,6 +26,8 @@ export default function Element({ name, placeholder, value, size, rows, onChange
         placeholder={placeholder}
         defaultValue={value}
         rows={rows}
+        ref={ref}
+        maxLength={limit}
         onChange={onChange}>
     </textarea>;
-}
+});

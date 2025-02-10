@@ -1,25 +1,26 @@
 
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
-import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
+import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
+import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
 import { ClickArea, Column, Panel } from '^/webui/designsystem';
 
-import ComicImage from '../comic/Image';
+import Comic from '../comic/Image';
+import Comment from '../comment/Comment';
 import TimeElapsed from '../relation/TimeElapsed';
 import EngagementsRow from './elementary/EngagementRow';
 
 type Props = {
-    readonly post: PostView;
-    readonly onFollowClick: (relation: RelationView) => Promise<void>;
-    readonly onCreatorClick: (relation: RelationView) => void;
-    readonly onComicClick: (post: PostView) => void;
-    readonly onRatingClick: (post: PostView) => Promise<boolean>;
-    readonly onReactionClick: (post: PostView) => void;
+    readonly post: AggregatedPostData;
+    readonly onFollowClick: (relation: AggregatedRelationData) => Promise<void>;
+    readonly onCreatorClick: (relation: AggregatedRelationData) => void;
+    readonly onContentClick: (post: AggregatedPostData) => void;
+    readonly onRatingClick: (post: AggregatedPostData) => Promise<boolean>;
+    readonly onReactionClick: (post: AggregatedPostData) => void;
 };
 
-export default function Component({ post, onFollowClick, onCreatorClick, onComicClick, onRatingClick, onReactionClick }: Props)
+export default function Component({ post, onFollowClick, onCreatorClick, onContentClick, onRatingClick, onReactionClick }: Props)
 {
-    return <Panel>
+    return <Panel padding='medium'>
         <Column gap='medium' alignX='stretch'>
             <TimeElapsed
                 date={post.createdAt}
@@ -27,13 +28,14 @@ export default function Component({ post, onFollowClick, onCreatorClick, onComic
                 onFollowClick={onFollowClick}
                 onCreatorClick={onCreatorClick}
             />
-            <ClickArea onClick={() => onComicClick(post)}>
-                <ComicImage comic={post.comic} />
+            <ClickArea onClick={() => onContentClick(post)}>
+                {post.comic !== undefined && <Comic comic={post.comic} />}
+                {post.comment !== undefined && <Comment text={post.comment.message} />}
             </ClickArea>
             <EngagementsRow
-                isRated={post.hasRated}
-                ratingCount={post.ratingCount}
-                reactionCount={post.reactionCount}
+                isRated={post.isRated}
+                ratingCount={post.metrics.ratings}
+                reactionCount={post.metrics.reactions}
                 onRatingClick={() => onRatingClick(post)}
                 onReactionClick={() => onReactionClick(post)}
             />

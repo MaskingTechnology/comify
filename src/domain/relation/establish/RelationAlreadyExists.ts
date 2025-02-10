@@ -1,5 +1,7 @@
 
-export default class RelationAlreadyExists extends Error
+import { BadRequest } from '^/integrations/runtime';
+
+export default class RelationAlreadyExists extends BadRequest
 {
     constructor(message?: string)
     {

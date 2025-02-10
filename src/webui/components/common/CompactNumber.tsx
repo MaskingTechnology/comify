@@ -9,11 +9,8 @@ type Props = {
 
 const formatter = new Intl.NumberFormat('en', { notation: 'compact' });
 
-export default function Component({ value, size, weight }: Props)
+export default function Component({ value, size = 'medium', weight = 'normal' }: Props)
 {
-    size ??= 'medium';
-    weight ??= 'normal';
-
     return <Text
         value={formatter.format(value)}
         size={size}

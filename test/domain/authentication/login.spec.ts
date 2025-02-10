@@ -1,8 +1,8 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import login from '^/domain/authentication/login/feature';
-import TooManySimilarNicknames from '^/domain/creator/generateNickname/TooManySimilarNicknames';
+import login from '^/domain/authentication/login';
+import { TooManySimilarNicknames } from '^/domain/creator/generateNickname';
 
 import { DATABASES, FILE_STORES, HTTP_CLIENTS, IDENTITIES, VALUES } from './fixtures';
 
@@ -47,7 +47,7 @@ describe('domain/authentication', () =>
         it('should NOT register with too many occurrences nickname', async () =>
         {
             const promise = login(IDENTITIES.TOO_MANY_SIMILAR_NICKNAMES);
-            expect(promise).rejects.toStrictEqual(new TooManySimilarNicknames());
+            await expect(promise).rejects.toStrictEqual(new TooManySimilarNicknames());
         });
 
         it('should register with spaces in nickname', async () =>

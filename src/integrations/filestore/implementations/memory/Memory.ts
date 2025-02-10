@@ -1,11 +1,11 @@
 
-import { FileStore } from '../../definitions/interfaces.js';
-import FileNotFound from '../../errors/FileNotFound.js';
-import NotConnected from '../../errors/NotConnected.js';
+import { FileStore } from '../../definitions/interfaces';
+import FileNotFound from '../../errors/FileNotFound';
+import NotConnected from '../../errors/NotConnected';
 
 export default class Memory implements FileStore
 {
-    #files: Map<string, Buffer> = new Map();
+    readonly #files = new Map<string, Buffer>();
     #connected = false;
 
     get connected() { return this.#connected; }

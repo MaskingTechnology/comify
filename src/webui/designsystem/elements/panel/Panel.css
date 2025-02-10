@@ -1,79 +1,82 @@
-.ds-panel
+.ds
 {
-    --border-radius: 0;
-    --margin: 0 0 1.5em 0;
+    .panel
+    {
+        --border-radius: 0;
+        --margin: 0 0 1.5em 0;
 
-    --padding-large: 2em;
-    --padding-medium: 1.5em;
-    --padding-small: 1em;
+        --padding-large: 2em;
+        --padding-medium: 1.5em;
+        --padding-small: 1em;
 
-    --alert-background-color: var(--color-alert-background);
-    --alert-foreground-color: var(--color-alert-foreground);
+        --alert-background-color: var(--color-alert-background);
+        --alert-foreground-color: var(--color-alert-foreground);
 
-    --error-background-color: var(--color-error-background);
-    --error-foreground-color: var(--color-error-foreground);
+        --error-background-color: var(--color-error-background);
+        --error-foreground-color: var(--color-error-foreground);
 
-    --normal-background-color: var(--color-secondary-background);
-    --normal-foreground-color: var(--color-primary-foreground);
+        --normal-background-color: var(--color-secondary-background);
+        --normal-foreground-color: var(--color-primary-foreground);
 
-    --success-background-color: var(--color-success-background);
-    --success-foreground-color: var(--color-success-foreground);
+        --success-background-color: var(--color-success-background);
+        --success-foreground-color: var(--color-success-foreground);
 
-    --warning-background-color: var(--color-warning-background);
-    --warning-foreground-color: var(--color-warning-foreground);
+        --warning-background-color: var(--color-warning-background);
+        --warning-foreground-color: var(--color-warning-foreground);
 
-    border-radius: var(--border-radius);
-    padding: var(--padding);
-    margin: var(--margin);
-    min-width: 0;
-}
+        border-radius: var(--border-radius);
+        padding: var(--padding);
+        margin: var(--margin);
+        min-width: 0;
 
-.ds-panel.ds-panel-alert
-{
-    background-color: var(--alert-background-color);
-    color: var(--alert-foreground-color);
-}
+        &.type-alert
+        {
+            background-color: var(--alert-background-color);
+            color: var(--alert-foreground-color);
+        }
 
-.ds-panel.ds-panel-error
-{
-    background-color: var(--error-background-color);
-    color: var(--error-foreground-color);
-}
+        &.type-error
+        {
+            background-color: var(--error-background-color);
+            color: var(--error-foreground-color);
+        }
 
-.ds-panel.ds-panel-normal
-{
-    background-color: var(--normal-background-color);
-    color: var(--normal-foreground-color);
-}
+        &.type-normal
+        {
+            background-color: var(--normal-background-color);
+            color: var(--normal-foreground-color);
+        }
 
-.ds-panel.ds-panel-success
-{
-    background-color: var(--success-background-color);
-    color: var(--success-foreground-color);
-}
+        &.type-success
+        {
+            background-color: var(--success-background-color);
+            color: var(--success-foreground-color);
+        }
 
-.ds-panel.ds-panel-warning
-{
-    background-color: var(--warning-background-color);
-    color: var(--warning-foreground-color);
-}
+        &.type-warning
+        {
+            background-color: var(--warning-background-color);
+            color: var(--warning-foreground-color);
+        }
 
-.ds-panel.ds-panel-transparent
-{
-    background-color: transparent;
-}
+        &.type-transparent
+        {
+            background-color: transparent;
+        }
 
-.ds-panel.ds-panel-padding-small
-{
-    padding: var(--padding-small);
-}
+        &.padding-small
+        {
+            padding: var(--padding-small);
+        }
 
-.ds-panel.ds-panel-padding-medium
-{
-    padding: var(--padding-medium);
-}
+        &.padding-medium
+        {
+            padding: var(--padding-medium);
+        }
 
-.ds-panel.ds-panel-padding-large
-{
-    padding: var(--padding-large);
+        &.padding-large
+        {
+            padding: var(--padding-large);
+        }
+    }
 }

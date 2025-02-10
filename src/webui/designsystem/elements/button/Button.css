@@ -1,96 +1,99 @@
-.ds-button
+.ds
 {
-    --margin: 0em;
+    .button
+    {
+        --margin: 0em;
 
-    --padding-small: 0.2em 2.2em;
-    --padding-medium: 0.5em 2.2em;
-    --padding-large: 0.9em 2.2em;
+        --padding-small: 0.2em 2.2em;
+        --padding-medium: 0.5em 2.2em;
+        --padding-large: 0.9em 2.2em;
 
-    --border-radius: 2em;
-    --border-style: solid;
-    --border-color: var(--color-border);
-    --border-width: var(--width-border);
+        --border-radius: 2em;
+        --border-style: solid;
+        --border-color: var(--color-border);
+        --border-width: var(--width-border);
 
-    --primary-background-color: var(--color-primary-action-background);
-    --primary-foreground-color: var(--color-primary-action-foreground);
-    --secondary-background-color: var(--color-secondary-action-background);
-    --secondary-foreground-color: var(--color-secondary-action-foreground);
-    --disabled-background-color: transparent;
+        --primary-background-color: var(--color-primary-action-background);
+        --primary-foreground-color: var(--color-primary-action-foreground);
+        --secondary-background-color: var(--color-secondary-action-background);
+        --secondary-foreground-color: var(--color-secondary-action-foreground);
+        --disabled-background-color: transparent;
 
-    border-radius: var(--border-radius);
-    border: 0;
+        border-radius: var(--border-radius);
+        border: 0;
 
-    cursor: pointer;
-    margin: var(--margin);
-    text-align: center;
-    width: fit-content;
+        cursor: pointer;
+        margin: var(--margin);
+        text-align: center;
+        width: fit-content;
 
-    font-family: inherit;
-    font-size: inherit;
-}
+        font-family: inherit;
+        font-size: inherit;
 
-.ds-button.ds-button-size-small
-{
-    padding: var(--padding-small);
-}
+        &.size-small
+        {
+            padding: var(--padding-small);
+        }
 
-.ds-button.ds-button-size-medium
-{
-    padding: var(--padding-medium);
-}
+        &.size-medium
+        {
+            padding: var(--padding-medium);
+        }
 
-.ds-button.ds-button-size-large
-{
-    padding: var(--padding-large);
-}
+        &.size-large
+        {
+            padding: var(--padding-large);
+        }
 
-.ds-button.ds-button-primary,
-.ds-button.ds-button-submit
-{
-    background-color: var(--primary-background-color);
-    color: var(--primary-foreground-color);
+        &.type-primary,
+        &.type-submit
+        {
+            background-color: var(--primary-background-color);
+            color: var(--primary-foreground-color);
 
-    font-weight: var(--font-weight-bold);
-}
+            font-weight: var(--font-weight-bold);
+        }
 
-.ds-button.ds-button-primary:hover,
-.ds-button.ds-button-submit:hover
-{
-    background-color: color-mix(in srgb, black 10%, var(--primary-background-color));
-}
+        &.type-primary:hover,
+        &.type-submit:hover
+        {
+            background-color: color-mix(in srgb, black 10%, var(--primary-background-color));
+        }
 
-.ds-button.ds-button-primary:focus
-{
-    background-color: color-mix(in srgb, black 20%, var(--primary-background-color));
-}
+        &.type-primary:focus
+        {
+            background-color: color-mix(in srgb, black 20%, var(--primary-background-color));
+        }
 
-.ds-button.ds-button-secondary
-{
-    background-color: var(--secondary-background-color);
-    color: var(--secondary-foreground-color);
+        &.type-secondary
+        {
+            background-color: var(--secondary-background-color);
+            color: var(--secondary-foreground-color);
 
-    font-weight: var(--font-weight-normal);
-}
+            font-weight: var(--font-weight-normal);
+        }
 
-.ds-button.ds-button-secondary:hover
-{
-    background-color: color-mix(in srgb, black 10%, var(--secondary-background-color));
-}
+        &.type-secondary:hover
+        {
+            background-color: color-mix(in srgb, black 10%, var(--secondary-background-color));
+        }
 
-.ds-button.ds-button-secondary:focus
-{
-    background-color: color-mix(in srgb, black 20%, var(--secondary-background-color));
-}
+        &.type-secondary:focus
+        {
+            background-color: color-mix(in srgb, black 20%, var(--secondary-background-color));
+        }
 
-.ds-button.ds-button-disabled
-{
-    background-color: var(--disabled-background-color);
+        &.type-disabled
+        {
+            background-color: var(--disabled-background-color);
 
-    border-color: var(--border-color);
-    border-style: var(--border-style);
-    border-width: var(--border-width);
+            border-color: var(--border-color);
+            border-style: var(--border-style);
+            border-width: var(--border-width);
 
-    font-weight: var(--font-weight-light);
+            font-weight: var(--font-weight-light);
 
-    cursor: default;
+            cursor: default;
+        }
+    }
 }

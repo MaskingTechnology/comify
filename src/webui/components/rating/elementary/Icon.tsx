@@ -9,5 +9,5 @@ type Props = {
 
 export default function Component({ isRated }: Props)
 {
-    return <Image source={isRated ? ratedIcon : unratedIcon} height='18px' />;
+    return <Image source={isRated ? ratedIcon : unratedIcon} height='1.2em' />;
 }

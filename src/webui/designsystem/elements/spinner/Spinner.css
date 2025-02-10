@@ -1,25 +1,35 @@
-.ds-spinner
+.ds
 {
-    --color: var(--color-border);
-    --size: 2rem;
-    --speed: 1.2s;
-    --thickness: 0.3rem;
+    .spinner
+    {
+        --color: var(--color-border);
+        --size: 2em;
+        --speed: 1.2s;
+        --thickness: 0.3em;
 
-    display: inline-block;
-    width: var(--size);
-    height: var(--size);
-}
+        display: inline-block;
+        width: var(--size);
+        height: var(--size);
 
-.ds-spinner:after
-{
-    content: " ";
-    display: block;
-    width: var(--size);
-    height: var(--size);
-    border-radius: 50%;
-    border: var(--thickness) solid var(--color);
-    border-color: var(--color) transparent var(--color) transparent;
-    animation: ds-spinner var(--speed) linear infinite;
+        &:after
+        {
+            content: " ";
+            display: block;
+            width: var(--size);
+            height: var(--size);
+            border-radius: 50%;
+            border: var(--thickness) solid var(--color);
+            border-color: transparent var(--color) transparent var(--color);
+        }
+
+        &.active
+        {
+            &:after
+            {
+                animation: ds-spinner var(--speed) linear infinite;
+            }
+        }
+    }
 }
 
 @keyframes ds-spinner

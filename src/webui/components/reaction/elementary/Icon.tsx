@@ -4,5 +4,5 @@ import { Image } from '^/webui/designsystem';
 
 export default function Component()
 {
-    return <Image source={icon} height='18px' />;
+    return <Image source={icon} height='1.2em' />;
 }

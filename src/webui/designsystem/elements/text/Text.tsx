@@ -1,7 +1,7 @@
 
 import './Text.css';
 
-export type Props = {
+type Props = {
     readonly value: string;
     readonly type?: 'primary' | 'secondary';
     readonly size?: 'large' | 'medium' | 'small';
@@ -9,13 +9,13 @@ export type Props = {
     readonly wrap?: 'none' | 'normal' | 'break-word';
 };
 
-export default function Element({ value, type, size, weight, wrap }: Props)
+export default function Element({ value, type = 'primary', size = 'medium', weight = 'normal', wrap = 'none' }: Props)
 {
-    const className = 'ds-text'
-        + ' ds-text-' + (type ?? 'primary')
-        + ' ds-text-size-' + (size ?? 'medium')
-        + ' ds-text-weight-' + (weight ?? 'normal')
-        + ' ds-text-wrap-' + (wrap ?? 'none');
+    const className = 'text'
+        + ' type-' + type
+        + ' size-' + size
+        + ' weight-' + weight
+        + ' wrap-' + wrap;
 
     return <span className={className}>
         {value}

@@ -9,7 +9,10 @@ type Props = {
 
 export default function Feature({ error }: Props)
 {
-    const isUnauthorized = error?.constructor?.name === 'Unauthorized';
+    const isUnauthorized = error?.constructor?.name === 'Unauthorized'
+        || error === 'Invalid authorization type'
+        || error === 'Invalid authorization key'
+        || error === 'Session expired';
 
     const ErrorPanel = <Panel type='normal'>
         <Title>Oops...</Title>

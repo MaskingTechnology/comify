@@ -1,5 +1,7 @@
 
-export default class ImageNotDownloaded extends Error
+import { ServerError } from '^/integrations/runtime';
+
+export default class ImageNotDownloaded extends ServerError
 {
     constructor()
     {

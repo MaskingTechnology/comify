@@ -1,31 +1,25 @@
 
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
+import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
 
 import { Grid } from '^/webui/designsystem';
 
-import NoResults from '../common/NoResults';
 import SmallPanel from './SmallPanel';
 
 type Props = {
-    readonly posts: PostView[];
-    readonly onComicClick: (post: PostView) => void;
-    readonly onRatingClick: (post: PostView) => Promise<boolean>;
-    readonly onReactionClick: (post: PostView) => void;
+    readonly posts: AggregatedPostData[];
+    readonly onContentClick: (post: AggregatedPostData) => void;
+    readonly onRatingClick: (post: AggregatedPostData) => Promise<boolean>;
+    readonly onReactionClick: (post: AggregatedPostData) => void;
 };
 
-export default function Component({ posts, onComicClick, onRatingClick, onReactionClick }: Props)
+export default function Component({ posts, onContentClick, onRatingClick, onReactionClick }: Props)
 {
-    if (posts.length === 0)
-    {
-        return <NoResults />;
-    }
-
     return <Grid layout='two-columns' gap='medium'>
         {
             posts.map(post => <SmallPanel
                 key={post.id}
                 post={post}
-                onComicClick={() => onComicClick(post)}
+                onContentClick={() => onContentClick(post)}
                 onRatingClick={() => onRatingClick(post)}
                 onReactionClick={() => onReactionClick(post)}
             />)

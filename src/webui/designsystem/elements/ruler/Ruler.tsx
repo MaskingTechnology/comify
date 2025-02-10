@@ -1,16 +1,16 @@
 
 import './Ruler.css';
 
-export type Props = {
-    readonly type: 'horizontal' | 'vertical';
+type Props = {
+    readonly direction: 'horizontal' | 'vertical';
     readonly size?: 'small' | 'medium' | 'large';
 };
 
-export default function Element({ type, size }: Props)
+export default function Element({ direction, size = 'medium' }: Props)
 {
-    const className = 'ds-ruler'
-        + ' ds-ruler-' + type
-        + ' ds-ruler-' + (size ?? 'medium');
+    const className = 'ruler'
+        + ' direction-' + direction
+        + ' size-' + size;
 
     return <div className={className} />;
 }

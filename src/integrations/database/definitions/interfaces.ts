@@ -1,7 +1,7 @@
 
-import { RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType } from './types.js';
+import { RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType } from './types';
 
-export interface Database
+export interface Driver
 {
     get connected(): boolean;
 

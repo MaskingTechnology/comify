@@ -1,0 +1,16 @@
+{
+    "url": "http://127.0.0.1:2000",
+    "setUp": [
+        "./integrations/runtime/setUpGateway"
+    ],
+    "tearDown": [
+        "./integrations/runtime/tearDownGateway"
+    ],
+    "middleware": [
+        "./integrations/runtime/authenticationMiddleware"
+    ],
+    "gateway":
+    {
+        "trustKey": "${JITAR_TRUST_KEY}"
+    }
+}

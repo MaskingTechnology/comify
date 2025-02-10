@@ -1,4 +1,6 @@
 
+/* eslint sonarjs/redundant-type-aliases: "off" */
+
 import { FieldTypes } from './constants';
 
 export type ValidationType = keyof typeof FieldTypes;
@@ -21,7 +23,7 @@ export type NumberProperties = DefaultProperties & {
 export type ArrayProperties = DefaultProperties & {
     minLength?: number;
     maxLength?: number;
-    validations?: Partial<Validations>;
+    validations?: Partial<Validation>;
 };
 
 export type BooleanProperties = DefaultProperties;
@@ -37,7 +39,7 @@ export type Message = {
     message: string;
 };
 
-export type Validations = {
+export type ValidationTypes = {
     STRING: StringProperties;
     NUMBER: NumberProperties;
     BOOLEAN: BooleanProperties;
@@ -48,4 +50,6 @@ export type Validations = {
     URL: URLProperties;
 };
 
-export type ValidationSchema = Record<string, Partial<Validations | Message>>;
+export type Validation = Partial<ValidationTypes | Message>;
+
+export type ValidationSchema = Record<string, Validation>;

@@ -1,24 +1,36 @@
 
-import type { AggregatedData as NotificationView } from '^/domain/notification/aggregate/types';
+import type { AggregatedData as AggregatedNotificationData } from '^/domain/notification/aggregate';
 
-import { LoadingContainer, NotificationPanelList } from '^/webui/components';
+import { NotificationPanelList, PullToRefresh, ResultSet, ScrollLoader } from '^/webui/components';
 import { Column } from '^/webui/designsystem';
-import { useEstablishRelation, useNotifications, useViewProfile } from '^/webui/hooks';
+
+import useEstablishRelation from './hooks/useEstablishRelation';
+import useNotifications from './hooks/useNotifications';
+import useViewNotificationDetails from './hooks/useViewNotificationDetails';
+import useViewProfile from './hooks/useViewProfile';
+
+const SCROLL_THRESHOLD = 0.7;
 
 export default function Feature()
 {
     const establishRelation = useEstablishRelation();
     const viewProfile = useViewProfile();
+    const viewNotification = useViewNotificationDetails();
 
-    const [notifications] = useNotifications();
+    const [notifications, isLoading, isFinished, getMoreNotifications, , refresh] = useNotifications();
 
     return <Column gap='small' alignX='stretch'>
-        <LoadingContainer data={notifications}>
-            <NotificationPanelList
-                notifications={notifications as NotificationView[]}
-                onFollowClick={establishRelation}
-                onCreatorClick={viewProfile}
-            />
-        </LoadingContainer>
-    </Column>;
+        <PullToRefresh onRefresh={refresh}>
+            <ScrollLoader onLoad={getMoreNotifications} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD} >
+                <ResultSet data={notifications} isLoading={isLoading}>
+                    <NotificationPanelList
+                        notifications={notifications as AggregatedNotificationData[]}
+                        onFollowClick={establishRelation}
+                        onCreatorClick={viewProfile}
+                        onNotificationClick={viewNotification}
+                    />
+                </ResultSet>
+            </ScrollLoader>
+        </PullToRefresh>
+    </Column >;
 }

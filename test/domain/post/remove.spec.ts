@@ -1,11 +1,10 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { RECORD_TYPE } from '^/domain/post/definitions';
-import PostNotFound from '^/domain/post/PostNotFound';
-import remove from '^/domain/post/remove/feature';
+import { PostNotFound, RECORD_TYPE } from '^/domain/post';
+import remove from '^/domain/post/remove';
 
-import database from '^/integrations/database/module';
+import database from '^/integrations/database';
 
 import { DATABASES, REQUESTERS, VALUES } from './fixtures';
 
@@ -18,7 +17,7 @@ describe('domain/post/remove', () =>
 {
     it('should soft delete a post', async () =>
     {
-        await remove(REQUESTERS.CREATOR, VALUES.IDS.POST_RATED);
+        await remove(REQUESTERS.CREATOR1, VALUES.IDS.POST_RATED);
 
         const reaction = await database.readRecord(RECORD_TYPE, VALUES.IDS.POST_RATED);
         expect(reaction.deleted).toBeTruthy();
@@ -26,7 +25,7 @@ describe('domain/post/remove', () =>
 
     it('should not delete an already deleted post', async () =>
     {
-        const promise = remove(REQUESTERS.CREATOR, VALUES.IDS.POST_DELETED);
+        const promise = remove(REQUESTERS.CREATOR1, VALUES.IDS.POST_DELETED);
         await expect(promise).rejects.toThrow(PostNotFound);
     });
 

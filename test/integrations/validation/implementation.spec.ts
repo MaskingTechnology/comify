@@ -1,7 +1,7 @@
 
 import { describe, expect, it } from 'vitest';
 
-import validator, { ValidationSchema } from '^/integrations/validation/module';
+import validator, { ValidationSchema } from '^/integrations/validation';
 
 import { VALIDATION_SCHEMES, VALUES } from './fixtures';
 
@@ -118,7 +118,7 @@ describe('integrations/validation/implementation', () =>
     {
         it('should accept a valid date', () =>
         {
-            const input = { date: new Date() };
+            const input = { date: new Date().toISOString() };
 
             performValidResultCheck(input, VALIDATION_SCHEMES.DATE);
         });
@@ -357,7 +357,7 @@ describe('integrations/validation/implementation', () =>
                 string: 'ABCD',
                 number: 10,
                 email: 'xyz@def.com',
-                date: new Date(),
+                date: new Date().toISOString(),
                 boolean: false
             };
 
@@ -372,7 +372,7 @@ describe('integrations/validation/implementation', () =>
                 id: '123e4567-e89b-12d3-a456-426614174002',
                 string: 'abcd',
                 email: 'def@def.com',
-                date: new Date(),
+                date: new Date().toISOString(),
                 boolean: 'false',
                 list: ['abcd', 'abcdefghij']
             };

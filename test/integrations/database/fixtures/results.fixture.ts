@@ -1,11 +1,11 @@
 
-import { RecordData } from '^/integrations/database/module';
+import { RecordData } from '^/integrations/database';
 
 import { RECORDS } from './records.fixture';
 
 const { MARGHERITA, CALZONE, PEPPERONI, VEGETARIAN, HAWAII } = RECORDS.PIZZAS;
 
-export const RESULTS: Record<string, Array<RecordData>> =
+export const RESULTS: Record<string, RecordData[]> =
 {
     EQUAL: [CALZONE, HAWAII],
     NOT_EQUAL: [CALZONE, VEGETARIAN],

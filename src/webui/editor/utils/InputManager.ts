@@ -8,6 +8,15 @@ type Handler = {
     drop: (files?: FileList) => void;
 };
 
+type InputEvent = MouseEvent | TouchEvent;
+type InputPosition = { clientX: number, clientY: number; };
+
+const pressEventName = 'ontouchstart' in window ? 'touchstart' : 'mousedown';
+const moveEventName = 'ontouchmove' in window ? 'touchmove' : 'mousemove';
+const releaseEventName = 'ontouchend' in window ? 'touchend' : 'mouseup';
+const dragOverEventName = 'dragover';
+const dropEventName = 'drop';
+
 export default class InputManager
 {
     #canvas: HTMLCanvasElement;
@@ -33,23 +42,23 @@ export default class InputManager
 
     bind(): void
     {
-        this.#canvas.addEventListener('mousedown', this.#pressHandler);
-        this.#canvas.addEventListener('mousemove', this.#moveHandler);
-        this.#canvas.addEventListener('mouseup', this.#releaseHandler);
-        this.#canvas.addEventListener('dragover', this.#dragOverHandler);
-        this.#canvas.addEventListener('drop', this.#dropHandler);
+        this.#canvas.addEventListener(pressEventName, this.#pressHandler);
+        this.#canvas.addEventListener(moveEventName, this.#moveHandler);
+        this.#canvas.addEventListener(releaseEventName, this.#releaseHandler);
+        this.#canvas.addEventListener(dragOverEventName, this.#dragOverHandler);
+        this.#canvas.addEventListener(dropEventName, this.#dropHandler);
     }
 
     unbind(): void
     {
-        this.#canvas.removeEventListener('mousedown', this.#pressHandler);
-        this.#canvas.removeEventListener('mousemove', this.#moveHandler);
-        this.#canvas.removeEventListener('mouseup', this.#releaseHandler);
-        this.#canvas.removeEventListener('dragover', this.#dragOverHandler);
-        this.#canvas.removeEventListener('drop', this.#dropHandler);
+        this.#canvas.removeEventListener(pressEventName, this.#pressHandler);
+        this.#canvas.removeEventListener(moveEventName, this.#moveHandler);
+        this.#canvas.removeEventListener(releaseEventName, this.#releaseHandler);
+        this.#canvas.removeEventListener(dragOverEventName, this.#dragOverHandler);
+        this.#canvas.removeEventListener(dropEventName, this.#dropHandler);
     }
 
-    #handlePress(event: MouseEvent): void
+    #handlePress(event: InputEvent): void
     {
         event.preventDefault();
 
@@ -60,7 +69,7 @@ export default class InputManager
         this.#handler.press(x, y);
     }
 
-    #handleMove(event: MouseEvent): void
+    #handleMove(event: InputEvent): void
     {
         event.preventDefault();
 
@@ -74,7 +83,7 @@ export default class InputManager
         this.#handler.drag(deltaX, deltaY);
     }
 
-    #handleRelease(event: MouseEvent): void
+    #handleRelease(event: InputEvent): void
     {
         event.preventDefault();
 
@@ -99,13 +108,15 @@ export default class InputManager
         this.#handler.drop(files);
     }
 
-    #extractPosition(event: MouseEvent): Position
+    #extractPosition(event: InputEvent): Position
     {
         const target = event.target as HTMLCanvasElement;
         const rect = target.getBoundingClientRect();
 
-        const canvasX = event.clientX - rect.left;
-        const canvasY = event.clientY - rect.top;
+        const input = this.#extractInputPosition(event);
+
+        const canvasX = input.clientX - rect.left;
+        const canvasY = input.clientY - rect.top;
 
         const x = canvasX * (target.width / rect.width);
         const y = canvasY * (target.height / rect.height);
@@ -116,5 +127,22 @@ export default class InputManager
         this.#currentPosition = { x, y, deltaX, deltaY };
 
         return this.#currentPosition;
+    }
+
+    #extractInputPosition(event: InputEvent): InputPosition
+    {
+        if (window.TouchEvent !== undefined && event instanceof window.TouchEvent)
+        {
+            const touch = event.touches[0];
+
+            if (touch === undefined)
+            {
+                return { clientX: this.#currentPosition.x, clientY: this.#currentPosition.y };
+            }
+
+            return touch;
+        }
+
+        return event as MouseEvent;
     }
 }

@@ -30,31 +30,31 @@ export const VALUES =
     },
     NICKNAMES:
     {
-        FIRST: 'FirstNickname',
-        SECOND: 'SecondNickname',
-        THIRD: 'ThirdNickname',
-        FOURTH: 'FourthNickname',
-        FIFTH: 'SecondNickname_001',
-        SIXTH: 'ThirdNickname_999',
+        FIRST: 'firstnickname',
+        SECOND: 'secondnickname',
+        THIRD: 'thirdnickname',
+        FOURTH: 'fourthnickname',
+        FIFTH: 'secondnickname_001',
+        SIXTH: 'thirdnickname_999',
 
         NONE: undefined,
-        FROM_FULL_NAME: 'NoNickname',
+        FROM_FULL_NAME: 'nonickname',
 
-        DUPLICATE: 'FirstNickname',
-        DEDUPLICATED: 'FirstNickname_001',
+        DUPLICATE: 'firstnickname',
+        DEDUPLICATED: 'firstnickname_001',
 
-        MULTIPLE: 'SecondNickname',
-        NEXT_OCCURRED: 'SecondNickname_002',
+        MULTIPLE: 'secondnickname',
+        NEXT_OCCURRED: 'secondnickname_002',
 
-        TOO_MANY: 'ThirdNickname',
+        TOO_MANY: 'thirdnickname',
 
         SPACED: 'Spaced Nickname',
-        DESPACED: 'SpacedNickname',
+        DESPACED: 'spacednickname',
 
         UNDERSCORED: 'Underscore_Nickname',
-        DEUNDERSCORED: 'UnderscoreNickname',
+        DEUNDERSCORED: 'underscorenickname',
 
-        WITH_PICTURE: 'WithPicture'
+        WITH_PICTURE: 'withpicture'
     },
     EMAILS:
     {

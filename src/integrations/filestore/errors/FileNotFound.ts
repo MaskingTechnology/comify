@@ -1,5 +1,5 @@
 
-import FileSystemError from './FileSystemError.js';
+import FileSystemError from './FileSystemError';
 
 export default class FileNotFound extends FileSystemError
 {

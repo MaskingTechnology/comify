@@ -1,25 +1,28 @@
-.ds-title
+.ds
 {
-    --margin: 0 0 0.8em 0;
+    .title
+    {
+        --margin: 0 0 0.8em 0;
 
-    --font-size-large: 2em;
-    --font-size-medium: 1.5em;
-    --font-size-small: 1em;
+        --font-size-large: 2em;
+        --font-size-medium: 1.5em;
+        --font-size-small: 1em;
 
-    margin: var(--margin);
-}
+        margin: var(--margin);
 
-.ds-title.ds-title-size-large
-{
-    font-size: var(--font-size-large);
-}
+        &.size-large
+        {
+            font-size: var(--font-size-large);
+        }
 
-.ds-title.ds-title-size-medium
-{
-    font-size: var(--font-size-medium);
-}
+        &.size-medium
+        {
+            font-size: var(--font-size-medium);
+        }
 
-.ds-title.ds-title-size-small
-{
-    font-size: var(--font-size-small);
+        &.size-small
+        {
+            font-size: var(--font-size-small);
+        }
+    }
 }

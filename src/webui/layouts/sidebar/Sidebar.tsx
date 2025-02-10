@@ -1,28 +1,35 @@
 
-import React from 'react';
-
-import { Ruler } from '^/webui/designsystem';
+import { ReactNode } from 'react';
 
 import './Sidebar.css';
 
 type Props = {
-    readonly sidebar: React.ReactNode;
-    readonly children: React.ReactNode;
+    readonly header: ReactNode;
+    readonly footer: ReactNode;
+    readonly sidebar: ReactNode;
+    readonly children: ReactNode;
 };
 
-export default function Layout({ sidebar, children }: Props)
+export default function Layout({ header, footer, sidebar, children }: Props)
 {
     return <div className='ds sidebar-layout'>
-        <div className='left'>
-            <aside>
-                {sidebar}
-            </aside>
-            <Ruler type='vertical' size='medium' />
+        <header>
+            {header}
+        </header>
+        <div className='content'>
+            <div className="left">
+                <aside>
+                    {sidebar}
+                </aside>
+            </div>
+            <div className="right">
+                <main>
+                    {children}
+                </main>
+            </div>
         </div>
-        <div className='right'>
-            <main>
-                {children}
-            </main>
-        </div>
+        <footer>
+            {footer}
+        </footer>
     </div>;
 }

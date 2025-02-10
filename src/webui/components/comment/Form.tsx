@@ -1,42 +1,24 @@
 
-import { useState } from 'react';
-
 import { Button, Column, Panel, Row, TextArea } from '^/webui/designsystem';
+import { useFocusOnMount } from '^/webui/hooks';
+
+import useCreateHandler, { CancelHandler, CreateHandler } from './hooks/useCreateHandler';
 
 type Props = {
-    readonly onCreate: (commentText: string) => Promise<void>;
-    readonly onCancel: () => void;
+    readonly limit?: number;
+    readonly onCreate: CreateHandler;
+    readonly onCancel: CancelHandler;
 };
 
-export default function Component({ onCreate, onCancel }: Props)
+export default function Component({ limit, onCreate, onCancel }: Props)
 {
-    const [creating, setCreating] = useState(false);
-    const [comment, setComment] = useState('');
+    const [inputRef, creating, handleCreate, handleCancel] = useCreateHandler(onCreate, onCancel);
 
-    const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) =>
-    {
-        setComment(event.target.value);
-    };
-
-    const handleCancel = () =>
-    {
-        setCreating(false);
-
-        onCancel();
-    };
-
-    const handleCreate = async () =>
-    {
-        setCreating(true);
-
-        await onCreate(comment);
-
-        setCreating(false);
-    };
+    useFocusOnMount(inputRef);
 
     return <Panel>
         <Column alignX='stretch'>
-            <TextArea name='comment' onChange={handleChange} />
+            <TextArea name='comment' ref={inputRef} limit={limit} />
             <Row alignX='right'>
                 <Button type='secondary' text='Cancel' onClick={handleCancel} />
                 <Button type={creating ? 'disabled' : 'primary'} text={creating ? 'Creating' : 'Create'} onClick={handleCreate} />

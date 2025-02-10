@@ -1,7 +1,14 @@
 
 import './Spinner.css';
 
-export default function Element()
+type Props = {
+    readonly active?: boolean;
+};
+
+export default function Element({ active = true }: Props)
 {
-    return <div className='ds-spinner'></div>;
+    const className = 'spinner'
+        + (active ? ' active' : '');
+
+    return <div className={className}></div>;
 }

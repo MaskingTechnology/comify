@@ -1,15 +1,17 @@
 
+/* eslint @typescript-eslint/no-explicit-any: "off" */
+
 import { Collection, Db, Document, Filter, MongoClient, Sort } from 'mongodb';
 
-import { ID, LogicalOperators, QueryOperators, SortDirections } from '../../definitions/constants.js';
-import { Database } from '../../definitions/interfaces.js';
-import { QueryMultiExpressionStatement, QueryOperator, QuerySingleExpressionStatement, RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType, RecordValue } from '../../definitions/types.js';
-import DatabaseError from '../../errors/DatabaseError.js';
-import NotConnected from '../../errors/NotConnected.js';
-import RecordNotCreated from '../../errors/RecordNotCreated.js';
-import RecordNotDeleted from '../../errors/RecordNotDeleted.js';
-import RecordNotFound from '../../errors/RecordNotFound.js';
-import RecordNotUpdated from '../../errors/RecordNotUpdated.js';
+import { ID, LogicalOperators, QueryOperators, SortDirections } from '../../definitions/constants';
+import { Driver } from '../../definitions/interfaces';
+import { QueryMultiExpressionStatement, QueryOperator, QuerySingleExpressionStatement, RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType, RecordValue } from '../../definitions/types';
+import DatabaseError from '../../errors/DatabaseError';
+import NotConnected from '../../errors/NotConnected';
+import RecordNotCreated from '../../errors/RecordNotCreated';
+import RecordNotDeleted from '../../errors/RecordNotDeleted';
+import RecordNotFound from '../../errors/RecordNotFound';
+import RecordNotUpdated from '../../errors/RecordNotUpdated';
 
 const UNKNOWN_ERROR = 'Unknown error';
 
@@ -36,10 +38,10 @@ const LOGICAL_OPERATORS =
 
 const MONGO_ID = '_id';
 
-export default class MongoDB implements Database
+export default class MongoDB implements Driver
 {
-    #connectionString: string;
-    #databaseName: string;
+    readonly #connectionString: string;
+    readonly #databaseName: string;
 
     #client?: MongoClient;
     #database?: Db;
@@ -51,10 +53,7 @@ export default class MongoDB implements Database
         this.#databaseName = databaseName;
     }
 
-    get connected()
-    {
-        return this.#connected;
-    }
+    get connected() { return this.#connected; }
 
     async connect(): Promise<void>
     {
@@ -62,15 +61,15 @@ export default class MongoDB implements Database
         {
             this.#client = await this.#createClient(this.#connectionString);
 
-            this.#client.on('open', () => { this.#connected = true; });
             this.#client.on('close', () => { this.#connected = false; });
-
             this.#client.on('serverHeartbeatSucceeded', () => { this.#connected = true; });
             this.#client.on('serverHeartbeatFailed', () => { this.#connected = false; });
 
             this.#database = this.#getDatabase(this.#databaseName);
+
+            this.#connected = true;
         }
-        catch (error: unknown)
+        catch (error)
         {
             const message = error instanceof Error ? error.message : UNKNOWN_ERROR;
 
@@ -93,7 +92,7 @@ export default class MongoDB implements Database
             this.#client = undefined;
             this.#database = undefined;
         }
-        catch (error: unknown)
+        catch (error)
         {
             const message = error instanceof Error ? error.message : UNKNOWN_ERROR;
 
@@ -113,7 +112,7 @@ export default class MongoDB implements Database
         {
             await collection.insertOne({ _id: id, ...dataCopy });
         }
-        catch (error: unknown)
+        catch (error)
         {
             const message = error instanceof Error ? error.message : UNKNOWN_ERROR;
 
@@ -182,10 +181,8 @@ export default class MongoDB implements Database
         return; // Deliberately not implemented
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any, sonarjs/cognitive-complexity
     #buildMongoQuery(query: RecordQuery): Filter<any> 
     {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const mongoQuery: Filter<any> = {};
         const multiStatements = query as QueryMultiExpressionStatement;
         const singleStatements = query as QuerySingleExpressionStatement;
@@ -195,7 +192,6 @@ export default class MongoDB implements Database
             if (key === 'AND' || key === 'OR')
             {
                 const singleMultiStatements = multiStatements[key] ?? [];
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 const multiMongoQuery: Filter<any>[] = [];
 
                 for (const statement of singleMultiStatements)
@@ -246,7 +242,6 @@ export default class MongoDB implements Database
         return mongoSort;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async #getCollection<T>(name: RecordType): Promise<Collection<T extends Document ? any : any>>
     {
         if (this.#database === undefined)
@@ -269,16 +264,7 @@ export default class MongoDB implements Database
 
     async #createClient(connectionString: string): Promise<MongoClient>
     {
-        try
-        {
-            return await MongoClient.connect(connectionString);
-        }
-        catch (error: unknown)
-        {
-            const message = error instanceof Error ? error.message : undefined;
-
-            throw new NotConnected(message);
-        }
+        return MongoClient.connect(connectionString);
     }
 
     #buildRecordData(data: Document, fields?: RecordField[]): RecordData

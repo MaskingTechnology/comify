@@ -1,5 +1,5 @@
 
-import { Session } from './types.js';
+import { Session } from './types';
 
 export interface IdentityProvider
 {

@@ -1,5 +1,5 @@
 
-import WebPush from './WebPush.js';
+import WebPush from './WebPush';
 
 export default function create(): WebPush
 {

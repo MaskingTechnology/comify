@@ -1,8 +1,10 @@
 
-export default class NicknameAlreadyExists extends Error
+import { BadRequest } from '^/integrations/runtime';
+
+export default class NicknameAlreadyExists extends BadRequest
 {
     constructor(nickname: string)
     {
-        super(`Nickname already exists '${nickname}'`);
+        super(`Nickname '${nickname}' already exists`);
     }
 }

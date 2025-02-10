@@ -1,5 +1,7 @@
 
-export default class TooManySimilarNicknames extends Error
+import { BadRequest } from '^/integrations/runtime';
+
+export default class TooManySimilarNicknames extends BadRequest
 {
     constructor(message?: string)
     {

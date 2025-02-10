@@ -1,7 +1,7 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import notificationService, { SubscriptionNotFound } from '^/integrations/notification/module';
+import notificationService, { SubscriptionNotFound } from '^/integrations/notification';
 
 import { NOTIFICATION_SERVICES, VALUES } from './fixtures';
 
@@ -47,7 +47,7 @@ describe('integrations/notification/implementation', () =>
         it('should not remove a non-existing subscription', async () =>
         {
             const promise = notificationService.unsubscribe(VALUES.RECIPIENTS.UNKNOWN);
-            expect(promise).rejects.toStrictEqual(new SubscriptionNotFound(VALUES.RECIPIENTS.UNKNOWN));
+            await expect(promise).rejects.toStrictEqual(new SubscriptionNotFound(VALUES.RECIPIENTS.UNKNOWN));
         });
     });
 
@@ -55,7 +55,7 @@ describe('integrations/notification/implementation', () =>
     {
         it('should send a notification to an existing subscription', async () =>
         {
-            const notifications = notificationService.subscriptions.get(VALUES.RECIPIENTS.FIRST) as Array<unknown>;
+            const notifications = notificationService.subscriptions.get(VALUES.RECIPIENTS.FIRST) as unknown[];
 
             await notificationService.sendNotification(VALUES.RECIPIENTS.FIRST, VALUES.NOTIFICATION.TITLE, VALUES.NOTIFICATION.BODY);
 
@@ -65,7 +65,7 @@ describe('integrations/notification/implementation', () =>
         it('should not send a notification to a non-existing subscription', async () =>
         {
             const promise = notificationService.sendNotification(VALUES.RECIPIENTS.UNKNOWN, VALUES.NOTIFICATION.TITLE, VALUES.NOTIFICATION.BODY);
-            expect(promise).rejects.toStrictEqual(new SubscriptionNotFound(VALUES.RECIPIENTS.UNKNOWN));
+            await expect(promise).rejects.toStrictEqual(new SubscriptionNotFound(VALUES.RECIPIENTS.UNKNOWN));
         });
     });
 });

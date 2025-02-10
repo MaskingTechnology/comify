@@ -1,22 +1,23 @@
 
-import React from 'react';
+import { ReactNode } from 'react';
+
 import './Column.css';
 
-export type Props = {
+type Props = {
     readonly alignX?: 'left' | 'center' | 'right' | 'stretch';
     readonly alignY?: 'top' | 'center' | 'bottom' | 'justify';
     readonly gap?: 'large' | 'medium' | 'small' | 'none';
     readonly wrap?: 'wrap' | 'nowrap';
-    readonly children: React.ReactNode;
+    readonly children: ReactNode;
 };
 
-export default function Element({ alignX, alignY, gap, wrap, children }: Props)
+export default function Element({ alignX = 'left', alignY = 'top', gap = 'medium', wrap = 'nowrap', children }: Props)
 {
-    const className = 'ds-column'
-        + ' ds-column-align-x-' + (alignX ?? 'left')
-        + ' ds-column-align-y-' + (alignY ?? 'top')
-        + ' ds-column-gap-' + (gap ?? 'medium')
-        + ' ds-column-wrap-' + (wrap ?? 'nowrap');
+    const className = 'column'
+        + ' align-x-' + alignX
+        + ' align-y-' + alignY
+        + ' gap-' + gap
+        + ' wrap-' + wrap;
 
     return <div className={className}>
         {children}

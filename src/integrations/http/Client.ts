@@ -1,11 +1,11 @@
 
-import { HTTP_METHODS } from './definitions/constants.js';
-import { Http } from './definitions/interfaces.js';
+import { HTTP_METHODS } from './definitions/constants';
+import { Http } from './definitions/interfaces';
 
 export default class Memory implements Http
 {
-    #implementation: Http;
-    #cache = new Map<string, Response>();
+    readonly #implementation: Http;
+    readonly #cache = new Map<string, Response>();
 
     constructor(implementation: Http)
     {

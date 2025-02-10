@@ -2,8 +2,8 @@
 import webpush, { PushSubscription } from 'web-push';
 
 import { NotificationService } from '../../definitions/interfaces';
-import NotConnected from '../../errors/NotConnected.js';
-import SubscriptionNotFound from '../../errors/SubscriptionNotFound.js';
+import NotConnected from '../../errors/NotConnected';
+import SubscriptionNotFound from '../../errors/SubscriptionNotFound';
 
 type VapidDetails = {
     subject: string;
@@ -13,7 +13,7 @@ type VapidDetails = {
 
 export default class WebPush implements NotificationService
 {
-    #configuration: VapidDetails;
+    readonly #configuration: VapidDetails;
     #subscriptions?: Map<string, PushSubscription>;
 
     constructor(configuration: VapidDetails)

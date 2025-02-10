@@ -1,30 +1,30 @@
-.ds-image
+.ds
 {
-    --small-width: 1em;
-    --small-height: 1em;
+    .image
+    {
+        &.fit-fill
+        {
+            object-fit: fill;
+        }
 
-    --medium-width: 2em;
-    --medium-height: 2em;
+        &.fit-contain
+        {
+            object-fit: contain;
+        }
 
-    --large-width: 4em;
-    --large-height: 4em;
-}
+        &.fit-cover
+        {
+            object-fit: cover;
+        }
 
-.ds-image.ds-image-size-small
-{
-    width: var(--small-width);
-    height: var(--small-height);
+        &.fit-none
+        {
+            object-fit: none;
+        }
 
-}
-
-.ds-image.ds-image-size-medium
-{
-    width: var(--medium-width);
-    height: var(--medium-height);
-}
-
-.ds-image.ds-image-size-large
-{
-    width: var(--large-width);
-    height: var(--large-height);
+        &.fit-scale-down
+        {
+            object-fit: scale-down;
+        }
+    }
 }

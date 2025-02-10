@@ -1,16 +1,17 @@
 
-import React from 'react';
+import { ReactNode } from 'react';
+
 import './Paragraph.css';
 
-export type Props = {
+type Props = {
     readonly size?: 'large' | 'medium' | 'small';
-    readonly children: React.ReactNode;
+    readonly children: ReactNode;
 };
 
-export default function Element({ size, children }: Props)
+export default function Element({ size = 'medium', children }: Props)
 {
-    const className = 'ds-paragraph'
-        + ' ds-paragraph-size-' + (size ?? 'medium');
+    const className = 'paragraph'
+        + ' size-' + size;
 
     return <p className={className}>
         {children}

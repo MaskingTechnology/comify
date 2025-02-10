@@ -1,5 +1,5 @@
 
-export type Identity = {
+type Identity = {
     name: string;
     nickname: string | undefined;
     picture: string | undefined;
@@ -7,9 +7,10 @@ export type Identity = {
     email_verified: boolean;
 };
 
-export type Token = string;
+// eslint-disable-next-line sonarjs/redundant-type-aliases
+type Token = string;
 
-export type Session = {
+type Session = {
     key?: string;
     requester?: unknown;
     identity: Identity;
@@ -17,3 +18,5 @@ export type Session = {
     refreshToken: Token;
     expires: Date;
 };
+
+export type { Identity, Session };

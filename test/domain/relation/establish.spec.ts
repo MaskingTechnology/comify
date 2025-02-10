@@ -1,12 +1,11 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator/definitions';
-import { RECORD_TYPE as RELATION_RECORD_TYPE } from '^/domain/relation/definitions';
-import RelationAlreadyExists from '^/domain/relation/establish/RelationAlreadyExists';
-import establish from '^/domain/relation/establish/feature';
+import { RECORD_TYPE as RELATION_RECORD_TYPE } from '^/domain/relation';
+import { InvalidRelation } from '^/domain/relation/create';
+import establish, { RelationAlreadyExists } from '^/domain/relation/establish';
 
-import database from '^/integrations/database/module';
+import database from '^/integrations/database';
 
 import { DATABASES, QUERIES, REQUESTERS, VALUES } from './fixtures';
 
@@ -23,31 +22,19 @@ describe('domain/relation/establish', () =>
 
         const relation = await database.findRecord(RELATION_RECORD_TYPE, QUERIES.EXISTING_RELATION);
         expect(relation?.id).toBeDefined();
-
-        const followingCreator = await database.readRecord(CREATOR_RECORD_TYPE, REQUESTERS.SECOND.id);
-        expect(followingCreator.followingCount).toBe(1);
-
-        const followedCreator = await database.readRecord(CREATOR_RECORD_TYPE, VALUES.IDS.CREATOR1);
-        expect(followedCreator.followerCount).toBe(1);
     });
 
     it('should NOT establish a duplicate relation', async () =>
     {
         const promise = establish(REQUESTERS.FIRST, VALUES.IDS.CREATOR2);
 
-        expect(promise).rejects.toStrictEqual(new RelationAlreadyExists());
+        await expect(promise).rejects.toStrictEqual(new RelationAlreadyExists());
     });
 
-    it('Should rollback created data after failure', async () =>
+    it('should fail when invalid data is provided', async () =>
     {
-        // This should fail at the action when incrementing the creator's following count
-        const promise = establish(REQUESTERS.UNKNOWN, VALUES.IDS.CREATOR2);
-        await expect(promise).rejects.toThrow('Record not found');
+        const promise = establish(REQUESTERS.FIRST, VALUES.IDS.INVALID);
 
-        const followedCreator = await database.readRecord(CREATOR_RECORD_TYPE, VALUES.IDS.CREATOR2);
-        expect(followedCreator.followerCount).toBe(0);
-
-        const relation = await database.findRecord(RELATION_RECORD_TYPE, QUERIES.NON_EXISTING_RELATION);
-        expect(relation).toBeUndefined();
+        await expect(promise).rejects.toThrow(InvalidRelation);
     });
 });

@@ -1,31 +1,23 @@
 
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
+import { Ruler, Tab, Tabs } from '^/webui/designsystem';
 
-import { LoadingContainer, OrderRow, PostPanelList } from '^/webui/components';
-import { Column } from '^/webui/designsystem';
-import { useEstablishRelation, useReorderList, useTimelinePosts, useTogglePostRating, useViewPostDetails, useViewProfile } from '^/webui/hooks';
+import { usePathParam } from '^/webui/hooks';
+
+import TimelineFollowing from './TimelineFollowing';
+import TimelineForYou from './TimelineForYou';
 
 export default function Feature()
 {
-    const establishRelation = useEstablishRelation();
-    const togglePostRating = useTogglePostRating();
-    const reorderList = useReorderList();
-    const viewPostDetails = useViewPostDetails();
-    const viewProfile = useViewProfile();
+    const [tab, setTab] = usePathParam('tab', 'foryou');
 
-    const [posts] = useTimelinePosts();
+    const separator = <Ruler direction='horizontal' size='small' />;
 
-    return <Column gap='small' alignX='stretch'>
-        <OrderRow selected='recent' onOrderChange={reorderList} />
-        <LoadingContainer data={posts}>
-            <PostPanelList
-                posts={posts as PostView[]}
-                onFollowClick={establishRelation}
-                onCreatorClick={viewProfile}
-                onComicClick={viewPostDetails}
-                onRatingClick={togglePostRating}
-                onReactionClick={viewPostDetails}
-            />
-        </LoadingContainer>
-    </Column>;
+    return <Tabs selectedId={tab} onChange={setTab} separator={separator}>
+        <Tab id='foryou' title='For you'>
+            <TimelineForYou />
+        </Tab>
+        <Tab id='following' title='Following'>
+            <TimelineFollowing />
+        </Tab>
+    </Tabs>;
 }

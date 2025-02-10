@@ -8,7 +8,6 @@ type DataModel = BaseDataModel &
     readonly senderId: string;
     readonly receiverId: string;
     readonly postId?: string;
-    readonly reactionId?: string;
 };
 
 export type { DataModel };

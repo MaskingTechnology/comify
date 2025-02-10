@@ -1,43 +1,70 @@
 
-import React, { useState } from 'react';
+import { ReactElement, ReactNode, useEffect, useMemo, useState } from 'react';
+
 import { Props as TabProps } from './Tab';
 import './Tabs.css';
 
-export type Props = {
-    readonly separator?: React.ReactNode;
-    readonly children: React.ReactElement<TabProps> | React.ReactElement<TabProps>[];
-    readonly onChange?: (oldIndex: number, newIndex: number) => void;
+type Props = {
+    readonly separator?: ReactNode;
+    readonly selectedId?: string;
+    readonly children: ReactElement<TabProps> | ReactElement<TabProps>[];
+    readonly onChange?: (newId: string, oldId?: string) => void;
 };
 
-export default function Component({ separator, children, onChange }: Props)
+export default function Component({ separator, selectedId, children, onChange }: Props)
 {
-    const [selected, setSelected] = useState(0);
+    const [selected, setSelected] = useState<string>(selectedId ?? '');
 
-    const handleChange = (index: number) =>
+    const tabList = useMemo(() =>
+    {
+        return Array.isArray(children) ? children : [children];
+
+    }, [children]);
+
+    const tabMap = useMemo(() =>
+    {
+        const tabs: Record<string, ReactElement> = {};
+
+        tabList.forEach((element) =>
+        {
+            const tabId = element.props.id;
+            tabs[tabId] = element;
+        });
+
+        return tabs;
+
+    }, [tabList]);
+
+    useEffect(() =>
+    {
+        const firstTabId = tabList[0].props.id;
+
+        setSelected(selectedId ?? firstTabId);
+
+    }, [selectedId, tabList]);
+
+    const handleChange = (tabId: string) =>
     {
         if (onChange !== undefined)
         {
-            onChange(selected, index);
+            onChange(tabId, selected);
         }
 
-        setSelected(index);
+        setSelected(tabId);
     };
 
-    const tabs = Array.isArray(children)
-        ? children
-        : [children];
-
-    return <div className='ds-tabs'>
-        <div className='ds-tabs-nav'>
+    return <div className='tabs'>
+        <div className='nav'>
             {
-                tabs.map((element, index) =>
+                tabList.map(element =>
                 {
-                    const style = index === selected ? 'active' : 'inactive';
-                    const handleClick = () => handleChange(index);
-                    const key = `tab-${index}-${element.props.title}`;
+                    const tabId = element.props.id;
+                    const key = `tab-${tabId}`;
+                    const style = tabId === selected ? 'active' : 'inactive';
+                    const handleClick = () => handleChange(element.props.id);
 
                     return (
-                        <div key={key} className={'ds-tabs-nav-item ' + style} onClick={handleClick}>
+                        <div key={key} className={'item ' + style} onClick={handleClick}>
                             {element.props.title}
                         </div>
                     );
@@ -46,9 +73,9 @@ export default function Component({ separator, children, onChange }: Props)
         </div>
         {
             separator !== undefined
-                ? <div className='ds-tabs-separator'>{separator}</div>
+                ? <div className='separator'>{separator}</div>
                 : null
         }
-        <div className="ds-tabs-content">{tabs[selected]}</div>
+        <div className="content">{tabMap[selected]}</div>
     </div>;
 }

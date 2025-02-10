@@ -1,15 +1,15 @@
 
-import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
+import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
 import CreatorTimeElapsed from '../creator/TimeElapsed';
 import FollowRow from './elementary/FollowRow';
 
 type Props = {
-    readonly relation: RelationView;
+    readonly relation: AggregatedRelationData;
     readonly date: string;
-    readonly onFollowClick: (relation: RelationView) => Promise<void>;
-    readonly onEditClick?: (relation: RelationView) => void;
-    readonly onCreatorClick: (relation: RelationView) => void;
+    readonly onFollowClick: (relation: AggregatedRelationData) => Promise<void>;
+    readonly onEditClick?: (relation: AggregatedRelationData) => void;
+    readonly onCreatorClick: (relation: AggregatedRelationData) => void;
 };
 
 export default function Component({ relation, date, onFollowClick, onEditClick, onCreatorClick }: Props)

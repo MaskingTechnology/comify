@@ -1,5 +1,7 @@
 
-export default class PostNotFound extends Error
+import { NotFound } from '^/integrations/runtime';
+
+export default class PostNotFound extends NotFound
 {
     constructor()
     {

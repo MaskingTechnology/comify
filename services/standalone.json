@@ -13,14 +13,14 @@
         "./integrations/runtime/fileStoreHealthCheck",
         "./integrations/runtime/databaseHealthCheck"
     ],
+    "middleware": [
+        "./integrations/runtime/authenticationMiddleware"
+    ],
     "standalone":
     {
-        "trustKey": "${JITAR_TRUST_KEY}",
+        "segments": ["bff", "notification", "reads", "writes"],
+
         "serveIndexOnNotFound": true,
-        "assets": ["index.html", "main.js", "assets/**/*", "webui/**/*"],
-        "segments": ["webui"],
-        "middlewares": [
-            "./integrations/runtime/authenticationMiddleware"
-        ]
+        "assets": ["index.html", "main.js", "assets/**/*", "webui/**/*", "registerSW.js", "sw.js", "workbox-*.js", "manifest.webmanifest" ]
     }
 }

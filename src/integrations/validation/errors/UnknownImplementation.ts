@@ -1,5 +1,5 @@
 
-import ValidationError from './ValidationError.js';
+import ValidationError from './ValidationError';
 
 export default class UnknownImplementation extends ValidationError
 {

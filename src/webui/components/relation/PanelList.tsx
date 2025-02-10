@@ -1,25 +1,19 @@
 
-import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
+import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
 import { Column } from '^/webui/designsystem';
 
-import NoResults from '../common/NoResults';
 import Panel from './Panel';
 
 type Props = {
-    readonly relations: RelationView[];
-    readonly onFollowClick: (relation: RelationView) => Promise<void>;
-    readonly onEditClick?: (relation: RelationView) => void;
-    readonly onCreatorClick: (relation: RelationView) => void;
+    readonly relations: AggregatedRelationData[];
+    readonly onFollowClick: (relation: AggregatedRelationData) => Promise<void>;
+    readonly onEditClick?: (relation: AggregatedRelationData) => void;
+    readonly onCreatorClick: (relation: AggregatedRelationData) => void;
 };
 
 export default function Component({ relations, onFollowClick, onEditClick, onCreatorClick }: Props)
 {
-    if (relations.length === 0)
-    {
-        return <NoResults />;
-    }
-
     return <Column gap='medium' alignX='stretch'>
         {
             relations.map(relation =>

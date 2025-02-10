@@ -1,25 +1,20 @@
 
-import type { AggregatedData as NotificationView } from '^/domain/notification/aggregate/types';
-import type { AggregatedData as RelationView } from '^/domain/relation/aggregate/types';
+import type { AggregatedData as AggregatedNotificationData } from '^/domain/notification/aggregate';
+import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
 import { Column } from '^/webui/designsystem';
 
-import NoResults from "../common/NoResults";
 import Panel from './Panel';
 
 type Props = {
-    readonly notifications: NotificationView[];
-    readonly onFollowClick: (relation: RelationView) => Promise<void>;
-    readonly onCreatorClick: (relation: RelationView) => void;
+    readonly notifications: AggregatedNotificationData[];
+    readonly onFollowClick: (relation: AggregatedRelationData) => Promise<void>;
+    readonly onCreatorClick: (relation: AggregatedRelationData) => void;
+    readonly onNotificationClick: (notification: AggregatedNotificationData) => void;
 };
 
-export default function Component({ notifications, onFollowClick, onCreatorClick }: Props)
+export default function Component({ notifications, onFollowClick, onCreatorClick, onNotificationClick }: Props)
 {
-    if (notifications.length === 0)
-    {
-        return <NoResults />;
-    }
-
     return <Column gap='medium' alignX='stretch'>
         {
             notifications.map(notification =>
@@ -28,6 +23,7 @@ export default function Component({ notifications, onFollowClick, onCreatorClick
                     notification={notification}
                     onFollowClick={onFollowClick}
                     onCreatorClick={onCreatorClick}
+                    onNotificationClick={onNotificationClick}
                 />
             )
         }

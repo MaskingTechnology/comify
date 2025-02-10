@@ -1,21 +1,27 @@
 
 import './Avatar.css';
 
-export type Props = {
-    readonly size?: string;
+type Props = {
     readonly source: string;
+    readonly title?: string;
     readonly alt?: string;
+    readonly width?: string;
+    readonly height?: string;
+    readonly fit?: 'fill' | 'contain' | 'cover' | 'none' | 'scale-down';
 };
 
-export default function Element({ size, source, alt }: Props)
+export default function Element({ source, title, alt = 'Avatar', width, height, fit = 'contain' }: Props)
 {
-    alt = alt ?? 'Avatar';
+    const className = 'avatar'
+        + ' fit-' + fit;
+
+    const style = { width, height };
 
     return <img
-        className='ds-avatar'
+        className={className}
+        title={title}
         alt={alt}
+        style={style}
         src={source}
-        width={size}
-        height={size}
     />;
 }

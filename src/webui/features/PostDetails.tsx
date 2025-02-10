@@ -1,32 +1,59 @@
 
-import type { AggregatedData as PostView } from '^/domain/post/aggregate/types';
+import { useCallback } from 'react';
 
-import { LoadingContainer, PostDetailsPanel } from '^/webui/components';
+import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
+
+import { BackRow, ConfirmationPanel, LoadingContainer, PostDetailsPanel } from '^/webui/components';
+import { useAppContext } from '^/webui/contexts';
 import { Column, Ruler } from '^/webui/designsystem';
-import { useDeletePost, useEstablishRelation, usePost, useTogglePostRating, useViewProfile } from '^/webui/hooks';
 
-import Reactions from './Reactions';
+import useEstablishRelation from './hooks/useEstablishRelation';
+import useGoToParentPost from './hooks/useGoToParentPost';
+import usePost from './hooks/usePost';
+import useRemovePost from './hooks/useRemovePost';
+import useTogglePostRating from './hooks/useTogglePostRating';
+import useViewPostDetails from './hooks/useViewPostDetails';
+import useViewProfile from './hooks/useViewProfile';
+
+import PostReactions from './PostReactions';
 
 export default function Feature()
 {
+    const { showModal, closeModal } = useAppContext();
+
+    const goToParentPost = useGoToParentPost();
     const establishRelation = useEstablishRelation();
     const togglePostRating = useTogglePostRating();
     const viewProfile = useViewProfile();
-    const deletePost = useDeletePost();
+    const removePost = useRemovePost();
+    const viewPostDetails = useViewPostDetails();
 
     const [post] = usePost();
 
+    const deletePost = useCallback(async (post: AggregatedPostData) =>
+    {
+        const panel = <ConfirmationPanel
+            message='Are you sure you want to delete this post?'
+            onConfirm={() => { closeModal(); removePost(post); }}
+            onCancel={() => closeModal()} />;
+
+        showModal(panel);
+
+    }, [showModal, closeModal, removePost]);
+
     return <Column gap='medium' alignX='stretch'>
+        <BackRow canGoBack={post?.hasParent as boolean} onBackClick={() => goToParentPost(post as AggregatedPostData)} />
         <LoadingContainer data={post}>
             <PostDetailsPanel
-                post={post as PostView}
+                post={post as AggregatedPostData}
                 onFollowClick={establishRelation}
                 onRatingClick={togglePostRating}
                 onCreatorClick={viewProfile}
+                onReactionClick={viewPostDetails}
                 onDeleteClick={deletePost}
             />
-            <Ruler type='horizontal' />
-            <Reactions post={post as PostView} />
+            <Ruler direction='horizontal' />
+            <PostReactions post={post as AggregatedPostData} />
         </LoadingContainer>
     </Column>;
 }

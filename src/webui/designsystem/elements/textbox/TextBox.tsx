@@ -1,23 +1,26 @@
 
-import React, { RefObject } from 'react';
+import { ChangeEventHandler, forwardRef } from 'react';
+
 import './TextBox.css';
 
 export type Props = {
     readonly name: string;
     readonly placeholder?: string;
     readonly value?: string;
+    readonly limit?: number;
     readonly pattern?: string;
     readonly title?: string;
     readonly size?: 'large' | 'medium' | 'small';
-    readonly reference?: RefObject<HTMLInputElement>;
     readonly required?: boolean;
-    readonly onChange?: React.ChangeEventHandler<HTMLInputElement>;
+    readonly onChange?: ChangeEventHandler<HTMLInputElement>;
 };
 
-export default function Element({ name, placeholder, value, pattern, title, size, reference, required, onChange }: Props)
+type Ref = HTMLInputElement;
+
+export default forwardRef<Ref, Props>(function Element({ name, placeholder, value, limit, pattern, title, size = 'medium', required, onChange }, ref)
 {
-    const className = 'ds-textbox'
-        + ' ds-textbox-size-' + (size ?? 'medium');
+    const className = 'textbox'
+        + ' size-' + size;
 
     return <input
         className={className}
@@ -25,10 +28,11 @@ export default function Element({ name, placeholder, value, pattern, title, size
         name={name}
         placeholder={placeholder}
         defaultValue={value}
+        maxLength={limit}
         pattern={pattern}
         title={title}
-        ref={reference}
+        ref={ref}
         required={required}
         onChange={onChange}
     />;
-}
+});

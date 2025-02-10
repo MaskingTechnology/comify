@@ -1,0 +1,42 @@
+{
+    "./domain/authentication/getLoginUrl": { "default": {  "access": "public" } },
+    "./domain/authentication/login": { "default": {  "access": "public" } },
+    "./domain/authentication/logout": { "default": {  "access": "public" } },
+
+    "./domain/creator/getByNicknameAggregated": { "default": {  "access": "public" } },
+    "./domain/creator/getMeAggregated": { "default": {  "access": "public" } },
+    "./domain/creator/updateFullName": { "default": {  "access": "public" } },
+    "./domain/creator/updateNickname": { "default": {  "access": "public" } },
+
+    "./domain/creator.metrics/create": { "subscriptions": {  "access": "private" } },
+    "./domain/creator.metrics/updateFollowers": { "subscriptions": {  "access": "private" } },
+    "./domain/creator.metrics/updateFollowing": { "subscriptions": {  "access": "private" } },
+    "./domain/creator.metrics/updatePosts": { "subscriptions": {  "access": "private" } },
+
+    "./domain/notification/notify": { "subscriptions": {  "access": "private" } },
+    "./domain/notification/getRecentAggregated": { "default": {  "access": "public" } },
+    "./domain/notification/getByIdAggregated": { "default": {  "access": "public" } },
+
+    "./domain/post/create": { "default": {  "access": "private" }, "subscribe": {  "access": "private" } },
+    "./domain/post/createWithComic": { "default": {  "access": "public" } },
+    "./domain/post/createWithComment": { "default": {  "access": "public" } },
+    "./domain/post/exploreAggregated": { "default": {  "access": "public" } },
+    "./domain/post/getByIdAggregated": { "default": {  "access": "public" } },
+    "./domain/post/getByParentAggregated": { "default": {  "access": "public" } },
+    "./domain/post/getByCreatorAggregated": { "default": {  "access": "public" } },
+    "./domain/post/getByFollowingAggregated": { "default": {  "access": "public" } },
+    "./domain/post/getRecommendedAggregated": { "default": { "access": "public"}},
+    "./domain/post/remove": { "default": {  "access": "public" }, "subscribe": {  "access": "private" } },
+
+    "./domain/post.metrics/create": { "subscriptions": {  "access": "private" } },
+    "./domain/post.metrics/updateRatings": { "subscriptions": {  "access": "private" } },
+    "./domain/post.metrics/updateReactions": { "subscriptions": {  "access": "private" } },
+
+    "./domain/rating/toggle": { "default": { "access": "public" }, "subscribe": {  "access": "private" } },
+
+    "./domain/relation/exploreAggregated": { "default": {  "access": "public" } },
+    "./domain/relation/establish": { "default": { "access": "public" }, "subscribe": {  "access": "private" } },
+    "./domain/relation/getAggregated": { "default": {  "access": "public" } },
+    "./domain/relation/getFollowersAggregated": { "default": {  "access": "public" } },
+    "./domain/relation/getFollowingAggregated": { "default": {  "access": "public" } }
+}

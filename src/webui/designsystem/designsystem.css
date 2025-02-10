@@ -54,6 +54,11 @@
     font-weight: var(--font-weight-light);
 }
 
+.ds *
+{
+    box-sizing: border-box;
+}
+
 .ds *:is(:last-child)
 {
     margin-bottom: 0;

@@ -1,6 +1,6 @@
 
-import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator/definitions';
-import database from '^/integrations/database/module';
+import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator';
+import database from '^/integrations/database';
 
 import { RECORDS } from './records.fixture';
 
@@ -10,10 +10,9 @@ async function withCreators(): Promise<void>
 {
     database.clear();
 
-    RECORDS.CREATORS.forEach(async (creator) =>
-    {
-        await database.createRecord(CREATOR_RECORD_TYPE, creator);
-    });
+    const promises = RECORDS.CREATORS.map(creator => database.createRecord(CREATOR_RECORD_TYPE, creator));
+
+    await Promise.all(promises);
 }
 
 export const DATABASES = { withCreators };

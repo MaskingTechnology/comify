@@ -1,25 +1,28 @@
 
-import React from 'react';
+import { FormEvent, ReactNode, forwardRef } from 'react';
+
 import './Form.css';
 
-export type Props = {
-    readonly children: React.ReactNode;
+type Props = {
+    readonly children: ReactNode;
     readonly submitHandler?: (form: HTMLFormElement) => void;
 };
 
-export default function Element({ children, submitHandler }: Props)
+type Ref = HTMLFormElement;
+
+export default forwardRef<Ref, Props>(function Element({ children, submitHandler }, ref)
 {
-    const handleSubmit = (event: React.FormEvent<HTMLElement>) =>
+    const handleSubmit = (event: FormEvent<HTMLElement>) =>
     {
+        event.preventDefault();
+
         if (submitHandler)
         {
             submitHandler(event.target as HTMLFormElement);
         }
-
-        event.preventDefault();
     };
 
-    return <form onSubmit={handleSubmit} className='ds-form'>
+    return <form onSubmit={handleSubmit} className='form' ref={ref}>
         {children}
     </form>;
-}
+});

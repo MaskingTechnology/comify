@@ -1,5 +1,5 @@
 
-import httpClient, { HTTP_METHODS } from '^/integrations/http/module';
+import httpClient, { HTTP_METHODS } from '^/integrations/http';
 
 import { RESPONSES } from './responses.fixture';
 import { URLS } from './urls.fixture';

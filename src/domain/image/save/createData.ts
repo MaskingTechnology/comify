@@ -1,7 +1,7 @@
 
 import { generateId } from '^/integrations/utilities/crypto';
 
-export type Data = {
+type Data = {
     readonly id: string;
     readonly storageKey: string;
     readonly filename: string;
