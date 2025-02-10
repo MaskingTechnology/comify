@@ -61,22 +61,22 @@ Features compose components and make them work as a functional whole. For the la
 * **Create** - a new post.
 * **Profile** - the users posts, followers and following.
 
-These features can link to, or contain, sub-features like **PostDetails**, **Reactions**, etc..
+These features can link to, or contain, sub-features like **PostDetails**, **PostReactions**, etc..
 
-At the composition of a feature, actions need to be defined for the components. For example, what needs to happen when the ordering of the overview has changed, or when the follow button is pressed. All available actions are provided as hooks (from the `hooks` module), so they only need to be imported and linked. For example, the `useEstablishRelation` hook is liked as action for the follow button.
+At the composition of a feature, actions need to be defined for the components. For example, what needs to happen when the ordering of the overview has changed, or when the follow button is pressed. All available actions are provided as hooks (from the `hooks` module), so they only need to be imported and linked. For example, the `useEstablishRelation` hook is linked as action for the follow button.
 
-A feature is also responsible for loading data. For this, hooks are also available like the `useTimelinePosts` hook used for this feature.
+A feature is also responsible for loading data. For this, hooks are also available like the `useNotifications` hook used for the notifications feature.
 
 ### Components
 
 Components are small reusable building blocks grouped per domain concept. To keep them small, we break them down into smaller pieces. Conceptually we distinguish two types of components:
 
-1. **Public** - shared components for building features.
-1. **Elementary** - private components for building public components.
+1. **Primary** - public (shared) components for building features.
+1. **Elementary** - private components for building primary components.
 
 Our basic design rule: components are dumb! A component can define actions, but does not implement them. Features will provide the implementation, because they know the context of use.
 
-Also, public components can be bound to a domain view model. Elementary components can not because they are even dumber.
+Also, primary components can be bound to a domain model. Elementary components can not because they are even dumber.
 
 ### Design system
 
@@ -100,6 +100,6 @@ Currently we only a single context for the application. The `AppContext` only pr
 
 All server communication comes from hooks. A hook is allowed to import and execute a domain function, like establishing a relation.
 
-Many of the domain functions require a requester object for authorization purposes. We've created a `johnDoe` object to act as placeholder when calling these functions. The authentication middleware will replace this object with the actual requester.
+Many of the domain functions require a requester object for authorization purposes. We've created a `requester` object to act as placeholder when calling these functions. The authentication middleware will replace this object with the actual requester.
 
 **Note:** Because we're using Jitar, we can import and call the functions directly and don't have to build API requests.
