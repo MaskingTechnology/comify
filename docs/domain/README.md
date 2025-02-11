@@ -5,52 +5,65 @@ The domain contains the implementation of all business related components. It le
 
 ## Module structure
 
-We're using a modular composable approach. Our module structure looks like this.
+We're using a feature-oriented approach. Our root module structure looks like this.
 
 <img width="1102" alt="Web UI module structure" src="../assets/images/domain/modules.png">
 
-Basically it boils down to a module per domain concept. Each module contains its related logic and data components.
+Basically, it boils down to a root module per domain concept. Each module contains its features.
 
-## Component model
+A module is implemented as a folder containing an index file that exposes its essentials for consumers.
 
-Functions are used as building blocks for logic components. Classes are only used for creating immutable data models. Each component is placed in it's own file that has the exact same name as the component.
+## Features
 
-### Business logic
+A feature is a sub-module containing all components required for its implementation. Features vary in size, ranging from small (single components) to large (multiple components), depending on the requirements.
 
-The root of every module contains its use-cases. For example, the comic module has the `create` function for creating a comic.
+Every feature exposes its main function as the default export through the index file. Additionally, its types, errors, etc., can be exposed if their consumers require them.
 
-Use-case functions manage the execution of a single process. They know all the process steps and delegate the execution of every step to an expert function. For example, the comic `create` function has two steps:
+We aim to keep features as autonomous as possible by encapsulating their internal components. If another feature requires the same component (such as retrieving data by ID), we tend to make a copy on the first occurrence and move the component to its own feature upon multiple occurrences. This decision heavily depends on the complexity of the component.
 
-1. Create an image
-1. Store the data
+## Components
 
-Both tasks are implemented in other functions. The image creation is implemented in the image module and gets imported from there. Storing the data is a local task and gets imported from the data submodule.
+Components can have different types depending on their responsibilities. Currently, we distinct the following types:
 
-In this example we want both actions to succeed or fail together. To keep our data consistent we use the [SAGA pattern](https://microservices.io/patterns/data/saga.html) as described in the [Jitar documentation](https://docs.jitar.dev/develop/data-consistency.html).
+* **Process** - a series of steps, where each step is a separate component.
+* **Task** - handles calculations, data manipulations, etc.
+* **Persistence** - responsible for querying, inserting, and updating the database.
+* **Aggregation** - gathers all related data.
+* **Validation** - ensures incoming data meets the required criteria.
+* **Event** - handles publications and subscriptions.
 
-The result can be of any type. We use view objects for returning alternative data objects. These are imported from the view submodule.
+Each component is implemented in its own file and exported as the default.
 
-### Data
+A feature typically contains a combination of these component types. Process components that perform multiple database writes follow the [SAGA pattern](https://microservices.io/patterns/data/saga.html) as described in the [Jitar documentation](https://docs.jitar.dev/develop/data-consistency.html).
 
-The data submodule contains the data model and all its CRUD related functions.
+## Data
 
-For scalability we only work with immutable data. For this we create the models as classes with private fields and getters for reading the field values. We also add mutation functions that return a copy of the model with the updated field value(s).
+Data is defined per domain concept. We distinguish between two types:
 
-All CRUD functions use the database implementation from the integrations. We use this basic pattern:
+* **Persistent** - data stored in the database.
+* **Aggregated** - a data view containing all referenced data.
 
-* **Create** functions take field values as separate arguments and return a data model object;
-* **Retrieve** functions take (a) selection value(s) as argument(s) and returns the retrieved data model object(s);
-* **Update** functions take a object data model as input and doesn't return anything;
-* **Delete** functions take the object id as input and doesn't return anything.
+Both types are defined as TypeScript types with read-only fields to ensure immutability.
 
-For mapping the record data to a model we create a `mapRecord` function that takes the record as input and return a model instance.
+Persistent data is defined in the `types.ts` file in the root of the domain concept folder, as it is used by multiple features. Aggregated data is defined in the `types.ts` file of the aggregation feature, as it is more specific.
 
-**Note:** We don't support joins to ensure scalability of the data model.
+Persistent data is read and written by persistence components using the database integration.
 
-### Views
+## Events
 
-The view submodule contains alternative views on the data models. We use them for hiding, transforming or complimenting data. For example, the image view returns the image content as data url, while the image data object contains the file name and storage key.
+We use a publish/subscribe model for side effects such as updating counters, creating notifications, etc.
 
-We also use views for aggregating data. For example, the post view contains views for its creator view and comic. These sub views contain all relevant data like the comic image.
+Features that trigger side effects contain both a **publish** and **subscribe** component. Both components use the event broker integration to manage events.
 
-For making views we create a `createView` function that does all the necessary work like loading views from other modules, transforming field values, etc..
+The publish component is used as the last step in the process. The subscribe component is exported in the feature's index file for use by other features.
+
+Features leverage a **subscriptions** component that imports and uses the subscribe components of other features. The subscriptions component is also exported in the feature's index file.
+
+## Definitions
+
+Every module (domain, concept, and feature) can have two types of definitions:
+
+* **Types** - TypeScript types such as data and event definitions, defined in the `types.ts` file.
+* **Definitions** - constants such as enums, validation schemas, record types, etc., defined in the `definitions.ts` file.
+
+The location of a definition depends on its scope of use. For example, the base data model is located in the domain root module, a record type is defined per domain concept, and a validation schema is defined per validation feature.
