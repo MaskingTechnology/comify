@@ -5,6 +5,8 @@
 
 The database integration provides a universal interaction layer with an actual data storage solution.
 
+This integration is based on simple CRUD operations and purposely does NOT support relational querying.
+
 ## Implementations
 
 Currently, there are two implementations:

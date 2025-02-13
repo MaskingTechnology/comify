@@ -5,6 +5,8 @@
 
 The notification integration provides a universal interaction layer with an actual notification solution.
 
+This integration is based on a push notification model.
+
 ## Implementations
 
 Currently, there are two implementations:

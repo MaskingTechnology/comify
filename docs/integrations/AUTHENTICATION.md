@@ -5,6 +5,15 @@
 
 The authentication integration provides a universal interaction layer with an actual identity provider solution.
 
+This integration is based on the following authentication flow:
+
+1. Browser redirects to the IDP login page.
+2. User authenticate at the IDP.
+3. IDP provides identity information to this integration.
+4. This integration starts a session based on the provided identity.
+5. Sessions can be refreshed via this integration.
+6. Until the user logs out via this integration.
+
 ## Implementations
 
 Currently, there is only one implementation:
@@ -56,7 +65,7 @@ const loginUrl: string = await identityProvider.getLoginUrl();
 
 // Handle a login and get a session
 // Throws LoginFailed if not successful
-const firstSession: Session = await identityProvider.login(receivedLoginData);
+const firstSession: Session = await identityProvider.login(providedIdentity);
 
 // Refresh a session
 // Throws LoginFailed if not successful

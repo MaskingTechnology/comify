@@ -3,7 +3,7 @@
 
 ## Introduction
 
-The validation integration provides a universal interaction layer with an actual validation solution.
+The validation integration provides a universal interaction layer with an actual data validation solution.
 
 ## Implementations
 

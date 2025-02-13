@@ -5,11 +5,13 @@
 
 The event broker integration provides a universal interaction layer with an actual event broker solution.
 
+This integration is based on a publish / subscribe model.
+
 ## Implementations
 
 Currently, there is only one implementation:
 
-* **Memory** - non-persistent event broker based on the Node.js `EventEmitter` (used in tests and production).
+* **Memory** - non-persistent event broker based on the Node.js `EventEmitter` (used in test and production).
 
 We have plans to add a Kafka implementation later on.
 
