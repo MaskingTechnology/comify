@@ -11,7 +11,7 @@ Currently, there is only one implementation:
 
 ## Configuration
 
-The used implementation needs to be configured in the `.env` file with the debug enabled setting.
+The used implementation needs to be configured in the `.env` file.
 
 ```env
 VALIDATION_IMPLEMENTATION="zod"
@@ -92,5 +92,5 @@ The following types are supported:
 
 The validation result has two fields:
 
-* **invalid** - boolean indicating if at least on of the fields is invalid.
+* **invalid** - boolean indicating if at least one of the fields is invalid.
 * **messages** - map containing the validation error messages per field.

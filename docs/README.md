@@ -91,7 +91,7 @@ The application uses resources like a database, file store, event broker, etc. t
 
 ### Services
 
-Jitar provides [multiple services](https://docs.jitar.dev/fundamentals/runtime-services.html) to deploy applications with different strategies. Currently, we have a configurations for running the application as a monolith and as microservices. The configuration files can de found in the `services` folder in the project root.
+Jitar provides [multiple services](https://docs.jitar.dev/fundamentals/runtime-services.html) to deploy applications with different strategies. Currently, we have configurations for running the application as a monolith and as microservices. The configuration files can de found in the `services` folder in the project root.
 
 The `standalone.json` configuration file configures the monolithic deployment. All other files configure the microservice setup.
 

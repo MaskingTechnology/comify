@@ -76,7 +76,7 @@ Components are small reusable building blocks grouped per domain concept. To kee
 
 Our basic design rule: components are dumb! A component can define actions, but does not implement them. Features will provide the implementation, because they know the context of use.
 
-Also, primary components can be bound to a domain model. Elementary components can not because they are even dumber.
+Also, primary components can be bound to a domain model. Elementary components cannot, because they are even dumber.
 
 ### Design system
 

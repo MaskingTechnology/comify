@@ -88,7 +88,7 @@ type Session = {
 };
 ```
 
-Every session has a unique key that will be provided to external clients. This key is a unrelated hash value that contains no session information. It's ony used for referencing and storage.
+Every session has a unique key that will be provided to external clients. This key is an unrelated hash value that contains no session information. It's ony used for referencing and storage.
 
 The requester represents the actual logged in user retrieved from the identity information (email), and can be stored in the session for quick reference. The full Identity structure looks like this.
 

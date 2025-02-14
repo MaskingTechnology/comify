@@ -1,7 +1,7 @@
 
 # Runtime | Comify docs
 
-The runtime integration provides a universal interaction layer with Jitar and the configuration for for setting up the other integrations.
+The runtime integration provides a universal interaction layer with Jitar and the configuration for setting up the other integrations.
 
 ## Errors
 
@@ -14,7 +14,7 @@ To decouple these errors from the domain, a separate set of errors has been adde
 * **BadRequest** - status code 400
 * **Unauthorized** - status code 401
 * **NotFound** - status code 404
-* **ValidationError** - status code 400 (specialization of NotFound)
+* **ValidationError** - status code 400 (specialization of BadRequest)
 * **ServerError** - status code 500
 
 If we decide to migrate from Jitar to another solution, these errors will need to be remapped.
