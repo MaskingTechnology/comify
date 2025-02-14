@@ -20,7 +20,7 @@ export default [
             '@typescript-eslint': tseslint,
             'react': react,
             'react-hooks': reactHooks,
-            'sonarjs': sonarjs
+            'sonarjs': sonarjs,
         },
         languageOptions: {
             parser: tsparser,
@@ -48,9 +48,9 @@ export default [
             "react/jsx-uses-react": "off",
             "react/react-in-jsx-scope": "off",
             "sonarjs/assertions-in-tests": "off",
+            "no-console": "error",
 
-            // typescript handles this for us
-            "no-undef": "off",
+            "no-undef": "off", // typescript handles this for us
         },
         settings: {
             react: {
