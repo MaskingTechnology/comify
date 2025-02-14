@@ -1,8 +1,6 @@
 
 # Authentication | Comify docs
 
-## Introduction
-
 The authentication integration provides a universal interaction layer with an actual identity provider solution.
 
 This integration is based on the following authentication flow:

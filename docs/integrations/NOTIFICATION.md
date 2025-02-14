@@ -1,8 +1,6 @@
 
 # Notification | Comify docs
 
-## Introduction
-
 The notification integration provides a universal interaction layer with an actual notification solution.
 
 This integration is based on a push notification model.

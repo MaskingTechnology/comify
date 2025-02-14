@@ -1,8 +1,6 @@
 
 # Logging | Comify docs
 
-## Introduction
-
 The logging integration provides a universal interaction layer with an actual logging solution.
 
 ## Implementations

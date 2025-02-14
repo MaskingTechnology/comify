@@ -1,8 +1,6 @@
 
 # Validation | Comify docs
 
-## Introduction
-
 The validation integration provides a universal interaction layer with an actual data validation solution.
 
 ## Implementations

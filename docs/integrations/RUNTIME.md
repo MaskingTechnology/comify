@@ -1,8 +1,6 @@
 
 # Runtime | Comify docs
 
-## Introduction
-
 The runtime integration provides a universal interaction layer with Jitar and the configuration for for setting up the other integrations.
 
 ## Errors

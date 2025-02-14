@@ -1,8 +1,6 @@
 
 # HTTP | Comify docs
 
-## Introduction
-
 The HTTP integration provides a universal interaction layer with an actual HTTP client solution.
 
 ## Implementations

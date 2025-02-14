@@ -1,8 +1,6 @@
 
 # File Store | Comify docs
 
-## Introduction
-
 The file store integration provides a universal interaction layer with an actual file storage solution.
 
 ## Implementations

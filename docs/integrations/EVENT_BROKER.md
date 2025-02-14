@@ -1,8 +1,6 @@
 
 # Event Broker | Comify docs
 
-## Introduction
-
 The event broker integration provides a universal interaction layer with an actual event broker solution.
 
 This integration is based on a publish / subscribe model.
