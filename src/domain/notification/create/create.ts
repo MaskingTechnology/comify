@@ -1,7 +1,7 @@
 
 import logger from '^/integrations/logging';
 
-import { Type } from '../definitions';
+import type { Type } from '../definitions';
 import createData from './createData';
 import insertData from './insertData';
 

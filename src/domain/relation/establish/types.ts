@@ -1,5 +1,5 @@
 
-import { Publication, Subscription } from '^/integrations/eventbroker';
+import type { Publication, Subscription } from '^/integrations/eventbroker';
 
 export type EstablishedEventData = {
     followerId: string;

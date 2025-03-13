@@ -1,5 +1,5 @@
 
-import { Requester } from '^/domain/authentication';
+import type { Requester } from '^/domain/authentication';
 import getComicData from '^/domain/comic/getByIdAggregated';
 import getCommentData from '^/domain/comment/getById';
 import getMetrics from '^/domain/post.metrics/getByPost';

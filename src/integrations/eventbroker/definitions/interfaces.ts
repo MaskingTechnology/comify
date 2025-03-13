@@ -1,5 +1,5 @@
 
-import { Publication, Subscription } from './types';
+import type { Publication, Subscription } from './types';
 
 export interface Driver
 {

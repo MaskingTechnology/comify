@@ -1,5 +1,5 @@
 
-import { Requester } from '^/domain/authentication';
+import type { Requester } from '^/domain/authentication';
 
 import cleanNickname from '../cleanNickname';
 import update from '../update';

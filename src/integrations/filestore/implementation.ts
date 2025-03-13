@@ -1,5 +1,5 @@
 
-import { FileStore } from './definitions/interfaces';
+import type { FileStore } from './definitions/interfaces';
 import UnknownImplementation from './errors/UnknownImplementation';
 import createMemoryFS from './implementations/memory/create';
 import createMinioFS from './implementations/minio/create';

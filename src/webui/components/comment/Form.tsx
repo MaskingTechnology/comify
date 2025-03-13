@@ -2,7 +2,8 @@
 import { Button, Column, Panel, Row, TextArea } from '^/webui/designsystem';
 import { useFocusOnMount } from '^/webui/hooks';
 
-import useCreateHandler, { CancelHandler, CreateHandler } from './hooks/useCreateHandler';
+import type { CancelHandler, CreateHandler } from './hooks/useCreateHandler';
+import useCreateHandler from './hooks/useCreateHandler';
 
 type Props = {
     readonly limit?: number;

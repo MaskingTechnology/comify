@@ -7,8 +7,8 @@ import
 
 import type { Configuration, DiscoveryRequestOptions, IDToken, TokenEndpointResponse, TokenEndpointResponseHelpers } from 'openid-client';
 
-import { IdentityProvider } from '../../definitions/interfaces';
-import { Identity, Session } from '../../definitions/types';
+import type { IdentityProvider } from '../../definitions/interfaces';
+import type { Identity, Session } from '../../definitions/types';
 import LoginFailed from '../../errors/LoginFailed';
 import NotConnected from '../../errors/NotConnected';
 

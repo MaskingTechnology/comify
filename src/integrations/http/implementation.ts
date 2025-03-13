@@ -1,5 +1,5 @@
 
-import { Http } from './definitions/interfaces';
+import type { Http } from './definitions/interfaces';
 import UnknownImplementation from './errors/UnknownImplementation';
 import createFetch from './implementations/fetch/create';
 

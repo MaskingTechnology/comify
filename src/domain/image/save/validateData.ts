@@ -1,8 +1,9 @@
 
-import validator, { ValidationSchema } from '^/integrations/validation';
+import type { ValidationSchema } from '^/integrations/validation';
+import validator from '^/integrations/validation';
 
 import { requiredStringValidation } from '../definitions';
-import { DataModel } from '../types';
+import type { DataModel } from '../types';
 import InvalidImage from './InvalidImage';
 
 const schema: ValidationSchema =

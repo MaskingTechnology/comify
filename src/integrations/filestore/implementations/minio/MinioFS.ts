@@ -1,7 +1,8 @@
 
-import { Client, ClientOptions } from 'minio';
+import type { ClientOptions } from 'minio';
+import { Client } from 'minio';
 
-import { FileStore } from '../../definitions/interfaces';
+import type { FileStore } from '../../definitions/interfaces';
 import FileNotFound from '../../errors/FileNotFound';
 import NotConnected from '../../errors/NotConnected';
 

@@ -1,5 +1,5 @@
 
-import { Requester } from '^/domain/authentication';
+import type { Requester } from '^/domain/authentication';
 
 import getData from './getData';
 import switchOff from './switchOff';

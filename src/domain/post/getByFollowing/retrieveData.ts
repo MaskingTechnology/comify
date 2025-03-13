@@ -1,5 +1,6 @@
 
-import database, { RecordQuery, RecordSort, SortDirections } from '^/integrations/database';
+import type { RecordQuery, RecordSort} from '^/integrations/database';
+import database, { SortDirections } from '^/integrations/database';
 
 import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';

@@ -1,5 +1,6 @@
 
-import { ChangeEventHandler, forwardRef } from 'react';
+import type { ChangeEventHandler} from 'react';
+import { forwardRef } from 'react';
 
 import './TextBox.css';
 

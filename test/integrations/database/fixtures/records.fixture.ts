@@ -1,5 +1,5 @@
 
-import { RecordData } from '^/integrations/database';
+import type { RecordData } from '^/integrations/database';
 
 export const RECORD_TYPES =
 {

@@ -4,7 +4,7 @@ import eventBroker from '^/integrations/eventbroker';
 import { EVENT_CHANNEL } from '../definitions';
 
 import { EVENT_NAME } from './definitions';
-import { RemovedPublication } from './types';
+import type { RemovedPublication } from './types';
 
 export default async function publish(creatorId: string, postId: string, parentId?: string): Promise<void>
 {

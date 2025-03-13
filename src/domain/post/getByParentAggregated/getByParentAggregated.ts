@@ -1,9 +1,10 @@
 
-import { Requester } from '^/domain/authentication';
+import type { Requester } from '^/domain/authentication';
 import filterResolved from '^/domain/common/filterResolved';
-import { Range } from '^/domain/common/validateRange';
+import type { Range } from '^/domain/common/validateRange';
 
-import aggregate, { AggregatedData } from '../aggregate';
+import type { AggregatedData } from '../aggregate';
+import aggregate from '../aggregate';
 import getByParent from '../getByParent';
 
 export default async function getByParentAggregated(requester: Requester, postId: string, range: Range): Promise<AggregatedData[]>

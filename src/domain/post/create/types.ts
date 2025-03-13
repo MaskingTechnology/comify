@@ -1,7 +1,7 @@
 
-import { Publication, Subscription } from '^/integrations/eventbroker';
+import type { Publication, Subscription } from '^/integrations/eventbroker';
 
-import { DataModel } from '../types';
+import type { DataModel } from '../types';
 
 export type ValidationModel = Pick<DataModel, 'creatorId' | 'comicId' | 'commentId' | 'parentId'>;
 

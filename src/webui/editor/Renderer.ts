@@ -1,5 +1,5 @@
 
-import Workbench from './Workbench';
+import type Workbench from './Workbench';
 
 const CAPTURE_IMAGE_TYPE = 'image/jpeg';
 

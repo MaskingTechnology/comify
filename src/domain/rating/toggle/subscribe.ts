@@ -4,7 +4,7 @@ import eventBroker from '^/integrations/eventbroker';
 import { EVENT_CHANNEL } from '../definitions';
 
 import { EVENT_NAME } from './definitions';
-import { ToggledEventHandler, ToggledSubscription } from './types';
+import type { ToggledEventHandler, ToggledSubscription } from './types';
 
 export default async function subscribe(handler: ToggledEventHandler): Promise<void>
 {

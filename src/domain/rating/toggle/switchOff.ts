@@ -1,7 +1,7 @@
 
 import create from '../create';
 import erase from '../erase';
-import { DataModel } from '../types';
+import type { DataModel } from '../types';
 
 import publish from './publish';
 

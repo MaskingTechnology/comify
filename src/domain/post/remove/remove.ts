@@ -1,7 +1,7 @@
 
 import logger from '^/integrations/logging';
 
-import { Requester } from '^/domain/authentication';
+import type { Requester } from '^/domain/authentication';
 
 import getById from '../getById';
 import PostNotFound from '../PostNotFound';

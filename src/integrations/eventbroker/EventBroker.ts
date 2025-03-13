@@ -1,6 +1,6 @@
 
-import { Driver } from './definitions/interfaces';
-import { Publication, Subscription } from './definitions/types';
+import type { Driver } from './definitions/interfaces';
+import type { Publication, Subscription } from './definitions/types';
 
 export default class EventBroker implements Driver
 {

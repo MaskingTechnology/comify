@@ -2,7 +2,7 @@
 import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
 import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
-import { DataModel } from '../types';
+import type { DataModel } from '../types';
 
 type AggregatedData = Pick<DataModel, 'id' | 'createdAt' | 'type'> &
 {

@@ -1,7 +1,7 @@
 
 import { LogicalOperators, QueryOperators, SortDirections } from '../../definitions/constants';
-import { Driver } from '../../definitions/interfaces';
-import { QueryExpression, QueryMultiExpressionStatement, QueryOperator, QuerySingleExpressionStatement, QueryStatement, RecordData, RecordField, RecordQuery, RecordSort, RecordValue } from '../../definitions/types';
+import type { Driver } from '../../definitions/interfaces';
+import type { QueryExpression, QueryMultiExpressionStatement, QueryOperator, QuerySingleExpressionStatement, QueryStatement, RecordData, RecordField, RecordQuery, RecordSort, RecordValue } from '../../definitions/types';
 import NotConnected from '../../errors/NotConnected';
 import RecordNotFound from '../../errors/RecordNotFound';
 import RecordNotUpdated from '../../errors/RecordNotUpdated';

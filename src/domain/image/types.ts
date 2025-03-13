@@ -1,5 +1,5 @@
 
-import { BaseDataModel } from '../types';
+import type { BaseDataModel } from '../types';
 
 type ImageData = {
     readonly dataUrl: string;

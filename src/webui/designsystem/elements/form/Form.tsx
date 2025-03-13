@@ -1,5 +1,6 @@
 
-import { FormEvent, ReactNode, forwardRef } from 'react';
+import type { FormEvent, ReactNode} from 'react';
+import { forwardRef } from 'react';
 
 import './Form.css';
 

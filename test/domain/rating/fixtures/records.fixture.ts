@@ -1,7 +1,7 @@
 
-import { RecordData } from '^/integrations/database';
+import type { RecordData } from '^/integrations/database';
 
-import { DataModel as RatingDataModel } from '^/domain/rating';
+import type { DataModel as RatingDataModel } from '^/domain/rating';
 
 import { REQUESTERS } from './requesters.fixture';
 import { VALUES } from './values.fixture';

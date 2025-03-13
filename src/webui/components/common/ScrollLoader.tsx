@@ -1,7 +1,8 @@
 
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-import useLoadOnScroll, { LoadHandler } from './hooks/useLoadOnScroll';
+import type { LoadHandler } from './hooks/useLoadOnScroll';
+import useLoadOnScroll from './hooks/useLoadOnScroll';
 
 import Spinner from './Spinner';
 

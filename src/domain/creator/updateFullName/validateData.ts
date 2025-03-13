@@ -1,9 +1,10 @@
 
-import validator, { ValidationSchema } from '^/integrations/validation';
+import type { ValidationSchema } from '^/integrations/validation';
+import validator from '^/integrations/validation';
 
 import InvalidCreator from '../InvalidCreator';
 import { fullNameValidation } from '../definitions';
-import { ValidationModel } from './types';
+import type { ValidationModel } from './types';
 
 const schema: ValidationSchema =
 {

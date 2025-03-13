@@ -1,5 +1,5 @@
 
-import { DataModel } from '../types';
+import type { DataModel } from '../types';
 
 type ValidationModel = Pick<DataModel, 'imageId' | 'structure'>;
 

@@ -1,7 +1,8 @@
 
 import type { Validation } from '^/integrations/validation';
 
-import { SortOrder, SortOrders } from '../definitions';
+import type { SortOrder} from '../definitions';
+import { SortOrders } from '../definitions';
 
 export const RECORD_TYPE = 'creator';
 export const EVENT_CHANNEL = 'creator';

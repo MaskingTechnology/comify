@@ -1,7 +1,8 @@
 
-import validator, { ValidationSchema } from '^/integrations/validation';
+import type { ValidationSchema } from '^/integrations/validation';
+import validator from '^/integrations/validation';
 
-import { Range } from './types';
+import type { Range } from './types';
 
 import InvalidRange from './InvalidRange';
 

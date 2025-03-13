@@ -1,8 +1,10 @@
 
-import { Requester } from '^/domain/authentication';
-import validateRange, { Range } from '^/domain/common/validateRange';
+import type { Requester } from '^/domain/authentication';
+import type { Range } from '^/domain/common/validateRange';
+import validateRange from '^/domain/common/validateRange';
 
-import aggregate, { AggregatedData } from '../aggregate';
+import type { AggregatedData } from '../aggregate';
+import aggregate from '../aggregate';
 import type { SortOrder } from '../definitions';
 import explore from '../explore';
 

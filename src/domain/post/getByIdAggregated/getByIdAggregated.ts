@@ -1,7 +1,8 @@
 
-import { Requester } from '^/domain/authentication';
+import type { Requester } from '^/domain/authentication';
 
-import aggregate, { AggregatedData } from '../aggregate';
+import type { AggregatedData } from '../aggregate';
+import aggregate from '../aggregate';
 import getById from '../getById';
 
 export { type AggregatedData };

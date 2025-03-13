@@ -1,5 +1,5 @@
 
-import { Validator } from './definitions/interfaces';
+import type { Validator } from './definitions/interfaces';
 import UnknownImplementation from './errors/UnknownImplementation';
 import createZod from './implementations/zod/create';
 

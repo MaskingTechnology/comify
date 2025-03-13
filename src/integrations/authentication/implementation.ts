@@ -1,5 +1,5 @@
 
-import { IdentityProvider } from './definitions/interfaces';
+import type { IdentityProvider } from './definitions/interfaces';
 import UnknownImplementation from './errors/UnknownImplementation';
 import createOpenID from './implementations/openid/create';
 

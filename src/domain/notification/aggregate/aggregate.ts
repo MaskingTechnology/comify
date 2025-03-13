@@ -1,5 +1,5 @@
 
-import { Requester } from '^/domain/authentication';
+import type { Requester } from '^/domain/authentication';
 import { default as getPostData } from '^/domain/post/getByIdAggregated';
 import getRelationData from '^/domain/relation/getAggregated';
 

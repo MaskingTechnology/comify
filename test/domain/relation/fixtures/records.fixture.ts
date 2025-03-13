@@ -1,9 +1,9 @@
 
-import { RecordData } from '^/integrations/database';
+import type { RecordData } from '^/integrations/database';
 
-import { DataModel as CreatorDataModel } from '^/domain/creator';
-import { DataModel as CreatorMetricsDataModel } from '^/domain/creator.metrics';
-import { DataModel as RelationDataModel } from '^/domain/relation';
+import type { DataModel as CreatorDataModel } from '^/domain/creator';
+import type { DataModel as CreatorMetricsDataModel } from '^/domain/creator.metrics';
+import type { DataModel as RelationDataModel } from '^/domain/relation';
 
 import { VALUES } from './values.fixture';
 
