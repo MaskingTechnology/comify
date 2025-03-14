@@ -1,7 +1,8 @@
 
-import { ReactElement, ReactNode, useEffect, useMemo, useState } from 'react';
+import type { ReactElement, ReactNode} from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
-import { Props as TabProps } from './Tab';
+import type { Props as TabProps } from './Tab';
 import './Tabs.css';
 
 type Props = {

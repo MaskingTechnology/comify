@@ -1,7 +1,8 @@
 
 import { Button } from '^/webui/designsystem';
 
-import useEstablish, { EstablishHandler } from '../hooks/useEstablish';
+import type { EstablishHandler } from '../hooks/useEstablish';
+import useEstablish from '../hooks/useEstablish';
 
 type Props = {
     readonly isFollowing: boolean;

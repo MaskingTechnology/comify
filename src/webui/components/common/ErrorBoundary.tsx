@@ -1,5 +1,6 @@
 
-import { ComponentType, Component as ReactComponent, ReactNode } from 'react';
+import type { ComponentType, ReactNode } from 'react';
+import { Component as ReactComponent } from 'react';
 
 type ViewProps = {
     error: unknown;

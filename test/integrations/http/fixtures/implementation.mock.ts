@@ -1,5 +1,5 @@
 
-import { Http } from '^/integrations/http/definitions/interfaces';
+import type { Http } from '^/integrations/http/definitions/interfaces';
 
 import { RESPONSES } from './responses.fixture';
 

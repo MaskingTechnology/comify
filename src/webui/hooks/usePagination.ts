@@ -1,5 +1,6 @@
 
-import { DependencyList, useCallback, useEffect, useState } from 'react';
+import type { DependencyList} from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 type GetData<T> = (page: number) => Promise<T[]>;
 

@@ -1,10 +1,10 @@
 
-import { ReactElement } from 'react';
+import type { ReactElement } from 'react';
 
-import { Props as LabelProps } from '../label/Label';
-import { Props as SelectProps } from '../select/Select';
-import { Props as TextAreaProps } from '../textarea/TextArea';
-import { Props as TextBoxProps } from '../textbox/TextBox';
+import type { Props as LabelProps } from '../label/Label';
+import type { Props as SelectProps } from '../select/Select';
+import type { Props as TextAreaProps } from '../textarea/TextArea';
+import type { Props as TextBoxProps } from '../textbox/TextBox';
 
 import './Input.css';
 

@@ -1,5 +1,5 @@
 
-import { Identity } from '^/integrations/authentication';
+import type { Identity } from '^/integrations/authentication';
 
 import getCreatorByEmail from '^/domain/creator/getByEmail';
 import registerCreator from '^/domain/creator/register';

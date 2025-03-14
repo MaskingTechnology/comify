@@ -1,7 +1,8 @@
 
-import database, { RecordQuery, RecordSort, SortDirections } from '^/integrations/database';
+import type { RecordQuery, RecordSort} from '^/integrations/database';
+import database, { SortDirections } from '^/integrations/database';
 
-import { Requester } from '^/domain/authentication';
+import type { Requester } from '^/domain/authentication';
 
 import { RECORD_TYPE } from '../definitions';
 

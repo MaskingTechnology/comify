@@ -1,5 +1,5 @@
 
-import { Identity } from '^/integrations/authentication';
+import type { Identity } from '^/integrations/authentication';
 
 import { VALUES } from './values.fixture';
 

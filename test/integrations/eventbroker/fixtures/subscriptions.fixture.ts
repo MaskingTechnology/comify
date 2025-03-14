@@ -1,5 +1,6 @@
 
-import eventBroker, { Event } from '^/integrations/eventbroker';
+import type { Event } from '^/integrations/eventbroker';
+import eventBroker from '^/integrations/eventbroker';
 
 export function createSubscription<T>(event: Event): Promise<T>
 {

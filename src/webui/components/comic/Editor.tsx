@@ -1,7 +1,8 @@
 
 import { Button, Column, Panel, Row } from '^/webui/designsystem';
 
-import useCreateHandler, { CancelHandler, CreateHandler } from './hooks/useCreateHandler';
+import type { CancelHandler, CreateHandler } from './hooks/useCreateHandler';
+import useCreateHandler from './hooks/useCreateHandler';
 import useEditor from './hooks/useEditor';
 
 type Props = {

@@ -1,7 +1,7 @@
 
 import Group from '../elements/Group';
 import Background from './Background';
-import SpeechBubble from './SpeechBubble';
+import type SpeechBubble from './SpeechBubble';
 
 export default class Model extends Group
 {

@@ -1,11 +1,12 @@
 
 /* eslint @typescript-eslint/no-explicit-any: "off" */
 
-import { Collection, Db, Document, Filter, MongoClient, Sort } from 'mongodb';
+import type { Collection, Db, Document, Filter, Sort } from 'mongodb';
+import { MongoClient } from 'mongodb';
 
 import { ID, LogicalOperators, QueryOperators, SortDirections } from '../../definitions/constants';
-import { Driver } from '../../definitions/interfaces';
-import { QueryMultiExpressionStatement, QueryOperator, QuerySingleExpressionStatement, RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType, RecordValue } from '../../definitions/types';
+import type { Driver } from '../../definitions/interfaces';
+import type { QueryMultiExpressionStatement, QueryOperator, QuerySingleExpressionStatement, RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType, RecordValue } from '../../definitions/types';
 import DatabaseError from '../../errors/DatabaseError';
 import NotConnected from '../../errors/NotConnected';
 import RecordNotCreated from '../../errors/RecordNotCreated';

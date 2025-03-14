@@ -3,7 +3,8 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import database from '^/integrations/database';
 
-import { DataModel, RECORD_TYPE as NOTIFICATION_RECORD_TYPE, Types } from '^/domain/notification';
+import type { DataModel} from '^/domain/notification';
+import { RECORD_TYPE as NOTIFICATION_RECORD_TYPE, Types } from '^/domain/notification';
 import create from '^/domain/notification/create';
 
 import { DATABASES } from './fixtures/databases.fixture';

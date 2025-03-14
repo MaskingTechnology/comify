@@ -41,6 +41,7 @@ export default [
             ...reactHooks.configs.recommended.rules,
             "@typescript-eslint/no-unsafe-function-type": "off",
             "@typescript-eslint/consistent-type-definitions": "off",
+            "@typescript-eslint/consistent-type-imports": "error",
             "no-return-await": "error",
             "semi": ["error", "always"],
             "eol-last": ["error", "always"],

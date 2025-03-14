@@ -1,5 +1,5 @@
 
-import { Area } from './Geometry';
+import type { Area } from './Geometry';
 
 export default class TextProcessor
 {

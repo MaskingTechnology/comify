@@ -1,7 +1,7 @@
 
-import { RecordData } from '^/integrations/database';
+import type { RecordData } from '^/integrations/database';
 
-import { DataModel as CreatorDataModel } from '^/domain/creator';
+import type { DataModel as CreatorDataModel } from '^/domain/creator';
 
 import { VALUES } from './values.fixture';
 

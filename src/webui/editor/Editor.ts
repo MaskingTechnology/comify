@@ -1,7 +1,7 @@
 
 import Renderer from './Renderer';
 import Workbench from './Workbench';
-import Element from './elements/Element';
+import type Element from './elements/Element';
 import Model from './model/Model';
 import InputManager from './utils/InputManager';
 

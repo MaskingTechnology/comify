@@ -1,5 +1,5 @@
 
-import { LogProcessor } from './definitions/interfaces';
+import type { LogProcessor } from './definitions/interfaces';
 import UnknownImplementation from './errors/UnknownImplementation';
 import createConsole from './implementations/console/create';
 import createVoid from './implementations/void/create';

@@ -1,14 +1,14 @@
 
-import { RecordData } from '^/integrations/database';
+import type { RecordData } from '^/integrations/database';
 
-import { DataModel as ComicDataModel } from '^/domain/comic';
-import { DataModel as CreatorDataModel } from '^/domain/creator';
-import { DataModel as CreatorMetricsDataModel } from '^/domain/creator.metrics';
-import { DataModel as ImageDataModel } from '^/domain/image';
-import { DataModel as PostDataModel } from '^/domain/post';
-import { DataModel as PostMetricsDataModel } from '^/domain/post.metrics';
-import { DataModel as RatingDataModel } from '^/domain/rating';
-import { DataModel as RelationDataModel } from '^/domain/relation';
+import type { DataModel as ComicDataModel } from '^/domain/comic';
+import type { DataModel as CreatorDataModel } from '^/domain/creator';
+import type { DataModel as CreatorMetricsDataModel } from '^/domain/creator.metrics';
+import type { DataModel as ImageDataModel } from '^/domain/image';
+import type { DataModel as PostDataModel } from '^/domain/post';
+import type { DataModel as PostMetricsDataModel } from '^/domain/post.metrics';
+import type { DataModel as RatingDataModel } from '^/domain/rating';
+import type { DataModel as RelationDataModel } from '^/domain/relation';
 
 import { REQUESTERS } from './requesters.fixture';
 import { VALUES } from './values.fixture';

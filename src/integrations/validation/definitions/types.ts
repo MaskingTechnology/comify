@@ -1,7 +1,7 @@
 
 /* eslint sonarjs/redundant-type-aliases: "off" */
 
-import { FieldTypes } from './constants';
+import type { FieldTypes } from './constants';
 
 export type ValidationType = keyof typeof FieldTypes;
 

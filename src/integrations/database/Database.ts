@@ -1,8 +1,8 @@
 
 import { sanitize } from '^/integrations/utilities/sanitize';
 
-import { Driver } from './definitions/interfaces';
-import { RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType } from './definitions/types';
+import type { Driver } from './definitions/interfaces';
+import type { RecordData, RecordField, RecordId, RecordQuery, RecordSort, RecordType } from './definitions/types';
 
 export default class Database implements Driver
 {

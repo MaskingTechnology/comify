@@ -4,7 +4,7 @@ import eventBroker from '^/integrations/eventbroker';
 import { EVENT_CHANNEL } from '../definitions';
 
 import { EVENT_NAME } from './definitions';
-import { RegisteredEventHandler, RegisteredSubscription } from './types';
+import type { RegisteredEventHandler, RegisteredSubscription } from './types';
 
 export default async function subscribe(handler: RegisteredEventHandler): Promise<void>
 {

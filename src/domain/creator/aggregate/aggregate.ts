@@ -2,8 +2,8 @@
 import getMetrics from '^/domain/creator.metrics/getByCreator';
 import getImageData from '^/domain/image/getById';
 
-import { DataModel } from '../types';
-import { AggregatedData } from './types';
+import type { DataModel } from '../types';
+import type { AggregatedData } from './types';
 
 export default async function aggregate(data: DataModel): Promise<AggregatedData>
 {

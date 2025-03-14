@@ -1,7 +1,8 @@
 
-import webpush, { PushSubscription } from 'web-push';
+import type { PushSubscription } from 'web-push';
+import webpush from 'web-push';
 
-import { NotificationService } from '../../definitions/interfaces';
+import type { NotificationService } from '../../definitions/interfaces';
 import NotConnected from '../../errors/NotConnected';
 import SubscriptionNotFound from '../../errors/SubscriptionNotFound';
 

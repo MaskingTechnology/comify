@@ -1,5 +1,5 @@
 
-import { BaseDataModel, CountOperation } from '../types';
+import type { BaseDataModel, CountOperation } from '../types';
 
 type DataModel = BaseDataModel &
 {

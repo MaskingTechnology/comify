@@ -1,5 +1,5 @@
 
-import { HealthCheck } from 'jitar';
+import type { HealthCheck } from 'jitar';
 
 import type { Database } from '^/integrations/database';
 

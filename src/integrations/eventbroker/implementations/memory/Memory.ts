@@ -1,8 +1,8 @@
 
 import { EventEmitter } from 'events';
 
-import { Driver } from '../../definitions/interfaces';
-import { Event, Publication, Subscription } from '../../definitions/types';
+import type { Driver } from '../../definitions/interfaces';
+import type { Event, Publication, Subscription } from '../../definitions/types';
 
 export default class Memory implements Driver
 {

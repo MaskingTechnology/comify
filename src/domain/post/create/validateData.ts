@@ -1,10 +1,11 @@
 
-import validator, { ValidationSchema } from '^/integrations/validation';
+import type { ValidationSchema } from '^/integrations/validation';
+import validator from '^/integrations/validation';
 
 import { optionalIdValidation, requiredIdValidation } from '^/domain/definitions';
 
 import InvalidPost from './InvalidPost';
-import { ValidationModel } from './types';
+import type { ValidationModel } from './types';
 
 const schema: ValidationSchema =
 {

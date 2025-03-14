@@ -1,5 +1,5 @@
 
-import { FileStore } from '../../definitions/interfaces';
+import type { FileStore } from '../../definitions/interfaces';
 import FileNotFound from '../../errors/FileNotFound';
 import NotConnected from '../../errors/NotConnected';
 

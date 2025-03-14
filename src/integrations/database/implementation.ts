@@ -1,5 +1,5 @@
 
-import { Driver } from './definitions/interfaces';
+import type { Driver } from './definitions/interfaces';
 import UnknownImplementation from './errors/UnknownImplementation';
 import createMemoryDb from './implementations/memory/create';
 import createMongoDb from './implementations/mongodb/create';

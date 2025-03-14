@@ -3,7 +3,8 @@ import { Input, Label, Panel, TextBox } from '^/webui/designsystem';
 
 import Form from '../common/Form';
 
-import useFullNameFormHandler, { SubmitHandler } from './hooks/useFullNameFormHandler';
+import type { SubmitHandler } from './hooks/useFullNameFormHandler';
+import useFullNameFormHandler from './hooks/useFullNameFormHandler';
 
 type Props = {
     readonly fullName: string;

@@ -1,5 +1,5 @@
 
-import { Middleware, NextHandler, Request, Response } from 'jitar';
+import type { Middleware, NextHandler, Request, Response } from 'jitar';
 
 export default class RequesterMiddleware implements Middleware
 {

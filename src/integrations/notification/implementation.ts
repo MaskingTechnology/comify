@@ -1,5 +1,5 @@
 
-import { NotificationService } from './definitions/interfaces';
+import type { NotificationService } from './definitions/interfaces';
 import UnknownImplementation from './errors/UnknownImplementation';
 import createMemory from './implementations/memory/create';
 import createWebPush from './implementations/webpush/create';

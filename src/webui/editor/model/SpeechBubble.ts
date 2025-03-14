@@ -1,6 +1,7 @@
 
 import Styling from '../definitions/Styling';
-import Geometry, { Area, Point } from '../utils/Geometry';
+import type { Area, Point } from '../utils/Geometry';
+import Geometry from '../utils/Geometry';
 import TextProcessor from '../utils/TextProcessor';
 import Bubble from './Bubble';
 

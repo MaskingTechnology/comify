@@ -4,7 +4,7 @@ import eventBroker from '^/integrations/eventbroker';
 import { EVENT_CHANNEL } from '../definitions';
 
 import { EVENT_NAME } from './definitions';
-import { EstablishedPublication } from './types';
+import type { EstablishedPublication } from './types';
 
 export default async function publish(followerId: string, followingId: string): Promise<void>
 {

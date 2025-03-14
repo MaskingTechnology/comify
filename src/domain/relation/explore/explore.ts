@@ -1,5 +1,5 @@
 
-import { Requester } from '^/domain/authentication';
+import type { Requester } from '^/domain/authentication';
 import getOtherCreators from '^/domain/creator/getOthers';
 
 import type { SortOrder } from '../definitions';

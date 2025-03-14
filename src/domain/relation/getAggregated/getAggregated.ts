@@ -1,5 +1,6 @@
 
-import aggregate, { AggregatedData } from '../aggregate';
+import type { AggregatedData } from '../aggregate';
+import aggregate from '../aggregate';
 import get from '../get';
 
 export default async function getAggregated(followerId: string, followingId: string): Promise<AggregatedData>

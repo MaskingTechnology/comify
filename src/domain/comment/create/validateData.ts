@@ -1,9 +1,10 @@
 
-import validator, { ValidationSchema } from '^/integrations/validation';
+import type { ValidationSchema } from '^/integrations/validation';
+import validator from '^/integrations/validation';
 
 import { MESSAGE_MAX_LENGTH } from '../definitions';
 import InvalidComment from './InvalidComment';
-import { ValidationModel } from './types';
+import type { ValidationModel } from './types';
 
 const schema: ValidationSchema =
 {

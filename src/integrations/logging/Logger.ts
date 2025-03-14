@@ -1,5 +1,5 @@
 
-import { LogProcessor } from './definitions/interfaces';
+import type { LogProcessor } from './definitions/interfaces';
 
 export default class Logger implements LogProcessor
 {

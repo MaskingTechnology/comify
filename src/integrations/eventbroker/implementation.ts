@@ -1,5 +1,5 @@
 
-import { Driver } from './definitions/interfaces';
+import type { Driver } from './definitions/interfaces';
 import UnknownImplementation from './errors/UnknownImplementation';
 import createMemoryBroker from './implementations/memory/create';
 

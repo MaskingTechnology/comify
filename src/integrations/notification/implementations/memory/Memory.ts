@@ -1,5 +1,5 @@
 
-import { NotificationService } from '../../definitions/interfaces';
+import type { NotificationService } from '../../definitions/interfaces';
 import NotConnected from '../../errors/NotConnected';
 import SubscriptionNotFound from '../../errors/SubscriptionNotFound';
 
