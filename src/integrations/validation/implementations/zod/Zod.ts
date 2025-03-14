@@ -1,12 +1,11 @@
 
-import type { ZodIssue, ZodType, ZodUnrecognizedKeysIssue} from 'zod';
+import type { ZodIssue, ZodType, ZodUnrecognizedKeysIssue } from 'zod';
 import { z } from 'zod';
 
 import ValidationResult from '../../definitions/ValidationResult';
 import { FieldTypes, MAX_EMAIL_LENGTH, MAX_URL_LENGTH } from '../../definitions/constants';
 import type { Validator } from '../../definitions/interfaces';
-import type { Message, Validation, ValidationTypes} from '../../definitions/types';
-import { type ValidationSchema } from '../../definitions/types';
+import type { Message, Validation, ValidationSchema, ValidationTypes } from '../../definitions/types';
 import UnknownValidator from '../../errors/UnknownValidator';
 
 type ValidatorFunction = (value: ValidationTypes[keyof ValidationTypes]) => z.ZodType<unknown, z.ZodTypeDef> | z.ZodArray<z.ZodType<unknown, z.ZodTypeDef>>;
