@@ -118,7 +118,7 @@ export default class Memory implements Driver
 
     async clear(): Promise<void>
     {
-        this.#memory.clear();
+
     }
 
     #limitNumberOfRecords(result: RecordData[], offset?: number, limit?: number): RecordData[]
