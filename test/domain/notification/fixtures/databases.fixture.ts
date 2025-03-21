@@ -37,7 +37,7 @@ async function withCreatorsPostsAndNotifications(): Promise<void>
         RECORDS.POSTS.map(post => database.createRecord(POST_RECORD_TYPE, { ...post })),
         RECORDS.POST_METRICS.map(postMetric => database.createRecord(POST_METRICS_RECORD_TYPE, { ...postMetric })),
         RECORDS.RATINGS.map(rating => database.createRecord(RATING_RECORD_TYPE, { rating })),
-        RECORDS.NOTIFICATIONS.map(notification => database.createRecord(NOTIFICATION_RECORD_TYPE, { ...notification }))
+        RECORDS.NOTIFICATIONS.map(notification => database.createRecord(NOTIFICATION_RECORD_TYPE, { ...notification, deleted: false }))
     ];
 
     await Promise.all(promises.flat());

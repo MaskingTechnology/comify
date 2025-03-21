@@ -5,7 +5,7 @@ import type { DataModel as ComicDataModel } from '^/domain/comic';
 import type { DataModel as CreatorDataModel } from '^/domain/creator';
 import type { DataModel as CreatorMetricsDataModel } from '^/domain/creator.metrics';
 import type { DataModel as ImageDataModel } from '^/domain/image';
-import type { DataModel as NotificationDataModel} from '^/domain/notification';
+import type { DataModel as NotificationDataModel } from '^/domain/notification';
 import { Types } from '^/domain/notification';
 import type { DataModel as PostDataModel } from '^/domain/post';
 import type { DataModel as PostMetricsModel } from '^/domain/post.metrics';
@@ -56,12 +56,13 @@ const RATINGS: RatingDataModel[] = [
     { id: VALUES.IDS.RATING2, createdAt: new Date().toISOString(), creatorId: VALUES.IDS.CREATOR2, postId: VALUES.IDS.REACTION_LIKED }
 ];
 
-const NOTIFICATIONS: NotificationDataModel[] = [
-    { id: VALUES.IDS.NOTIFICATION1, createdAt: new Date().toISOString(), type: Types.STARTED_FOLLOWING, senderId: VALUES.IDS.CREATOR1, receiverId: VALUES.IDS.CREATOR2, postId: undefined },
-    { id: VALUES.IDS.NOTIFICATION2, createdAt: new Date().toISOString(), type: Types.STARTED_FOLLOWING, senderId: VALUES.IDS.CREATOR2, receiverId: VALUES.IDS.CREATOR1, postId: undefined },
-    { id: VALUES.IDS.NOTIFICATION3, createdAt: new Date('01-05-2024').toISOString(), type: Types.RATED_POST, senderId: VALUES.IDS.CREATOR3, receiverId: VALUES.IDS.CREATOR2, postId: VALUES.IDS.POST_RATED },
-    { id: VALUES.IDS.NOTIFICATION4, createdAt: new Date('01-04-2024').toISOString(), type: Types.RATED_POST, senderId: VALUES.IDS.CREATOR2, receiverId: VALUES.IDS.CREATOR1, postId: VALUES.IDS.REACTION_LIKED },
-    { id: VALUES.IDS.NOTIFICATION5, createdAt: new Date('01-03-2024').toISOString(), type: Types.RATED_POST, senderId: VALUES.IDS.CREATOR1, receiverId: VALUES.IDS.CREATOR1, postId: VALUES.IDS.POST_DELETED }
+const NOTIFICATIONS: (NotificationDataModel & { deleted: boolean; })[] = [
+    { id: VALUES.IDS.NOTIFICATION1, createdAt: new Date().toISOString(), type: Types.STARTED_FOLLOWING, senderId: VALUES.IDS.CREATOR1, receiverId: VALUES.IDS.CREATOR2, postId: undefined, deleted: false },
+    { id: VALUES.IDS.NOTIFICATION2, createdAt: new Date().toISOString(), type: Types.STARTED_FOLLOWING, senderId: VALUES.IDS.CREATOR2, receiverId: VALUES.IDS.CREATOR1, postId: undefined, deleted: false },
+    { id: VALUES.IDS.NOTIFICATION3, createdAt: new Date('01-05-2024').toISOString(), type: Types.RATED_POST, senderId: VALUES.IDS.CREATOR3, receiverId: VALUES.IDS.CREATOR2, postId: VALUES.IDS.POST_RATED, deleted: false },
+    { id: VALUES.IDS.NOTIFICATION6, createdAt: new Date().toISOString(), type: Types.REACTED_TO_POST, senderId: VALUES.IDS.CREATOR1, receiverId: VALUES.IDS.CREATOR3, postId: VALUES.IDS.REACTION_LIKED, deleted: false },
+    { id: VALUES.IDS.NOTIFICATION4, createdAt: new Date('01-04-2024').toISOString(), type: Types.RATED_POST, senderId: VALUES.IDS.CREATOR2, receiverId: VALUES.IDS.CREATOR1, postId: VALUES.IDS.REACTION_LIKED, deleted: false },
+    { id: VALUES.IDS.NOTIFICATION5, createdAt: new Date('01-03-2024').toISOString(), type: Types.RATED_POST, senderId: VALUES.IDS.CREATOR1, receiverId: VALUES.IDS.CREATOR1, postId: VALUES.IDS.POST_DELETED, deleted: false }
 ];
 
 export const RECORDS: Record<string, RecordData[]> = { CREATORS, CREATOR_METRICS, RELATIONS, IMAGES, COMICS, POSTS, POST_METRICS, RATINGS, NOTIFICATIONS };

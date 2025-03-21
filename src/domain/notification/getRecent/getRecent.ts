@@ -1,5 +1,5 @@
 
-import type { RecordQuery, RecordSort} from '^/integrations/database';
+import type { RecordQuery, RecordSort } from '^/integrations/database';
 import database, { SortDirections } from '^/integrations/database';
 
 import { RECORD_TYPE } from '../definitions';
@@ -9,6 +9,7 @@ export default async function getRecent(receiverId: string, limit: number, offse
 {
     const query: RecordQuery =
     {
+        deleted: { EQUALS: false },
         receiverId: { EQUALS: receiverId }
     };
 

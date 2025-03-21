@@ -27,7 +27,8 @@ export const VALUES =
         NOTIFICATION2: 'N2',
         NOTIFICATION3: 'N3',
         NOTIFICATION4: 'N4',
-        NOTIFICATION5: 'N5'
+        NOTIFICATION5: 'N5',
+        NOTIFICATION6: 'N6'
     },
 
     STORAGE_KEYS: {
