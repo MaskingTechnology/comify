@@ -1,5 +1,5 @@
 {
-    "url": "http://127.0.0.1:4002",
+    "url": "http://127.0.0.1:4003",
     "setUp": [
         "./integrations/runtime/setUpNode"
     ],
@@ -7,13 +7,13 @@
         "./integrations/runtime/tearDownNode"
     ],
     "healthChecks": [
-        "./integrations/runtime/notificationHealthCheck",
+        "./integrations/runtime/fileStoreHealthCheck",
         "./integrations/runtime/databaseHealthCheck"
     ],
     "worker":
     {
         "gateway": "http://127.0.0.1:2000",
         "trustKey": "${JITAR_TRUST_KEY}",
-        "segments": ["notification"]
+        "segments": ["reads"]
     }
 }
