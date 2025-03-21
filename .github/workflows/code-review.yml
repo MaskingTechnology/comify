@@ -1,4 +1,4 @@
-name: Gemini AI Code Reviewer
+name: Gemini Code Review
 
 on:
   issue_comment:
