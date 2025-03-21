@@ -1,41 +1,28 @@
 name: Gemini Code Review
-
 on:
+  pull_request:
+    branches: [ "main" ]
+    types: [opened, synchronize, reopened]
+
   issue_comment:
     types: [created]
 
-permissions: write-all
-
 jobs:
-  gemini-code-review:
+  code-review:
     runs-on: ubuntu-latest
-    if: |
-      github.event.issue.pull_request &&
-      contains(github.event.comment.body, '/gemini-review')
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
-      - name: PR Info
-        run: |
-          echo "Comment: ${{ github.event.comment.body }}"
-          echo "Issue Number: ${{ github.event.issue.number }}"
-          echo "Repository: ${{ github.repository }}"
-
-      - name: Checkout Repo
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Get PR Details
-        id: pr
-        run: |
-          PR_JSON=$(gh api repos/${{ github.repository }}/pulls/${{ github.event.issue.number }})
-          echo "head_sha=$(echo $PR_JSON | jq -r .head.sha)" >> $GITHUB_OUTPUT
-          echo "base_sha=$(echo $PR_JSON | jq -r .base.sha)" >> $GITHUB_OUTPUT
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: truongnh1992/gemini-ai-code-reviewer@main
+      - uses: actions/checkout@v4
+      
+      - name: Run SenpAI Review
+        uses: dicodingacademy/senpai-action@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: gemini-2.0-flash
-          EXCLUDE: "*.md,*.txt,package-lock.json,*.yml,*.yaml"
+          GEMINI_MODEL: 'gemini-2.0-flash'
+          EXCLUDE_FILES: '*.md, *.json, *.lock'
+          TRIGGER_COMMAND: '/review'
+          LANGUAGE_REVIEW: 'english'
+          TONE_RESPONSE: 'professional'
