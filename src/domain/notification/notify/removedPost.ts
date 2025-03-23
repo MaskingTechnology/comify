@@ -1,10 +1,11 @@
 
 import getNotifications from '../getByPostId';
-import deleteData from '../remove';
+import remove from '../remove';
 
-export default async function removedPost(postId: string): Promise<Promise<void>[]>
+export default async function removedPost(postId: string): Promise<void>
 {
     const notifications = await getNotifications(postId);
+    const promises = notifications.map(item => remove(item.id));
 
-    return notifications.map(item => deleteData(item.id));
+    await Promise.allSettled(promises);
 }

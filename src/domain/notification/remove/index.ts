@@ -1,2 +1,2 @@
 
-export { default } from './deleteData';
+export { default } from './remove';
