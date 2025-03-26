@@ -5,12 +5,13 @@ import database from '^/integrations/database';
 import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';
 
-export default async function getById(id: string): Promise<DataModel>
+export default async function getByPostId(postId: string): Promise<DataModel[]>
 {
     const query: RecordQuery =
     {
-        id: { EQUALS: id },
-        deleted: { EQUALS: false }
+        deleted: { EQUALS: false },
+        postId: { EQUALS: postId }
     };
-    return database.findRecord(RECORD_TYPE, query) as Promise<DataModel>;
-}
+
+    return database.searchRecords(RECORD_TYPE, query) as Promise<DataModel[]>;
+} 
