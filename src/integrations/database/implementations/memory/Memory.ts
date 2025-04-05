@@ -121,9 +121,9 @@ export default class Memory implements Driver
         const filterFunction = this.#buildFilterFunction(query);
         const collection = this.#getCollection(type);
         const records = collection.filter(filterFunction);
-        records.map(item => 
+        records.forEach(element =>
         {
-            const record = collection.find(object => object.id === item.id);
+            const record = collection.find(object => object.id === element.id);
 
             if (record === undefined)
             {
@@ -133,7 +133,8 @@ export default class Memory implements Driver
             for (const key of Object.keys(data))
             {
                 record[key] = data[key];
-            }
+            };
+
         });
     }
 
@@ -142,9 +143,9 @@ export default class Memory implements Driver
         const filterFunction = this.#buildFilterFunction(query);
         const collection = this.#getCollection(type);
         const records = collection.filter(filterFunction);
-        records.map(item =>
+        records.forEach(element =>
         {
-            const index = collection.findIndex(object => object.id === item.id);
+            const index = collection.findIndex(object => object.id === element.id);
 
             if (index === -1)
             {
