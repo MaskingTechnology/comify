@@ -59,6 +59,17 @@ export default class Database implements Driver
         return this.#driver.searchRecords(type, query, fields, sort, limit, offset);
     }
 
+    updateRecords(type: RecordType, query: RecordQuery, data: RecordData): Promise<void>
+    {
+
+        return this.#driver.updateRecords(type, query, data);
+    }
+
+    deleteRecords(type: RecordType, query: RecordQuery): Promise<void>
+    {
+        return this.#driver.deleteRecords(type, query);
+    }
+
     clear(): Promise<void>
     {
         return this.#driver.clear();

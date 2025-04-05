@@ -13,5 +13,7 @@ export interface Driver
     deleteRecord(type: RecordType, id: RecordId): Promise<void>;
     findRecord(type: RecordType, query: RecordQuery, fields?: RecordField[], sort?: RecordSort): Promise<RecordData | undefined>;
     searchRecords(type: RecordType, query: RecordQuery, fields?: RecordField[], sort?: RecordSort, limit?: number, offset?: number): Promise<RecordData[]>;
+    updateRecords(type: RecordType, query: RecordQuery, data: RecordData): Promise<void>;
+    deleteRecords(type: RecordType, query: RecordQuery): Promise<void>;
     clear(): Promise<void>;
 }

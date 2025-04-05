@@ -177,6 +177,30 @@ export default class MongoDB implements Driver
         return result.map(data => this.#buildRecordData(data, fields));
     }
 
+    async updateRecords(type: RecordType, query: RecordQuery, data: RecordData): Promise<void>
+    {
+        const mongoQuery = this.#buildMongoQuery(query);
+
+        const collection = await this.#getCollection(type);
+        const result = await collection.updateMany(mongoQuery, { $set: data });
+        if (result.acknowledged === false)
+        {
+            throw new DatabaseError();
+        }
+    }
+
+    async deleteRecords(type: RecordType, query: RecordQuery): Promise<void>
+    {
+        const mongoQuery = this.#buildMongoQuery(query);
+
+        const collection = await this.#getCollection(type);
+        const result = await collection.deleteMany(mongoQuery);
+        if (result.acknowledged === false)
+        {
+            throw new DatabaseError();
+        }
+    }
+
     async clear(): Promise<void>
     {
         return; // Deliberately not implemented

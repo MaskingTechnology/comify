@@ -116,6 +116,45 @@ export default class Memory implements Driver
         return limitedResult.map(records => this.#buildRecordData(records, fields));
     }
 
+    async updateRecords(type: string, query: QueryStatement, data: RecordData): Promise<void>
+    {
+        const filterFunction = this.#buildFilterFunction(query);
+        const collection = this.#getCollection(type);
+        const records = collection.filter(filterFunction);
+        records.map(item => 
+        {
+            const record = collection.find(object => object.id === item.id);
+
+            if (record === undefined)
+            {
+                throw new RecordNotUpdated();
+            }
+
+            for (const key of Object.keys(data))
+            {
+                record[key] = data[key];
+            }
+        });
+    }
+
+    async deleteRecords(type: string, query: QueryStatement): Promise<void>
+    {
+        const filterFunction = this.#buildFilterFunction(query);
+        const collection = this.#getCollection(type);
+        const records = collection.filter(filterFunction);
+        records.map(item =>
+        {
+            const index = collection.findIndex(object => object.id === item.id);
+
+            if (index === -1)
+            {
+                throw new RecordNotFound();
+            }
+
+            collection.splice(index, 1);
+        });
+    }
+
     async clear(): Promise<void>
     {
         this.#memory.clear();

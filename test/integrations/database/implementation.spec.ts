@@ -1,6 +1,7 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
+import type { RecordData } from '^/integrations/database';
 import database, { RecordNotFound, RecordNotUpdated } from '^/integrations/database';
 
 import { DATABASES, QUERIES, RECORDS, RECORD_TYPES, RESULTS, SORTS, VALUES } from './fixtures';
@@ -59,6 +60,18 @@ describe('integrations/database/implementation', () =>
         });
     });
 
+    describe('.deleteRecords', () =>
+    {
+        it('should delete all records matching the query', async () =>
+        {
+            await database.deleteRecords(RECORD_TYPES.PIZZAS, QUERIES.EQUALS);
+
+            const records = await database.searchRecords(RECORD_TYPES.PIZZAS, QUERIES.EQUALS);
+            expect(records).toHaveLength(0);
+        });
+
+    });
+
     describe('.updateRecord', () =>
     {
         it('should update a record by id', async () =>
@@ -75,6 +88,18 @@ describe('integrations/database/implementation', () =>
         {
             const promise = database.updateRecord(RECORD_TYPES.FRUITS, VALUES.IDS.NON_EXISTING, {});
             await expect(promise).rejects.toStrictEqual(new RecordNotUpdated());
+        });
+    });
+
+    describe('.updateRecords', () =>
+    {
+        it('should update all records matching the query', async () =>
+        {
+            const data: RecordData = { size: 40 };
+            await database.updateRecords(RECORD_TYPES.PIZZAS, QUERIES.EQUALS, data);
+
+            const records = await database.searchRecords(RECORD_TYPES.PIZZAS, QUERIES.UPDATED);
+            expect(records).toHaveLength(2);
         });
     });
 
