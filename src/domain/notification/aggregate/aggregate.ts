@@ -9,7 +9,7 @@ import type { AggregatedData } from './types';
 export default async function aggregate(requester: Requester, data: DataModel): Promise<AggregatedData>
 {
     const [relationData, postData] = await Promise.all([
-        getRelationData(data.receiverId, data.senderId),
+        getRelationData(requester, data.receiverId, data.senderId),
         data.postId ? getPostData(requester, data.postId) : Promise.resolve(undefined)
     ]);
 

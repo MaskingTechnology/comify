@@ -2,7 +2,7 @@
 import { useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 
-import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
+import { requester } from '^/domain/authentication';
 import getCreator from '^/domain/creator/getByNicknameAggregated';
 import getRelation from '^/domain/relation/getAggregated';
 
@@ -21,7 +21,7 @@ export default function useCreator()
             return undefined;
         }
 
-        const creator: AggregatedCreatorData = await getCreator(nickname);
+        const creator = await getCreator(requester, nickname);
 
         return getRelation(identity.id, creator.id);
 

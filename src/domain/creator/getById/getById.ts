@@ -1,10 +1,25 @@
 
-import database from '^/integrations/database';
+import database, { RecordQuery } from '^/integrations/database';
 
 import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';
 
-export default async function getById(id: string): Promise<DataModel>
+type Props = {
+    tenantId: string,
+    id: string;
+};
+
+export default async function getById({ id, tenantId }: Props): Promise<DataModel>
 {
-    return database.readRecord(RECORD_TYPE, id) as Promise<DataModel>;
+    const query: RecordQuery =
+    {
+        id: { 'EQUALS': id },
+        tenantId: { 'EQUALS': tenantId }
+    };
+
+    const creators = await database.findRecord(RECORD_TYPE, query);
+
+    if (creators === undefined) throw new Error('No creator found with that ID');
+
+    return creators as DataModel;
 }

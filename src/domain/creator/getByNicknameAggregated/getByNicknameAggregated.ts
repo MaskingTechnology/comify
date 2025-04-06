@@ -1,11 +1,13 @@
 
+import type { Requester } from '^/domain/authentication';
+
 import type { AggregatedData } from '../aggregate';
 import aggregate from '../aggregate';
 import getByNickname from '../getByNickname';
 
-export default async function getByNicknameAggregated(nickname: string): Promise<AggregatedData>
+export default async function getByNicknameAggregated(requester: Requester, nickname: string): Promise<AggregatedData>
 {
-    const data = await getByNickname(nickname);
+    const data = await getByNickname(requester.tenantId, nickname);
 
     return aggregate(data);
 }

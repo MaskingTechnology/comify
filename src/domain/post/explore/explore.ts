@@ -12,5 +12,5 @@ export default async function explore(requester: Requester, limit: number, offse
     const excludedCreatorIds = relationsData.map(data => data.followingId);
     excludedCreatorIds.push(requester.id);
 
-    return retrieveData(excludedCreatorIds, limit, offset);
+    return retrieveData(requester.tenantId, excludedCreatorIds, limit, offset);
 }

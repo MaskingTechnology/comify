@@ -19,12 +19,13 @@ const schema: ValidationSchema =
             required: true
         }
     },
+    tenantId: { STRING: { required: true } },
     portraitId: optionalIdValidation
 };
 
-export default function validateData({ fullName, email }: ValidationModel): void
+export default function validateData({ fullName, email, tenantId }: ValidationModel): void
 {
-    const result = validator.validate({ fullName, email }, schema);
+    const result = validator.validate({ fullName, email, tenantId }, schema);
 
     if (result.invalid)
     {

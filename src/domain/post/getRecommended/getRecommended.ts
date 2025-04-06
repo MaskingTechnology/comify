@@ -1,5 +1,5 @@
 
-import type { RecordQuery, RecordSort} from '^/integrations/database';
+import type { RecordQuery, RecordSort } from '^/integrations/database';
 import database, { SortDirections } from '^/integrations/database';
 
 import type { Requester } from '^/domain/authentication';
@@ -14,7 +14,8 @@ export default async function getRecommended(requester: Requester, limit: number
     {
         deleted: { EQUALS: false },
         parentId: { EQUALS: undefined },
-        creatorId: { NOT_EQUALS: requester.id }
+        creatorId: { NOT_EQUALS: requester.id },
+        tenantId: { EQUALS: requester.tenantId }
     };
 
     const sort: RecordSort = { createdAt: SortDirections.DESCENDING };

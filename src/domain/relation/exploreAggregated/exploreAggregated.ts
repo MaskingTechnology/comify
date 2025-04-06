@@ -14,5 +14,5 @@ export default async function exploreAggregated(requester: Requester, order: Sor
 
     const data = await explore(requester, order, range.limit, range.offset, search);
 
-    return Promise.all(data.map(item => aggregate(item)));
+    return Promise.all(data.map(item => aggregate(requester, item)));
 }

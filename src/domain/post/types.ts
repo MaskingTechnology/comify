@@ -5,6 +5,7 @@ type DataModel = BaseDataModel &
 {
     readonly id: string;
     readonly creatorId: string;
+    readonly tenantId: string;
     readonly comicId?: string;
     readonly commentId?: string;
     readonly parentId?: string;

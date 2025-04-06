@@ -1,5 +1,5 @@
 
-import type { Middleware, NextHandler, Request} from 'jitar';
+import type { Middleware, NextHandler, Request } from 'jitar';
 import { Response } from 'jitar';
 
 import type { IdentityProvider, Session } from '^/integrations/authentication';
@@ -14,8 +14,10 @@ type AuthProcedures = {
 };
 
 const IDENTITY_PARAMETER = 'identity';
+const TENANT_ID_PARAMETER = 'tenantId';
 const REQUESTER_PARAMETER = '*requester';
 const JITAR_TRUST_HEADER_KEY = 'X-Jitar-Trust-Key';
+const COMIFY_HOST_COOKIE_KEY = 'x-comify-host';
 
 const sessions = new Map<string, Session>();
 
@@ -60,10 +62,12 @@ export default class AuthenticationMiddleware implements Middleware
     async #createSession(request: Request, next: NextHandler): Promise<Response>
     {
         const data = Object.fromEntries(request.args);
+        const tenantId = this.#getTenantId(request);
         const session = await this.#identityProvider.login(data);
 
         request.args.clear();
         request.setArgument(IDENTITY_PARAMETER, session.identity);
+        request.setArgument(TENANT_ID_PARAMETER, tenantId);
 
         const response = await next();
 
@@ -215,5 +219,37 @@ export default class AuthenticationMiddleware implements Middleware
     #setRedirectHeader(response: Response, key: string): void
     {
         response.setHeader('Location', `${this.#redirectUrl}?key=${key}`);
+    }
+
+    #getTenantId(request: Request): string | undefined
+    {
+        const cookie = request.getHeader('cookie');
+
+        if (cookie === undefined)
+        {
+            return undefined;
+        }
+
+        const cookies = this.#getCookies(cookie);
+
+        return cookies.get(COMIFY_HOST_COOKIE_KEY);
+    }
+
+    #getCookies(input: string): Map<string, string>
+    {
+        const cookies = input.split(';');
+        const cookieMap = new Map<string, string>();
+
+        for (const cookie of cookies)
+        {
+            const parts = cookie.trim().split('=');
+
+            const key = parts[0]?.toLocaleLowerCase();
+            const value = parts.length > 2 ? parts.slice(1).join('=') : parts[1];
+
+            cookieMap.set(key, value);
+        }
+
+        return cookieMap;
     }
 }

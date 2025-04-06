@@ -1,14 +1,19 @@
 
-import type { QueryStatement, RecordQuery, RecordSort} from '^/integrations/database';
+import type { QueryStatement, RecordQuery, RecordSort } from '^/integrations/database';
 import database, { SortDirections } from '^/integrations/database';
 
-import type { SortOrder} from '../definitions';
+import type { SortOrder } from '../definitions';
 import { RECORD_TYPE, SortOrders } from '../definitions';
 import type { DataModel } from '../types';
 
-export default async function getOthers(ids: string[], order: SortOrder, limit: number, offset: number, search: string | undefined = undefined): Promise<DataModel[]>
+export default async function getOthers(tenantId: string, ids: string[], order: SortOrder, limit: number, offset: number, search: string | undefined = undefined): Promise<DataModel[]>
 {
-    const defaultQuery: RecordQuery = { id: { NOT_IN: ids } };
+    const defaultQuery: RecordQuery = {
+        'AND': [
+            { id: { NOT_IN: ids } },
+            { tenantId: { EQUALS: tenantId } }
+        ]
+    };
     const searchQuery: RecordQuery = {
         'OR': [
             { fullName: { CONTAINS: search } },
