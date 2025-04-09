@@ -13,33 +13,6 @@ beforeEach(async () =>
 
 describe('integrations/database/implementation', () =>
 {
-    describe('.readRecord', () =>
-    {
-        it('should read a full record by id', async () =>
-        {
-            const id = RECORDS.PIZZAS.MARGHERITA.id as string;
-
-            const result = await database.readRecord(RECORD_TYPES.PIZZAS, id);
-            expect(result).toMatchObject(RECORDS.PIZZAS.MARGHERITA);
-        });
-
-        it('should read a partial record by id', async () =>
-        {
-            const id = RECORDS.PIZZAS.MARGHERITA.id as string;
-            const fields: string[] = [VALUES.FIELDS.ID, VALUES.FIELDS.FOLDED];
-
-            const result = await database.readRecord(RECORD_TYPES.PIZZAS, id, fields);
-            expect(Object.keys(result)).toHaveLength(2);
-            expect(result?.id).toBe(id);
-            expect(result?.folded).toBeFalsy();
-        });
-
-        it('should throw an error when a record is not found', async () =>
-        {
-            const promise = database.readRecord(RECORD_TYPES.PIZZAS, VALUES.IDS.NON_EXISTING);
-            await expect(promise).rejects.toStrictEqual(new RecordNotFound());
-        });
-    });
 
     describe('.deleteRecord', () =>
     {
@@ -70,36 +43,13 @@ describe('integrations/database/implementation', () =>
             expect(records).toHaveLength(0);
         });
 
-    });
-
-    describe('.updateRecord', () =>
-    {
-        it('should update a record by id', async () =>
+        it('should not throw an error when no records match the query', async () =>
         {
-            const id = RECORDS.FRUITS.PEAR.id as string;
+            await expect(database.deleteRecords(RECORD_TYPES.PIZZAS, QUERIES.NO_MATCH))
+                .resolves.toBeUndefined();
 
-            await database.updateRecord(RECORD_TYPES.FRUITS, id, { country: VALUES.UPDATES.COUNTRY });
-
-            const result = await database.readRecord(RECORD_TYPES.FRUITS, id);
-            expect(result?.country).toBe(VALUES.UPDATES.COUNTRY);
-        });
-
-        it('should throw an error when record cannot be updated', async () =>
-        {
-            const promise = database.updateRecord(RECORD_TYPES.FRUITS, VALUES.IDS.NON_EXISTING, {});
-            await expect(promise).rejects.toStrictEqual(new RecordNotUpdated());
-        });
-    });
-
-    describe('.updateRecords', () =>
-    {
-        it('should update all records matching the query', async () =>
-        {
-            const data: RecordData = { size: 40 };
-            await database.updateRecords(RECORD_TYPES.PIZZAS, QUERIES.EQUALS, data);
-
-            const records = await database.searchRecords(RECORD_TYPES.PIZZAS, QUERIES.UPDATED);
-            expect(records).toHaveLength(2);
+            const records = await database.searchRecords(RECORD_TYPES.PIZZAS, QUERIES.EMPTY);
+            expect(records).toHaveLength(5);
         });
     });
 
@@ -115,6 +65,51 @@ describe('integrations/database/implementation', () =>
         {
             const result = await database.findRecord(RECORD_TYPES.PIZZAS, QUERIES.NO_MATCH);
             expect(result).toBe(undefined);
+        });
+    });
+
+    describe('.limitNumberOfRecords', () =>
+    {
+        it('should limit the result', async () =>
+        {
+            const result = await database.searchRecords(RECORD_TYPES.PIZZAS, QUERIES.EMPTY, undefined, undefined, 2);
+            expect(result).toHaveLength(2);
+            expect(result).toMatchObject(RESULTS.LIMITED_BY_NUMBER);
+        });
+
+        it('should give the result starting an offset', async () =>
+        {
+            const result = await database.searchRecords(RECORD_TYPES.PIZZAS, QUERIES.EMPTY, undefined, undefined, undefined, 2);
+            expect(result).toHaveLength(3);
+            expect(result).toMatchObject(RESULTS.LIMITED_BY_OFFSET);
+        });
+    });
+
+    describe('.readRecord', () =>
+    {
+        it('should read a full record by id', async () =>
+        {
+            const id = RECORDS.PIZZAS.MARGHERITA.id as string;
+
+            const result = await database.readRecord(RECORD_TYPES.PIZZAS, id);
+            expect(result).toMatchObject(RECORDS.PIZZAS.MARGHERITA);
+        });
+
+        it('should read a partial record by id', async () =>
+        {
+            const id = RECORDS.PIZZAS.MARGHERITA.id as string;
+            const fields: string[] = [VALUES.FIELDS.ID, VALUES.FIELDS.FOLDED];
+
+            const result = await database.readRecord(RECORD_TYPES.PIZZAS, id, fields);
+            expect(Object.keys(result)).toHaveLength(2);
+            expect(result?.id).toBe(id);
+            expect(result?.folded).toBeFalsy();
+        });
+
+        it('should throw an error when a record is not found', async () =>
+        {
+            const promise = database.readRecord(RECORD_TYPES.PIZZAS, VALUES.IDS.NON_EXISTING);
+            await expect(promise).rejects.toStrictEqual(new RecordNotFound());
         });
     });
 
@@ -269,20 +264,45 @@ describe('integrations/database/implementation', () =>
         });
     });
 
-    describe('.limitNumberOfRecords', () =>
+    describe('.updateRecord', () =>
     {
-        it('should limit the result', async () =>
+        it('should update a record by id', async () =>
         {
-            const result = await database.searchRecords(RECORD_TYPES.PIZZAS, QUERIES.EMPTY, undefined, undefined, 2);
-            expect(result).toHaveLength(2);
-            expect(result).toMatchObject(RESULTS.LIMITED_BY_NUMBER);
+            const id = RECORDS.FRUITS.PEAR.id as string;
+
+            await database.updateRecord(RECORD_TYPES.FRUITS, id, { country: VALUES.UPDATES.COUNTRY });
+
+            const result = await database.readRecord(RECORD_TYPES.FRUITS, id);
+            expect(result?.country).toBe(VALUES.UPDATES.COUNTRY);
         });
 
-        it('should give the result starting an offset', async () =>
+        it('should throw an error when record cannot be updated', async () =>
         {
-            const result = await database.searchRecords(RECORD_TYPES.PIZZAS, QUERIES.EMPTY, undefined, undefined, undefined, 2);
-            expect(result).toHaveLength(3);
-            expect(result).toMatchObject(RESULTS.LIMITED_BY_OFFSET);
+            const promise = database.updateRecord(RECORD_TYPES.FRUITS, VALUES.IDS.NON_EXISTING, {});
+            await expect(promise).rejects.toStrictEqual(new RecordNotUpdated());
+        });
+    });
+
+    describe('.updateRecords', () =>
+    {
+        it('should update all records matching the query', async () =>
+        {
+            const data: RecordData = { size: 40 };
+            await database.updateRecords(RECORD_TYPES.PIZZAS, QUERIES.EQUALS, data);
+
+            const records = await database.searchRecords(RECORD_TYPES.PIZZAS, QUERIES.UPDATED);
+            expect(records).toHaveLength(2);
+            expect(records[0].size).toBe(40);
+            expect(records[1].size).toBe(40);
+        });
+
+        it('should not throw an error when no records match the query', async () =>
+        {
+            const data: RecordData = { size: 99 };
+
+            // This should not throw an error
+            await expect(database.updateRecords(RECORD_TYPES.PIZZAS, QUERIES.NO_MATCH, data))
+                .resolves.toBeUndefined();
         });
     });
 });
