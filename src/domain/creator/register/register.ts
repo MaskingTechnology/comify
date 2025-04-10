@@ -10,7 +10,7 @@ import type { DataModel } from '../types';
 import downloadPortrait from './downloadPortrait';
 import publish from './publish';
 
-export default async function register(fullName: string, nickname: string, email: string, tenantId: string, portraitUrl: string | undefined = undefined): Promise<DataModel>
+export default async function register(fullName: string, nickname: string, email: string, portraitUrl: string | undefined = undefined, tenantId: string | undefined = undefined): Promise<DataModel>
 {
     let data;
 
@@ -23,7 +23,7 @@ export default async function register(fullName: string, nickname: string, email
             ? await downloadPortrait(portraitUrl)
             : undefined;
 
-        data = await create(truncatedFullName, generatedNickname, email, tenantId, portraitId);
+        data = await create(truncatedFullName, generatedNickname, email, portraitId, tenantId);
 
         await publish(data.id);
 

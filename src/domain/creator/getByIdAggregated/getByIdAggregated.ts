@@ -7,7 +7,7 @@ import getById from '../getById';
 
 export default async function getByIdAggregated(requester: Requester, id: string): Promise<AggregatedData>
 {
-    const data = await getById({ tenantId: requester.tenantId, id });
+    const data = await getById(id, requester.tenantId);
 
     return aggregate(data);
 }

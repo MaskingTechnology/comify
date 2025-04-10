@@ -19,7 +19,7 @@ const schema: ValidationSchema =
             required: true
         }
     },
-    tenantId: { STRING: { required: true } },
+    tenantId: optionalIdValidation,
     portraitId: optionalIdValidation
 };
 

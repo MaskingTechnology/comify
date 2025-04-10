@@ -10,6 +10,8 @@
 
     "./domain/creator.metrics/getByCreator": { "default": {  "access": "protected" } },
 
+    "./domain/host/getByName": { "default": {  "access": "protected" } },
+
     "./domain/image/getById": { "default": {  "access": "protected" } },
 
     "./domain/post/explore": { "default": {  "access": "protected" } },

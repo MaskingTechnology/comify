@@ -5,19 +5,19 @@ import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';
 import NicknameNotFound from './NicknameNotFound';
 
-export default async function getByNickname(tenantId: string, nickname: string): Promise<DataModel>
+export default async function getByNickname(nickname: string, tenantId: string | undefined = undefined): Promise<DataModel>
 {
     const query = {
-        tenantId: { EQUALS: tenantId },
-        nickname: { EQUALS: nickname }
+        nickname: { EQUALS: nickname },
+        tenantId: { EQUALS: tenantId }
     };
 
-    const data = await database.findRecord(RECORD_TYPE, query) as DataModel;
+    const creator = await database.findRecord(RECORD_TYPE, query);
 
-    if (data === undefined)
+    if (creator === undefined)
     {
         throw new NicknameNotFound(nickname);
     }
 
-    return data;
+    return creator as DataModel;
 }

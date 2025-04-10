@@ -6,7 +6,7 @@ import type { SortOrder } from '../definitions';
 import { RECORD_TYPE, SortOrders } from '../definitions';
 import type { DataModel } from '../types';
 
-export default async function getOthers(tenantId: string, ids: string[], order: SortOrder, limit: number, offset: number, search: string | undefined = undefined): Promise<DataModel[]>
+export default async function getOthers(ids: string[], order: SortOrder, limit: number, offset: number, search: string | undefined = undefined, tenantId: string | undefined = undefined): Promise<DataModel[]>
 {
     const defaultQuery: RecordQuery = {
         'AND': [

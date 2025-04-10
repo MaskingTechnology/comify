@@ -7,7 +7,7 @@ import getByNickname from '../getByNickname';
 
 export default async function getByNicknameAggregated(requester: Requester, nickname: string): Promise<AggregatedData>
 {
-    const data = await getByNickname(requester.tenantId, nickname);
+    const data = await getByNickname(nickname, requester.tenantId);
 
     return aggregate(data);
 }

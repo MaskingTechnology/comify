@@ -23,7 +23,7 @@ export default function useCreator()
 
         const creator = await getCreator(requester, nickname);
 
-        return getRelation(identity.id, creator.id);
+        return getRelation(requester, identity.id, creator.id);
 
     }, [identity, nickname]);
 

@@ -14,7 +14,7 @@ type AuthProcedures = {
 };
 
 const IDENTITY_PARAMETER = 'identity';
-const TENANT_ID_PARAMETER = 'tenantId';
+const HOSTNAME_PARAMETER = 'hostname';
 const REQUESTER_PARAMETER = '*requester';
 const JITAR_TRUST_HEADER_KEY = 'X-Jitar-Trust-Key';
 const COMIFY_HOST_COOKIE_KEY = 'x-comify-host';
@@ -62,12 +62,12 @@ export default class AuthenticationMiddleware implements Middleware
     async #createSession(request: Request, next: NextHandler): Promise<Response>
     {
         const data = Object.fromEntries(request.args);
-        const tenantId = this.#getTenantId(request);
+        const hostname = this.#getHostname(request);
         const session = await this.#identityProvider.login(data);
 
         request.args.clear();
         request.setArgument(IDENTITY_PARAMETER, session.identity);
-        request.setArgument(TENANT_ID_PARAMETER, tenantId);
+        request.setArgument(HOSTNAME_PARAMETER, hostname);
 
         const response = await next();
 
@@ -221,7 +221,7 @@ export default class AuthenticationMiddleware implements Middleware
         response.setHeader('Location', `${this.#redirectUrl}?key=${key}`);
     }
 
-    #getTenantId(request: Request): string | undefined
+    #getHostname(request: Request): string | undefined
     {
         const cookie = request.getHeader('cookie');
 

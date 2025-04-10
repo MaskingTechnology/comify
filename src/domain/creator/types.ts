@@ -6,8 +6,8 @@ type DataModel = BaseDataModel &
     readonly fullName: string;
     readonly nickname: string;
     readonly email: string;
-    readonly tenantId: string;
     readonly portraitId?: string;
+    readonly tenantId?: string;
     readonly joinedAt: string;
 };
 

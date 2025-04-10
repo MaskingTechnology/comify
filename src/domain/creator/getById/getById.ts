@@ -1,15 +1,11 @@
 
-import database, { RecordQuery } from '^/integrations/database';
+import database, { type RecordQuery } from '^/integrations/database';
 
 import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';
+import CreatorNotFound from './CreatorNotFound';
 
-type Props = {
-    tenantId: string,
-    id: string;
-};
-
-export default async function getById({ id, tenantId }: Props): Promise<DataModel>
+export default async function getById(id: string, tenantId: string | undefined = undefined): Promise<DataModel>
 {
     const query: RecordQuery =
     {
@@ -17,9 +13,12 @@ export default async function getById({ id, tenantId }: Props): Promise<DataMode
         tenantId: { 'EQUALS': tenantId }
     };
 
-    const creators = await database.findRecord(RECORD_TYPE, query);
+    const creator = await database.findRecord(RECORD_TYPE, query);
 
-    if (creators === undefined) throw new Error('No creator found with that ID');
+    if (creator === undefined)
+    {
+        throw new CreatorNotFound(id, tenantId);
+    }
 
-    return creators as DataModel;
+    return creator as DataModel;
 }
