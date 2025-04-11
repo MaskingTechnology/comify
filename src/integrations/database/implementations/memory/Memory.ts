@@ -116,11 +116,6 @@ export default class Memory implements Driver
         collection.splice(index, 1);
     }
 
-    async clear(): Promise<void>
-    {
-        this.#memory.clear();
-    }
-
     async deleteRecords(type: string, query: QueryStatement): Promise<void>
     {
         const collection = this.#getCollection(type);
@@ -131,6 +126,11 @@ export default class Memory implements Driver
             .sort((a, b) => b - a); // Reverse the order of indexes to delete from the end to the beginning
 
         indexes.forEach(index => collection.splice(index, 1));
+    }
+
+    async clear(): Promise<void>
+    {
+        this.#memory.clear();
     }
 
     #fetchRecord(type: string, id: string)
