@@ -15,14 +15,14 @@ export default class Database implements Driver
 
     get connected() { return this.#driver.connected; }
 
-    clear(): Promise<void>
-    {
-        return this.#driver.clear();
-    }
-
     connect(): Promise<void>
     {
         return this.#driver.connect();
+    }
+
+    disconnect(): Promise<void>
+    {
+        return this.#driver.disconnect();
     }
 
     createRecord(type: RecordType, data: RecordData): Promise<RecordId>
@@ -32,29 +32,14 @@ export default class Database implements Driver
         return this.#driver.createRecord(type, cleanData);
     }
 
-    deleteRecord(type: RecordType, id: RecordId): Promise<void>
+    readRecord(type: RecordType, id: RecordId, fields?: RecordField[]): Promise<RecordData>
     {
-        return this.#driver.deleteRecord(type, id);
-    }
-
-    deleteRecords(type: RecordType, query: RecordQuery): Promise<void>
-    {
-        return this.#driver.deleteRecords(type, query);
-    }
-
-    disconnect(): Promise<void>
-    {
-        return this.#driver.disconnect();
+        return this.#driver.readRecord(type, id, fields);
     }
 
     findRecord(type: RecordType, query: RecordQuery, fields?: RecordField[], sort?: RecordSort): Promise<RecordData | undefined>
     {
         return this.#driver.findRecord(type, query, fields, sort);
-    }
-
-    readRecord(type: RecordType, id: RecordId, fields?: RecordField[]): Promise<RecordData>
-    {
-        return this.#driver.readRecord(type, id, fields);
     }
 
     searchRecords(type: RecordType, query: RecordQuery, fields?: RecordField[], sort?: RecordSort, limit?: number, offset?: number): Promise<RecordData[]>
@@ -74,5 +59,20 @@ export default class Database implements Driver
         const cleanData = sanitize(data);
 
         return this.#driver.updateRecords(type, query, cleanData);
+    }
+
+    deleteRecord(type: RecordType, id: RecordId): Promise<void>
+    {
+        return this.#driver.deleteRecord(type, id);
+    }
+
+    deleteRecords(type: RecordType, query: RecordQuery): Promise<void>
+    {
+        return this.#driver.deleteRecords(type, query);
+    }
+
+    clear(): Promise<void>
+    {
+        return this.#driver.clear();
     }
 }
