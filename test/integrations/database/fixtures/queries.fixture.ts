@@ -7,6 +7,7 @@ const { CALZONE, VEGETARIAN, HAWAII } = RECORDS.PIZZAS;
 
 export const QUERIES: Record<string, RecordQuery> =
 {
+    UPDATED: { size: { EQUALS: 40 } },
     EMPTY: {},
     NO_MATCH: { name: { EQUALS: 'Not existing' } },
 
