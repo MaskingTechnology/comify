@@ -13,6 +13,8 @@ import RecordNotCreated from '../../errors/RecordNotCreated';
 import RecordNotDeleted from '../../errors/RecordNotDeleted';
 import RecordNotFound from '../../errors/RecordNotFound';
 import RecordNotUpdated from '../../errors/RecordNotUpdated';
+import RecordsNotDeleted from '../../errors/RecordsNotDeleted';
+import RecordsNotUpdated from '../../errors/RecordsNotUpdated';
 
 const UNKNOWN_ERROR = 'Unknown error';
 
@@ -136,28 +138,6 @@ export default class MongoDB implements Driver
         return this.#buildRecordData(entry as Document, fields);
     }
 
-    async updateRecord(type: RecordType, id: RecordId, data: RecordData): Promise<void>
-    {
-        const collection = await this.#getCollection(type);
-        const entry = await collection.updateOne({ _id: id }, { $set: data });
-
-        if (entry.modifiedCount === 0)
-        {
-            throw new RecordNotUpdated();
-        }
-    }
-
-    async deleteRecord(type: RecordType, id: RecordId): Promise<void>
-    {
-        const collection = await this.#getCollection(type);
-        const result = await collection.deleteOne({ _id: id });
-
-        if (result.deletedCount !== 1)
-        {
-            throw new RecordNotDeleted();
-        }
-    }
-
     async findRecord(type: RecordType, query: RecordQuery, fields?: RecordField[], sort?: RecordSort): Promise<RecordData | undefined>
     {
         const result = await this.searchRecords(type, query, fields, sort, 1, 0);
@@ -177,15 +157,38 @@ export default class MongoDB implements Driver
         return result.map(data => this.#buildRecordData(data, fields));
     }
 
+    async updateRecord(type: RecordType, id: RecordId, data: RecordData): Promise<void>
+    {
+        const collection = await this.#getCollection(type);
+        const entry = await collection.updateOne({ _id: id }, { $set: data });
+
+        if (entry.modifiedCount === 0)
+        {
+            throw new RecordNotUpdated();
+        }
+    }
+
     async updateRecords(type: RecordType, query: RecordQuery, data: RecordData): Promise<void>
     {
         const mongoQuery = this.#buildMongoQuery(query);
 
         const collection = await this.#getCollection(type);
         const result = await collection.updateMany(mongoQuery, { $set: data });
+
         if (result.acknowledged === false)
         {
-            throw new DatabaseError();
+            throw new RecordsNotUpdated();
+        }
+    }
+
+    async deleteRecord(type: RecordType, id: RecordId): Promise<void>
+    {
+        const collection = await this.#getCollection(type);
+        const result = await collection.deleteOne({ _id: id });
+
+        if (result.deletedCount !== 1)
+        {
+            throw new RecordNotDeleted();
         }
     }
 
@@ -195,9 +198,10 @@ export default class MongoDB implements Driver
 
         const collection = await this.#getCollection(type);
         const result = await collection.deleteMany(mongoQuery);
+
         if (result.acknowledged === false)
         {
-            throw new DatabaseError();
+            throw new RecordsNotDeleted();
         }
     }
 

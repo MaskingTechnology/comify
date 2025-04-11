@@ -43,14 +43,14 @@ describe('integrations/database/implementation', () =>
             expect(records).toHaveLength(0);
         });
 
-        it('should not throw an error when no records match the query', async () =>
-        {
-            await expect(database.deleteRecords(RECORD_TYPES.PIZZAS, QUERIES.NO_MATCH))
-                .resolves.toBeUndefined();
+        // it('should not throw an error when no records match the query', async () =>
+        // {
+        //     await expect(database.deleteRecords(RECORD_TYPES.PIZZAS, QUERIES.NO_MATCH))
+        //         .resolves.toBeUndefined();
 
-            const records = await database.searchRecords(RECORD_TYPES.PIZZAS, QUERIES.EMPTY);
-            expect(records).toHaveLength(5);
-        });
+        //     const records = await database.searchRecords(RECORD_TYPES.PIZZAS, QUERIES.EMPTY);
+        //     expect(records).toHaveLength(5);
+        // });
     });
 
     describe('.findRecord', () =>

@@ -32,14 +32,14 @@ export default class Memory implements Driver
 
     get connected() { return this.#connected; }
 
-    async clear(): Promise<void>
-    {
-        this.#memory.clear();
-    }
-
     async connect(): Promise<void>
     {
         this.#connected = true;
+    }
+
+    async disconnect(): Promise<void>
+    {
+        this.#connected = false;
     }
 
     async createRecord(type: string, data: RecordData): Promise<string>
@@ -55,46 +55,9 @@ export default class Memory implements Driver
         return record.id as string;
     }
 
-    async deleteRecord(type: string, id: string): Promise<void>
-    {
-        const collection = this.#getCollection(type);
-        const index = collection.findIndex(object => object.id === id);
-
-        if (index === -1)
-        {
-            throw new RecordNotFound();
-        }
-
-        collection.splice(index, 1);
-    }
-
-    async deleteRecords(type: string, query: QueryStatement): Promise<void>
-    {
-        const filterFunction = this.#buildFilterFunction(query);
-        const collection = this.#getCollection(type);
-        const records = collection.filter(filterFunction);
-        records.forEach(item =>
-        {
-            this.deleteRecord(type, item.id as string);
-        });
-    }
-
-    async disconnect(): Promise<void>
-    {
-        this.#connected = false;
-    }
-
-    async findRecord(type: string, query: QueryStatement, fields?: string[], sort?: RecordSort): Promise<RecordData | undefined>
-    {
-        const result = await this.searchRecords(type, query, fields, sort, 1, 0);
-
-        return result[0];
-    }
-
     async readRecord(type: string, id: string, fields?: string[]): Promise<RecordData>
     {
-        const collection = this.#getCollection(type);
-        const record = collection.find(object => object.id === id);
+        const record = this.#fetchRecord(type, id);
 
         if (record === undefined)
         {
@@ -104,43 +67,93 @@ export default class Memory implements Driver
         return this.#buildRecordData(record, fields);
     }
 
+    async findRecord(type: string, query: QueryStatement, fields?: string[], sort?: RecordSort): Promise<RecordData | undefined>
+    {
+        const result = await this.searchRecords(type, query, fields, sort, 1, 0);
+
+        return result[0];
+    }
+
     async searchRecords(type: string, query: QueryStatement, fields?: string[], sort?: RecordSort, limit?: number, offset?: number): Promise<RecordData[]>
     {
-        const collection = this.#getCollection(type);
-        const filterFunction = this.#buildFilterFunction(query);
-        const result = collection.filter(filterFunction);
+        const records = this.#fetchRecords(type, query);
 
-        const sortedResult = this.#sortRecords(result, sort);
-        const limitedResult = this.#limitNumberOfRecords(sortedResult, offset, limit);
+        const sortedRecords = this.#sortRecords(records, sort);
+        const limitedRecords = this.#limitNumberOfRecords(sortedRecords, offset, limit);
 
-        return limitedResult.map(records => this.#buildRecordData(records, fields));
+        return limitedRecords.map(record => this.#buildRecordData(record, fields));
     }
 
     async updateRecord(type: string, id: string, data: RecordData): Promise<void>
     {
-        const collection = this.#getCollection(type);
-        const record = collection.find(object => object.id === id);
+        const record = this.#fetchRecord(type, id);
 
         if (record === undefined)
         {
             throw new RecordNotUpdated();
         }
 
-        for (const key of Object.keys(data))
-        {
-            record[key] = data[key];
-        }
+        this.#updateRecordData(record, data);
     }
 
     async updateRecords(type: string, query: QueryStatement, data: RecordData): Promise<void>
     {
-        const filterFunction = this.#buildFilterFunction(query);
+        const records = this.#fetchRecords(type, query);
+
+        records.forEach(record => this.#updateRecordData(record, data));
+    }
+
+    async deleteRecord(type: string, id: string): Promise<void>
+    {
         const collection = this.#getCollection(type);
-        const records = collection.filter(filterFunction);
-        records.forEach(item => 
+        const index = collection.findIndex(record => record.id === id);
+
+        if (index === -1)
         {
-            this.updateRecord(type, item.id as string, data);
-        });
+            throw new RecordNotFound();
+        }
+
+        collection.splice(index, 1);
+    }
+
+    async clear(): Promise<void>
+    {
+        this.#memory.clear();
+    }
+
+    async deleteRecords(type: string, query: QueryStatement): Promise<void>
+    {
+        const collection = this.#getCollection(type);
+        const records = this.#fetchRecords(type, query);
+
+        const indexes = records
+            .map(fetchedRecord => collection.findIndex(collectionRecord => collectionRecord.id === fetchedRecord.id))
+            .sort((a, b) => b - a); // Reverse the order of indexes to delete from the end to the beginning
+
+        indexes.forEach(index => collection.splice(index, 1));
+    }
+
+    #fetchRecord(type: string, id: string)
+    {
+        const collection = this.#getCollection(type);
+
+        return collection.find(object => object.id === id);
+    }
+
+    #fetchRecords(type: string, query: QueryStatement)
+    {
+        const collection = this.#getCollection(type);
+        const filterFunction = this.#buildFilterFunction(query);
+
+        return collection.filter(filterFunction);
+    }
+
+    #updateRecordData(record: RecordData, data: RecordData)
+    {
+        for (const key of Object.keys(data))
+        {
+            record[key] = data[key];
+        }
     }
 
     #limitNumberOfRecords(result: RecordData[], offset?: number, limit?: number): RecordData[]
