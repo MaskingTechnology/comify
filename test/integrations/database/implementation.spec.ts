@@ -14,21 +14,6 @@ beforeEach(async () =>
 describe('integrations/database/implementation', () =>
 {
 
-    describe('.findRecord', () =>
-    {
-        it('should return the first matched record', async () =>
-        {
-            const result = await database.findRecord(RECORD_TYPES.PIZZAS, QUERIES.EMPTY);
-            expect(result).toMatchObject(RECORDS.PIZZAS.MARGHERITA);
-        });
-
-        it('should return undefined when no match found', async () =>
-        {
-            const result = await database.findRecord(RECORD_TYPES.PIZZAS, QUERIES.NO_MATCH);
-            expect(result).toBe(undefined);
-        });
-    });
-
     describe('.readRecord', () =>
     {
         it('should read a full record by id', async () =>
@@ -48,6 +33,21 @@ describe('integrations/database/implementation', () =>
             expect(Object.keys(result)).toHaveLength(2);
             expect(result?.id).toBe(id);
             expect(result?.folded).toBeFalsy();
+        });
+
+        describe('.findRecord', () =>
+        {
+            it('should return the first matched record', async () =>
+            {
+                const result = await database.findRecord(RECORD_TYPES.PIZZAS, QUERIES.EMPTY);
+                expect(result).toMatchObject(RECORDS.PIZZAS.MARGHERITA);
+            });
+
+            it('should return undefined when no match found', async () =>
+            {
+                const result = await database.findRecord(RECORD_TYPES.PIZZAS, QUERIES.NO_MATCH);
+                expect(result).toBe(undefined);
+            });
         });
 
         it('should throw an error when a record is not found', async () =>
