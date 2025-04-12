@@ -221,13 +221,13 @@ describe('integrations/database/implementation', () =>
 
             const records = await database.searchRecords(RECORD_TYPES.PIZZAS, QUERIES.UPDATED);
             expect(records).toHaveLength(2);
-            expect(records[0].size).toBe(40);
-            expect(records[1].size).toBe(40);
+            expect(records[0].size).toBe(VALUES.SIZE.size);
+            expect(records[1].size).toBe(VALUES.SIZE.size);
         });
 
         it('should not throw an error when no records match the query', async () =>
         {
-            const data: RecordData = { size: 99 };
+            const data: RecordData = VALUES.NO_MATCH_SIZE;
 
             // This should not throw an error
             await expect(database.updateRecords(RECORD_TYPES.PIZZAS, QUERIES.NO_MATCH, data))

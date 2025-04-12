@@ -25,5 +25,10 @@ export const VALUES =
     SIZE:
     {
         size: 40
+    },
+
+    NO_MATCH_SIZE:
+    {
+        size: 99
     }
 };
