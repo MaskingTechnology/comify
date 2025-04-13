@@ -20,5 +20,15 @@ export const VALUES =
     UPDATES:
     {
         COUNTRY: 'France'
+    },
+
+    SIZE:
+    {
+        size: 40
+    },
+
+    NO_MATCH_SIZE:
+    {
+        size: 99
     }
 };
