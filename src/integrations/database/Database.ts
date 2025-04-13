@@ -37,18 +37,6 @@ export default class Database implements Driver
         return this.#driver.readRecord(type, id, fields);
     }
 
-    updateRecord(type: RecordType, id: RecordId, data: RecordData): Promise<void>
-    {
-        const cleanData = sanitize(data);
-
-        return this.#driver.updateRecord(type, id, cleanData);
-    }
-
-    deleteRecord(type: RecordType, id: RecordId): Promise<void>
-    {
-        return this.#driver.deleteRecord(type, id);
-    }
-
     findRecord(type: RecordType, query: RecordQuery, fields?: RecordField[], sort?: RecordSort): Promise<RecordData | undefined>
     {
         return this.#driver.findRecord(type, query, fields, sort);
@@ -57,6 +45,30 @@ export default class Database implements Driver
     searchRecords(type: RecordType, query: RecordQuery, fields?: RecordField[], sort?: RecordSort, limit?: number, offset?: number): Promise<RecordData[]>
     {
         return this.#driver.searchRecords(type, query, fields, sort, limit, offset);
+    }
+
+    updateRecord(type: RecordType, id: RecordId, data: RecordData): Promise<void>
+    {
+        const cleanData = sanitize(data);
+
+        return this.#driver.updateRecord(type, id, cleanData);
+    }
+
+    updateRecords(type: RecordType, query: RecordQuery, data: RecordData): Promise<void>
+    {
+        const cleanData = sanitize(data);
+
+        return this.#driver.updateRecords(type, query, cleanData);
+    }
+
+    deleteRecord(type: RecordType, id: RecordId): Promise<void>
+    {
+        return this.#driver.deleteRecord(type, id);
+    }
+
+    deleteRecords(type: RecordType, query: RecordQuery): Promise<void>
+    {
+        return this.#driver.deleteRecords(type, query);
     }
 
     clear(): Promise<void>
