@@ -9,7 +9,7 @@ const authProcedures = {
     logout: 'domain/authentication/logout'
 };
 
-const redirectUrl = process.env.AUTHENTICATION_CLIENT_URI || 'undefined';
+const redirectUrl = process.env.AUTHENTICATION_CLIENT_PATH || 'undefined';
 
 const whiteList: string[] = [];
 

@@ -8,7 +8,7 @@ const JITAR_URL = 'http://localhost:3000';
 const JITAR_SEGMENTS = [];
 const JITAR_MIDDLEWARES = [
   './integrations/runtime/requesterMiddleware',
-  './integrations/runtime/tenantMiddleware'
+  './integrations/runtime/originMiddleware'
 ];
 
 const jitarConfig: JitarConfig = {

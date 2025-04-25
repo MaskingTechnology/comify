@@ -16,7 +16,7 @@ type OpenIDConfiguration = {
     issuer: string;
     clientId: string;
     clientSecret: string;
-    redirectUri: string;
+    redirectPath: string;
     allowInsecureRequests: boolean;
 };
 
@@ -52,9 +52,9 @@ export default class OpenID implements IdentityProvider
         this.#clientConfiguration = undefined;
     }
 
-    async getLoginUrl(): Promise<string>
+    async getLoginUrl(origin: string): Promise<string>
     {
-        const redirect_uri = this.#providerConfiguration.redirectUri;
+        const redirect_uri = new URL(this.#providerConfiguration.redirectPath, origin).href;
         const scope = 'openid profile email';
         const code_challenge = await calculatePKCECodeChallenge(this.#codeVerifier);
         const code_challenge_method = 'S256';
@@ -72,10 +72,10 @@ export default class OpenID implements IdentityProvider
         return redirectTo.href;
     }
 
-    async login(data: Record<string, unknown>): Promise<Session>
+    async login(origin: string, data: Record<string, unknown>): Promise<Session>
     {
         const clientConfiguration = this.#getClientConfiguration();
-        const currentUrl = new URL(`${this.#providerConfiguration.redirectUri}?session_state=${data.session_state}&iss=${data.iss}&code=${data.code}`);
+        const currentUrl = new URL(`${this.#providerConfiguration.redirectPath}?session_state=${data.session_state}&iss=${data.iss}&code=${data.code}`, origin);
 
         const tokens = await authorizationCodeGrant(clientConfiguration, currentUrl, {
             pkceCodeVerifier: this.#codeVerifier,

@@ -14,10 +14,10 @@ type AuthProcedures = {
 };
 
 const IDENTITY_PARAMETER = 'identity';
-const HOSTNAME_PARAMETER = 'hostname';
+const ORIGIN_PARAMETER = 'origin';
 const REQUESTER_PARAMETER = '*requester';
 const JITAR_TRUST_HEADER_KEY = 'X-Jitar-Trust-Key';
-const COMIFY_HOST_COOKIE_KEY = 'x-comify-host';
+const COMIFY_HOST_COOKIE_KEY = 'x-comify-origin';
 
 const sessions = new Map<string, Session>();
 
@@ -25,14 +25,14 @@ export default class AuthenticationMiddleware implements Middleware
 {
     readonly #identityProvider: IdentityProvider;
     readonly #authProcedures: AuthProcedures;
-    readonly #redirectUrl: string;
+    readonly #redirectPath: string;
     readonly #whiteList: string[];
 
-    constructor(identityProvider: IdentityProvider, authProcedures: AuthProcedures, redirectUrl: string, whiteList: string[])
+    constructor(identityProvider: IdentityProvider, authProcedures: AuthProcedures, redirectPath: string, whiteList: string[])
     {
         this.#identityProvider = identityProvider;
         this.#authProcedures = authProcedures;
-        this.#redirectUrl = redirectUrl;
+        this.#redirectPath = redirectPath;
         this.#whiteList = whiteList;
     }
 
@@ -45,16 +45,23 @@ export default class AuthenticationMiddleware implements Middleware
 
         switch (request.fqn)
         {
-            case this.#authProcedures.loginUrl: return this.#getLoginUrl();
+            case this.#authProcedures.loginUrl: return this.#getLoginUrl(request);
             case this.#authProcedures.login: return this.#createSession(request, next);
             case this.#authProcedures.logout: return this.#destroySession(request, next);
             default: return this.#handleRequest(request, next);
         }
     }
 
-    async #getLoginUrl(): Promise<Response>
+    async #getLoginUrl(request: Request): Promise<Response>
     {
-        const url = await this.#identityProvider.getLoginUrl();
+        const origin = this.#getOrigin(request);
+
+        if (origin === undefined)
+        {
+            throw new Unauthorized('Invalid origin');
+        }
+
+        const url = await this.#identityProvider.getLoginUrl(origin);
 
         return new Response(200, url);
     }
@@ -62,14 +69,19 @@ export default class AuthenticationMiddleware implements Middleware
     async #createSession(request: Request, next: NextHandler): Promise<Response>
     {
         const data = Object.fromEntries(request.args);
-        const hostname = this.#getHostname(request);
-        const session = await this.#identityProvider.login(data);
+        const origin = this.#getOrigin(request);
+        const session = await this.#identityProvider.login(origin, data);
 
         request.args.clear();
         request.setArgument(IDENTITY_PARAMETER, session.identity);
-        request.setArgument(HOSTNAME_PARAMETER, hostname);
+        request.setArgument(ORIGIN_PARAMETER, origin);
 
         const response = await next();
+
+        // if (response.status !== 200)
+        // {
+        //     throw new Unauthorized('Invalid tenant');
+        // }
 
         session.key = generateKey();
         session.requester = response.result;
@@ -77,7 +89,7 @@ export default class AuthenticationMiddleware implements Middleware
         sessions.set(session.key, session);
 
         this.#setAuthorizationHeader(response, session);
-        this.#setRedirectHeader(response, session.key);
+        this.#setRedirectHeader(response, session.key, origin);
 
         return response;
     }
@@ -216,23 +228,29 @@ export default class AuthenticationMiddleware implements Middleware
         response.setHeader('Authorization', `Bearer ${session.key}`);
     }
 
-    #setRedirectHeader(response: Response, key: string): void
+    #setRedirectHeader(response: Response, key: string, origin: string): void
     {
-        response.setHeader('Location', `${this.#redirectUrl}?key=${key}`);
+        response.setHeader('Location', new URL(`${this.#redirectPath}?key=${key}`, origin).href);
     }
 
-    #getHostname(request: Request): string | undefined
+    #getOrigin(request: Request): string
     {
         const cookie = request.getHeader('cookie');
 
         if (cookie === undefined)
         {
-            return undefined;
+            throw new Unauthorized('Invalid origin');
         }
 
         const cookies = this.#getCookies(cookie);
+        const origin = cookies.get(COMIFY_HOST_COOKIE_KEY);
 
-        return cookies.get(COMIFY_HOST_COOKIE_KEY);
+        if (origin === undefined)
+        {
+            throw new Unauthorized('Invalid origin');
+        }
+
+        return origin;
     }
 
     #getCookies(input: string): Map<string, string>

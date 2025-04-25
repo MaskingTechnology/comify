@@ -6,5 +6,5 @@ import type { DataModel } from '../types';
 
 export default async function getById(id: string): Promise<DataModel | undefined>
 {
-    return await database.readRecord(RECORD_TYPE, id) as DataModel;
+    return database.readRecord(RECORD_TYPE, id) as Promise<DataModel | undefined>;
 }

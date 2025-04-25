@@ -1,15 +1,17 @@
 
-import type { Identity } from '^/integrations/authentication';
+import { type Identity } from '^/integrations/authentication';
 
 import getCreatorByEmail from '^/domain/creator/getByEmail';
 import registerCreator from '^/domain/creator/register';
-import getByHostname from '^/domain/host/getByName';
+import getTenantByOrigin from '^/domain/tenant/getByOrigin';
 
 import type { Requester } from '../types';
 
-export default async function login(identity: Identity, hostname: string): Promise<Requester>
+const MULTI_TENANT_MODE = process.env.MULTI_TENANT_MODE === 'true';
+
+export default async function login(identity: Identity, origin: string): Promise<Requester>
 {
-    const tenant = await getByHostname(hostname);
+    const tenant = await getTenantByOrigin(origin);
     const tenantId = tenant?.id;
 
     const existingCreator = await getCreatorByEmail(identity.email, tenantId);
