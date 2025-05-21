@@ -1,10 +1,10 @@
 {
     "url": "http://127.0.0.1:4002",
     "setUp": [
-        "./integrations/runtime/setUpNode"
+        "./integrations/runtime/setUpWorker"
     ],
     "tearDown": [
-        "./integrations/runtime/tearDownNode"
+        "./integrations/runtime/tearDownWorker"
     ],
     "healthChecks": [
         "./integrations/runtime/fileStoreHealthCheck",

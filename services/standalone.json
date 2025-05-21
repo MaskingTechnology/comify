@@ -1,12 +1,12 @@
 {
     "url": "http://127.0.0.1:3000",
     "setUp": [
-        "./integrations/runtime/setUpNode",
+        "./integrations/runtime/setUpWorker",
         "./integrations/runtime/setUpGateway"
     ],
     "tearDown": [
         "./integrations/runtime/tearDownGateway",
-        "./integrations/runtime/tearDownNode"
+        "./integrations/runtime/tearDownWorker"
     ],
     "healthChecks": [
         "./integrations/runtime/notificationHealthCheck",
