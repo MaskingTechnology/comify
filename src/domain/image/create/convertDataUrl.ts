@@ -1,7 +1,6 @@
 
-import InvalidDataURL from './InvalidDataURL';
-
 import type { Image } from '../types';
+import InvalidDataURL from './InvalidDataURL';
 
 const DATA_URL_REGEX = /^data:(image\/(\w+));base64,(.*)$/;
 

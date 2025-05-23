@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 import { Row } from '^/webui/designsystem';
 
 import EditButton from '../../common/EditButton';
+
 import FollowButton from './FollowButton';
 
 type Props = {

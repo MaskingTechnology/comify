@@ -4,7 +4,6 @@ import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/a
 import { Row } from '^/webui/designsystem';
 
 import CreatorIdentity from '../creator/FullIdentity';
-
 import LogoutButton from './LogoutButton';
 
 type Props = {

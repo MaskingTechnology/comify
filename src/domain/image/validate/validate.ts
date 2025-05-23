@@ -3,7 +3,6 @@ import type { ValidationSchema } from '^/integrations/validation';
 import validator from '^/integrations/validation';
 
 import type { MetaData } from '../types';
-
 import InvalidImage from './InvalidImage';
 
 const TEN_B = 10;

@@ -1,11 +1,10 @@
 
-import type { RecordQuery, RecordSort} from '^/integrations/database';
+import type { RecordQuery, RecordSort } from '^/integrations/database';
 import database, { SortDirections } from '^/integrations/database';
 
 import type { Requester } from '^/domain/authentication';
 
 import { RECORD_TYPE } from '../definitions';
-
 import type { DataModel } from '../types';
 
 export default async function getRecommended(requester: Requester, limit: number, offset: number): Promise<DataModel[]>
