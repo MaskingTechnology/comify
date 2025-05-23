@@ -7,7 +7,6 @@
         "./integrations/runtime/tearDownWorker"
     ],
     "healthChecks": [
-        "./integrations/runtime/notificationHealthCheck",
         "./integrations/runtime/databaseHealthCheck"
     ],
     "worker":
