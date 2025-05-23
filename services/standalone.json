@@ -1,15 +1,16 @@
 {
     "url": "http://127.0.0.1:3000",
     "setUp": [
+        "./integrations/runtime/setUpBff",
         "./integrations/runtime/setUpWorker",
         "./integrations/runtime/setUpGateway"
     ],
     "tearDown": [
         "./integrations/runtime/tearDownGateway",
-        "./integrations/runtime/tearDownWorker"
+        "./integrations/runtime/tearDownWorker",
+        "./integrations/runtime/tearDownBff"
     ],
     "healthChecks": [
-        "./integrations/runtime/notificationHealthCheck",
         "./integrations/runtime/fileStoreHealthCheck",
         "./integrations/runtime/databaseHealthCheck"
     ],
