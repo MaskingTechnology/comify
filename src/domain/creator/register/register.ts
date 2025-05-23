@@ -6,7 +6,6 @@ import { FULL_NAME_MAX_LENGTH } from '../definitions';
 import erase from '../erase';
 import generateNickname from '../generateNickname';
 import type { DataModel } from '../types';
-
 import downloadPortrait from './downloadPortrait';
 import publish from './publish';
 

@@ -9,6 +9,7 @@
     "./domain/creator/update": { "default": {  "access": "protected" } },
 
     "./domain/creator.metrics/create/insertData": { "default": {  "access": "protected" } },
+    "./domain/creator.metrics/update": { "default": { "access": "protected" } },
 
     "./domain/image/save": { "default": {  "access": "protected" } },
     "./domain/image/erase": { "default": {  "access": "protected" } },
@@ -19,6 +20,7 @@
     "./domain/post/update": { "default": {  "access": "protected" } },
 
     "./domain/post.metrics/create/insertData": { "default": {  "access": "protected" } },
+    "./domain/post.metrics/update": { "default": { "access": "protected" } },
 
     "./domain/rating/create": { "default": {  "access": "protected" } },
     "./domain/rating/erase": { "default": {  "access": "protected" } },

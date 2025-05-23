@@ -6,7 +6,6 @@ import type { Requester } from '^/domain/authentication';
 import create from '../create';
 import erase from '../erase';
 import exists from '../exists';
-
 import publish from './publish';
 import RelationAlreadyExists from './RelationAlreadyExists';
 

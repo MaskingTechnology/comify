@@ -1,5 +1,7 @@
 {
     "./domain/notification/create": { "default": {  "access": "protected" } },
     "./domain/notification/getById": { "default": {  "access": "protected" } },
-    "./domain/notification/getRecent": { "default": {  "access": "protected" } }
+    "./domain/notification/getByPostId": { "default": {  "access": "protected" } },
+    "./domain/notification/getRecent": { "default": {  "access": "protected" } },
+    "./domain/notification/remove": { "default": {  "access": "protected" } }
 }

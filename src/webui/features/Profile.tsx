@@ -7,13 +7,12 @@ import { Column, Ruler, Tab, Tabs } from '^/webui/designsystem';
 
 import { usePathParam } from '^/webui/hooks';
 
-import useCreator from './hooks/useCreator';
-import useEditProfile from './hooks/useEditProfile';
-import useEstablishRelation from './hooks/useEstablishRelation';
-
 import CreatorComics from './CreatorComics';
 import CreatorFollowers from './CreatorFollowers';
 import CreatorFollowing from './CreatorFollowing';
+import useCreator from './hooks/useCreator';
+import useEditProfile from './hooks/useEditProfile';
+import useEstablishRelation from './hooks/useEstablishRelation';
 
 export default function Feature()
 {

@@ -2,7 +2,6 @@
 import create from '../create';
 import erase from '../erase';
 import type { DataModel } from '../types';
-
 import publish from './publish';
 
 export default async function switchOff(rating: DataModel): Promise<boolean>

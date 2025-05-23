@@ -2,7 +2,6 @@
 import type { ReactNode } from 'react';
 
 import useRefreshOnPull from './hooks/useRefreshOnPull';
-
 import Spinner from './Spinner';
 
 type Props = {
