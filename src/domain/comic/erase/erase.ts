@@ -2,7 +2,6 @@
 import eraseImage from '^/domain/image/erase';
 
 import getById from '../getById';
-
 import eraseData from './eraseData';
 
 export default async function erase(id: string): Promise<void>

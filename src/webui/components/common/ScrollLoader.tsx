@@ -3,7 +3,6 @@ import type { ReactNode } from 'react';
 
 import type { LoadHandler } from './hooks/useLoadOnScroll';
 import useLoadOnScroll from './hooks/useLoadOnScroll';
-
 import Spinner from './Spinner';
 
 type Props = {

@@ -7,13 +7,12 @@ import { OrderAndAddRow, PostPanelList, PullToRefresh, ResultSet, ScrollLoader }
 import { useAppContext } from '^/webui/contexts';
 import { Column } from '^/webui/designsystem';
 
+import CreatePostReaction from './CreatePostReaction';
 import useEstablishRelation from './hooks/useEstablishRelation';
 import useReactions from './hooks/usePostReactions';
 import useTogglePostRating from './hooks/useTogglePostRating';
 import useViewPostDetails from './hooks/useViewPostDetails';
 import useViewProfile from './hooks/useViewProfile';
-
-import CreatePostReaction from './CreatePostReaction';
 
 type Props = {
     readonly post: AggregatedPostData;

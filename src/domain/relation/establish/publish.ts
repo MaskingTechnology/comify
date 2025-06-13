@@ -2,7 +2,6 @@
 import eventBroker from '^/integrations/eventbroker';
 
 import { EVENT_CHANNEL } from '../definitions';
-
 import { EVENT_NAME } from './definitions';
 import type { EstablishedPublication } from './types';
 

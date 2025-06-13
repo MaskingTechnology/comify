@@ -1,5 +1,6 @@
 
 import { ClickArea } from '^/webui/designsystem';
+
 import DeleteIcon from './elementary/DeleteIcon';
 
 type Props = {

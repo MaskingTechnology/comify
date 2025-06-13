@@ -1,7 +1,6 @@
 
 import create from '../create';
 import erase from '../erase';
-
 import publish from './publish';
 
 export default async function switchOn(creatorId: string, postId: string): Promise<boolean>
