@@ -1,8 +1,7 @@
 
 import getByCreator from '../getByCreator';
-import update from '../update';
-
 import type { CountOperation } from '../types';
+import update from '../update';
 
 export default async function updateFollowing(creatorId: string, operation: CountOperation): Promise<number>
 {

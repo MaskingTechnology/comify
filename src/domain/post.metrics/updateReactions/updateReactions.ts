@@ -1,8 +1,7 @@
 
 import getByPost from '../getByPost';
-import update from '../update';
-
 import type { CountOperation } from '../types';
+import update from '../update';
 
 export default async function updateReactionCount(postId: string, operation: CountOperation): Promise<number>
 {

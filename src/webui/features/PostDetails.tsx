@@ -14,7 +14,6 @@ import useRemovePost from './hooks/useRemovePost';
 import useTogglePostRating from './hooks/useTogglePostRating';
 import useViewPostDetails from './hooks/useViewPostDetails';
 import useViewProfile from './hooks/useViewProfile';
-
 import PostReactions from './PostReactions';
 
 export default function Feature()

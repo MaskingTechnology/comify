@@ -2,7 +2,6 @@
 import type { Requester } from '^/domain/authentication';
 
 import type { DataModel } from '../types';
-
 import translate from './translate';
 import type { Mapping } from './types';
 

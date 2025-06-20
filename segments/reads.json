@@ -24,6 +24,7 @@
     "./domain/post.metrics/getByPost": { "default": {  "access": "protected" } },
 
     "./domain/rating/exists": { "default": {  "access": "protected" } },
+    "./domain/rating/toggle/getData": { "default": {  "access": "protected" } },
 
     "./domain/relation/exists": { "default": {  "access": "protected" } },
     "./domain/relation/explore": { "default": {  "access": "protected" } },

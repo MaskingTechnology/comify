@@ -255,7 +255,7 @@ export default class MongoDB implements Driver
 
     #buildMongoSort(sort?: RecordSort): Sort
     {
-        const mongoSort: Sort = {};
+        const mongoSort: Record<string, 1 | -1> = {};
 
         if (sort === undefined)
         {
