@@ -10,7 +10,7 @@
 
     "./domain/creator.metrics/getByCreator": { "default": {  "access": "protected" } },
 
-    "./domain/origin/get": { "default": {  "access": "protected" } },
+    "./domain/origin/find": { "default": {  "access": "protected" } },
 
     "./domain/image/getById": { "default": {  "access": "protected" } },
 
@@ -22,6 +22,8 @@
     "./domain/post/getRecommended": { "default": {  "access": "protected" } },
 
     "./domain/post.metrics/getByPost": { "default": {  "access": "protected" } },
+
+    "./domain/tenant/getById": { "default": {  "access": "protected" } },
 
     "./domain/rating/exists": { "default": {  "access": "protected" } },
     "./domain/rating/toggle/getData": { "default": {  "access": "protected" } },
