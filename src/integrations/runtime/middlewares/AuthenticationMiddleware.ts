@@ -56,11 +56,6 @@ export default class AuthenticationMiddleware implements Middleware
     {
         const origin = this.#getOrigin(request);
 
-        if (origin === undefined)
-        {
-            throw new Unauthorized('Invalid origin');
-        }
-
         const url = await this.#identityProvider.getLoginUrl(origin);
 
         return new Response(200, url);
@@ -78,10 +73,12 @@ export default class AuthenticationMiddleware implements Middleware
 
         const response = await next();
 
-        // if (response.status !== 200)
-        // {
-        //     throw new Unauthorized('Invalid tenant');
-        // }
+        if (response.status !== 200)
+        {
+            await this.#identityProvider.logout(session);
+
+            return response;
+        }
 
         session.key = generateKey();
         session.requester = response.result;
@@ -233,6 +230,11 @@ export default class AuthenticationMiddleware implements Middleware
         response.setHeader('Location', new URL(`${this.#redirectPath}?key=${key}`, origin).href);
     }
 
+    // The origin, retrieved from a user's device cookie, is an untrusted source. It's crucial to validate this origin before using it in redirects.
+    // Validation occurs in two steps:
+
+    // IDP Check: Verifies the origin against a predefined list of allowed origins.
+    // Domain Check: Validates the origin against a list of registered origins.
     #getOrigin(request: Request): string
     {
         const cookie = request.getHeader('cookie');
@@ -263,7 +265,8 @@ export default class AuthenticationMiddleware implements Middleware
             const parts = cookie.trim().split('=');
 
             const key = parts[0]?.toLocaleLowerCase();
-            const value = parts.length > 2 ? parts.slice(1).join('=') : parts[1];
+            const rawValue = parts.length > 2 ? parts.slice(1).join('=') : parts[1];
+            const value = rawValue ? decodeURIComponent(rawValue) : '';
 
             cookieMap.set(key, value);
         }

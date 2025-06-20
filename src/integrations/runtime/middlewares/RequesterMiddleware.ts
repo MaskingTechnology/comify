@@ -17,25 +17,13 @@ export default class RequesterMiddleware implements Middleware
             request.setHeader('Authorization', this.#authorization);
         }
 
-        try
+        const response = await next();
+
+        if (response.hasHeader('Authorization'))
         {
-            const response = await next();
-
-            if (response.hasHeader('Authorization'))
-            {
-                this.#authorization = response.getHeader('Authorization')!;
-            }
-
-            return response;
+            this.#authorization = response.getHeader('Authorization')!;
         }
-        catch (error)
-        {
-            if (error?.constructor?.name === 'Unauthorized')
-            {
-                this.#authorization = undefined;
-            }
 
-            throw error;
-        }
+        return response;
     }
 }

@@ -5,7 +5,7 @@ import { setCookie } from '^/integrations/utilities/webbrowser';
 
 const ORIGIN_HEADER = 'X-Comify-Origin';
 
-export default class HostMiddleware implements Middleware
+export default class OriginMiddleware implements Middleware
 {
     constructor()
     {

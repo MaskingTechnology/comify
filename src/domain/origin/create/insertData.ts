@@ -4,7 +4,7 @@ import database from '^/integrations/database';
 import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';
 
-export default async function getById(id: string): Promise<DataModel>
+export default async function insertData(data: DataModel): Promise<string>
 {
-    return await database.readRecord(RECORD_TYPE, id) as DataModel;
+    return await database.createRecord(RECORD_TYPE, data);
 }

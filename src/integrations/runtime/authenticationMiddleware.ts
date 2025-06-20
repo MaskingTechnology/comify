@@ -9,8 +9,8 @@ const authProcedures = {
     logout: 'domain/authentication/logout'
 };
 
-const redirectUrl = process.env.AUTHENTICATION_CLIENT_PATH || 'undefined';
+const redirectPath = process.env.AUTHENTICATION_CLIENT_PATH || 'undefined';
 
 const whiteList: string[] = [];
 
-export default new AuthenticationMiddleware(identityProvider, authProcedures, redirectUrl, whiteList);
+export default new AuthenticationMiddleware(identityProvider, authProcedures, redirectPath, whiteList);

@@ -13,5 +13,5 @@ export default async function getFollowingAggregated(requester: Requester, follo
 
     const data = await retrieveByFollower(requester, followerId, range.limit, range.offset);
 
-    return Promise.all(data.map(data => aggregate(requester, data)));
+    return Promise.all(data.map(item => aggregate(requester, item)));
 }

@@ -10,12 +10,12 @@ export function setCookie(key: string, value: string): void
 {
     const documentCookie = document.cookie;
 
-    if (documentCookie.includes(`${key}=`))
+    if (documentCookie.split('; ').some(cookie => cookie.startsWith(`${key}=`)))
     {
         return;
     }
 
-    const cookie = `${key}=${value}`;
+    const cookie = `${key}=${value}; path=/; SameSite=Strict;`;
 
     document.cookie = cookie;
 }

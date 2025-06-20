@@ -1,17 +1,17 @@
 
-import getByName from '^/domain/origin/get';
+import findOrigin from '^/domain/origin/find';
 import type { DataModel } from '^/domain/tenant';
 
 import getById from '../getById';
 
-export default async function getByOrigin(name: string): Promise<DataModel | undefined>
+export default async function getByOrigin(origin: string): Promise<DataModel | undefined>
 {
-    const origin = await getByName(name);
+    const data = await findOrigin(origin);
 
-    if (origin === undefined)
+    if (data === undefined)
     {
         return;
     }
 
-    return getById(origin.tenantId);
+    return await getById(data.tenantId);
 }
