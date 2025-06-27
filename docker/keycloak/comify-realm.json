@@ -1441,7 +1441,7 @@
       }
     },
     {
-      "alias": "linkedin-openid-connect",
+      "alias": "linkedin",
       "internalId": "cb473677-9319-4078-8d15-f013242e00e2",
       "providerId": "linkedin-openid-connect",
       "enabled": true,
