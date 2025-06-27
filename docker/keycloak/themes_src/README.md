@@ -14,6 +14,6 @@ npm run storybook
 
 Then copy all the files from this directory to the `keycloakify-starter-main/src/login` directory. Import the `main.css` in the `KcPage.tsx`.
 
-Don't forget the change the name of the theme to `comfiy` in the `vite.config.ts` file.
+Don't forget to change the name of the theme to `comify` in the `vite.config.ts` file.
 
 These steps are also documented in the keycloakify [documentation](https://docs.keycloakify.dev/#quick-start).
