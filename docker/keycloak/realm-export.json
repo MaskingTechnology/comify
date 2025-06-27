@@ -691,7 +691,7 @@
         "backchannel.logout.session.required": "true",
         "client_credentials.use_refresh_token": "true",
         "tls.client.certificate.bound.access.tokens": "false",
-        "require.pushed.authorization.requests": "false",
+        "require.pushed.authorization.requests": "true",
         "acr.loa.map": "{}",
         "display.on.consent.screen": "false",
         "token.response.type.bearer.lower-case": "false"
