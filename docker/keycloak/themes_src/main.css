@@ -82,6 +82,7 @@ p.instruction
     --pf-c-button--m-primary--hover--BackgroundColor: color-mix(in srgb, black 10%, #e06666);
 
     color: var(--pf-c-button--m-primary--Color);
+    background-color: var(--pf-c-button--m-primary--BackgroundColor);
     border-radius: 2em;
 }
 
@@ -167,7 +168,7 @@ div.kc-logo-text span
     padding: 30px 10px 20px;
     white-space: normal;
     color: transparent;
-    background-image: url(../img/logo.svg);
+    background-image: url(./logo.svg);
     background-repeat: no-repeat;
     background-position: center bottom;
     background-size: auto 55px;
@@ -647,6 +648,13 @@ ul#kc-totp-supported-apps
     padding: 0 20px;
     max-width: 500px;
     background-color: #f3f3f3;
+    border-top: 0;
+    box-shadow: none;
+}
+
+.col-md-10
+{
+    padding: 0;
 }
 
 /*phone*/
