@@ -1,7 +1,7 @@
 
 import
 {
-    allowInsecureRequests, authorizationCodeGrant, buildAuthorizationUrl, calculatePKCECodeChallenge, discovery,
+    allowInsecureRequests, authorizationCodeGrant, buildAuthorizationUrlWithPAR, calculatePKCECodeChallenge, discovery,
     fetchUserInfo, randomPKCECodeVerifier, refreshTokenGrant, tokenRevocation
 } from 'openid-client';
 
@@ -67,7 +67,7 @@ export default class OpenID implements IdentityProvider
         };
 
         const clientConfiguration = this.#getClientConfiguration();
-        const redirectTo = buildAuthorizationUrl(clientConfiguration, parameters);
+        const redirectTo = await buildAuthorizationUrlWithPAR(clientConfiguration, parameters);
 
         return redirectTo.href;
     }
