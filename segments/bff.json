@@ -38,5 +38,7 @@
     "./domain/relation/establish": { "default": { "access": "public" }, "subscribe": {  "access": "private" } },
     "./domain/relation/getAggregated": { "default": {  "access": "public" } },
     "./domain/relation/getFollowersAggregated": { "default": {  "access": "public" } },
-    "./domain/relation/getFollowingAggregated": { "default": {  "access": "public" } }
+    "./domain/relation/getFollowingAggregated": { "default": {  "access": "public" } },
+
+    "./domain/report/create": { "default": { "access": "public" } }
 }

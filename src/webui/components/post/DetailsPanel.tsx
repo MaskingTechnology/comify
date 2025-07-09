@@ -9,6 +9,7 @@ import Comment from '../comment/Comment';
 import EngagementRow from '../post/elementary/EngagementRow';
 import TimeElapsed from '../relation/TimeElapsed';
 import DeleteButton from './DeleteButton';
+import ReportButton from './ReportButton';
 
 type Props = {
     readonly post: AggregatedPostData;
@@ -17,9 +18,10 @@ type Props = {
     readonly onRatingClick: (post: AggregatedPostData) => Promise<boolean>;
     readonly onDeleteClick: (post: AggregatedPostData) => Promise<void>;
     readonly onReactionClick: (post: AggregatedPostData) => void;
+    readonly onReportClick: (post: AggregatedPostData) => void;
 };
 
-export default function Component({ post, onFollowClick, onCreatorClick, onRatingClick, onReactionClick, onDeleteClick }: Props)
+export default function Component({ post, onFollowClick, onCreatorClick, onRatingClick, onReactionClick, onDeleteClick, onReportClick }: Props)
 {
     return <Panel padding='medium'>
         <Column gap='medium' alignX='stretch'>
@@ -42,7 +44,7 @@ export default function Component({ post, onFollowClick, onCreatorClick, onRatin
                 {
                     post.creator.self
                         ? <DeleteButton onClick={() => onDeleteClick(post)} />
-                        : null
+                        : <ReportButton onClick={() => onReportClick(post)} />
                 }
             </Row>
         </Column>

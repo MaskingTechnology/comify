@@ -7,6 +7,7 @@ import { ConfirmationPanel, LoadingContainer, PostDetailsPanel, PostLargePanel, 
 import { useAppContext } from '../contexts';
 import { Column, Ruler } from '../designsystem';
 
+import CreatePostReport from './CreatePostReport';
 import useEstablishRelation from './hooks/useEstablishRelation';
 import useHighlightReaction from './hooks/useHighlight';
 import usePost from './hooks/usePost';
@@ -39,6 +40,18 @@ export default function Feature()
 
     }, [showModal, closeModal, removePost]);
 
+    const createReport = useCallback(async (post: AggregatedPostData) =>
+    {
+        const content = <CreatePostReport
+            post={post}
+            selected={'scam'}
+            handleDone={(reportId?: string) => { closeModal(); console.log(reportId); }}
+        />;
+
+        showModal(content);
+
+    }, [closeModal, showModal]);
+
     return <Column gap='medium' alignX='stretch'>
         <LoadingContainer data={post}>
             <PostDetailsPanel
@@ -48,6 +61,7 @@ export default function Feature()
                 onCreatorClick={viewProfile}
                 onDeleteClick={deletePost}
                 onReactionClick={viewPostDetails}
+                onReportClick={createReport}
             />
         </LoadingContainer>
         <Ruler direction='horizontal' />
