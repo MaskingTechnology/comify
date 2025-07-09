@@ -1,6 +1,5 @@
 
 import { NICKNAME_MAX_LENGTH } from '../definitions';
-
 import { REPLACE_EXPRESSION } from './definitions';
 
 export default function cleanNickname(nickname: string): string

@@ -2,9 +2,8 @@
 import type { ValidationSchema } from '^/integrations/validation';
 import validator from '^/integrations/validation';
 
-import type { Range } from './types';
-
 import InvalidRange from './InvalidRange';
+import type { Range } from './types';
 
 const schema: ValidationSchema =
 {

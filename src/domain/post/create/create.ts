@@ -2,7 +2,6 @@
 import logger from '^/integrations/logging';
 
 import erase from '../erase';
-
 import createData from './createData';
 import insertData from './insertData';
 import publish from './publish';

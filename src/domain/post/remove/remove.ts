@@ -5,7 +5,6 @@ import type { Requester } from '^/domain/authentication';
 
 import getById from '../getById';
 import PostNotFound from '../PostNotFound';
-
 import deleteData from './deleteData';
 import isNotOwner from './isNotOwner';
 import publish from './publish';

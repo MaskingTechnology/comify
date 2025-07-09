@@ -4,10 +4,8 @@ import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/a
 import { Row } from '^/webui/designsystem';
 
 import CreatorIdentity from '../creator/ConciseIdentity';
-
-import LogoutButton from './LogoutButton';
-
 import Logo from './Logo';
+import LogoutButton from './LogoutButton';
 
 type Props = {
     readonly identity: AggregatedCreatorData;

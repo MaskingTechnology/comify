@@ -1,6 +1,5 @@
 
 import type { Requester } from '^/domain/authentication';
-
 import createComic from '^/domain/comic/create';
 
 import createPost from '../create';

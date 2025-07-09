@@ -26,7 +26,7 @@
   "oauth2DeviceCodeLifespan": 600,
   "oauth2DevicePollingInterval": 5,
   "enabled": true,
-  "sslRequired": "external",
+  "sslRequired": "none",
   "registrationAllowed": true,
   "registrationEmailAsUsername": true,
   "rememberMe": false,
@@ -691,7 +691,7 @@
         "backchannel.logout.session.required": "true",
         "client_credentials.use_refresh_token": "true",
         "tls.client.certificate.bound.access.tokens": "false",
-        "require.pushed.authorization.requests": "false",
+        "require.pushed.authorization.requests": "true",
         "acr.loa.map": "{}",
         "display.on.consent.screen": "false",
         "token.response.type.bearer.lower-case": "false"
@@ -1441,7 +1441,7 @@
       }
     },
     {
-      "alias": "linkedin-openid-connect",
+      "alias": "linkedin",
       "internalId": "cb473677-9319-4078-8d15-f013242e00e2",
       "providerId": "linkedin-openid-connect",
       "enabled": true,
