@@ -15,7 +15,9 @@
         "./integrations/runtime/databaseHealthCheck"
     ],
     "middleware": [
-        "./integrations/runtime/authenticationMiddleware"
+        "./integrations/runtime/originMiddleware",
+        "./integrations/runtime/authenticationMiddleware",
+        "./integrations/runtime/tenantMiddleware"
     ],
     "standalone":
     {

@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 
 import { requester } from '^/domain/authentication';
 import explorePosts from '^/domain/post/exploreAggregated';
+import { tenant } from '^/domain/tenant';
 
 import { usePagination } from '^/webui/hooks';
 
@@ -12,7 +13,7 @@ export default function useExplorePosts()
 
     const getData = useCallback((page: number) =>
     {
-        return explorePosts(requester, { limit, offset: page * limit });
+        return explorePosts(requester, tenant, { limit, offset: page * limit });
 
     }, []);
 

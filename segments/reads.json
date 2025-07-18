@@ -10,8 +10,6 @@
 
     "./domain/creator.metrics/getByCreator": { "default": {  "access": "protected" } },
 
-    "./domain/origin/find": { "default": {  "access": "protected" } },
-
     "./domain/image/getById": { "default": {  "access": "protected" } },
 
     "./domain/post/explore": { "default": {  "access": "protected" } },
@@ -23,8 +21,6 @@
 
     "./domain/post.metrics/getByPost": { "default": {  "access": "protected" } },
 
-    "./domain/tenant/getById": { "default": {  "access": "protected" } },
-
     "./domain/rating/exists": { "default": {  "access": "protected" } },
     "./domain/rating/toggle/getData": { "default": {  "access": "protected" } },
 
@@ -32,5 +28,7 @@
     "./domain/relation/explore": { "default": {  "access": "protected" } },
     "./domain/relation/get": { "default": {  "access": "protected" } },
     "./domain/relation/getFollowers": { "default": {  "access": "protected" } },
-    "./domain/relation/getFollowing": { "default": {  "access": "protected" } }
+    "./domain/relation/getFollowing": { "default": {  "access": "protected" } },
+
+    "./domain/tenant/getByOrigin": { "default": {  "access": "protected" } }
 }

@@ -1,11 +1,9 @@
 
 import type { Middleware, NextHandler, Request } from 'jitar';
-import { Response } from 'jitar';
+import { Response, Unauthorized } from 'jitar';
 
 import type { IdentityProvider, Session } from '^/integrations/authentication';
 import { generateKey } from '^/integrations/utilities/crypto';
-
-import Unauthorized from '../errors/Unauthorized';
 
 type AuthProcedures = {
     loginUrl: string;
@@ -14,10 +12,8 @@ type AuthProcedures = {
 };
 
 const IDENTITY_PARAMETER = 'identity';
-const ORIGIN_PARAMETER = 'origin';
 const REQUESTER_PARAMETER = '*requester';
 const JITAR_TRUST_HEADER_KEY = 'X-Jitar-Trust-Key';
-const COMIFY_HOST_COOKIE_KEY = 'x-comify-origin';
 
 const sessions = new Map<string, Session>();
 
@@ -69,7 +65,6 @@ export default class AuthenticationMiddleware implements Middleware
 
         request.args.clear();
         request.setArgument(IDENTITY_PARAMETER, session.identity);
-        request.setArgument(ORIGIN_PARAMETER, origin);
 
         const response = await next();
 
@@ -230,47 +225,8 @@ export default class AuthenticationMiddleware implements Middleware
         response.setHeader('Location', new URL(`${this.#redirectPath}?key=${key}`, origin).href);
     }
 
-    // The origin, retrieved from a user's device cookie, is an untrusted source. It's crucial to validate this origin before using it in redirects.
-    // Validation occurs in two steps:
-
-    // IDP Check: Verifies the origin against a predefined list of allowed origins.
-    // Domain Check: Validates the origin against a list of registered origins.
     #getOrigin(request: Request): string
     {
-        const cookie = request.getHeader('cookie');
-
-        if (cookie === undefined)
-        {
-            throw new Unauthorized('Invalid origin');
-        }
-
-        const cookies = this.#getCookies(cookie);
-        const origin = cookies.get(COMIFY_HOST_COOKIE_KEY);
-
-        if (origin === undefined)
-        {
-            throw new Unauthorized('Invalid origin');
-        }
-
-        return origin;
-    }
-
-    #getCookies(input: string): Map<string, string>
-    {
-        const cookies = input.split(';');
-        const cookieMap = new Map<string, string>();
-
-        for (const cookie of cookies)
-        {
-            const parts = cookie.trim().split('=');
-
-            const key = parts[0]?.toLocaleLowerCase();
-            const rawValue = parts.length > 2 ? parts.slice(1).join('=') : parts[1];
-            const value = rawValue ? decodeURIComponent(rawValue) : '';
-
-            cookieMap.set(key, value);
-        }
-
-        return cookieMap;
+        return request.getHeader('origin') as string;
     }
 }

@@ -2,7 +2,12 @@
 import type { BaseDataModel } from '../types';
 
 type DataModel = BaseDataModel & {
-    readonly name: string;
+    readonly origins: string[];
 };
 
-export type { DataModel };
+type Tenant = {
+    readonly id: string;
+    readonly origin: string;
+};
+
+export type { DataModel, Tenant };

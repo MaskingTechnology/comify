@@ -17,7 +17,7 @@ describe('domain/tenant/getByOrigin', () =>
         const tenant = await getByOrigin(VALUES.NAMES.ORIGIN1);
 
         expect(tenant).toBeDefined();
-        expect(tenant?.id).toEqual(VALUES.IDS.TENANT1);
+        expect(tenant.id).toEqual(VALUES.IDS.TENANT1);
     });
 
     it('should NOT get an unknown tenant', async () =>

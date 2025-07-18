@@ -11,6 +11,6 @@ const authProcedures = {
 
 const redirectPath = process.env.AUTHENTICATION_CLIENT_PATH || 'undefined';
 
-const whiteList: string[] = [];
+const whiteList: string[] = ['domain/tenant/getByOriginConverted'];
 
 export default new AuthenticationMiddleware(identityProvider, authProcedures, redirectPath, whiteList);

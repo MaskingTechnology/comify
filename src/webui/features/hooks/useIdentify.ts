@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { requester } from '^/domain/authentication';
 import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
 import getMe from '^/domain/creator/getMeAggregated';
+import { tenant } from '^/domain/tenant';
 
 import { useAppContext } from '^/webui/contexts';
 
@@ -26,7 +27,7 @@ export default function useIdentify()
 
         const getIdentity = async () =>
         {
-            const identity = await getMe(requester);
+            const identity = await getMe(requester, tenant);
 
             setIdentity(identity);
         };

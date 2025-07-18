@@ -64,8 +64,8 @@ describe('domain/authentication', () =>
 
         it('should register with a valid profile picture', async () =>
         {
-            const requestor = await login(IDENTITIES.WITH_PICTURE);
-            expect(requestor.nickname).toBe(VALUES.NICKNAMES.WITH_PICTURE);
+            const requester = await login(IDENTITIES.WITH_PICTURE);
+            expect(requester.nickname).toBe(VALUES.NICKNAMES.WITH_PICTURE);
         });
     });
 });

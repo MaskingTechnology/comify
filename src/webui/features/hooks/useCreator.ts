@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { requester } from '^/domain/authentication';
 import getCreator from '^/domain/creator/getByNicknameAggregated';
 import getRelation from '^/domain/relation/getAggregated';
+import { tenant } from '^/domain/tenant';
 
 import { useAppContext } from '^/webui/contexts';
 import { useLoadData } from '^/webui/hooks';
@@ -21,9 +22,9 @@ export default function useCreator()
             return undefined;
         }
 
-        const creator = await getCreator(requester, nickname);
+        const creator = await getCreator(requester, tenant, nickname);
 
-        return getRelation(requester, identity.id, creator.id);
+        return getRelation(requester, tenant, identity.id, creator.id);
 
     }, [identity, nickname]);
 

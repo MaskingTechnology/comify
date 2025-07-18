@@ -7,8 +7,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 const JITAR_URL = 'http://localhost:3000';
 const JITAR_SEGMENTS = [];
 const JITAR_MIDDLEWARES = [
-  './integrations/runtime/requesterMiddleware',
-  './integrations/runtime/originMiddleware'
+  './integrations/runtime/requesterMiddleware'
 ];
 
 const jitarConfig: JitarConfig = {

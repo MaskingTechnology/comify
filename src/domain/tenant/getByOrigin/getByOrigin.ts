@@ -1,17 +1,25 @@
 
-import findOrigin from '^/domain/origin/find';
-import type { DataModel } from '^/domain/tenant';
+import { RECORD_TYPE } from '^/domain/tenant';
 
-import getById from '../getById';
+import database, { type RecordQuery } from '^/integrations/database';
 
-export default async function getByOrigin(origin: string): Promise<DataModel | undefined>
+import type { DataModel } from '../types';
+
+import TenantNotFound from './TenantNotFound';
+
+export default async function getByOrigin(origin: string): Promise<DataModel>
 {
-    const data = await findOrigin(origin);
-
-    if (data === undefined)
+    const query: RecordQuery =
     {
-        return;
+        origins: { 'EQUALS': origin }
+    };
+
+    const record = await database.findRecord(RECORD_TYPE, query);
+
+    if (record === undefined)
+    {
+        throw new TenantNotFound(origin);
     }
 
-    return await getById(data.tenantId);
+    return record as DataModel;
 }

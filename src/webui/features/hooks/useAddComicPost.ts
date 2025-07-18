@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { requester } from '^/domain/authentication';
 import createPostWithComic from '^/domain/post/createWithComic';
+import { tenant } from '^/domain/tenant';
 
 import { useAppContext } from '^/webui/contexts';
 
@@ -14,7 +15,7 @@ export default function useAddComicPost()
 
     return useCallback(async (imageData: string) =>
     {
-        await createPostWithComic(requester, imageData);
+        await createPostWithComic(requester, tenant, imageData);
 
         navigate(`/profile/${identity?.nickname}`);
 

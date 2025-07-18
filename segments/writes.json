@@ -14,8 +14,6 @@
     "./domain/image/save": { "default": {  "access": "protected" } },
     "./domain/image/erase": { "default": {  "access": "protected" } },
 
-    "./domain/origin/create/insertData": { "default": {  "access": "protected" } },
-
     "./domain/post/create/insertData": { "default": {  "access": "protected" } },
     "./domain/post/erase": { "default": {  "access": "protected" } },
     "./domain/post/remove/deleteData": { "default": { "access": "protected" }},
