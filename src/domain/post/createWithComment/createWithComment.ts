@@ -9,5 +9,5 @@ export default async function createWithComment(requester: Requester, tenant: Te
 {
     const commentId = await createComment(message);
 
-    return createPost(requester.id, undefined, commentId, parentId, tenant.id);
+    return createPost(requester.id, tenant.id, undefined, commentId, parentId);
 }

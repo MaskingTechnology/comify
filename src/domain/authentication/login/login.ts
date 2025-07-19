@@ -12,11 +12,11 @@ export default async function login(identity: Identity, tenant: Tenant): Promise
     const existingCreator = await getCreatorByEmail(identity.email, tenant.id);
 
     const loggedInCreator = existingCreator ?? await registerCreator(
+        tenant.id,
         identity.name,
         identity.nickname ?? identity.name,
         identity.email,
-        identity.picture,
-        tenant.id
+        identity.picture
     );
 
     return {

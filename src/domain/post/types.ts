@@ -8,7 +8,7 @@ type DataModel = BaseDataModel &
     readonly comicId?: string;
     readonly commentId?: string;
     readonly parentId?: string;
-    readonly tenantId?: string;
+    readonly tenantId: string;
     readonly createdAt: string;
 };
 

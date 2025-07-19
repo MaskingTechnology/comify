@@ -13,7 +13,7 @@ export default async function explore(requester: Requester, tenant: Tenant, orde
     const followingIds = followingData.map(data => data.followingId);
     followingIds.push(requester.id);
 
-    const creatorData = await getOtherCreators(followingIds, order, limit, offset, search, tenant.id);
+    const creatorData = await getOtherCreators(tenant.id, followingIds, order, limit, offset, search);
 
     return creatorData.map(data =>
     {

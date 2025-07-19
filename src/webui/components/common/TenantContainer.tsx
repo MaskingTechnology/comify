@@ -21,7 +21,7 @@ export default function Component({ children }: Props)
 
         document.head.appendChild(link);
 
-    }), [tenant];
+    }, [tenant]);
 
     if (tenant === undefined) return;
 

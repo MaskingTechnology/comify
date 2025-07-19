@@ -5,7 +5,7 @@ import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';
 import CreatorNotFound from './CreatorNotFound';
 
-export default async function getById(id: string, tenantId: string | undefined = undefined): Promise<DataModel>
+export default async function getById(id: string, tenantId: string): Promise<DataModel>
 {
     const query: RecordQuery =
     {

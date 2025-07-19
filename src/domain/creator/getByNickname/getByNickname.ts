@@ -5,7 +5,7 @@ import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';
 import NicknameNotFound from './NicknameNotFound';
 
-export default async function getByNickname(nickname: string, tenantId: string | undefined = undefined): Promise<DataModel>
+export default async function getByNickname(nickname: string, tenantId: string): Promise<DataModel>
 {
     const query = {
         nickname: { EQUALS: nickname },

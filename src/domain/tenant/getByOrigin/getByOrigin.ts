@@ -1,8 +1,7 @@
 
-import { RECORD_TYPE } from '^/domain/tenant';
-
 import database, { type RecordQuery } from '^/integrations/database';
 
+import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';
 
 import TenantNotFound from './TenantNotFound';
@@ -11,7 +10,7 @@ export default async function getByOrigin(origin: string): Promise<DataModel>
 {
     const query: RecordQuery =
     {
-        origins: { 'EQUALS': origin }
+        origins: { 'CONTAINS': origin }
     };
 
     const record = await database.findRecord(RECORD_TYPE, query);

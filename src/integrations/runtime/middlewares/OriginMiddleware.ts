@@ -1,6 +1,6 @@
 
 import type { Middleware, NextHandler, Request } from 'jitar';
-import { BadRequest, Response } from 'jitar';
+import { BadRequest, type Response } from 'jitar';
 
 const TENANT_COOKIE_NAME = 'x-tenant-origin';
 

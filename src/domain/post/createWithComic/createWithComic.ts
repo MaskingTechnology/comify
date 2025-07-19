@@ -9,5 +9,5 @@ export default async function createWithComic(requester: Requester, tenant: Tena
 {
     const comicId = await createComic(comicImageDataUrl);
 
-    return createPost(requester.id, comicId, undefined, parentId, tenant.id);
+    return createPost(requester.id, tenant.id, comicId, undefined, parentId);
 }
