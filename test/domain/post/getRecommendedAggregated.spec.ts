@@ -2,7 +2,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import getRecommendedAggregated from '^/domain/post/getRecommendedAggregated';
-import { DATA_URLS, DATABASES, FILE_STORES, REQUESTERS } from './fixtures';
+import { DATA_URLS, DATABASES, FILE_STORES, REQUESTERS, TENANTS } from './fixtures';
 
 beforeEach(async () =>
 {
@@ -16,7 +16,7 @@ describe('domain/post/getRecommendedAggregated', () =>
 {
     it('should give all posts except those created by the requester', async () =>
     {
-        const result = await getRecommendedAggregated(REQUESTERS.CREATOR1, { offset: 0, limit: 7 });
+        const result = await getRecommendedAggregated(REQUESTERS.CREATOR1, TENANTS.default, { offset: 0, limit: 7 });
 
         expect(result).toHaveLength(1);
         expect(result[0].creator.following.id).toBe(REQUESTERS.CREATOR2.id);

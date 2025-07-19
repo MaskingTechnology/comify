@@ -12,12 +12,13 @@ import type { DataModel as PostMetricsModel } from '^/domain/post.metrics';
 import type { DataModel as RatingDataModel } from '^/domain/rating';
 import type { DataModel as RelationDataModel } from '^/domain/relation';
 
+import { TENANTS } from './tenants.fixture';
 import { VALUES } from './values.fixture';
 
 const CREATORS: CreatorDataModel[] = [
-    { id: VALUES.IDS.CREATOR1, fullName: VALUES.FULL_NAMES.CREATOR1, nickname: VALUES.NICKNAMES.CREATOR1, email: VALUES.EMAILS.CREATOR1, portraitId: undefined, joinedAt: new Date().toISOString() },
-    { id: VALUES.IDS.CREATOR2, fullName: VALUES.FULL_NAMES.CREATOR2, nickname: VALUES.NICKNAMES.CREATOR2, email: VALUES.EMAILS.CREATOR2, portraitId: undefined, joinedAt: new Date().toISOString() },
-    { id: VALUES.IDS.CREATOR3, fullName: VALUES.FULL_NAMES.CREATOR3, nickname: VALUES.NICKNAMES.CREATOR3, email: VALUES.EMAILS.CREATOR3, portraitId: undefined, joinedAt: new Date().toISOString() }
+    { id: VALUES.IDS.CREATOR1, fullName: VALUES.FULL_NAMES.CREATOR1, nickname: VALUES.NICKNAMES.CREATOR1, email: VALUES.EMAILS.CREATOR1, portraitId: undefined, tenantId: TENANTS.default.id, joinedAt: new Date().toISOString() },
+    { id: VALUES.IDS.CREATOR2, fullName: VALUES.FULL_NAMES.CREATOR2, nickname: VALUES.NICKNAMES.CREATOR2, email: VALUES.EMAILS.CREATOR2, portraitId: undefined, tenantId: TENANTS.default.id, joinedAt: new Date().toISOString() },
+    { id: VALUES.IDS.CREATOR3, fullName: VALUES.FULL_NAMES.CREATOR3, nickname: VALUES.NICKNAMES.CREATOR3, email: VALUES.EMAILS.CREATOR3, portraitId: undefined, tenantId: TENANTS.default.id, joinedAt: new Date().toISOString() }
 ];
 
 const CREATOR_METRICS: CreatorMetricsDataModel[] = [

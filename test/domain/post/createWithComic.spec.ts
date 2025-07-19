@@ -6,7 +6,7 @@ import createWithComic from '^/domain/post/createWithComic';
 
 import database from '^/integrations/database';
 
-import { DATABASES, DATA_URLS, FILE_STORES, REQUESTERS } from './fixtures';
+import { DATABASES, DATA_URLS, FILE_STORES, REQUESTERS, TENANTS } from './fixtures';
 
 beforeEach(async () =>
 {
@@ -20,7 +20,7 @@ describe('domain/post/add', () =>
 {
     it('should create a post', async () =>
     {
-        await createWithComic(REQUESTERS.CREATOR1, DATA_URLS.COMIC_IMAGE);
+        await createWithComic(REQUESTERS.CREATOR1, TENANTS.default, DATA_URLS.COMIC_IMAGE);
 
         const posts = await database.searchRecords(POST_RECORD_TYPE, {});
         expect(posts.length).toBe(1);

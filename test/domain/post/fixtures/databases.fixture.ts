@@ -11,11 +11,11 @@ import database from '^/integrations/database';
 
 import { RECORDS } from './records.fixture';
 
-database.connect();
+await database.connect();
 
 async function withCreators(): Promise<void>
 {
-    database.clear();
+    await database.clear();
 
     const promises = RECORDS.CREATORS.map(creator => database.createRecord(CREATOR_RECORD_TYPE, { ...creator }));
 
@@ -24,7 +24,7 @@ async function withCreators(): Promise<void>
 
 async function withCreatorsPostsAndRelations(): Promise<void>
 {
-    database.clear();
+    await database.clear();
 
     const promises = [
         RECORDS.CREATORS.map(creator => database.createRecord(CREATOR_RECORD_TYPE, { ...creator })),
@@ -41,7 +41,7 @@ async function withCreatorsPostsAndRelations(): Promise<void>
 
 async function withPostsAndCreators(): Promise<void>
 {
-    database.clear();
+    await database.clear();
 
     const promises = [
         RECORDS.CREATORS.map(creator => database.createRecord(CREATOR_RECORD_TYPE, { ...creator })),
