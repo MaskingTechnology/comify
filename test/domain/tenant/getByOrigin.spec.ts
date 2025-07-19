@@ -1,29 +1,21 @@
 
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import getByOrigin from '^/domain/tenant/getByOrigin';
+import getByOrigin, { TenantNotFound } from '^/domain/tenant/getByOrigin';
 
 import { DATABASES, VALUES } from './fixtures';
 
 beforeEach(async () =>
 {
-    await DATABASES.tenantsAndOrigins();
+    await DATABASES.tenants();
 });
 
 describe('domain/tenant/getByOrigin', () =>
 {
-    it('should get an existing', async () =>
+    it('Should reject an invalid origin', async () =>
     {
-        const tenant = await getByOrigin(VALUES.NAMES.ORIGIN1);
+        const promise = getByOrigin(VALUES.ORIGINS.UNKNOWN);
 
-        expect(tenant).toBeDefined();
-        expect(tenant.id).toEqual(VALUES.IDS.TENANT1);
-    });
-
-    it('should NOT get an unknown tenant', async () =>
-    {
-        const tenant = await getByOrigin(VALUES.NAMES.UNKNOWN);
-
-        expect(tenant).toBeUndefined();
+        await expect(promise).rejects.toThrow(TenantNotFound);
     });
 });

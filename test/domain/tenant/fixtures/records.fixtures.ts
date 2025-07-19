@@ -6,7 +6,7 @@ import type { DataModel as TenantDataModel } from '^/domain/tenant';
 import { VALUES } from './values.fixtures';
 
 export const TENANTS: TenantDataModel[] = [
-    { id: VALUES.IDS.TENANT1, name: VALUES.NAMES.TENANT1, origins: [] }
+    { id: VALUES.IDS.TENANT1, origins: [VALUES.ORIGINS.FIRST, VALUES.ORIGINS.SECOND] }
 ];
 
 export const RECORDS: Record<string, RecordData[]> = { TENANTS };
