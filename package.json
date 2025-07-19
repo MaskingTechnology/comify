@@ -39,7 +39,7 @@
   ],
   "dependencies": {
     "dayjs": "^1.11.13",
-    "jitar": "^0.9.3",
+    "jitar": "^0.10.0",
     "minio": "^8.0.5",
     "mongodb": "^6.17.0",
     "openid-client": "^6.5.1",
@@ -51,7 +51,7 @@
     "zod": "^3.25.64"
   },
   "devDependencies": {
-    "@jitar/plugin-vite": "^0.9.3",
+    "@jitar/plugin-vite": "^0.10.0",
     "@types/node": "24.0.10",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
