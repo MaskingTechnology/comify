@@ -1,6 +1,6 @@
 
-import type { Middleware, NextHandler, Request } from 'jitar';
-import { BadRequest, type Response } from 'jitar';
+import type { Middleware, NextHandler, Request, Response } from 'jitar';
+import { BadRequest } from 'jitar';
 
 import type { ValidationSchema } from '^/integrations/validation';
 import validator from '^/integrations/validation';
