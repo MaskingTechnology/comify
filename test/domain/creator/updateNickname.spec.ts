@@ -6,7 +6,7 @@ import updateNickname, { NicknameAlreadyExists } from '^/domain/creator/updateNi
 
 import database from '^/integrations/database';
 
-import { DATABASES, REQUESTERS, VALUES } from './fixtures';
+import { DATABASES, REQUESTERS, TENANTS, VALUES } from './fixtures';
 
 beforeEach(async () =>
 {
@@ -17,7 +17,7 @@ describe('domain/creator/updateNickname', () =>
 {
     it('should update the nickname', async () =>
     {
-        await updateNickname(REQUESTERS.CREATOR, VALUES.NICKNAMES.NEW);
+        await updateNickname(REQUESTERS.CREATOR, TENANTS.default, VALUES.NICKNAMES.NEW);
 
         const creator = await database.readRecord(CREATOR_RECORD_TYPE, REQUESTERS.CREATOR.id);
         expect(creator?.nickname).toBe(VALUES.NICKNAMES.NEW);
@@ -25,7 +25,7 @@ describe('domain/creator/updateNickname', () =>
 
     it('should NOT update the nickname because of a duplicate', async () =>
     {
-        const promise = updateNickname(REQUESTERS.CREATOR, VALUES.NICKNAMES.DUPLICATE);
+        const promise = updateNickname(REQUESTERS.CREATOR, TENANTS.default, VALUES.NICKNAMES.DUPLICATE);
 
         await expect(promise).rejects.toStrictEqual(new NicknameAlreadyExists(VALUES.NICKNAMES.DUPLICATE));
     });

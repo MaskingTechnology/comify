@@ -2,6 +2,7 @@
 import logger from '^/integrations/logging';
 
 import type { Requester } from '^/domain/authentication';
+import type { Tenant } from '^/domain/tenant';
 
 import getById from '../getById';
 import PostNotFound from '../PostNotFound';
@@ -10,7 +11,7 @@ import isNotOwner from './isNotOwner';
 import publish from './publish';
 import undeleteData from './undeleteData';
 
-export default async function remove(requester: Requester, id: string): Promise<void>
+export default async function remove(requester: Requester, tenant: Tenant, id: string): Promise<void>
 {
     // We only delete the post itself and do not cascade it towards it's children as it doesn't add
     // any value, and it would make the code more complex.
@@ -19,7 +20,7 @@ export default async function remove(requester: Requester, id: string): Promise<
 
     try
     {
-        const post = await getById(id);
+        const post = await getById(tenant.id, id);
 
         if (isNotOwner(post, requester.id))
         {

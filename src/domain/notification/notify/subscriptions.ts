@@ -12,8 +12,8 @@ import startedFollowing from './startedFollowing';
 async function subscribe(): Promise<void>
 {
     await Promise.all([
-        subscribeToPostRated(({ creatorId, postId, rated }) => ratedPost(creatorId, postId, rated)),
-        subscribeToPostCreated(({ creatorId, postId, parentId }) => reactedToPost(creatorId, postId, parentId)),
+        subscribeToPostRated(({ tenantId, creatorId, postId, rated }) => ratedPost(tenantId, creatorId, postId, rated)),
+        subscribeToPostCreated(({ tenantId, creatorId, postId, parentId }) => reactedToPost(tenantId, creatorId, postId, parentId)),
         subscribeToRelationEstablished(({ followerId, followingId }) => startedFollowing(followerId, followingId)),
         subscribeToPostRemoved(({ postId }) => removedPost(postId)),
     ]);

@@ -41,9 +41,9 @@ const COMICS: ComicDataModel[] = [
 ];
 
 const POSTS: (PostDataModel & { deleted: boolean; })[] = [
-    { id: VALUES.IDS.POST_RATED, creatorId: VALUES.IDS.CREATOR1, comicId: VALUES.IDS.COMIC, createdAt: new Date().toISOString(), deleted: false },
-    { id: VALUES.IDS.POST_DELETED, creatorId: VALUES.IDS.CREATOR1, comicId: VALUES.IDS.COMIC, createdAt: new Date().toISOString(), deleted: true },
-    { id: VALUES.IDS.REACTION_LIKED, creatorId: VALUES.IDS.CREATOR2, comicId: VALUES.IDS.COMIC, parentId: VALUES.IDS.POST_RATED, createdAt: new Date().toISOString(), deleted: false }
+    { id: VALUES.IDS.POST_RATED, creatorId: VALUES.IDS.CREATOR1, comicId: VALUES.IDS.COMIC, tenantId: TENANTS.default.id, createdAt: new Date().toISOString(), deleted: false },
+    { id: VALUES.IDS.POST_DELETED, creatorId: VALUES.IDS.CREATOR1, comicId: VALUES.IDS.COMIC, tenantId: TENANTS.default.id, createdAt: new Date().toISOString(), deleted: true },
+    { id: VALUES.IDS.REACTION_LIKED, creatorId: VALUES.IDS.CREATOR2, comicId: VALUES.IDS.COMIC, tenantId: TENANTS.default.id, parentId: VALUES.IDS.POST_RATED, createdAt: new Date().toISOString(), deleted: false }
 ];
 
 const POST_METRICS: PostMetricsModel[] = [

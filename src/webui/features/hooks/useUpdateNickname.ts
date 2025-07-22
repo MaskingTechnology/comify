@@ -5,6 +5,7 @@ import { requester } from '^/domain/authentication';
 import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
 import updateNickname from '^/domain/creator/updateNickname';
 import NicknameAlreadyExists from '^/domain/creator/updateNickname/NicknameAlreadyExists';
+import { tenant } from '^/domain/tenant';
 
 import { useAppContext } from '^/webui/contexts';
 
@@ -17,7 +18,7 @@ export default function useUpdateNickname()
     {
         try
         {
-            await updateNickname(requester, nickname);
+            await updateNickname(requester, tenant, nickname);
 
             setIdentity({ ...identity, nickname } as AggregatedCreatorData);
             setAlreadyInUse(false);

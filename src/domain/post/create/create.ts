@@ -19,7 +19,7 @@ export default async function create(creatorId: string, tenantId: string, comicI
 
         postId = await insertData(data);
 
-        await publish(creatorId, postId, parentId);
+        await publish(tenantId, creatorId, postId, parentId);
 
         return postId;
     }

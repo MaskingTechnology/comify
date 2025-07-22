@@ -2,6 +2,8 @@
 import logger from '^/integrations/logging';
 
 import type { Requester } from '^/domain/authentication';
+import getCreator from '^/domain/creator/getById';
+import type { Tenant } from '^/domain/tenant';
 
 import create from '../create';
 import erase from '../erase';
@@ -9,12 +11,14 @@ import exists from '../exists';
 import publish from './publish';
 import RelationAlreadyExists from './RelationAlreadyExists';
 
-export default async function establish(requester: Requester, followingId: string): Promise<void>
+export default async function establish(requester: Requester, tenant: Tenant, followingId: string): Promise<void>
 {
     let id;
 
     try
     {
+        await getCreator(followingId, tenant.id);
+
         const relationExists = await exists(requester.id, followingId);
 
         if (relationExists)

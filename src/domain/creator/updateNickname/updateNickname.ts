@@ -1,16 +1,18 @@
 
 import type { Requester } from '^/domain/authentication';
+import type { Tenant } from '^/domain/tenant';
 
 import cleanNickname from '../cleanNickname';
 import update from '../update';
 import NicknameAlreadyExists from './NicknameAlreadyExists';
 import retrieveByNickname from './retrieveByNickname';
 
-export default async function updateNickname(requester: Requester, nickname: string): Promise<void>
+
+export default async function updateNickname(requester: Requester, tenant: Tenant, nickname: string): Promise<void>
 {
     const cleanedNickname = cleanNickname(nickname);
 
-    const data = await retrieveByNickname(cleanedNickname);
+    const data = await retrieveByNickname(tenant.id, cleanedNickname);
 
     if (data !== undefined)
     {

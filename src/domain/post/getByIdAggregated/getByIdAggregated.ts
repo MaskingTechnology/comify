@@ -10,7 +10,7 @@ export { type AggregatedData };
 
 export default async function getByIdAggregated(requester: Requester, tenant: Tenant, id: string): Promise<AggregatedData>
 {
-    const data = await getById(id);
+    const data = await getById(tenant.id, id);
 
     return aggregate(requester, tenant, data);
 }

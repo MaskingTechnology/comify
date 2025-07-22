@@ -6,6 +6,7 @@ import type { DataModel } from '../types';
 export type ValidationModel = Pick<DataModel, 'creatorId' | 'tenantId' | 'comicId' | 'commentId' | 'parentId'>;
 
 export type CreatedEventData = {
+    tenantId: string;
     creatorId: string;
     postId: string;
     parentId?: string;
