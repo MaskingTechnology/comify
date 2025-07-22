@@ -85,6 +85,6 @@ export default class OriginMiddleware implements Middleware
 
     #setOriginCookie(response: Response, origin: string): void
     {
-        response.setHeader('Set-Cookie', `${TENANT_COOKIE_NAME}=${origin}; Path=/; HttpOnly=true; SameSite=Strict; Secure`);
+        response.setHeader('Set-Cookie', `${TENANT_COOKIE_NAME}=${origin}; Path=/; HttpOnly=true; SameSite=None; Secure`);
     }
 }
