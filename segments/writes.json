@@ -6,17 +6,19 @@
     "./domain/comment/erase": { "default": {  "access": "protected" } },
 
     "./domain/creator/create": { "default": {  "access": "protected" } },
+    "./domain/creator/erase": { "default": {  "access": "protected" } },
     "./domain/creator/update": { "default": {  "access": "protected" } },
 
     "./domain/creator.metrics/create/insertData": { "default": {  "access": "protected" } },
     "./domain/creator.metrics/update": { "default": { "access": "protected" } },
 
-    "./domain/image/save": { "default": {  "access": "protected" } },
     "./domain/image/erase": { "default": {  "access": "protected" } },
+    "./domain/image/save": { "default": {  "access": "protected" } },
 
     "./domain/post/create/insertData": { "default": {  "access": "protected" } },
     "./domain/post/erase": { "default": {  "access": "protected" } },
     "./domain/post/remove/deleteData": { "default": { "access": "protected" }},
+    "./domain/post/remove/undeleteData": { "default": { "access": "protected" }},
     "./domain/post/update": { "default": {  "access": "protected" } },
 
     "./domain/post.metrics/create/insertData": { "default": {  "access": "protected" } },

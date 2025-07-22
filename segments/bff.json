@@ -3,6 +3,8 @@
     "./domain/authentication/login": { "default": {  "access": "public" } },
     "./domain/authentication/logout": { "default": {  "access": "public" } },
 
+    "./domain/creator/aggregate": { "default": { "access": "private" }},
+    "./domain/creator/getByIdAggregated": { "default": { "access": "private" } },
     "./domain/creator/getByNicknameAggregated": { "default": {  "access": "public" } },
     "./domain/creator/getMeAggregated": { "default": {  "access": "public" } },
     "./domain/creator/updateFullName": { "default": {  "access": "public" } },
@@ -13,18 +15,20 @@
     "./domain/creator.metrics/updateFollowing": { "subscriptions": {  "access": "private" } },
     "./domain/creator.metrics/updatePosts": { "subscriptions": {  "access": "private" } },
 
+    "./domain/notification/aggregate": { "default": { "access": "private" } },
     "./domain/notification/notify": { "subscriptions": {  "access": "private" } },
     "./domain/notification/getRecentAggregated": { "default": {  "access": "public" } },
     "./domain/notification/getByIdAggregated": { "default": {  "access": "public" } },
 
+    "./domain/post/aggregate": { "default": { "access": "private" } },
     "./domain/post/create": { "default": {  "access": "private" }, "subscribe": {  "access": "private" } },
     "./domain/post/createWithComic": { "default": {  "access": "public" } },
     "./domain/post/createWithComment": { "default": {  "access": "public" } },
+    "./domain/post/getByCreatorAggregated": { "default": {  "access": "public" } },
+    "./domain/post/getByFollowingAggregated": { "default": {  "access": "public" } },
     "./domain/post/exploreAggregated": { "default": {  "access": "public" } },
     "./domain/post/getByIdAggregated": { "default": {  "access": "public" } },
     "./domain/post/getByParentAggregated": { "default": {  "access": "public" } },
-    "./domain/post/getByCreatorAggregated": { "default": {  "access": "public" } },
-    "./domain/post/getByFollowingAggregated": { "default": {  "access": "public" } },
     "./domain/post/getRecommendedAggregated": { "default": { "access": "public"}},
     "./domain/post/remove": { "default": {  "access": "public" }, "subscribe": {  "access": "private" } },
 
@@ -34,6 +38,7 @@
 
     "./domain/rating/toggle": { "default": { "access": "public" }, "subscribe": {  "access": "private" } },
 
+    "./domain/relation/aggregate": { "default": { "access": "private" }},
     "./domain/relation/exploreAggregated": { "default": {  "access": "public" } },
     "./domain/relation/establish": { "default": { "access": "public" }, "subscribe": {  "access": "private" } },
     "./domain/relation/getAggregated": { "default": {  "access": "public" } },
