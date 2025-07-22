@@ -10,7 +10,7 @@ import type { ValidationModel } from './types';
 const schema: ValidationSchema =
 {
     creatorId: requiredIdValidation,
-    tenantId: optionalIdValidation,
+    tenantId: requiredIdValidation,
     comicId: optionalIdValidation,
     commentId: optionalIdValidation,
     parentId: optionalIdValidation

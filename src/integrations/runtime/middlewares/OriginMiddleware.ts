@@ -75,7 +75,7 @@ export default class OriginMiddleware implements Middleware
 
     #validateOriginValue(value: string | undefined): void
     {
-        const result = validator.validate({ url: value }, schema);
+        const result = validator.validate({ origin: value }, schema);
 
         if (result.invalid)
         {

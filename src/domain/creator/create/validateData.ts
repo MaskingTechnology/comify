@@ -2,7 +2,7 @@
 import type { ValidationSchema } from '^/integrations/validation';
 import validator from '^/integrations/validation';
 
-import { optionalIdValidation } from '^/domain/definitions';
+import { optionalIdValidation, requiredIdValidation } from '^/domain/definitions';
 
 import InvalidCreator from '../InvalidCreator';
 import { fullNameValidation } from '../definitions';
@@ -19,7 +19,7 @@ const schema: ValidationSchema =
             required: true
         }
     },
-    tenantId: optionalIdValidation,
+    tenantId: requiredIdValidation,
     portraitId: optionalIdValidation
 };
 

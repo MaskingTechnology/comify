@@ -666,7 +666,6 @@
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "http://a.comify.local:3000/rpc/domain/authentication/login",
         "http://localhost:3000/rpc/domain/authentication/login",
         "http://localhost:5173/rpc/domain/authentication/login"
       ],

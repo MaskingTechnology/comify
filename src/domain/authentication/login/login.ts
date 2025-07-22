@@ -5,7 +5,7 @@ import getCreatorByEmail from '^/domain/creator/getByEmail';
 import registerCreator from '^/domain/creator/register';
 import { type Tenant } from '^/domain/tenant';
 
-import type { Requester } from '../types';
+import { type Requester } from '../types';
 
 export default async function login(identity: Identity, tenant: Tenant): Promise<Requester>
 {

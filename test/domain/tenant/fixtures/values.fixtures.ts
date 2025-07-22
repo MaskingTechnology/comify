@@ -5,8 +5,8 @@ export const VALUES =
         TENANT1: 'example.com'
     },
     ORIGINS: {
-        FIRST: 'alpha.example.com',
-        SECOND: 'beta.example.com',
+        FIRST: 'http://alpha.example.com',
+        SECOND: 'http://beta.example.com',
         UNKNOWN: 'unknown'
     }
 };
