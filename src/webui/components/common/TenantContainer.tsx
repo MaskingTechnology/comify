@@ -23,7 +23,7 @@ export default function Component({ children }: Props)
 
     }, [tenant]);
 
-    if (tenant === undefined) return;
+    if (tenant === undefined) return null;
 
     return children;
 }

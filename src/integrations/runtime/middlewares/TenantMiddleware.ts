@@ -31,12 +31,10 @@ export default class TenantMiddleware implements Middleware
 
             const response = await next();
 
-            if (response.status >= 500)
+            if (response.status < 500)
             {
-                return response;
+                this.#cache.set(origin, response);
             }
-
-            this.#cache.set(origin, response);
 
             return response;
         }

@@ -2,7 +2,21 @@
 import type { Middleware, NextHandler, Request } from 'jitar';
 import { BadRequest, type Response } from 'jitar';
 
+import type { ValidationSchema } from '^/integrations/validation';
+import validator from '^/integrations/validation';
+
 const TENANT_COOKIE_NAME = 'x-tenant-origin';
+const schema: ValidationSchema =
+{
+    origin:
+    {
+        message: 'Invalid origin',
+        URL:
+        {
+            required: true
+        }
+    }
+};
 
 export default class OriginMiddleware implements Middleware
 {
@@ -19,18 +33,16 @@ export default class OriginMiddleware implements Middleware
             origin = this.#getOriginFromHeader(request);
         }
 
-        if (origin === undefined)
-        {
-            throw new BadRequest('Missing origin');
-        }
+        this.#validateOriginValue(origin);
 
-        request.setHeader('origin', origin);
+        // The origin header is validated and set here for use in other middlewares
+        request.setHeader('origin', origin as string);
 
         const response = await next();
 
         if (fromCookie === false)
         {
-            this.#setOriginCookie(response, origin);
+            this.#setOriginCookie(response, origin as string);
         }
 
         return response;
@@ -50,14 +62,24 @@ export default class OriginMiddleware implements Middleware
             return;
         }
 
-        for (const cookie of header.split('; '))
+        for (const cookie of header.split(';'))
         {
             const [key, value] = cookie.split('=');
 
-            if (key === TENANT_COOKIE_NAME) 
+            if (key.trim() === TENANT_COOKIE_NAME) 
             {
-                return value;
+                return value?.trim();
             }
+        }
+    }
+
+    #validateOriginValue(value: string | undefined): void
+    {
+        const result = validator.validate({ url: value }, schema);
+
+        if (result.invalid)
+        {
+            throw new BadRequest('Invalid origin');
         }
     }
 
