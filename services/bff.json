@@ -1,11 +1,9 @@
 {
     "url": "http://127.0.0.1:4000",
     "setUp": [
-        "./integrations/runtime/setUpBff",
-        "./integrations/runtime/setUpGateway"
+        "./integrations/runtime/setUpBff"
     ],
     "tearDown": [
-        "./integrations/runtime/tearDownGateway",
         "./integrations/runtime/tearDownBff"
     ],
     "middleware": [
