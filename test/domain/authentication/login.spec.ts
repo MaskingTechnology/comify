@@ -18,7 +18,7 @@ beforeEach(async () =>
 
 describe('domain/authentication', () =>
 {
-    describe('.login(identity, tenant)', () =>
+    describe('.login(tenant, identity)', () =>
     {
         it('should login with an existing email', async () =>
         {
