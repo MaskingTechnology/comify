@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 
 import { Types } from '^/domain/notification';
 import getRecentAggregated from '^/domain/notification/getRecentAggregated';
-import { DATABASES, FILE_STORES, REQUESTERS, VALUES } from './fixtures';
+import { DATABASES, FILE_STORES, REQUESTERS, TENANTS, VALUES } from './fixtures';
 
 beforeEach(async () =>
 {
@@ -17,7 +17,7 @@ describe('domain/notification/getallAggregated', () =>
 {
     it('should give all notifications under normal circumstances', async () =>
     {
-        const result = await getRecentAggregated(REQUESTERS.CREATOR2, { offset: 0, limit: 7 });
+        const result = await getRecentAggregated(TENANTS.default, REQUESTERS.CREATOR2, { offset: 0, limit: 7 });
 
         expect(result).toHaveLength(2);
 
@@ -36,7 +36,7 @@ describe('domain/notification/getallAggregated', () =>
 
     it('should give only the notifications that aggregate without errors', async () =>
     {
-        const result = await getRecentAggregated(REQUESTERS.CREATOR1, { offset: 0, limit: 7 });
+        const result = await getRecentAggregated(TENANTS.default, REQUESTERS.CREATOR1, { offset: 0, limit: 7 });
 
         expect(result).toHaveLength(2);
 

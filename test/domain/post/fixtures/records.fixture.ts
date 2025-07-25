@@ -11,13 +11,14 @@ import type { DataModel as RatingDataModel } from '^/domain/rating';
 import type { DataModel as RelationDataModel } from '^/domain/relation';
 
 import { REQUESTERS } from './requesters.fixture';
+import { TENANTS } from './tenants.fixture';
 import { VALUES } from './values.fixture';
 
 const NOW = new Date().toISOString();
 
 const CREATORS: CreatorDataModel[] = [
-    { id: VALUES.IDS.CREATOR1, fullName: VALUES.FULL_NAMES.CREATOR1, nickname: VALUES.NICKNAMES.CREATOR1, email: VALUES.EMAILS.CREATOR1, joinedAt: NOW },
-    { id: VALUES.IDS.CREATOR2, fullName: VALUES.FULL_NAMES.CREATOR2, nickname: VALUES.NICKNAMES.CREATOR2, email: VALUES.EMAILS.CREATOR2, joinedAt: NOW }
+    { id: VALUES.IDS.CREATOR1, fullName: VALUES.FULL_NAMES.CREATOR1, nickname: VALUES.NICKNAMES.CREATOR1, email: VALUES.EMAILS.CREATOR1, tenantId: TENANTS.default.id, joinedAt: NOW },
+    { id: VALUES.IDS.CREATOR2, fullName: VALUES.FULL_NAMES.CREATOR2, nickname: VALUES.NICKNAMES.CREATOR2, email: VALUES.EMAILS.CREATOR2, tenantId: TENANTS.default.id, joinedAt: NOW }
 ];
 
 const CREATOR_METRICS: CreatorMetricsDataModel[] = [
@@ -38,10 +39,10 @@ const COMICS: ComicDataModel[] = [
 ];
 
 const POSTS: (PostDataModel & { deleted: boolean; })[] = [
-    { id: VALUES.IDS.POST_RATED, creatorId: REQUESTERS.CREATOR1.id, comicId: VALUES.IDS.COMIC, createdAt: NOW, deleted: false },
-    { id: VALUES.IDS.POST_UNRATED, creatorId: REQUESTERS.CREATOR1.id, comicId: VALUES.IDS.COMIC, createdAt: NOW, deleted: false },
-    { id: VALUES.IDS.POST_EXTRA1, creatorId: REQUESTERS.CREATOR2.id, comicId: VALUES.IDS.COMIC, createdAt: NOW, deleted: false },
-    { id: VALUES.IDS.POST_DELETED, creatorId: REQUESTERS.CREATOR1.id, comicId: VALUES.IDS.COMIC, createdAt: NOW, deleted: true },
+    { id: VALUES.IDS.POST_RATED, creatorId: REQUESTERS.CREATOR1.id, comicId: VALUES.IDS.COMIC, tenantId: TENANTS.default.id, createdAt: NOW, deleted: false },
+    { id: VALUES.IDS.POST_UNRATED, creatorId: REQUESTERS.CREATOR1.id, comicId: VALUES.IDS.COMIC, tenantId: TENANTS.default.id, createdAt: NOW, deleted: false },
+    { id: VALUES.IDS.POST_EXTRA1, creatorId: REQUESTERS.CREATOR2.id, comicId: VALUES.IDS.COMIC, tenantId: TENANTS.default.id, createdAt: NOW, deleted: false },
+    { id: VALUES.IDS.POST_DELETED, creatorId: REQUESTERS.CREATOR1.id, comicId: VALUES.IDS.COMIC, tenantId: TENANTS.default.id, createdAt: NOW, deleted: true },
 ];
 
 const POST_METRICS: PostMetricsDataModel[] = [

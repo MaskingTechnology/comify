@@ -33,7 +33,7 @@ In case of OpenID, additional configuration is required.
 OPENID_ISSUER="http://localhost:8080/realms/comify"
 OPENID_CLIENT_ID="openid"
 OPENID_CLIENT_SECRET=""
-OPENID_REDIRECT_URI="http://localhost:3000/rpc/domain/authentication/login"
+OPENID_REDIRECT_PATH="/rpc/domain/authentication/login"
 OPENID_ALLOW_INSECURE_REQUESTS=true
 ```
 

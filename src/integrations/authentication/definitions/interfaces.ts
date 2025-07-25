@@ -9,9 +9,9 @@ export interface IdentityProvider
 
     disconnect(): Promise<void>;
 
-    getLoginUrl(): Promise<string>;
+    getLoginUrl(origin: string): Promise<string>;
 
-    login(data: Record<string, unknown>): Promise<Session>;
+    login(origin: string, data: Record<string, unknown>): Promise<Session>;
 
     refresh(session: Session): Promise<Session>;
 

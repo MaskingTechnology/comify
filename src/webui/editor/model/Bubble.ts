@@ -1,6 +1,6 @@
 
 import Element from '../elements/Element';
-import { type Point } from '../utils/Geometry';
+import type { Point } from '../utils/Geometry';
 
 export default abstract class Bubble extends Element
 {

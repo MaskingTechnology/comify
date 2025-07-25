@@ -9,13 +9,14 @@ import type { ValidationModel } from './types';
 
 const schema: ValidationSchema =
 {
+    tenantId: requiredIdValidation,
     creatorId: requiredIdValidation,
     comicId: optionalIdValidation,
     commentId: optionalIdValidation,
     parentId: optionalIdValidation
 };
 
-export default function validateData({ creatorId, comicId, commentId, parentId }: ValidationModel): void
+export default function validateData({ tenantId, creatorId, comicId, commentId, parentId }: ValidationModel): void
 {
     if (comicId === undefined && commentId === undefined)
     {
@@ -26,7 +27,7 @@ export default function validateData({ creatorId, comicId, commentId, parentId }
         throw new InvalidPost(messages);
     }
 
-    const result = validator.validate({ creatorId, comicId, commentId, parentId }, schema);
+    const result = validator.validate({ tenantId, creatorId, comicId, commentId, parentId }, schema);
 
     if (result.invalid)
     {

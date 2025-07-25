@@ -15,7 +15,8 @@ export default tseslint.config(
             "**/dist/**/*",
             "**/node_modules/**/*",
             "**/coverage/**/*",
-            "**/*config*"
+            "**/*config*",
+            "docker"
         ]
     },
     {

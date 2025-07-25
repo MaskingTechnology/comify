@@ -5,15 +5,16 @@ import type { DataModel as CreatorDataModel } from '^/domain/creator';
 import type { DataModel as CreatorMetricsDataModel } from '^/domain/creator.metrics';
 import type { DataModel as RelationDataModel } from '^/domain/relation';
 
+import { TENANTS } from './tenants.fixture';
 import { VALUES } from './values.fixture';
 
 const CREATORS: CreatorDataModel[] = [
-    { id: VALUES.IDS.CREATOR1, fullName: 'Creator 1', nickname: 'creator1', email: 'creator1@mail.com', joinedAt: new Date(2024, 5, 23).toISOString(), portraitId: undefined },
-    { id: VALUES.IDS.CREATOR2, fullName: 'Creator 2', nickname: 'creator2', email: 'creator2@mail.com', joinedAt: new Date(2024, 7, 11).toISOString(), portraitId: undefined },
-    { id: VALUES.IDS.CREATOR3, fullName: 'Creator 3', nickname: 'creator3', email: 'creator3@mail.com', joinedAt: new Date(2024, 1, 24).toISOString(), portraitId: undefined },
-    { id: VALUES.IDS.CREATOR4, fullName: 'Creator 4', nickname: 'creator4', email: 'creator4@mail.com', joinedAt: new Date(2024, 2, 12).toISOString(), portraitId: undefined },
-    { id: VALUES.IDS.CREATOR5, fullName: 'Creator five', nickname: 'creator5', email: 'creator5@mail.com', joinedAt: new Date(2024, 4, 9).toISOString(), portraitId: undefined },
-    { id: VALUES.IDS.CREATOR6, fullName: 'Creator 6', nickname: 'not_five', email: 'creator6@mail.com', joinedAt: new Date(2024, 3, 18).toISOString(), portraitId: undefined }
+    { id: VALUES.IDS.CREATOR1, fullName: 'Creator 1', nickname: 'creator1', email: 'creator1@mail.com', joinedAt: new Date(2024, 5, 23).toISOString(), tenantId: TENANTS.default.id, portraitId: undefined },
+    { id: VALUES.IDS.CREATOR2, fullName: 'Creator 2', nickname: 'creator2', email: 'creator2@mail.com', joinedAt: new Date(2024, 7, 11).toISOString(), tenantId: TENANTS.default.id, portraitId: undefined },
+    { id: VALUES.IDS.CREATOR3, fullName: 'Creator 3', nickname: 'creator3', email: 'creator3@mail.com', joinedAt: new Date(2024, 1, 24).toISOString(), tenantId: TENANTS.default.id, portraitId: undefined },
+    { id: VALUES.IDS.CREATOR4, fullName: 'Creator 4', nickname: 'creator4', email: 'creator4@mail.com', joinedAt: new Date(2024, 2, 12).toISOString(), tenantId: TENANTS.default.id, portraitId: undefined },
+    { id: VALUES.IDS.CREATOR5, fullName: 'Creator five', nickname: 'creator5', email: 'creator5@mail.com', joinedAt: new Date(2024, 4, 9).toISOString(), tenantId: TENANTS.default.id, portraitId: undefined },
+    { id: VALUES.IDS.CREATOR6, fullName: 'Creator 6', nickname: 'not_five', email: 'creator6@mail.com', joinedAt: new Date(2024, 3, 18).toISOString(), tenantId: TENANTS.default.id, portraitId: undefined }
 ];
 
 const CREATOR_METRICS: CreatorMetricsDataModel[] = [

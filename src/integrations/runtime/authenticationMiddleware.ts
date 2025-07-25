@@ -1,6 +1,8 @@
 
 import identityProvider from '^/integrations/authentication';
 
+import { TENANT_BY_ORIGIN_PATH } from '^/domain/definitions';
+
 import AuthenticationMiddleware from './middlewares/AuthenticationMiddleware';
 
 const authProcedures = {
@@ -9,8 +11,8 @@ const authProcedures = {
     logout: 'domain/authentication/logout'
 };
 
-const redirectUrl = process.env.AUTHENTICATION_CLIENT_URI || 'undefined';
+const redirectPath = process.env.AUTHENTICATION_CLIENT_PATH || 'undefined';
 
-const whiteList: string[] = [];
+const whiteList: string[] = [TENANT_BY_ORIGIN_PATH];
 
-export default new AuthenticationMiddleware(identityProvider, authProcedures, redirectUrl, whiteList);
+export default new AuthenticationMiddleware(identityProvider, authProcedures, redirectPath, whiteList);

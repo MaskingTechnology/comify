@@ -3,7 +3,7 @@ import { generateId } from '^/integrations/utilities/crypto';
 
 import type { DataModel } from '../types';
 
-export default async function createData(fullName: string, nickname: string, email: string, portraitId: string | undefined = undefined): Promise<DataModel>
+export default async function createData(tenantId: string, fullName: string, nickname: string, email: string, portraitId?: string): Promise<DataModel>
 {
     return {
         id: generateId(),
@@ -11,6 +11,7 @@ export default async function createData(fullName: string, nickname: string, ema
         nickname,
         email,
         portraitId: portraitId,
+        tenantId,
         joinedAt: new Date().toISOString()
     };
 }

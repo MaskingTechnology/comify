@@ -12,12 +12,13 @@ import type { DataModel as PostMetricsModel } from '^/domain/post.metrics';
 import type { DataModel as RatingDataModel } from '^/domain/rating';
 import type { DataModel as RelationDataModel } from '^/domain/relation';
 
+import { TENANTS } from './tenants.fixture';
 import { VALUES } from './values.fixture';
 
 const CREATORS: CreatorDataModel[] = [
-    { id: VALUES.IDS.CREATOR1, fullName: VALUES.FULL_NAMES.CREATOR1, nickname: VALUES.NICKNAMES.CREATOR1, email: VALUES.EMAILS.CREATOR1, portraitId: undefined, joinedAt: new Date().toISOString() },
-    { id: VALUES.IDS.CREATOR2, fullName: VALUES.FULL_NAMES.CREATOR2, nickname: VALUES.NICKNAMES.CREATOR2, email: VALUES.EMAILS.CREATOR2, portraitId: undefined, joinedAt: new Date().toISOString() },
-    { id: VALUES.IDS.CREATOR3, fullName: VALUES.FULL_NAMES.CREATOR3, nickname: VALUES.NICKNAMES.CREATOR3, email: VALUES.EMAILS.CREATOR3, portraitId: undefined, joinedAt: new Date().toISOString() }
+    { id: VALUES.IDS.CREATOR1, fullName: VALUES.FULL_NAMES.CREATOR1, nickname: VALUES.NICKNAMES.CREATOR1, email: VALUES.EMAILS.CREATOR1, portraitId: undefined, tenantId: TENANTS.default.id, joinedAt: new Date().toISOString() },
+    { id: VALUES.IDS.CREATOR2, fullName: VALUES.FULL_NAMES.CREATOR2, nickname: VALUES.NICKNAMES.CREATOR2, email: VALUES.EMAILS.CREATOR2, portraitId: undefined, tenantId: TENANTS.default.id, joinedAt: new Date().toISOString() },
+    { id: VALUES.IDS.CREATOR3, fullName: VALUES.FULL_NAMES.CREATOR3, nickname: VALUES.NICKNAMES.CREATOR3, email: VALUES.EMAILS.CREATOR3, portraitId: undefined, tenantId: TENANTS.default.id, joinedAt: new Date().toISOString() }
 ];
 
 const CREATOR_METRICS: CreatorMetricsDataModel[] = [
@@ -40,9 +41,9 @@ const COMICS: ComicDataModel[] = [
 ];
 
 const POSTS: (PostDataModel & { deleted: boolean; })[] = [
-    { id: VALUES.IDS.POST_RATED, creatorId: VALUES.IDS.CREATOR1, comicId: VALUES.IDS.COMIC, createdAt: new Date().toISOString(), deleted: false },
-    { id: VALUES.IDS.POST_DELETED, creatorId: VALUES.IDS.CREATOR1, comicId: VALUES.IDS.COMIC, createdAt: new Date().toISOString(), deleted: true },
-    { id: VALUES.IDS.REACTION_LIKED, creatorId: VALUES.IDS.CREATOR2, comicId: VALUES.IDS.COMIC, parentId: VALUES.IDS.POST_RATED, createdAt: new Date().toISOString(), deleted: false }
+    { id: VALUES.IDS.POST_RATED, creatorId: VALUES.IDS.CREATOR1, comicId: VALUES.IDS.COMIC, tenantId: TENANTS.default.id, createdAt: new Date().toISOString(), deleted: false },
+    { id: VALUES.IDS.POST_DELETED, creatorId: VALUES.IDS.CREATOR1, comicId: VALUES.IDS.COMIC, tenantId: TENANTS.default.id, createdAt: new Date().toISOString(), deleted: true },
+    { id: VALUES.IDS.REACTION_LIKED, creatorId: VALUES.IDS.CREATOR2, comicId: VALUES.IDS.COMIC, tenantId: TENANTS.default.id, parentId: VALUES.IDS.POST_RATED, createdAt: new Date().toISOString(), deleted: false }
 ];
 
 const POST_METRICS: PostMetricsModel[] = [

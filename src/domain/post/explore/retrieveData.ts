@@ -1,17 +1,18 @@
 
-import type { RecordQuery, RecordSort} from '^/integrations/database';
+import type { RecordQuery, RecordSort } from '^/integrations/database';
 import database, { SortDirections } from '^/integrations/database';
 
 import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';
 
-export default async function retrieveData(excludedCreatorIds: string[], limit: number, offset: number): Promise<DataModel[]>
+export default async function retrieveData(tenantId: string, excludedCreatorIds: string[], limit: number, offset: number): Promise<DataModel[]>
 {
     const query: RecordQuery =
     {
-        deleted: { 'EQUALS': false },
-        parentId: { 'EQUALS': undefined },
-        creatorId: { NOT_IN: excludedCreatorIds }
+        tenantId: { EQUALS: tenantId },
+        creatorId: { NOT_IN: excludedCreatorIds },
+        parentId: { EQUALS: undefined },
+        deleted: { EQUALS: false },
     };
 
     const sort: RecordSort = { createdAt: SortDirections.DESCENDING };

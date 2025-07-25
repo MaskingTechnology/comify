@@ -8,7 +8,7 @@ export default function Component()
             By getting in, you agree to our <Link url='#' target='_blank'>terms of service</Link> and <Link url='#' target='_blank'>privacy policy</Link>.
         </Paragraph>
         <Paragraph size='small'>
-            Copyright © 2024 - <Link url='#' target='_blank'>Masking Technology</Link>.
+            Copyright © 2025 - <Link url='#' target='_blank'>Masking Technology</Link>.
         </Paragraph>
     </Column>;
 }

@@ -229,9 +229,9 @@ describe('integrations/database/implementation', () =>
         {
             const data: RecordData = VALUES.NO_MATCH_SIZE;
 
-            // This should not throw an error
-            await expect(database.updateRecords(RECORD_TYPES.PIZZAS, QUERIES.NO_MATCH, data))
-                .resolves.toBeUndefined();
+            const promise = database.updateRecords(RECORD_TYPES.PIZZAS, QUERIES.NO_MATCH, data);
+
+            await expect(promise).resolves.toBeUndefined();
         });
     });
 

@@ -7,6 +7,7 @@ import { useAppContext } from '^/webui/contexts';
 import { requester } from '^/domain/authentication';
 import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
 import remove from '^/domain/post/remove';
+import { tenant } from '^/domain/tenant';
 
 export default function useRemovePost()
 {
@@ -15,7 +16,7 @@ export default function useRemovePost()
 
     return useCallback(async (post: AggregatedPostData) =>
     {
-        await remove(requester, post.id);
+        await remove(tenant, requester, post.id);
 
         navigate(`/profile/${identity?.nickname}`);
 

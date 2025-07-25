@@ -1,12 +1,13 @@
 
 import getCreatorData from '^/domain/creator/getByIdAggregated';
+import type { Tenant } from '^/domain/tenant';
 
 import type { DataModel } from '../types';
 import type { AggregatedData } from './types';
 
-export default async function aggregate(data: DataModel): Promise<AggregatedData>
+export default async function aggregate(tenant: Tenant, data: DataModel): Promise<AggregatedData>
 {
-    const followingData = await getCreatorData(data.followingId);
+    const followingData = await getCreatorData(tenant.id, data.followingId);
 
     return {
         id: data.id,

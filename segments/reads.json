@@ -3,10 +3,14 @@
 
     "./domain/comment/getById": { "default": {  "access": "protected" } },
 
-    "./domain/creator/getById": { "default": {  "access": "protected" } },
+    "./domain/creator/generateNickname/retrieveByNickname": { "default": { "access": "protected" } },
+    "./domain/creator/generateNickname/retrieveByStartNickname": { "default": { "access": "protected" } },
     "./domain/creator/getByEmail": { "default": {  "access": "protected" } },
+    "./domain/creator/getById": { "default": {  "access": "protected" } },
     "./domain/creator/getByNickname": { "default": {  "access": "protected" } },
     "./domain/creator/getMe": { "default": {  "access": "protected" } },
+    "./domain/creator/getOthers": { "default": { "access": "private" }},
+    "./domain/creator/updateNickname/retrieveByNickname": { "default": {  "access": "protected" } },
 
     "./domain/creator.metrics/getByCreator": { "default": {  "access": "protected" } },
 
@@ -28,5 +32,7 @@
     "./domain/relation/explore": { "default": {  "access": "protected" } },
     "./domain/relation/get": { "default": {  "access": "protected" } },
     "./domain/relation/getFollowers": { "default": {  "access": "protected" } },
-    "./domain/relation/getFollowing": { "default": {  "access": "protected" } }
+    "./domain/relation/getFollowing": { "default": {  "access": "protected" } },
+
+    "./domain/tenant/getByOrigin": { "default": {  "access": "protected" }, "TenantNotFound": { } }
 }
