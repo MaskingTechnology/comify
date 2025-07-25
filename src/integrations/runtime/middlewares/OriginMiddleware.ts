@@ -36,7 +36,7 @@ export default class OriginMiddleware implements Middleware
         this.#validateOriginValue(origin);
 
         // The origin header is validated and set here for use in other middlewares
-        request.setHeader('origin', origin as string);
+        request.setHeader('origin', origin!);
 
         const response = await next();
 

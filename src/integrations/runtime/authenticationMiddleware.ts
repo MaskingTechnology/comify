@@ -1,6 +1,8 @@
 
 import identityProvider from '^/integrations/authentication';
 
+import { TENANT_BY_ORIGIN_PATH } from '^/domain/definitions';
+
 import AuthenticationMiddleware from './middlewares/AuthenticationMiddleware';
 
 const authProcedures = {
@@ -11,6 +13,6 @@ const authProcedures = {
 
 const redirectPath = process.env.AUTHENTICATION_CLIENT_PATH || 'undefined';
 
-const whiteList: string[] = ['domain/tenant/getByOriginConverted'];
+const whiteList: string[] = [TENANT_BY_ORIGIN_PATH];
 
 export default new AuthenticationMiddleware(identityProvider, authProcedures, redirectPath, whiteList);

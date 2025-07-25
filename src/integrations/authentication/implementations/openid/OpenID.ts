@@ -75,9 +75,13 @@ export default class OpenID implements IdentityProvider
     async login(origin: string, data: Record<string, unknown>): Promise<Session>
     {
         const clientConfiguration = this.#getClientConfiguration();
-        const currentUrl = new URL(`${this.#providerConfiguration.redirectPath}?session_state=${data.session_state}&iss=${data.iss}&code=${data.code}`, origin);
 
-        const tokens = await authorizationCodeGrant(clientConfiguration, currentUrl, {
+        const url = new URL(this.#providerConfiguration.redirectPath, origin);
+        url.searchParams.set('session_state', data.session_state as string);
+        url.searchParams.set('iss', data.iss as string);
+        url.searchParams.set('code', data.code as string);
+
+        const tokens = await authorizationCodeGrant(clientConfiguration, url, {
             pkceCodeVerifier: this.#codeVerifier,
             idTokenExpected: true
         });
