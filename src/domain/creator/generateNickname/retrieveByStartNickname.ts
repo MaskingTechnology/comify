@@ -5,11 +5,11 @@ import database, { SortDirections } from '^/integrations/database';
 import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';
 
-export default async function retrieveByStartNickname(nickname: string, tenantId: string): Promise<DataModel | undefined>
+export default async function retrieveByStartNickname(tenantId: string, nickname: string): Promise<DataModel | undefined>
 {
     const query = {
-        nickname: { 'STARTS_WITH': nickname },
-        tenantId: { 'EQUALS': tenantId }
+        tenantId: { 'EQUALS': tenantId },
+        nickname: { 'STARTS_WITH': nickname }
     };
 
     const sort: RecordSort = { 'nickname': SortDirections.DESCENDING };

@@ -6,18 +6,18 @@ import retrieveByStartNickname from './retrieveByStartNickname';
 
 const MAX_NICKNAME_NUMBER = 1000;
 
-export default async function generateNickname(nickname: string, tenantId: string): Promise<string>
+export default async function generateNickname(tenantId: string, nickname: string): Promise<string>
 {
     const cleanedNickname = cleanNickname(nickname);
 
-    const existingData = await retrieveByNickname(cleanedNickname, tenantId);
+    const existingData = await retrieveByNickname(tenantId, cleanedNickname);
 
     if (existingData === undefined)
     {
         return cleanedNickname;
     }
 
-    const foundData = await retrieveByStartNickname(`${existingData.nickname}_`, tenantId);
+    const foundData = await retrieveByStartNickname(tenantId, `${existingData.nickname}_`);
 
     if (foundData === undefined)
     {

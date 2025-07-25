@@ -5,9 +5,9 @@ import type { Tenant } from '^/domain/tenant';
 
 import createPost from '../create';
 
-export default async function createWithComment(requester: Requester, tenant: Tenant, message: string, parentId: string | undefined = undefined): Promise<string>
+export default async function createWithComment(tenant: Tenant, requester: Requester, message: string, parentId: string | undefined = undefined): Promise<string>
 {
     const commentId = await createComment(message);
 
-    return createPost(requester.id, tenant.id, undefined, commentId, parentId);
+    return createPost(tenant.id, requester.id, undefined, commentId, parentId);
 }

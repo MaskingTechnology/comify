@@ -8,11 +8,11 @@ import type { AggregatedData } from '../aggregate';
 import aggregate from '../aggregate';
 import getByParent from '../getByParent';
 
-export default async function getByParentAggregated(requester: Requester, tenant: Tenant, postId: string, range: Range): Promise<AggregatedData[]>
+export default async function getByParentAggregated(tenant: Tenant, requester: Requester, postId: string, range: Range): Promise<AggregatedData[]>
 {
     const data = await getByParent(tenant.id, postId, range.limit, range.offset);
 
-    const aggregates = data.map(item => aggregate(requester, tenant, item));
+    const aggregates = data.map(item => aggregate(tenant, requester, item));
 
     return filterResolved(aggregates);
 }

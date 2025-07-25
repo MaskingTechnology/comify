@@ -10,8 +10,8 @@ export default async function getById(tenantId: string, id: string): Promise<Dat
 {
     const query: RecordQuery =
     {
-        id: { EQUALS: id },
         tenantId: { EQUALS: tenantId },
+        id: { EQUALS: id },
         deleted: { EQUALS: false }
     };
 

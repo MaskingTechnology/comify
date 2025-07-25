@@ -15,7 +15,7 @@ export default function usePost()
     const getPost = useCallback(async () =>
     {
         return postId !== undefined
-            ? get(requester, tenant, postId)
+            ? get(tenant, requester, postId)
             : undefined;
     }, [postId]);
 

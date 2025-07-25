@@ -9,10 +9,10 @@ export default async function retrieveData(tenantId: string, excludedCreatorIds:
 {
     const query: RecordQuery =
     {
-        deleted: { 'EQUALS': false },
-        parentId: { 'EQUALS': undefined },
+        tenantId: { EQUALS: tenantId },
         creatorId: { NOT_IN: excludedCreatorIds },
-        tenantId: { 'EQUALS': tenantId }
+        parentId: { EQUALS: undefined },
+        deleted: { EQUALS: false },
     };
 
     const sort: RecordSort = { createdAt: SortDirections.DESCENDING };

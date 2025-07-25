@@ -9,8 +9,8 @@ export default async function getByParent(tenantId: string, parentId: string, li
 {
     const query: RecordQuery =
     {
-        parentId: { EQUALS: parentId },
         tenantId: { EQUALS: tenantId },
+        parentId: { EQUALS: parentId },
         deleted: { EQUALS: false }
     };
 

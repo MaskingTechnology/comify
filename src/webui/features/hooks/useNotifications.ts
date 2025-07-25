@@ -13,7 +13,7 @@ export default function useNotifications()
 
     const getNotifications = useCallback((page: number) =>
     {
-        return getRecentNotifications(requester, tenant, { limit, offset: page * limit });
+        return getRecentNotifications(tenant, requester, { limit, offset: page * limit });
 
     }, []);
 

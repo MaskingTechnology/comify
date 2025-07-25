@@ -10,8 +10,8 @@ export default async function getOthers(tenantId: string, ids: string[], order: 
 {
     const defaultQuery: RecordQuery = {
         'AND': [
-            { id: { NOT_IN: ids } },
-            { tenantId: { EQUALS: tenantId } }
+            { tenantId: { EQUALS: tenantId } },
+            { id: { NOT_IN: ids } }
         ]
     };
     const searchQuery: RecordQuery = {

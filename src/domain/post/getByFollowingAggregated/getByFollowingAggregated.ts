@@ -9,13 +9,13 @@ import type { AggregatedData } from '../aggregate';
 import aggregate from '../aggregate';
 import getByFollowing from '../getByFollowing';
 
-export default async function getByFollowingAggregated(requester: Requester, tenant: Tenant, range: Range): Promise<AggregatedData[]>
+export default async function getByFollowingAggregated(tenant: Tenant, requester: Requester, range: Range): Promise<AggregatedData[]>
 {
     validateRange(range);
 
     const data = await getByFollowing(requester, range.limit, range.offset);
 
-    const aggregates = data.map(item => aggregate(requester, tenant, item));
+    const aggregates = data.map(item => aggregate(tenant, requester, item));
 
     return filterResolved(aggregates);
 }

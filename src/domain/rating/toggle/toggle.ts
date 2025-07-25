@@ -6,7 +6,7 @@ import getData from './getData';
 import switchOff from './switchOff';
 import switchOn from './switchOn';
 
-export default async function toggle(requester: Requester, tenant: Tenant, postId: string): Promise<boolean>
+export default async function toggle(tenant: Tenant, requester: Requester, postId: string): Promise<boolean>
 {
     const data = await getData(requester.id, postId);
 

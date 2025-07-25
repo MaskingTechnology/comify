@@ -14,7 +14,7 @@ export default function useCreatorPosts(creator: AggregatedCreatorData)
 
     const getData = useCallback((page: number) =>
     {
-        return getCreatorPosts(requester, tenant, creator.id, { limit, offset: page * limit });
+        return getCreatorPosts(tenant, requester, creator.id, { limit, offset: page * limit });
 
     }, [creator]);
 

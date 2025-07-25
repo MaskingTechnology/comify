@@ -10,7 +10,7 @@ export default function useTogglePostRating()
 {
     return useCallback((post: AggregatedPostData) =>
     {
-        return toggleRating(requester, tenant, post.id);
+        return toggleRating(tenant, requester, post.id);
 
     }, []);
 }

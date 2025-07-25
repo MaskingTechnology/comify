@@ -7,13 +7,13 @@ import insertData from './insertData';
 import publish from './publish';
 import validateData from './validateData';
 
-export default async function create(creatorId: string, tenantId: string, comicId?: string, commentId?: string, parentId?: string): Promise<string>
+export default async function create(tenantId: string, creatorId: string, comicId?: string, commentId?: string, parentId?: string): Promise<string>
 {
     let postId;
 
     try
     {
-        const data = createData(creatorId, tenantId, comicId, commentId, parentId);
+        const data = createData(tenantId, creatorId, comicId, commentId, parentId);
 
         validateData(data);
 

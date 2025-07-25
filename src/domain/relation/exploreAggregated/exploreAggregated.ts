@@ -9,11 +9,11 @@ import aggregate from '../aggregate';
 import type { SortOrder } from '../definitions';
 import explore from '../explore';
 
-export default async function exploreAggregated(requester: Requester, tenant: Tenant, order: SortOrder, range: Range, search: string | undefined = undefined): Promise<AggregatedData[]>
+export default async function exploreAggregated(tenant: Tenant, requester: Requester, order: SortOrder, range: Range, search: string | undefined = undefined): Promise<AggregatedData[]>
 {
     validateRange(range);
 
-    const data = await explore(requester, tenant, order, range.limit, range.offset, search);
+    const data = await explore(tenant, requester, order, range.limit, range.offset, search);
 
     return Promise.all(data.map(item => aggregate(tenant, item)));
 }

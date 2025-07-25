@@ -6,9 +6,9 @@ import type { AggregatedData } from '../aggregate';
 import aggregate from '../aggregate';
 import getById from '../getById';
 
-export default async function getByIdAggregated(requester: Requester, tenant: Tenant, id: string): Promise<AggregatedData>
+export default async function getByIdAggregated(tenant: Tenant, requester: Requester, id: string): Promise<AggregatedData>
 {
     const data = await getById(requester.id, id);
 
-    return aggregate(requester, tenant, data);
+    return aggregate(tenant, requester, data);
 }

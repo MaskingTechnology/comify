@@ -3,7 +3,7 @@ import type { ValidationSchema } from '^/integrations/validation';
 import validator from '^/integrations/validation';
 
 import InvalidOrigin from './InvalidOrigin';
-import { type ValidationModel } from './types';
+import type { ValidationModel } from './types';
 
 const schema: ValidationSchema =
 {

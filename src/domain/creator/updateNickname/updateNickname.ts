@@ -8,7 +8,7 @@ import NicknameAlreadyExists from './NicknameAlreadyExists';
 import retrieveByNickname from './retrieveByNickname';
 
 
-export default async function updateNickname(requester: Requester, tenant: Tenant, nickname: string): Promise<void>
+export default async function updateNickname(tenant: Tenant, requester: Requester, nickname: string): Promise<void>
 {
     const cleanedNickname = cleanNickname(nickname);
 

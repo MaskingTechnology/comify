@@ -10,6 +10,7 @@ import type { ValidationModel } from './types';
 
 const schema: ValidationSchema =
 {
+    tenantId: requiredIdValidation,
     fullName: fullNameValidation,
     email:
     {
@@ -19,13 +20,12 @@ const schema: ValidationSchema =
             required: true
         }
     },
-    tenantId: requiredIdValidation,
     portraitId: optionalIdValidation
 };
 
-export default function validateData({ fullName, email, tenantId }: ValidationModel): void
+export default function validateData({ tenantId, fullName, email }: ValidationModel): void
 {
-    const result = validator.validate({ fullName, email, tenantId }, schema);
+    const result = validator.validate({ tenantId, fullName, email }, schema);
 
     if (result.invalid)
     {

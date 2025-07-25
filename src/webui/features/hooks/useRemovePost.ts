@@ -16,7 +16,7 @@ export default function useRemovePost()
 
     return useCallback(async (post: AggregatedPostData) =>
     {
-        await remove(requester, tenant, post.id);
+        await remove(tenant, requester, post.id);
 
         navigate(`/profile/${identity?.nickname}`);
 

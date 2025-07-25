@@ -13,7 +13,7 @@ export default function useExplorePosts()
 
     const getData = useCallback((page: number) =>
     {
-        return explorePosts(requester, tenant, { limit, offset: page * limit });
+        return explorePosts(tenant, requester, { limit, offset: page * limit });
 
     }, []);
 

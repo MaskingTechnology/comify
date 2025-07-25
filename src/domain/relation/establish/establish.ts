@@ -11,13 +11,13 @@ import exists from '../exists';
 import publish from './publish';
 import RelationAlreadyExists from './RelationAlreadyExists';
 
-export default async function establish(requester: Requester, tenant: Tenant, followingId: string): Promise<void>
+export default async function establish(tenant: Tenant, requester: Requester, followingId: string): Promise<void>
 {
     let id;
 
     try
     {
-        await getCreator(followingId, tenant.id);
+        await getCreator(tenant.id, followingId);
 
         const relationExists = await exists(requester.id, followingId);
 

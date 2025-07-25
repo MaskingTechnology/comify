@@ -11,8 +11,8 @@ export default function useCreatePostComicReaction(post: AggregatedPostData, han
 {
     return useCallback(async (imageData: string) =>
     {
-        const reactionId = await createComicReaction(requester, tenant, imageData, post.id);
-        const reaction = await getReaction(requester, tenant, reactionId);
+        const reactionId = await createComicReaction(tenant, requester, imageData, post.id);
+        const reaction = await getReaction(tenant, requester, reactionId);
 
         handleDone(reaction);
 

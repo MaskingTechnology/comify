@@ -13,7 +13,7 @@ export default function usePostsRecommended()
 
     const getData = useCallback((page: number) =>
     {
-        return getPostsRecommended(requester, tenant, { limit, offset: page * limit });
+        return getPostsRecommended(tenant, requester, { limit, offset: page * limit });
 
     }, []);
 

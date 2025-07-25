@@ -10,7 +10,7 @@ export default function useEstablishRelation()
 {
     return useCallback((relation: AggregatedRelationData) =>
     {
-        return establishRelation(requester, tenant, relation.following.id);
+        return establishRelation(tenant, requester, relation.following.id);
 
     }, []);
 }

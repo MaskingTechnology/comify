@@ -14,7 +14,7 @@ export default function usePostReactions(post: AggregatedPostData)
 
     const getData = useCallback((page: number) =>
     {
-        return getReactionsByPost(requester, tenant, post.id, { limit, offset: page * limit });
+        return getReactionsByPost(tenant, requester, post.id, { limit, offset: page * limit });
 
     }, [post]);
 

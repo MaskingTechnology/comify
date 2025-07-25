@@ -13,7 +13,7 @@ export default function useExploreCreators()
 
     const getData = useCallback((page: number) =>
     {
-        return exploreRelations(requester, tenant, 'popular', { limit, offset: page * limit });
+        return exploreRelations(tenant, requester, 'popular', { limit, offset: page * limit });
 
     }, []);
 

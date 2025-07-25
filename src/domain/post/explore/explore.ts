@@ -6,7 +6,7 @@ import type { Tenant } from '^/domain/tenant';
 import type { DataModel } from '../types';
 import retrieveData from './retrieveData';
 
-export default async function explore(requester: Requester, tenant: Tenant, limit: number, offset: number): Promise<DataModel[]>
+export default async function explore(tenant: Tenant, requester: Requester, limit: number, offset: number): Promise<DataModel[]>
 {
     const relationsData = await retrieveRelationsByFollower(requester, requester.id);
 

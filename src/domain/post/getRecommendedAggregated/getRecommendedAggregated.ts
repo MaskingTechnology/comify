@@ -9,13 +9,13 @@ import type { AggregatedData } from '../aggregate';
 import aggregate from '../aggregate';
 import getRecommended from '../getRecommended';
 
-export default async function getRecommendedAggregated(requester: Requester, tenant: Tenant, range: Range): Promise<AggregatedData[]>
+export default async function getRecommendedAggregated(tenant: Tenant, requester: Requester, range: Range): Promise<AggregatedData[]>
 {
     validateRange(range);
 
-    const data = await getRecommended(requester.id, tenant.id, range.limit, range.offset);
+    const data = await getRecommended(tenant.id, requester.id, range.limit, range.offset);
 
-    const aggregates = data.map(item => aggregate(requester, tenant, item));
+    const aggregates = data.map(item => aggregate(tenant, requester, item));
 
     return filterResolved(aggregates);
 }

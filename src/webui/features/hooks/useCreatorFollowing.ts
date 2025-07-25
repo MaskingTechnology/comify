@@ -14,7 +14,7 @@ export default function useCreatorFollowing(creator: AggregatedCreatorData)
 
     const getData = useCallback((page: number) =>
     {
-        return getFollowing(requester, tenant, creator.id, { limit, offset: page * limit });
+        return getFollowing(tenant, requester, creator.id, { limit, offset: page * limit });
 
     }, [creator]);
 

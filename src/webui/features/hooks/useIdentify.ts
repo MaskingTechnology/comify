@@ -27,7 +27,7 @@ export default function useIdentify()
 
         const getIdentity = async () =>
         {
-            const identity = await getMe(requester, tenant);
+            const identity = await getMe(tenant, requester);
 
             setIdentity(identity);
         };

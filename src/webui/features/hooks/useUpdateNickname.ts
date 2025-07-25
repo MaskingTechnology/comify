@@ -18,7 +18,7 @@ export default function useUpdateNickname()
     {
         try
         {
-            await updateNickname(requester, tenant, nickname);
+            await updateNickname(tenant, requester, nickname);
 
             setIdentity({ ...identity, nickname } as AggregatedCreatorData);
             setAlreadyInUse(false);

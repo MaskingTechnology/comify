@@ -9,13 +9,13 @@ import type { AggregatedData } from '../aggregate';
 import aggregate from '../aggregate';
 import explore from '../explore';
 
-export default async function exploreAggregated(requester: Requester, tenant: Tenant, range: Range): Promise<AggregatedData[]>
+export default async function exploreAggregated(tenant: Tenant, requester: Requester, range: Range): Promise<AggregatedData[]>
 {
     validateRange(range);
 
-    const data = await explore(requester, tenant, range.limit, range.offset);
+    const data = await explore(tenant, requester, range.limit, range.offset);
 
-    const aggregates = data.map(item => aggregate(requester, tenant, item));
+    const aggregates = data.map(item => aggregate(tenant, requester, item));
 
     return filterResolved(aggregates);
 }

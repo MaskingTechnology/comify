@@ -8,7 +8,7 @@ import type { AggregatedData } from '../aggregate';
 import aggregate from '../aggregate';
 import retrieveByFollower from '../getFollowing';
 
-export default async function getFollowingAggregated(requester: Requester, tenant: Tenant, followerId: string, range: Range): Promise<AggregatedData[]>
+export default async function getFollowingAggregated(tenant: Tenant, requester: Requester, followerId: string, range: Range): Promise<AggregatedData[]>
 {
     validateRange(range);
 

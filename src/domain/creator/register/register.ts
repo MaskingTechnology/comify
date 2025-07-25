@@ -16,7 +16,7 @@ export default async function register(tenantId: string, fullName: string, nickn
     try
     {
         const truncatedFullName = fullName.substring(0, FULL_NAME_MAX_LENGTH);
-        const generatedNickname = await generateNickname(nickname, tenantId);
+        const generatedNickname = await generateNickname(tenantId, nickname);
 
         const portraitId = portraitUrl !== undefined
             ? await downloadPortrait(portraitUrl)

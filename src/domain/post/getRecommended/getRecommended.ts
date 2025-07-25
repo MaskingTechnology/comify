@@ -5,14 +5,14 @@ import database, { SortDirections } from '^/integrations/database';
 import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';
 
-export default async function getRecommended(requesterId: string, tenantId: string, limit: number, offset: number): Promise<DataModel[]>
+export default async function getRecommended(tenantId: string, requesterId: string, limit: number, offset: number): Promise<DataModel[]>
 {
     const query: RecordQuery =
     {
-        deleted: { EQUALS: false },
-        parentId: { EQUALS: undefined },
+        tenantId: { EQUALS: tenantId },
         creatorId: { NOT_EQUALS: requesterId },
-        tenantId: { EQUALS: tenantId }
+        parentId: { EQUALS: undefined },
+        deleted: { EQUALS: false }
     };
 
     const sort: RecordSort = { createdAt: SortDirections.DESCENDING };

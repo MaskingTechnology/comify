@@ -15,7 +15,7 @@ export default function useReaction()
     const getReaction = useCallback(async () =>
     {
         return highlightId !== undefined
-            ? get(requester, tenant, highlightId)
+            ? get(tenant, requester, highlightId)
             : undefined;
     }, [highlightId]);
 

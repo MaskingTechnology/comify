@@ -7,7 +7,7 @@ import type { SortOrder } from '../definitions';
 import getFollowing from '../getFollowing';
 import type { DataModel } from '../types';
 
-export default async function explore(requester: Requester, tenant: Tenant, order: SortOrder, limit: number, offset: number, search: string | undefined = undefined): Promise<DataModel[]>
+export default async function explore(tenant: Tenant, requester: Requester, order: SortOrder, limit: number, offset: number, search: string | undefined = undefined): Promise<DataModel[]>
 {
     const followingData = await getFollowing(requester, requester.id);
     const followingIds = followingData.map(data => data.followingId);

@@ -11,8 +11,8 @@ export default function useCreateCommentReaction(post: AggregatedPostData, handl
 {
     return useCallback(async (comment: string) =>
     {
-        const reactionId = await createCommentReaction(requester, tenant, comment, post.id);
-        const reaction = await getReaction(requester, tenant, reactionId);
+        const reactionId = await createCommentReaction(tenant, requester, comment, post.id);
+        const reaction = await getReaction(tenant, requester, reactionId);
 
         handleDone(reaction);
 

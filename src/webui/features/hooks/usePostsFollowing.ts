@@ -13,7 +13,7 @@ export default function usePostsFollowing()
 
     const getData = useCallback((page: number) =>
     {
-        return getPostsFollowing(requester, tenant, { limit, offset: page * limit });
+        return getPostsFollowing(tenant, requester, { limit, offset: page * limit });
 
     }, []);
 

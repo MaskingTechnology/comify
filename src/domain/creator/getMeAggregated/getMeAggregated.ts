@@ -6,9 +6,9 @@ import type { AggregatedData } from '../aggregate';
 import aggregate from '../aggregate';
 import getMe from '../getMe';
 
-export default async function getMeAggregated(requester: Requester, tenant: Tenant): Promise<AggregatedData>
+export default async function getMeAggregated(tenant: Tenant, requester: Requester): Promise<AggregatedData>
 {
-    const data = await getMe(requester, tenant);
+    const data = await getMe(tenant, requester);
 
     return aggregate(data);
 }
