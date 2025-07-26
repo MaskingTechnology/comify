@@ -2,6 +2,7 @@
 import type { Publication, Subscription } from '^/integrations/eventbroker';
 
 export type ToggledEventData = {
+    tenantId: string;
     creatorId: string;
     postId: string;
     rated: boolean;

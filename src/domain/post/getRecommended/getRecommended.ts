@@ -2,18 +2,17 @@
 import type { RecordQuery, RecordSort } from '^/integrations/database';
 import database, { SortDirections } from '^/integrations/database';
 
-import type { Requester } from '^/domain/authentication';
-
 import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';
 
-export default async function getRecommended(requester: Requester, limit: number, offset: number): Promise<DataModel[]>
+export default async function getRecommended(tenantId: string, requesterId: string, limit: number, offset: number): Promise<DataModel[]>
 {
     const query: RecordQuery =
     {
-        deleted: { EQUALS: false },
+        tenantId: { EQUALS: tenantId },
+        creatorId: { NOT_EQUALS: requesterId },
         parentId: { EQUALS: undefined },
-        creatorId: { NOT_EQUALS: requester.id }
+        deleted: { EQUALS: false }
     };
 
     const sort: RecordSort = { createdAt: SortDirections.DESCENDING };
