@@ -2,7 +2,7 @@
 import type { ValidationSchema } from '^/integrations/validation';
 import validator from '^/integrations/validation';
 
-import { optionalIdValidation } from '^/domain/definitions';
+import { optionalIdValidation, requiredIdValidation } from '^/domain/definitions';
 
 import InvalidCreator from '../InvalidCreator';
 import { fullNameValidation } from '../definitions';
@@ -10,6 +10,7 @@ import type { ValidationModel } from './types';
 
 const schema: ValidationSchema =
 {
+    tenantId: requiredIdValidation,
     fullName: fullNameValidation,
     email:
     {
@@ -22,9 +23,9 @@ const schema: ValidationSchema =
     portraitId: optionalIdValidation
 };
 
-export default function validateData({ fullName, email }: ValidationModel): void
+export default function validateData({ tenantId, fullName, email }: ValidationModel): void
 {
-    const result = validator.validate({ fullName, email }, schema);
+    const result = validator.validate({ tenantId, fullName, email }, schema);
 
     if (result.invalid)
     {

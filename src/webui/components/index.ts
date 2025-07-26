@@ -19,6 +19,7 @@ export { default as OrderRow } from './common/OrderRow';
 export { default as PullToRefresh } from './common/PullToRefresh';
 export { default as ResultSet } from './common/ResultSet';
 export { default as ScrollLoader } from './common/ScrollLoader';
+export { default as TenantContainer } from './common/TenantContainer';
 export { default as CreatorFullNameForm } from './creator/FullNameForm';
 export { default as CreatorNicknameForm } from './creator/NicknameForm';
 export { default as NotificationPanelList } from './notification/PanelList';

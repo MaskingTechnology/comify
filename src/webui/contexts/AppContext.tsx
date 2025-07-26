@@ -1,5 +1,5 @@
 
-import type { ReactNode} from 'react';
+import type { ReactNode } from 'react';
 import { createContext, useContext } from 'react';
 
 import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
