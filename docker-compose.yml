@@ -9,7 +9,7 @@ services:
     restart: always
     volumes:
       - comify-mongo-data:/data/db
-      - "${MONGO_INIT_PATH}:/docker-entrypoint-initdb.d"
+      - "${MONGODB_INIT_PATH}:/docker-entrypoint-initdb.d"
     ports:
       - "${MONGODB_PORT_NUMBER:-27017}:27017"
     environment:

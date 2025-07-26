@@ -5,7 +5,7 @@ import { BadRequest } from 'jitar';
 import type { ValidationSchema } from '^/integrations/validation';
 import validator from '^/integrations/validation';
 
-const TENANT_COOKIE_NAME = 'x-tenant-origin';
+const ORIGIN_COOKIE_NAME = 'x-client-origin';
 const schema: ValidationSchema =
 {
     origin:
@@ -66,7 +66,7 @@ export default class OriginMiddleware implements Middleware
         {
             const [key, value] = cookie.split('=');
 
-            if (key.trim() === TENANT_COOKIE_NAME) 
+            if (key.trim() === ORIGIN_COOKIE_NAME) 
             {
                 return value?.trim();
             }
@@ -85,6 +85,6 @@ export default class OriginMiddleware implements Middleware
 
     #setOriginCookie(response: Response, origin: string): void
     {
-        response.setHeader('Set-Cookie', `${TENANT_COOKIE_NAME}=${origin}; Path=/; HttpOnly=true; SameSite=None; Secure`);
+        response.setHeader('Set-Cookie', `${ORIGIN_COOKIE_NAME}=${origin}; Path=/; HttpOnly=true; SameSite=None; Secure`);
     }
 }
