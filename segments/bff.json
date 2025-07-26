@@ -18,7 +18,6 @@
     "./domain/notification/aggregate": { "default": { "access": "private" } },
     "./domain/notification/notify": { "subscriptions": {  "access": "private" } },
     "./domain/notification/getRecentAggregated": { "default": {  "access": "public" } },
-    "./domain/notification/getByIdAggregated": { "default": {  "access": "public" } },
 
     "./domain/post/aggregate": { "default": { "access": "private" } },
     "./domain/post/create": { "default": {  "access": "private" }, "subscribe": {  "access": "private" } },
