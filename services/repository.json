@@ -3,6 +3,6 @@
     "repository":
     {
         "serveIndexOnNotFound": true,
-        "assets": ["index.html", "main.js", "assets/**/*", "webui/**/*", "registerSW.js", "sw.js", "workbox-*.js", "manifest.webmanifest" ]
+        "assets": ["index.html", "assets/**/*", "webui/**/*", "registerSW.js", "sw.js", "workbox-*.js", "manifest.webmanifest" ]
     }
 }

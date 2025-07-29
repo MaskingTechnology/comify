@@ -5,7 +5,7 @@ volumes:
 services:
 
   mongo:
-    image: mongo:8.0.4
+    image: mongo:8.0.12
     restart: always
     volumes:
       - comify-mongo-data:/data/db
@@ -31,7 +31,7 @@ services:
       ME_CONFIG_MONGODB_URL: "mongodb://${MONGODB_ROOT_USERNAME}:${MONGODB_ROOT_PASSWORD}@mongo:27017/"
   
   minio:
-    image: minio/minio:RELEASE.2025-02-07T23-21-09Z
+    image: minio/minio:RELEASE.2025-07-23T15-54-02Z
     restart: always
     volumes:
       - comify-minio-data:/data
@@ -39,8 +39,8 @@ services:
       - "${MINIO_PORT_NUMBER:-9000}:9000"
       - "${MINIO_ADMIN_PORT_NUMBER:-9001}:9001"
     environment:
-      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
-      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
     command: server --console-address ":9001" /data
 
   keycloak:
