@@ -1,5 +1,5 @@
 
-import type { ZodIssue, ZodType, ZodUnrecognizedKeysIssue } from 'zod';
+import type { ZodType } from 'zod';
 import { z } from 'zod';
 
 import ValidationResult from '../../definitions/ValidationResult';
@@ -8,7 +8,7 @@ import type { Validator } from '../../definitions/interfaces';
 import type { Message, Validation, ValidationSchema, ValidationTypes } from '../../definitions/types';
 import UnknownValidator from '../../errors/UnknownValidator';
 
-type ValidatorFunction = (value: ValidationTypes[keyof ValidationTypes]) => z.ZodType<unknown, z.ZodTypeDef> | z.ZodArray<z.ZodType<unknown, z.ZodTypeDef>>;
+type ValidatorFunction = (value: ValidationTypes[keyof ValidationTypes]) => z.ZodType<unknown, unknown> | z.ZodArray<z.ZodType<unknown, unknown>>;
 
 // Zod is so type heavy that we've chosen for inferred types to be used.
 // This is a trade-off between readability and verbosity.
@@ -161,7 +161,7 @@ export default class Zod implements Validator
             : validation.optional();
     }
 
-    #getMessages(issues: ZodIssue[], scheme: ValidationSchema)
+    #getMessages(issues: z.core.$ZodIssue[], scheme: ValidationSchema)
     {
         const messages = new Map<string, string>();
 
@@ -183,7 +183,7 @@ export default class Zod implements Validator
         return messages;
     }
 
-    #mapUnrecognizedKeys(issue: ZodUnrecognizedKeysIssue, scheme: ValidationSchema, messages: Map<string, string>)
+    #mapUnrecognizedKeys(issue: z.core.$ZodIssueUnrecognizedKeys, scheme: ValidationSchema, messages: Map<string, string>)
     {
         for (const key of issue.keys)
         {
