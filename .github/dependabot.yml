@@ -8,7 +8,7 @@ updates:
     schedule:
       interval: "monthly"
 
-  # Maintain dependencies for jitar
+  # Maintain dependencies for comify
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
