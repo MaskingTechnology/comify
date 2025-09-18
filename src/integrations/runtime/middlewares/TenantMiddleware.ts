@@ -1,62 +1,54 @@
 
-import type { Middleware, NextHandler, Request, Response } from 'jitar';
+import type { Middleware, NextHandler, Request } from 'jitar';
+import { Response } from 'jitar';
 
+import type { Tenant } from '^/domain/tenant';
+import getByOrigin from '^/domain/tenant/getByOriginConverted';
+
+const GEY_BY_ORIGIN_FQN = 'domain/tenant/getByOriginConverted';
 const TENANT_PARAMETER = '*tenant';
 
 export default class TenantMiddleware implements Middleware
 {
-    readonly #cache = new Map<string, Response>();
-    readonly #getTenantPath: string;
-
-    constructor(tenantPath: string)
-    {
-        this.#getTenantPath = tenantPath;
-    }
+    readonly #tenants = new Map<string, Tenant>();
 
     async handle(request: Request, next: NextHandler): Promise<Response>
     {
-        return request.fqn === this.#getTenantPath
-            ? this.#getTenant(request, next)
+        return request.fqn === GEY_BY_ORIGIN_FQN
+            ? this.#getTenant(request)
             : this.#handleRequest(request, next);
     }
 
-    async #getTenant(request: Request, next: NextHandler): Promise<Response>
+    async #resolveTenant(request: Request): Promise<Tenant>
     {
-        const origin = this.#getOrigin(request);
-        const cached = this.#cache.get(origin);
+        const origin = request.getHeader('origin') as string;
+        const tenant = this.#tenants.get(origin);
 
-        if (cached === undefined)
+        if (tenant === undefined)
         {
-            request.setArgument('origin', origin);
+            const tenant = await getByOrigin(origin);
 
-            const response = await next();
+            this.#tenants.set(origin, tenant);
 
-            if (response.status === 200)
-            {
-                this.#cache.set(origin, response);
-            }
-
-            return response;
+            return tenant;
         }
 
-        return cached;
+        return tenant;
+    }
+
+    async #getTenant(request: Request): Promise<Response>
+    {
+        const tenant = await this.#resolveTenant(request);
+
+        return new Response(200, tenant);
     }
 
     async #handleRequest(request: Request, next: NextHandler): Promise<Response>
     {
-        const origin = this.#getOrigin(request);
-        const cached = this.#cache.get(origin);
+        const tenant = await this.#resolveTenant(request);
 
-        if (cached !== undefined)
-        {
-            request.setArgument(TENANT_PARAMETER, cached.result);
-        }
+        request.setArgument(TENANT_PARAMETER, tenant);
 
         return next();
-    }
-
-    #getOrigin(request: Request): string
-    {
-        return request.getHeader('origin') as string;
     }
 }

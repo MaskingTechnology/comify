@@ -1,8 +1,6 @@
 
 import type { Validation } from '^/integrations/validation';
 
-export const TENANT_BY_ORIGIN_PATH = 'domain/tenant/getByOriginConverted';
-
 export const SortOrders = {
     POPULAR: 'popular',
     RECENT: 'recent'
