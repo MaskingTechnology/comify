@@ -1,6 +1,6 @@
 
-import type { ZodIssue, ZodType, ZodUnrecognizedKeysIssue } from 'zod';
 import { z } from 'zod';
+import type { $ZodIssue, $ZodIssueUnrecognizedKeys } from 'zod/v4/core';
 
 import ValidationResult from '../../definitions/ValidationResult';
 import { FieldTypes, MAX_EMAIL_LENGTH, MAX_URL_LENGTH } from '../../definitions/constants';
@@ -8,7 +8,7 @@ import type { Validator } from '../../definitions/interfaces';
 import type { Message, Validation, ValidationSchema, ValidationTypes } from '../../definitions/types';
 import UnknownValidator from '../../errors/UnknownValidator';
 
-type ValidatorFunction = (value: ValidationTypes[keyof ValidationTypes]) => z.ZodType<unknown, z.ZodTypeDef> | z.ZodArray<z.ZodType<unknown, z.ZodTypeDef>>;
+type ValidatorFunction = (value: ValidationTypes[keyof ValidationTypes]) => z.ZodTypeAny;
 
 // Zod is so type heavy that we've chosen for inferred types to be used.
 // This is a trade-off between readability and verbosity.
@@ -109,21 +109,21 @@ export default class Zod implements Validator
 
     #validateDate(value: ValidationTypes['DATE'])
     {
-        const validation = z.string().datetime();
+        const validation = z.iso.datetime();
 
         return this.#checkRequired(value, validation);
     }
 
     #validateUuid(value: ValidationTypes['UUID'])
     {
-        const validation = z.string().uuid();
+        const validation = z.uuid();
 
         return this.#checkRequired(value, validation);
     }
 
     #validateEmail(value: ValidationTypes['EMAIL'])
     {
-        const validation = z.string().email().max(MAX_EMAIL_LENGTH);
+        const validation = z.email().max(MAX_EMAIL_LENGTH);
 
         return this.#checkRequired(value, validation);
     }
@@ -142,7 +142,7 @@ export default class Zod implements Validator
 
     #validateUrl(value: ValidationTypes['URL'])
     {
-        let validation = z.string().url().max(MAX_URL_LENGTH);
+        let validation = z.url().max(MAX_URL_LENGTH);
 
         if (value.protocols !== undefined)
         {
@@ -154,14 +154,14 @@ export default class Zod implements Validator
         return this.#checkRequired(value, validation);
     }
 
-    #checkRequired(value: ValidationTypes[keyof ValidationTypes], validation: ZodType)
+    #checkRequired(value: ValidationTypes[keyof ValidationTypes], validation: z.ZodTypeAny)
     {
         return value.required
             ? validation
             : validation.optional();
     }
 
-    #getMessages(issues: ZodIssue[], scheme: ValidationSchema)
+    #getMessages(issues: $ZodIssue[], scheme: ValidationSchema)
     {
         const messages = new Map<string, string>();
 
@@ -183,7 +183,7 @@ export default class Zod implements Validator
         return messages;
     }
 
-    #mapUnrecognizedKeys(issue: ZodUnrecognizedKeysIssue, scheme: ValidationSchema, messages: Map<string, string>)
+    #mapUnrecognizedKeys(issue: $ZodIssueUnrecognizedKeys, scheme: ValidationSchema, messages: Map<string, string>)
     {
         for (const key of issue.keys)
         {
