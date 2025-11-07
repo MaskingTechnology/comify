@@ -1,5 +1,5 @@
 
-import type { ReactElement, ReactNode} from 'react';
+import type { ReactElement, ReactNode } from 'react';
 import { useEffect, useMemo, useState } from 'react';
 
 import type { Props as TabProps } from './Tab';
@@ -40,6 +40,7 @@ export default function Component({ separator, selectedId, children, onChange }:
     {
         const firstTabId = tabList[0].props.id;
 
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setSelected(selectedId ?? firstTabId);
 
     }, [selectedId, tabList]);
