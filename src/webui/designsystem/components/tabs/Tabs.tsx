@@ -37,7 +37,7 @@ export default function Component({ separator, selectedId, children, onChange }:
 
     const updateSelected = useEffectEvent((selectedId?: string) =>
     {
-        const firstTabId = tabList[0].props.id;
+        const firstTabId = tabList[0]?.props.id;
 
         setSelected(selectedId ?? firstTabId);
     });
@@ -45,7 +45,7 @@ export default function Component({ separator, selectedId, children, onChange }:
     useEffect(() =>
     {
         updateSelected(selectedId);
-    }, [selectedId]);
+    }, [selectedId, tabList]);
 
     const handleChange = (tabId: string) =>
     {
