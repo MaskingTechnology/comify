@@ -1,6 +1,6 @@
 
 import type { ReactElement, ReactNode } from 'react';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useEffectEvent, useMemo, useState } from 'react';
 
 import type { Props as TabProps } from './Tab';
 import './Tabs.css';
@@ -33,17 +33,19 @@ export default function Component({ separator, selectedId, children, onChange }:
         });
 
         return tabs;
-
     }, [tabList]);
 
-    useEffect(() =>
+    const updateSelected = useEffectEvent((selectedId?: string) =>
     {
         const firstTabId = tabList[0].props.id;
 
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         setSelected(selectedId ?? firstTabId);
+    });
 
-    }, [selectedId, tabList]);
+    useEffect(() =>
+    {
+        updateSelected(selectedId);
+    }, [selectedId]);
 
     const handleChange = (tabId: string) =>
     {
