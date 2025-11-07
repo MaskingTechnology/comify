@@ -45,6 +45,7 @@ export default tseslint.config(
             "@typescript-eslint/no-unsafe-function-type": "off",
             "@typescript-eslint/consistent-type-definitions": "off",
             "@typescript-eslint/consistent-type-imports": "error",
+            "@typescript-eslint/unified-signatures": "off",
             "semi": ["error", "always"],
             "eol-last": ["error", "always"],
             "brace-style": ["error", "allman", { "allowSingleLine": true }],
