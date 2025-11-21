@@ -36,7 +36,7 @@
   ],
   "dependencies": {
     "dayjs": "1.11.19",
-    "jitar": "0.10.1",
+    "jitar": "0.10.3",
     "minio": "8.0.6",
     "mongodb": "6.20.0",
     "openid-client": "6.8.1",
