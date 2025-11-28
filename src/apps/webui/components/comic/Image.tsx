@@ -1,7 +1,7 @@
 
 import type { AggregatedData as AggregatedComicData } from '^/domain/comic/aggregate';
 
-import { Image } from '^/webui/designsystem';
+import { Image } from '@maskingtech/designsystem';
 
 type Props = {
     readonly comic: AggregatedComicData;

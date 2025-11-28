@@ -1,7 +1,7 @@
 
 import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
 
-import { Cell, Column, Row, Ruler } from '^/webui/designsystem';
+import { Cell, Column, Row, Ruler } from '@maskingtech/designsystem';
 
 import Identity from './Identity';
 import Logo from './Logo';

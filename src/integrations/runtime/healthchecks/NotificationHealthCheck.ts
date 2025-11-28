@@ -1,7 +1,7 @@
 
 import type { HealthCheck } from 'jitar';
 
-import type { NotificationService } from '^/integrations/notification/definitions/interfaces';
+import type { NotificationService } from '@theshelf/notification';
 
 export default class NotificationHealthCheck implements HealthCheck
 {

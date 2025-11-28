@@ -1,5 +1,5 @@
 
-import database, { type RecordQuery } from '^/integrations/database';
+import database, { type RecordQuery } from '@theshelf/database';
 
 import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';

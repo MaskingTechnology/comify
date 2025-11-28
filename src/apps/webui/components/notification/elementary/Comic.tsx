@@ -1,5 +1,5 @@
 
-import { ClickArea, Image, Row, Text } from '^/webui/designsystem';
+import { ClickArea, Image, Row, Text } from '@maskingtech/designsystem';
 
 import type { AggregatedData as AggregatedComicData } from '^/domain/comic/aggregate';
 

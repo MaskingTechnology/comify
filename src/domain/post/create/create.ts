@@ -1,5 +1,5 @@
 
-import logger from '^/integrations/logging';
+import logger from '@theshelf/logging';
 
 import erase from '../erase';
 import createData from './createData';

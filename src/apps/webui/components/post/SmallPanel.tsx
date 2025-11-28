@@ -1,7 +1,7 @@
 
 import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
 
-import { ClickArea, Column, Panel, Row } from '^/webui/designsystem';
+import { ClickArea, Column, Panel, Row } from '@maskingtech/designsystem';
 
 import Comic from '../comic/Image';
 import Comment from '../comment/Comment';

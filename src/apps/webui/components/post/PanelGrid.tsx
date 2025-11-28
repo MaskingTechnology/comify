@@ -1,7 +1,7 @@
 
 import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
 
-import { Grid } from '^/webui/designsystem';
+import { Grid } from '@maskingtech/designsystem';
 
 import SmallPanel from './SmallPanel';
 

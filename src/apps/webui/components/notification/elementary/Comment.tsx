@@ -1,5 +1,5 @@
 
-import { Border, ClickArea, Column, Text } from '^/webui/designsystem';
+import { Border, ClickArea, Column, Text } from '@maskingtech/designsystem';
 
 import type { DataModel as CommentData } from '^/domain/comment';
 

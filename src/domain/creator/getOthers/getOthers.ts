@@ -1,6 +1,6 @@
 
-import type { QueryStatement, RecordQuery, RecordSort } from '^/integrations/database';
-import database, { SortDirections } from '^/integrations/database';
+import type { QueryStatement, RecordQuery, RecordSort } from '@theshelf/database';
+import database, { SortDirections } from '@theshelf/database';
 
 import type { SortOrder } from '../definitions';
 import { RECORD_TYPE, SortOrders } from '../definitions';

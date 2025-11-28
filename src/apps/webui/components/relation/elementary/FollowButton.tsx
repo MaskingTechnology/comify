@@ -1,5 +1,5 @@
 
-import { Button } from '^/webui/designsystem';
+import { Button } from '@maskingtech/designsystem';
 
 import type { EstablishHandler } from '../hooks/useEstablish';
 import useEstablish from '../hooks/useEstablish';

@@ -1,5 +1,5 @@
 
-import { NotFound } from '^/integrations/runtime';
+import { NotFound } from '^/integrations/runtime/';
 
 export default class PostMetricsNotFound extends NotFound
 {

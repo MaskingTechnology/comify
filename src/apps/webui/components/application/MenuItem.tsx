@@ -1,7 +1,7 @@
 
 import { NavLink } from 'react-router-dom';
 
-import { Column, Image, Row, Text } from '^/webui/designsystem';
+import { Column, Image, Row, Text } from '@maskingtech/designsystem';
 
 type Props = {
     readonly vertical: boolean;

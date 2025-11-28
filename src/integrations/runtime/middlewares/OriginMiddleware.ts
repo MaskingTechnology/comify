@@ -2,8 +2,8 @@
 import type { Middleware, NextHandler, Request, Response } from 'jitar';
 import { BadRequest } from 'jitar';
 
-import type { ValidationSchema } from '^/integrations/validation';
-import validator from '^/integrations/validation';
+import type { ValidationSchema } from '@theshelf/validation';
+import validator from '@theshelf/validation';
 
 const ORIGIN_COOKIE_NAME = 'x-client-origin';
 const schema: ValidationSchema =

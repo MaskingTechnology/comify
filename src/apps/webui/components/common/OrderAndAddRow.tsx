@@ -1,5 +1,5 @@
 
-import { ClickArea, Icon, Row } from '^/webui/designsystem';
+import { ClickArea, Icon, Row } from '@maskingtech/designsystem';
 
 import OrderSelection from './elementary/OrderSelection';
 

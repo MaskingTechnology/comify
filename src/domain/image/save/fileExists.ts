@@ -1,5 +1,5 @@
 
-import fileStore from '^/integrations/filestore';
+import fileStore from '@theshelf/filestore';
 
 export default async function fileExists(storageKey: string): Promise<boolean>
 {

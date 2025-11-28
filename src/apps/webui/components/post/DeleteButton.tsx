@@ -1,5 +1,5 @@
 
-import { ClickArea } from '^/webui/designsystem';
+import { ClickArea } from '@maskingtech/designsystem';
 
 import DeleteIcon from './elementary/DeleteIcon';
 

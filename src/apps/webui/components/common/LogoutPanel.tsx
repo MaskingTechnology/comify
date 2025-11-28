@@ -1,5 +1,5 @@
 
-import { Button, Panel, Paragraph, Row } from '^/webui/designsystem';
+import { Button, Panel, Paragraph, Row } from '@maskingtech/designsystem';
 
 type Props = {
     readonly onLogout: () => void;

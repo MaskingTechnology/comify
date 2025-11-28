@@ -1,7 +1,7 @@
 
 import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
-import { Panel } from '^/webui/designsystem';
+import { Panel } from '@maskingtech/designsystem';
 
 import Counters from './Counters';
 

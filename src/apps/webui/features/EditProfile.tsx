@@ -1,10 +1,10 @@
 
 import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
 
+import { Column, Ruler } from '@maskingtech/designsystem';
 import { CreatorFullNameForm, CreatorNicknameForm, LoadingContainer } from '^/webui/components';
 import CreatorProfile from '^/webui/components/creator/Profile';
 import { useAppContext } from '^/webui/contexts';
-import { Column, Ruler } from '^/webui/designsystem';
 
 import useUpdateFullName from './hooks/useUpdateFullName';
 import useUpdateNickname from './hooks/useUpdateNickname';

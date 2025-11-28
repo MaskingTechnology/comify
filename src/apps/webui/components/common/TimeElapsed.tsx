@@ -1,6 +1,6 @@
 
+import { Text } from '@maskingtech/designsystem';
 import { timeElapsed } from '^/integrations/utilities/dates';
-import { Text } from '^/webui/designsystem';
 
 type Props = {
     readonly date: string;

@@ -1,5 +1,5 @@
 
-import { Row } from '^/webui/designsystem';
+import { Row } from '@maskingtech/designsystem';
 
 import OrderSelection from './elementary/OrderSelection';
 

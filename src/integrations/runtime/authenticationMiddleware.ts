@@ -1,5 +1,5 @@
 
-import identityProvider from '^/integrations/authentication';
+import identityProvider from '@theshelf/authentication';
 
 import AuthenticationMiddleware from './middlewares/AuthenticationMiddleware';
 

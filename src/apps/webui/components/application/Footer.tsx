@@ -1,7 +1,7 @@
 
 import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
 
-import { Column } from '^/webui/designsystem';
+import { Column } from '@maskingtech/designsystem';
 
 import Menu from './Menu';
 

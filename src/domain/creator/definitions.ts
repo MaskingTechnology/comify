@@ -1,7 +1,7 @@
 
-import type { Validation } from '^/integrations/validation';
+import type { Validation } from '@theshelf/validation';
 
-import type { SortOrder} from '../definitions';
+import type { SortOrder } from '../definitions';
 import { SortOrders } from '../definitions';
 
 export const RECORD_TYPE = 'creator';

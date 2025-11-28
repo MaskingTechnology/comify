@@ -1,7 +1,7 @@
 
 import type { ReactNode } from 'react';
 
-import { Button, Form, Row } from '^/webui/designsystem';
+import { Button, Form, Row } from '@maskingtech/designsystem';
 import { useForm } from '^/webui/hooks';
 
 type Props = {

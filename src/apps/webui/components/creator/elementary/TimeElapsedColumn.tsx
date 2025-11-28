@@ -1,5 +1,5 @@
 
-import { ClickArea, Column, Text } from '^/webui/designsystem';
+import { ClickArea, Column, Text } from '@maskingtech/designsystem';
 
 import TimeElapsed from '../../common/TimeElapsed';
 

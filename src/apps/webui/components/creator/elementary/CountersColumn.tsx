@@ -1,5 +1,5 @@
 
-import { ClickArea, Column } from '^/webui/designsystem';
+import { ClickArea, Column } from '@maskingtech/designsystem';
 
 import CountersRow from './CountersRow';
 import NamesRow from './NamesRow';

@@ -1,5 +1,5 @@
 
-import { Paragraph } from '^/webui/designsystem';
+import { Paragraph } from '@maskingtech/designsystem';
 
 type Props = {
     readonly text: string;

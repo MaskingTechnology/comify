@@ -3,7 +3,7 @@ import { Types } from '^/domain/notification';
 import type { AggregatedData as AggregatedNotificationData } from '^/domain/notification/aggregate';
 import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
-import { Column, Panel } from '^/webui/designsystem';
+import { Column, Panel } from '@maskingtech/designsystem';
 
 import TimeElapsed from '../relation/TimeElapsed';
 import RatedPost from './elementary/RatedPost';

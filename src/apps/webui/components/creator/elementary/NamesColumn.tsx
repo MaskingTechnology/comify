@@ -1,5 +1,5 @@
 
-import { Column, Text } from '^/webui/designsystem';
+import { Column, Text } from '@maskingtech/designsystem';
 
 type Props = {
     readonly fullName: string;

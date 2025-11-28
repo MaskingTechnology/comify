@@ -2,7 +2,7 @@
 import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
 import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
-import { Column, Panel, Row } from '^/webui/designsystem';
+import { Column, Panel, Row } from '@maskingtech/designsystem';
 
 import Comic from '../comic/Image';
 import Comment from '../comment/Comment';

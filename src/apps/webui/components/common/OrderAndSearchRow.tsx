@@ -1,5 +1,5 @@
 
-import { Row, TextBox } from '^/webui/designsystem';
+import { Row, TextBox } from '@maskingtech/designsystem';
 import { useDebouncedValue } from '^/webui/hooks';
 
 import OrderSelection from './elementary/OrderSelection';

@@ -1,6 +1,6 @@
 
-import identityProvider from '^/integrations/authentication';
-import eventBroker from '^/integrations/eventbroker';
+import identityProvider from '@theshelf/authentication';
+import eventBroker from '@theshelf/eventbroker';
 
 const disconnections = [];
 

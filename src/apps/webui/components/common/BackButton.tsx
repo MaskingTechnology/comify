@@ -1,5 +1,5 @@
 
-import { Button } from '^/webui/designsystem';
+import { Button } from '@maskingtech/designsystem';
 
 type Props = {
     readonly onClick: () => void;

@@ -1,5 +1,5 @@
 
-import { Panel, Paragraph, Title } from '^/webui/designsystem';
+import { Panel, Paragraph, Title } from '@maskingtech/designsystem';
 
 import Login from './Login';
 

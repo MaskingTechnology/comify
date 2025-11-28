@@ -1,5 +1,5 @@
 
-import { Dropdown } from '^/webui/designsystem';
+import { Dropdown } from '@maskingtech/designsystem';
 
 type Props = {
     readonly selected?: 'recent' | 'popular';

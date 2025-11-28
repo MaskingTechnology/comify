@@ -37,15 +37,9 @@
   "dependencies": {
     "dayjs": "1.11.19",
     "jitar": "0.10.3",
-    "minio": "8.0.6",
-    "mongodb": "7.0.0",
-    "openid-client": "6.8.1",
     "react": "19.2.0",
     "react-dom": "19.2.0",
-    "react-router-dom": "7.9.6",
-    "sanitize-html": "2.17.0",
-    "web-push": "3.6.7",
-    "zod": "4.1.12"
+    "react-router-dom": "7.9.6"
   },
   "devDependencies": {
     "@eslint/js": "9.39.1",
@@ -53,8 +47,6 @@
     "@types/node": "24.10.1",
     "@types/react": "19.2.6",
     "@types/react-dom": "19.2.3",
-    "@types/sanitize-html": "2.16.0",
-    "@types/web-push": "3.6.4",
     "@vitejs/plugin-react": "5.1.1",
     "@vitest/coverage-v8": "4.0.11",
     "cpx2": "8.0.0",
@@ -69,8 +61,5 @@
     "vite-plugin-pwa": "1.1.0",
     "vite-tsconfig-paths": "5.1.4",
     "vitest": "4.0.11"
-  },
-  "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "4.53.3"
   }
 }

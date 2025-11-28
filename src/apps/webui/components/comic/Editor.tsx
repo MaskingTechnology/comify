@@ -1,5 +1,5 @@
 
-import { Button, Column, Panel, Row } from '^/webui/designsystem';
+import { Button, Column, Panel, Row } from '@maskingtech/designsystem';
 
 import type { CancelHandler, CreateHandler } from './hooks/useCreateHandler';
 import useCreateHandler from './hooks/useCreateHandler';

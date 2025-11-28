@@ -1,5 +1,5 @@
 
-import logger from '^/integrations/logging';
+import logger from '@theshelf/logging';
 
 import create from '../create';
 import { FULL_NAME_MAX_LENGTH } from '../definitions';

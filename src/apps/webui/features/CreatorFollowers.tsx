@@ -1,8 +1,8 @@
 
 import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
 
+import { Column } from '@maskingtech/designsystem';
 import { OrderAndSearchRow, PullToRefresh, RelationPanelList, ResultSet, ScrollLoader } from '^/webui/components';
-import { Column } from '^/webui/designsystem';
 
 import useCreatorFollowers from './hooks/useCreatorFollowers';
 import useEstablishRelation from './hooks/useEstablishRelation';
@@ -25,7 +25,7 @@ export default function Feature({ creator }: Props)
 
     return <Column gap='small' alignX='stretch'>
         { /* eslint-disable-next-line @typescript-eslint/no-empty-function */}
-        <OrderAndSearchRow selected='recent' onOrderChange={reorderList} onSearchChange={() => { }} />
+        <OrderAndSearchRow selected='recent' onOrderChange={reorderList} onSearchChange={() => {}} />
         <PullToRefresh onRefresh={refresh}>
             <ScrollLoader onLoad={getMoreRelations} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
                 <ResultSet data={relations} isLoading={isLoading}>

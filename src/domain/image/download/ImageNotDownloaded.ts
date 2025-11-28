@@ -1,5 +1,5 @@
 
-import { ServerError } from '^/integrations/runtime';
+import { ServerError } from '^/integrations/runtime/';
 
 export default class ImageNotDownloaded extends ServerError
 {

@@ -1,6 +1,6 @@
 
-import type { ValidationSchema } from '^/integrations/validation';
-import validator from '^/integrations/validation';
+import type { ValidationSchema } from '@theshelf/validation';
+import validator from '@theshelf/validation';
 
 import { MESSAGE_MAX_LENGTH } from '../definitions';
 import InvalidComment from './InvalidComment';

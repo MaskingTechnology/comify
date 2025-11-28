@@ -1,5 +1,5 @@
 
-import { Ruler, Tab, Tabs } from '^/webui/designsystem';
+import { Ruler, Tab, Tabs } from '@maskingtech/designsystem';
 
 import { usePathParam } from '^/webui/hooks';
 

@@ -1,6 +1,6 @@
 
-import type { ValidationSchema } from '^/integrations/validation';
-import validator from '^/integrations/validation';
+import type { ValidationSchema } from '@theshelf/validation';
+import validator from '@theshelf/validation';
 
 import InvalidRange from './InvalidRange';
 import type { Range } from './types';

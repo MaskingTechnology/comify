@@ -1,6 +1,6 @@
 
-import type { RecordQuery } from '^/integrations/database';
-import database from '^/integrations/database';
+import type { RecordQuery } from '@theshelf/database';
+import database from '@theshelf/database';
 
 import { RECORD_TYPE } from '../definitions';
 import PostNotFound from '../PostNotFound';

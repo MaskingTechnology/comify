@@ -1,5 +1,5 @@
 
-import notificationService from '^/integrations/notification';
+import notificationService from '@theshelf/notification';
 
 import NotificationHealthCheck from './healthchecks/NotificationHealthCheck';
 

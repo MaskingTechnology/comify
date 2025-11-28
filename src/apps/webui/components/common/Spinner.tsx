@@ -1,5 +1,5 @@
 
-import { Panel, Row, Spinner } from '^/webui/designsystem';
+import { Panel, Row, Spinner } from '@maskingtech/designsystem';
 
 type Props = {
     readonly active?: boolean;

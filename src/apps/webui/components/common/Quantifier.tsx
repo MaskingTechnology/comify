@@ -1,5 +1,5 @@
 
-import { Text } from '^/webui/designsystem';
+import { Text } from '@maskingtech/designsystem';
 
 import CompactNumber from './CompactNumber';
 

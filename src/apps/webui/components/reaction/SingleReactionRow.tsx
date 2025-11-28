@@ -1,5 +1,5 @@
 
-import { ClickArea, Row, Text } from '^/webui/designsystem';
+import { ClickArea, Row, Text } from '@maskingtech/designsystem';
 
 type Props = {
     readonly onShowClick: () => void;

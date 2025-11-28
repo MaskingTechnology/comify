@@ -1,7 +1,7 @@
 
 import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
 
-import { Row } from '^/webui/designsystem';
+import { Row } from '@maskingtech/designsystem';
 
 import CreatorIdentity from '../creator/FullIdentity';
 import LogoutButton from './LogoutButton';

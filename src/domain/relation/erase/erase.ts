@@ -1,5 +1,5 @@
 
-import database from '^/integrations/database';
+import database from '@theshelf/database';
 
 import { RECORD_TYPE } from '../definitions';
 

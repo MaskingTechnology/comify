@@ -1,5 +1,5 @@
 
-import { Column, Row } from '^/webui/designsystem';
+import { Column, Row } from '@maskingtech/designsystem';
 
 import createActiveIcon from '^/webui/assets/images/navigation/create-active.svg';
 import createInactiveIcon from '^/webui/assets/images/navigation/create-inactive.svg';

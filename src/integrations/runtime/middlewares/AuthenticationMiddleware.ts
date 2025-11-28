@@ -2,7 +2,7 @@
 import type { Middleware, NextHandler, Request } from 'jitar';
 import { Response, Unauthorized } from 'jitar';
 
-import type { IdentityProvider, Session } from '^/integrations/authentication';
+import type { IdentityProvider, Session } from '@theshelf/authentication';
 import { generateKey } from '^/integrations/utilities/crypto';
 
 type AuthProcedures = {

@@ -1,7 +1,7 @@
 
 import type { ReactNode } from 'react';
 
-import { Border, Modal } from '^/webui/designsystem';
+import { Border, Modal } from '@maskingtech/designsystem';
 
 type Props = {
     readonly open: boolean,

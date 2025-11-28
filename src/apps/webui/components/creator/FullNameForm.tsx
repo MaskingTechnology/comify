@@ -1,5 +1,5 @@
 
-import { Input, Label, Panel, TextBox } from '^/webui/designsystem';
+import { Input, Label, Panel, TextBox } from '@maskingtech/designsystem';
 
 import Form from '../common/Form';
 

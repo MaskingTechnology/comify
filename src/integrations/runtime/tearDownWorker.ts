@@ -1,6 +1,6 @@
 
-import database from '^/integrations/database';
-import fileStore from '^/integrations/filestore';
+import database from '@theshelf/database';
+import fileStore from '@theshelf/filestore';
 
 const disconnections = [];
 

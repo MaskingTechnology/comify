@@ -2,7 +2,7 @@
 import type { AggregatedData as AggregatedNotificationData } from '^/domain/notification/aggregate';
 import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
-import { Column } from '^/webui/designsystem';
+import { Column } from '@maskingtech/designsystem';
 
 import Panel from './Panel';
 

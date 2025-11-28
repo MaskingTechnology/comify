@@ -1,5 +1,5 @@
 
-import { Paragraph, Text } from '^/webui/designsystem';
+import { Paragraph, Text } from '@maskingtech/designsystem';
 
 type Props = {
     readonly isFollowing: boolean;

@@ -1,8 +1,8 @@
 
 import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
+import { Column } from '@maskingtech/designsystem';
 import { OrderAndSearchRow, PullToRefresh, RelationPanelList, ResultSet, ScrollLoader } from '^/webui/components';
-import { Column } from '^/webui/designsystem';
 
 import useEstablishRelation from './hooks/useEstablishRelation';
 import useExploreCreators from './hooks/useExploreCreators';
@@ -21,7 +21,7 @@ export default function Feature()
 
     return <Column gap='small' alignX='stretch'>
         { /* eslint-disable-next-line @typescript-eslint/no-empty-function */}
-        <OrderAndSearchRow selected='popular' onOrderChange={reorderList} onSearchChange={() => { }} />
+        <OrderAndSearchRow selected='popular' onOrderChange={reorderList} onSearchChange={() => {}} />
         <PullToRefresh onRefresh={refresh}>
             <ScrollLoader onLoad={getMoreRelations} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
                 <ResultSet data={relations} isLoading={isLoading}>

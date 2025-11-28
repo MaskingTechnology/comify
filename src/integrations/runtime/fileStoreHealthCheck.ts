@@ -1,5 +1,5 @@
 
-import fileStore from '^/integrations/filestore';
+import fileStore from '@theshelf/filestore';
 
 import FileStoreHealthCheck from './healthchecks/FileStoreHealthCheck';
 

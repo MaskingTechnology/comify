@@ -2,8 +2,8 @@
 import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
 import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
+import { Column, Ruler, Tab, Tabs } from '@maskingtech/designsystem';
 import { LoadingContainer, RelationProfile } from '^/webui/components';
-import { Column, Ruler, Tab, Tabs } from '^/webui/designsystem';
 
 import { usePathParam } from '^/webui/hooks';
 

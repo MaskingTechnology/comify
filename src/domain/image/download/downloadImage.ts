@@ -1,5 +1,5 @@
 
-import httpClient from '^/integrations/http';
+import httpClient from '@theshelf/http';
 
 import ImageNotDownloaded from './ImageNotDownloaded';
 

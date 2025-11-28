@@ -1,5 +1,5 @@
 
-import { ClickArea, Row } from '^/webui/designsystem';
+import { ClickArea, Row } from '@maskingtech/designsystem';
 
 import CompactNumber from '../common/CompactNumber';
 

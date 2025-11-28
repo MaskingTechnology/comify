@@ -1,6 +1,6 @@
 
-import type { RecordSort } from '^/integrations/database';
-import database, { SortDirections } from '^/integrations/database';
+import type { RecordSort } from '@theshelf/database';
+import database, { SortDirections } from '@theshelf/database';
 
 import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';

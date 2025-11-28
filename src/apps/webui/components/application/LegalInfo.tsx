@@ -1,5 +1,5 @@
 
-import { Column, Link, Paragraph } from '^/webui/designsystem';
+import { Column, Link, Paragraph } from '@maskingtech/designsystem';
 
 export default function Component()
 {
