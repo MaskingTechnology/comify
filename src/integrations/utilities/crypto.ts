@@ -1,5 +1,5 @@
 
-import crypto from 'crypto';
+import crypto from 'node:crypto';
 
 function generateUUID(): string
 {
