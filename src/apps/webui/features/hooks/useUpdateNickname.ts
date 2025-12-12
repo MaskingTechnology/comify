@@ -7,7 +7,7 @@ import updateNickname from '^/domain/creator/updateNickname';
 import NicknameAlreadyExists from '^/domain/creator/updateNickname/NicknameAlreadyExists';
 import { tenant } from '^/domain/tenant';
 
-import { useAppContext } from '^/webui/contexts';
+import { useAppContext } from '^/contexts';
 
 export default function useUpdateNickname()
 {

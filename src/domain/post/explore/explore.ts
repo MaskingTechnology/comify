@@ -1,7 +1,7 @@
 
-import type { Requester } from '^/domain/authentication';
-import retrieveRelationsByFollower from '^/domain/relation/getFollowing';
-import type { Tenant } from '^/domain/tenant';
+import type { Requester } from '~/authentication';
+import retrieveRelationsByFollower from '~/relation/getFollowing';
+import type { Tenant } from '~/tenant';
 
 import type { DataModel } from '../types';
 import retrieveData from './retrieveData';

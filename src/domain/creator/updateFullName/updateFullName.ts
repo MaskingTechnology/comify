@@ -1,5 +1,5 @@
 
-import type { Requester } from '^/domain/authentication';
+import type { Requester } from '~/authentication';
 
 import update from '../update';
 import validateData from './validateData';

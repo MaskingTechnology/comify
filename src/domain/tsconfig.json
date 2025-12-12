@@ -1,7 +1,11 @@
 {
     "extends": "../tsconfig.json",
     "compilerOptions": {
-      "noEmit": false
+      "noEmit": false,
+      "paths": {
+        "~/*": ["./*"],
+        "^/integrations/*": ["../integrations/*"]
+      }
     },
     "include": ["./"]
 }

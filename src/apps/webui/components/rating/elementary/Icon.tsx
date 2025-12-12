@@ -1,7 +1,7 @@
 
 import { Image } from '@maskingtech/designsystem';
-import ratedIcon from '^/webui/assets/images/icons/rated.svg';
-import unratedIcon from '^/webui/assets/images/icons/unrated.svg';
+import ratedIcon from '^/assets/images/icons/rated.svg';
+import unratedIcon from '^/assets/images/icons/unrated.svg';
 
 type Props = {
     readonly isRated: boolean;

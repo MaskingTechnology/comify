@@ -1,6 +1,6 @@
 
 import { Image } from '@maskingtech/designsystem';
-import icon from '^/webui/assets/images/icons/reactions.svg';
+import icon from '^/assets/images/icons/reactions.svg';
 
 export default function Component()
 {

@@ -1,6 +1,6 @@
 
 import { Image } from '@maskingtech/designsystem';
-import logoImage from '^/webui/assets/images/logo.svg';
+import logoImage from '^/assets/images/logo.svg';
 
 type Props = {
     readonly size: 'small' | 'large';

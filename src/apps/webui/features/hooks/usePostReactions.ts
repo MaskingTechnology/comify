@@ -6,7 +6,7 @@ import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggrega
 import getReactionsByPost from '^/domain/post/getByParentAggregated';
 import { tenant } from '^/domain/tenant';
 
-import { usePagination } from '^/webui/hooks';
+import { usePagination } from '^/hooks';
 
 export default function usePostReactions(post: AggregatedPostData)
 {

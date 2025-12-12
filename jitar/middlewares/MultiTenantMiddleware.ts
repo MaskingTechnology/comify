@@ -8,7 +8,7 @@ import getByOrigin from '^/domain/tenant/getByOriginConverted';
 const GEY_BY_ORIGIN_FQN = 'domain/tenant/getByOriginConverted';
 const TENANT_PARAMETER = '*tenant';
 
-export default class TenantMiddleware implements Middleware
+export default class MultiTenantMiddleware implements Middleware
 {
     readonly #tenants = new Map<string, Tenant>();
 

@@ -5,7 +5,7 @@ import { requester } from '^/domain/authentication';
 import getPostsFollowing from '^/domain/post/getByFollowingAggregated';
 import { tenant } from '^/domain/tenant';
 
-import { usePagination } from '^/webui/hooks';
+import { usePagination } from '^/hooks';
 
 export default function usePostsFollowing()
 {

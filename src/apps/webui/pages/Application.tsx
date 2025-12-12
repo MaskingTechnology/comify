@@ -2,9 +2,9 @@
 import type { ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { ApplicationFooter, ApplicationHeader, ApplicationSidebar } from '^/webui/components';
-import { useAppContext } from '^/webui/contexts/AppContext';
-import { SidebarLayout } from '^/webui/layouts';
+import { ApplicationFooter, ApplicationHeader, ApplicationSidebar } from '^/components';
+import { useAppContext } from '^/contexts/AppContext';
+import { SidebarLayout } from '^/layouts';
 
 type Props = {
     readonly children?: ReactNode;

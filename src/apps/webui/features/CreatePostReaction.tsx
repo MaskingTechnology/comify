@@ -2,7 +2,7 @@
 import type { AggregatedData as AggregatedPostData, AggregatedData as AggregatedReactionData } from '^/domain/post/aggregate';
 
 import { Ruler, Tab, Tabs } from '@maskingtech/designsystem';
-import { ComicEditor, CommentForm } from '^/webui/components';
+import { ComicEditor, CommentForm } from '^/components';
 
 import useCreatePostComicReaction from './hooks/useCreatePostComicReaction';
 import useCreatePostCommentReaction from './hooks/useCreatePostCommentReaction';

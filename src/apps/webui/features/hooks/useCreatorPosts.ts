@@ -6,7 +6,7 @@ import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/a
 import getCreatorPosts from '^/domain/post/getByCreatorAggregated';
 import { tenant } from '^/domain/tenant';
 
-import { usePagination } from '^/webui/hooks';
+import { usePagination } from '^/hooks';
 
 export default function useCreatorPosts(creator: AggregatedCreatorData)
 {

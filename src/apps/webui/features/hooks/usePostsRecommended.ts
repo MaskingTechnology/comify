@@ -5,7 +5,7 @@ import { requester } from '^/domain/authentication';
 import getPostsRecommended from '^/domain/post/getRecommendedAggregated';
 import { tenant } from '^/domain/tenant';
 
-import { usePagination } from '^/webui/hooks';
+import { usePagination } from '^/hooks';
 
 export default function usePostsRecommended()
 {

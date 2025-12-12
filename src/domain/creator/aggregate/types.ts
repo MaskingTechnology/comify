@@ -1,6 +1,6 @@
 
-import type { DataModel as metricsData } from '^/domain/creator.metrics/types';
-import type { ImageData } from '^/domain/image';
+import type { DataModel as metricsData } from '~/creator.metrics/types';
+import type { ImageData } from '~/image';
 
 import type { DataModel } from '../types';
 

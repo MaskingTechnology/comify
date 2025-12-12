@@ -1,5 +1,5 @@
 
-import { subscribe as subscribeToRatingToggled } from '^/domain/rating/toggle';
+import { subscribe as subscribeToRatingToggled } from '~/rating/toggle';
 
 import updateRatings from './updateRatings';
 

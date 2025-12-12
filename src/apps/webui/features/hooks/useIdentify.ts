@@ -7,7 +7,7 @@ import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/a
 import getMe from '^/domain/creator/getMeAggregated';
 import { tenant } from '^/domain/tenant';
 
-import { useAppContext } from '^/webui/contexts';
+import { useAppContext } from '^/contexts';
 
 export default function useIdentify()
 {

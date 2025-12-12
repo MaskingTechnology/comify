@@ -5,7 +5,7 @@ import { requester } from '^/domain/authentication';
 import getRecentNotifications from '^/domain/notification/getRecentAggregated';
 import { tenant } from '^/domain/tenant';
 
-import { usePagination } from '^/webui/hooks';
+import { usePagination } from '^/hooks';
 
 export default function useNotifications()
 {

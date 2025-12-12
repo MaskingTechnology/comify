@@ -2,7 +2,7 @@
 import type { ReactNode } from 'react';
 
 import { Button, Form, Row } from '@maskingtech/designsystem';
-import { useForm } from '^/webui/hooks';
+import { useForm } from '^/hooks';
 
 type Props = {
     readonly onSubmit: (data: FormData) => Promise<void>;

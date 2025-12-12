@@ -6,7 +6,7 @@ import requester from '^/domain/authentication/requester';
 import get from '^/domain/post/getByIdAggregated';
 import { tenant } from '^/domain/tenant';
 
-import { useLoadData } from '^/webui/hooks';
+import { useLoadData } from '^/hooks';
 
 export default function useReaction()
 {

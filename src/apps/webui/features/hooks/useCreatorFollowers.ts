@@ -6,7 +6,7 @@ import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/a
 import getFollowers from '^/domain/relation/getFollowersAggregated';
 import { tenant } from '^/domain/tenant';
 
-import { usePagination } from '^/webui/hooks';
+import { usePagination } from '^/hooks';
 
 export default function useCreatorFollowers(creator: AggregatedCreatorData)
 {

@@ -7,8 +7,8 @@ import getCreator from '^/domain/creator/getByNicknameAggregated';
 import getRelation from '^/domain/relation/getAggregated';
 import { tenant } from '^/domain/tenant';
 
-import { useAppContext } from '^/webui/contexts';
-import { useLoadData } from '^/webui/hooks';
+import { useAppContext } from '^/contexts';
+import { useLoadData } from '^/hooks';
 
 export default function useCreator()
 {

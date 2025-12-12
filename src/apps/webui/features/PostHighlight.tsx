@@ -4,8 +4,8 @@ import { useCallback } from 'react';
 import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
 
 import { Column, Ruler } from '@maskingtech/designsystem';
-import { ConfirmationPanel, LoadingContainer, PostDetailsPanel, PostLargePanel, SingleReactionRow } from '^/webui/components';
-import { useAppContext } from '^/webui/contexts';
+import { ConfirmationPanel, LoadingContainer, PostDetailsPanel, PostLargePanel, SingleReactionRow } from '^/components';
+import { useAppContext } from '^/contexts';
 
 import useEstablishRelation from './hooks/useEstablishRelation';
 import useHighlightReaction from './hooks/useHighlight';

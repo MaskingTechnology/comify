@@ -1,7 +1,7 @@
 
 import identityProvider from '@theshelf/authentication';
 
-import AuthenticationMiddleware from './middlewares/AuthenticationMiddleware';
+import { AuthenticationMiddleware } from '@jitar-plugins/authentication';
 
 const authProcedures = {
     loginUrl: 'domain/authentication/getLoginUrl',

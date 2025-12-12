@@ -1,7 +1,7 @@
 
 import { useCallback, useState } from 'react';
 
-import type { Editor } from '^/webui/editor';
+import type { Editor } from '^/editor';
 
 export type CreateHandler = (imageData: string) => Promise<void>;
 export type CancelHandler = () => void;

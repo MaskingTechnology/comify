@@ -1,7 +1,7 @@
 
 import { Ruler, Tab, Tabs } from '@maskingtech/designsystem';
 
-import { usePathParam } from '^/webui/hooks';
+import { usePathParam } from '^/hooks';
 
 import TimelineFollowing from './TimelineFollowing';
 import TimelineForYou from './TimelineForYou';

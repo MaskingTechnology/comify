@@ -2,7 +2,7 @@
 import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
 
 import { Column } from '@maskingtech/designsystem';
-import { OrderAndSearchRow, PullToRefresh, RelationPanelList, ResultSet, ScrollLoader } from '^/webui/components';
+import { OrderAndSearchRow, PullToRefresh, RelationPanelList, ResultSet, ScrollLoader } from '^/components';
 
 import useCreatorFollowers from './hooks/useCreatorFollowers';
 import useEstablishRelation from './hooks/useEstablishRelation';

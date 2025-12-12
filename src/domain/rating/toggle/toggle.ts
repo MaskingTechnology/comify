@@ -1,6 +1,6 @@
 
-import type { Requester } from '^/domain/authentication';
-import type { Tenant } from '^/domain/tenant';
+import type { Requester } from '~/authentication';
+import type { Tenant } from '~/tenant';
 
 import getData from './getData';
 import switchOff from './switchOff';

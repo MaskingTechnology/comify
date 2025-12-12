@@ -4,8 +4,8 @@ import { useCallback } from 'react';
 import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
 
 import { Column } from '@maskingtech/designsystem';
-import { OrderAndAddRow, PostPanelList, PullToRefresh, ResultSet, ScrollLoader } from '^/webui/components';
-import { useAppContext } from '^/webui/contexts';
+import { OrderAndAddRow, PostPanelList, PullToRefresh, ResultSet, ScrollLoader } from '^/components';
+import { useAppContext } from '^/contexts';
 
 import CreatePostReaction from './CreatePostReaction';
 import useEstablishRelation from './hooks/useEstablishRelation';

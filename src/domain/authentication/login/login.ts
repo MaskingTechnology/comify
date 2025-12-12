@@ -1,9 +1,9 @@
 
 import type { Identity } from '@theshelf/authentication';
 
-import getCreatorByEmail from '^/domain/creator/getByEmail';
-import registerCreator from '^/domain/creator/register';
-import type { Tenant } from '^/domain/tenant';
+import getCreatorByEmail from '~/creator/getByEmail';
+import registerCreator from '~/creator/register';
+import type { Tenant } from '~/tenant';
 
 import type { Requester } from '../types';
 

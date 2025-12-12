@@ -36,10 +36,25 @@
   ],
   "dependencies": {
     "dayjs": "1.11.19",
-    "jitar": "0.10.3",
     "react": "19.2.0",
     "react-dom": "19.2.0",
-    "react-router-dom": "7.9.6"
+    "react-router-dom": "7.9.6",
+    "jitar": "0.10.3",
+    "@maskingtech/designsystem": "0.0.2",
+    "@theshelf/authentication": "0.0.3",
+    "@theshelf/database": "0.0.3",
+    "@theshelf/eventbroker": "0.0.3",
+    "@theshelf/filestore": "0.0.3",
+    "@theshelf/http": "0.0.3",
+    "@theshelf/logging": "0.0.3",
+    "@theshelf/notification": "0.0.3",
+    "@theshelf/validation": "0.0.3",
+    "@jitar-plugins/authentication": "0.0.3",
+    "@jitar-plugins/database": "0.0.3",
+    "@jitar-plugins/eventbroker": "0.0.3",
+    "@jitar-plugins/filestore": "0.0.3",
+    "@jitar-plugins/http": "0.0.3",
+    "@jitar-plugins/notification": "0.0.3"
   },
   "devDependencies": {
     "@eslint/js": "9.39.1",

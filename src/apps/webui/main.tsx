@@ -6,7 +6,7 @@ import App from './App';
 import { TenantContainer } from './components';
 import { AppContextProvider } from './contexts';
 
-import './designsystem/designsystem.css';
+import '@maskingtech/designsystem/style.css';
 import './main.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

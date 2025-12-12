@@ -1,6 +1,6 @@
 
 import { Column } from '@maskingtech/designsystem';
-import { PostPanelList, PullToRefresh, ResultSet, ScrollLoader } from '^/webui/components';
+import { PostPanelList, PullToRefresh, ResultSet, ScrollLoader } from '^/components';
 
 import useEstablishRelation from './hooks/useEstablishRelation';
 import usePostsRecommended from './hooks/usePostsRecommended';

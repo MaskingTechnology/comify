@@ -1,5 +1,5 @@
 
-import { LogoutPanel } from '^/webui/components';
+import { LogoutPanel } from '^/components';
 
 import useLogout from './hooks/useLogout';
 

@@ -1,8 +1,8 @@
 
-import { subscribe as subscribeToPostCreated } from '^/domain/post/create';
-import { subscribe as subscribeToPostRemoved } from '^/domain/post/remove';
-import { subscribe as subscribeToPostRated } from '^/domain/rating/toggle';
-import { subscribe as subscribeToRelationEstablished } from '^/domain/relation/establish';
+import { subscribe as subscribeToPostCreated } from '~/post/create';
+import { subscribe as subscribeToPostRemoved } from '~/post/remove';
+import { subscribe as subscribeToPostRated } from '~/rating/toggle';
+import { subscribe as subscribeToRelationEstablished } from '~/relation/establish';
 
 import reactedToPost from './createdPost';
 import ratedPost from './ratedPost';

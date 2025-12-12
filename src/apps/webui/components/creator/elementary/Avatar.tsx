@@ -1,6 +1,6 @@
 
 import { Avatar } from '@maskingtech/designsystem';
-import portraitImage from '^/webui/assets/images/portrait.svg';
+import portraitImage from '^/assets/images/portrait.svg';
 
 type Props = {
     readonly url?: string;

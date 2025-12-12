@@ -2,7 +2,7 @@
 import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
 import { Column } from '@maskingtech/designsystem';
-import { OrderAndSearchRow, PullToRefresh, RelationPanelList, ResultSet, ScrollLoader } from '^/webui/components';
+import { OrderAndSearchRow, PullToRefresh, RelationPanelList, ResultSet, ScrollLoader } from '^/components';
 
 import useEstablishRelation from './hooks/useEstablishRelation';
 import useExploreCreators from './hooks/useExploreCreators';

@@ -1,6 +1,6 @@
 
 import { Button, Column, Image, Panel, Row, Text } from '@maskingtech/designsystem';
-import introductionImage from '^/webui/assets/images/introduction.png';
+import introductionImage from '^/assets/images/introduction.png';
 
 import Logo from './Logo';
 

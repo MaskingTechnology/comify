@@ -1,6 +1,6 @@
 
 import { Image, Panel, Row, Text } from '@maskingtech/designsystem';
-import noResultImage from '^/webui/assets/images/noresult.svg';
+import noResultImage from '^/assets/images/noresult.svg';
 
 export default function Component()
 {

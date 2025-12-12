@@ -1,6 +1,6 @@
 
-import type { Requester } from '^/domain/authentication';
-import type { Tenant } from '^/domain/tenant';
+import type { Requester } from '~/authentication';
+import type { Tenant } from '~/tenant';
 
 import type { AggregatedData } from '../aggregate';
 import aggregate from '../aggregate';

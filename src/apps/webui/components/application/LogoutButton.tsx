@@ -1,6 +1,6 @@
 
 import { ClickArea, Image } from '@maskingtech/designsystem';
-import logoutIcon from '^/webui/assets/images/icons/logout.svg';
+import logoutIcon from '^/assets/images/icons/logout.svg';
 
 type Props = {
     readonly onLogout: () => void;

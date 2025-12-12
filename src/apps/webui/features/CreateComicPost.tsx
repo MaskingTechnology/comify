@@ -1,6 +1,6 @@
 
 import { Column } from '@maskingtech/designsystem';
-import { ComicEditor } from '^/webui/components';
+import { ComicEditor } from '^/components';
 
 import useAddComicPost from './hooks/useAddComicPost';
 

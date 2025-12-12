@@ -2,7 +2,7 @@
 import type { ValidationSchema } from '@theshelf/validation';
 import validator from '@theshelf/validation';
 
-import { requiredIdValidation } from '^/domain/definitions';
+import { requiredIdValidation } from '~/definitions';
 
 import InvalidComic from './InvalidComic';
 import type { ValidationModel } from './types';

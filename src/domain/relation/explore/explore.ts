@@ -1,7 +1,7 @@
 
-import type { Requester } from '^/domain/authentication';
-import getOtherCreators from '^/domain/creator/getOthers';
-import type { Tenant } from '^/domain/tenant';
+import type { Requester } from '~/authentication';
+import getOtherCreators from '~/creator/getOthers';
+import type { Tenant } from '~/tenant';
 
 import type { SortOrder } from '../definitions';
 import getFollowing from '../getFollowing';

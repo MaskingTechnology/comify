@@ -1,6 +1,6 @@
 
 import { Column } from '@maskingtech/designsystem';
-import { ApplicationIntroduction, ApplicationLegalInfo } from '^/webui/components';
+import { ApplicationIntroduction, ApplicationLegalInfo } from '^/components';
 
 import useNavigateHome from './hooks/useNavigateHome';
 

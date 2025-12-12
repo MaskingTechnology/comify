@@ -5,7 +5,7 @@ import { requester } from '^/domain/authentication';
 import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
 import updateFullName from '^/domain/creator/updateFullName';
 
-import { useAppContext } from '^/webui/contexts';
+import { useAppContext } from '^/contexts';
 
 export default function useUpdateFullName()
 {

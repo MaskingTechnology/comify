@@ -2,7 +2,7 @@
 import type { AggregatedData as AggregatedNotificationData } from '^/domain/notification/aggregate';
 
 import { Column } from '@maskingtech/designsystem';
-import { NotificationPanelList, PullToRefresh, ResultSet, ScrollLoader } from '^/webui/components';
+import { NotificationPanelList, PullToRefresh, ResultSet, ScrollLoader } from '^/components';
 
 import useEstablishRelation from './hooks/useEstablishRelation';
 import useNotifications from './hooks/useNotifications';

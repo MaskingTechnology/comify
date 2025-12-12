@@ -2,7 +2,7 @@
 import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
 
 import { Column } from '@maskingtech/designsystem';
-import { PostPanelGrid, PullToRefresh, ResultSet, ScrollLoader } from '^/webui/components';
+import { PostPanelGrid, PullToRefresh, ResultSet, ScrollLoader } from '^/components';
 
 import useCreatorPosts from './hooks/useCreatorPosts';
 import useTogglePostRating from './hooks/useTogglePostRating';

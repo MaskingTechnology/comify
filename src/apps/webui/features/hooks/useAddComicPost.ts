@@ -6,7 +6,7 @@ import { requester } from '^/domain/authentication';
 import createPostWithComic from '^/domain/post/createWithComic';
 import { tenant } from '^/domain/tenant';
 
-import { useAppContext } from '^/webui/contexts';
+import { useAppContext } from '^/contexts';
 
 export default function useAddComicPost()
 {

@@ -3,9 +3,9 @@ import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/a
 import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
 import { Column, Ruler, Tab, Tabs } from '@maskingtech/designsystem';
-import { LoadingContainer, RelationProfile } from '^/webui/components';
+import { LoadingContainer, RelationProfile } from '^/components';
 
-import { usePathParam } from '^/webui/hooks';
+import { usePathParam } from '^/hooks';
 
 import CreatorComics from './CreatorComics';
 import CreatorFollowers from './CreatorFollowers';

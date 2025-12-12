@@ -1,7 +1,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import { Editor } from '^/webui/editor';
+import { Editor } from '^/editor';
 
 export default function useEditor()
 {

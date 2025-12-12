@@ -1,8 +1,8 @@
 
-import type { AggregatedData as AggregatedComicData } from '^/domain/comic/aggregate';
-import type { DataModel as CommentData } from '^/domain/comment';
-import type { DataModel as MetricsData } from '^/domain/post.metrics';
-import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
+import type { AggregatedData as AggregatedComicData } from '~/comic/aggregate';
+import type { DataModel as CommentData } from '~/comment';
+import type { DataModel as MetricsData } from '~/post.metrics';
+import type { AggregatedData as AggregatedRelationData } from '~/relation/aggregate';
 
 type AggregatedData = {
     readonly id: string;

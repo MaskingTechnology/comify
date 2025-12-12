@@ -1,7 +1,7 @@
 
-import { getQueryParameter } from '^/integrations/utilities/webbrowser';
+import { getQueryParameter } from '~/utilities/webbrowser';
 
-import RequesterMiddleware from './middlewares/RequesterMiddleware';
+import { RequesterMiddleware } from '@jitar-plugins/authentication';
 
 const key = getQueryParameter('key');
 const authorization = key !== undefined ? `Bearer ${key}` : undefined;

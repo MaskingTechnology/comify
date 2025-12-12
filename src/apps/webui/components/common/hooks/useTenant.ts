@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 import { tenant } from '^/domain/tenant';
 import getByOriginConverted from '^/domain/tenant/getByOriginConverted';
 
-import { useLoadData } from '^/webui/hooks';
+import { useLoadData } from '^/hooks';
 
 export function useTenant()
 {

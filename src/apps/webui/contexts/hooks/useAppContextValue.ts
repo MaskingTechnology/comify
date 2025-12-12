@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 
 import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
 
-import { useModal } from '^/webui/hooks/useModal';
+import { useModal } from '^/hooks/useModal';
 
 export default function useAppContextValue(initialIdentity: AggregatedCreatorData | undefined)
 {

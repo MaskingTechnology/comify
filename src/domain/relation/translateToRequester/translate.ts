@@ -1,5 +1,5 @@
 
-import type { Requester } from '^/domain/authentication';
+import type { Requester } from '~/authentication';
 
 import get from '../get';
 import type { DataModel } from '../types';

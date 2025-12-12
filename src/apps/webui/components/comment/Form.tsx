@@ -1,6 +1,6 @@
 
 import { Button, Column, Panel, Row, TextArea } from '@maskingtech/designsystem';
-import { useFocusOnMount } from '^/webui/hooks';
+import { useFocusOnMount } from '^/hooks';
 
 import type { CancelHandler, CreateHandler } from './hooks/useCreateHandler';
 import useCreateHandler from './hooks/useCreateHandler';

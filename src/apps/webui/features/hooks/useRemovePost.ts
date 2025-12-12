@@ -2,7 +2,7 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useAppContext } from '^/webui/contexts';
+import { useAppContext } from '^/contexts';
 
 import { requester } from '^/domain/authentication';
 import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';

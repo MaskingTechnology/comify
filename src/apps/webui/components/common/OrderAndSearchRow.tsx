@@ -1,6 +1,6 @@
 
 import { Row, TextBox } from '@maskingtech/designsystem';
-import { useDebouncedValue } from '^/webui/hooks';
+import { useDebouncedValue } from '^/hooks';
 
 import OrderSelection from './elementary/OrderSelection';
 

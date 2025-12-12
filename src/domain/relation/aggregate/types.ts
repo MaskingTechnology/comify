@@ -1,5 +1,5 @@
 
-import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
+import type { AggregatedData as AggregatedCreatorData } from '~/creator/aggregate';
 
 import type { DataModel } from '../types';
 
