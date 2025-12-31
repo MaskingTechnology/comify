@@ -1,11 +1,10 @@
 
 import logger from '@theshelf/logging';
 
-import type { Requester } from '~/authentication';
-import type { Tenant } from '~/tenant';
+import type { Requester } from '^/domain/authentication';
+import type { Tenant } from '^/domain/tenant';
 
 import getById from '../getById';
-import PostNotFound from '../PostNotFound';
 import deleteData from './deleteData';
 import isNotOwner from './isNotOwner';
 import publish from './publish';
@@ -24,7 +23,8 @@ export default async function remove(tenant: Tenant, requester: Requester, id: s
 
         if (isNotOwner(post, requester.id))
         {
-            throw new PostNotFound();
+            // Fail silently
+            return;
         }
 
         await deleteData(id);

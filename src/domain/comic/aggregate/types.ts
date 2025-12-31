@@ -1,5 +1,5 @@
 
-import type { ImageData } from '~/image';
+import type { ImageData } from '^/domain/image';
 
 import type { DataModel } from '../types';
 

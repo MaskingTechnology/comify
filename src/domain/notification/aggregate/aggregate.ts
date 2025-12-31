@@ -1,8 +1,8 @@
 
-import type { Requester } from '~/authentication';
-import { default as getPostData } from '~/post/getByIdAggregated';
-import getRelationData from '~/relation/getAggregated';
-import type { Tenant } from '~/tenant';
+import type { Requester } from '^/domain/authentication';
+import { default as getPostData } from '^/domain/post/getByIdAggregated';
+import getRelationData from '^/domain/relation/getAggregated';
+import type { Tenant } from '^/domain/tenant';
 
 import type { DataModel } from '../types';
 import type { AggregatedData } from './types';

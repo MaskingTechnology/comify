@@ -1,6 +1,6 @@
 
-import getCreatorData from '~/creator/getByIdAggregated';
-import type { Tenant } from '~/tenant';
+import getCreatorData from '^/domain/creator/getByIdAggregated';
+import type { Tenant } from '^/domain/tenant';
 
 import type { DataModel } from '../types';
 import type { AggregatedData } from './types';

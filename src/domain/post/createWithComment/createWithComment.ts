@@ -1,7 +1,7 @@
 
-import type { Requester } from '~/authentication';
-import createComment from '~/comment/create';
-import type { Tenant } from '~/tenant';
+import type { Requester } from '^/domain/authentication';
+import createComment from '^/domain/comment/create';
+import type { Tenant } from '^/domain/tenant';
 
 import createPost from '../create';
 

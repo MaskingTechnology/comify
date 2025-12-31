@@ -1,5 +1,5 @@
 
-import { subscribe as subscribeToCreatorRegistered } from '~/creator/register';
+import { subscribe as subscribeToCreatorRegistered } from '^/domain/creator/register';
 
 import create from './create';
 

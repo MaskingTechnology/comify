@@ -13,7 +13,7 @@ export default async function get(followerId: string, followingId: string): Prom
         followingId: { EQUALS: followingId }
     };
 
-    const data = await database.findRecord(RECORD_TYPE, query) as DataModel | undefined;
+    const record = await database.readRecord(RECORD_TYPE, query) as DataModel | undefined;
 
-    return data ?? { id: undefined, followerId, followingId, };
+    return record ?? { id: undefined, followerId, followingId, };
 }

@@ -1,10 +1,10 @@
 
-import { NotFound } from '^/integrations/runtime/';
+import { NotFound } from '^/integrations/errors';
 
 export default class CreatorNotFound extends NotFound
 {
-    constructor(tenantId: string, id: string)
+    constructor()
     {
-        super(`No creator for id: ${id} and tenant '${tenantId}'`);
+        super('Creator not found');
     }
 }

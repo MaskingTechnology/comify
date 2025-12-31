@@ -12,7 +12,7 @@ export default async function exists(creatorId: string, postId: string): Promise
         postId: { EQUALS: postId }
     };
 
-    const data = await database.findRecord(RECORD_TYPE, query, ['id']);
+    const record = await database.readRecord(RECORD_TYPE, query, ['id']);
 
-    return data !== undefined;
+    return record !== undefined;
 }

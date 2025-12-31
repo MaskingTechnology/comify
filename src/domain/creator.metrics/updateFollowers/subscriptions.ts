@@ -1,5 +1,5 @@
 
-import { subscribe as subscribeToRelationEstablished } from '~/relation/establish';
+import { subscribe as subscribeToRelationEstablished } from '^/domain/relation/establish';
 
 import updateFollowerCount from './updateFollowers';
 

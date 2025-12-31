@@ -13,5 +13,5 @@ export default async function getData(creatorId: string, postId: string): Promis
         postId: { EQUALS: postId }
     };
 
-    return database.findRecord(RECORD_TYPE, query) as Promise<DataModel | undefined>;
+    return database.readRecord(RECORD_TYPE, query) as Promise<DataModel | undefined>;
 }

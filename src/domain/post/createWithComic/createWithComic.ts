@@ -1,7 +1,7 @@
 
-import type { Requester } from '~/authentication';
-import createComic from '~/comic/create';
-import type { Tenant } from '~/tenant';
+import type { Requester } from '^/domain/authentication';
+import createComic from '^/domain/comic/create';
+import type { Tenant } from '^/domain/tenant';
 
 import createPost from '../create';
 

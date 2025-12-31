@@ -9,13 +9,13 @@ import type { DataModel } from '../types';
 export default async function getOthers(tenantId: string, ids: string[], order: SortOrder, limit: number, offset: number, search: string | undefined = undefined): Promise<DataModel[]>
 {
     const defaultQuery: RecordQuery = {
-        'AND': [
+        AND: [
             { tenantId: { EQUALS: tenantId } },
             { id: { NOT_IN: ids } }
         ]
     };
     const searchQuery: RecordQuery = {
-        'OR': [
+        OR: [
             { fullName: { CONTAINS: search } },
             { nickname: { CONTAINS: search } }
         ]

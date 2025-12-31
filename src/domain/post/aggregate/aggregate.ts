@@ -1,11 +1,11 @@
 
-import type { Requester } from '~/authentication';
-import getComicData from '~/comic/getByIdAggregated';
-import getCommentData from '~/comment/getById';
-import getMetrics from '~/post.metrics/getByPost';
-import ratingExists from '~/rating/exists';
-import getRelationData from '~/relation/getAggregated';
-import type { Tenant } from '~/tenant';
+import type { Requester } from '^/domain/authentication';
+import getComicData from '^/domain/comic/getByIdAggregated';
+import getCommentData from '^/domain/comment/getById';
+import getMetrics from '^/domain/post.metrics/getByPost';
+import ratingExists from '^/domain/rating/exists';
+import getRelationData from '^/domain/relation/getAggregated';
+import type { Tenant } from '^/domain/tenant';
 
 import type { DataModel } from '../types';
 import type { AggregatedData } from './types';

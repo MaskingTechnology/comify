@@ -14,5 +14,5 @@ export default async function retrieveByStartNickname(tenantId: string, nickname
 
     const sort: RecordSort = { 'nickname': SortDirections.DESCENDING };
 
-    return database.findRecord(RECORD_TYPE, query, undefined, sort) as Promise<DataModel | undefined>;
+    return database.readRecord(RECORD_TYPE, query, undefined, sort) as Promise<DataModel | undefined>;
 };

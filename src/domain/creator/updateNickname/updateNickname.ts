@@ -1,6 +1,8 @@
 
-import type { Requester } from '~/authentication';
-import type { Tenant } from '~/tenant';
+import logger from '@theshelf/logging';
+
+import type { Requester } from '^/domain/authentication';
+import type { Tenant } from '^/domain/tenant';
 
 import cleanNickname from '../cleanNickname';
 import update from '../update';
@@ -16,7 +18,9 @@ export default async function updateNickname(tenant: Tenant, requester: Requeste
 
     if (data !== undefined)
     {
-        throw new NicknameAlreadyExists(nickname);
+        logger.logDebug(`Nickname of creator with id '${requester.id}' could not be updated because nickname '${nickname}' already exists.`);
+
+        throw new NicknameAlreadyExists();
     }
 
     return update(requester.id, { nickname });

@@ -1,5 +1,7 @@
 
-import database, { type RecordQuery } from '@theshelf/database';
+import type { RecordQuery } from '@theshelf/database';
+import database from '@theshelf/database';
+import logger from '@theshelf/logging';
 
 import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';
@@ -8,16 +10,18 @@ import CreatorNotFound from './CreatorNotFound';
 export default async function getById(tenantId: string, id: string): Promise<DataModel>
 {
     const query: RecordQuery = {
-        tenantId: { 'EQUALS': tenantId },
-        id: { 'EQUALS': id }
+        tenantId: { EQUALS: tenantId },
+        id: { EQUALS: id }
     };
 
-    const creator = await database.findRecord(RECORD_TYPE, query);
+    const record = await database.readRecord(RECORD_TYPE, query);
 
-    if (creator === undefined)
+    if (record === undefined)
     {
-        throw new CreatorNotFound(tenantId, id);
+        logger.logWarn(`Creator for tenant '${tenantId}' with id '${id}' could not be found.`);
+
+        throw new CreatorNotFound();
     }
 
-    return creator as DataModel;
+    return record as DataModel;
 }

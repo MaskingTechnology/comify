@@ -1,9 +1,9 @@
 
 import logger from '@theshelf/logging';
 
-import type { Requester } from '~/authentication';
-import getCreator from '~/creator/getById';
-import type { Tenant } from '~/tenant';
+import type { Requester } from '^/domain/authentication';
+import getCreator from '^/domain/creator/getById';
+import type { Tenant } from '^/domain/tenant';
 
 import create from '../create';
 import erase from '../erase';

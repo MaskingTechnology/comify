@@ -1,6 +1,6 @@
 
-import { subscribe as subscribeToPostCreated } from '~/post/create';
-import { subscribe as subscribeToPostRemoved } from '~/post/remove';
+import { subscribe as subscribeToPostCreated } from '^/domain/post/create';
+import { subscribe as subscribeToPostRemoved } from '^/domain/post/remove';
 
 import updateReactions from './updateReactions';
 

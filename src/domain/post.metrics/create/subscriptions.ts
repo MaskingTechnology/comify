@@ -1,5 +1,5 @@
 
-import { subscribe as subscribeToPostCreated } from '~/post/create';
+import { subscribe as subscribeToPostCreated } from '^/domain/post/create';
 
 import create from './create';
 

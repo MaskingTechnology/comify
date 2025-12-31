@@ -1,10 +1,10 @@
 
-import { NotFound } from '^/integrations/runtime/';
+import { NotFound } from '^/integrations/errors';
 
 export default class TenantNotFound extends NotFound
 {
-    constructor(origin: string)
+    constructor()
     {
-        super(`No tenant found for origin: ${origin}`);
+        super('Tenant not found');
     }
 }

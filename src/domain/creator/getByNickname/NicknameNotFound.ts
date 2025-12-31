@@ -1,10 +1,10 @@
 
-import { NotFound } from '^/integrations/runtime/';
+import { NotFound } from '^/integrations/errors';
 
 export default class NicknameNotFound extends NotFound
 {
-    constructor(nickname: string)
+    constructor()
     {
-        super(`No creator for nickname: ${nickname}`);
+        super('No creator found for nickname');
     }
 }

@@ -2,7 +2,7 @@
 import type { ValidationSchema } from '@theshelf/validation';
 import validator from '@theshelf/validation';
 
-import { optionalIdValidation, requiredIdValidation } from '~/definitions';
+import { optionalIdValidation, requiredIdValidation } from '^/domain/definitions';
 
 import InvalidCreator from '../InvalidCreator';
 import { fullNameValidation } from '../definitions';
