@@ -9,20 +9,18 @@ export const SortOrders = {
 export const requiredIdValidation: Validation =
 {
     message: 'Value is not a valid id format',
-    STRING:
+    UUID:
     {
-        required: true,
-        maxLength: 36
+        required: true
     }
 };
 
 export const optionalIdValidation: Validation =
 {
     message: 'Value is not a valid id format',
-    STRING:
+    UUID:
     {
-        required: false,
-        maxLength: 36
+        required: false
     }
 };
 
