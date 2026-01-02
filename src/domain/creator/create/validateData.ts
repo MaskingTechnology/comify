@@ -4,8 +4,8 @@ import validator from '@theshelf/validation';
 
 import { optionalIdValidation, requiredIdValidation } from '^/domain/definitions';
 
-import InvalidCreator from '../InvalidCreator';
 import { fullNameValidation } from '../definitions';
+import InvalidCreator from './InvalidCreator';
 import type { ValidationModel } from './types';
 
 const schema: ValidationSchema =
