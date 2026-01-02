@@ -1,8 +1,3 @@
 [
-    "./integrations/authentication",
-    "./integrations/database",
-    "./integrations/eventbroker",
-    "./integrations/filestore",
-    "./integrations/logging",
-    "./integrations/notification"
+    
 ]
