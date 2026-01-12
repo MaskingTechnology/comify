@@ -1,14 +1,16 @@
 {
     "url": "http://127.0.0.1:4002",
     "setUp": [
-        "./integrations/runtime/setUpWorker"
+        "./integrations/database/setUp",
+        "./integrations/fileStore/setUp"
     ],
     "tearDown": [
-        "./integrations/runtime/tearDownWorker"
+        "./integrations/database/tearDown",
+        "./integrations/fileStore/tearDown"
     ],
     "healthChecks": [
-        "./integrations/runtime/fileStoreHealthCheck",
-        "./integrations/runtime/databaseHealthCheck"
+        "./integrations/database/healthCheck",
+        "./integrations/fileStore/healthCheck"
     ],
     "worker":
     {

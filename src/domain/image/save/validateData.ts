@@ -1,6 +1,7 @@
 
 import type { ValidationSchema } from '@theshelf/validation';
-import validator from '@theshelf/validation';
+
+import validator from '^/integrations/validation';
 
 import { requiredStringValidation } from '../definitions';
 import type { DataModel } from '../types';

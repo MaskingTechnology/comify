@@ -1,5 +1,5 @@
 
-import httpClient from '@theshelf/http';
+import http from '^/integrations/http';
 
 import type { MetaData } from '../types';
 import ImageNotDownloaded from './ImageNotDownloaded';
@@ -9,7 +9,7 @@ const CONTENT_LENGTH = 'Content-Length';
 
 export default async function getMetaData(imageUrl: string): Promise<MetaData>
 {
-    const headResponse = await httpClient.head(imageUrl);
+    const headResponse = await http.head(imageUrl);
 
     if (headResponse.ok === false)
     {

@@ -1,5 +1,5 @@
 
-import eventBroker from '@theshelf/eventbroker';
+import eventBroker from '^/integrations/eventBroker';
 
 import { EVENT_CHANNEL } from '../definitions';
 import { EVENT_NAME } from './definitions';

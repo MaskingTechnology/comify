@@ -1,6 +1,6 @@
 
-import database from '@theshelf/database';
-import logger from '@theshelf/logging';
+import database from '^/integrations/database';
+import logger from '^/integrations/logging';
 
 import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';

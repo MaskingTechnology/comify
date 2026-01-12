@@ -1,5 +1,5 @@
 
-import logger from '@theshelf/logging';
+import logger from '^/integrations/logging';
 
 import type { Type } from '../definitions';
 import createData from './createData';

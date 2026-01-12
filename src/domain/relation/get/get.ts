@@ -1,6 +1,7 @@
 
 import type { RecordQuery } from '@theshelf/database';
-import database from '@theshelf/database';
+
+import database from '^/integrations/database';
 
 import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';

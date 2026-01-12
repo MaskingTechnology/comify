@@ -1,6 +1,7 @@
 
 import type { ValidationSchema } from '@theshelf/validation';
-import validator from '@theshelf/validation';
+
+import validator from '^/integrations/validation';
 
 import InvalidCreator from '../create/InvalidCreator';
 import { fullNameValidation } from '../definitions';

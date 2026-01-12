@@ -1,7 +1,7 @@
 
-import identityProvider from '@theshelf/authentication';
-
 import { AuthenticationMiddleware } from '@jitar-plugins/authentication';
+
+import identityProvider from './identityProvider';
 
 const authProcedures = {
     loginUrl: 'domain/authentication/getLoginUrl',
@@ -9,7 +9,7 @@ const authProcedures = {
     logout: 'domain/authentication/logout'
 };
 
-const redirectPath = process.env.AUTHENTICATION_CLIENT_PATH || 'undefined';
+const redirectPath = process.env.AUTHENTICATION_CLIENT_PATH || '';
 
 const whiteList: string[] = [
     'domain/tenant/getByOriginConverted'

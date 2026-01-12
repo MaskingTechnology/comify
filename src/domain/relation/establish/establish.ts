@@ -1,5 +1,5 @@
 
-import logger from '@theshelf/logging';
+import logger from '^/integrations/logging';
 
 import type { Requester } from '^/domain/authentication';
 import getCreator from '^/domain/creator/getById';

@@ -1,5 +1,5 @@
 
-import fileStore from '@theshelf/filestore';
+import fileStore from './fileStore';
 
 import { FileStoreHealthCheck } from '@jitar-plugins/filestore';
 
