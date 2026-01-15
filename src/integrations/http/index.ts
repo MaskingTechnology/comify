@@ -1,2 +1,2 @@
 
-export { default } from './http';
+export { default, driver } from './http';

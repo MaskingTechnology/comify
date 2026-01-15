@@ -1,5 +1,7 @@
 
-import database from '^/integrations/database';
+import { MemoryDriver } from '@theshelf/database';
+
+import database, { driver } from '^/integrations/database';
 
 import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator';
 import { RECORD_TYPE as CREATOR_METRICS_RECORD_TYPE } from '^/domain/creator.metrics';
@@ -7,11 +9,9 @@ import { RECORD_TYPE as RELATION_RECORD_TYPE } from '^/domain/relation';
 
 import { RECORDS } from './records.fixture';
 
-database.connect();
-
 async function withEverything(): Promise<void>
 {
-    database.clear();
+    (driver as MemoryDriver).clear();
 
     const promises = [
         RECORDS.CREATORS.map(creator => database.createRecord(CREATOR_RECORD_TYPE, { ...creator })),

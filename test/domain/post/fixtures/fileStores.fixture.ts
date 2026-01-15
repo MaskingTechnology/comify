@@ -1,5 +1,8 @@
 
-import fileStore from '^/integrations/filestore';
+import { MemoryDriver } from '@theshelf/filestore';
+
+import fileStore, { driver } from '^/integrations/fileStore';
+
 import { FILES } from './files.fixture';
 import { VALUES } from './values.fixture';
 
@@ -7,12 +10,12 @@ fileStore.connect();
 
 async function empty(): Promise<void>
 {
-    await fileStore.clear();
+    (driver as MemoryDriver).clear();
 }
 
 async function withImage(): Promise<void>
 {
-    await fileStore.clear();
+    (driver as MemoryDriver).clear();
 
     await fileStore.writeFile(VALUES.STORAGE_KEYS.IMAGE, FILES.IMAGE);
 }

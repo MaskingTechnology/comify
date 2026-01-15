@@ -11,7 +11,14 @@ import type { ValidationModel } from './types';
 
 const schema: ValidationSchema =
 {
-    tenantId: requiredIdValidation,
+    tenantId:
+    {
+        message: 'Value is not a valid tenant id',
+        STRING:
+        {
+            required: true
+        }
+    },
     fullName: fullNameValidation,
     email:
     {

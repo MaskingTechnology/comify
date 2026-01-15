@@ -1,5 +1,5 @@
 
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 
 import database from '^/integrations/database';
 
@@ -7,14 +7,21 @@ import type { DataModel} from '^/domain/notification';
 import { RECORD_TYPE as NOTIFICATION_RECORD_TYPE, Types } from '^/domain/notification';
 import create from '^/domain/notification/create';
 
-import { DATABASES } from './fixtures/databases.fixture';
-import { REQUESTERS } from './fixtures/requesters.fixture';
-import { VALUES } from './fixtures/values.fixture';
+import { DATABASES, REQUESTERS, VALUES } from './fixtures';
+
+beforeAll(async () =>
+{
+    await database.connect();
+});
+
+afterAll(async () =>
+{
+    await database.disconnect();
+});
 
 beforeEach(async () =>
 {
     await DATABASES.withCreators();
-
 });
 
 describe('domain/notification/create', () =>

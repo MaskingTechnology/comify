@@ -1,2 +1,2 @@
 
-export { default } from './fileStore';
+export { default, driver } from './fileStore';

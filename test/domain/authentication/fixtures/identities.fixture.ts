@@ -1,5 +1,5 @@
 
-import type { Identity } from '^/integrations/authentication';
+import type { Identity } from '@theshelf/authentication';
 
 import { VALUES } from './values.fixture';
 

@@ -1,2 +1,2 @@
 
-export { default } from './validator';
+export { default, driver } from './validator';

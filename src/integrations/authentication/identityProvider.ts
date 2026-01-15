@@ -24,7 +24,7 @@ function setUpGoogle()
     });
 }
 
-const driver = process.env.AUTHENTICATION_DRIVER === 'openid'
+export const driver = process.env.AUTHENTICATION_DRIVER === 'openid'
     ? setUpOpenID()
     : setUpGoogle();
 

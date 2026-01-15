@@ -1,11 +1,11 @@
 
-import fileStore from '^/integrations/filestore';
+import { MemoryDriver } from '@theshelf/filestore';
 
-fileStore.connect();
+import { driver } from '^/integrations/fileStore';
 
 async function empty(): Promise<void>
 {
-    await fileStore.clear();
+    (driver as MemoryDriver).clear();
 }
 
 export const FILE_STORES = { empty };

@@ -1,11 +1,11 @@
 
-import database from '^/integrations/database';
+import { MemoryDriver } from '@theshelf/database';
 
-database.connect();
+import { driver } from '^/integrations/database';
 
 async function empty()
 {
-    await database.clear();
+    (driver as MemoryDriver).clear();
 }
 
 export const DATABASES = { empty };

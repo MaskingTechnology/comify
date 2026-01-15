@@ -14,7 +14,7 @@ function setUpMongoDB(): MongoDBDriver
     });
 }
 
-const driver = process.env.DATABASE_DRIVER === 'mongodb'
+export const driver = process.env.DATABASE_DRIVER === 'mongodb'
     ? setUpMongoDB()
     : setUpMemory();
 

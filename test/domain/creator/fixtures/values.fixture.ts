@@ -4,7 +4,7 @@ import { FULL_NAME_MAX_LENGTH } from '^/domain/creator/definitions';
 export const VALUES =
 {
     IDS: {
-        CREATOR: '1',
+        CREATOR: 'ca2bb85c-390e-46db-83bd-992f59c8d8f9',
     },
 
     FULL_NAMES: {

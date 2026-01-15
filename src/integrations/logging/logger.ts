@@ -3,7 +3,7 @@ import Logger, { ConsoleDriver, DatabaseDriver, LogLevels, VoidDriver } from '@t
 
 import database from '^/integrations/database';
 
-const driver = (() =>
+export const driver = (() =>
 {
     switch (process.env.LOGGING_DRIVER)
     {

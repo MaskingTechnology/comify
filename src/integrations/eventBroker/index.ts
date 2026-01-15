@@ -1,2 +1,2 @@
 
-export { default } from './eventBroker';
+export { default, driver } from './eventBroker';

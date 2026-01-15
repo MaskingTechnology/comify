@@ -1,10 +1,7 @@
 
-import { BadRequest } from '^/integrations/errors';
+import { ValidationError } from '^/integrations/errors';
 
-export default class InvalidFullName extends BadRequest
+export default class InvalidFullName extends ValidationError
 {
-    constructor()
-    {
-        super('Full name is invalid');
-    }
+
 }

@@ -1,2 +1,2 @@
 
-export { default } from './database';
+export { default, driver } from './database';

@@ -17,7 +17,7 @@ function setUpMinio(): MinioDriver
     });
 }
 
-const driver = process.env.FILE_STORE_DRIVER === 'minio'
+export const driver = process.env.FILE_STORE_DRIVER === 'minio'
     ? setUpMinio()
     : setUpMemory();
 
