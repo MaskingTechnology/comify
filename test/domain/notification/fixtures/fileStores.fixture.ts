@@ -1,5 +1,5 @@
 
-import { MemoryDriver } from '@theshelf/filestore';
+import type { MemoryDriver } from '@theshelf/filestore';
 
 import fileStore, { driver } from '^/integrations/fileStore';
 

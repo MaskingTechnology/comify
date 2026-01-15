@@ -1,5 +1,5 @@
 
-import { MemoryDriver } from '@theshelf/database';
+import type { MemoryDriver } from '@theshelf/database';
 
 import { driver } from '^/integrations/database';
 

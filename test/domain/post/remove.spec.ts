@@ -50,7 +50,7 @@ describe('domain/post/remove', () =>
 
     it('should not delete a post from another creator', async () =>
     {
-        const promise = remove(TENANTS.default, REQUESTERS.VIEWER, VALUES.IDS.POST_RATED);
+        await remove(TENANTS.default, REQUESTERS.VIEWER, VALUES.IDS.POST_RATED);
         
         const reaction = await database.readRecord(RECORD_TYPE, { id: { EQUALS: VALUES.IDS.POST_RATED } });
         

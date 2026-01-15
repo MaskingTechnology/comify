@@ -10,7 +10,7 @@ function setUpMinio(): MinioDriver
 {
     return new MinioDriver({
         endPoint: process.env.MINIO_END_POINT ?? '',
-        port: Number(process.env.MINIO_PORT_NUMBER) ?? 9000,
+        port: Number(process.env.MINIO_PORT_NUMBER ?? 9000),
         useSSL: process.env.MINIO_USE_SSL === 'true',
         accessKey: process.env.MINIO_ROOT_USER ?? '',
         secretKey: process.env.MINIO_ROOT_PASSWORD ?? ''
