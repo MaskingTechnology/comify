@@ -14,7 +14,9 @@
     "test": "vitest run",
     "test-coverage": "vitest run --coverage",
     "lint": "eslint",
-    "compile": "tsc -p tsconfig.compile.json",
+    "compile": "npm run compile-domain && npm run compile-webui",
+    "compile-domain": "tsc -p src --noEmit",
+    "compile-webui": "tsc -p src/apps/webui --noEmit",
     "preview": "vite preview",
     
     "docker-up": "docker compose --env-file development.env up",

@@ -1,5 +1,5 @@
 
-import type { RecordData } from '^/integrations/database';
+import type { RecordData } from '@theshelf/database';
 
 import type { DataModel as CreatorDataModel } from '^/domain/creator';
 
