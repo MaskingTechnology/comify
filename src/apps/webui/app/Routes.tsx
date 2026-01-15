@@ -1,48 +1,36 @@
 
-import type { ReactNode } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 
-import { useAppContext } from './contexts';
-import CreateComicPost from './features/CreateComicPost';
-import EditProfile from './features/EditProfile';
-import Explore from './features/Explore';
-import Home from './features/Home';
-import Identify from './features/Identify';
-import Login from './features/Login';
-import Logout from './features/Logout';
-import NotFound from './features/NotFound';
-import Notifications from './features/Notifications';
-import PostDetails from './features/PostDetails';
-import PostHighlight from './features/PostHighlight';
-import Profile from './features/Profile';
-import Timeline from './features/Timeline';
+import accountRoutes from './account';
+import { publicRoutes, protectedRoutes, ApplicationLayout, GuestLayout, ProtectedRoute } from './application';
+import timelineRoutes from './timeline';
+import exploreRoutes from './explore';
+import notificationRoutes from './notification';
+import postRoutes from './post';
+import profileRoutes from './profile';
 
 export default function Component()
 {
-    const { identity } = useAppContext();
-
-    const protect = (node: ReactNode) =>
-    {
-        return identity === undefined ? <Login /> : node;
-    };
-
     return <Routes>
 
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/identify" element={<Identify />} />
+        <Route element={<ProtectedRoute />}>
 
-        <Route path="/timeline/:tab?" element={protect(<Timeline />)} />
-        <Route path="/explore/:tab?" element={protect(<Explore />)} />
-        <Route path="/notifications" element={protect(<Notifications />)} />
-        <Route path="/create" element={protect(<CreateComicPost />)} />
-        <Route path="/profile/:nickname/:tab?" element={protect(<Profile />)} />
-        <Route path="/edit/profile" element={protect(<EditProfile />)} />
-        <Route path="/post/:postId" element={protect(<PostDetails />)} />
-        <Route path="/post/:postId/highlight/:highlightId" element={protect(<PostHighlight />)} />
-        <Route path="/logout" element={protect(<Logout />)} />
+            <Route element={<ApplicationLayout />}>
+                {protectedRoutes}
+                <Route index element={<Navigate to="/timeline" replace />} />
+                <Route path="/account">{accountRoutes}</Route>
+                <Route path="/timeline">{timelineRoutes}</Route>
+                <Route path="/explore">{exploreRoutes}</Route>
+                <Route path="/notifications">{notificationRoutes}</Route>
+                <Route path="/posts">{postRoutes}</Route>
+                <Route path="/profile">{profileRoutes}</Route>
+            </Route>
+            
+        </Route>
 
-        <Route path="*" element={<NotFound />} />
+        <Route element={<GuestLayout />}>
+            {publicRoutes}
+        </Route>
 
     </Routes>;
 }

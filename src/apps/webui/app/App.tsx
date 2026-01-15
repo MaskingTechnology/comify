@@ -1,26 +1,19 @@
 
 import { BrowserRouter } from 'react-router-dom';
 
+import { ErrorBoundary } from '@maskingtech/react-toolkit';
+
+import { AppContextProvider, ErrorHandler } from './application';
+
 import Routes from './Routes';
-import { ApplicationModal, ErrorBoundary } from './components';
-import { useAppContext } from './contexts';
-import ErrorHandler from './features/ErrorHandler';
-import { Application, Guest } from './pages';
 
 export default function App()
 {
-    const { identity, modalContent, modalOpen } = useAppContext();
-
-    const Page = identity === undefined ? Guest : Application;
-
-    return <BrowserRouter>
-        <Page>
+    return <AppContextProvider>
+        <BrowserRouter>
             <ErrorBoundary element={ErrorHandler}>
-                <ApplicationModal open={modalOpen}>
-                    {modalContent}
-                </ApplicationModal>
                 <Routes />
             </ErrorBoundary>
-        </Page>
-    </BrowserRouter>;
+        </BrowserRouter>
+    </AppContextProvider>;
 }

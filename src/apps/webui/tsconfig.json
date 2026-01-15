@@ -1,9 +1,13 @@
 {
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
-      "jsx": "react-jsx",
-      "noEmit": true,
-      "outDir": "../../../dist"
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "outDir": "../../../dist",
+    "paths": {
+      "^/*": ["../../*"],
+      "~/*": ["./*"],
+    }
   },
   "include": ["./"]
 }

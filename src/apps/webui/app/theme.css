@@ -7,19 +7,32 @@
     --border-color: #f3f3f3;
 }
 
-.ds
+.mtds
 {
     --font-family: 'Inter', sans-serif;
 
     .button
     {
-        --primary-background-color: #e06666;
-        --primary-foreground-color: #ffffff;
-        --secondary-background-color: #cccccc;
+        --type-primary-background-color: #e06666;
+        --type-primary-foreground-color: #ffffff;
+        --type-secondary-background-color: #cccccc;
     }
 
     .ruler
     {
         --color: var(--border-color);
+    }
+
+    .table
+    {
+        --accent-color: #666666;
+
+        --header-background-color: #666666;
+        --header-forground-color: #ffffff;
+
+        --row-odd-color: #ffffff;
+        --row-even-color: #f3f3f3;
+
+        --footer-border-color: #999999
     }
 }
