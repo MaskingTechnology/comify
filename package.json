@@ -42,10 +42,10 @@
   ],
   "dependencies": {
     "dayjs": "1.11.19",
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
-    "react-router-dom": "7.9.6",
-    "jitar": "0.10.4",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-router-dom": "7.12.0",
+    "jitar": "0.10.5",
     "@maskingtech/designsystem": "0.0.4",
     "@maskingtech/react-toolkit": "0.0.3",
     "@theshelf/authentication": "0.2.1",
@@ -64,13 +64,13 @@
     "@jitar-plugins/notification": "0.1.1"
   },
   "devDependencies": {
-    "@eslint/js": "9.39.1",
-    "@jitar/plugin-vite": "0.10.3",
+    "@eslint/js": "9.39.2",
+    "@jitar/plugin-vite": "0.10.5",
     "@types/node": "24.10.1",
-    "@types/react": "19.2.6",
+    "@types/react": "19.2.8",
     "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react": "5.1.1",
-    "@vitest/coverage-v8": "4.0.11",
+    "@vitejs/plugin-react": "5.1.2",
+    "@vitest/coverage-v8": "4.0.17",
     "cpx2": "8.0.0",
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "7.0.1",
@@ -78,10 +78,10 @@
     "rimraf": "6.1.2",
     "tsc-alias": "1.8.16",
     "typescript": "5.9.3",
-    "typescript-eslint": "8.47.0",
-    "vite": "7.2.4",
-    "vite-plugin-pwa": "1.1.0",
+    "typescript-eslint": "8.53.0",
+    "vite": "7.3.1",
+    "vite-plugin-pwa": "1.2.0",
     "vite-tsconfig-paths": "5.1.4",
-    "vitest": "4.0.11"
+    "vitest": "4.0.17"
   }
 }
