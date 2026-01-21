@@ -17,7 +17,6 @@ export default function Component()
 
             <Route element={<ApplicationLayout />}>
                 {protectedRoutes}
-                <Route index element={<Navigate to="/timeline" replace />} />
                 <Route path="/account">{accountRoutes}</Route>
                 <Route path="/timeline">{timelineRoutes}</Route>
                 <Route path="/explore">{exploreRoutes}</Route>
