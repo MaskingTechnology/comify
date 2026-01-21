@@ -5,11 +5,14 @@ import NoResult from './elements/NoResult';
 
 type Props = {
     readonly data: unknown;
+    readonly isLoading: boolean;
     readonly children: ReactNode;
 };
 
-export default function Component({ data, children }: Props)
+export default function Component({ data, isLoading, children }: Props)
 {
+    if (isLoading) return <NoResult />;
+
     if (data === undefined || data === null) return <NoResult />;
 
     if (data instanceof Array && data.length === 0) return <NoResult />;

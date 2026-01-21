@@ -1,7 +1,7 @@
 
 import { Column } from '@maskingtech/designsystem';
 
-import { PullToRefresh, LoadingAndResultContainer, ScrollLoader, OrderRow } from '~/app/common';
+import { PullToRefresh, ResultContainer, ScrollLoader, OrderRow } from '~/app/common';
 
 import { useViewProfile } from '~/app/profile';
 import { useToggle } from '~/app/rating';
@@ -29,7 +29,7 @@ export default function Feature()
         <OrderRow selected='popular' onOrderChange={reorderList} />
         <PullToRefresh onRefresh={refresh}>
             <ScrollLoader onLoad={getMorePosts} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
-                <LoadingAndResultContainer data={posts} isLoading={isLoading}>
+                <ResultContainer data={posts} isLoading={isLoading}>
                     <PanelList
                         posts={posts}
                         onFollowClick={establishRelation}
@@ -38,7 +38,7 @@ export default function Feature()
                         onCreatorClick={viewProfile}
                         onContentClick={viewPostDetails}
                     />
-                </LoadingAndResultContainer>
+                </ResultContainer>
             </ScrollLoader>
         </PullToRefresh>
     </Column>;

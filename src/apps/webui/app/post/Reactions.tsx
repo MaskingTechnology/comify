@@ -3,7 +3,7 @@ import { Column } from '@maskingtech/designsystem';
 
 import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
 
-import { PullToRefresh, LoadingAndResultContainer, ScrollLoader, OrderAndAddRow } from '~/app/common';
+import { PullToRefresh, ResultContainer, ScrollLoader, OrderAndAddRow } from '~/app/common';
 
 import { useViewProfile } from '~/app/profile';
 import { useToggle } from '~/app/rating';
@@ -35,7 +35,7 @@ export default function Feature({ post }: Props)
         <OrderAndAddRow selected='recent' reactionHandler={createReaction} />
         <PullToRefresh onRefresh={refresh}>
             <ScrollLoader onLoad={getMoreReactions} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
-                <LoadingAndResultContainer data={reactions} isLoading={isLoading}>
+                <ResultContainer data={reactions} isLoading={isLoading}>
                     <PanelList
                         posts={reactions as AggregatedPostData[]}
                         onFollowClick={establishRelation}
@@ -44,7 +44,7 @@ export default function Feature({ post }: Props)
                         onContentClick={viewPostDetails}
                         onReactionClick={viewPostDetails}
                     />
-                </LoadingAndResultContainer>
+                </ResultContainer>
             </ScrollLoader>
         </PullToRefresh>
     </Column>;

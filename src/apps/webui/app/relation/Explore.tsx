@@ -3,7 +3,7 @@ import { Column } from '@maskingtech/designsystem';
 
 import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
-import { OrderAndSearchRow, PullToRefresh, LoadingAndResultContainer, ScrollLoader } from '~/app/common';
+import { OrderAndSearchRow, PullToRefresh, ResultContainer, ScrollLoader } from '~/app/common';
 import { useViewProfile } from '~/app/profile';
 
 import PanelList from './components/PanelList';
@@ -27,13 +27,13 @@ export default function Feature()
         <OrderAndSearchRow selected='popular' onOrderChange={reorderList} onSearchChange={() => {}} />
         <PullToRefresh onRefresh={refresh}>
             <ScrollLoader onLoad={getMoreRelations} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
-                <LoadingAndResultContainer data={relations} isLoading={isLoading}>
+                <ResultContainer data={relations} isLoading={isLoading}>
                     <PanelList
                         relations={relations as AggregatedRelationData[]}
                         onFollowClick={establishRelation}
                         onCreatorClick={viewProfile}
                     />
-                </LoadingAndResultContainer>
+                </ResultContainer>
             </ScrollLoader>
         </PullToRefresh>
     </Column>;

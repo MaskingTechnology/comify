@@ -1,7 +1,7 @@
 
 import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
-import { LoadingAndResultContainer } from '~/app/common';
+import { ResultContainer } from '~/app/common';
 
 import Profile from './components/Profile';
 
@@ -19,11 +19,11 @@ export default function Feature({ creatorId, onEdit }: Props)
 
     const [relation, isLoading] = useRelation(creatorId);
 
-    return <LoadingAndResultContainer data={relation} isLoading={isLoading}>
+    return <ResultContainer data={relation} isLoading={isLoading}>
         <Profile
             relation={relation as AggregatedRelationData}
             onFollowClick={establishRelation}
             onEditClick={onEdit}
         />
-    </LoadingAndResultContainer>;
+    </ResultContainer>;
 }

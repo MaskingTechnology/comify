@@ -13,7 +13,7 @@ type Props = {
 export default function Component({ data, isLoading, children }: Props)
 {
     return <LoadingContainer isLoading={isLoading}>
-        <ResultContainer data={data}>
+        <ResultContainer data={data} isLoading={isLoading}>
             {children}
         </ResultContainer>
     </LoadingContainer>;

@@ -3,7 +3,7 @@ import { useParams, Outlet } from 'react-router-dom';
 
 import { Column } from '@maskingtech/designsystem';
 
-import { Tabs, LoadingAndResultContainer } from '~/app/common';
+import { Tabs, ResultContainer } from '~/app/common';
 import { Profile } from '~/app/relation';
 
 import useProfile from './hooks/useProfile';
@@ -23,11 +23,11 @@ export default function Feature()
     const editProfile = useEditProfile();
 
     return <Column gap='medium' alignX='stretch'>
-        <LoadingAndResultContainer data={profile} isLoading={isLoading}>
+        <ResultContainer data={profile} isLoading={isLoading}>
             <Profile creatorId={profile?.id} onEdit={editProfile} />
             <Tabs items={tabItems}>
                 <Outlet context={{ creatorId: profile?.id }} />
             </Tabs>
-        </LoadingAndResultContainer>
+        </ResultContainer>
     </Column>;
 }

@@ -1,7 +1,7 @@
 
 import { Column } from '@maskingtech/designsystem';
 
-import { PullToRefresh, LoadingAndResultContainer, ScrollLoader } from '~/app/common';
+import { PullToRefresh, ResultContainer, ScrollLoader } from '~/app/common';
 import { useToggle } from '~/app/rating';
 
 import useCreatorPosts from './hooks/useCreatorPosts';
@@ -25,14 +25,14 @@ export default function Feature({ creatorId }: Props)
     return <Column gap='medium' alignX='stretch'>
         <PullToRefresh onRefresh={refresh}>
             <ScrollLoader onLoad={getMorePosts} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
-                <LoadingAndResultContainer data={posts} isLoading={isLoading}>
+                <ResultContainer data={posts} isLoading={isLoading}>
                     <PanelGrid
                         posts={posts}
                         onContentClick={viewPostDetails}
                         onRatingClick={toggleRating}
                         onReactionClick={viewPostDetails}
                     />
-                </LoadingAndResultContainer>
+                </ResultContainer>
             </ScrollLoader>
         </PullToRefresh>
     </Column>;

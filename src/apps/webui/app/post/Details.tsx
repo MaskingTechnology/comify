@@ -5,7 +5,7 @@ import { Column, Ruler } from '@maskingtech/designsystem';
 
 import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
 
-import { BackRow, LoadingAndResultContainer } from '~/app/common';
+import { BackRow, ResultContainer } from '~/app/common';
 import { useViewProfile } from '~/app/profile';
 import { useToggle } from '~/app/rating';
 import { useEstablish } from '~/app/relation';
@@ -33,7 +33,7 @@ export default function Feature()
     return <>
         <Column gap='medium' alignX='stretch'>
             <BackRow canGoBack={post?.hasParent as boolean} onBackClick={() => goToParentPost(post as AggregatedPostData)} />
-            <LoadingAndResultContainer data={post} isLoading={isLoading}>
+            <ResultContainer data={post} isLoading={isLoading}>
                 <DetailsPanel
                     post={post as AggregatedPostData}
                     onFollowClick={establishRelation}
@@ -44,7 +44,7 @@ export default function Feature()
                 />
                 <Ruler direction='horizontal' />
                 <Reactions post={post as AggregatedPostData} />
-            </LoadingAndResultContainer>
+            </ResultContainer>
         </Column>
         <Outlet />
     </>;
