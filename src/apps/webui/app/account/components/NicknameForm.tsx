@@ -31,7 +31,7 @@ export default function Component({ nickname, alreadyInUse, onSubmit }: Props)
                 element={<TextBox
                     name='nickname'
                     placeholder='Your nickname'
-                    value={nickname}
+                    defaultValue={nickname}
                     limit={NICKNAME_MAX_LENGTH}
                     pattern={NICKNAME_STRING_PATTERN}
                     title='Only lowercase characters and numbers are allowed.'

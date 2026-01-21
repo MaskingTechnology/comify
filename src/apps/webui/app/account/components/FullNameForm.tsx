@@ -24,7 +24,7 @@ export default function Component({ fullName, onSubmit }: Props)
                 element={<TextBox
                     name='fullName'
                     placeholder='Your full name'
-                    value={fullName}
+                    defaultValue={fullName}
                     limit={FULL_NAME_MAX_LENGTH}
                     size='small'
                     required={true}
