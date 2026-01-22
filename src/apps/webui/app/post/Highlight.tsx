@@ -3,7 +3,7 @@ import { Column, Ruler } from '@maskingtech/designsystem';
 
 import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
 
-import { ResultContainer } from '~/app/common';
+import { LoadingAndResultContainer } from '~/app/common';
 import { useViewProfile } from '~/app/profile';
 import { useToggle } from '~/app/rating';
 import { SingleReactionRow } from '~/app/reaction';
@@ -29,7 +29,7 @@ export default function Feature()
     const [highlight, isHighlightLoading] = useHighlightReaction();
 
     return <Column gap='medium' alignX='stretch'>
-        <ResultContainer data={post} isLoading={isPostLoading}>
+        <LoadingAndResultContainer data={post} isLoading={isPostLoading}>
             <DetailsPanel
                 post={post as AggregatedPostData}
                 onFollowClick={establishRelation}
@@ -38,10 +38,10 @@ export default function Feature()
                 onDeleteClick={removePost}
                 onReactionClick={viewPostDetails}
             />
-        </ResultContainer>
+        </LoadingAndResultContainer>
         <Ruler direction='horizontal' />
         <SingleReactionRow onShowClick={() => viewPostDetails(post as AggregatedPostData)} />
-        <ResultContainer data={(highlight)} isLoading={isHighlightLoading}>
+        <LoadingAndResultContainer data={(highlight)} isLoading={isHighlightLoading}>
             <LargePanel
                 key={highlight?.id}
                 post={highlight as AggregatedPostData}
@@ -51,6 +51,6 @@ export default function Feature()
                 onContentClick={viewPostDetails}
                 onReactionClick={viewPostDetails}
             />
-        </ResultContainer>
+        </LoadingAndResultContainer>
     </Column>;
 }

@@ -11,7 +11,7 @@ type Props = {
 
 export default function Component({ data, isLoading, children }: Props)
 {
-    if (isLoading) return <NoResult />;
+    if (isLoading) return children;
 
     if (data === undefined || data === null) return <NoResult />;
 

@@ -4,6 +4,7 @@ import { useParams, Outlet } from 'react-router-dom';
 import { Column } from '@maskingtech/designsystem';
 
 import { Tabs, ResultContainer } from '~/app/common';
+import { Tabs, LoadingAndResultContainer } from '~/app/common';
 import { Profile } from '~/app/relation';
 
 import useProfile from './hooks/useProfile';
@@ -24,10 +25,12 @@ export default function Feature()
 
     return <Column gap='medium' alignX='stretch'>
         <ResultContainer data={profile} isLoading={isLoading}>
+        <LoadingAndResultContainer data={profile} isLoading={isLoading}>
             <Profile creatorId={profile?.id} onEdit={editProfile} />
             <Tabs items={tabItems}>
                 <Outlet context={{ creatorId: profile?.id }} />
             </Tabs>
         </ResultContainer>
+        </LoadingAndResultContainer>
     </Column>;
 }
