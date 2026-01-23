@@ -5,10 +5,11 @@ export { default as RemoveOption } from './components/RemoveOption';
 
 export { default as Modal } from './components/Modal';
 
+export { default as ConfirmationPanel } from './components/ConfirmationPanel';
 export { default as NotFound } from './components/NotFound';
 export { default as LoadingContainer } from './components/LoadingContainer';
-export { default as ResultContainer } from './components/ResultContainer';
 export { default as LoadingAndResultContainer } from './components/LoadingAndResultContainer';
+export { default as ResultContainer } from './components/ResultContainer';
 export { default as Tabs } from './components/Tabs';
 export { default as TenantContainer } from './components/TenantContainer';
 

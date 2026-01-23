@@ -14,7 +14,7 @@ import DetailsPanel from './components/DetailsPanel';
 
 import useGoToParentPost from './hooks/useGoToParentPost';
 import usePost from './hooks/usePost';
-import useRemovePost from './hooks/useRemovePost';
+import useConfirmPostRemoval from './hooks/useConfirmPostRemoval';
 import useViewPostDetails from './hooks/useViewPostDetails';
 
 import Reactions from './Reactions';
@@ -25,7 +25,7 @@ export default function Feature()
     const establishRelation = useEstablish();
     const togglePostRating = useToggle();
     const viewProfile = useViewProfile();
-    const removePost = useRemovePost();
+    const confirmPostRemoval = useConfirmPostRemoval();
     const viewPostDetails = useViewPostDetails();
 
     const [post, isLoading] = usePost();
@@ -40,7 +40,7 @@ export default function Feature()
                     onRatingClick={togglePostRating}
                     onCreatorClick={viewProfile}
                     onReactionClick={viewPostDetails}
-                    onDeleteClick={removePost}
+                    onDeleteClick={confirmPostRemoval}
                 />
                 <Ruler direction='horizontal' />
                 <Reactions post={post as AggregatedPostData} />
