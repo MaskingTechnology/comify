@@ -19,7 +19,7 @@ export default function Component({ limit, onCreate, onCancel }: Props)
 
     return <Panel>
         <Column alignX='stretch'>
-            <TextArea name='comment' ref={inputRef} limit={limit} />
+            <TextArea name='comment' ref={inputRef} limit={limit} rows={5} cols={200} />
             <Row alignX='right'>
                 <Button type='secondary' text='Cancel' onClick={handleCancel} />
                 <Button type={creating ? 'disabled' : 'primary'} text={creating ? 'Creating' : 'Create'} onClick={handleCreate} />

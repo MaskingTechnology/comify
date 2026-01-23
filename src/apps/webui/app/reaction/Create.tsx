@@ -6,8 +6,8 @@ import { Modal, Tabs } from '~/app/common';
 import useViewPostDetails from './hooks/useViewPostDetails';
 
 const tabItems = [
-    { name: 'Comic', route: 'comic' },
-    { name: 'Comment', route: 'comment' }
+    { title: 'Comic', route: 'comic' },
+    { title: 'Comment', route: 'comment' }
 ];
 
 type ParamProps = {

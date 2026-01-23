@@ -1,11 +1,11 @@
 
 import type { ReactNode } from 'react';
-import { NavLink } from "react-router-dom";
+import { useLocation, useNavigate, Outlet } from 'react-router-dom';
 
-import { ClickArea, Column, Row, Ruler, Text } from '@maskingtech/designsystem';
+import { Column, Tabs } from '@maskingtech/designsystem';
 
 type Tab ={
-    readonly name: string;
+    readonly title: string;
     readonly route: string;
 }
 
@@ -16,25 +16,22 @@ type Props = {
 
 export default function Component({ items, children }: Props)
 {
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const isActive = (path: string) => location.pathname.includes(path);
+
     return <Column alignX='stretch' gap='medium'>
-        <Column alignX='stretch' gap='small'>
-            <Row alignX='justify'>
-                {
-                    items.map(item =>
-                        <Column key={item.route} alignX='center'>
-                            <ClickArea padding='none'>
-                                <NavLink to={item.route}>
-                                    {({ isActive }) => (
-                                        <Text value={item.name} weight={isActive ? 'bold' : 'normal'} size='large' />
-                                    )}
-                                </NavLink>
-                            </ClickArea>
-                        </Column>
-                    )
-                }
-            </Row>
-            <Ruler direction='horizontal' size='small' />
-        </Column>
+
+        <Tabs>
+            {
+                items.map(item =>
+                    <Tabs.Tab key={item.title} title={item.title} active={isActive(item.route)} onClick={() => navigate(item.route)} />
+                )
+            }
+        </Tabs>
+        
         {children}
+
     </Column>;
 }
