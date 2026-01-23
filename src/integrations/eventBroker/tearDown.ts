@@ -1,7 +1,4 @@
 
-import eventBroker from './eventBroker';
+import { connectionManager } from './eventBroker';
 
-if (eventBroker.connected)
-{
-    await eventBroker.disconnect();
-}
+await connectionManager.disconnect();

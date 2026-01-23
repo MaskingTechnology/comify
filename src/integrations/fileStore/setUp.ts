@@ -1,4 +1,4 @@
 
-import fileStore from './fileStore';
+import { connectionManager } from './fileStore';
 
-await fileStore.connect();
+await connectionManager.connect();

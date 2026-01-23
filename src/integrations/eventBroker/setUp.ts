@@ -1,4 +1,4 @@
 
-import eventBroker from './eventBroker';
+import { connectionManager } from './eventBroker';
 
-await eventBroker.connect();
+await connectionManager.connect();

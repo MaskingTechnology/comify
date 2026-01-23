@@ -1,4 +1,4 @@
 
-import identityProvider from './identityProvider';
+import { connectionManager } from './identityProvider';
 
-await identityProvider.connect();
+await connectionManager.connect();

@@ -1,7 +1,4 @@
 
-import identityProvider from './identityProvider';
+import { connectionManager } from './identityProvider';
 
-if (identityProvider.connected)
-{
-    await identityProvider.disconnect();
-}
+await connectionManager.disconnect();

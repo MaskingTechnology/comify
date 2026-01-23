@@ -1,7 +1,4 @@
 
-import database from './database';
+import { connectionManager } from './database';
 
-if (database.connected)
-{
-    await database.disconnect();
-}
+await connectionManager.disconnect();

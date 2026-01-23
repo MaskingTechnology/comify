@@ -1,7 +1,4 @@
 
-import fileStore from './fileStore';
+import { connectionManager } from './fileStore';
 
-if (fileStore.connected)
-{
-    await fileStore.disconnect();
-}
+await connectionManager.disconnect();

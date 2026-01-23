@@ -1,4 +1,4 @@
 
-import database from './database';
+import { connectionManager } from './database';
 
-await database.connect();
+await connectionManager.connect();

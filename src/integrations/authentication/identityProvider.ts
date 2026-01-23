@@ -1,5 +1,8 @@
 
 import IdentityProvider, { OpenIDDriver, GoogleDriver } from '@theshelf/authentication';
+import ConnectionManager from '@theshelf/connection';
+
+import logger from '^/integrations/logging';
 
 function setUpOpenID()
 {
@@ -28,4 +31,12 @@ export const driver = process.env.AUTHENTICATION_DRIVER === 'openid'
     ? setUpOpenID()
     : setUpGoogle();
 
-export default new IdentityProvider(driver);
+const identityProvider = new IdentityProvider(driver);
+
+const connectionManager = new ConnectionManager({
+    name: 'Identity provider',
+    connectable: identityProvider,
+    logger
+});
+
+export { identityProvider as default, connectionManager };

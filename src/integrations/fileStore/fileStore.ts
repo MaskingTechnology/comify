@@ -1,5 +1,8 @@
 
 import FileStore, { MemoryDriver, S3Driver } from '@theshelf/filestore';
+import ConnectionManager from '@theshelf/connection';
+
+import logger from '^/integrations/logging';
 
 function setUpMemory(): MemoryDriver
 {
@@ -28,4 +31,12 @@ export const driver = process.env.FILE_STORE_DRIVER === 's3'
     ? setUpMinio()
     : setUpMemory();
 
-export default new FileStore(driver);
+const fileStore = new FileStore(driver);
+
+const connectionManager = new ConnectionManager({
+    name: 'File store',
+    connectable: fileStore,
+    logger
+});
+
+export { fileStore as default, connectionManager };

@@ -1,5 +1,8 @@
 
 import Database, { MemoryDriver, MongoDBDriver } from '@theshelf/database';
+import ConnectionManager from '@theshelf/connection';
+
+import logger from '^/integrations/logging';
 
 function setUpMemory(): MemoryDriver
 {
@@ -18,4 +21,12 @@ export const driver = process.env.DATABASE_DRIVER === 'mongodb'
     ? setUpMongoDB()
     : setUpMemory();
 
-export default new Database(driver);
+const database = new Database(driver);
+
+const connectionManager = new ConnectionManager({
+    name: 'Database',
+    connectable: database,
+    logger
+});
+
+export { database as default, connectionManager };
