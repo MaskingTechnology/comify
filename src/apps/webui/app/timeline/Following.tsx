@@ -1,7 +1,7 @@
 
-import { TimelineFollowing } from '~/app/post';
+import { Following } from '~/app/post';
 
 export default function Feature()
 {
-    return <TimelineFollowing />;
+    return <Following />;
 }

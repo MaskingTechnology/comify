@@ -1,7 +1,7 @@
 
-import { TimelineForYou } from '~/app/post';
+import { Recommended } from '~/app/post';
 
 export default function Feature()
 {
-    return <TimelineForYou />;
+    return <Recommended />;
 }

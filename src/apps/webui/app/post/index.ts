@@ -1,7 +1,7 @@
 
-export { default as CreatorComics } from './CreatorComics';
+export { default as Creator } from './Creator';
 export { default as Explore } from './Explore';
-export { default as TimelineFollowing } from './TimelineFollowing';
-export { default as TimelineForYou } from './TimelineForYou';
+export { default as Following } from './Following';
+export { default as Recommended } from './Recommended';
 
 export { default } from './Routes';

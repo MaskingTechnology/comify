@@ -24,7 +24,11 @@ export default function Component({ onCreate, onCancel }: Props)
                         ? <Button type='secondary' text='Cancel' onClick={handleCancel} />
                         : null
                 }
-                <Button type={creating ? 'disabled' : 'primary'} text={creating ? 'Creating' : 'Create'} onClick={handleCreate} />
+                <Button
+                    type={creating ? 'disabled' : 'primary'}
+                    text={creating ? 'Creating' : 'Create'}
+                    onClick={handleCreate}
+                />
             </Row>
         </Column>
     </Panel>;
