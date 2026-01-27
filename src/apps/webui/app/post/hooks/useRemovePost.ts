@@ -21,5 +21,5 @@ export default function useRemovePost(id?: string)
 
         navigate(`/profile/${identity?.nickname}`);
 
-    }, [navigate, identity]);
+    }, [id, navigate, identity]);
 }

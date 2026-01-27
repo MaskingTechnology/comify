@@ -1,5 +1,5 @@
 
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import accountRoutes from './account';
 import { publicRoutes, protectedRoutes, ApplicationLayout, GuestLayout, ProtectedRoute } from './application';

@@ -6,7 +6,7 @@ import CountersColumn from './elements/CountersColumn';
 
 type Props = {
     readonly creator: AggregatedCreatorData;
-    readonly onCreatorClick: (creator: AggregatedCreatorData) => void;
+    readonly onCreatorClick: () => void;
 };
 
 export default function Component({ creator, onCreatorClick }: Props)
@@ -15,7 +15,7 @@ export default function Component({ creator, onCreatorClick }: Props)
         <CountersColumn
             fullName={creator.fullName}
             nickname={creator.nickname}
-            onNameClick={() => onCreatorClick(creator)}
+            onNameClick={onCreatorClick}
             postCount={creator.metrics.posts}
             followerCount={creator.metrics.followers}
             followingCount={creator.metrics.following}

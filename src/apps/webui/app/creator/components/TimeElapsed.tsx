@@ -7,7 +7,7 @@ import TimeElapsedColumn from './elements/TimeElapsedColumn';
 type Props = {
     readonly creator: AggregatedCreatorData;
     readonly date: string;
-    readonly onCreatorClick: (creator: AggregatedCreatorData) => void;
+    readonly onCreatorClick: () => void;
 };
 
 export default function Component({ creator, date, onCreatorClick }: Props)
@@ -16,7 +16,7 @@ export default function Component({ creator, date, onCreatorClick }: Props)
         <TimeElapsedColumn
             fullName={creator.fullName}
             date={date}
-            onNameClick={() => onCreatorClick(creator)}
+            onNameClick={onCreatorClick}
         />
     </AvatarRow>;
 }
