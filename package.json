@@ -47,7 +47,7 @@
     "react-router-dom": "7.12.0",
     "jitar": "0.10.5",
     "@maskingtech/designsystem": "0.0.5",
-    "@maskingtech/react-toolkit": "0.0.3",
+    "@maskingtech/react-toolkit": "0.0.4",
     "@theshelf/authentication": "0.3.2",
     "@theshelf/database": "0.3.2",
     "@theshelf/connection": "0.3.2",
