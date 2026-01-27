@@ -50,7 +50,7 @@ export default class CameraDialog
         dialog.style.border = '0';
         dialog.style.padding = '0';
 
-        dialog.innerHTML = `<div class="ds">
+        dialog.innerHTML = `<div class="mtds">
             <div class="border type-normal size-large">
                 <div class="panel type-normal padding-medium">
                     <form class="form" method="dialog">
