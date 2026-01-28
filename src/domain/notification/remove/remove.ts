@@ -1,9 +1,15 @@
 
 import database from '^/integrations/database';
+import logger from '^/integrations/logging';
 
 import { RECORD_TYPE } from '../definitions';
 
 export default async function remove(id: string): Promise<void>
 {
-    return database.updateRecord(RECORD_TYPE, id, { deleted: true });
+    const result = await database.updateRecord(RECORD_TYPE, { id: { EQUALS: id } }, { deleted: true });
+
+    if (result === 0)
+    {
+        logger.logWarn(`Notification with id '${id}' has not been deleted.`);
+    }
 }

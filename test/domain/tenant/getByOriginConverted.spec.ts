@@ -1,9 +1,21 @@
 
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
+
+import database from '^/integrations/database';
 
 import getByOriginConverted from '^/domain/tenant/getByOriginConverted';
 
 import { DATABASES, VALUES } from './fixtures';
+
+beforeAll(async () =>
+{
+    await database.connect();
+});
+
+afterAll(async () =>
+{
+    await database.disconnect();
+});
 
 beforeEach(async () =>
 {

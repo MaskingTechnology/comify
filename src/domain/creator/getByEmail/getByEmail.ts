@@ -11,5 +11,5 @@ export default async function getByEmail(tenantId: string, email: string): Promi
         email: { EQUALS: email }
     };
 
-    return database.findRecord(RECORD_TYPE, query) as Promise<DataModel | undefined>;
+    return database.readRecord(RECORD_TYPE, query) as Promise<DataModel | undefined>;
 }

@@ -1,5 +1,6 @@
 
-import type { RecordQuery } from '^/integrations/database';
+import type { RecordQuery } from '@theshelf/database';
+
 import database from '^/integrations/database';
 
 import { RECORD_TYPE } from '../definitions';
@@ -12,7 +13,7 @@ export default async function exists(creatorId: string, postId: string): Promise
         postId: { EQUALS: postId }
     };
 
-    const data = await database.findRecord(RECORD_TYPE, query, ['id']);
+    const record = await database.readRecord(RECORD_TYPE, query, ['id']);
 
-    return data !== undefined;
+    return record !== undefined;
 }

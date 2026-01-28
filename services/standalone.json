@@ -1,21 +1,26 @@
 {
     "url": "http://127.0.0.1:3000",
     "setUp": [
-        "./integrations/runtime/setUpBff",
-        "./integrations/runtime/setUpWorker"
+        "./integrations/authentication/setUp",
+        "./integrations/database/setUp",
+        "./integrations/fileStore/setUp",
+        "./integrations/eventBroker/setUp"
     ],
     "tearDown": [
-        "./integrations/runtime/tearDownWorker",
-        "./integrations/runtime/tearDownBff"
+        "./integrations/authentication/tearDown",
+        "./integrations/database/tearDown",
+        "./integrations/fileStore/tearDown",
+        "./integrations/eventBroker/tearDown"
     ],
     "healthChecks": [
-        "./integrations/runtime/fileStoreHealthCheck",
-        "./integrations/runtime/databaseHealthCheck"
+        "./integrations/database/healthCheck",
+        "./integrations/fileStore/healthCheck",
+        "./integrations/eventBroker/healthCheck"
     ],
     "middleware": [
-        "./integrations/runtime/originMiddleware",
-        "./integrations/runtime/authenticationMiddleware",
-        "./integrations/runtime/tenantMiddleware"
+        "./integrations/authentication/originMiddleware",
+        "./integrations/authentication/authenticationMiddleware",
+        "./integrations/tenancy/tenantMiddleware"
     ],
     "standalone":
     {

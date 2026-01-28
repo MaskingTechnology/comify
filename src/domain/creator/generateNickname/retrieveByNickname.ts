@@ -11,5 +11,5 @@ export default async function retrieveByNickname(tenantId: string, nickname: str
         nickname: { 'EQUALS': nickname }
     };
 
-    return database.findRecord(RECORD_TYPE, query) as Promise<DataModel | undefined>;
+    return database.readRecord(RECORD_TYPE, query) as Promise<DataModel | undefined>;
 }

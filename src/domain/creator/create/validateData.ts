@@ -1,16 +1,24 @@
 
-import type { ValidationSchema } from '^/integrations/validation';
+import type { ValidationSchema } from '@theshelf/validation';
+
 import validator from '^/integrations/validation';
 
-import { optionalIdValidation, requiredIdValidation } from '^/domain/definitions';
+import { optionalIdValidation } from '^/domain/definitions';
 
-import InvalidCreator from '../InvalidCreator';
 import { fullNameValidation } from '../definitions';
+import InvalidCreator from './InvalidCreator';
 import type { ValidationModel } from './types';
 
 const schema: ValidationSchema =
 {
-    tenantId: requiredIdValidation,
+    tenantId:
+    {
+        message: 'Value is not a valid tenant id',
+        STRING:
+        {
+            required: true
+        }
+    },
     fullName: fullNameValidation,
     email:
     {

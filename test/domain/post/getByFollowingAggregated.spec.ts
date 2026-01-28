@@ -1,7 +1,29 @@
 
+import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
+
+import database from '^/integrations/database';
+import fileStore from '^/integrations/fileStore';
+
 import getByFollowingAggregated from '^/domain/post/getByFollowingAggregated';
-import { beforeEach, describe, expect, it } from 'vitest';
+
 import { DATABASES, FILE_STORES, REQUESTERS, TENANTS } from './fixtures';
+
+
+beforeAll(async () =>
+{
+    await Promise.all([
+        database.connect(),
+        fileStore.connect()
+    ]);
+});
+
+afterAll(async () =>
+{
+    await Promise.all([
+        database.disconnect(),
+        fileStore.disconnect()
+    ]);
+});
 
 beforeEach(async () =>
 {

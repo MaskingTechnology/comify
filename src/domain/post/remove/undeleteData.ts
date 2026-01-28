@@ -1,9 +1,15 @@
 
 import database from '^/integrations/database';
+import logger from '^/integrations/logging';
 
 import { RECORD_TYPE } from '../definitions';
 
 export default async function undeleteData(id: string): Promise<void>
 {
-    return database.updateRecord(RECORD_TYPE, id, { deleted: false });
+    const result = await database.updateRecord(RECORD_TYPE, { id: { EQUALS: id } }, { deleted: false });
+
+    if (result === 0)
+    {
+        logger.logWarn(`Post with id '${id}' has not been undeleted.`);
+    }
 }

@@ -2,12 +2,12 @@
 export const VALUES =
 {
     IDS: {
-        FIRST: '1',
-        SECOND: '2',
-        THIRD: '3',
-        FOURTH: '4',
-        FIFTH: '5',
-        SIXTH: '6'
+        FIRST: 'ca2bb85c-390e-46db-83bd-992f59c8d8f9',
+        SECOND: 'b19af935-0713-43f7-ad33-ac0765b1cf23',
+        THIRD: '813e5587-d822-4568-85fa-f9e092c82792',
+        FOURTH: '38be2a77-59f4-482d-b77e-7e69c7d8a1c4',
+        FIFTH: 'e4436c29-ef16-40f9-a3af-7b26725d2256',
+        SIXTH: '1956b2f9-7797-4453-b5e9-1e679f97371d'
     },
 
     FULL_NAMES:

@@ -1,15 +1,20 @@
 {
     "url": "http://127.0.0.1:4000",
     "setUp": [
-        "./integrations/runtime/setUpBff"
+        "./integrations/authentication/setUp",
+        "./integrations/eventBroker/setUp"
     ],
     "tearDown": [
-        "./integrations/runtime/tearDownBff"
+        "./integrations/authentication/tearDown",
+        "./integrations/eventBroker/tearDown"
+    ],
+    "healthChecks": [
+        "./integrations/eventBroker/healthCheck"
     ],
     "middleware": [
-        "./integrations/runtime/originMiddleware",
-        "./integrations/runtime/authenticationMiddleware",
-        "./integrations/runtime/tenantMiddleware"
+        "./integrations/authentication/originMiddleware",
+        "./integrations/authentication/authenticationMiddleware",
+        "./integrations/tenancy/tenantMiddleware"
     ],
     "worker":
     {

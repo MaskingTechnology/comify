@@ -1,12 +1,29 @@
 
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
+
+import database from '^/integrations/database';
+import eventBroker from '^/integrations/eventBroker';
 
 import { RECORD_TYPE as RELATION_RECORD_TYPE } from '^/domain/relation';
 import establish, { RelationAlreadyExists } from '^/domain/relation/establish';
 
-import database from '^/integrations/database';
-
 import { DATABASES, QUERIES, REQUESTERS, TENANTS, VALUES } from './fixtures';
+
+beforeAll(async () =>
+{
+    await Promise.all([
+        database.connect(),
+        eventBroker.connect()
+    ]);
+});
+
+afterAll(async () =>
+{
+    await Promise.all([
+        database.disconnect(),
+        eventBroker.disconnect()
+    ]);
+});
 
 beforeEach(async () =>
 {
@@ -19,7 +36,8 @@ describe('domain/relation/establish', () =>
     {
         await establish(TENANTS.default, REQUESTERS.SECOND, VALUES.IDS.CREATOR1);
 
-        const relation = await database.findRecord(RELATION_RECORD_TYPE, QUERIES.EXISTING_RELATION);
+        const relation = await database.readRecord(RELATION_RECORD_TYPE, QUERIES.EXISTING_RELATION);
+        
         expect(relation?.id).toBeDefined();
     });
 

@@ -1,5 +1,5 @@
 
-import type { Validation } from '^/integrations/validation';
+import type { Validation } from '@theshelf/validation';
 
 export const RECORD_TYPE = 'image';
 

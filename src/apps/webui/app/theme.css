@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap');
+
+:root
+{
+    --font-family: 'Inter', sans-serif;
+    --background-color: #ffffff;
+    --border-color: #f3f3f3;
+}
+
+.mtds
+{
+    --font-family: 'Inter', sans-serif;
+
+    .button
+    {
+        --type-primary-background-color: #e06666;
+        --type-primary-foreground-color: #ffffff;
+        --type-secondary-background-color: #cccccc;
+    }
+
+    .ruler
+    {
+        --color: var(--border-color);
+    }
+
+    .table
+    {
+        --accent-color: #666666;
+
+        --header-background-color: #666666;
+        --header-forground-color: #ffffff;
+
+        --row-odd-color: #ffffff;
+        --row-even-color: #f3f3f3;
+
+        --footer-border-color: #999999
+    }
+}

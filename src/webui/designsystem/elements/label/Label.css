@@ -1,9 +1,0 @@
-.ds
-{
-    .label
-    {
-        --margin: 0;
-
-        margin: var(--margin);
-    }
-}

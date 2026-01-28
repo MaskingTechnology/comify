@@ -1,9 +1,10 @@
 
-import type { ValidationSchema } from '^/integrations/validation';
+import type { ValidationSchema } from '@theshelf/validation';
+
 import validator from '^/integrations/validation';
 
-import InvalidCreator from '../InvalidCreator';
 import { fullNameValidation } from '../definitions';
+import InvalidFullName from './InvalidFullName';
 import type { ValidationModel } from './types';
 
 const schema: ValidationSchema =
@@ -17,6 +18,6 @@ export default function validateData({ fullName }: ValidationModel): void
 
     if (result.invalid)
     {
-        throw new InvalidCreator(result.messages);
+        throw new InvalidFullName(result.messages);
     }
 }

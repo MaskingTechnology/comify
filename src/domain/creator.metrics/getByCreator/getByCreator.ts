@@ -1,5 +1,6 @@
 
 import database from '^/integrations/database';
+import logger from '^/integrations/logging';
 
 import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';
@@ -9,12 +10,14 @@ export default async function getByCreator(creatorId: string): Promise<DataModel
 {
     const query = { creatorId: { EQUALS: creatorId } };
 
-    const data = await database.findRecord(RECORD_TYPE, query) as DataModel;
+    const record = await database.readRecord(RECORD_TYPE, query);
 
-    if (data === undefined)
+    if (record === undefined)
     {
+        logger.logWarn(`Metrics for creator '${creatorId}' could not be found.`);
+
         throw new CreatorMetricsNotFound();
     }
 
-    return data;
+    return record as DataModel;
 }

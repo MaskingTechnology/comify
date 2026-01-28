@@ -1,4 +1,8 @@
 
+import type { MemoryDriver } from '@theshelf/database';
+
+import database, { driver } from '^/integrations/database';
+
 import { RECORD_TYPE as COMIC_RECORD_TYPE } from '^/domain/comic';
 import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator';
 import { RECORD_TYPE as CREATOR_METRICS_RECORD_TYPE } from '^/domain/creator.metrics';
@@ -9,15 +13,11 @@ import { RECORD_TYPE as POST_METRICS_RECORD_TYPE } from '^/domain/post.metrics';
 import { RECORD_TYPE as RATING_RECORD_TYPE } from '^/domain/rating';
 import { RECORD_TYPE as RELATION_RECORD_TYPE } from '^/domain/relation';
 
-import database from '^/integrations/database';
-
 import { RECORDS } from './records.fixture';
-
-database.connect();
 
 async function withCreators(): Promise<void>
 {
-    database.clear();
+    (driver as MemoryDriver).clear();
 
     const promises = RECORDS.CREATORS.map(creator => database.createRecord(CREATOR_RECORD_TYPE, { ...creator }));
 
@@ -26,7 +26,7 @@ async function withCreators(): Promise<void>
 
 async function withCreatorsPostsAndNotifications(): Promise<void>
 {
-    database.clear();
+    (driver as MemoryDriver).clear();
 
     const promises = [
         RECORDS.CREATORS.map(creator => database.createRecord(CREATOR_RECORD_TYPE, { ...creator })),

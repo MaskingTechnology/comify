@@ -1,11 +1,11 @@
 
-import httpClient from '^/integrations/http';
+import http from '^/integrations/http';
 
 import ImageNotDownloaded from './ImageNotDownloaded';
 
 export default async function downloadImage(imageUrl: string): Promise<Buffer>
 {
-    const getResponse = await httpClient.get(imageUrl);
+    const getResponse = await http.get(imageUrl);
 
     if (getResponse.ok === false)
     {

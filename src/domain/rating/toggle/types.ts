@@ -1,5 +1,5 @@
 
-import type { Publication, Subscription } from '^/integrations/eventbroker';
+import type { Publication, Subscription } from '@theshelf/eventbroker';
 
 export type ToggledEventData = {
     tenantId: string;
