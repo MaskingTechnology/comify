@@ -10,6 +10,7 @@ export { default as NotFound } from './components/NotFound';
 export { default as LoadingContainer } from './components/LoadingContainer';
 export { default as LoadingAndResultContainer } from './components/LoadingAndResultContainer';
 export { default as ResultContainer } from './components/ResultContainer';
+export { default as Menu } from './components/Menu';
 export { default as Tabs } from './components/Tabs';
 export { default as TenantContainer } from './components/TenantContainer';
 

@@ -1,5 +1,5 @@
 
-import { Column, Row } from '@maskingtech/designsystem';
+import { useMemo } from 'react';
 
 import createActiveIcon from '~/assets/images/navigation/create-active.svg';
 import createInactiveIcon from '~/assets/images/navigation/create-inactive.svg';
@@ -12,29 +12,25 @@ import profileInactiveIcon from '~/assets/images/navigation/profile-inactive.svg
 import timelineActiveIcon from '~/assets/images/navigation/timeline-active.svg';
 import timelineInactiveIcon from '~/assets/images/navigation/timeline-inactive.svg';
 
-import Item from './MenuItem';
+import { Menu } from '~/app/common';
+
+import { useAppContext } from '../contexts/AppContext';
 
 type Props = {
     readonly vertical: boolean;
-    readonly identity: {
-        nickname: string;
-    };
 };
 
-export default function Component({ vertical, identity }: Props)
+export default function Component({ vertical }: Props)
 {
-    const Container = vertical ? Column : Row;
+    const { identity } = useAppContext();
 
-    const gapSize = vertical ? 'medium' : 'large';
-    const alignX = vertical ? 'left' : 'center';
+    const items = useMemo(() => [
+        { title: 'Timeline', route: '/timeline', activeIcon: timelineActiveIcon, inactiveIcon: timelineInactiveIcon },
+        { title: 'Explore', route: '/explore', activeIcon: exploreActiveIcon, inactiveIcon: exploreInactiveIcon },
+        { title: 'Create', route: '/posts/create', activeIcon: createActiveIcon, inactiveIcon: createInactiveIcon },
+        { title: 'Notifications', route: '/notifications', activeIcon: notificationsActiveIcon, inactiveIcon: notificationsInactiveIcon },
+        { title: 'Profile', route: `/profile/${identity?.nickname}`, activeIcon: profileActiveIcon, inactiveIcon: profileInactiveIcon }
+    ], [identity]);
 
-    return <nav>
-        <Container gap={gapSize} alignX={alignX}>
-            <Item vertical={vertical} title='Timeline' to='/timeline' activeIcon={timelineActiveIcon} inactiveIcon={timelineInactiveIcon} />
-            <Item vertical={vertical} title='Explore' to='/explore' activeIcon={exploreActiveIcon} inactiveIcon={exploreInactiveIcon} />
-            <Item vertical={vertical} title='Create' to='/posts/create' activeIcon={createActiveIcon} inactiveIcon={createInactiveIcon} />
-            <Item vertical={vertical} title='Notifications' to='/notifications' activeIcon={notificationsActiveIcon} inactiveIcon={notificationsInactiveIcon} />
-            <Item vertical={vertical} title='Profile' to={`/profile/${identity.nickname}`} activeIcon={profileActiveIcon} inactiveIcon={profileInactiveIcon} />
-        </Container>
-    </nav>;
+    return <Menu items={items} vertical={vertical} />;
 }
