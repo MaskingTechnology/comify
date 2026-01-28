@@ -1,6 +1,8 @@
 
 import { useMemo } from 'react';
 
+import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
+
 import createActiveIcon from '~/assets/images/navigation/create-active.svg';
 import createInactiveIcon from '~/assets/images/navigation/create-inactive.svg';
 import exploreActiveIcon from '~/assets/images/navigation/explore-active.svg';
@@ -14,22 +16,19 @@ import timelineInactiveIcon from '~/assets/images/navigation/timeline-inactive.s
 
 import { Menu } from '~/app/common';
 
-import { useAppContext } from '../contexts/AppContext';
-
 type Props = {
     readonly vertical: boolean;
+    readonly identity: AggregatedCreatorData;
 };
 
-export default function Component({ vertical }: Props)
+export default function Component({ vertical, identity }: Props)
 {
-    const { identity } = useAppContext();
-
     const items = useMemo(() => [
         { title: 'Timeline', route: '/timeline', activeIcon: timelineActiveIcon, inactiveIcon: timelineInactiveIcon },
         { title: 'Explore', route: '/explore', activeIcon: exploreActiveIcon, inactiveIcon: exploreInactiveIcon },
         { title: 'Create', route: '/posts/create', activeIcon: createActiveIcon, inactiveIcon: createInactiveIcon },
         { title: 'Notifications', route: '/notifications', activeIcon: notificationsActiveIcon, inactiveIcon: notificationsInactiveIcon },
-        { title: 'Profile', route: `/profile/${identity?.nickname}`, activeIcon: profileActiveIcon, inactiveIcon: profileInactiveIcon }
+        { title: 'Profile', route: `/profile/${identity.nickname}`, activeIcon: profileActiveIcon, inactiveIcon: profileInactiveIcon }
     ], [identity]);
 
     return <Menu items={items} vertical={vertical} />;
