@@ -1,0 +1,1 @@
+docker build -t localhost:5000/comify:0.1.0 -f docker/Dockerfile .

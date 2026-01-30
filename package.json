@@ -1,7 +1,7 @@
 {
   "name": "comify",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     
@@ -33,7 +33,9 @@
     "notification": "jitar start --env-file=development.env --service=services/notification.json --http-body-limit=640000",
     "reads": "jitar start --env-file=development.env --service=services/reads.json --http-body-limit=640000",
     "reads2": "jitar start --env-file=development.env --service=services/reads2.json --http-body-limit=640000",
-    "writes": "jitar start --env-file=development.env --service=services/writes.json --http-body-limit=640000"
+    "writes": "jitar start --env-file=development.env --service=services/writes.json --http-body-limit=640000",
+
+    "production": "jitar start --log-level=warn --service=services/standalone.json"
   },
   "files": [
     "CHANGELOG.md",
