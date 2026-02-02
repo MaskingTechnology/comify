@@ -1,12 +1,15 @@
 volumes:
     mongo-data:
-    seaweed-data:
+    seaweed-master-data:
+    seaweed-volume-data:
+    seaweed-filer-data:
     keycloak-data:
 
 services:
 
   mongo:
     image: mongo:8.0.12
+    container_name: mongo
     restart: always
     volumes:
       - mongo-data:/data/db
@@ -19,6 +22,7 @@ services:
 
   mongo-express:
     image: mongo-express:1.0.2-18
+    container_name: mongo-express
     restart: always
     ports:
       - "${MONGO_EXPRESS_PORT_NUMBER:-8081}:8081"
@@ -33,27 +37,34 @@ services:
 
   seaweedfs-master:
     image: chrislusf/seaweedfs:4.07
+    container_name: seaweedfs-master
     ports:
       - "9333:9333"
       - "19333:19333"
+    volumes:
+      - seaweed-master-data:/data
     command: "master -ip=seaweedfs-master -ip.bind=0.0.0.0 -port=9333 -port.grpc=19333 -mdir=/data"
 
   seaweedfs-volume:
     image: chrislusf/seaweedfs:4.07
+    container_name: seaweedfs-volume
     ports:
       - "9222:8080"
       - "18080:18080"
     volumes:
-      - seaweed-data:/data
+      - seaweed-volume-data:/data
     command: "volume -ip=seaweedfs-volume -ip.bind=0.0.0.0 -mserver=seaweedfs-master:9333 -port=8080 -dir=/data"
     depends_on:
       - seaweedfs-master
   
   seaweedfs-filer:
     image: chrislusf/seaweedfs:4.07
+    container_name: seaweedfs-filer
     ports:
       - "9111:8888"
       - "18888:18888"
+    volumes:
+      - seaweed-filer-data:/data
     command: "filer -ip=seaweedfs-filer -ip.bind=0.0.0.0 -master=seaweedfs-master:9333 -port=8888"
     depends_on:
       - seaweedfs-master
@@ -61,17 +72,19 @@ services:
 
   seaweedfs-s3:
     image: chrislusf/seaweedfs:4.07
+    container_name: seaweedfs-s3
     ports:
       - "${SEAWEEDFS_PORT_NUMBER:-9000}:8333"
     environment:
-      SEAWEEDFS_S3_ROOT_USER: ${SEAWEEDFS_ROOT_USER}
-      SEAWEEDFS_S3_ROOT_PASSWORD: ${SEAWEEDFS_ROOT_PASSWORD}
-    command: "s3 -filer=seaweedfs-filer:8888 -port=8333"
+      AWS_ACCESS_KEY_ID: ${SEAWEEDFS_ROOT_USER}
+      AWS_SECRET_ACCESS_KEY: ${SEAWEEDFS_ROOT_PASSWORD}
+    command: "s3 -filer=seaweedfs-filer:8888 -ip.bind=0.0.0.0 -port=8333"
     depends_on:
       - seaweedfs-filer
 
   keycloak:
     image: quay.io/keycloak/keycloak:26.2
+    container_name: keycloak
     restart: always
     volumes:
       - "${KEYCLOAK_IMPORT_PATH}:/opt/keycloak/data/import"

@@ -19,7 +19,7 @@
     "compile-webui": "tsc -p src/apps/webui --noEmit",
     "preview": "vite preview",
     
-    "docker-up": "docker compose --env-file development.env up",
+    "docker-up": "docker compose --env-file development.env up -d",
     "docker-down": "docker compose --env-file development.env down",
 
     "review": "npm run compile && npm run lint && npm run test",
