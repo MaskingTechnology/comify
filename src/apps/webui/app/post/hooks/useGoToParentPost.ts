@@ -15,7 +15,7 @@ export default function useGoToParentPost()
             return;
         }
 
-        return navigate(`/post/${post.parentId}`);
+        return navigate(`/posts/${post.parentId}`);
 
     }, [navigate]);
 }

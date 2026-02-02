@@ -3,7 +3,8 @@ import { useParams, Outlet } from 'react-router-dom';
 
 import { Modal, Tabs } from '~/app/common';
 
-import useViewPostDetails from './hooks/useViewPostDetails';
+import useViewPost from './hooks/useViewPost';
+import useViewReaction from './hooks/useViewReaction';
 
 const tabItems = [
     { title: 'Comic', route: 'comic' },
@@ -18,8 +19,8 @@ export default function Feature()
 {
     const {postId} = useParams<ParamProps>();
     
-    const onCreated = useViewPostDetails(postId);
-    const onCancelled = useViewPostDetails(postId);
+    const onCreated = useViewReaction(postId);
+    const onCancelled = useViewPost(postId);
 
     return <Modal>
         <Tabs items={tabItems}>
