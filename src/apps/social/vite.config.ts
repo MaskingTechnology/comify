@@ -26,7 +26,7 @@ const jitarConfig: JitarConfig = {
 //     additionalManifestEntries: [
 //       { url: '/manifest.webmanifest', revision: null }
 //     ],
-//     globPatterns: ['index.html', 'registerSW.js', 'assets/*', 'webui/**/*.{js,css,html,png,svg}']
+//     globPatterns: ['index.html', 'registerSW.js', 'assets/*', 'social/**/*.{js,css,html,png,svg}']
 //   }
 // };
 
@@ -42,11 +42,11 @@ const jitarConfig: JitarConfig = {
 // };
 
 export default defineConfig({
-  root: './src/apps/webui',
+  root: './src/apps/social',
   publicDir: 'public',
   build: {
     outDir: '../../../dist',
-    assetsDir: 'webui',
+    assetsDir: 'social',
     emptyOutDir: false
   },
   plugins: [

@@ -27,6 +27,6 @@
         "segments": ["bff", "notification", "reads", "writes"],
 
         "serveIndexOnNotFound": true,
-        "assets": ["index.html", "assets/**/*", "webui/**/*", "registerSW.js", "sw.js", "workbox-*.js", "manifest.webmanifest" ]
+        "assets": ["index.html", "assets/**/*", "social/**/*", "registerSW.js", "sw.js", "workbox-*.js", "manifest.webmanifest" ]
     }
 }

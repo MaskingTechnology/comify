@@ -5,18 +5,18 @@
   "type": "module",
   "scripts": {
     
-    "dev": "vite --config src/apps/webui/vite.config.js",
+    "dev": "vite --config src/apps/social/vite.config.js",
     "copy-assets": "cpx src/assets/**/* dist/assets",
-    "build": "npm run clean && npm run build-domain && npm run build-webui",
+    "build": "npm run clean && npm run build-domain && npm run build-social",
     "build-domain": "tsc -p src && tsc-alias -p src/tsconfig.json && jitar build && npm run copy-assets",
-    "build-webui": "vite build --config src/apps/webui/vite.config.js",
+    "build-social": "vite build --config src/apps/social/vite.config.js",
     "clean": "rimraf dist",
     "test": "vitest run",
     "test-coverage": "vitest run --coverage",
     "lint": "eslint",
-    "compile": "npm run compile-domain && npm run compile-webui",
+    "compile": "npm run compile-domain && npm run compile-social",
     "compile-domain": "tsc -p src --noEmit",
-    "compile-webui": "tsc -p src/apps/webui --noEmit",
+    "compile-social": "tsc -p src/apps/social --noEmit",
     "preview": "vite preview",
     
     "docker-up": "docker compose --env-file development.env up -d",
