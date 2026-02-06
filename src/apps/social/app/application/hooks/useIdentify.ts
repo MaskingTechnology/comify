@@ -18,7 +18,7 @@ export default function useIdentify()
     {
         const setIdentity = (identity: IdentityModel) =>
         {
-            const redirectLocation = window.sessionStorage.getItem('redirect');
+            const redirectLocation = globalThis.sessionStorage.getItem('redirect');
 
             context.setIdentity(identity);
 

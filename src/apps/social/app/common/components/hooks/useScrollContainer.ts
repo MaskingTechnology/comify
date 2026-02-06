@@ -1,7 +1,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-const SCROLL_PROPERTIES = ['overflow', 'auto', 'scroll'];
+const SCROLL_PROPERTIES = new Set(['overflow', 'auto', 'scroll']);
 
 export function useScrollContainer()
 {
@@ -16,9 +16,9 @@ export function useScrollContainer()
 
             while (parent)
             {
-                const { overflowY } = window.getComputedStyle(parent);
+                const { overflowY } = globalThis.getComputedStyle(parent);
 
-                if (SCROLL_PROPERTIES.includes(overflowY))
+                if (SCROLL_PROPERTIES.has(overflowY))
                 {
                     return parent;
                 }

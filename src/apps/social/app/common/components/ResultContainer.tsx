@@ -15,7 +15,7 @@ export default function Component({ data, isLoading, children }: Props)
 
     if (data === undefined || data === null) return <NoResult />;
 
-    if (data instanceof Array && data.length === 0) return <NoResult />;
+    if (Array.isArray(data) && data.length === 0) return <NoResult />;
 
     return children;
 }
