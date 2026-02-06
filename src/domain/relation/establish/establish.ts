@@ -32,7 +32,7 @@ export default async function establish(tenant: Tenant, requester: Requester, fo
     }
     catch (error)
     {
-        logger.logError('Failed to establish relation', error);
+        logger.error('Failed to establish relation', error);
 
         if (id !== undefined)
         {

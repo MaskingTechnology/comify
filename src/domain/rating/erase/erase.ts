@@ -10,6 +10,6 @@ export default async function erase(id: string): Promise<void>
 
     if (result === 0)
     {
-        logger.logWarn(`Rating with id '${id}' has not been deleted.`);
+        logger.warn(`Rating with id '${id}' has not been deleted.`);
     }
 }

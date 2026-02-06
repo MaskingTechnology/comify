@@ -25,7 +25,7 @@ export default async function create(tenantId: string, creatorId: string, comicI
     }
     catch (error)
     {
-        logger.logError('Failed to create post', error);
+        logger.error('Failed to create post', error);
 
         if (postId !== undefined)
         {

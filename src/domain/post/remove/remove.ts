@@ -35,7 +35,7 @@ export default async function remove(tenant: Tenant, requester: Requester, id: s
     }
     catch (error)
     {
-        logger.logError('Failed to remove post', error);
+        logger.error('Failed to remove post', error);
 
         if (deleted)
         {

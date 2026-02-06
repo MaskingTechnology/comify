@@ -13,7 +13,7 @@ export default async function retrieveData(id: string): Promise<DataModel>
 
     if (record === undefined)
     {
-        logger.logWarn(`Image with id '${id}' could not be found.`);
+        logger.warn(`Image with id '${id}' could not be found.`);
 
         throw new ImageNotFound();
     }

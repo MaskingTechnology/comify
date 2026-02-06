@@ -1,8 +1,9 @@
 
-import FileStore, { MemoryDriver, S3Driver } from '@theshelf/filestore';
+import FileStore, { MemoryDriver } from '@theshelf/filestore';
+import { S3Driver } from '@theshelf/filestore-driver-s3';
 import ConnectionManager from '@theshelf/connection';
 
-import logger from '^/integrations/logging';
+import { shelfLogger } from '^/integrations/logging';
 
 function setUpMemory(): MemoryDriver
 {
@@ -31,12 +32,11 @@ export const driver = process.env.FILE_STORE_DRIVER === 's3'
     ? setUpMinio()
     : setUpMemory();
 
-const fileStore = new FileStore(driver);
+const fileStore = new FileStore(driver, shelfLogger);
 
 const connectionManager = new ConnectionManager({
     name: 'File store',
-    connectable: fileStore,
-    logger
-});
+    connectable: fileStore
+}, shelfLogger);
 
 export { fileStore as default, connectionManager };

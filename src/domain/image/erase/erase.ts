@@ -10,6 +10,6 @@ export default async function erase(id: string): Promise<void>
 
     if (result === 0)
     {
-        logger.logWarn(`Image with id '${id}' has not been deleted.`);
+        logger.warn(`Image with id '${id}' has not been deleted.`);
     }
 }

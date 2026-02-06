@@ -13,7 +13,7 @@ export default async function getById(id: string): Promise<DataModel>
 
     if (record === undefined)
     {
-        logger.logWarn(`Comment with id '${id}' could not be found.`);
+        logger.warn(`Comment with id '${id}' could not be found.`);
 
         throw new CommentNotFound();
     }
