@@ -11,25 +11,25 @@ type Handler = {
 type InputEvent = MouseEvent | TouchEvent;
 type InputPosition = { clientX: number, clientY: number; };
 
-const pressEventName = 'ontouchstart' in window ? 'touchstart' : 'mousedown';
-const moveEventName = 'ontouchmove' in window ? 'touchmove' : 'mousemove';
-const releaseEventName = 'ontouchend' in window ? 'touchend' : 'mouseup';
+const pressEventName = 'ontouchstart' in globalThis ? 'touchstart' : 'mousedown';
+const moveEventName = 'ontouchmove' in globalThis ? 'touchmove' : 'mousemove';
+const releaseEventName = 'ontouchend' in globalThis ? 'touchend' : 'mouseup';
 const dragOverEventName = 'dragover';
 const dropEventName = 'drop';
 
 export default class InputManager
 {
-    #canvas: HTMLCanvasElement;
-    #handler: Handler;
+    readonly #canvas: HTMLCanvasElement;
+    readonly #handler: Handler;
 
     #currentPosition: Position;
     #pressed: boolean;
 
-    #pressHandler = this.#handlePress.bind(this);
-    #moveHandler = this.#handleMove.bind(this);
-    #releaseHandler = this.#handleRelease.bind(this);
-    #dragOverHandler = this.#handleDragOver.bind(this);
-    #dropHandler = this.#handleDrop.bind(this);
+    readonly #pressHandler = this.#handlePress.bind(this);
+    readonly #moveHandler = this.#handleMove.bind(this);
+    readonly #releaseHandler = this.#handleRelease.bind(this);
+    readonly #dragOverHandler = this.#handleDragOver.bind(this);
+    readonly #dropHandler = this.#handleDrop.bind(this);
 
     constructor(canvas: HTMLCanvasElement, handler: Handler)
     {
@@ -131,7 +131,7 @@ export default class InputManager
 
     #extractInputPosition(event: InputEvent): InputPosition
     {
-        if (window.TouchEvent !== undefined && event instanceof window.TouchEvent)
+        if (globalThis.TouchEvent !== undefined && event instanceof globalThis.TouchEvent)
         {
             const touch = event.touches[0];
 

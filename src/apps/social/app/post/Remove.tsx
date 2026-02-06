@@ -1,16 +1,14 @@
 
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import { Modal } from '~/app/common';
-
-import { ConfirmationPanel } from '~/app/common';
+import { ConfirmationPanel, Modal } from '~/app/common';
 
 import useRemove from './hooks/useRemovePost';
 
 export default function Feature()
 {
     const navigate = useNavigate();
-    const {postId} = useParams();
+    const { postId } = useParams();
 
     const onConfirm = useRemove(postId);
     const onCancel = () => navigate(-1);

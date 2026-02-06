@@ -14,8 +14,8 @@ export default function Component({ isFollowing, onClick }: Props)
     const [status, handleClick] = useEstablish(isFollowing, onClick);
 
     return <Button
-        type={status !== 'unestablished' ? 'disabled' : 'secondary'}
-        text={status !== 'unestablished' ? 'Following' : 'Follow'}
+        type={status === 'unestablished' ? 'secondary' : 'disabled'}
+        text={status === 'unestablished' ? 'Follow' : 'Following'}
         onClick={handleClick}
     />;
 }
