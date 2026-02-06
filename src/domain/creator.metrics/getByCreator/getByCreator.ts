@@ -14,7 +14,7 @@ export default async function getByCreator(creatorId: string): Promise<DataModel
 
     if (record === undefined)
     {
-        logger.logWarn(`Metrics for creator '${creatorId}' could not be found.`);
+        logger.warn(`Metrics for creator '${creatorId}' could not be found.`);
 
         throw new CreatorMetricsNotFound();
     }

@@ -20,7 +20,7 @@ export default async function getByOrigin(origin: string): Promise<DataModel>
 
     if (record === undefined)
     {
-        logger.logWarn(`Tenant with origin '${origin}' could not be found.`);
+        logger.warn(`Tenant with origin '${origin}' could not be found.`);
 
         throw new TenantNotFound();
     }

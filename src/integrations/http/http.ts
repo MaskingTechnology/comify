@@ -1,6 +1,10 @@
 
-import Http, { FetchDriver } from '@theshelf/http';
+import Http, { MappedDriver, FetchDriver } from '@theshelf/http';
 
-export const driver = new FetchDriver();
+import { shelfLogger } from '^/integrations/logging';
 
-export default new Http(driver);
+export const driver = process.env.HTTP_DRIVER === 'fetch'
+    ? new FetchDriver()
+    : new MappedDriver();
+
+export default new Http(driver, shelfLogger);

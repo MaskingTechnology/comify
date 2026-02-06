@@ -18,7 +18,7 @@ export default async function updateNickname(tenant: Tenant, requester: Requeste
 
     if (data !== undefined)
     {
-        logger.logDebug(`Nickname of creator with id '${requester.id}' could not be updated because nickname '${nickname}' already exists.`);
+        logger.debug(`Nickname of creator with id '${requester.id}' could not be updated because nickname '${nickname}' already exists.`);
 
         throw new NicknameAlreadyExists();
     }

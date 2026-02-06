@@ -10,6 +10,6 @@ export default async function eraseData(id: string): Promise<void>
 
     if (result === 0)
     {
-        logger.logWarn(`Comic with id '${id}' has not been deleted.`);
+        logger.warn(`Comic with id '${id}' has not been deleted.`);
     }
 }

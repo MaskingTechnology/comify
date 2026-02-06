@@ -1,8 +1,9 @@
 
-import Database, { MemoryDriver, MongoDBDriver } from '@theshelf/database';
+import Database, { MemoryDriver } from '@theshelf/database';
+import { MongoDBDriver } from '@theshelf/database-driver-mongodb';
 import ConnectionManager from '@theshelf/connection';
 
-import logger from '^/integrations/logging';
+import { shelfLogger } from '^/integrations/logging';
 
 function setUpMemory(): MemoryDriver
 {
@@ -21,12 +22,11 @@ export const driver = process.env.DATABASE_DRIVER === 'mongodb'
     ? setUpMongoDB()
     : setUpMemory();
 
-const database = new Database(driver);
+const database = new Database(driver, shelfLogger);
 
 const connectionManager = new ConnectionManager({
     name: 'Database',
-    connectable: database,
-    logger
-});
+    connectable: database
+}, shelfLogger);
 
 export { database as default, connectionManager };

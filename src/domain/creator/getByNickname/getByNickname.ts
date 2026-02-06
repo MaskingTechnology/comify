@@ -19,7 +19,7 @@ export default async function getByNickname(tenantId: string, nickname: string):
 
     if (creator === undefined)
     {
-        logger.logDebug(`Creator for tenant '${tenantId}' with nickname '${nickname}' could not be found.`);
+        logger.debug(`Creator for tenant '${tenantId}' with nickname '${nickname}' could not be found.`);
 
         throw new NicknameNotFound();
     }

@@ -10,6 +10,6 @@ export default async function erase(id: string): Promise<void>
 
     if (result === 0)
     {
-        logger.logWarn(`Post with id '${id}' has not been deleted.`);
+        logger.warn(`Post with id '${id}' has not been deleted.`);
     }
 }

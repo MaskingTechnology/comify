@@ -11,7 +11,7 @@ export default async function filterResolved<T>(items: Promise<T>[]): Promise<T[
     {
         if (promise.status === 'rejected')
         {
-            logger.logError('Promise rejected', promise.reason);
+            logger.error('Promise rejected', promise.reason);
 
             return;
         }

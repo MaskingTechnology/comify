@@ -10,6 +10,6 @@ export default async function remove(id: string): Promise<void>
 
     if (result === 0)
     {
-        logger.logWarn(`Notification with id '${id}' has not been deleted.`);
+        logger.warn(`Notification with id '${id}' has not been deleted.`);
     }
 }

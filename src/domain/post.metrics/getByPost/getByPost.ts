@@ -14,7 +14,7 @@ export default async function getByPost(postId: string): Promise<DataModel>
 
     if (record === undefined)
     {
-        logger.logWarn(`Metrics for post '${postId}' could not be found.`);
+        logger.warn(`Metrics for post '${postId}' could not be found.`);
 
         throw new PostMetricsNotFound();
     }

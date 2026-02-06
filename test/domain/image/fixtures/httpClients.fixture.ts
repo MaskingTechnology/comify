@@ -1,20 +1,23 @@
 
 import { HttpMethods } from '@theshelf/http';
+import type { MappedDriver } from '@theshelf/http';
 
-import httpClient from '^/integrations/http';
+import { driver } from '^/integrations/http';
 
 import { RESPONSES } from './responses.fixture';
 import { URLS } from './urls.fixture';
 
 function withImages()
 {
-    httpClient.clearCache();
+    const mappedDriver = driver as MappedDriver;
 
-    httpClient.setCache(HttpMethods.HEAD, URLS.VALID, RESPONSES.VALID);
-    httpClient.setCache(HttpMethods.GET, URLS.VALID, RESPONSES.VALID);
-    httpClient.setCache(HttpMethods.HEAD, URLS.INVALID_TYPE, RESPONSES.INVALID_TYPE);
-    httpClient.setCache(HttpMethods.HEAD, URLS.INVALID_SIZE, RESPONSES.INVALID_SIZE);
-    httpClient.setCache(HttpMethods.HEAD, URLS.NONEXISTING, RESPONSES.NONEXISTING);
+    mappedDriver.clear();
+
+    mappedDriver.setMapping(HttpMethods.HEAD, URLS.VALID, RESPONSES.VALID);
+    mappedDriver.setMapping(HttpMethods.GET, URLS.VALID, RESPONSES.VALID);
+    mappedDriver.setMapping(HttpMethods.HEAD, URLS.INVALID_TYPE, RESPONSES.INVALID_TYPE);
+    mappedDriver.setMapping(HttpMethods.HEAD, URLS.INVALID_SIZE, RESPONSES.INVALID_SIZE);
+    mappedDriver.setMapping(HttpMethods.HEAD, URLS.NONEXISTING, RESPONSES.NONEXISTING);
 }
 
 export const HTTP_CLIENTS = { withImages };

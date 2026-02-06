@@ -13,7 +13,7 @@ export default async function getById(id: string): Promise<DataModel>
 
     if (record === undefined)
     {
-        logger.logWarn(`Comic with id '${id}' could not be found.`);
+        logger.warn(`Comic with id '${id}' could not be found.`);
 
         throw new ComicNotFound();
     }

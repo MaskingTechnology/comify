@@ -30,7 +30,7 @@ export default async function register(tenantId: string, fullName: string, nickn
     }
     catch (error)
     {
-        logger.logError('Failed to register creator', error);
+        logger.error('Failed to register creator', error);
 
         if (data !== undefined)
         {

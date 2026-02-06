@@ -19,7 +19,7 @@ export default async function getById(tenantId: string, id: string): Promise<Dat
 
     if (record === undefined)
     {
-        logger.logWarn(`Creator for tenant '${tenantId}' with id '${id}' could not be found.`);
+        logger.warn(`Creator for tenant '${tenantId}' with id '${id}' could not be found.`);
 
         throw new CreatorNotFound();
     }

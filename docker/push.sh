@@ -1,0 +1,1 @@
+docker push localhost:5000/comify:0.1.0

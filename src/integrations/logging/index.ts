@@ -1,2 +1,2 @@
 
-export { default, driver } from './logger';
+export { default, shelfLogger, driver } from './logger';

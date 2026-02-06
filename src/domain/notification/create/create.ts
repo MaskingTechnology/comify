@@ -21,6 +21,6 @@ export default async function feature(type: Type, senderId: string, receiverId: 
     catch (error)
     {
         // We want the notification system to be non-blocking.
-        logger.logError('Failed to create notification', error);
+        logger.error('Failed to create notification', error);
     }
 }

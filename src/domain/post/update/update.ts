@@ -13,6 +13,6 @@ export default async function update(id: string, data: Data): Promise<void>
 
     if (result === 0)
     {
-        logger.logWarn(`Post with id '${id}' has not been deleted.`);
+        logger.warn(`Post with id '${id}' has not been deleted.`);
     }
 }
