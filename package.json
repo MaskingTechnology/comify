@@ -35,7 +35,7 @@
     "reads2": "jitar start --env-file=development.env --service=services/reads2.json --http-body-limit=640000",
     "writes": "jitar start --env-file=development.env --service=services/writes.json --http-body-limit=640000",
 
-    "production": "jitar start --log-level=warn --service=services/standalone.json"
+    "production": "jitar start --log-level=warn --service=services/standalone.json --http-body-limit=640000"
   },
   "files": [
     "CHANGELOG.md",
