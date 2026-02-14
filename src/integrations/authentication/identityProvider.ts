@@ -15,7 +15,7 @@ function setUpOpenID()
     const allowInsecureRequests = process.env.OPENID_ALLOW_INSECURE_REQUESTS === 'true';
     const ttl = process.env.OPENID_LOGIN_TTL
         ? Number.parseInt(process.env.OPENID_LOGIN_TTL)
-        : 1800_000;
+        : 1_800_000;
 
     return new OpenIDDriver({ issuer, clientId, clientSecret, redirectPath, signingSecret, allowInsecureRequests, ttl });
 }
@@ -29,4 +29,4 @@ const connectionManager = new ConnectionManager({
     connectable: identityProvider
 }, shelfLogger);
 
-export { connectionManager, identityProvider as default };
+export { identityProvider as default, connectionManager };
