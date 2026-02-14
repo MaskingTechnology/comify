@@ -7,14 +7,17 @@ import { shelfLogger } from '^/integrations/logging';
 
 function setUpOpenID()
 {
-    return new OpenIDDriver({
-        issuer: process.env.OPENID_ISSUER ?? '',
-        clientId: process.env.OPENID_CLIENT_ID ?? '',
-        clientSecret: process.env.OPENID_CLIENT_SECRET ?? '',
-        redirectPath: process.env.OPENID_REDIRECT_PATH ?? '',
-        secretKey: process.env.OPENID_SECRET_KEY ?? '',
-        allowInsecureRequests: process.env.OPENID_ALLOW_INSECURE_REQUESTS === 'true'
-    });
+    const issuer = process.env.OPENID_ISSUER ?? '';
+    const clientId = process.env.OPENID_CLIENT_ID ?? '';
+    const clientSecret = process.env.OPENID_CLIENT_SECRET ?? '';
+    const redirectPath = process.env.OPENID_REDIRECT_PATH ?? '';
+    const signingSecret = process.env.OPENID_SIGNING_SECRET ?? '';
+    const allowInsecureRequests = process.env.OPENID_ALLOW_INSECURE_REQUESTS === 'true';
+    const ttl = process.env.OPENID_LOGIN_TTL
+        ? Number.parseInt(process.env.OPENID_LOGIN_TTL)
+        : 1800_000;
+
+    return new OpenIDDriver({ issuer, clientId, clientSecret, redirectPath, signingSecret, allowInsecureRequests, ttl });
 }
 
 export const driver = setUpOpenID();
@@ -26,4 +29,4 @@ const connectionManager = new ConnectionManager({
     connectable: identityProvider
 }, shelfLogger);
 
-export { identityProvider as default, connectionManager };
+export { connectionManager, identityProvider as default };
