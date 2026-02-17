@@ -2,7 +2,7 @@
 import { Route, Routes } from 'react-router-dom';
 
 import accountRoutes from './account';
-import { publicRoutes, protectedRoutes, ApplicationLayout, GuestLayout, ProtectedRoute } from './application';
+import { legalRoutes, guestRoutes, appRoutes, ApplicationLayout, GuestLayout, LegalLayout, ProtectedRoute } from './application';
 import timelineRoutes from './timeline';
 import exploreRoutes from './explore';
 import notificationRoutes from './notification';
@@ -16,7 +16,7 @@ export default function Component()
         <Route element={<ProtectedRoute />}>
 
             <Route element={<ApplicationLayout />}>
-                {protectedRoutes}
+                {appRoutes}
                 <Route path="/account">{accountRoutes}</Route>
                 <Route path="/timeline">{timelineRoutes}</Route>
                 <Route path="/explore">{exploreRoutes}</Route>
@@ -28,7 +28,11 @@ export default function Component()
         </Route>
 
         <Route element={<GuestLayout />}>
-            {publicRoutes}
+            {guestRoutes}
+        </Route>
+
+        <Route element={<LegalLayout />}>
+            {legalRoutes}
         </Route>
 
     </Routes>;
