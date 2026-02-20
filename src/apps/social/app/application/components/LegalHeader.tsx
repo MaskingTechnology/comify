@@ -4,13 +4,13 @@ import { Panel, ClickArea } from '@maskingtech/designsystem';
 import Logo from './Logo';
 
 type Props = {
-    readonly onGoBack: () => void;
+    readonly onGoHome: () => void;
 };
 
-export default function Component({ onGoBack }: Props)
+export default function Component({ onGoHome }: Props)
 {
     return <Panel type='transparent' padding='small'>
-        <ClickArea onClick={onGoBack}>
+        <ClickArea onClick={onGoHome}>
             <Logo size='small' />
         </ClickArea>
     </Panel>;

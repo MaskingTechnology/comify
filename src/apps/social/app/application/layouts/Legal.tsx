@@ -10,7 +10,7 @@ export default function Page()
 {
     const navigateHome = useNavigateHome();
 
-    const Header = <LegalHeader onGoBack={navigateHome} />;
+    const Header = <LegalHeader onGoHome={navigateHome} />;
 
     return <PortraitLayout header={Header}>
         <Outlet />
