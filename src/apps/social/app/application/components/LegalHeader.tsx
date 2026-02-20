@@ -1,5 +1,5 @@
 
-import { Panel, ClickArea, Icon, Text, Row } from '@maskingtech/designsystem';
+import { Panel, ClickArea } from '@maskingtech/designsystem';
 
 import Logo from './Logo';
 
@@ -13,5 +13,5 @@ export default function Component({ onGoBack }: Props)
         <ClickArea onClick={onGoBack}>
             <Logo size='small' />
         </ClickArea>
-    </Panel>
+    </Panel>;
 }

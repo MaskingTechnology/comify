@@ -1,5 +1,5 @@
 
-import { Column, List, Paragraph, Text, Title } from '@maskingtech/designsystem';
+import { Column, List, Paragraph, Title } from '@maskingtech/designsystem';
 
 export default function Feature()
 {
