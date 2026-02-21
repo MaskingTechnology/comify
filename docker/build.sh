@@ -1,1 +1,3 @@
-docker build -t localhost:5000/comify:0.1.0 -f docker/Dockerfile .
+VERSION=$(jq -r '.version' package.json)
+
+docker build -t "localhost:5000/comify:$VERSION" -f docker/Dockerfile .
