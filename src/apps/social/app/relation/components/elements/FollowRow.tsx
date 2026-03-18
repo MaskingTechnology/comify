@@ -20,7 +20,6 @@ export default function Component({ isFollowing, isSelf, onFollowClick, onEditCl
     return <Row alignX='justify' alignY='top'>
         {children}
         {isSelf
-            // eslint-disable-next-line sonarjs/no-nested-conditional
             ? onEditClick !== undefined
                 ? <EditButton onClick={onEditClick} />
                 : <></>
