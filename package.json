@@ -1,10 +1,9 @@
 {
   "name": "comify",
   "private": true,
-  "version": "0.1.2",
+  "version": "0.1.4",
   "type": "module",
   "scripts": {
-    
     "dev": "vite --config src/apps/social/vite.config.js",
     "copy-assets": "cpx src/assets/**/* dist/assets",
     "build": "npm run clean && npm run build-domain && npm run build-social",
@@ -18,13 +17,11 @@
     "compile-domain": "tsc -p src --noEmit",
     "compile-social": "tsc -p src/apps/social --noEmit",
     "preview": "vite preview",
-    
+    "version": "npm version $VERSION --no-git-tag-version",
     "docker-up": "docker compose --env-file development.env up -d",
     "docker-down": "docker compose --env-file development.env down",
-
     "review": "npm run compile && npm run lint && npm run test",
     "rebuild": "npm run clean && npm run build && npm run standalone",
-
     "standalone": "jitar start --env-file=development.env --service=services/standalone.json --http-body-limit=512000",
     "repository": "jitar start --env-file=development.env --service=services/repository.json",
     "proxy": "jitar start --env-file=development.env --service=services/proxy.json --http-body-limit=512000",
@@ -34,7 +31,6 @@
     "reads": "jitar start --env-file=development.env --service=services/reads.json --http-body-limit=640000",
     "reads2": "jitar start --env-file=development.env --service=services/reads2.json --http-body-limit=640000",
     "writes": "jitar start --env-file=development.env --service=services/writes.json --http-body-limit=640000",
-
     "production": "jitar start --log-level=warn --service=services/standalone.json --http-body-limit=640000"
   },
   "files": [
@@ -46,7 +42,7 @@
     "dayjs": "1.11.20",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "react-router-dom": "7.13.1",
+    "react-router-dom": "7.13.2",
     "jitar": "0.10.7",
     "@maskingtech/designsystem": "0.0.8",
     "@maskingtech/react-toolkit": "0.0.4",
@@ -72,8 +68,8 @@
     "@jitar-plugins/notification": "0.1.3"
   },
   "devDependencies": {
-    "@eslint/js": "9.39.2",
-    "@jitar/plugin-vite": "0.10.6",
+    "@eslint/js": "9.39.4",
+    "@jitar/plugin-vite": "0.10.7",
     "@types/node": "25.3.0",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
@@ -90,5 +86,8 @@
     "vite-plugin-pwa": "1.2.0",
     "vite-tsconfig-paths": "5.1.4",
     "vitest": "4.0.18"
+  },
+  "overrides": {
+    "@rollup/plugin-terser": "1.0.0"
   }
 }
