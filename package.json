@@ -1,10 +1,9 @@
 {
   "name": "comify",
   "private": true,
-  "version": "0.1.2",
+  "version": "0.1.4",
   "type": "module",
   "scripts": {
-    
     "dev": "vite --config src/apps/social/vite.config.js",
     "copy-assets": "cpx src/assets/**/* dist/assets",
     "build": "npm run clean && npm run build-domain && npm run build-social",
@@ -18,13 +17,11 @@
     "compile-domain": "tsc -p src --noEmit",
     "compile-social": "tsc -p src/apps/social --noEmit",
     "preview": "vite preview",
-    
+    "version": "npm version $VERSION --no-git-tag-version",
     "docker-up": "docker compose --env-file development.env up -d",
     "docker-down": "docker compose --env-file development.env down",
-
     "review": "npm run compile && npm run lint && npm run test",
     "rebuild": "npm run clean && npm run build && npm run standalone",
-
     "standalone": "jitar start --env-file=development.env --service=services/standalone.json --http-body-limit=512000",
     "repository": "jitar start --env-file=development.env --service=services/repository.json",
     "proxy": "jitar start --env-file=development.env --service=services/proxy.json --http-body-limit=512000",
@@ -34,7 +31,6 @@
     "reads": "jitar start --env-file=development.env --service=services/reads.json --http-body-limit=640000",
     "reads2": "jitar start --env-file=development.env --service=services/reads2.json --http-body-limit=640000",
     "writes": "jitar start --env-file=development.env --service=services/writes.json --http-body-limit=640000",
-
     "production": "jitar start --log-level=warn --service=services/standalone.json --http-body-limit=640000"
   },
   "files": [
