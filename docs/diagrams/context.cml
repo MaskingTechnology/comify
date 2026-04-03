@@ -1,0 +1,43 @@
+ContextMap SocialMediaMap {
+  contains SocialContext
+  contains EventsContext
+  contains AdministrationContext
+  contains ModerationContext
+  contains InsightsContext
+
+  /* * Social is the core. Moderation acts as a 'Protective' layer 
+   * or an Upstream system that Social relies on.
+   */
+  SocialContext [U, S]->[D, C] ModerationContext {
+    exposedAggregates UserProfiles, Posts
+  }
+
+  /* * Events context consumes data from Social (new posts, likes) 
+   * to trigger notifications.
+   */
+  SocialContext [U]->[D] EventsContext {
+    implementationTechnology "Kafka"
+  }
+
+  /* * Insights usually functions as an Open Host Service (OHS) 
+   * pulling data from multiple upstream sources for analysis.
+   */
+  SocialContext [U, OHS]->[D] InsightsContext
+  EventsContext [U, OHS]->[D] InsightsContext
+
+  /* * Administration is often a 'Master' context that affects 
+   * Social and Moderation settings.
+   */
+  AdministrationContext [U]->[D] SocialContext
+  AdministrationContext [U]->[D] ModerationContext
+}
+
+BoundedContext SocialContext {
+  Aggregate UserProfiles
+  Aggregate Posts
+}
+
+BoundedContext EventsContext
+BoundedContext ModerationContext
+BoundedContext AdministrationContext
+BoundedContext InsightsContext
