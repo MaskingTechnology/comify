@@ -1,0 +1,25 @@
+{
+    "url": "http://127.0.0.1:4000",
+    "setUp": [
+        "./social/integrations/authentication/setUp",
+        "./social/integrations/eventBroker/setUp"
+    ],
+    "tearDown": [
+        "./social/integrations/authentication/tearDown",
+        "./social/integrations/eventBroker/tearDown"
+    ],
+    "healthChecks": [
+        "./social/integrations/eventBroker/healthCheck"
+    ],
+    "middleware": [
+        "./social/integrations/authentication/originMiddleware",
+        "./social/integrations/authentication/authenticationMiddleware",
+        "./social/integrations/tenancy/tenantMiddleware"
+    ],
+    "worker":
+    {
+        "gateway": "http://127.0.0.1:2000",
+        "trustKey": "${JITAR_TRUST_KEY}",
+        "segments": ["social.bff"]
+    }
+}

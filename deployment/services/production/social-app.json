@@ -1,0 +1,9 @@
+{
+    "url": "http://127.0.0.1:1000",
+    "repository":
+    {
+        "serveIndexOnNotFound": true,
+        "assetRoot": "./social/app",
+        "assets": ["index.html", "assets/**/*", "registerSW.js", "sw.js", "workbox-*.js", "manifest.webmanifest" ]
+    }
+}

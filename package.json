@@ -23,7 +23,16 @@
     "docker-up": "docker compose --env-file development.env up -d",
     "docker-down": "docker compose --env-file development.env down",
 
-    "social": "jitar start --env-file=development.env --service=deployment/services/social.json --http-body-limit=512000"
+    "dev": "jitar start --env-file=development.env --service=deployment/services/development/worker.json --http-body-limit=512000",
+
+    "gateway": "jitar start --env-file=development.env --service=deployment/services/production/gateway.json --http-body-limit=512000",
+    "bff": "jitar start --env-file=development.env --service=deployment/services/production/bff.json --http-body-limit=512000",
+    "notification": "jitar start --env-file=development.env --service=deployment/services/production/notification.json --http-body-limit=512000",
+    "reads": "jitar start --env-file=development.env --service=deployment/services/production/reads.json --http-body-limit=512000",
+    "reads2": "jitar start --env-file=development.env --service=deployment/services/production/reads2.json --http-body-limit=512000",
+    "writes": "jitar start --env-file=development.env --service=deployment/services/production/writes.json --http-body-limit=512000",
+    "social-app": "jitar start --env-file=development.env --service=deployment/services/production/social-app.json --http-body-limit=512000",
+    "proxy": "jitar start --env-file=development.env --service=deployment/services/production/proxy.json --http-body-limit=512000"
   },
   "workspaces": [
     "development/insights",
