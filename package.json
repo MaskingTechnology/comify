@@ -32,9 +32,9 @@
   ],
   "dependencies": {
     "dayjs": "1.11.20",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "react-router-dom": "7.13.2",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "react-router-dom": "7.15.0",
     "jitar": "0.10.7",
     "@maskingtech/designsystem": "0.0.8",
     "@maskingtech/react-toolkit": "0.0.4",
