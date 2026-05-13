@@ -1,0 +1,6 @@
+{
+    " ./social/domain/notification/create": { "default": {  "access": "protected" } },
+    " ./social/domain/notification/getByPostId": { "default": {  "access": "protected" } },
+    " ./social/domain/notification/getRecent": { "default": {  "access": "protected" } },
+    " ./social/domain/notification/remove": { "default": {  "access": "protected" } }
+}

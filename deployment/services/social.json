@@ -1,0 +1,38 @@
+{
+    "url": "http://127.0.0.1:3000",
+    "setUp": [
+        "./social/integrations/authentication/setUp",
+        "./social/integrations/database/setUp",
+        "./social/integrations/fileStore/setUp",
+        "./social/integrations/eventBroker/setUp"
+    ],
+    "tearDown": [
+        "./social/integrations/authentication/tearDown",
+        "./social/integrations/database/tearDown",
+        "./social/integrations/fileStore/tearDown",
+        "./social/integrations/eventBroker/tearDown"
+    ],
+    "healthChecks": [
+        "./social/integrations/database/healthCheck",
+        "./social/integrations/fileStore/healthCheck",
+        "./social/integrations/eventBroker/healthCheck"
+    ],
+    "middleware": [
+        "./social/integrations/authentication/originMiddleware",
+        "./social/integrations/authentication/authenticationMiddleware",
+        "./social/integrations/tenancy/tenantMiddleware"
+    ],
+    "standalone":
+    {
+        "segments": [
+            "social.bff",
+            "social.notification",
+            "social.reads",
+            "social.writes"
+        ],
+
+        "serveIndexOnNotFound": true,
+        "assetRoot": "./social/app",
+        "assets": ["index.html", "assets/**/*", "registerSW.js", "sw.js", "workbox-*.js", "manifest.webmanifest" ]
+    }
+}

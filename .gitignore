@@ -7,12 +7,9 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
+artifacts
 coverage
-build
-dist
-dist-ssr
-*.local
+node_modules
 
 # Editor directories and files
 !.vscode/extensions.json

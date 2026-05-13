@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../artifacts/build/insights",
+    "paths": {
+      "^/*": ["./*"],
+    }
+  },
+  "include": ["./domain", "./integrations"]
+}

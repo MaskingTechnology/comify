@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../artifacts/build/social",
+    "paths": {
+      "^/*": ["./*"],
+    }
+  },
+  "include": ["./domain", "./integrations"]
+}
