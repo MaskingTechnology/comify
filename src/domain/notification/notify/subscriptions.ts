@@ -9,7 +9,7 @@ import ratedPost from './ratedPost';
 import removedPost from './removedPost';
 import startedFollowing from './startedFollowing';
 
-async function subscribe(): Promise<void>
+export default async function subscriptions(): Promise<void>
 {
     await Promise.all([
         subscribeToPostRated(({ tenantId, creatorId, postId, rated }) => ratedPost(tenantId, creatorId, postId, rated)),
@@ -19,4 +19,4 @@ async function subscribe(): Promise<void>
     ]);
 }
 
-export default subscribe();
+subscriptions();

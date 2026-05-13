@@ -9,7 +9,7 @@
     "build": "npm run clean && npm run build-domain && npm run build-social",
     "build-domain": "tsc -p src && tsc-alias -p src/tsconfig.json && jitar build && npm run copy-assets",
     "build-social": "vite build --config src/apps/social/vite.config.js",
-    "clean": "rimraf dist",
+    "clean": "rimraf build && rimraf dist",
     "test": "vitest run",
     "test-coverage": "vitest run --coverage",
     "lint": "eslint",
@@ -22,6 +22,7 @@
     "docker-down": "docker compose --env-file development.env down",
     "review": "npm run compile && npm run lint && npm run test",
     "rebuild": "npm run clean && npm run build && npm run standalone",
+    
     "standalone": "jitar start --env-file=development.env --service=services/standalone.json --http-body-limit=512000",
     "repository": "jitar start --env-file=development.env --service=services/repository.json",
     "proxy": "jitar start --env-file=development.env --service=services/proxy.json --http-body-limit=512000",

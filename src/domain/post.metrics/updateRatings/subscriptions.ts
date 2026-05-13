@@ -3,7 +3,7 @@ import { subscribe as subscribeToRatingToggled } from '^/domain/rating/toggle';
 
 import updateRatings from './updateRatings';
 
-async function subscribe(): Promise<void>
+export default async function subscriptions(): Promise<void>
 {
     await Promise.all([
 
@@ -17,4 +17,4 @@ async function subscribe(): Promise<void>
     ]);
 }
 
-export default subscribe();
+subscriptions();

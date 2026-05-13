@@ -4,7 +4,7 @@ import { subscribe as subscribeToPostRemoved } from '^/domain/post/remove';
 
 import updateReactions from './updateReactions';
 
-async function subscribe(): Promise<void>
+export default async function subscriptions(): Promise<void>
 {
     await Promise.all([
 
@@ -25,4 +25,4 @@ async function subscribe(): Promise<void>
     ]);
 }
 
-export default subscribe();
+subscriptions();

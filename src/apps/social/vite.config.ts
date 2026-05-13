@@ -10,9 +10,8 @@ const JITAR_MIDDLEWARES: string[] = [
 ];
 
 const jitarConfig: JitarConfig = {
-  sourceDir: '../../../src',
-  targetDir: '../../../dist',
-  jitarDir: 'domain',
+  projectRoot: '../../../',
+  sourceRoot: '../../',
   jitarUrl: JITAR_URL,
   segments: JITAR_SEGMENTS,
   middleware: JITAR_MIDDLEWARES

@@ -11,7 +11,7 @@
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "bundler",
-    "outDir": "./dist",
+    "outDir": "./build",
     "paths": {
       "^/*": ["./src/*"],
     }

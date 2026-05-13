@@ -3,11 +3,11 @@ import { subscribe as subscribeToCreatorRegistered } from '^/domain/creator/regi
 
 import create from './create';
 
-async function subscribe(): Promise<void>
+export default async function subscriptions(): Promise<void>
 {
     await Promise.all([
         subscribeToCreatorRegistered(({ creatorId }) => create(creatorId)),
     ]);
 }
 
-export default subscribe();
+subscriptions();

@@ -9,7 +9,7 @@ lerna-debug.log*
 
 node_modules
 coverage
-.jitar
+build
 dist
 dist-ssr
 *.local
