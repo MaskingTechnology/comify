@@ -42,7 +42,5 @@
     "./social/domain/relation/establish": { "default": { "access": "public" }, "subscribe": {  "access": "private" } },
     "./social/domain/relation/getAggregated": { "default": {  "access": "public" } },
     "./social/domain/relation/getFollowersAggregated": { "default": {  "access": "public" } },
-    "./social/domain/relation/getFollowingAggregated": { "default": {  "access": "public" } },
-
-    "./common/domain/tenant/getByOriginConverted": { "default": {  "access": "public" } }
+    "./social/domain/relation/getFollowingAggregated": { "default": {  "access": "public" } }
 }

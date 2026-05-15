@@ -17,7 +17,7 @@ export default function Component({ children }: Props)
 
         const link = document.createElement('link');
         link.setAttribute('rel', 'stylesheet');
-        link.setAttribute('href', `/assets/${tenant.id}.css`);
+        link.setAttribute('href', `/${tenant.id}.css`);
 
         document.head.appendChild(link);
 

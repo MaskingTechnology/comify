@@ -25,6 +25,8 @@
     "worker":
     {
         "segments": [
+            "common.bff",
+            "common.reads",
             "social.bff",
             "social.notification",
             "social.reads",

@@ -1,13 +1,13 @@
 {
     "url": "http://127.0.0.1:4001",
     "setUp": [
-        "./social/integrations/database/setUp"
+        "./common/integrations/database/setUp"
     ],
     "tearDown": [
-        "./social/integrations/database/tearDown"
+        "./common/integrations/database/tearDown"
     ],
     "healthChecks": [
-        "./social/integrations/database/healthCheck"
+        "./common/integrations/database/healthCheck"
     ],
     "worker":
     {

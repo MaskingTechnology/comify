@@ -1,21 +1,21 @@
 {
     "url": "http://127.0.0.1:4002",
     "setUp": [
-        "./social/integrations/database/setUp",
-        "./social/integrations/fileStore/setUp"
+        "./common/integrations/database/setUp",
+        "./common/integrations/fileStore/setUp"
     ],
     "tearDown": [
-        "./social/integrations/database/tearDown",
-        "./social/integrations/fileStore/tearDown"
+        "./common/integrations/database/tearDown",
+        "./common/integrations/fileStore/tearDown"
     ],
     "healthChecks": [
-        "./social/integrations/database/healthCheck",
-        "./social/integrations/fileStore/healthCheck"
+        "./common/integrations/database/healthCheck",
+        "./common/integrations/fileStore/healthCheck"
     ],
     "worker":
     {
         "gateway": "http://127.0.0.1:2000",
         "trustKey": "${JITAR_TRUST_KEY}",
-        "segments": ["social.reads"]
+        "segments": ["common.reads", "social.reads"]
     }
 }
