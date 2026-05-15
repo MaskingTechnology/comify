@@ -5,7 +5,7 @@ import { usePagination } from '@maskingtech/react-toolkit';
 
 import { requester } from '^/domain/authentication';
 import getRecentNotifications from '^/domain/notification/getRecentAggregated';
-import { tenant } from '^/domain/tenant';
+import { tenant } from '@comify/common/domain/tenant';
 
 export default function useNotifications()
 {

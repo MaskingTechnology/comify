@@ -6,7 +6,7 @@ import { useLoadData } from '@maskingtech/react-toolkit';
 
 import requester from '^/domain/authentication/requester';
 import get from '^/domain/post/getByIdAggregated';
-import { tenant } from '^/domain/tenant';
+import { tenant } from '@comify/common/domain/tenant';
 
 export default function useReaction()
 {

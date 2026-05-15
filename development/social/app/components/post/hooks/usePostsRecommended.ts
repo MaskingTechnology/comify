@@ -5,7 +5,7 @@ import { usePagination } from '@maskingtech/react-toolkit';
 
 import { requester } from '^/domain/authentication';
 import getPostsRecommended from '^/domain/post/getRecommendedAggregated';
-import { tenant } from '^/domain/tenant';
+import { tenant } from '@comify/common/domain/tenant';
 
 export default function usePostsRecommended()
 {

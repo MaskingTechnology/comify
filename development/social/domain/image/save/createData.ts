@@ -1,5 +1,5 @@
 
-import { generateId } from '^/integrations/utilities/crypto';
+import { generateId } from '@comify/common/integrations/utilities/crypto';
 
 type Data = {
     readonly id: string;

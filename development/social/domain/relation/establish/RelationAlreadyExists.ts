@@ -1,5 +1,5 @@
 
-import { BadRequest } from '^/integrations/errors';
+import { BadRequest } from '@comify/common/integrations/errors';
 
 export default class RelationAlreadyExists extends BadRequest
 {

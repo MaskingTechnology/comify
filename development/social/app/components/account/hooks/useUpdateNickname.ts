@@ -5,7 +5,7 @@ import { requester } from '^/domain/authentication';
 import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
 import updateNickname from '^/domain/creator/updateNickname';
 import NicknameAlreadyExists from '^/domain/creator/updateNickname/NicknameAlreadyExists';
-import { tenant } from '^/domain/tenant';
+import { tenant } from '@comify/common/domain/tenant';
 
 import { useAppContext } from '~/components/application';
 

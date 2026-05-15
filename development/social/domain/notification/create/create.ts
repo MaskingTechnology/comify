@@ -1,5 +1,5 @@
 
-import logger from '^/integrations/logging';
+import logger from '@comify/common/integrations/logging';
 
 import type { Type } from '../definitions';
 import createData from './createData';

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { requester } from '^/domain/authentication';
 import createPostWithComic from '^/domain/post/createWithComic';
-import { tenant } from '^/domain/tenant';
+import { tenant } from '@comify/common/domain/tenant';
 
 import { useAppContext } from '~/components/application';
 

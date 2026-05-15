@@ -10,7 +10,7 @@ function setUpMemory(): MemoryDriver
     return new MemoryDriver();
 }
 
-function setUpMinio(): S3Driver
+function setUpS3(): S3Driver
 {
     const config = {
         bucketName:  process.env.S3_BUCKET_NAME ?? '',
@@ -29,7 +29,7 @@ function setUpMinio(): S3Driver
 }
 
 export const driver = process.env.FILE_STORE_DRIVER === 's3'
-    ? setUpMinio()
+    ? setUpS3()
     : setUpMemory();
 
 const fileStore = new FileStore(driver, shelfLogger);

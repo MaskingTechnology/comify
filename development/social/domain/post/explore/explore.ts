@@ -1,7 +1,7 @@
 
 import type { Requester } from '^/domain/authentication';
 import retrieveRelationsByFollower from '^/domain/relation/getFollowing';
-import type { Tenant } from '^/domain/tenant';
+import type { Tenant } from '@comify/common/domain/tenant';
 
 import type { DataModel } from '../types';
 import retrieveData from './retrieveData';

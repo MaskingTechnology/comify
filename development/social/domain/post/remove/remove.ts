@@ -1,8 +1,8 @@
 
-import logger from '^/integrations/logging';
+import logger from '@comify/common/integrations/logging';
 
 import type { Requester } from '^/domain/authentication';
-import type { Tenant } from '^/domain/tenant';
+import type { Tenant } from '@comify/common/domain/tenant';
 
 import getById from '../getById';
 import deleteData from './deleteData';

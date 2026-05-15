@@ -5,7 +5,7 @@ import { useLoadData } from '@maskingtech/react-toolkit';
 
 import { requester } from '^/domain/authentication';
 import getRelation from '^/domain/relation/getAggregated';
-import { tenant } from '^/domain/tenant';
+import { tenant } from '@comify/common/domain/tenant';
 
 import { useAppContext } from '~/components/application';
 

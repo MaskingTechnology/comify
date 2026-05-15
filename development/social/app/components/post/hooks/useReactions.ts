@@ -6,7 +6,7 @@ import { usePagination } from '@maskingtech/react-toolkit';
 import { requester } from '^/domain/authentication';
 import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
 import getReactionsByPost from '^/domain/post/getByParentAggregated';
-import { tenant } from '^/domain/tenant';
+import { tenant } from '@comify/common/domain/tenant';
 
 export default function useReactions(post: AggregatedPostData)
 {

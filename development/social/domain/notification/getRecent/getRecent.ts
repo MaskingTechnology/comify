@@ -2,7 +2,7 @@
 import type { RecordQuery, RecordSort } from '@theshelf/database';
 import { SortDirections } from '@theshelf/database';
 
-import database from '^/integrations/database';
+import database from '@comify/common/integrations/database';
 
 import { RECORD_TYPE } from '../definitions';
 import type { DataModel } from '../types';

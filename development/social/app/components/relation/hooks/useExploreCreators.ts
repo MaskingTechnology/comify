@@ -5,7 +5,7 @@ import { usePagination } from '@maskingtech/react-toolkit';
 
 import { requester } from '^/domain/authentication';
 import exploreRelations from '^/domain/relation/exploreAggregated';
-import { tenant } from '^/domain/tenant';
+import { tenant } from '@comify/common/domain/tenant';
 
 export default function useExploreCreators()
 {

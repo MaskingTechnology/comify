@@ -1,7 +1,7 @@
 
 import { Text } from '@maskingtech/designsystem';
 
-import { timeElapsed } from '^/integrations/utilities/dates';
+import { timeElapsed } from '@comify/common/integrations/utilities/dates';
 
 type Props = {
     readonly date: string;

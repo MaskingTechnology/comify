@@ -1,6 +1,6 @@
 
 import type { Requester } from '^/domain/authentication';
-import type { Tenant } from '^/domain/tenant';
+import type { Tenant } from '@comify/common/domain/tenant';
 
 import getData from './getData';
 import switchOff from './switchOff';

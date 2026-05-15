@@ -1,5 +1,5 @@
 
-import { ServerError } from '^/integrations/errors';
+import { ServerError } from '@comify/common/integrations/errors';
 
 export default class ImageNotDownloaded extends ServerError
 {

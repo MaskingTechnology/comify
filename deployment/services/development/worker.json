@@ -1,26 +1,26 @@
 {
     "url": "http://127.0.0.1:3000",
     "setUp": [
-        "./social/integrations/authentication/setUp",
-        "./social/integrations/database/setUp",
-        "./social/integrations/fileStore/setUp",
-        "./social/integrations/eventBroker/setUp"
+        "./common/integrations/authentication/setUp",
+        "./common/integrations/database/setUp",
+        "./common/integrations/fileStore/setUp",
+        "./common/integrations/eventBroker/setUp"
     ],
     "tearDown": [
-        "./social/integrations/authentication/tearDown",
-        "./social/integrations/database/tearDown",
-        "./social/integrations/fileStore/tearDown",
-        "./social/integrations/eventBroker/tearDown"
+        "./common/integrations/authentication/tearDown",
+        "./common/integrations/database/tearDown",
+        "./common/integrations/fileStore/tearDown",
+        "./common/integrations/eventBroker/tearDown"
     ],
     "healthChecks": [
-        "./social/integrations/database/healthCheck",
-        "./social/integrations/fileStore/healthCheck",
-        "./social/integrations/eventBroker/healthCheck"
+        "./common/integrations/database/healthCheck",
+        "./common/integrations/fileStore/healthCheck",
+        "./common/integrations/eventBroker/healthCheck"
     ],
     "middleware": [
-        "./social/integrations/authentication/originMiddleware",
-        "./social/integrations/authentication/authenticationMiddleware",
-        "./social/integrations/tenancy/tenantMiddleware"
+        "./common/integrations/authentication/originMiddleware",
+        "./common/integrations/authentication/authenticationMiddleware",
+        "./common/integrations/tenancy/tenantMiddleware"
     ],
     "worker":
     {

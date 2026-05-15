@@ -1,7 +1,7 @@
 
 import type { ValidationSchema } from '@theshelf/validation';
 
-import validator from '^/integrations/validation';
+import validator from '@comify/common/integrations/validation';
 
 import { fullNameValidation } from '../definitions';
 import InvalidFullName from './InvalidFullName';

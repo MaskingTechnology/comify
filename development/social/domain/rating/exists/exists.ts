@@ -1,7 +1,7 @@
 
 import type { RecordQuery } from '@theshelf/database';
 
-import database from '^/integrations/database';
+import database from '@comify/common/integrations/database';
 
 import { RECORD_TYPE } from '../definitions';
 

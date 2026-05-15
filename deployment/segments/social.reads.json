@@ -34,5 +34,5 @@
     " ./social/domain/relation/getFollowers": { "default": {  "access": "protected" } },
     " ./social/domain/relation/getFollowing": { "default": {  "access": "protected" } },
 
-    " ./social/domain/tenant/getByOrigin": { "default": {  "access": "protected" }, "TenantNotFound": { } }
+    " ./common/domain/tenant/getByOrigin": { "default": {  "access": "protected" }, "TenantNotFound": { } }
 }

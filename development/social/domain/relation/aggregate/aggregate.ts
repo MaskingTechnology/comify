@@ -1,6 +1,6 @@
 
 import getCreatorData from '^/domain/creator/getByIdAggregated';
-import type { Tenant } from '^/domain/tenant';
+import type { Tenant } from '@comify/common/domain/tenant';
 
 import type { DataModel } from '../types';
 import type { AggregatedData } from './types';

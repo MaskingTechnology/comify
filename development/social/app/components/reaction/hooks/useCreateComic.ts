@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 
 import { requester } from '^/domain/authentication';
 import createComicReaction from '^/domain/post/createWithComic';
-import { tenant } from '^/domain/tenant';
+import { tenant } from '@comify/common/domain/tenant';
 
 export default function useCreateComic(postId: string, onCreated: (reactionId: string) => void)
 {

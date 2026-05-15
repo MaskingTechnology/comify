@@ -1,5 +1,5 @@
 {
-  "name": "concept",
+  "name": "comify",
   "private": true,
   "version": "0.0.1",
   "type": "module",
@@ -35,6 +35,7 @@
     "proxy": "jitar start --env-file=development.env --service=deployment/services/production/proxy.json --http-body-limit=512000"
   },
   "workspaces": [
+    "development/common",
     "development/insights",
     "development/social",
     "development/moderation"

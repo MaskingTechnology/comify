@@ -44,5 +44,5 @@
     "./social/domain/relation/getFollowersAggregated": { "default": {  "access": "public" } },
     "./social/domain/relation/getFollowingAggregated": { "default": {  "access": "public" } },
 
-    "./social/domain/tenant/getByOriginConverted": { "default": {  "access": "public" } }
+    "./common/domain/tenant/getByOriginConverted": { "default": {  "access": "public" } }
 }

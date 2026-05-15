@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { requester } from '^/domain/authentication';
 import type { AggregatedData as IdentityModel } from '^/domain/creator/aggregate';
 import getMe from '^/domain/creator/getMeAggregated';
-import { tenant } from '^/domain/tenant';
+import { tenant } from '@comify/common/domain/tenant';
 
 import { useAppContext } from '../contexts/AppContext';
 

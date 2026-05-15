@@ -12,7 +12,7 @@ const authProcedures = {
 const redirectPath = process.env.AUTHENTICATION_CLIENT_PATH || '';
 
 const whiteList: string[] = [
-    'social/domain/tenant/getByOriginConverted'
+    'common/domain/tenant/getByOriginConverted'
 ];
 
 export default new AuthenticationMiddleware(identityProvider, authProcedures, redirectPath, whiteList);

@@ -1,5 +1,5 @@
 
-import http from '^/integrations/http';
+import http from '@comify/common/integrations/http';
 
 import ImageNotDownloaded from './ImageNotDownloaded';
 

@@ -3,8 +3,8 @@ import { useCallback } from 'react';
 
 import { useLoadData } from '@maskingtech/react-toolkit';
 
-import { tenant } from '^/domain/tenant';
-import getByOriginConverted from '^/domain/tenant/getByOriginConverted';
+import { tenant } from '@comify/common/domain/tenant';
+import getByOriginConverted from '@comify/common/domain/tenant/getByOriginConverted';
 
 export function useTenant()
 {

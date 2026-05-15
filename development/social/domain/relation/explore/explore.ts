@@ -1,7 +1,7 @@
 
 import type { Requester } from '^/domain/authentication';
 import getOtherCreators from '^/domain/creator/getOthers';
-import type { Tenant } from '^/domain/tenant';
+import type { Tenant } from '@comify/common/domain/tenant';
 
 import type { SortOrder } from '../definitions';
 import getFollowing from '../getFollowing';

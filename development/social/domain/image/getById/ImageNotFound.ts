@@ -1,5 +1,5 @@
 
-import { NotFound } from '^/integrations/errors';
+import { NotFound } from '@comify/common/integrations/errors';
 
 export default class ImageNotFound extends NotFound
 {

@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 import { requester } from '^/domain/authentication';
 import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 import establishRelation from '^/domain/relation/establish';
-import { tenant } from '^/domain/tenant';
+import { tenant } from '@comify/common/domain/tenant';
 
 export default function useEstablish()
 {

@@ -1,5 +1,5 @@
 
-import logger from '^/integrations/logging';
+import logger from '@comify/common/integrations/logging';
 
 export default async function filterResolved<T>(items: Promise<T>[]): Promise<T[]>
 {
