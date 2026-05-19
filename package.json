@@ -47,7 +47,7 @@
     "react": "19.2.6",
     "react-dom": "19.2.6",
     "react-router-dom": "7.15.0",
-    "jitar": "0.10.7",
+    "jitar": "0.11.0",
     "@maskingtech/designsystem": "0.0.8",
     "@maskingtech/react-toolkit": "0.0.4",
     "@theshelf/authentication": "0.4.3",
@@ -74,7 +74,7 @@
   "devDependencies": {
     "@eslint/js": "9.39.4",
     "@types/node": "24.10.4",
-    "@jitar/plugin-vite": "0.10.7",
+    "@jitar/plugin-vite": "0.11.0",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "5.1.4",
