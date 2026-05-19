@@ -1,7 +1,7 @@
 
 import type { MemoryDriver } from '@theshelf/database';
 
-import { driver } from '^/integrations/database';
+import { driver } from '@comify/common/integrations/database';
 
 async function empty()
 {

@@ -1,7 +1,7 @@
 
 import type { MemoryDriver } from '@theshelf/database';
 
-import database, { driver } from '^/integrations/database';
+import database, { driver } from '@comify/common/integrations/database';
 
 import { RECORD_TYPE as COMIC_RECORD_TYPE } from '^/domain/comic';
 import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator';

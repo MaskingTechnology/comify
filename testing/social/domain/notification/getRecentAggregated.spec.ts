@@ -1,8 +1,8 @@
 
 import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 
-import database from '^/integrations/database';
-import fileStore from '^/integrations/fileStore';
+import database from '@comify/common/integrations/database';
+import fileStore from '@comify/common/integrations/fileStore';
 
 import { Types } from '^/domain/notification';
 import getRecentAggregated from '^/domain/notification/getRecentAggregated';

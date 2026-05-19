@@ -1,7 +1,7 @@
 
 import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 
-import database from '^/integrations/database';
+import database from '@comify/common/integrations/database';
 
 import getByPostId from '^/domain/notification/getByPostId';
 import removedPost from '^/domain/notification/notify/removedPost';

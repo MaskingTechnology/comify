@@ -1,7 +1,7 @@
 
 import type { MemoryDriver } from '@theshelf/filestore';
 
-import { driver } from '^/integrations/fileStore';
+import { driver } from '@comify/common/integrations/fileStore';
 
 async function empty(): Promise<void>
 {

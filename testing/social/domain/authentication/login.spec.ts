@@ -1,9 +1,9 @@
 
 import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 
-import database from '^/integrations/database';
-import eventBroker from '^/integrations/eventBroker';
-import fileStore from '^/integrations/fileStore';
+import database from '@comify/common/integrations/database';
+import eventBroker from '@comify/common/integrations/eventBroker';
+import fileStore from '@comify/common/integrations/fileStore';
 
 import login from '^/domain/authentication/login';
 import { TooManySimilarNicknames } from '^/domain/creator/generateNickname';

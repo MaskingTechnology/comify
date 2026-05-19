@@ -3,6 +3,7 @@
   "compilerOptions": {
     "paths": {
       "^/*": ["../../development/social/*"],
+      "@comify/common/*": ["../../development/common/*"]
     }
   }
 }

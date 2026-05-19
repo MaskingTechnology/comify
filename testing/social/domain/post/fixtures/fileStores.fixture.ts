@@ -1,7 +1,7 @@
 
 import type { MemoryDriver } from '@theshelf/filestore';
 
-import fileStore, { driver } from '^/integrations/fileStore';
+import fileStore, { driver } from '@comify/common/integrations/fileStore';
 
 import { FILES } from './files.fixture';
 import { VALUES } from './values.fixture';

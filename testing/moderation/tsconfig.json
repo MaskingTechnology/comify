@@ -2,7 +2,8 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "paths": {
-      "^/*": ["../../development/social/*"],
+      "^/*": ["../../development/moderation/*"],
+      "@comify/common/*": ["../../development/common/*"]
     }
   }
 }

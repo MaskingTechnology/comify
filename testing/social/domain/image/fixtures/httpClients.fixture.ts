@@ -2,7 +2,7 @@
 import { HttpMethods } from '@theshelf/http';
 import type { MappedDriver } from '@theshelf/http';
 
-import { driver } from '^/integrations/http';
+import { driver } from '@comify/common/integrations/http';
 
 import { RESPONSES } from './responses.fixture';
 import { URLS } from './urls.fixture';

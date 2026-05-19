@@ -1,7 +1,7 @@
 
 import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 
-import database from '^/integrations/database';
+import database from '@comify/common/integrations/database';
 
 import type { DataModel} from '^/domain/notification';
 import { RECORD_TYPE as NOTIFICATION_RECORD_TYPE, Types } from '^/domain/notification';

@@ -1,8 +1,8 @@
 
 import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 
-import database from '^/integrations/database';
-import eventBroker from '^/integrations/eventBroker';
+import database from '@comify/common/integrations/database';
+import eventBroker from '@comify/common/integrations/eventBroker';
 
 import { PostNotFound, RECORD_TYPE } from '^/domain/post';
 import remove from '^/domain/post/remove';

@@ -1,7 +1,7 @@
 
 import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 
-import database from '^/integrations/database';
+import database from '@comify/common/integrations/database';
 
 import { RECORD_TYPE } from '^/domain/comment';
 import create, { InvalidComment } from '^/domain/comment/create';

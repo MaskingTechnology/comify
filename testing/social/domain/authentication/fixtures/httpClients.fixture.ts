@@ -2,7 +2,7 @@
 import { HttpMethods } from '@theshelf/http';
 import type { MappedDriver } from '@theshelf/http';
 
-import { driver } from '^/integrations/http';
+import { driver } from '@comify/common/integrations/http';
 
 import { IMAGES } from './images.fixture';
 import { VALUES } from './values.fixture';
