@@ -8,7 +8,6 @@
     "build": "npm run clean && npm run build-domain",
     "build-domain": "tsc && tsc-alias",
     "clean": "rimraf ../../artifacts/build/common",
-    "lint": "eslint",
-    "review": "npm run build && npm run lint"
+    "lint": "eslint"
   }
 }
