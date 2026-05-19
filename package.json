@@ -25,6 +25,8 @@
 
     "dev": "jitar start --env-file=development.env --service=deployment/services/development/worker.json --http-body-limit=512000",
 
+    "demo": "jitar start --env-file=development.env --service=deployment/services/demonstration/social.json --http-body-limit=512000",
+
     "gateway": "jitar start --env-file=development.env --service=deployment/services/production/gateway.json --http-body-limit=512000",
     "bff": "jitar start --env-file=development.env --service=deployment/services/production/bff.json --http-body-limit=512000",
     "notification": "jitar start --env-file=development.env --service=deployment/services/production/notification.json --http-body-limit=512000",
