@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "rootDir": "./",
+    "outDir": "../../artifacts/build/moderation",
+    "paths": {
+      "^/*": ["./*"],
+      "@comify/common/*": ["../common/*"]
+    }
+  },
+  "references": [
+    { "path" : "../common" }
+  ],
+  "include": ["./domain"]
+}

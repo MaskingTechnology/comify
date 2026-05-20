@@ -1,0 +1,18 @@
+{
+    "url": "http://127.0.0.1:4001",
+    "setUp": [
+        "./common/integrations/database/setUp"
+    ],
+    "tearDown": [
+        "./common/integrations/database/tearDown"
+    ],
+    "healthChecks": [
+        "./common/integrations/database/healthCheck"
+    ],
+    "worker":
+    {
+        "gateway": "http://127.0.0.1:2000",
+        "trustKey": "${JITAR_TRUST_KEY}",
+        "segments": ["social.notification"]
+    }
+}

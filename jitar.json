@@ -1,6 +1,6 @@
 {
-    "source": "./dist",
-    "target": "./dist",
-    "segments": "./segments",
-    "resources": "./resources"
+    "source": "./artifacts/build",
+    "target": "./artifacts/dist",
+    "segments": "./deployment/segments",
+    "resources": "./deployment/resources"
 }

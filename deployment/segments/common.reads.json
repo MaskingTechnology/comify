@@ -1,0 +1,3 @@
+{
+    "./common/domain/tenant/getByOrigin": { "default": {  "access": "protected" }, "TenantNotFound": { } }
+}

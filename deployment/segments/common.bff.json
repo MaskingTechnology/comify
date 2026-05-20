@@ -1,0 +1,3 @@
+{
+    "./common/domain/tenant/getByOriginConverted": { "default": {  "access": "public" } }
+}

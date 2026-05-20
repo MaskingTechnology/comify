@@ -1,0 +1,25 @@
+{
+    "url": "http://127.0.0.1:4000",
+    "setUp": [
+        "./common/integrations/authentication/setUp",
+        "./common/integrations/eventBroker/setUp"
+    ],
+    "tearDown": [
+        "./common/integrations/authentication/tearDown",
+        "./common/integrations/eventBroker/tearDown"
+    ],
+    "healthChecks": [
+        "./common/integrations/eventBroker/healthCheck"
+    ],
+    "middleware": [
+        "./common/integrations/authentication/originMiddleware",
+        "./common/integrations/authentication/authenticationMiddleware",
+        "./common/integrations/tenancy/tenantMiddleware"
+    ],
+    "worker":
+    {
+        "gateway": "http://127.0.0.1:2000",
+        "trustKey": "${JITAR_TRUST_KEY}",
+        "segments": ["common.bff", "social.bff"]
+    }
+}

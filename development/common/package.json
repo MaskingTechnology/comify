@@ -1,0 +1,13 @@
+{
+  "name": "@comify/common",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --config app/vite.config.js",
+    "build": "npm run clean && npm run build-domain",
+    "build-domain": "tsc && tsc-alias",
+    "clean": "rimraf ../../artifacts/build/common",
+    "lint": "eslint"
+  }
+}

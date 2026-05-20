@@ -1,0 +1,46 @@
+{
+    "./social/domain/authentication/getLoginUrl": { "default": {  "access": "public" } },
+    "./social/domain/authentication/login": { "default": {  "access": "public" } },
+    "./social/domain/authentication/logout": { "default": {  "access": "public" } },
+
+    "./social/domain/creator/aggregate": { "default": { "access": "private" }},
+    "./social/domain/creator/getByIdAggregated": { "default": { "access": "private" } },
+    "./social/domain/creator/getByNicknameAggregated": { "default": {  "access": "public" } },
+    "./social/domain/creator/getMeAggregated": { "default": {  "access": "public" } },
+    "./social/domain/creator/updateFullName": { "default": {  "access": "public" } },
+    "./social/domain/creator/updateNickname": { "default": {  "access": "public" } },
+
+    "./social/domain/creator.metrics/create": { "subscriptions": {  "access": "private" } },
+    "./social/domain/creator.metrics/updateFollowers": { "subscriptions": {  "access": "private" } },
+    "./social/domain/creator.metrics/updateFollowing": { "subscriptions": {  "access": "private" } },
+    "./social/domain/creator.metrics/updatePosts": { "subscriptions": {  "access": "private" } },
+
+    "./social/domain/notification/aggregate": { "default": { "access": "private" } },
+    "./social/domain/notification/notify": { "subscriptions": {  "access": "private" } },
+    "./social/domain/notification/getRecentAggregated": { "default": {  "access": "public" } },
+
+    "./social/domain/post/aggregate": { "default": { "access": "private" } },
+    "./social/domain/post/create": { "default": {  "access": "private" }, "subscribe": {  "access": "private" } },
+    "./social/domain/post/createWithComic": { "default": {  "access": "public" } },
+    "./social/domain/post/createWithComment": { "default": {  "access": "public" } },
+    "./social/domain/post/getByCreatorAggregated": { "default": {  "access": "public" } },
+    "./social/domain/post/getByFollowingAggregated": { "default": {  "access": "public" } },
+    "./social/domain/post/exploreAggregated": { "default": {  "access": "public" } },
+    "./social/domain/post/getByIdAggregated": { "default": {  "access": "public" } },
+    "./social/domain/post/getByParentAggregated": { "default": {  "access": "public" } },
+    "./social/domain/post/getRecommendedAggregated": { "default": { "access": "public"}},
+    "./social/domain/post/remove": { "default": {  "access": "public" }, "subscribe": {  "access": "private" } },
+
+    "./social/domain/post.metrics/create": { "subscriptions": {  "access": "private" } },
+    "./social/domain/post.metrics/updateRatings": { "subscriptions": {  "access": "private" } },
+    "./social/domain/post.metrics/updateReactions": { "subscriptions": {  "access": "private" } },
+
+    "./social/domain/rating/toggle": { "default": { "access": "public" }, "subscribe": {  "access": "private" } },
+
+    "./social/domain/relation/aggregate": { "default": { "access": "private" }},
+    "./social/domain/relation/exploreAggregated": { "default": {  "access": "public" } },
+    "./social/domain/relation/establish": { "default": { "access": "public" }, "subscribe": {  "access": "private" } },
+    "./social/domain/relation/getAggregated": { "default": {  "access": "public" } },
+    "./social/domain/relation/getFollowersAggregated": { "default": {  "access": "public" } },
+    "./social/domain/relation/getFollowingAggregated": { "default": {  "access": "public" } }
+}

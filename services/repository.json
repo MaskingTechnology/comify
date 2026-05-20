@@ -1,8 +1,0 @@
-{
-    "url": "http://127.0.0.1:1000",
-    "repository":
-    {
-        "serveIndexOnNotFound": true,
-        "assets": ["index.html", "assets/**/*", "social/**/*", "registerSW.js", "sw.js", "workbox-*.js", "manifest.webmanifest" ]
-    }
-}

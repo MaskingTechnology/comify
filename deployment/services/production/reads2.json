@@ -1,0 +1,21 @@
+{
+    "url": "http://127.0.0.1:4003",
+    "setUp": [
+        "./common/integrations/database/setUp",
+        "./common/integrations/fileStore/setUp"
+    ],
+    "tearDown": [
+        "./common/integrations/database/tearDown",
+        "./common/integrations/fileStore/tearDown"
+    ],
+    "healthChecks": [
+        "./common/integrations/database/healthCheck",
+        "./common/integrations/fileStore/healthCheck"
+    ],
+    "worker":
+    {
+        "gateway": "http://127.0.0.1:2000",
+        "trustKey": "${JITAR_TRUST_KEY}",
+        "segments": ["common.reads", "social.reads"]
+    }
+}
