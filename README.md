@@ -24,7 +24,7 @@ You need to set up the configuration first by copying the `example.env` file to 
 npm run docker-up
 ```
 
-This will start a [Keycloack](https://www.keycloak.org/) instance for account management, a [MongoDB](https://www.mongodb.com/) instance for data storage and a [SeaweadFS](https://seaweedfs.github.io/) instance for storing the comic images.
+This will start a [Keycloak](https://www.keycloak.org/) instance for account management, a [MongoDB](https://www.mongodb.com/) instance for data storage and a [SeaweedFS](https://seaweedfs.github.io/) instance for storing the comic images.
 
 Next you can build and start the application with the following commands:
 
