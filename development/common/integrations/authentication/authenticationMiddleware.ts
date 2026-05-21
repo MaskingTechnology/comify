@@ -9,7 +9,7 @@ const authProcedures = {
     logout: 'social/domain/authentication/logout'
 };
 
-const redirectPath = process.env.AUTHENTICATION_CLIENT_PATH || '';
+const redirectPath = process.env.AUTHENTICATION_CLIENT_PATH ?? '';
 
 const whiteList: string[] = [
     'common/domain/tenant/getByOriginConverted'

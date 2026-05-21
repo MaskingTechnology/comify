@@ -5,7 +5,9 @@
   "type": "module",
   "scripts":
   {
-    "build": "npm run build --workspaces",
+    "build": "npm run build-domain && npm run build-app",
+    "build-domain": "npm run build-domain --workspaces",
+    "build-app": "npm run build-app --workspaces --if-present",
     "lint": "npm run lint --workspaces",
     "review": "npm run review --workspaces",
     "clean": "npm run clean --workspaces",
