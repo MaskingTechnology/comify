@@ -5,11 +5,11 @@
     "json.format.enable": false,
     "css.format.braceStyle": "expand",
     "css.format.spaceAroundSelectorSeparator": true,
-    "typescript.format.placeOpenBraceOnNewLineForControlBlocks": true,
-    "typescript.format.placeOpenBraceOnNewLineForFunctions": true,
-    "typescript.preferences.importModuleSpecifierEnding": "minimal",
-    "typescript.preferences.quoteStyle": "single",
-    "typescript.format.semicolons": "insert",
+    "js/ts.format.placeOpenBraceOnNewLineForControlBlocks": true,
+    "js/ts.format.placeOpenBraceOnNewLineForFunctions": true,
+    "js/ts.preferences.importModuleSpecifierEnding": "minimal",
+    "js/ts.preferences.quoteStyle": "single",
+    "js/ts.format.semicolons": "insert",
     "editor.codeActionsOnSave": {
         "source.organizeImports": "explicit"
     }
