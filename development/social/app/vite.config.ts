@@ -26,6 +26,9 @@ export default defineConfig({
     assetsDir: 'assets',
     emptyOutDir: true
   },
+  resolve: {
+    dedupe: ['react', 'react-dom'],
+  },
   plugins: [
     react(),
     tsconfigPaths(),
