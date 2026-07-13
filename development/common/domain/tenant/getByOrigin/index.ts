@@ -4,7 +4,7 @@ import type { Tenant } from '../definitions';
 
 import validateData from './validateData';
 
-export default async function getByOriginConverted(origin: string): Promise<Tenant>
+export default async function getByOrigin(origin: string): Promise<Tenant>
 {
     validateData({ origin });
 

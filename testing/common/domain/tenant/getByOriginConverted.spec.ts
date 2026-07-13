@@ -3,7 +3,7 @@ import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 
 import database from '^/integrations/database';
 
-import getByOriginConverted from '^/domain/tenant/getByOriginConverted';
+import getByOriginConverted from '^/domain/tenant/getByOrigin';
 
 import { DATABASES, VALUES } from './fixtures';
 
