@@ -1,6 +1,2 @@
 
-export { RECORD_TYPE } from './definitions';
-
-export type { DataModel, Tenant } from './types';
-
-export { default as tenant } from './tenant';
+export { RECORD_TYPE, type Data, type Tenant, tenant } from './definitions';

@@ -3,8 +3,11 @@ import type { ValidationSchema } from '@theshelf/validation';
 
 import validator from '^/integrations/validation';
 
+import { Tenant } from '../definitions';
+
 import InvalidOrigin from './InvalidOrigin';
-import type { ValidationModel } from './types';
+
+type ValidationModel = Pick<Tenant, 'origin'>;
 
 const schema: ValidationSchema =
 {

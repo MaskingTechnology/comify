@@ -4,12 +4,11 @@ import type { RecordQuery } from '@theshelf/database';
 import database from '^/integrations/database';
 import logger from '^/integrations/logging';
 
-import { RECORD_TYPE } from '../definitions';
-import type { DataModel } from '../types';
+import { RECORD_TYPE, type Data } from '../definitions';
 
 import TenantNotFound from './TenantNotFound';
 
-export default async function getByOrigin(origin: string): Promise<DataModel>
+export default async function feature(origin: string): Promise<Data>
 {
     const query: RecordQuery =
     {
@@ -25,5 +24,7 @@ export default async function getByOrigin(origin: string): Promise<DataModel>
         throw new TenantNotFound();
     }
 
-    return record as DataModel;
+    return record as Data;
 }
+
+export { default as TenantNotFound } from './TenantNotFound';
