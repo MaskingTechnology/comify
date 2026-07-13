@@ -1,10 +1,10 @@
 
-import retrieveByOrigin from '../_retrieveByOrigin';
 import type { Tenant } from '../definitions';
+import retrieveByOrigin from '../_retrieveByOrigin';
 
 import validateData from './validateData';
 
-export default async function getByOrigin(origin: string): Promise<Tenant>
+export default async function run(origin: string): Promise<Tenant>
 {
     validateData({ origin });
 

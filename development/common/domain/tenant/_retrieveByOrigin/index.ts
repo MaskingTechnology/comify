@@ -8,7 +8,7 @@ import { RECORD_TYPE, type Data } from '../definitions';
 
 import TenantNotFound from './TenantNotFound';
 
-export default async function feature(origin: string): Promise<Data>
+export default async function run(origin: string): Promise<Data>
 {
     const query: RecordQuery =
     {
