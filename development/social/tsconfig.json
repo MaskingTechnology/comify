@@ -1,16 +1,8 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "composite": true,
     "rootDir": "./",
     "outDir": "../../artifacts/build/social",
-    "paths": {
-      "^/*": ["./*"],
-      "@comify/common/*": ["../common/*"]
-    }
   },
-  "references": [
-    { "path" : "../common" }
-  ],
   "include": ["./domain"]
 }

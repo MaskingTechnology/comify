@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "paths": {
+      "~/*": ["./*"],
+      "^/*": ["../*"],
+      "@comify/common/*": ["../../common/*"]
+    }
+  },
+  "references": [
+    { "path" : "../../common" }
+  ]
+}
