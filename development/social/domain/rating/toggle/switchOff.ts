@@ -1,7 +1,7 @@
 
 import create from '../create';
 import erase from '../erase';
-import type { DataModel } from '../types';
+import type { BaseData } from '../definitions';
 import publish from './publish';
 
 export default async function switchOff(tenantId: string, rating: DataModel): Promise<boolean>

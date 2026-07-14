@@ -1,6 +1,12 @@
 
 import type { Validation } from '@theshelf/validation';
 
+export type BaseData = {
+    readonly id: string;
+};
+
+export type CountOperation = 'increase' | 'decrease';
+
 export const SortOrders = {
     POPULAR: 'popular',
     RECENT: 'recent'
@@ -13,7 +19,7 @@ export const requiredIdValidation: Validation =
     {
         required: true
     }
-};
+} as const;
 
 export const optionalIdValidation: Validation =
 {
@@ -22,8 +28,9 @@ export const optionalIdValidation: Validation =
     {
         required: false
     }
-};
+} as const;
 
 type SortOrderKeys = keyof typeof SortOrders;
 
 export type SortOrder = typeof SortOrders[SortOrderKeys];
+

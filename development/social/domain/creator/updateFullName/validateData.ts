@@ -3,9 +3,10 @@ import type { ValidationSchema } from '@theshelf/validation';
 
 import validator from '@comify/common/integrations/validation';
 
-import { fullNameValidation } from '../definitions';
+import { fullNameValidation, type Data } from '../definitions';
 import InvalidFullName from './InvalidFullName';
-import type { ValidationModel } from './types';
+
+type ValidationModel = Pick<Data, 'fullName'>;
 
 const schema: ValidationSchema =
 {

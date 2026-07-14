@@ -1,8 +1,8 @@
 
-import type { Requester } from '^/domain/authentication';
-import filterResolved from '^/domain/common/filterResolved';
-import type { Range } from '^/domain/common/validateRange';
-import validateRange from '^/domain/common/validateRange';
+import type { Requester } from '~/authentication';
+import filterResolved from '~/common/filterResolved';
+import type { Range } from '~/common/validateRange';
+import validateRange from '~/common/validateRange';
 import type { Tenant } from '@comify/common/domain/tenant';
 
 import type { AggregatedData } from '../aggregate';

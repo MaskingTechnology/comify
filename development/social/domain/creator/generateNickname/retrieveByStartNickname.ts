@@ -1,13 +1,11 @@
 
-import type { RecordSort } from '@theshelf/database';
-import { SortDirections } from '@theshelf/database';
+import { SortDirections, type RecordSort } from '@theshelf/database';
 
 import database from '@comify/common/integrations/database';
 
-import { RECORD_TYPE } from '../definitions';
-import type { DataModel } from '../types';
+import { RECORD_TYPE, type Data } from '../definitions';
 
-export default async function retrieveByStartNickname(tenantId: string, nickname: string): Promise<DataModel | undefined>
+export default async function retrieveByStartNickname(tenantId: string, nickname: string): Promise<Data | undefined>
 {
     const query = {
         tenantId: { 'EQUALS': tenantId },
@@ -16,5 +14,5 @@ export default async function retrieveByStartNickname(tenantId: string, nickname
 
     const sort: RecordSort = { 'nickname': SortDirections.DESCENDING };
 
-    return database.readRecord(RECORD_TYPE, query, undefined, sort) as Promise<DataModel | undefined>;
+    return database.readRecord(RECORD_TYPE, query, undefined, sort) as Promise<Data | undefined>;
 };

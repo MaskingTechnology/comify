@@ -1,8 +1,28 @@
 
 import type { Validation } from '@theshelf/validation';
 
-import type { SortOrder } from '../definitions';
-import { SortOrders } from '../definitions';
+import type { DataModel as metricsData } from '~/creator.metrics/types';
+import type { ImageData } from '~/image';
+
+import { type SortOrder, SortOrders, BaseData, type CountOperation } from '../definitions';
+
+export type Data = BaseData &
+{
+    readonly tenantId: string;
+    readonly fullName: string;
+    readonly nickname: string;
+    readonly email: string;
+    readonly portraitId?: string;
+    readonly joinedAt: string;
+};
+
+export type Creator = Omit<Data, 'tenantId' | 'email' | 'portraitId'> &
+{
+    readonly portrait?: ImageData;
+    readonly metrics: metricsData;
+};
+
+export { type CountOperation, SortOrders, type SortOrder };
 
 export const RECORD_TYPE = 'creator';
 export const EVENT_CHANNEL = 'creator';
@@ -19,5 +39,3 @@ export const fullNameValidation: Validation = {
         maxLength: FULL_NAME_MAX_LENGTH
     }
 };
-
-export { SortOrders, type SortOrder };

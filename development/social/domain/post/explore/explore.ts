@@ -1,9 +1,9 @@
 
-import type { Requester } from '^/domain/authentication';
-import retrieveRelationsByFollower from '^/domain/relation/getFollowing';
+import type { Requester } from '~/authentication';
+import retrieveRelationsByFollower from '~/relation/getFollowing';
 import type { Tenant } from '@comify/common/domain/tenant';
 
-import type { DataModel } from '../types';
+import type { BaseData } from '../definitions';
 import retrieveData from './retrieveData';
 
 export default async function explore(tenant: Tenant, requester: Requester, limit: number, offset: number): Promise<DataModel[]>

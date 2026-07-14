@@ -1,8 +1,8 @@
 
-import getCreatorData from '^/domain/creator/getByIdAggregated';
+import getCreatorData from '~/creator/getById';
 import type { Tenant } from '@comify/common/domain/tenant';
 
-import type { DataModel } from '../types';
+import type { BaseData } from '../definitions';
 import type { AggregatedData } from './types';
 
 export default async function aggregate(tenant: Tenant, data: DataModel): Promise<AggregatedData>

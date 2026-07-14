@@ -1,8 +1,8 @@
 
 import logger from '@comify/common/integrations/logging';
 
-import type { Requester } from '^/domain/authentication';
-import getCreator from '^/domain/creator/getById';
+import type { Requester } from '~/authentication';
+import getCreator from '~/creator/_retrieveById';
 import type { Tenant } from '@comify/common/domain/tenant';
 
 import create from '../create';

@@ -3,7 +3,7 @@ import database from '@comify/common/integrations/database';
 import logger from '@comify/common/integrations/logging';
 
 import { RECORD_TYPE } from '../definitions';
-import type { DataModel } from '../types';
+import type { BaseData } from '../definitions';
 
 type Data = Partial<Omit<DataModel, 'id'>>;
 

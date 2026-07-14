@@ -1,7 +1,7 @@
 
-import type { Requester } from '^/domain/authentication';
+import type { Requester } from '~/authentication';
 
-import type { DataModel } from '../types';
+import type { BaseData } from '../definitions';
 import translate from './translate';
 import type { Mapping } from './types';
 

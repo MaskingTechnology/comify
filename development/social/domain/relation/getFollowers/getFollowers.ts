@@ -1,8 +1,8 @@
 
-import type { Requester } from '^/domain/authentication';
+import type { Requester } from '~/authentication';
 
 import translateToRequester from '../translateToRequester';
-import type { DataModel } from '../types';
+import type { BaseData } from '../definitions';
 import retrieveData from './retrieveData';
 
 export default async function getFollowers(requester: Requester, followingId: string, limit: number, offset: number): Promise<DataModel[]>

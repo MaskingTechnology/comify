@@ -3,7 +3,7 @@ import type { ValidationSchema } from '@theshelf/validation';
 
 import validator from '@comify/common/integrations/validation';
 
-import type { MetaData } from '../types';
+import type { MetaData } from '../definitions';
 import InvalidImage from './InvalidImage';
 
 const TEN_B = 10;

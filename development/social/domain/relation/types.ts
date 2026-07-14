@@ -1,5 +1,5 @@
 
-import type { BaseDataModel } from '../types';
+import type { BaseData } from '../definitions';
 
 type DataModel = Omit<BaseDataModel, 'id'> &
 {

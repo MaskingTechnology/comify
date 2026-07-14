@@ -1,5 +1,5 @@
 
-import type { BaseDataModel } from '../types';
+import type { BaseData } from '../definitions';
 
 type ImageData = {
     readonly dataUrl: string;
@@ -11,7 +11,7 @@ type MetaData = {
     readonly size: number;
 };
 
-type DataModel = BaseDataModel & MetaData &
+type Data = BaseData & MetaData &
 {
     readonly storageKey: string;
 };

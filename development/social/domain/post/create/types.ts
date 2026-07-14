@@ -1,7 +1,7 @@
 
 import type { Publication, Subscription } from '@theshelf/eventbroker';
 
-import type { DataModel } from '../types';
+import type { BaseData } from '../definitions';
 
 export type ValidationModel = Pick<DataModel, 'tenantId' | 'creatorId' | 'comicId' | 'commentId' | 'parentId'>;
 

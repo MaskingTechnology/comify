@@ -1,5 +1,5 @@
 
-import type { Image } from '../types';
+import type { Image } from '../definitions';
 import createData from './createData';
 import fileExists from './fileExists';
 import generateStorageKey from './generateStorageKey';

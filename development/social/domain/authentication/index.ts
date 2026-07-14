@@ -1,3 +1,2 @@
 
-export { default as requester } from './requester';
-export type { Requester } from './types';
+export { type Requester, requester } from './definitions';

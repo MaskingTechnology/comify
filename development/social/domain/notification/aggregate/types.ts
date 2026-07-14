@@ -1,8 +1,8 @@
 
-import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
-import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
+import type { AggregatedData as AggregatedPostData } from '~/post/aggregate';
+import type { AggregatedData as AggregatedRelationData } from '~/relation/aggregate';
 
-import type { DataModel } from '../types';
+import type { BaseData } from '../definitions';
 
 type AggregatedData = Pick<DataModel, 'id' | 'createdAt' | 'type'> &
 {

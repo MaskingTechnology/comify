@@ -1,7 +1,7 @@
 
 import { generateId } from '@comify/common/integrations/utilities/crypto';
 
-import type { DataModel } from '../types';
+import type { BaseData } from '../definitions';
 
 export default function createData(tenantId: string, creatorId: string, comicId?: string, commentId?: string, parentId?: string): DataModel
 {

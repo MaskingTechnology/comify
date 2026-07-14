@@ -1,11 +1,11 @@
 
-import type { Requester } from '^/domain/authentication';
-import getOtherCreators from '^/domain/creator/getOthers';
+import type { Requester } from '~/authentication';
+import getOtherCreators from '~/creator/_retrieveOthers';
 import type { Tenant } from '@comify/common/domain/tenant';
 
 import type { SortOrder } from '../definitions';
 import getFollowing from '../getFollowing';
-import type { DataModel } from '../types';
+import type { BaseData } from '../definitions';
 
 export default async function explore(tenant: Tenant, requester: Requester, order: SortOrder, limit: number, offset: number, search: string | undefined = undefined): Promise<DataModel[]>
 {

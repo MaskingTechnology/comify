@@ -1,2 +1,23 @@
 
-export { default } from './filterResolved';
+import logger from '@comify/common/integrations/logging';
+
+export default async function run<T>(items: Promise<T>[]): Promise<T[]>
+{
+    const promises = await Promise.allSettled(items);
+
+    const results: T[] = [];
+
+    promises.forEach((promise) =>
+    {
+        if (promise.status === 'rejected')
+        {
+            logger.error('Promise rejected', promise.reason);
+
+            return;
+        }
+
+        results.push(promise.value);
+    });
+
+    return results;
+}

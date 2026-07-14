@@ -1,8 +1,8 @@
 
-import type { Requester } from '^/domain/authentication';
+import type { Requester } from '~/authentication';
 
 import get from '../get';
-import type { DataModel } from '../types';
+import type { BaseData } from '../definitions';
 import type { Mapping } from './types';
 
 export default async function translate(requester: Requester, mapping: Mapping, data: DataModel): Promise<DataModel>

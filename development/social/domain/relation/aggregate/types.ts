@@ -1,7 +1,7 @@
 
-import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
+import type { AggregatedData as AggregatedCreatorData } from '~/creator/_toModel';
 
-import type { DataModel } from '../types';
+import type { BaseData } from '../definitions';
 
 type AggregatedData = Pick<DataModel, 'id'> &
 {

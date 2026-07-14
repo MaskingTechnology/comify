@@ -1,7 +1,7 @@
 {
-    "./social/domain/comic/getById": { "default": {  "access": "protected" } },
+    "./social/domain/comic/_retrieveById": { "default": {  "access": "protected" } },
 
-    "./social/domain/comment/getById": { "default": {  "access": "protected" } },
+    "./social/domain/comment/_retrieveById": { "default": {  "access": "protected" } },
 
     "./social/domain/creator/generateNickname/retrieveByNickname": { "default": { "access": "protected" } },
     "./social/domain/creator/generateNickname/retrieveByStartNickname": { "default": { "access": "protected" } },

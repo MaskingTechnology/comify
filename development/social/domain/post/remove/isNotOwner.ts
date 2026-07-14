@@ -1,5 +1,5 @@
 
-import type { DataModel } from '../types';
+import type { BaseData } from '../definitions';
 
 export default function isNotOwner(post: DataModel, requesterId: string): boolean
 {

@@ -3,7 +3,7 @@ import type { ValidationSchema } from '@theshelf/validation';
 
 import validator from '@comify/common/integrations/validation';
 
-import { requiredIdValidation } from '^/domain/definitions';
+import { requiredIdValidation } from '~/definitions';
 
 import InvalidRelation from './InvalidRelation';
 import type { ValidationModel } from './types';

@@ -1,7 +1,7 @@
 
-import type { BaseDataModel } from '../types';
+import type { BaseData } from '../definitions';
 
-type DataModel = BaseDataModel &
+type Data = BaseData &
 {
     readonly id: string;
     readonly creatorId: string;

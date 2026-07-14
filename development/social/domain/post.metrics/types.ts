@@ -1,7 +1,7 @@
 
-import type { BaseDataModel, CountOperation } from '../types';
+import type { BaseDataModel, CountOperation } from '../definitions';
 
-type DataModel = BaseDataModel &
+type Data = BaseData &
 {
     readonly postId: string;
     readonly ratings: number;

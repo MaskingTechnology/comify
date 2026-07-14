@@ -1,5 +1,5 @@
 
-import type { ImageData } from '../types';
+import type { ImageData } from '../definitions';
 import createDataUrl from './createDataUrl';
 import retrieveData from './retrieveData';
 import retrieveFile from './retrieveFile';

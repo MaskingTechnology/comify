@@ -3,10 +3,10 @@
     "./social/domain/authentication/login": { "default": {  "access": "public" } },
     "./social/domain/authentication/logout": { "default": {  "access": "public" } },
 
-    "./social/domain/creator/aggregate": { "default": { "access": "private" }},
-    "./social/domain/creator/getByIdAggregated": { "default": { "access": "private" } },
-    "./social/domain/creator/getByNicknameAggregated": { "default": {  "access": "public" } },
-    "./social/domain/creator/getMeAggregated": { "default": {  "access": "public" } },
+    "./social/domain/creator/_toModel": { "default": { "access": "private" }},
+    "./social/domain/creator/getById": { "default": { "access": "private" } },
+    "./social/domain/creator/getByNickname": { "default": {  "access": "public" } },
+    "./social/domain/creator/getMe": { "default": {  "access": "public" } },
     "./social/domain/creator/updateFullName": { "default": {  "access": "public" } },
     "./social/domain/creator/updateNickname": { "default": {  "access": "public" } },
 
