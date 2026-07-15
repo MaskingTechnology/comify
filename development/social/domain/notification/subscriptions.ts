@@ -4,10 +4,10 @@ import { subscribe as subscribeToPostRemoved } from '~/post/remove';
 import { subscribe as subscribeToPostRated } from '~/rating/toggle';
 import { subscribe as subscribeToRelationEstablished } from '~/relation/establish';
 
-import reactedToPost from './notify/createdPost';
-import ratedPost from './notify/ratedPost';
-import removedPost from './notify/removedPost';
-import startedFollowing from './notify/startedFollowing';
+import reactedToPost from './notifyReactionAdded';
+import ratedPost from './notifyPostRated';
+import removedPost from './removeByPost';
+import startedFollowing from './notifyStartedFollowing';
 
 export default async function subscriptions(): Promise<void>
 {

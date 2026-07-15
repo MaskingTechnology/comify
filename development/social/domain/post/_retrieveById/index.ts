@@ -4,12 +4,11 @@ import type { RecordQuery } from '@theshelf/database';
 import database from '@comify/common/integrations/database';
 import logger from '@comify/common/integrations/logging';
 
-import { RECORD_TYPE } from '../definitions';
-import type { BaseData } from '../definitions';
+import { RECORD_TYPE, type Data } from '../definitions';
 
 import PostNotFound from './PostNotFound';
 
-export default async function getById(tenantId: string, id: string): Promise<DataModel>
+export default async function run(tenantId: string, id: string): Promise<Data>
 {
     const query: RecordQuery =
     {
@@ -27,5 +26,5 @@ export default async function getById(tenantId: string, id: string): Promise<Dat
         throw new PostNotFound();
     }
 
-    return record as DataModel;
+    return record as Data;
 }

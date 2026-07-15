@@ -2,7 +2,7 @@
 import type { Tenant } from '@comify/common/domain/tenant';
 
 import type { Requester } from '~/authentication';
-import getPostData from '~/post/getByIdAggregated';
+import getPostData from '~/post/getById';
 import getRelationData from '~/relation/get';
 
 import type { Data, Notification } from '../definitions';

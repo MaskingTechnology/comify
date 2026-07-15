@@ -1,7 +1,7 @@
 
 import type { Comic } from '~/comic/';
 import type { Comment } from '~/comment';
-import type { DataModel as Metrics } from '~/post.metrics';
+import type { Metrics } from '~/post.metrics';
 import type { Relation } from '~/relation';
 import type { BaseData, CountOperation } from '../definitions';
 

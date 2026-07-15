@@ -10,7 +10,7 @@ import getRelationData from '~/relation/get';
 
 import type { Data, Post } from '../definitions';
 
-export default async function aggregate(tenant: Tenant, requester: Requester, data: Data): Promise<Post>
+export default async function run(tenant: Tenant, requester: Requester, data: Data): Promise<Post>
 {
     const [creatorData, isRated, comicData, commentData, metricsData] = await Promise.all([
         getRelationData(tenant, requester, requester.id, data.creatorId),

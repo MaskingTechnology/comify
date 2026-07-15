@@ -1,5 +1,5 @@
 
-import getPost from '~/post/getById';
+import getPost from '~/post/_retrieveById';
 
 import create from '../_create';
 import { Types } from '../definitions';

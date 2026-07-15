@@ -6,7 +6,7 @@ import validator from '@comify/common/integrations/validation';
 import { optionalIdValidation, requiredIdValidation } from '~/definitions';
 
 import InvalidPost from './InvalidPost';
-import type { ValidationModel } from './types';
+import type { ValidationModel } from './definitions';
 
 const schema: ValidationSchema =
 {

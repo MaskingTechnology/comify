@@ -4,10 +4,9 @@ import { SortDirections } from '@theshelf/database';
 
 import database from '@comify/common/integrations/database';
 
-import { RECORD_TYPE } from '../definitions';
-import type { BaseData } from '../definitions';
+import { RECORD_TYPE, type Data } from '../definitions';
 
-export default async function getRecommended(tenantId: string, requesterId: string, limit: number, offset: number): Promise<DataModel[]>
+export default async function run(tenantId: string, requesterId: string, limit: number, offset: number): Promise<Data[]>
 {
     const query: RecordQuery =
     {
@@ -19,5 +18,5 @@ export default async function getRecommended(tenantId: string, requesterId: stri
 
     const sort: RecordSort = { createdAt: SortDirections.DESCENDING };
 
-    return database.searchRecords(RECORD_TYPE, query, undefined, sort, limit, offset) as Promise<DataModel[]>;
+    return database.searchRecords(RECORD_TYPE, query, undefined, sort, limit, offset) as Promise<Data[]>;
 }

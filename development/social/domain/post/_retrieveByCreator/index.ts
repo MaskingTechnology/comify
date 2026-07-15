@@ -4,19 +4,18 @@ import { SortDirections } from '@theshelf/database';
 
 import database from '@comify/common/integrations/database';
 
-import { RECORD_TYPE } from '../definitions';
-import type { BaseData } from '../definitions';
+import { RECORD_TYPE, type Data } from '../definitions';
 
-export default async function retrieveData(creatorIds: string[], limit: number, offset: number): Promise<DataModel[]>
+export default async function run(creatorId: string, limit: number, offset: number): Promise<Data[]>
 {
     const query: RecordQuery =
     {
         deleted: { 'EQUALS': false },
         parentId: { 'EQUALS': undefined },
-        creatorId: { 'IN': creatorIds }
+        creatorId: { 'EQUALS': creatorId }
     };
 
     const sort: RecordSort = { createdAt: SortDirections.DESCENDING };
 
-    return database.searchRecords(RECORD_TYPE, query, undefined, sort, limit, offset) as Promise<DataModel[]>;
+    return database.searchRecords(RECORD_TYPE, query, undefined, sort, limit, offset) as Promise<Data[]>;
 }

@@ -8,7 +8,7 @@ import type { Data } from '../definitions';
 
 import retrieveData from './retrieveData';
 
-export default async function explore(tenant: Tenant, requester: Requester, limit: number, offset: number): Promise<Data[]>
+export default async function run(tenant: Tenant, requester: Requester, limit: number, offset: number): Promise<Data[]>
 {
     const relationsData = await retrieveRelationsByFollower(requester.id, requester.id);
 
