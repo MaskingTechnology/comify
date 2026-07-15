@@ -1,6 +1,6 @@
 {
-    "./social/domain/notification/create": { "default": {  "access": "protected" } },
-    "./social/domain/notification/getByPostId": { "default": {  "access": "protected" } },
-    "./social/domain/notification/getRecent": { "default": {  "access": "protected" } },
-    "./social/domain/notification/remove": { "default": {  "access": "protected" } }
+    "./social/domain/notification/_create": { "default": {  "access": "protected" } },
+    "./social/domain/notification/_retrieveByPostId": { "default": {  "access": "protected" } },
+    "./social/domain/notification/_retrieveRecent": { "default": {  "access": "protected" } },
+    "./social/domain/notification/_remove": { "default": {  "access": "protected" } }
 }
