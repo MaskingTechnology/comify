@@ -1,6 +1,6 @@
 
 import type { Requester } from '~/authentication';
-import createComment from '~/comment/_create';
+import createComment from '~/comment/create';
 import type { Tenant } from '@comify/common/domain/tenant';
 
 import createPost from '../create';

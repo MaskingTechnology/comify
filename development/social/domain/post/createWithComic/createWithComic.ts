@@ -1,6 +1,6 @@
 
 import type { Requester } from '~/authentication';
-import createComic from '~/comic/_create';
+import createComic from '~/comic/create';
 import type { Tenant } from '@comify/common/domain/tenant';
 
 import createPost from '../create';
