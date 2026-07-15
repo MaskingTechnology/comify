@@ -5,7 +5,7 @@ import { subscribe as subscribeToPostRemoved } from '~/post/remove';
 
 import updateReactions from './updateReactions';
 import updateRatings from './updateRatings';
-import create from './_create';
+import create from './create';
 
 export default async function subscriptions(): Promise<void>
 {

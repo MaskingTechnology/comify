@@ -1,10 +1,10 @@
 
 import getPost from '~/post/getById';
 
-import create from '../create';
+import create from '../_create';
 import { Types } from '../definitions';
 
-export default async function createdPost(tenantId: string, creatorId: string, postId: string, parentId?: string): Promise<void>
+export default async function run(tenantId: string, creatorId: string, postId: string, parentId?: string): Promise<void>
 {
     if (parentId === undefined)
     {

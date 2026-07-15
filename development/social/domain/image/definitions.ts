@@ -3,6 +3,7 @@ import type { Validation } from '@theshelf/validation';
 
 import type { BaseData } from '../definitions';
 
+// TODO: Figure out later :)
 export type ImageData = {
     readonly dataUrl: string;
 };

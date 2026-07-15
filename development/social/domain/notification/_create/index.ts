@@ -2,10 +2,11 @@
 import logger from '@comify/common/integrations/logging';
 
 import type { Type } from '../definitions';
+
 import createData from './createData';
 import insertData from './insertData';
 
-export default async function feature(type: Type, senderId: string, receiverId: string, postId: string | undefined = undefined): Promise<void>
+export default async function run(type: Type, senderId: string, receiverId: string, postId: string | undefined = undefined): Promise<void>
 {
     if (senderId === receiverId)
     {

@@ -1,2 +1,22 @@
 
-export { default } from './getRecent';
+import type { Tenant } from '@comify/common/domain/tenant';
+
+import type { Requester } from '~/authentication';
+import filterResolved from '~/common/filterResolved';
+import type { Range } from '~/common/validateRange';
+import validateRange from '~/common/validateRange';
+
+import type { Notification } from '../definitions';
+import toModel from '../_toModel';
+import retrieveRecent from '../_retrieveRecent';
+
+export default async function getRecentAggregated(tenant: Tenant, requester: Requester, range: Range): Promise<Notification[]>
+{
+    validateRange(range);
+
+    const data = await retrieveRecent(requester.id, range.limit, range.offset);
+
+    const notifications = data.map(item => toModel(tenant, requester, item));
+
+    return filterResolved(notifications);
+}

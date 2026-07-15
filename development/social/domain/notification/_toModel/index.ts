@@ -1,13 +1,13 @@
 
-import type { Requester } from '~/authentication';
-import { default as getPostData } from '~/post/getByIdAggregated';
-import getRelationData from '~/relation/get';
 import type { Tenant } from '@comify/common/domain/tenant';
 
-import type { BaseData } from '../definitions';
-import type { AggregatedData } from './types';
+import type { Requester } from '~/authentication';
+import getPostData from '~/post/getByIdAggregated';
+import getRelationData from '~/relation/get';
 
-export default async function aggregate(tenant: Tenant, requester: Requester, data: DataModel): Promise<AggregatedData>
+import type { Data, Notification } from '../definitions';
+
+export default async function aggregate(tenant: Tenant, requester: Requester, data: Data): Promise<Notification>
 {
     const [relationData, postData] = await Promise.all([
         getRelationData(tenant, requester, data.receiverId, data.senderId),
@@ -15,7 +15,6 @@ export default async function aggregate(tenant: Tenant, requester: Requester, da
     ]);
 
     return {
-        id: data.id,
         createdAt: data.createdAt,
         type: data.type,
         relation: relationData,

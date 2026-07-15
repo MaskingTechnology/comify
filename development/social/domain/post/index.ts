@@ -1,5 +1,5 @@
 
-export { RECORD_TYPE } from './definitions';
+export { RECORD_TYPE, type Post } from './definitions';
 
 export type { DataModel } from './types';
 
