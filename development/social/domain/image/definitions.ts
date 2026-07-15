@@ -1,5 +1,6 @@
 
 import type { Validation } from '@theshelf/validation';
+
 import type { BaseData } from '../definitions';
 
 export type ImageData = {

@@ -1,11 +1,12 @@
 
+import type { Tenant } from '@comify/common/domain/tenant';
+
 import type { Requester } from '~/authentication';
 import getComicData from '~/comic/getById';
 import getCommentData from '~/comment/getById';
 import getMetrics from '~/post.metrics/getByPost';
 import ratingExists from '~/rating/exists';
 import getRelationData from '~/relation/get';
-import type { Tenant } from '@comify/common/domain/tenant';
 
 import type { Data, Post } from '../definitions';
 

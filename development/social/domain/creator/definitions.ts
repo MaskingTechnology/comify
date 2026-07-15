@@ -1,7 +1,7 @@
 
 import type { Validation } from '@theshelf/validation';
 
-import type { DataModel as metricsData } from '~/creator.metrics/types';
+import type { Metrics } from '~/creator.metrics';
 import type { ImageData } from '~/image';
 
 import { type SortOrder, SortOrders, BaseData, type CountOperation } from '../definitions';
@@ -19,7 +19,7 @@ export type Data = BaseData &
 export type Creator = Omit<Data, 'tenantId' | 'email' | 'portraitId'> &
 {
     readonly portrait?: ImageData;
-    readonly metrics: metricsData;
+    readonly metrics: Metrics;
 };
 
 export { type CountOperation, SortOrders, type SortOrder };

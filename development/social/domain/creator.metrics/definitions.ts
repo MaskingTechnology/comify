@@ -10,6 +10,8 @@ export type Data = BaseData &
     readonly popularity: number;
 };
 
+export type Metrics = Omit<Data, 'id' | 'creatorId'>
+
 export type { CountOperation };
 
 export const RECORD_TYPE = 'creator.metrics';

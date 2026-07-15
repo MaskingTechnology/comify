@@ -1,5 +1,5 @@
 
-import getMetrics from '~/creator.metrics/_retrieveByCreator';
+import getMetrics from '~/creator.metrics/getByCreator';
 import getImageData from '~/image/getById';
 
 import { type Data, type Creator } from '../definitions';

@@ -21,5 +21,3 @@ export default async function run(creatorId: string): Promise<Data>
 
     return record as Data;
 }
-
-export { CreatorMetricsNotFound };

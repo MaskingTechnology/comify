@@ -4,7 +4,7 @@ import type { Identity } from '@theshelf/authentication';
 import type { Tenant } from '@comify/common/domain/tenant';
 
 import getCreatorByEmail from '~/creator/_retrieveByEmail';
-import registerCreator from '~/creator/_register';
+import registerCreator from '~/creator/register';
 
 import type { Requester } from '../definitions';
 

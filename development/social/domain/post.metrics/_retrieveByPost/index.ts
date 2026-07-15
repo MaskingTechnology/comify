@@ -2,15 +2,14 @@
 import database from '@comify/common/integrations/database';
 import logger from '@comify/common/integrations/logging';
 
-import { RECORD_TYPE } from '../definitions';
-import type { BaseData } from '../definitions';
-import PostMetricsNotFound from './PostMetricsNotFound';
+import { RECORD_TYPE, type Data } from '../definitions';
+import PostMetricsNotFound from '../_retrieveByPost/PostMetricsNotFound';
 
-export default async function getByPost(postId: string): Promise<DataModel>
+export default async function run(postId: string): Promise<Data>
 {
     const query = { postId: { EQUALS: postId } };
 
-    const record = await database.readRecord(RECORD_TYPE, query) as DataModel;
+    const record = await database.readRecord(RECORD_TYPE, query);
 
     if (record === undefined)
     {
@@ -19,5 +18,7 @@ export default async function getByPost(postId: string): Promise<DataModel>
         throw new PostMetricsNotFound();
     }
 
-    return record;
+    return record as Data;
 }
+
+export { PostMetricsNotFound };
