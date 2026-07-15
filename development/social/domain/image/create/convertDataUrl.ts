@@ -1,5 +1,6 @@
 
 import type { Image } from '../definitions';
+
 import InvalidDataURL from './InvalidDataURL';
 
 const DATA_URL_REGEX = /^data:(image\/(\w+));base64,(.*)$/;

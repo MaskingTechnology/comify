@@ -3,9 +3,11 @@ import type { ValidationSchema } from '@theshelf/validation';
 
 import validator from '@comify/common/integrations/validation';
 
-import { requiredStringValidation } from '../definitions';
-import type { BaseData } from '../definitions';
+import { requiredStringValidation, type Data } from '../definitions';
+
 import InvalidImage from './InvalidImage';
+
+type ValidationModel = Omit<Data, 'id'>;
 
 const schema: ValidationSchema =
 {
@@ -22,7 +24,7 @@ const schema: ValidationSchema =
     }
 };
 
-export default function validateData({ storageKey, filename, mimeType, size }: DataModel): void
+export default function validateData({ storageKey, filename, mimeType, size }: ValidationModel): void
 {
     const result = validator.validate({ storageKey, filename, mimeType, size }, schema);
 

@@ -1,13 +1,7 @@
 
 import { generateId } from '@comify/common/integrations/utilities/crypto';
 
-type Data = {
-    readonly id: string;
-    readonly storageKey: string;
-    readonly filename: string;
-    readonly mimeType: string;
-    readonly size: number;
-};
+import type { Data } from '../definitions';
 
 export default function createData(storageKey: string, filename: string, mimeType: string, size: number): Data
 {

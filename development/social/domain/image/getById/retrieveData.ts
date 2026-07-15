@@ -2,12 +2,11 @@
 import database from '@comify/common/integrations/database';
 import logger from '@comify/common/integrations/logging';
 
-import { RECORD_TYPE } from '../definitions';
-import type { BaseData } from '../definitions';
+import { RECORD_TYPE, type Data } from '../definitions';
 
 import ImageNotFound from './ImageNotFound';
 
-export default async function retrieveData(id: string): Promise<DataModel>
+export default async function retrieveData(id: string): Promise<Data>
 {
     const record = await database.readRecord(RECORD_TYPE, { id: { EQUALS: id } });
 
@@ -18,5 +17,5 @@ export default async function retrieveData(id: string): Promise<DataModel>
         throw new ImageNotFound();
     }
     
-    return record as DataModel;
+    return record as Data;
 }

@@ -1,6 +1,6 @@
 
 import retrieveByPostId from '../_retrieveByPostId';
-import remove from '../remove';
+import remove from '../_remove';
 
 export default async function run(postId: string): Promise<void>
 {

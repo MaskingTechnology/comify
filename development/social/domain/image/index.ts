@@ -1,4 +1,2 @@
 
-export { RECORD_TYPE } from './definitions';
-
-export type { DataModel, ImageData } from './types';
+export { RECORD_TYPE, type ImageData } from './definitions';

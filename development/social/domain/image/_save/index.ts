@@ -1,5 +1,6 @@
 
 import type { Image } from '../definitions';
+
 import createData from './createData';
 import fileExists from './fileExists';
 import generateStorageKey from './generateStorageKey';
@@ -23,3 +24,5 @@ export default async function save(type: string, image: Image): Promise<string>
 
     return insertData(data);
 }
+
+export { default as InvalidImage } from './InvalidImage';

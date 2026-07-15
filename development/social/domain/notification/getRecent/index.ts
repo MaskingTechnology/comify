@@ -10,7 +10,7 @@ import type { Notification } from '../definitions';
 import toModel from '../_toModel';
 import retrieveRecent from '../_retrieveRecent';
 
-export default async function getRecentAggregated(tenant: Tenant, requester: Requester, range: Range): Promise<Notification[]>
+export default async function run(tenant: Tenant, requester: Requester, range: Range): Promise<Notification[]>
 {
     validateRange(range);
 

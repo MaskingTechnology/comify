@@ -1,5 +1,5 @@
 
-import eraseImage from '~/image/erase';
+import eraseImage from '~/image/_erase';
 
 import retrieveById from '../_retrieveById';
 import eraseData from './eraseData';
