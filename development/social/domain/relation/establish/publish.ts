@@ -3,7 +3,7 @@ import eventBroker from '@comify/common/integrations/eventBroker';
 
 import { EVENT_CHANNEL } from '../definitions';
 import { EVENT_NAME } from './definitions';
-import type { EstablishedPublication } from './types';
+import type { EstablishedPublication } from './definitions';
 
 export default async function publish(followerId: string, followingId: string): Promise<void>
 {

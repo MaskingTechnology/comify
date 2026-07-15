@@ -3,7 +3,7 @@ import eventBroker from '@comify/common/integrations/eventBroker';
 
 import { EVENT_CHANNEL } from '../definitions';
 import { EVENT_NAME } from './definitions';
-import type { EstablishedEventHandler, EstablishedSubscription } from './types';
+import type { EstablishedEventHandler, EstablishedSubscription } from './definitions';
 
 export default async function subscribe(handler: EstablishedEventHandler): Promise<void>
 {

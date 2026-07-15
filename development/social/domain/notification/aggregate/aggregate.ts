@@ -1,7 +1,7 @@
 
 import type { Requester } from '~/authentication';
 import { default as getPostData } from '~/post/getByIdAggregated';
-import getRelationData from '~/relation/getAggregated';
+import getRelationData from '~/relation/get';
 import type { Tenant } from '@comify/common/domain/tenant';
 
 import type { BaseData } from '../definitions';

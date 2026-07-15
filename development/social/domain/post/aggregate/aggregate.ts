@@ -4,13 +4,12 @@ import getComicData from '~/comic/getById';
 import getCommentData from '~/comment/getById';
 import getMetrics from '~/post.metrics/getByPost';
 import ratingExists from '~/rating/exists';
-import getRelationData from '~/relation/getAggregated';
+import getRelationData from '~/relation/get';
 import type { Tenant } from '@comify/common/domain/tenant';
 
-import type { BaseData } from '../definitions';
-import type { AggregatedData } from './types';
+import type { Data, Post } from '../definitions';
 
-export default async function aggregate(tenant: Tenant, requester: Requester, data: DataModel): Promise<AggregatedData>
+export default async function aggregate(tenant: Tenant, requester: Requester, data: Data): Promise<Post>
 {
     const [creatorData, isRated, comicData, commentData, metricsData] = await Promise.all([
         getRelationData(tenant, requester, requester.id, data.creatorId),
