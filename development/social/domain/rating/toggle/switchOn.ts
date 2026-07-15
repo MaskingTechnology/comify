@@ -1,6 +1,6 @@
 
-import create from '../create';
-import erase from '../erase';
+import create from '../_create';
+import erase from '../_erase';
 import publish from './publish';
 
 export default async function switchOn(tenantId: string, creatorId: string, postId: string): Promise<boolean>

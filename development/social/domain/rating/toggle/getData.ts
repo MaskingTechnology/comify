@@ -3,10 +3,9 @@ import type { RecordQuery } from '@theshelf/database';
 
 import database from '@comify/common/integrations/database';
 
-import { RECORD_TYPE } from '../definitions';
-import type { BaseData } from '../definitions';
+import { RECORD_TYPE, type Data } from '../definitions';
 
-export default async function getData(creatorId: string, postId: string): Promise<DataModel | undefined>
+export default async function getData(creatorId: string, postId: string): Promise<Data | undefined>
 {
     const query: RecordQuery =
     {
@@ -14,5 +13,5 @@ export default async function getData(creatorId: string, postId: string): Promis
         postId: { EQUALS: postId }
     };
 
-    return database.readRecord(RECORD_TYPE, query) as Promise<DataModel | undefined>;
+    return database.readRecord(RECORD_TYPE, query) as Promise<Data | undefined>;
 }

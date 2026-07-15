@@ -2,8 +2,8 @@
 import eventBroker from '@comify/common/integrations/eventBroker';
 
 import { EVENT_CHANNEL } from '../definitions';
-import { EVENT_NAME } from './definitions';
-import type { ToggledEventHandler, ToggledSubscription } from './types';
+
+import { EVENT_NAME, type ToggledEventHandler, type ToggledSubscription } from './definitions';
 
 export default async function subscribe(handler: ToggledEventHandler): Promise<void>
 {

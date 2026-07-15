@@ -5,8 +5,11 @@ import validator from '@comify/common/integrations/validation';
 
 import { requiredIdValidation } from '~/definitions';
 
+import type { Data } from '../definitions';
+
 import InvalidRating from './InvalidRating';
-import type { ValidationModel } from './types';
+
+type ValidationModel = Pick<Data, 'postId'>;
 
 const schema: ValidationSchema =
 {

@@ -1,9 +1,9 @@
 
 import { generateId } from '@comify/common/integrations/utilities/crypto';
 
-import type { BaseData } from '../definitions';
+import type { Data } from '../definitions';
 
-export default function createData(creatorId: string, postId: string): DataModel
+export default function createData(creatorId: string, postId: string): Data
 {
     return {
         id: generateId(),

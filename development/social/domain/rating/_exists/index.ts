@@ -5,7 +5,7 @@ import database from '@comify/common/integrations/database';
 
 import { RECORD_TYPE } from '../definitions';
 
-export default async function exists(creatorId: string, postId: string): Promise<boolean>
+export default async function run(creatorId: string, postId: string): Promise<boolean>
 {
     const query: RecordQuery =
     {
