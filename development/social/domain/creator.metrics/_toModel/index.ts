@@ -1,7 +1,7 @@
 
 import type { Metrics, Data } from '../definitions';
 
-export default function run(data: Data): Metrics
+export default async function run(data: Data): Promise<Metrics>
 {
     return {
         posts: data.posts,
