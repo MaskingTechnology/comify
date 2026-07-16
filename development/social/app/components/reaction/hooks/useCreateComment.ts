@@ -1,9 +1,10 @@
 
 import { useCallback } from 'react';
 
+import { tenant } from '@comify/common/domain/tenant';
+
 import { requester } from '^/domain/authentication';
 import createCommentReaction from '^/domain/post/createWithComment';
-import { tenant } from '@comify/common/domain/tenant';
 
 export default function useCreateComment(postId: string, onCreated: (reactionId: string) => void)
 {

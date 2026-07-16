@@ -2,9 +2,10 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { tenant } from '@comify/common/domain/tenant';
+
 import { requester } from '^/domain/authentication';
 import createPostWithComic from '^/domain/post/createWithComic';
-import { tenant } from '@comify/common/domain/tenant';
 
 import { useAppContext } from '~/components/application';
 

@@ -3,12 +3,13 @@ import { useCallback } from 'react';
 
 import { usePagination } from '@maskingtech/react-toolkit';
 
-import { requester } from '^/domain/authentication';
-import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
-import getReactionsByPost from '^/domain/post/getByParentAggregated';
 import { tenant } from '@comify/common/domain/tenant';
 
-export default function useReactions(post: AggregatedPostData)
+import { requester } from '^/domain/authentication';
+import type { Post } from '^/domain/post';
+import getReactionsByPost from '^/domain/post/getByParent';
+
+export default function useReactions(post: Post)
 {
     const limit = 15;
 

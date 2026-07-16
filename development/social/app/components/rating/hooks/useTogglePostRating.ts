@@ -1,14 +1,15 @@
 
 import { useCallback } from 'react';
 
-import { requester } from '^/domain/authentication';
-import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
-import toggleRating from '^/domain/rating/toggle';
 import { tenant } from '@comify/common/domain/tenant';
+
+import { requester } from '^/domain/authentication';
+import type { Post } from '^/domain/post';
+import toggleRating from '^/domain/rating/toggle';
 
 export default function useTogglePostRating()
 {
-    return useCallback((post: AggregatedPostData) =>
+    return useCallback((post: Post) =>
     {
         return toggleRating(tenant, requester, post.id);
 

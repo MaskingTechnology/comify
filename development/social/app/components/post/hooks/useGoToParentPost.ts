@@ -2,13 +2,13 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
+import type { Post } from '^/domain/post';
 
 export default function useGoToParentPost()
 {
     const navigate = useNavigate();
 
-    return useCallback((post: AggregatedPostData) =>
+    return useCallback((post: Post) =>
     {
         if (post.parentId === undefined)
         {

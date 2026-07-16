@@ -4,20 +4,21 @@ import { useParams } from 'react-router-dom';
 
 import { useLoadData } from '@maskingtech/react-toolkit';
 
-import requester from '^/domain/authentication/requester';
-import get from '^/domain/post/getByIdAggregated';
 import { tenant } from '@comify/common/domain/tenant';
+
+import { requester } from '^/domain/authentication';
+import getPost from '^/domain/post/getById';
 
 export default function useReaction()
 {
     const { highlightId } = useParams();
 
-    const getReaction = useCallback(async () =>
+    const getData = useCallback(async () =>
     {
         return highlightId !== undefined
-            ? get(tenant, requester, highlightId)
+            ? getPost(tenant, requester, highlightId)
             : undefined;
     }, [highlightId]);
 
-    return useLoadData(getReaction, [highlightId]);
+    return useLoadData(getData, [highlightId]);
 }

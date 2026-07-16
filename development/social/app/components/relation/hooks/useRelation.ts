@@ -3,9 +3,10 @@ import { useCallback } from 'react';
 
 import { useLoadData } from '@maskingtech/react-toolkit';
 
-import { requester } from '^/domain/authentication';
-import getRelation from '^/domain/relation/getAggregated';
 import { tenant } from '@comify/common/domain/tenant';
+
+import { requester } from '^/domain/authentication';
+import getRelation from '^/domain/relation/get';
 
 import { useAppContext } from '~/components/application';
 

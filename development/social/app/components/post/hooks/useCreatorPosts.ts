@@ -3,9 +3,10 @@ import { useCallback } from 'react';
 
 import { usePagination } from '@maskingtech/react-toolkit';
 
-import { requester } from '^/domain/authentication';
-import getCreatorPosts from '^/domain/post/getByCreatorAggregated';
 import { tenant } from '@comify/common/domain/tenant';
+
+import { requester } from '^/domain/authentication';
+import getCreatorPosts from '^/domain/post/getByCreator';
 
 export default function useCreatorPosts(creatorId: string)
 {

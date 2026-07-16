@@ -3,9 +3,10 @@ import { useCallback } from 'react';
 
 import { usePagination } from '@maskingtech/react-toolkit';
 
-import { requester } from '^/domain/authentication';
-import getFollowers from '^/domain/relation/getFollowersAggregated';
 import { tenant } from '@comify/common/domain/tenant';
+
+import { requester } from '^/domain/authentication';
+import getFollowers from '^/domain/relation/getFollowers';
 
 export default function useCreatorFollowers(creatorId?: string)
 {

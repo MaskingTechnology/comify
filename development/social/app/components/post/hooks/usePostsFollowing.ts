@@ -3,9 +3,10 @@ import { useCallback } from 'react';
 
 import { usePagination } from '@maskingtech/react-toolkit';
 
-import { requester } from '^/domain/authentication';
-import getPostsFollowing from '^/domain/post/getByFollowingAggregated';
 import { tenant } from '@comify/common/domain/tenant';
+
+import { requester } from '^/domain/authentication';
+import getPostsFollowing from '^/domain/post/getByFollowing';
 
 export default function usePostsFollowing()
 {

@@ -2,7 +2,7 @@
 import { useCallback } from 'react';
 
 import { requester } from '^/domain/authentication';
-import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
+import type { Creator } from '^/domain/creator';
 import updateFullName from '^/domain/creator/updateFullName';
 
 import { useAppContext } from '~/components/application';
@@ -15,7 +15,7 @@ export default function useUpdateFullName()
     {
         await updateFullName(requester, fullName);
 
-        setIdentity({ ...identity, fullName } as AggregatedCreatorData);
+        setIdentity({ ...identity, fullName } as Creator);
 
     }, [setIdentity, identity]);
 }

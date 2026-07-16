@@ -3,9 +3,10 @@ import { useCallback } from 'react';
 
 import { usePagination } from '@maskingtech/react-toolkit';
 
-import { requester } from '^/domain/authentication';
-import exploreRelations from '^/domain/relation/exploreAggregated';
 import { tenant } from '@comify/common/domain/tenant';
+
+import { requester } from '^/domain/authentication';
+import exploreRelations from '^/domain/relation/explore';
 
 export default function useExploreCreators()
 {

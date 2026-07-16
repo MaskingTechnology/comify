@@ -3,13 +3,13 @@ import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Types } from '^/domain/notification';
-import type { AggregatedData as AggregatedNotificationData } from '^/domain/notification/aggregate/types';
+import type { Notification } from '^/domain/notification';
 
 export default function useViewNotificationDetails()
 {
     const navigate = useNavigate();
 
-    return useCallback((notification: AggregatedNotificationData) =>
+    return useCallback((notification: Notification) =>
     {
 
         switch (notification.type)

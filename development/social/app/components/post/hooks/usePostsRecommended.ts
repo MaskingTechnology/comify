@@ -3,9 +3,10 @@ import { useCallback } from 'react';
 
 import { usePagination } from '@maskingtech/react-toolkit';
 
-import { requester } from '^/domain/authentication';
-import getPostsRecommended from '^/domain/post/getRecommendedAggregated';
 import { tenant } from '@comify/common/domain/tenant';
+
+import { requester } from '^/domain/authentication';
+import getPostsRecommended from '^/domain/post/getRecommended';
 
 export default function usePostsRecommended()
 {

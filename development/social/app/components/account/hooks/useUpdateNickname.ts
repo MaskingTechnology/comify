@@ -1,11 +1,12 @@
 
 import { useCallback, useState } from 'react';
 
+import { tenant } from '@comify/common/domain/tenant';
+
 import { requester } from '^/domain/authentication';
-import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
+import type { Creator } from '^/domain/creator';
 import updateNickname from '^/domain/creator/updateNickname';
 import NicknameAlreadyExists from '^/domain/creator/updateNickname/NicknameAlreadyExists';
-import { tenant } from '@comify/common/domain/tenant';
 
 import { useAppContext } from '~/components/application';
 
@@ -20,7 +21,7 @@ export default function useUpdateNickname()
         {
             await updateNickname(tenant, requester, nickname);
 
-            setIdentity({ ...identity, nickname } as AggregatedCreatorData);
+            setIdentity({ ...identity, nickname } as Creator);
             setAlreadyInUse(false);
         }
         catch (error)
