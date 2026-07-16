@@ -6,7 +6,7 @@ export type Data = BaseData &
     readonly message: string;
 };
 
-export type Comment = Pick<Data, 'message'>;
+export type Comment = Omit<Data, 'id'>;
 
 export const RECORD_TYPE = 'comment';
 export const MESSAGE_MAX_LENGTH = 2000;

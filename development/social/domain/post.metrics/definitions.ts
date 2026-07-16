@@ -9,7 +9,7 @@ export type Data = BaseData &
     readonly popularity: number;
 };
 
-export type Metrics = Omit<Data, 'id'>;
+export type Metrics = Omit<Data, 'id' | 'postId'>;
 
 export type { CountOperation };
 

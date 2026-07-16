@@ -9,7 +9,7 @@ export type Data = BaseData &
     readonly structure?: string;
 };
 
-export type Comic = Omit<Data, 'imageId'> &
+export type Comic = Omit<Data, 'id' | 'imageId'> &
 {
     readonly image: ImageData;
 };

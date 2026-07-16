@@ -1,5 +1,5 @@
 
-import get from '../_retrieve';
+import retrieve from '../_retrieve';
 import type { Data } from '../definitions';
 
 import type { Mapping } from './definitions';
@@ -15,5 +15,5 @@ export default async function translate(requesterId: string, mapping: Mapping, d
         return data;
     }
 
-    return get(requesterId, followingId);
+    return retrieve(requesterId, followingId);
 }
