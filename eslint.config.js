@@ -4,6 +4,7 @@ import tsparser from '@typescript-eslint/parser';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import tseslint from 'typescript-eslint';
+import importPlugin from 'eslint-plugin-import';
 
 export default tseslint.config(
     eslint.configs.recommended,
@@ -22,7 +23,8 @@ export default tseslint.config(
         files: ["**/*.{ts,tsx}"],
         plugins: {
             'react': react,
-            'react-hooks': reactHooks
+            'react-hooks': reactHooks,
+            'import': importPlugin
         },
         languageOptions: {
             parser: tsparser,
@@ -50,12 +52,46 @@ export default tseslint.config(
             "react/react-in-jsx-scope": "off",
             "no-console": "error",
 
+            "import/no-duplicates": ["error", { "prefer-inline": true, "considerQueryString": true }],
+            "import/consistent-type-specifier-style": ["error", "prefer-inline"],
+            "import/prefer-default-export": "error",
+            "import/enforce-node-protocol-usage": ["error", "always"],
+            "import/newline-after-import": ["error", { count: 1 }],
+            'import/order': [
+                'error',
+                {
+                    'groups': [
+                        'builtin',
+                        'external',
+                        'internal',
+                        'parent',
+                        'sibling',
+                        'index',
+                        'object'
+                    ],
+                    'pathGroups': [
+                        {
+                            pattern: "^/**",
+                            group: "internal",
+                            position: "after"
+                        },
+                        {
+                            pattern: "~/**",
+                            group: "parent",
+                            position: "before"
+                        }
+                    ],
+                    'newlines-between': 'always',
+                    'alphabetize': { order: 'asc', caseInsensitive: true },
+                },
+            ],
             "no-undef": "off", // typescript handles this for us
         },
         settings: {
             react: {
                 version: 'detect'
-            }
+            },
+            "import/internal-regex": "^@comify/"
         }
     }
 );
