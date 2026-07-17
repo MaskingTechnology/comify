@@ -1,7 +1,7 @@
 
 import { Column } from '@maskingtech/designsystem';
 
-import type { AggregatedData as AggregatedNotificationData } from '^/domain/notification/aggregate';
+import type { Notification } from '^/domain/notification';
 
 import { PullToRefresh, ResultContainer, ScrollLoader } from '~/components/common';
 import { useViewProfile } from '~/components/profile';
@@ -27,7 +27,7 @@ export default function Feature()
             <ScrollLoader onLoad={getMoreNotifications} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD} >
                 <ResultContainer data={notifications} isLoading={isLoading}>
                     <PanelList
-                        notifications={notifications as AggregatedNotificationData[]}
+                        notifications={notifications as Notification[]}
                         onFollowClick={establishRelation}
                         onCreatorClick={viewProfile}
                         onNotificationClick={viewNotification}

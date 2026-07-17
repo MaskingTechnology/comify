@@ -1,16 +1,16 @@
 
 import { Column } from '@maskingtech/designsystem';
 
-import type { AggregatedData as AggregatedNotificationData } from '^/domain/notification/aggregate';
-import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
+import type { Notification } from '^/domain/notification';
+import type { Relation } from '^/domain/relation';
 
 import Panel from './Panel';
 
 type Props = {
-    readonly notifications: AggregatedNotificationData[];
-    readonly onFollowClick: (relation: AggregatedRelationData) => Promise<void>;
-    readonly onCreatorClick: (relation: AggregatedRelationData) => void;
-    readonly onNotificationClick: (notification: AggregatedNotificationData) => void;
+    readonly notifications: Notification[];
+    readonly onFollowClick: (relation: Relation) => Promise<void>;
+    readonly onCreatorClick: (relation: Relation) => void;
+    readonly onNotificationClick: (notification: Notification) => void;
 };
 
 export default function Component({ notifications, onFollowClick, onCreatorClick, onNotificationClick }: Props)

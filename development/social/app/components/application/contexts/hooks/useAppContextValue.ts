@@ -1,11 +1,11 @@
 
 import { useMemo, useState } from 'react';
 
-import type { AggregatedData as IdentityModel } from '^/domain/creator/aggregate';
+import type { Creator } from '^/domain/creator';
 
-export default function useAppContextValue(initialIdentity?: IdentityModel)
+export default function useAppContextValue(initialIdentity?: Creator)
 {
-    const [identity, setIdentity] = useState<IdentityModel | undefined>(initialIdentity);
+    const [identity, setIdentity] = useState<Creator | undefined>(initialIdentity);
     const appState = useMemo<Map<string, unknown>>(() => new Map(), []);
 
     return useMemo(() => (

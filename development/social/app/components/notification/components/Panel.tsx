@@ -2,8 +2,8 @@
 import { Column, Panel } from '@maskingtech/designsystem';
 
 import { Types } from '^/domain/notification';
-import type { AggregatedData as AggregatedNotificationData } from '^/domain/notification/aggregate';
-import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
+import type { Notification } from '^/domain/notification';
+import type { Relation } from '^/domain/relation';
 
 import { TimeElapsed } from '~/components/relation';
 
@@ -12,13 +12,13 @@ import ReactedToPost from './elements/ReactedToPost';
 import StartedFollowing from './elements/StartedFollowing';
 
 type Props = {
-    readonly notification: AggregatedNotificationData;
-    readonly onFollowClick: (relation: AggregatedRelationData) => Promise<void>;
-    readonly onCreatorClick: (relation: AggregatedRelationData) => void;
-    readonly onNotificationClick: (notification: AggregatedNotificationData) => void;
+    readonly notification: Notification;
+    readonly onFollowClick: (relation: Relation) => Promise<void>;
+    readonly onCreatorClick: (relation: Relation) => void;
+    readonly onNotificationClick: (notification: Notification) => void;
 };
 
-function getContent(notification: AggregatedNotificationData, onNotificationClick: (notification: AggregatedNotificationData) => void)
+function getContent(notification: Notification, onNotificationClick: (notification: Notification) => void)
 {
     switch (notification.type)
     {

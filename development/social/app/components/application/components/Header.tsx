@@ -1,7 +1,7 @@
 
 import { Row } from '@maskingtech/designsystem';
 
-import type { AggregatedData as IdentityModel } from '^/domain/creator/aggregate';
+import type { Creator } from '^/domain/creator';
 
 import { ConciseIdentity } from '~/components/creator';
 
@@ -9,7 +9,7 @@ import Logo from './Logo';
 import LogoutButton from './LogoutButton';
 
 type Props = {
-    readonly identity: IdentityModel;
+    readonly identity: Creator;
     readonly onLogout: () => void;
 };
 

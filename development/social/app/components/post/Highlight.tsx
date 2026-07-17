@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 import { Column, Ruler } from '@maskingtech/designsystem';
 
-import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
+import type { Post } from '^/domain/post';
 
 import { LoadingAndResultContainer } from '~/components/common';
 import { useViewProfile } from '~/components/profile';
@@ -34,7 +34,7 @@ export default function Feature()
         <Column gap='medium' alignX='stretch'>
             <LoadingAndResultContainer data={post} isLoading={isPostLoading}>
                 <DetailsPanel
-                    post={post as AggregatedPostData}
+                    post={post as Post}
                     onFollowClick={establishRelation}
                     onRatingClick={togglePostRating}
                     onCreatorClick={viewProfile}
@@ -43,11 +43,11 @@ export default function Feature()
                 />
             </LoadingAndResultContainer>
             <Ruler direction='horizontal' />
-            <SingleReactionRow onShowClick={() => viewPostDetails(post as AggregatedPostData)} />
+            <SingleReactionRow onShowClick={() => viewPostDetails(post as Post)} />
             <LoadingAndResultContainer data={(highlight)} isLoading={isHighlightLoading}>
                 <LargePanel
                     key={highlight?.id}
-                    post={highlight as AggregatedPostData}
+                    post={highlight as Post}
                     onFollowClick={establishRelation}
                     onCreatorClick={viewProfile}
                     onRatingClick={togglePostRating}

@@ -3,7 +3,7 @@ import { useOutletContext } from 'react-router-dom';
 
 import { Column } from '@maskingtech/designsystem';
 
-import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
+import type { Creator } from '^/domain/creator';
 
 import useUpdateFullName from './hooks/useUpdateFullName';
 import useUpdateNickname from './hooks/useUpdateNickname';
@@ -12,7 +12,7 @@ import FullNameForm from './components/FullNameForm';
 import NicknameForm from './components/NicknameForm';
 
 type Context = {
-    identity: AggregatedCreatorData;
+    identity: Creator;
 };
 
 export default function Feature()

@@ -1,5 +1,5 @@
 
-import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
+import type { Relation } from '^/domain/relation';
 
 import { LoadingAndResultContainer } from '~/components/common';
 
@@ -21,7 +21,7 @@ export default function Feature({ creatorId, onEdit }: Props)
 
     return <LoadingAndResultContainer data={relation} isLoading={isLoading}>
         <Profile
-            relation={relation as AggregatedRelationData}
+            relation={relation as Relation}
             onFollowClick={establishRelation}
             onEditClick={onEdit}
         />

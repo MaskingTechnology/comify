@@ -1,15 +1,15 @@
 
-import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
+import type { Relation } from '^/domain/relation';
 
 import { Column } from '@maskingtech/designsystem';
 
 import Panel from './Panel';
 
 type Props = {
-    readonly relations: AggregatedRelationData[];
-    readonly onFollowClick: (relation: AggregatedRelationData) => Promise<void>;
-    readonly onEditClick?: (relation: AggregatedRelationData) => void;
-    readonly onCreatorClick: (relation: AggregatedRelationData) => void;
+    readonly relations: Relation[];
+    readonly onFollowClick: (relation: Relation) => Promise<void>;
+    readonly onEditClick?: (relation: Relation) => void;
+    readonly onCreatorClick: (relation: Relation) => void;
 };
 
 export default function Component({ relations, onFollowClick, onEditClick, onCreatorClick }: Props)

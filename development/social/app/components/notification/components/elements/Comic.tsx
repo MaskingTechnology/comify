@@ -1,10 +1,10 @@
 
 import { ClickArea, Image, Row, Text } from '@maskingtech/designsystem';
 
-import type { AggregatedData as AggregatedComicData } from '^/domain/comic/aggregate';
+import type { Comic } from '^/domain/comic';
 
 type Props = {
-    readonly comic: AggregatedComicData;
+    readonly comic: Comic;
     readonly message: string;
     readonly onClick: () => void;
 };

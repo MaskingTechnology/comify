@@ -1,10 +1,10 @@
 
-import type { AggregatedData as AggregatedComicData } from '^/domain/comic/aggregate';
+import type { Comic } from '^/domain/comic';
 
 import { Image } from '@maskingtech/designsystem';
 
 type Props = {
-    readonly comic: AggregatedComicData;
+    readonly comic: Comic;
 };
 
 export default function Component({ comic }: Props)

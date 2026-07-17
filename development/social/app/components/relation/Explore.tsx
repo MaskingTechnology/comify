@@ -1,7 +1,7 @@
 
 import { Column } from '@maskingtech/designsystem';
 
-import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
+import type { Relation } from '^/domain/relation';
 
 import { OrderAndSearchRow, PullToRefresh, ResultContainer, ScrollLoader } from '~/components/common';
 import { useViewProfile } from '~/components/profile';
@@ -24,12 +24,12 @@ export default function Feature()
 
     return <Column gap='small' alignX='stretch'>
         { /* eslint-disable-next-line @typescript-eslint/no-empty-function */}
-        <OrderAndSearchRow selected='popular' onOrderChange={reorderList} onSearchChange={() => {}} />
+        <OrderAndSearchRow selected='popular' onOrderChange={reorderList} onSearchChange={() => { }} />
         <PullToRefresh onRefresh={refresh}>
             <ScrollLoader onLoad={getMoreRelations} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
                 <ResultContainer data={relations} isLoading={isLoading}>
                     <PanelList
-                        relations={relations as AggregatedRelationData[]}
+                        relations={relations as Relation[]}
                         onFollowClick={establishRelation}
                         onCreatorClick={viewProfile}
                     />

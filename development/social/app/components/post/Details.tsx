@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 import { Column, Ruler } from '@maskingtech/designsystem';
 
-import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
+import type { Post } from '^/domain/post';
 
 import { BackRow, LoadingAndResultContainer } from '~/components/common';
 import { useViewProfile } from '~/components/profile';
@@ -32,10 +32,10 @@ export default function Feature()
 
     return <>
         <Column gap='medium' alignX='stretch'>
-            <BackRow canGoBack={post?.hasParent as boolean} onBackClick={() => goToParentPost(post as AggregatedPostData)} />
+            <BackRow canGoBack={post?.hasParent as boolean} onBackClick={() => goToParentPost(post as Post)} />
             <LoadingAndResultContainer data={post} isLoading={isLoading}>
                 <DetailsPanel
-                    post={post as AggregatedPostData}
+                    post={post as Post}
                     onFollowClick={establishRelation}
                     onRatingClick={togglePostRating}
                     onCreatorClick={viewProfile}
@@ -43,7 +43,7 @@ export default function Feature()
                     onDeleteClick={confirmPostRemoval}
                 />
                 <Ruler direction='horizontal' />
-                <Reactions post={post as AggregatedPostData} />
+                <Reactions post={post as Post} />
             </LoadingAndResultContainer>
         </Column>
         <Outlet />

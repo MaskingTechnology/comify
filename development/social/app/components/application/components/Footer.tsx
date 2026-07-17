@@ -1,12 +1,12 @@
 
 import { Column } from '@maskingtech/designsystem';
 
-import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
+import type { Creator } from '^/domain/creator';
 
 import Menu from './Menu';
 
 type Props = {
-    readonly identity: AggregatedCreatorData;
+    readonly identity: Creator;
 };
 
 export default function Component({ identity }: Props)

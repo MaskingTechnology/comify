@@ -1,11 +1,11 @@
 
-import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
+import type { Creator } from '^/domain/creator';
 
 import AvatarRow from './elements/AvatarRow';
 import CountersColumn from './elements/CountersColumn';
 
 type Props = {
-    readonly creator: AggregatedCreatorData;
+    readonly creator: Creator;
     readonly onCreatorClick: () => void;
 };
 

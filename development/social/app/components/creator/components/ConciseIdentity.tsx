@@ -1,10 +1,10 @@
 
-import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
+import type { Creator } from '^/domain/creator';
 
 import Avatar from './elements/Avatar';
 
 type Props = {
-    readonly creator: AggregatedCreatorData;
+    readonly creator: Creator;
 };
 
 export default function Component({ creator }: Props)

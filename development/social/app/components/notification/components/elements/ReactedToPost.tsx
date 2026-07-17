@@ -1,11 +1,11 @@
 
-import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
+import type { Post } from '^/domain/post';
 
 import Comic from './Comic';
 import Comment from './Comment';
 
 type Props = {
-    readonly post: AggregatedPostData;
+    readonly post: Post;
     readonly onClick: () => void;
 };
 

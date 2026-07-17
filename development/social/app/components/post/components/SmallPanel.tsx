@@ -1,5 +1,5 @@
 
-import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
+import type { Post } from '^/domain/post';
 
 import { ClickArea, Column, Panel, Row } from '@maskingtech/designsystem';
 
@@ -10,7 +10,7 @@ import { Comment } from '~/components/comment';
 import EngagementsRow from './elements/EngagementRow';
 
 type Props = {
-    readonly post: AggregatedPostData;
+    readonly post: Post;
     readonly onContentClick: () => void;
     readonly onRatingClick: () => Promise<boolean>;
     readonly onReactionClick: () => void;

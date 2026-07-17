@@ -2,13 +2,13 @@
 import type { ReactNode } from 'react';
 import { createContext, useContext } from 'react';
 
-import type { AggregatedData as IdentityModel } from '^/domain/creator/aggregate';
+import type { Creator } from '^/domain/creator';
 
 import useAppContextValue from './hooks/useAppContextValue';
 
 type Context = {
-    identity: IdentityModel | undefined;
-    setIdentity: (identity: IdentityModel | undefined) => void;
+    identity: Creator | undefined;
+    setIdentity: (identity: Creator | undefined) => void;
     appState: Map<string, unknown>;
 };
 
@@ -18,7 +18,7 @@ export const useAppContext = () => useContext(AppContext);
 type Props = {
     readonly values?:
     {
-        identity: IdentityModel | undefined;
+        identity: Creator | undefined;
     };
     readonly children: ReactNode;
 };
