@@ -3,9 +3,9 @@ import type { RecordQuery } from '@theshelf/database';
 
 import database from '@comify/common/integrations/database';
 
-import { RECORD_TYPE, type Data } from '../definitions';
+import { RECORD_TYPE, type Record } from '../definitions';
 
-export default async function run(postId: string): Promise<Data[]>
+export default async function run(postId: string): Promise<Record[]>
 {
     const query: RecordQuery =
     {
@@ -13,5 +13,5 @@ export default async function run(postId: string): Promise<Data[]>
         postId: { EQUALS: postId }
     };
 
-    return database.searchRecords(RECORD_TYPE, query) as Promise<Data[]>;
+    return database.searchRecords(RECORD_TYPE, query) as Promise<Record[]>;
 } 

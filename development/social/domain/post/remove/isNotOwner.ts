@@ -1,7 +1,7 @@
 
-import type { Data } from '../definitions';
+import type { Record } from '../definitions';
 
-export default function isNotOwner(post: Data, requesterId: string): boolean
+export default function isNotOwner(record: Record, requesterId: string): boolean
 {
-    return post.creatorId !== requesterId;
+    return record.creatorId !== requesterId;
 }

@@ -1,15 +1,15 @@
 
-import createData from './createData';
-import insertData from './insertData';
-import validateData from './validateData';
+import createRecord from './createRecord';
+import persist from './persist';
+import validate from './validate';
 
 export default async function run(message: string): Promise<string>
 {
-    const data = createData(message);
+    const record = createRecord(message);
 
-    validateData(data);
+    validate(record);
 
-    return insertData(data);
+    return persist(record);
 }
 
 export { default as InvalidComment } from './InvalidComment';

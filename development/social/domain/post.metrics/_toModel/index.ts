@@ -1,9 +1,9 @@
 
-import type { Metrics, Data } from '../definitions';
+import type { Metrics, Record } from '../definitions';
 
-export default async function run(data: Data): Promise<Metrics>
+export default async function run(record: Record): Promise<Metrics>
 {
-    const {id: $0, postId: $1, ...metrics} = data;
+    const {id: $0, postId: $1, ...metrics} = record;
 
     return metrics;
 }

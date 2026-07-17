@@ -1,9 +1,9 @@
 
 import type { Publication, Subscription } from '@theshelf/eventbroker';
 
-import type { Data } from '../definitions';
+import type { Record } from '../definitions';
 
-export type ValidationModel = Pick<Data, 'tenantId' | 'creatorId' | 'comicId' | 'commentId' | 'parentId'>;
+export type ValidationModel = Pick<Record, 'tenantId' | 'creatorId' | 'comicId' | 'commentId' | 'parentId'>;
 
 export type CreatedEventData = {
     tenantId: string;

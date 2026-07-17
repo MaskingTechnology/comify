@@ -5,18 +5,18 @@ import type { Requester } from '~/authentication';
 import getPostData from '~/post/getById';
 import getRelationData from '~/relation/get';
 
-import type { Data, Notification } from '../definitions';
+import type { Record, Notification } from '../definitions';
 
-export default async function aggregate(tenant: Tenant, requester: Requester, data: Data): Promise<Notification>
+export default async function toModel(tenant: Tenant, requester: Requester, record: Record): Promise<Notification>
 {
     const [relationData, postData] = await Promise.all([
-        getRelationData(tenant, requester, data.receiverId, data.senderId),
-        data.postId ? getPostData(tenant, requester, data.postId) : Promise.resolve(undefined)
+        getRelationData(tenant, requester, record.receiverId, record.senderId),
+        record.postId ? getPostData(tenant, requester, record.postId) : Promise.resolve(undefined)
     ]);
 
     return {
-        createdAt: data.createdAt,
-        type: data.type,
+        createdAt: record.createdAt,
+        type: record.type,
         relation: relationData,
         post: postData
     };

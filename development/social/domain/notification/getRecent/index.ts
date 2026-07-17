@@ -14,9 +14,9 @@ export default async function run(tenant: Tenant, requester: Requester, range: R
 {
     validateRange(range);
 
-    const data = await retrieveRecent(requester.id, range.limit, range.offset);
+    const record = await retrieveRecent(requester.id, range.limit, range.offset);
 
-    const notifications = data.map(item => toModel(tenant, requester, item));
+    const notifications = record.map(item => toModel(tenant, requester, item));
 
     return filterResolved(notifications);
 }

@@ -14,9 +14,9 @@ export default async function run(tenant: Tenant, requester: Requester, range: R
 {
     validateRange(range);
 
-    const data = await explore(tenant, requester, range.limit, range.offset);
+    const records = await explore(tenant, requester, range.limit, range.offset);
 
-    const posts = data.map(item => toModel(tenant, requester, item));
+    const posts = records.map(item => toModel(tenant, requester, item));
 
     return filterResolved(posts);
 }

@@ -1,11 +1,11 @@
 
 import { type Comic } from '../definitions';
 import toModel from '../_toModel';
-import retrieveById from '../_retrieveById';
+import retrieve from '../_retrieveById';
 
 export default async function run(id: string): Promise<Comic>
 {
-    const data = await retrieveById(id);
+    const record = await retrieve(id);
 
-    return toModel(data);
+    return toModel(record);
 }

@@ -13,7 +13,7 @@ export default async function run(tenant: Tenant, requester: Requester, order: S
 {
     validateRange(range);
 
-    const data = await explore(tenant.id, requester.id, order, range.limit, range.offset, search);
+    const records = await explore(tenant.id, requester.id, order, range.limit, range.offset, search);
 
-    return Promise.all(data.map(item => toModel(tenant.id, item)));
+    return Promise.all(records.map(item => toModel(tenant.id, item)));
 }

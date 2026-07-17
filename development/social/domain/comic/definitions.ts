@@ -3,13 +3,13 @@ import type { ImageData } from '~/image';
 
 import type { BaseData } from '../definitions';
 
-export type Data = BaseData &
+export type Record = BaseData &
 {
     readonly imageId: string;
     readonly structure?: string;
 };
 
-export type Comic = Omit<Data, 'id' | 'imageId'> &
+export type Comic = Omit<Record, 'id' | 'imageId'> &
 {
     readonly image: ImageData;
 };

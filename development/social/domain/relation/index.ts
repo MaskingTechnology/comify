@@ -1,2 +1,2 @@
 
-export { RECORD_TYPE, type Data, type Relation } from './definitions';
+export { RECORD_TYPE, type Record, type Relation } from './definitions';

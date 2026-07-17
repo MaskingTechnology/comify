@@ -1,10 +1,10 @@
 
-import { Relation } from '~/relation';
-import { Post } from '~/post';
+import type { Relation } from '~/relation';
+import type { Post } from '~/post';
 
 import type { BaseData } from '../definitions';
 
-export type Data = BaseData &
+export type Record = BaseData &
 {
     readonly createdAt: string;
     readonly type: string;
@@ -13,7 +13,7 @@ export type Data = BaseData &
     readonly postId?: string;
 };
 
-export type Notification = Pick<Data, 'createdAt' | 'type'> &
+export type Notification = Pick<Record, 'createdAt' | 'type'> &
 {
     readonly relation: Relation;
     readonly post?: Post;

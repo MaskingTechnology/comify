@@ -6,9 +6,14 @@ import createComic from '~/comic/create';
 
 import createPost from '../_create';
 
-export default async function run(tenant: Tenant, requester: Requester, comicImageDataUrl: string, parentId: string | undefined = undefined): Promise<string>
-{
-    const comicId = await createComic(comicImageDataUrl);
+type Record = {
+    readonly comicImageDataUrl: string;
+    readonly parentId?: string;
+}
 
-    return createPost(tenant.id, requester.id, comicId, undefined, parentId);
+export default async function run(tenant: Tenant, requester: Requester, record: Record): Promise<string>
+{
+    const comicId = await createComic(record.comicImageDataUrl);
+
+    return createPost(tenant.id, requester.id, comicId, undefined, record.parentId);
 }

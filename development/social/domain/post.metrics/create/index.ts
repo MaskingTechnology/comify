@@ -1,12 +1,12 @@
 
-import createData from './createData';
-import insertData from './insertData';
+import createRecord from './createRecord';
+import persist from './persist';
 
 export default async function run(postId: string): Promise<string>
 {
-    const data = createData(postId);
+    const record = createRecord(postId);
 
-    return insertData(data);
+    return persist(record);
 }
 
 export { default as subscriptions } from '../subscriptions';

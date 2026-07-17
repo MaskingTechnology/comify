@@ -1,15 +1,15 @@
 
-import createData from './createData';
-import insertData from './insertData';
-import validateData from './validateData';
+import createRecord from './createRecord';
+import persist from './persist';
+import validate from './validate';
 
 export default async function run(creatorId: string, postId: string): Promise<string>
 {
-    const newData = createData(creatorId, postId);
+    const newData = createRecord(creatorId, postId);
 
-    validateData(newData);
+    validate(newData);
 
-    return insertData(newData);
+    return persist(newData);
 }
 
 export { default as InvalidRating } from './InvalidRating';

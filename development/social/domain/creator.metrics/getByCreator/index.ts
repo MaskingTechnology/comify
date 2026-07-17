@@ -1,12 +1,12 @@
 
-import { Metrics } from '../definitions';
+import type { Metrics } from '../definitions';
 import toModel from '../_toModel';
 
 import retrieveByCreator from '../_retrieveByCreator';
 
 export default async function run(creatorId: string): Promise<Metrics>
 {
-    const data = await retrieveByCreator(creatorId);
+    const record = await retrieveByCreator(creatorId);
 
-    return toModel(data);
+    return toModel(record);
 }

@@ -1,15 +1,15 @@
 
 import getCreatorData from '~/creator/getById';
 
-import type { Data, Relation } from '../definitions';
+import type { Record, Relation } from '../definitions';
 
-export default async function run(tenantId: string, data: Data): Promise<Relation>
+export default async function run(tenantId: string, record: Record): Promise<Relation>
 {
-    const followingData = await getCreatorData(tenantId, data.followingId);
+    const followingData = await getCreatorData(tenantId, record.followingId);
 
     return {
         following: followingData,
-        established: data.id !== undefined,
-        self: data.followerId === data.followingId
+        established: record.id !== undefined,
+        self: record.followerId === record.followingId
     };
 }

@@ -5,7 +5,7 @@ import retrieveById from '../_retrieveById';
 
 export default async function run(tenantId: string, id: string): Promise<Creator>
 {
-    const data = await retrieveById(tenantId, id);
+    const record = await retrieveById(tenantId, id);
 
-    return toModel(data);
+    return toModel(record);
 }

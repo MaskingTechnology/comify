@@ -2,10 +2,10 @@
 import database from '@comify/common/integrations/database';
 import logger from '@comify/common/integrations/logging';
 
-import { RECORD_TYPE, type Data } from '../definitions';
+import { RECORD_TYPE, type Record } from '../definitions';
 import PostMetricsNotFound from '../_retrieveByPost/PostMetricsNotFound';
 
-export default async function run(postId: string): Promise<Data>
+export default async function run(postId: string): Promise<Record>
 {
     const query = { postId: { EQUALS: postId } };
 
@@ -18,7 +18,7 @@ export default async function run(postId: string): Promise<Data>
         throw new PostMetricsNotFound();
     }
 
-    return record as Data;
+    return record as Record;
 }
 
 export { PostMetricsNotFound };

@@ -4,10 +4,10 @@ import type { RecordQuery } from '@theshelf/database';
 import database from '@comify/common/integrations/database';
 import logger from '@comify/common/integrations/logging';
 
-import { RECORD_TYPE, type Data } from '../definitions';
+import { RECORD_TYPE, type Record } from '../definitions';
 import CreatorNotFound from './CreatorNotFound';
 
-export default async function run(tenantId: string, id: string): Promise<Data>
+export default async function run(tenantId: string, id: string): Promise<Record>
 {
     const query: RecordQuery = {
         tenantId: { EQUALS: tenantId },
@@ -23,7 +23,7 @@ export default async function run(tenantId: string, id: string): Promise<Data>
         throw new CreatorNotFound();
     }
 
-    return record as Data;
+    return record as Record;
 }
 
 export { CreatorNotFound };

@@ -7,15 +7,15 @@ import type { Tenant } from '@comify/common/domain/tenant';
 
 import type { Post } from '../definitions';
 import toModel from '../_toModel';
-import getRecommended from '../_retrieveRecommended';
+import retrieve from '../_retrieveRecommended';
 
 export default async function run(tenant: Tenant, requester: Requester, range: Range): Promise<Post[]>
 {
     validateRange(range);
 
-    const data = await getRecommended(tenant.id, requester.id, range.limit, range.offset);
+    const records = await retrieve(tenant.id, requester.id, range.limit, range.offset);
 
-    const posts = data.map(item => toModel(tenant, requester, item));
+    const posts = records.map(item => toModel(tenant, requester, item));
 
     return filterResolved(posts);
 }

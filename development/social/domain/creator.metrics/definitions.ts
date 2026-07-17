@@ -1,7 +1,7 @@
 
 import type { BaseData, CountOperation } from '../definitions';
 
-export type Data = BaseData &
+export type Record = BaseData &
 {
     readonly creatorId: string;
     readonly posts: number;
@@ -10,7 +10,7 @@ export type Data = BaseData &
     readonly popularity: number;
 };
 
-export type Metrics = Omit<Data, 'id' | 'creatorId'>
+export type Metrics = Omit<Record, 'id' | 'creatorId'>
 
 export type { CountOperation };
 

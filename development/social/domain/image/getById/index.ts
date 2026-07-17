@@ -2,14 +2,14 @@
 import type { ImageData } from '../definitions';
 
 import createDataUrl from './createDataUrl';
-import retrieveData from './retrieveData';
+import retrieveRecord from './retrieveRecord';
 import retrieveFile from './retrieveFile';
 
 export default async function run(id: string): Promise<ImageData>
 {
-    const data = await retrieveData(id);
-    const file = await retrieveFile(data.storageKey);
-    const dataUrl = createDataUrl(file, data.mimeType);
+    const record = await retrieveRecord(id);
+    const file = await retrieveFile(record.storageKey);
+    const dataUrl = createDataUrl(file, record.mimeType);
 
     return { dataUrl };
 }

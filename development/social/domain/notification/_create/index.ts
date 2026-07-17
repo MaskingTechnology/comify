@@ -3,8 +3,8 @@ import logger from '@comify/common/integrations/logging';
 
 import type { Type } from '../definitions';
 
-import createData from './createData';
-import insertData from './insertData';
+import createRecord from './createRecord';
+import persist from './persist';
 
 export default async function run(type: Type, senderId: string, receiverId: string, postId: string | undefined = undefined): Promise<void>
 {
@@ -15,9 +15,9 @@ export default async function run(type: Type, senderId: string, receiverId: stri
 
     try
     {
-        const data = createData(type, senderId, receiverId, postId);
+        const record = createRecord(type, senderId, receiverId, postId);
 
-        await insertData(data);
+        await persist(record);
     }
     catch (error)
     {

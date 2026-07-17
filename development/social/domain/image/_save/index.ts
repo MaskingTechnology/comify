@@ -1,12 +1,12 @@
 
 import type { Image } from '../definitions';
 
-import createData from './createData';
+import createRecord from './createRecord';
 import fileExists from './fileExists';
 import generateStorageKey from './generateStorageKey';
-import insertData from './insertData';
+import persist from './persist';
 import insertFile from './insertFile';
-import validateData from './validateData';
+import validate from './validate';
 
 export default async function save(type: string, image: Image): Promise<string>
 {
@@ -18,11 +18,11 @@ export default async function save(type: string, image: Image): Promise<string>
         await insertFile(storageKey, image.buffer);
     }
 
-    const data = createData(storageKey, image.filename, image.mimeType, image.size);
+    const record = createRecord(storageKey, image.filename, image.mimeType, image.size);
 
-    validateData(data);
+    validate(record);
 
-    return insertData(data);
+    return persist(record);
 }
 
 export { default as InvalidImage } from './InvalidImage';

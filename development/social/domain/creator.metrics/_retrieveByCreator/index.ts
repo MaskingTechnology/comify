@@ -2,11 +2,11 @@
 import database from '@comify/common/integrations/database';
 import logger from '@comify/common/integrations/logging';
 
-import { RECORD_TYPE, type Data } from '../definitions';
+import { RECORD_TYPE, type Record } from '../definitions';
 
 import CreatorMetricsNotFound from './CreatorMetricsNotFound';
 
-export default async function run(creatorId: string): Promise<Data>
+export default async function run(creatorId: string): Promise<Record>
 {
     const query = { creatorId: { EQUALS: creatorId } };
 
@@ -19,5 +19,5 @@ export default async function run(creatorId: string): Promise<Data>
         throw new CreatorMetricsNotFound();
     }
 
-    return record as Data;
+    return record as Record;
 }

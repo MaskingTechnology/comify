@@ -3,7 +3,7 @@ import type { Image } from '../definitions';
 
 import InvalidDataURL from './InvalidDataURL';
 
-const DATA_URL_REGEX = /^data:(image\/(\w+));base64,(.*)$/;
+const DATA_URL_REGEX = /^record:(image\/(\w+));base64,(.*)$/;
 
 export default async function convertDataUrl(dataUrl: string): Promise<Image>
 {

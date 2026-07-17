@@ -1,9 +1,9 @@
 
-import type { Data, Comment } from '../definitions';
+import type { Record, Comment } from '../definitions';
 
-export default async function run(data: Data): Promise<Comment>
+export default async function run(record: Record): Promise<Comment>
 {
-    const {id: $0, ...comment} = data;
+    const {id: $0, ...comment} = record;
 
     return comment;
 }

@@ -7,13 +7,13 @@ import validateRange from '~/common/validateRange';
 
 import type { Relation } from '../definitions';
 import toModel from '../_toModel';
-import getFollowers from '../_retrieveFollowers';
+import retrieve from '../_retrieveFollowers';
 
 export default async function run(tenant: Tenant, requester: Requester, followingId: string, range: Range): Promise<Relation[]>
 {
     validateRange(range);
 
-    const data = await getFollowers(requester, followingId, range.limit, range.offset);
+    const records = await retrieve(requester, followingId, range.limit, range.offset);
 
-    return Promise.all(data.map(data => toModel(tenant.id, data)));
+    return Promise.all(records.map(record => toModel(tenant.id, record)));
 }

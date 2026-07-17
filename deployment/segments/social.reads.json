@@ -3,13 +3,13 @@
 
     "./social/domain/comment/getById/retrieve": { "default": {  "access": "protected" } },
 
-    "./social/domain/creator/generateNickname/retrieveByNickname": { "default": { "access": "protected" } },
-    "./social/domain/creator/generateNickname/retrieveByStartNickname": { "default": { "access": "protected" } },
+    "./social/domain/creator/_generateNickname/retrieveByNickname": { "default": { "access": "protected" } },
+    "./social/domain/creator/_generateNickname/retrieveByStartNickname": { "default": { "access": "protected" } },
     "./social/domain/creator/_retrieveByEmail": { "default": {  "access": "protected" } },
     "./social/domain/creator/_retrieveById": { "default": {  "access": "protected" } },
     "./social/domain/creator/_retrieveByNickname": { "default": {  "access": "protected" } },
     "./social/domain/creator/_retrieveOthers": { "default": { "access": "private" }},
-    "./social/domain/creator/updateNickname/retrieveByNickname": { "default": {  "access": "protected" } },
+    "./social/domain/creator/updateNickname/retrieve": { "default": {  "access": "protected" } },
 
     "./social/domain/creator.metrics/_retrieveByCreator": { "default": {  "access": "protected" } },
 
@@ -25,7 +25,7 @@
     "./social/domain/post.metrics/_retrieveByPost": { "default": {  "access": "protected" } },
 
     "./social/domain/rating/exists": { "default": {  "access": "protected" } },
-    "./social/domain/rating/toggle/getData": { "default": {  "access": "protected" } },
+    "./social/domain/rating/toggle/retrieve": { "default": {  "access": "protected" } },
 
     "./social/domain/relation/exists": { "default": {  "access": "protected" } },
     "./social/domain/relation/_explore": { "default": {  "access": "protected" } },

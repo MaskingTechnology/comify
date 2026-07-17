@@ -13,9 +13,9 @@ export default async function run(tenant: Tenant, requester: Requester, creatorI
 {
     validateRange(range);
 
-    const data = await getByCreator(creatorId, range.limit, range.offset);
+    const records = await getByCreator(creatorId, range.limit, range.offset);
 
-    const posts = data.map(item => toModel(tenant, requester, item));
+    const posts = records.map(item => toModel(tenant, requester, item));
 
     return filterResolved(posts);
 }

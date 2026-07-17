@@ -1,14 +1,15 @@
 
 import eraseImage from '~/image/_erase';
 
-import retrieveById from '../_retrieveById';
-import eraseData from './eraseData';
+import retrieve from '../_retrieveById';
+
+import eraseComic from './erase';
 
 export default async function run(id: string): Promise<void>
 {
-    const data = await retrieveById(id);
+    const record = await retrieve(id);
 
-    await eraseData(data.id);
+    await eraseComic(record.id);
 
-    return eraseImage(data.imageId);
+    return eraseImage(record.imageId);
 }

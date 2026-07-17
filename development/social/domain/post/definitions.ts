@@ -5,7 +5,7 @@ import type { Metrics } from '~/post.metrics';
 import type { Relation } from '~/relation';
 import type { BaseData, CountOperation } from '../definitions';
 
-export type Data = BaseData &
+export type Record = BaseData &
 {
     readonly tenantId: string;
     readonly id: string;

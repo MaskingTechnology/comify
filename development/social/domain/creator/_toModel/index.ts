@@ -2,21 +2,21 @@
 import getMetrics from '~/creator.metrics/getByCreator';
 import getImageData from '~/image/getById';
 
-import { type Data, type Creator } from '../definitions';
+import { type Record, type Creator } from '../definitions';
 
-export default async function run(data: Data): Promise<Creator>
+export default async function run(record: Record): Promise<Creator>
 {
     const [portraitData, metricsData] = await Promise.all([
-        data.portraitId !== undefined ? getImageData(data.portraitId) : Promise.resolve(undefined),
-        getMetrics(data.id)
+        record.portraitId !== undefined ? getImageData(record.portraitId) : Promise.resolve(undefined),
+        getMetrics(record.id)
     ]);
 
     return {
-        id: data.id,
-        fullName: data.fullName,
-        nickname: data.nickname,
+        id: record.id,
+        fullName: record.fullName,
+        nickname: record.nickname,
         portrait: portraitData,
-        joinedAt: data.joinedAt,
+        joinedAt: record.joinedAt,
         metrics: metricsData
     };
 }

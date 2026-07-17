@@ -3,7 +3,6 @@ import type { Validation } from '@theshelf/validation';
 
 import type { BaseData } from '../definitions';
 
-// TODO: Figure out later :)
 export type ImageData = {
     readonly dataUrl: string;
 };
@@ -14,7 +13,7 @@ export type MetaData = {
     readonly size: number;
 };
 
-export type Data = BaseData & MetaData &
+export type Record = BaseData & MetaData &
 {
     readonly storageKey: string;
 };

@@ -2,11 +2,11 @@
 import database from '@comify/common/integrations/database';
 import logger from '@comify/common/integrations/logging';
 
-import { RECORD_TYPE, Data } from '../definitions';
+import { RECORD_TYPE, Record } from '../definitions';
 
 import CommentNotFound from './CommentNotFound';
 
-export default async function retrieve(id: string): Promise<Data>
+export default async function retrieve(id: string): Promise<Record>
 {
     const record = await database.readRecord(RECORD_TYPE, { id: { EQUALS: id } });
 
@@ -17,5 +17,5 @@ export default async function retrieve(id: string): Promise<Data>
         throw new CommentNotFound();
     }
 
-    return record as Data;
+    return record as Record;
 }

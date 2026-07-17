@@ -3,10 +3,10 @@ import logger from '@comify/common/integrations/logging';
 
 import erase from '../_erase';
 
-import createData from './createData';
-import insertData from './insertData';
+import createRecord from './createRecord';
+import persist from './persist';
 import publish from './publish';
-import validateData from './validateData';
+import validate from './validate';
 
 export default async function run(tenantId: string, creatorId: string, comicId?: string, commentId?: string, parentId?: string): Promise<string>
 {
@@ -14,11 +14,11 @@ export default async function run(tenantId: string, creatorId: string, comicId?:
 
     try
     {
-        const data = createData(tenantId, creatorId, comicId, commentId, parentId);
+        const record = createRecord(tenantId, creatorId, comicId, commentId, parentId);
 
-        validateData(data);
+        validate(record);
 
-        postId = await insertData(data);
+        postId = await persist(record);
 
         await publish(tenantId, creatorId, postId, parentId);
 

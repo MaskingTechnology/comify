@@ -1,18 +1,18 @@
 
 import retrieve from '../_retrieve';
-import type { Data } from '../definitions';
+import type { Record } from '../definitions';
 
 import type { Mapping } from './definitions';
 
-export default async function translate(requesterId: string, mapping: Mapping, data: Data): Promise<Data>
+export default async function translate(requesterId: string, mapping: Mapping, record: Record): Promise<Record>
 {
     const followingId: string = mapping === 'follower'
-        ? data.followerId
-        : data.followingId;
+        ? record.followerId
+        : record.followingId;
 
-    if (requesterId === data.followerId && followingId === data.followingId)
+    if (requesterId === record.followerId && followingId === record.followingId)
     {
-        return data;
+        return record;
     }
 
     return retrieve(requesterId, followingId);

@@ -4,15 +4,15 @@ import logger from '@comify/common/integrations/logging';
 import create from '../_create';
 import { FULL_NAME_MAX_LENGTH } from '../definitions';
 import erase from '../_delete';
-import generateNickname from '../generateNickname';
-import type { Data } from '../definitions';
+import generateNickname from '../_generateNickname';
+import type { Record } from '../definitions';
 
 import downloadPortrait from './downloadPortrait';
 import publish from './publish';
 
-export default async function run(tenantId: string, fullName: string, nickname: string, email: string, portraitUrl: string | undefined = undefined): Promise<Data>
+export default async function run(tenantId: string, fullName: string, nickname: string, email: string, portraitUrl: string | undefined = undefined): Promise<Record>
 {
-    let data;
+    let record;
 
     try
     {
@@ -23,19 +23,19 @@ export default async function run(tenantId: string, fullName: string, nickname: 
             ? await downloadPortrait(portraitUrl)
             : undefined;
 
-        data = await create(tenantId, truncatedFullName, generatedNickname, email, portraitId);
+        record = await create(tenantId, truncatedFullName, generatedNickname, email, portraitId);
 
-        await publish(data.id);
+        await publish(record.id);
 
-        return data;
+        return record;
     }
     catch (error)
     {
         logger.error('Failed to register creator', error);
 
-        if (data !== undefined)
+        if (record !== undefined)
         {
-            erase(data.id);
+            erase(record.id);
         }
 
         throw error;

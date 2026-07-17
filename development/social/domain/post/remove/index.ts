@@ -6,10 +6,10 @@ import type { Tenant } from '@comify/common/domain/tenant';
 
 import retrieveById from '../_retrieveById';
 
-import deleteData from './deleteData';
 import isNotOwner from './isNotOwner';
 import publish from './publish';
-import undeleteData from './undeleteData';
+import deleteRecord from './deleteRecord';
+import undeleteRecord from './undeleteRecord';
 
 export default async function remove(tenant: Tenant, requester: Requester, id: string): Promise<void>
 {
@@ -28,7 +28,7 @@ export default async function remove(tenant: Tenant, requester: Requester, id: s
             return;
         }
 
-        await deleteData(id);
+        await deleteRecord(id);
 
         deleted = true;
 
@@ -40,7 +40,7 @@ export default async function remove(tenant: Tenant, requester: Requester, id: s
 
         if (deleted)
         {
-            await undeleteData(id);
+            await undeleteRecord(id);
         }
 
         throw error;

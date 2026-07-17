@@ -1,17 +1,17 @@
 
-import getByCreator from '../_retrieveByCreator';
 import type { CountOperation } from '../definitions';
+import retrieve from '../_retrieveByCreator';
 import update from '../_update';
 
 export default async function updateFollowing(creatorId: string, operation: CountOperation): Promise<number>
 {
-    const data = await getByCreator(creatorId);
+    const record = await retrieve(creatorId);
 
     const following = operation === 'increase'
-        ? data.following + 1
-        : data.following - 1;
+        ? record.following + 1
+        : record.following - 1;
 
-    await update(data.id, { following });
+    await update(record.id, { following });
 
     return following;
 }

@@ -4,16 +4,16 @@ import type { Tenant } from '@comify/common/domain/tenant';
 import type { Requester } from '~/authentication';
 import retrieveRelationsByFollower from '~/relation/_retrieveFollowing';
 
-import type { Data } from '../definitions';
+import type { Record } from '../definitions';
 
-import retrieveData from './retrieveData';
+import retrieve from './retrieve';
 
-export default async function run(tenant: Tenant, requester: Requester, limit: number, offset: number): Promise<Data[]>
+export default async function run(tenant: Tenant, requester: Requester, limit: number, offset: number): Promise<Record[]>
 {
     const relationsData = await retrieveRelationsByFollower(requester.id, requester.id);
 
-    const excludedCreatorIds = relationsData.map(data => data.followingId);
+    const excludedCreatorIds = relationsData.map(record => record.followingId);
     excludedCreatorIds.push(requester.id);
 
-    return retrieveData(tenant.id, excludedCreatorIds, limit, offset);
+    return retrieve(tenant.id, excludedCreatorIds, limit, offset);
 }

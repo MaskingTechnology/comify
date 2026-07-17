@@ -1,10 +1,10 @@
 
-import createData from './createData';
-import insertData from './insertData';
+import createRecord from './createRecord';
+import persist from './persist';
 
 export default async function run(creatorId: string): Promise<string>
 {
-    const data = createData(creatorId);
+    const record = createRecord(creatorId);
 
-    return insertData(data);
+    return persist(record);
 }

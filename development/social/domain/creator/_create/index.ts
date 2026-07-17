@@ -1,19 +1,19 @@
 
-import { type Data } from '../definitions';
+import { type Record } from '../definitions';
 
-import createData from './createData';
-import insertData from './insertData';
-import validateData from './validateData';
+import createRecord from './createRecord';
+import persist from './persist';
+import validate from './validate';
 
-export default async function run(tenantId: string, fullName: string, nickname: string, email: string, portraitId: string | undefined = undefined): Promise<Data>
+export default async function run(tenantId: string, fullName: string, nickname: string, email: string, portraitId: string | undefined = undefined): Promise<Record>
 {
-    const data = await createData(tenantId, fullName, nickname, email, portraitId);
+    const record = await createRecord(tenantId, fullName, nickname, email, portraitId);
 
-    validateData(data);
+    validate(record);
 
-    await insertData(data);
+    await persist(record);
 
-    return data;
+    return record;
 }
 
 export { default as InvalidCreator } from './InvalidCreator';

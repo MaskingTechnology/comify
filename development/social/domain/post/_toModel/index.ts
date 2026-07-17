@@ -8,26 +8,26 @@ import getMetrics from '~/post.metrics/getByPost';
 import ratingExists from '~/rating/exists';
 import getRelationData from '~/relation/get';
 
-import type { Data, Post } from '../definitions';
+import type { Record, Post } from '../definitions';
 
-export default async function run(tenant: Tenant, requester: Requester, data: Data): Promise<Post>
+export default async function run(tenant: Tenant, requester: Requester, record: Record): Promise<Post>
 {
     const [creatorData, isRated, comicData, commentData, metricsData] = await Promise.all([
-        getRelationData(tenant, requester, requester.id, data.creatorId),
-        ratingExists(requester.id, data.id),
-        data.comicId ? getComicData(data.comicId) : Promise.resolve(undefined),
-        data.commentId ? getCommentData(data.commentId) : Promise.resolve(undefined),
-        getMetrics(data.id)
+        getRelationData(tenant, requester, requester.id, record.creatorId),
+        ratingExists(requester.id, record.id),
+        record.comicId ? getComicData(record.comicId) : Promise.resolve(undefined),
+        record.commentId ? getCommentData(record.commentId) : Promise.resolve(undefined),
+        getMetrics(record.id)
     ]);
 
     return {
-        id: data.id,
-        createdAt: data.createdAt,
+        id: record.id,
+        createdAt: record.createdAt,
         creator: creatorData,
         comic: comicData,
         comment: commentData,
-        parentId: data.parentId,
-        hasParent: data.parentId !== undefined,
+        parentId: record.parentId,
+        hasParent: record.parentId !== undefined,
         metrics: metricsData,
         isRated
     };

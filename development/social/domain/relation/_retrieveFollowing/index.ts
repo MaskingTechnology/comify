@@ -1,14 +1,12 @@
 
-import type { Requester } from '~/authentication';
-
 import translateToRequester from '../_translateToRequester';
-import type { Data } from '../definitions';
+import type { Record } from '../definitions';
 
-import retrieveData from './retrieveData';
+import retrieve from './retrieve';
 
-export default async function run(requesterId: string, followerId: string, limit: number | undefined = undefined, offset: number | undefined = undefined): Promise<Data[]>
+export default async function run(requesterId: string, followerId: string, limit: number | undefined = undefined, offset: number | undefined = undefined): Promise<Record[]>
 {
-    const data = await retrieveData(followerId, limit, offset);
+    const records = await retrieve(followerId, limit, offset);
 
-    return translateToRequester(requesterId, 'following', data);
+    return translateToRequester(requesterId, 'following', records);
 }

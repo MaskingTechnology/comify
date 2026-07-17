@@ -1,6 +1,6 @@
 
 import save from '../_save';
-import validate from '../validate';
+import validate from '../_validate';
 
 import downloadImage from './downloadImage';
 import getMetaData from './getMetaData';

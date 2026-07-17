@@ -1,19 +1,19 @@
 
-import getOtherCreators from '~/creator/_retrieveOthers';
+import retrieveOtherCreators from '~/creator/_retrieveOthers';
 
-import type { SortOrder, Data } from '../definitions';
-import getFollowing from '../_retrieveFollowing';
+import type { SortOrder, Record } from '../definitions';
+import retrieveFollowing from '../_retrieveFollowing';
 
-export default async function run(tenantId: string, requesterId: string, order: SortOrder, limit: number, offset: number, search: string | undefined = undefined): Promise<Data[]>
+export default async function run(tenantId: string, requesterId: string, order: SortOrder, limit: number, offset: number, search: string | undefined = undefined): Promise<Record[]>
 {
-    const followingData = await getFollowing(requesterId, requesterId);
-    const followingIds = followingData.map(data => data.followingId);
+    const followingRecords = await retrieveFollowing(requesterId, requesterId);
+    const followingIds = followingRecords.map(record => record.followingId);
     followingIds.push(requesterId);
 
-    const creatorData = await getOtherCreators(tenantId, followingIds, order, limit, offset, search);
+    const creatorRecords = await retrieveOtherCreators(tenantId, followingIds, order, limit, offset, search);
 
-    return creatorData.map(data =>
+    return creatorRecords.map(record =>
     {
-        return { id: undefined, followerId: requesterId, followingId: data.id };
+        return { id: undefined, followerId: requesterId, followingId: record.id };
     });
 }

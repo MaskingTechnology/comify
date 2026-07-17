@@ -4,9 +4,9 @@ import type { Validation } from '@theshelf/validation';
 import type { Metrics } from '~/creator.metrics';
 import type { ImageData } from '~/image';
 
-import { type SortOrder, SortOrders, BaseData, type CountOperation } from '../definitions';
+import { type SortOrder, SortOrders, type BaseData, type CountOperation } from '../definitions';
 
-export type Data = BaseData &
+export type Record = BaseData &
 {
     readonly tenantId: string;
     readonly fullName: string;
@@ -16,7 +16,7 @@ export type Data = BaseData &
     readonly joinedAt: string;
 };
 
-export type Creator = Omit<Data, 'tenantId' | 'email' | 'portraitId'> &
+export type Creator = Omit<Record, 'tenantId' | 'email' | 'portraitId'> &
 {
     readonly portrait?: ImageData;
     readonly metrics: Metrics;
