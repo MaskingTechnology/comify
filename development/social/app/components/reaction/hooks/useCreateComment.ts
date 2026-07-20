@@ -1,16 +1,14 @@
 
 import { useCallback } from 'react';
 
-import { tenant } from '@comify/common/domain/tenant';
-
-import { requester } from '^/domain/authentication';
+import { requester } from '@comify/common/security';
 import createCommentReaction from '^/domain/post/createWithComment';
 
 export default function useCreateComment(postId: string, onCreated: (reactionId: string) => void)
 {
     return useCallback(async (comment: string) =>
     {
-        const reactionId = await createCommentReaction(tenant, requester, comment, postId);
+        const reactionId = await createCommentReaction(requester, { message: comment, parentId: postId });
 
         onCreated(reactionId);
 

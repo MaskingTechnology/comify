@@ -2,9 +2,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { tenant } from '@comify/common/domain/tenant';
-
-import { requester } from '^/domain/authentication';
+import { requester } from '@comify/common/security';
 import type { Creator } from '^/domain/creator';
 import getMe from '^/domain/creator/getMe';
 
@@ -28,7 +26,7 @@ export default function useIdentify()
 
         const getIdentity = async () =>
         {
-            const identity = await getMe(tenant, requester);
+            const identity = await getMe(requester);
 
             setIdentity(identity);
         };

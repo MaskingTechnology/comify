@@ -1,7 +1,7 @@
 {
-    "./social/domain/authentication/getLoginUrl": { "default": {  "access": "public" } },
-    "./social/domain/authentication/login": { "default": {  "access": "public" } },
-    "./social/domain/authentication/logout": { "default": {  "access": "public" } },
+    "./social/security/authentication/getLoginUrl": { "default": {  "access": "public" } },
+    "./social/security/authentication/login": { "default": {  "access": "public" } },
+    "./social/security/authentication/logout": { "default": {  "access": "public" } },
 
     "./social/domain/creator/_toModel": { "default": { "access": "private" }},
     "./social/domain/creator/getById": { "default": { "access": "private" } },

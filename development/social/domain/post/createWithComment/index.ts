@@ -1,14 +1,17 @@
 
-import type { Tenant } from '@comify/common/domain/tenant';
-
-import type { Requester } from '~/authentication';
+import { type Requester } from '@comify/common/security';
 import createComment from '~/comment/create';
 
 import createPost from '../_create';
 
-export default async function run(tenant: Tenant, requester: Requester, message: string, parentId: string | undefined = undefined): Promise<string>
-{
-    const commentId = await createComment(message);
+type Data = {
+    readonly message: string;
+    readonly parentId?: string;
+};
 
-    return createPost(tenant.id, requester.id, undefined, commentId, parentId);
+export default async function run(requester: Requester, data: Data): Promise<string>
+{
+    const commentId = await createComment(data.message);
+
+    return createPost(requester.tenantId, requester.principalId, undefined, commentId, data.parentId);
 }

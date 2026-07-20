@@ -1,9 +1,8 @@
 
 import logger from '@comify/common/integrations/logging';
 
-import type { Requester } from '~/authentication';
+import { type Requester } from '@comify/common/security';
 import getCreator from '~/creator/_retrieveById';
-import type { Tenant } from '@comify/common/domain/tenant';
 
 import create from '../_create';
 import erase from '../_erase';
@@ -11,24 +10,24 @@ import exists from '../exists';
 import publish from './publish';
 import RelationAlreadyExists from './RelationAlreadyExists';
 
-export default async function run(tenant: Tenant, requester: Requester, followingId: string): Promise<void>
+export default async function run(requester: Requester, followingId: string): Promise<void>
 {
     let id;
 
     try
     {
-        await getCreator(tenant.id, followingId);
+        await getCreator(requester.tenantId, followingId);
 
-        const relationExists = await exists(requester.id, followingId);
+        const relationExists = await exists(requester.principalId, followingId);
 
         if (relationExists)
         {
             throw new RelationAlreadyExists();
         }
 
-        id = await create(requester.id, followingId);
+        id = await create(requester.principalId, followingId);
 
-        await publish(requester.id, followingId);
+        await publish(requester.principalId, followingId);
     }
     catch (error)
     {

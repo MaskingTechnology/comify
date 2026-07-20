@@ -1,19 +1,17 @@
 
-import type { Tenant } from '@comify/common/domain/tenant';
-
-import type { Requester } from '~/authentication';
+import { type Requester } from '@comify/common/security';
 import createComic from '~/comic/create';
 
 import createPost from '../_create';
 
-type Record = {
+type Data = {
     readonly comicImageDataUrl: string;
     readonly parentId?: string;
-}
+};
 
-export default async function run(tenant: Tenant, requester: Requester, record: Record): Promise<string>
+export default async function run(requester: Requester, data: Data): Promise<string>
 {
-    const comicId = await createComic(record.comicImageDataUrl);
+    const comicId = await createComic(data.comicImageDataUrl);
 
-    return createPost(tenant.id, requester.id, comicId, undefined, record.parentId);
+    return createPost(requester.tenantId, requester.principalId, comicId, undefined, data.parentId);
 }

@@ -2,9 +2,7 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { tenant } from '@comify/common/domain/tenant';
-
-import { requester } from '^/domain/authentication';
+import { requester } from '@comify/common/security';
 import createPostWithComic from '^/domain/post/createWithComic';
 
 import { useAppContext } from '~/components/application';
@@ -16,7 +14,7 @@ export default function useAddComicPost()
 
     return useCallback(async (imageData: string) =>
     {
-        await createPostWithComic(tenant, requester, imageData);
+        await createPostWithComic(requester, { comicImageDataUrl: imageData });
 
         navigate(`/profile/${identity?.nickname}`);
 

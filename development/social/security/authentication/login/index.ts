@@ -1,0 +1,18 @@
+
+import { type Identity } from '@theshelf/authentication';
+
+import { type Requester } from '@comify/common/security';
+import { type Tenant } from '@comify/common/domain/tenant';
+
+import get from './get';
+import register from './register';
+
+export default async function run(tenant: Tenant, identity: Identity): Promise<Requester>
+{
+    const principalId = await get(tenant, identity)
+        ?? await register(tenant, identity);
+
+    const tenantId = tenant.id;
+
+    return { principalId, tenantId };
+}

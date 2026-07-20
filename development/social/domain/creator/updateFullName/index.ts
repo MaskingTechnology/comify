@@ -1,5 +1,5 @@
 
-import type { Requester } from '~/authentication';
+import { type Requester } from '@comify/common/security';
 
 import update from '../_update';
 
@@ -9,7 +9,7 @@ export default async function run(requester: Requester, fullName: string): Promi
 {
     validate({ fullName });
 
-    return update(requester.id, { fullName });
+    return update(requester.principalId, { fullName });
 }
 
 export { default as InvalidFullName } from './InvalidFullName';

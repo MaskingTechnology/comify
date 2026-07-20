@@ -3,9 +3,7 @@ import { useCallback } from 'react';
 
 import { usePagination } from '@maskingtech/react-toolkit';
 
-import { tenant } from '@comify/common/domain/tenant';
-
-import { requester } from '^/domain/authentication';
+import { requester } from '@comify/common/security';
 import explorePosts from '^/domain/post/explore';
 
 export default function useExplorePosts()
@@ -14,7 +12,7 @@ export default function useExplorePosts()
 
     const getData = useCallback((page: number) =>
     {
-        return explorePosts(tenant, requester, { limit, offset: page * limit });
+        return explorePosts(requester, { limit, offset: page * limit });
 
     }, []);
 

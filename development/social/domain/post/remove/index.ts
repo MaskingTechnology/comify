@@ -1,8 +1,6 @@
 
 import logger from '@comify/common/integrations/logging';
-
-import type { Requester } from '~/authentication';
-import type { Tenant } from '@comify/common/domain/tenant';
+import { type Requester } from '@comify/common/security';
 
 import retrieveById from '../_retrieveById';
 
@@ -11,7 +9,7 @@ import publish from './publish';
 import deleteRecord from './deleteRecord';
 import undeleteRecord from './undeleteRecord';
 
-export default async function remove(tenant: Tenant, requester: Requester, id: string): Promise<void>
+export default async function remove(requester: Requester, id: string): Promise<void>
 {
     // We only delete the post itself and do not cascade it towards it's children as it doesn't add
     // any value, and it would make the code more complex.
@@ -20,9 +18,9 @@ export default async function remove(tenant: Tenant, requester: Requester, id: s
 
     try
     {
-        const post = await retrieveById(tenant.id, id);
+        const post = await retrieveById(requester.tenantId, id);
 
-        if (isNotOwner(post, requester.id))
+        if (isNotOwner(post, requester.principalId))
         {
             // Fail silently
             return;
@@ -32,7 +30,7 @@ export default async function remove(tenant: Tenant, requester: Requester, id: s
 
         deleted = true;
 
-        await publish(requester.id, post.id, post.parentId);
+        await publish(requester.principalId, post.id, post.parentId);
     }
     catch (error)
     {

@@ -1,7 +1,6 @@
 
-import type { ReactNode } from 'react';
-
 import { Border, Modal } from '@maskingtech/designsystem';
+import { type ReactNode } from 'react';
 
 type Props = {
     readonly open: boolean,

@@ -1,14 +1,13 @@
 
-import type { Requester } from '~/authentication';
-import type { Tenant } from '@comify/common/domain/tenant';
+import { type Requester } from '@comify/common/security';
 
 import type { Creator } from '../definitions';
 import toModel from '../_toModel';
 import retrieveByNickname from '../_retrieveByNickname';
 
-export default async function getByNickname(tenant: Tenant, requester: Requester, nickname: string): Promise<Creator>
+export default async function getByNickname(requester: Requester, nickname: string): Promise<Creator>
 {
-    const record = await retrieveByNickname(tenant.id, nickname);
+    const record = await retrieveByNickname(requester.tenantId, nickname);
 
     return toModel(record);
 }

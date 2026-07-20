@@ -1,14 +1,13 @@
 
-import type { Requester } from '~/authentication';
-import type { Tenant } from '@comify/common/domain/tenant';
+import { type Requester } from '@comify/common/security';
 
 import type { Creator } from '../definitions';
 import toModel from '../_toModel';
 import retrieveById from '../_retrieveById';
 
-export default async function getMe(tenant: Tenant, requester: Requester): Promise<Creator>
+export default async function getMe(requester: Requester): Promise<Creator>
 {
-    const record = await retrieveById(tenant.id, requester.id);
+    const record = await retrieveById(requester.tenantId, requester.principalId);
 
     return toModel(record);
 }

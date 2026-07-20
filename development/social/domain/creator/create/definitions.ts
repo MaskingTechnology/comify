@@ -1,6 +1,13 @@
 
 import type { Publication, Subscription } from '@theshelf/eventbroker';
 
+export type CreateData = {
+    readonly fullName: string;
+    readonly nickname: string;
+    readonly email: string;
+    readonly portraitUrl?: string;
+};
+
 export type RegisteredEventData = {
     creatorId: string;
 };

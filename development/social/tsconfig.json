@@ -4,5 +4,5 @@
     "rootDir": "./",
     "outDir": "../../artifacts/build/social",
   },
-  "include": ["./domain"]
+  "include": ["./domain", "./security"]
 }

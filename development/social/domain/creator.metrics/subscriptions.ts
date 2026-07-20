@@ -1,5 +1,5 @@
 
-import { subscribe as subscribeToCreatorRegistered } from '~/creator/register';
+import { subscribe as subscribeToCreatorRegistered } from '~/creator/create';
 import { subscribe as subscribeToRelationEstablished } from '~/relation/establish';
 import { subscribe as subscribeToPostCreated } from '~/post/_create';
 import { subscribe as subscribeToPostRemoved } from '~/post/remove';

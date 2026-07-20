@@ -1,9 +1,7 @@
 
 import { useCallback, useState } from 'react';
 
-import { tenant } from '@comify/common/domain/tenant';
-
-import { requester } from '^/domain/authentication';
+import { requester } from '@comify/common/security';
 import type { Creator } from '^/domain/creator';
 import updateNickname from '^/domain/creator/updateNickname';
 import NicknameAlreadyExists from '^/domain/creator/updateNickname/NicknameAlreadyExists';
@@ -19,7 +17,7 @@ export default function useUpdateNickname()
     {
         try
         {
-            await updateNickname(tenant, requester, nickname);
+            await updateNickname(requester, nickname);
 
             setIdentity({ ...identity, nickname } as Creator);
             setAlreadyInUse(false);

@@ -3,9 +3,7 @@ import { useCallback } from 'react';
 
 import { usePagination } from '@maskingtech/react-toolkit';
 
-import { tenant } from '@comify/common/domain/tenant';
-
-import { requester } from '^/domain/authentication';
+import { requester } from '@comify/common/security';
 import getCreatorPosts from '^/domain/post/getByCreator';
 
 export default function useCreatorPosts(creatorId: string)
@@ -14,7 +12,7 @@ export default function useCreatorPosts(creatorId: string)
 
     const getData = useCallback((page: number) =>
     {
-        return getCreatorPosts(tenant, requester, creatorId, { limit, offset: page * limit });
+        return getCreatorPosts(requester, creatorId, { limit, offset: page * limit });
 
     }, [creatorId]);
 

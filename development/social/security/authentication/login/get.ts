@@ -1,0 +1,11 @@
+
+import { type Identity } from '@theshelf/authentication';
+
+import { type Tenant } from '@comify/common/domain/tenant';
+
+import getCreatorId from '~/creator/getIdByEmail';
+
+export default async function get(tenant: Tenant, identity: Identity): Promise<string | undefined>
+{
+    return getCreatorId(tenant, identity.email);
+}

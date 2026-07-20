@@ -1,19 +1,17 @@
 
-import type { Tenant } from '@comify/common/domain/tenant';
-
-import type { Requester } from '~/authentication';
+import { type Requester } from '@comify/common/security';
 
 import retrieve from './retrieve';
 import switchOff from './switchOff';
 import switchOn from './switchOn';
 
-export default async function run(tenant: Tenant, requester: Requester, postId: string): Promise<boolean>
+export default async function run(requester: Requester, postId: string): Promise<boolean>
 {
-    const record = await retrieve(requester.id, postId);
+    const record = await retrieve(requester.principalId, postId);
 
     return record === undefined
-        ? switchOn(tenant.id, requester.id, postId)
-        : switchOff(tenant.id, record);
+        ? switchOn(requester.tenantId, requester.principalId, postId)
+        : switchOff(requester.tenantId, record);
 }
 
 export { default as subscribe } from './subscribe';

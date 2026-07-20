@@ -3,9 +3,7 @@ import { useCallback } from 'react';
 
 import { usePagination } from '@maskingtech/react-toolkit';
 
-import { tenant } from '@comify/common/domain/tenant';
-
-import { requester } from '^/domain/authentication';
+import { requester } from '@comify/common/security';
 import getFollowing from '^/domain/relation/getFollowing';
 
 export default function useCreatorFollowing(creatorId?: string)
@@ -19,7 +17,7 @@ export default function useCreatorFollowing(creatorId?: string)
             return [];
         }
 
-        return getFollowing(tenant, requester, creatorId, { limit, offset: page * limit });
+        return getFollowing(requester, creatorId, { limit, offset: page * limit });
 
     }, [creatorId]);
 

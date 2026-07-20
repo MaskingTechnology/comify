@@ -1,5 +1,5 @@
 
-import type { Requester } from '~/authentication';
+import { type Requester } from '@comify/common/security';
 
 import translateToRequester from '../_translateToRequester';
 import type { Record } from '../definitions';
@@ -10,5 +10,5 @@ export default async function run(requester: Requester, followingId: string, lim
 {
     const records = await retrieve(followingId, limit, offset);
 
-    return translateToRequester(requester.id, 'follower', records);
+    return translateToRequester(requester.principalId, 'follower', records);
 }
