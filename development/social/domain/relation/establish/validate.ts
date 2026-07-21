@@ -5,11 +5,9 @@ import validator from '@comify/common/integrations/validation';
 
 import { requiredIdValidation } from '~/definitions';
 
-import type { Record } from '../definitions';
+import type { CreateData } from './definitions';
 
 import InvalidRelation from './InvalidRelation';
-
-type ValidationModel = Pick<Record, 'followerId' | 'followingId'>;
 
 const schema: ValidationSchema =
 {
@@ -17,9 +15,9 @@ const schema: ValidationSchema =
     followingId: requiredIdValidation
 };
 
-export default function validate({ followerId, followingId }: ValidationModel): void
+export default function validate(data: CreateData): void
 {
-    const result = validator.validate({ followerId, followingId }, schema);
+    const result = validator.validate(data, schema);
 
     if (result.invalid)
     {

@@ -1,9 +1,14 @@
 
 import type { Publication, Subscription } from '@theshelf/eventbroker';
 
+export type CreateData = {
+    readonly followerId: string;
+    readonly followingId: string;
+};
+
 export type EstablishedEventData = {
-    followerId: string;
-    followingId: string;
+    readonly followerId: string;
+    readonly followingId: string;
 };
 
 export type EstablishedPublication = Publication<EstablishedEventData>;

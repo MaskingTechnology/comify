@@ -1,5 +1,5 @@
 
 export type CreateData = {
-    imageDataUrl: string;
-    structure?: string;
+    readonly imageDataUrl: string;
+    readonly structure?: string;
 };

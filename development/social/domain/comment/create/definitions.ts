@@ -1,4 +1,4 @@
 
 export type CreateData = {
-    message: string;
+    readonly message: string;
 };

@@ -2,9 +2,9 @@
 import type { Publication, Subscription } from '@theshelf/eventbroker';
 
 export type RemovedEventData = {
-    creatorId: string;
-    postId: string;
-    parentId?: string;
+    readonly creatorId: string;
+    readonly postId: string;
+    readonly parentId?: string;
 };
 
 export type RemovedPublication = Publication<RemovedEventData>;

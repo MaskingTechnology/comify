@@ -5,20 +5,17 @@ import validator from '@comify/common/integrations/validation';
 
 import { requiredIdValidation } from '~/definitions';
 
-import type { Record } from '../definitions';
-
+import { type CreateData } from './definitions';
 import InvalidRating from './InvalidRating';
-
-type ValidationModel = Pick<Record, 'postId'>;
 
 const schema: ValidationSchema =
 {
     postId: requiredIdValidation
 };
 
-export default function validate({ postId }: ValidationModel): void
+export default function validate(data: CreateData): void
 {
-    const result = validator.validate({ postId }, schema);
+    const result = validator.validate(data, schema);
 
     if (result.invalid)
     {

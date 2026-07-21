@@ -2,18 +2,18 @@
 import type { Publication, Subscription } from '@theshelf/eventbroker';
 
 export type CreateData = {
-    tenantId: string;
-    creatorId: string;
-    comicId?: string;
-    commentId?: string;
-    parentId?: string;
+    readonly tenantId: string;
+    readonly creatorId: string;
+    readonly comicId?: string;
+    readonly commentId?: string;
+    readonly parentId?: string;
 };
 
 export type CreatedEventData = {
-    tenantId: string;
-    creatorId: string;
-    postId: string;
-    parentId?: string;
+    readonly tenantId: string;
+    readonly creatorId: string;
+    readonly postId: string;
+    readonly parentId?: string;
 };
 
 export type CreatedPublication = Publication<CreatedEventData>;

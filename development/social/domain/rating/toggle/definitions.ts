@@ -1,11 +1,15 @@
 
 import type { Publication, Subscription } from '@theshelf/eventbroker';
 
+export type CreateData = {
+    readonly postId: string;
+}
+
 export type ToggledEventData = {
-    tenantId: string;
-    creatorId: string;
-    postId: string;
-    rated: boolean;
+    readonly tenantId: string;
+    readonly creatorId: string;
+    readonly postId: string;
+    readonly rated: boolean;
 };
 
 export type ToggledPublication = Publication<ToggledEventData>;

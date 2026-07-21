@@ -4,10 +4,8 @@ import type { ValidationSchema } from '@theshelf/validation';
 import validator from '@comify/common/integrations/validation';
 
 import { type CreateData } from './definitions';
-import { MESSAGE_MAX_LENGTH, type Record } from '../definitions';
+import { MESSAGE_MAX_LENGTH } from '../definitions';
 import InvalidComment from './InvalidComment';
-
-type ValidationModel = Pick<Record, 'message'>;
 
 const schema: ValidationSchema =
 {
