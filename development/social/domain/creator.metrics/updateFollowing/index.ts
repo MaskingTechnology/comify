@@ -1,7 +1,9 @@
 
+import logger from '@comify/common/integrations/logging';
+
 import type { CountOperation } from '../definitions';
 import retrieve from '../_retrieveByCreator';
-import update from '../_update';
+import persist from './persist';
 
 export default async function updateFollowing(creatorId: string, operation: CountOperation): Promise<number>
 {
@@ -11,7 +13,12 @@ export default async function updateFollowing(creatorId: string, operation: Coun
         ? record.following + 1
         : record.following - 1;
 
-    await update(record.id, { following });
+    const succeeded = await persist(record.id, following);
+
+    if (succeeded === false)
+    {
+        logger.warn(`Following count for creator metrics with id '${record.id}' has not been updated.`);
+    }
 
     return following;
 }

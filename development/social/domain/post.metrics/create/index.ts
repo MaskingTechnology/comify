@@ -8,5 +8,3 @@ export default async function run(postId: string): Promise<string>
 
     return persist(record);
 }
-
-export { default as subscriptions } from '../subscriptions';

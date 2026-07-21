@@ -1,15 +1,11 @@
 
 import database from '@comify/common/integrations/database';
-import logger from '@comify/common/integrations/logging';
 
 import { RECORD_TYPE } from '../definitions';
 
-export default async function eraseData(id: string): Promise<void>
+export default async function eraseData(id: string): Promise<boolean>
 {
-    const result = await database.deleteRecord(RECORD_TYPE, { id: { EQUALS: id } } );
+    const result = await database.deleteRecord(RECORD_TYPE, { id: { EQUALS: id } });
 
-    if (result === 0)
-    {
-        logger.warn(`Comic with id '${id}' has not been deleted.`);
-    }
+    return result > 0;
 }

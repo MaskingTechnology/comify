@@ -1,7 +1,9 @@
 
+import logger from '@comify/common/integrations/logging';
+
 import retrieve from '../_retrieveByPost';
 import type { CountOperation } from '../definitions';
-import update from '../_update';
+import persist from './persist';
 
 export default async function updateRatings(postId: string, operation: CountOperation): Promise<number>
 {
@@ -11,7 +13,12 @@ export default async function updateRatings(postId: string, operation: CountOper
         ? record.ratings + 1
         : record.ratings - 1;
 
-    await update(record.id, { ratings });
+    const succeeded = await persist(record.id, ratings);
+
+    if (succeeded === false)
+    {
+        logger.warn(`Rating count for post metrics with id '${record.id}' has not been updated.`);
+    }
 
     return ratings;
 }

@@ -1,26 +1,24 @@
 
 import logger from '@comify/common/integrations/logging';
 
-import erase from '../_erase';
-
+import { type CreateData } from './definitions';
 import createRecord from './createRecord';
 import persist from './persist';
 import publish from './publish';
 import validate from './validate';
+import erase from './erase';
 
-export default async function run(tenantId: string, creatorId: string, comicId?: string, commentId?: string, parentId?: string): Promise<string>
+export default async function run(data: CreateData): Promise<string>
 {
-    let postId;
+    validate(data);
+
+    const record = createRecord(data.tenantId, data.creatorId, data.comicId, data.commentId, data.parentId);
+
+    const postId = await persist(record);
 
     try
     {
-        const record = createRecord(tenantId, creatorId, comicId, commentId, parentId);
-
-        validate(record);
-
-        postId = await persist(record);
-
-        await publish(tenantId, creatorId, postId, parentId);
+        await publish(data.tenantId, data.creatorId, postId, data.parentId);
 
         return postId;
     }
@@ -28,10 +26,7 @@ export default async function run(tenantId: string, creatorId: string, comicId?:
     {
         logger.error('Failed to create post', error);
 
-        if (postId !== undefined)
-        {
-            await erase(postId);
-        }
+        await erase(postId);
 
         throw error;
     }

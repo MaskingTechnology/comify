@@ -4,7 +4,7 @@ import logger from '@comify/common/integrations/logging';
 import { type Requester } from '@comify/common/security';
 
 import cleanNickname from '../_cleanNickname';
-import update from '../_update';
+import persist from './persist';
 
 import NicknameAlreadyExists from './NicknameAlreadyExists';
 import retrieve from './retrieve';
@@ -22,7 +22,7 @@ export default async function updateNickname(requester: Requester, nickname: str
         throw new NicknameAlreadyExists();
     }
 
-    return update(requester.principalId, { nickname });
+    return persist(requester.principalId, nickname);
 }
 
 export { default as NicknameAlreadyExists } from './NicknameAlreadyExists';

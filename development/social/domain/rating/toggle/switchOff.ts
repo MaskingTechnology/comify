@@ -1,8 +1,8 @@
 
-import create from '../_create';
-import erase from '../_erase';
 import type { Record } from '../definitions';
 
+import create from './create';
+import erase from './erase';
 import publish from './publish';
 
 export default async function switchOff(tenantId: string, rating: Record): Promise<boolean>

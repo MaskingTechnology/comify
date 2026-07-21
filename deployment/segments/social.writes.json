@@ -5,28 +5,31 @@
     "./social/domain/comment/create/persist": { "default": {  "access": "protected" } },
     "./social/domain/comment/remove": { "default": {  "access": "protected" } },
 
-    "./social/domain/creator/_create": { "default": {  "access": "protected" } },
-    "./social/domain/creator/_delete": { "default": {  "access": "protected" } },
-    "./social/domain/creator/_update": { "default": {  "access": "protected" } },
+    "./social/domain/creator/create/persist": { "default": {  "access": "protected" } },
+    "./social/domain/creator/create/erase": { "default": {  "access": "protected" } },
+    "./social/domain/creator/updateFullName/persist": { "default": {  "access": "protected" } },
+    "./social/domain/creator/updateNickname/persist": { "default": {  "access": "protected" } },
 
     "./social/domain/creator.metrics/create/persist": { "default": {  "access": "protected" } },
-    "./social/domain/creator.metrics/_update": { "default": { "access": "protected" } },
+    "./social/domain/creator.metrics/updateFollowers/persist": { "default": { "access": "protected" } },
+    "./social/domain/creator.metrics/updateFollowing/persist": { "default": { "access": "protected" } },
+    "./social/domain/creator.metrics/updatePosts/persist": { "default": { "access": "protected" } },
 
-    "./social/domain/image/_erase": { "default": {  "access": "protected" } },
     "./social/domain/image/_save": { "default": {  "access": "protected" } },
+    "./social/domain/image/remove/erase": { "default": {  "access": "protected" } },
 
     "./social/domain/post/_create/persist": { "default": {  "access": "protected" } },
-    "./social/domain/post/_erase": { "default": {  "access": "protected" } },
+    "./social/domain/post/_create/erase": { "default": {  "access": "protected" } },
     "./social/domain/post/remove/deleteRecord": { "default": { "access": "protected" }},
     "./social/domain/post/remove/undeleteRecord": { "default": { "access": "protected" }},
-    "./social/domain/post/_update": { "default": {  "access": "protected" } },
 
     "./social/domain/post.metrics/create/persist": { "default": {  "access": "protected" } },
-    "./social/domain/post.metrics/_update": { "default": { "access": "protected" } },
+    "./social/domain/post.metrics/updateRatings/persist": { "default": { "access": "protected" } },
+    "./social/domain/post.metrics/updateReactions/persist": { "default": { "access": "protected" } },
 
-    "./social/domain/rating/_create/persist": { "default": {  "access": "protected" } },
-    "./social/domain/rating/_erase": { "default": {  "access": "protected" } },
+    "./social/domain/rating/toggle/persist": { "default": {  "access": "protected" } },
+    "./social/domain/rating/toggle/erase": { "default": {  "access": "protected" } },
 
-    "./social/domain/relation/_create": { "default": {  "access": "protected" } },
-    "./social/domain/relation/_erase": { "default": {  "access": "protected" } }
+    "./social/domain/relation/establish/persist": { "default": {  "access": "protected" } },
+    "./social/domain/relation/establish/erase": { "default": {  "access": "protected" } }
 }

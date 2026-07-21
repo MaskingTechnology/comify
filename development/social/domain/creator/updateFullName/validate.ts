@@ -3,17 +3,15 @@ import type { ValidationSchema } from '@theshelf/validation';
 
 import validator from '@comify/common/integrations/validation';
 
-import { fullNameValidation, type Record } from '../definitions';
+import { fullNameValidation } from '../definitions';
 import InvalidFullName from './InvalidFullName';
-
-type ValidationModel = Pick<Record, 'fullName'>;
 
 const schema: ValidationSchema =
 {
     fullName: fullNameValidation
 };
 
-export default function validate({ fullName }: ValidationModel): void
+export default function validate(fullName: string): void
 {
     const result = validator.validate({ fullName }, schema);
 

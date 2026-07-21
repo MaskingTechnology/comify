@@ -1,16 +1,14 @@
 
-import database from '@comify/common/integrations/database';
 import logger from '@comify/common/integrations/logging';
 
-import { RECORD_TYPE, type Record } from '../definitions';
+import { type Record } from '../definitions';
 
+import retrieve from './retrieve';
 import CreatorMetricsNotFound from './CreatorMetricsNotFound';
 
 export default async function run(creatorId: string): Promise<Record>
 {
-    const query = { creatorId: { EQUALS: creatorId } };
-
-    const record = await database.readRecord(RECORD_TYPE, query);
+    const record = await retrieve(creatorId);
 
     if (record === undefined)
     {
@@ -19,5 +17,7 @@ export default async function run(creatorId: string): Promise<Record>
         throw new CreatorMetricsNotFound();
     }
 
-    return record as Record;
+    return record;
 }
+
+export { CreatorMetricsNotFound };

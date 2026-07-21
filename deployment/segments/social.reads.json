@@ -3,33 +3,32 @@
 
     "./social/domain/comment/getById/retrieve": { "default": {  "access": "protected" } },
 
-    "./social/domain/creator/_generateNickname/retrieveByNickname": { "default": { "access": "protected" } },
-    "./social/domain/creator/_generateNickname/retrieveByStartNickname": { "default": { "access": "protected" } },
-    "./social/domain/creator/_retrieveByEmail": { "default": {  "access": "protected" } },
     "./social/domain/creator/_retrieveById": { "default": {  "access": "protected" } },
-    "./social/domain/creator/_retrieveByNickname": { "default": {  "access": "protected" } },
-    "./social/domain/creator/_retrieveOthers": { "default": { "access": "private" }},
+    "./social/domain/creator/create/retrieveByNickname": { "default": {  "access": "protected" } },
+    "./social/domain/creator/create/retrieveByStartNickname": { "default": {  "access": "protected" } },
+    "./social/domain/creator/getByNickname/retrieve": { "default": {  "access": "protected" } },
+    "./social/domain/creator/getIdByEmail/retrieve": { "default": {  "access": "protected" } },
+    "./social/domain/creator/getOtherIds/retrieve": { "default": {  "access": "protected" } },
     "./social/domain/creator/updateNickname/retrieve": { "default": {  "access": "protected" } },
 
     "./social/domain/creator.metrics/_retrieveByCreator": { "default": {  "access": "protected" } },
 
     "./social/domain/image/getById": { "default": {  "access": "protected" } },
 
-    "./social/domain/post/_explore": { "default": {  "access": "protected" } },
-    "./social/domain/post/_retrieveByCreator": { "default": {  "access": "protected" } },
-    "./social/domain/post/_retrieveByFollowing": { "default": {  "access": "protected" } },
     "./social/domain/post/_retrieveById": { "default": {  "access": "protected" } },
-    "./social/domain/post/_retrieveByParent": { "default": {  "access": "protected" } },
-    "./social/domain/post/_retrieveRecommended": { "default": {  "access": "protected" } },
+    "./social/domain/post/explore/retrieve": { "default": {  "access": "protected" } },
+    "./social/domain/post/getByCreator/retrieve": { "default": {  "access": "protected" } },
+    "./social/domain/post/getByFollowing/retrieve": { "default": {  "access": "protected" } },
+    "./social/domain/post/getByParent/retrieve": { "default": {  "access": "protected" } },
+    "./social/domain/post/getRecommended/retrieve": { "default": {  "access": "protected" } },
 
     "./social/domain/post.metrics/_retrieveByPost": { "default": {  "access": "protected" } },
 
-    "./social/domain/rating/exists": { "default": {  "access": "protected" } },
+    "./social/domain/rating/exists/retrieve": { "default": {  "access": "protected" } },
     "./social/domain/rating/toggle/retrieve": { "default": {  "access": "protected" } },
 
-    "./social/domain/relation/exists": { "default": {  "access": "protected" } },
-    "./social/domain/relation/_explore": { "default": {  "access": "protected" } },
     "./social/domain/relation/_retrieve": { "default": {  "access": "protected" } },
-    "./social/domain/relation/_retrieveFollowers": { "default": {  "access": "protected" } },
-    "./social/domain/relation/_retrieveFollowing": { "default": {  "access": "protected" } }
+    "./social/domain/relation/_retrieveFollowing": { "default": {  "access": "protected" } },
+    "./social/domain/relation/exists": { "default": {  "access": "protected" } },
+    "./social/domain/relation/getFollowers/retrieve": { "default": {  "access": "protected" } }
 }

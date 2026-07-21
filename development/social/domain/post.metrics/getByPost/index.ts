@@ -9,5 +9,3 @@ export default async function run(postId: string): Promise<Metrics>
 
     return toModel(record);
 }
-
-export { default as PostMetricsNotFound } from '../_retrieveByPost/PostMetricsNotFound';

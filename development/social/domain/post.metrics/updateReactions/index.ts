@@ -1,7 +1,9 @@
 
+import logger from '@comify/common/integrations/logging';
+
 import retrieve from '../_retrieveByPost';
 import type { CountOperation } from '../definitions';
-import update from '../_update';
+import persist from './persist';
 
 export default async function run(postId: string, operation: CountOperation): Promise<number>
 {
@@ -11,7 +13,12 @@ export default async function run(postId: string, operation: CountOperation): Pr
         ? record.reactions + 1
         : record.reactions - 1;
 
-    await update(record.id, { reactions });
+    const succeeded = await persist(record.id, reactions);
+
+    if (succeeded === false)
+    {
+        logger.warn(`Reaction count for post metrics with id '${record.id}' has not been updated.`);
+    }
 
     return reactions;
 }

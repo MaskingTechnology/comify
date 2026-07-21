@@ -11,7 +11,7 @@ export default async function run(tenantId: string, creatorId: string, postId: s
         return;
     }
 
-    const parentPost = await getPost(tenantId, parentId);
+    const parentPost = await getPost(tenantId, parentId);  // TODO: Add required information to event data
 
     return create(Types.REACTED_TO_POST, creatorId, parentPost.creatorId, postId);
 }

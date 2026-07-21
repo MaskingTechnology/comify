@@ -1,6 +1,6 @@
 {
-    "./social/domain/notification/_create": { "default": {  "access": "protected" } },
-    "./social/domain/notification/_retrieveByPostId": { "default": {  "access": "protected" } },
-    "./social/domain/notification/_retrieveRecent": { "default": {  "access": "protected" } },
-    "./social/domain/notification/_remove": { "default": {  "access": "protected" } }
+    "./social/domain/notification/notifyPostRated": { "default": {  "access": "protected" } },
+    "./social/domain/notification/notifyReactionAdded": { "default": {  "access": "protected" } },
+    "./social/domain/notification/notifyStartedFollowing": { "default": {  "access": "protected" } },
+    "./social/domain/notification/removeByPost": { "default": {  "access": "protected" } }
 }

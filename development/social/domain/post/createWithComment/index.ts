@@ -11,7 +11,12 @@ type Data = {
 
 export default async function run(requester: Requester, data: Data): Promise<string>
 {
-    const commentId = await createComment(data.message);
+    const commentId = await createComment({ message: data.message });
 
-    return createPost(requester.tenantId, requester.principalId, undefined, commentId, data.parentId);
+    return createPost({
+        tenantId: requester.tenantId,
+        creatorId: requester.principalId,
+        commentId,
+        parentId: data.parentId
+    });
 }

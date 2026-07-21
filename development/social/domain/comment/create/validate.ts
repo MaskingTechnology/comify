@@ -3,6 +3,7 @@ import type { ValidationSchema } from '@theshelf/validation';
 
 import validator from '@comify/common/integrations/validation';
 
+import { type CreateData } from './definitions';
 import { MESSAGE_MAX_LENGTH, type Record } from '../definitions';
 import InvalidComment from './InvalidComment';
 
@@ -21,9 +22,9 @@ const schema: ValidationSchema =
     }
 };
 
-export default function validateData({ message }: ValidationModel): void
+export default function validate(data: CreateData): void
 {
-    const result = validator.validate({ message }, schema);
+    const result = validator.validate(data, schema);
 
     if (result.invalid)
     {

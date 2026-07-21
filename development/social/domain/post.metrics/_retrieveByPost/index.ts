@@ -1,15 +1,14 @@
 
-import database from '@comify/common/integrations/database';
 import logger from '@comify/common/integrations/logging';
 
-import { RECORD_TYPE, type Record } from '../definitions';
-import PostMetricsNotFound from '../_retrieveByPost/PostMetricsNotFound';
+import { type Record } from '../definitions';
+
+import retrieve from './retrieve';
+import PostMetricsNotFound from './PostMetricsNotFound';
 
 export default async function run(postId: string): Promise<Record>
 {
-    const query = { postId: { EQUALS: postId } };
-
-    const record = await database.readRecord(RECORD_TYPE, query);
+    const record = await retrieve(postId);
 
     if (record === undefined)
     {
@@ -18,7 +17,7 @@ export default async function run(postId: string): Promise<Record>
         throw new PostMetricsNotFound();
     }
 
-    return record as Record;
+    return record;
 }
 
 export { PostMetricsNotFound };

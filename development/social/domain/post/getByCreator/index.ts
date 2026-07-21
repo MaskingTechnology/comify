@@ -6,7 +6,8 @@ import validateRange from '~/common/validateRange';
 
 import type { Post } from '../definitions';
 import toModel from '../_toModel';
-import getByCreator from '../_retrieveByCreator';
+
+import getByCreator from './retrieve';
 
 export default async function run(requester: Requester, creatorId: string, range: Range): Promise<Post[]>
 {

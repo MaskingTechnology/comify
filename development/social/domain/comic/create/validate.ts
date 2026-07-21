@@ -7,13 +7,12 @@ import { requiredIdValidation } from '~/definitions';
 
 import type { Record } from '../definitions';
 
+import { type CreateData } from './definitions';
 import InvalidComic from './InvalidComic';
-
-type ValidationModel = Pick<Record, 'imageId' | 'structure'>;
 
 const schema: ValidationSchema =
 {
-    imageId: requiredIdValidation,
+    imageDataUrl: requiredIdValidation,
     structure:
     {
         message: 'Value is not a string',
@@ -24,9 +23,9 @@ const schema: ValidationSchema =
     }
 };
 
-export default function validate({ imageId, structure }: ValidationModel): void
+export default function validate(data: CreateData): void
 {
-    const result = validator.validate({ imageId, structure }, schema);
+    const result = validator.validate(data, schema);
 
     if (result.invalid)
     {

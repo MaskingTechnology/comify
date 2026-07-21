@@ -1,11 +1,11 @@
 
 import type { Creator } from '../definitions';
 import toModel from '../_toModel';
-import retrieveById from '../_retrieveById';
+import retrieve from '../_retrieveById';
 
 export default async function run(tenantId: string, id: string): Promise<Creator>
 {
-    const record = await retrieveById(tenantId, id);
+    const record = await retrieve(tenantId, id);
 
     return toModel(record);
 }

@@ -6,7 +6,7 @@ import validator from '@comify/common/integrations/validation';
 import { optionalIdValidation, requiredIdValidation } from '~/definitions';
 
 import InvalidPost from './InvalidPost';
-import type { ValidationModel } from './definitions';
+import type { CreateData } from './definitions';
 
 const schema: ValidationSchema =
 {
@@ -24,9 +24,9 @@ const schema: ValidationSchema =
     parentId: optionalIdValidation
 };
 
-export default function validate({ tenantId, creatorId, comicId, commentId, parentId }: ValidationModel): void
+export default function validate(data: CreateData): void
 {
-    if (comicId === undefined && commentId === undefined)
+    if (data.comicId === undefined && data.commentId === undefined)
     {
         const messages = new Map()
             .set('comicId', 'Either comicId or commentId must be provided')
@@ -35,7 +35,7 @@ export default function validate({ tenantId, creatorId, comicId, commentId, pare
         throw new InvalidPost(messages);
     }
 
-    const result = validator.validate({ tenantId, creatorId, comicId, commentId, parentId }, schema);
+    const result = validator.validate(data, schema);
 
     if (result.invalid)
     {

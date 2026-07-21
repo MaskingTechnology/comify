@@ -15,6 +15,7 @@ export default async function subscriptions(): Promise<void>
         subscribeToCreatorRegistered(({ creatorId }) => create(creatorId)),
         subscribeToRelationEstablished(({ followingId }) => updateFollowerCount(followingId, 'increase')),
         subscribeToRelationEstablished(({ followerId }) => updateFollowing(followerId, 'increase')),
+
         subscribeToPostCreated(({ creatorId, parentId }) =>
         {
             if (parentId !== undefined) return;

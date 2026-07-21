@@ -11,7 +11,12 @@ type Data = {
 
 export default async function run(requester: Requester, data: Data): Promise<string>
 {
-    const comicId = await createComic(data.comicImageDataUrl);
+    const comicId = await createComic({ imageDataUrl: data.comicImageDataUrl });
 
-    return createPost(requester.tenantId, requester.principalId, comicId, undefined, data.parentId);
+    return createPost({
+        tenantId: requester.tenantId,
+        creatorId: requester.principalId,
+        comicId,
+        parentId: data.parentId
+    });
 }

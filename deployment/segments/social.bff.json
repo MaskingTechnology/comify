@@ -18,12 +18,8 @@
     "./social/domain/creator.metrics/subscriptions": { "default": {  "access": "private" } },
 
     "./social/domain/notification/_toModel": { "default": { "access": "private" } },
-    "./social/domain/notification/notifyPostRated": { "default": {  "access": "private" } },
-    "./social/domain/notification/notifyReactionAdded": { "default": {  "access": "private" } },
-    "./social/domain/notification/notifyStartedFollowing": { "default": {  "access": "private" } },
-    "./social/domain/notification/removeByPost": { "default": {  "access": "private" } },
-    "./social/domain/notification/subscriptions": { "default": {  "access": "private" } },
     "./social/domain/notification/getRecent": { "default": {  "access": "public" } },
+    "./social/domain/notification/subscriptions": { "default": {  "access": "private" } },
 
     "./social/domain/post/_toModel": { "default": { "access": "private" } },
     "./social/domain/post/_create": { "default": {  "access": "private" }, "subscribe": {  "access": "private" } },

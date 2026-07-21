@@ -3,17 +3,18 @@ import createImage from '~/image/create';
 
 import { IMAGE_TYPE } from '../definitions';
 
+import { type CreateData } from './definitions';
 import createRecord from './createRecord';
 import persist from './persist';
 import validate from './validate';
 
-export default async function run(imageDataUrl: string, structure: string | undefined = undefined): Promise<string>
+export default async function run(data: CreateData): Promise<string>
 {
-    const imageId = await createImage(IMAGE_TYPE, imageDataUrl);
+    validate(data);
 
-    const record = createRecord(imageId, structure);
+    const imageId = await createImage(IMAGE_TYPE, data.imageDataUrl);
 
-    validate(record);
+    const record = createRecord(imageId, data.structure);
 
     return persist(record);
 }

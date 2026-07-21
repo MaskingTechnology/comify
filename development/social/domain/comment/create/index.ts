@@ -1,13 +1,14 @@
 
+import { type CreateData } from './definitions';
 import createRecord from './createRecord';
 import persist from './persist';
 import validate from './validate';
 
-export default async function run(message: string): Promise<string>
+export default async function run(data: CreateData): Promise<string>
 {
-    const record = createRecord(message);
+    validate(data);
 
-    validate(record);
+    const record = createRecord(data.message);
 
     return persist(record);
 }

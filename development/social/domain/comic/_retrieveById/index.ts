@@ -1,15 +1,14 @@
 
-import database from '@comify/common/integrations/database';
 import logger from '@comify/common/integrations/logging';
 
-import { RECORD_TYPE } from '../definitions';
 import type { Record } from '../definitions';
 
+import retrieve from './retrieve';
 import ComicNotFound from './ComicNotFound';
 
 export default async function run(id: string): Promise<Record>
 {
-    const record = await database.readRecord(RECORD_TYPE, { id: { EQUALS: id } });
+    const record = await retrieve(id);
 
     if (record === undefined)
     {
@@ -18,7 +17,7 @@ export default async function run(id: string): Promise<Record>
         throw new ComicNotFound();
     }
 
-    return record as Record;
+    return record;
 }
 
 export { ComicNotFound };

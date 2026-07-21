@@ -17,4 +17,6 @@ export type RegisteredSubscription = Subscription<RegisteredEventData>;
 
 export type RegisteredEventHandler = (eventData: RegisteredEventData) => void;
 
+export const MAX_NICKNAME_NUMBER = 1000;
+
 export const EVENT_NAME = 'registered';

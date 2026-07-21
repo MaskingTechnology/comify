@@ -5,7 +5,8 @@ import type { Range } from '~/common/validateRange';
 
 import type { Post } from '../definitions';
 import toModel from '../_toModel';
-import retrieve from '../_retrieveByParent';
+
+import retrieve from './retrieve';
 
 export default async function run(requester: Requester, postId: string, range: Range): Promise<Post[]>
 {

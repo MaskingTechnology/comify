@@ -1,19 +1,9 @@
 
-import type { RecordQuery } from '@theshelf/database';
-
-import database from '@comify/common/integrations/database';
-
-import { RECORD_TYPE } from '../definitions';
+import retrieve from './retrieve';
 
 export default async function run(creatorId: string, postId: string): Promise<boolean>
 {
-    const query: RecordQuery =
-    {
-        creatorId: { EQUALS: creatorId },
-        postId: { EQUALS: postId }
-    };
-
-    const record = await database.readRecord(RECORD_TYPE, query, ['id']);
+    const record = await retrieve(creatorId, postId);
 
     return record !== undefined;
 }

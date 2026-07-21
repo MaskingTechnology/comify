@@ -1,14 +1,14 @@
 
 import type { Tenant } from '../definitions';
-import retrieveByOrigin from '../_retrieveByOrigin';
 
-import validateData from './validateData';
+import retrieve from './retrieve';
+import validate from './validate';
 
 export default async function run(origin: string): Promise<Tenant>
 {
-    validateData({ origin });
+    validate(origin);
 
-    const tenant = await retrieveByOrigin(origin);
+    const tenant = await retrieve(origin);
 
     return {
         id: tenant.id,

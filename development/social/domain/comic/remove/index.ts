@@ -1,15 +1,22 @@
 
-import eraseImage from '~/image/_erase';
+import logger from '@comify/common/integrations/logging';
+
+import removeImage from '~/image/remove';
 
 import retrieve from '../_retrieveById';
 
-import eraseComic from './erase';
+import erase from './erase';
 
 export default async function run(id: string): Promise<void>
 {
     const record = await retrieve(id);
 
-    await eraseComic(record.id);
+    const succeeded = await erase(id);
 
-    return eraseImage(record.imageId);
+    if (succeeded === false)
+    {
+        logger.warn(`Comic with id '${id}' has not been deleted.`);
+    }
+
+    return removeImage(record.imageId);
 }
