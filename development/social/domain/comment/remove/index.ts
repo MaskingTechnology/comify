@@ -1,14 +1,13 @@
 
-import database from '@comify/common/integrations/database';
 import logger from '@comify/common/integrations/logging';
 
-import { RECORD_TYPE } from '../definitions';
+import erase from './erase';
 
 export default async function run(id: string): Promise<void>
 {
-    const result = await database.deleteRecord(RECORD_TYPE, { id: { EQUALS: id } } );
+    const succeeded = await erase(id);
 
-    if (result === 0)
+    if (succeeded === false)
     {
         logger.warn(`Comment with id '${id}' has not been deleted.`);
     }

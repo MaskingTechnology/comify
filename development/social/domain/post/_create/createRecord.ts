@@ -12,6 +12,7 @@ export default function createRecord(tenantId: string, creatorId: string, comicI
         comicId,
         commentId,
         parentId,
-        createdAt: new Date().toISOString()
+        createdAt: new Date().toISOString(),
+        deleted: false
     };
 }

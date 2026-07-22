@@ -11,6 +11,7 @@ export type Record = BaseData &
     readonly senderId: string;
     readonly receiverId: string;
     readonly postId?: string;
+    readonly deleted: boolean;
 };
 
 export type Notification = Pick<Record, 'createdAt' | 'type'> &

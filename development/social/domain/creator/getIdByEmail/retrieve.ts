@@ -6,10 +6,8 @@ import { RECORD_TYPE, type Record } from '../definitions';
 
 export default async function retrieve(tenantId: string, email: string): Promise<Record | undefined>
 {
-    const query = {
+    return database.readRecord<Record>(RECORD_TYPE, {
         tenantId: { EQUALS: tenantId },
         email: { EQUALS: email }
-    };
-
-    return database.readRecord(RECORD_TYPE, query) as Promise<Record | undefined>;
+    });
 }

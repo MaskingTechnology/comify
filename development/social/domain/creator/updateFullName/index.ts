@@ -1,4 +1,6 @@
 
+import logger from '@comify/common/integrations/logging';
+
 import { type Requester } from '@comify/common/security';
 
 import persist from './persist';
@@ -9,7 +11,12 @@ export default async function run(requester: Requester, fullName: string): Promi
 {
     validate(fullName);
 
-    return persist(requester.principalId, fullName);
+    const succeeded = await persist(requester.principalId, fullName);
+
+    if (succeeded === false)
+    {
+        logger.warn(`Full name for creator with id '${requester.principalId}' has not been updated.`);
+    }
 }
 
 export { default as InvalidFullName } from './InvalidFullName';

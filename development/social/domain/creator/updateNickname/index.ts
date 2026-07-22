@@ -22,7 +22,12 @@ export default async function updateNickname(requester: Requester, nickname: str
         throw new NicknameAlreadyExists();
     }
 
-    return persist(requester.principalId, nickname);
+    const succeeded = await persist(requester.principalId, nickname);
+
+    if (succeeded === false)
+    {
+        logger.warn(`Nickname for creator with id '${requester.principalId}' has not been updated.`);
+    }
 }
 
 export { default as NicknameAlreadyExists } from './NicknameAlreadyExists';

@@ -2,11 +2,11 @@
 import database from '@comify/common/integrations/database';
 import logger from '@comify/common/integrations/logging';
 
-import { RECORD_TYPE } from '../definitions';
+import { RECORD_TYPE, type Record } from '../definitions';
 
 export default async function undeleteRecord(id: string): Promise<void>
 {
-    const result = await database.updateRecord(RECORD_TYPE, { id: { EQUALS: id } }, { deleted: false });
+    const result = await database.updateRecord<Record>(RECORD_TYPE, { id: { EQUALS: id } }, { deleted: false });
 
     if (result === 0)
     {

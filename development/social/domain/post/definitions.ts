@@ -14,6 +14,7 @@ export type Record = BaseData &
     readonly commentId?: string;
     readonly parentId?: string;
     readonly createdAt: string;
+    readonly deleted: boolean;
 };
 
 export type Post = {

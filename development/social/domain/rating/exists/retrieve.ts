@@ -7,11 +7,11 @@ import { RECORD_TYPE, Record } from '../definitions';
 
 export default async function retrieve(creatorId: string, postId: string): Promise<Record | undefined>
 {
-    const query: RecordQuery =
+    const query: RecordQuery<Record> =
     {
         creatorId: { EQUALS: creatorId },
         postId: { EQUALS: postId }
     };
 
-    return database.readRecord(RECORD_TYPE, query, ['id']) as Promise<Record | undefined>;
+    return database.readRecord<Record>(RECORD_TYPE, query, ['id']);
 }

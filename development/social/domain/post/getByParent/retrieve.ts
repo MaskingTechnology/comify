@@ -8,14 +8,14 @@ import { RECORD_TYPE, type Record } from '../definitions';
 
 export default async function retrieve(tenantId: string, parentId: string, limit: number, offset: number): Promise<Record[]>
 {
-    const query: RecordQuery =
+    const query: RecordQuery<Record> =
     {
         tenantId: { EQUALS: tenantId },
         parentId: { EQUALS: parentId },
         deleted: { EQUALS: false }
     };
 
-    const sort: RecordSort = { createdAt: SortDirections.DESCENDING };
+    const sort: RecordSort<Record> = { createdAt: SortDirections.DESCENDING };
 
-    return database.searchRecords(RECORD_TYPE, query, undefined, sort, limit, offset) as Promise<Record[]>;
+    return database.searchRecords<Record>(RECORD_TYPE, query, undefined, sort, limit, offset);
 }

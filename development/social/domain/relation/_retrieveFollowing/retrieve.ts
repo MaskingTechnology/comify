@@ -7,10 +7,10 @@ import { RECORD_TYPE, type Record } from '../definitions';
 
 export default async function retrieve(followerId: string, limit: number | undefined = undefined, offset: number | undefined = undefined): Promise<Record[]>
 {
-    const query: RecordQuery =
+    const query: RecordQuery<Record> =
     {
         followerId: { EQUALS: followerId }
     };
 
-    return database.searchRecords(RECORD_TYPE, query, undefined, undefined, limit, offset) as Promise<Record[]>;
+    return database.searchRecords<Record>(RECORD_TYPE, query, undefined, undefined, limit, offset);
 }

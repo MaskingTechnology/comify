@@ -11,6 +11,7 @@ export default function createRecord(type: string, senderId: string, receiverId:
         type,
         senderId,
         receiverId,
-        postId
+        postId,
+        deleted: false
     };
 }

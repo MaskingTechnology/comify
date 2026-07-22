@@ -8,13 +8,13 @@ import { RECORD_TYPE, SortOrders, type Record, type SortOrder } from '../definit
 
 export default async function retrieve(tenantId: string, ids: string[], order: SortOrder, limit: number, offset: number, search: string | undefined = undefined): Promise<Record[]>
 {
-    const defaultQuery: RecordQuery = {
+    const defaultQuery: RecordQuery<Record> = {
         AND: [
             { tenantId: { EQUALS: tenantId } },
             { id: { NOT_IN: ids } }
         ]
     };
-    const searchQuery: RecordQuery = {
+    const searchQuery: RecordQuery<Record> = {
         OR: [
             { fullName: { CONTAINS: search } },
             { nickname: { CONTAINS: search } }
@@ -23,8 +23,8 @@ export default async function retrieve(tenantId: string, ids: string[], order: S
 
     const sortField = order === SortOrders.POPULAR ? 'popularity' : 'joinedAt';
 
-    const query: QueryStatement = search !== undefined ? { ...defaultQuery, ...searchQuery } : defaultQuery;
-    const recordSort: RecordSort = { [sortField]: SortDirections.ASCENDING };
+    const query: QueryStatement<Record> = search !== undefined ? { ...defaultQuery, ...searchQuery } : defaultQuery;
+    const recordSort: RecordSort<Record> = { [sortField]: SortDirections.ASCENDING };
 
-    return database.searchRecords(RECORD_TYPE, query, undefined, recordSort, limit, offset) as Promise<Record[]>;
+    return database.searchRecords<Record>(RECORD_TYPE, query, undefined, recordSort, limit, offset);
 }

@@ -1,7 +1,7 @@
 
 import type { BaseData } from '../definitions';
 
-export type Data = BaseData & {
+export type Record = BaseData & {
     readonly origins: string[];
 };
 

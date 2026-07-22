@@ -5,7 +5,7 @@ import { RECORD_TYPE, type Record } from '../definitions';
 
 export default async function retrieve(creatorId: string): Promise<Record | undefined>
 {
-    const query = { creatorId: { EQUALS: creatorId } };
-
-    return database.readRecord(RECORD_TYPE, query) as Promise<Record | undefined>;
+    return database.readRecord<Record>(RECORD_TYPE, {
+        creatorId: { EQUALS: creatorId }
+    });
 }
