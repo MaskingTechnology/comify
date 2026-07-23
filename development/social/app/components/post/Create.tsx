@@ -1,5 +1,5 @@
 
-import { Editor } from '~/components/comic';
+import { Editor } from '~/components/post.comic';
 
 import useAddComicPost from './hooks/useAddComicPost';
 

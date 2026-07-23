@@ -1,10 +1,4 @@
 {
-    "./social/domain/comic/create/persist": { "default": {  "access": "protected" } },
-    "./social/domain/comic/remove/erase": { "default": {  "access": "protected" } },
-
-    "./social/domain/comment/create/persist": { "default": {  "access": "protected" } },
-    "./social/domain/comment/remove": { "default": {  "access": "protected" } },
-
     "./social/domain/creator/create/persist": { "default": {  "access": "protected" } },
     "./social/domain/creator/create/erase": { "default": {  "access": "protected" } },
     "./social/domain/creator/updateFullName/persist": { "default": {  "access": "protected" } },
@@ -23,12 +17,18 @@
     "./social/domain/post/remove/deleteRecord": { "default": { "access": "protected" }},
     "./social/domain/post/remove/undeleteRecord": { "default": { "access": "protected" }},
 
+    "./social/domain/post.comic/create/persist": { "default": {  "access": "protected" } },
+    "./social/domain/post.comic/remove/erase": { "default": {  "access": "protected" } },
+
+    "./social/domain/post.comment/create/persist": { "default": {  "access": "protected" } },
+    "./social/domain/post.comment/remove": { "default": {  "access": "protected" } },
+
     "./social/domain/post.metrics/create/persist": { "default": {  "access": "protected" } },
     "./social/domain/post.metrics/updateRatings/persist": { "default": { "access": "protected" } },
     "./social/domain/post.metrics/updateReactions/persist": { "default": { "access": "protected" } },
 
-    "./social/domain/rating/toggle/persist": { "default": {  "access": "protected" } },
-    "./social/domain/rating/toggle/erase": { "default": {  "access": "protected" } },
+    "./social/domain/post.rating/toggle/persist": { "default": {  "access": "protected" } },
+    "./social/domain/post.rating/toggle/erase": { "default": {  "access": "protected" } },
 
     "./social/domain/relation/establish/persist": { "default": {  "access": "protected" } },
     "./social/domain/relation/establish/erase": { "default": {  "access": "protected" } }

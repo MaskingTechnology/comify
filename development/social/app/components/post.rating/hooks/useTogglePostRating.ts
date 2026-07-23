@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 
 import { requester } from '@comify/common/security';
 import type { Post } from '^/domain/post';
-import toggleRating from '^/domain/rating/toggle';
+import toggleRating from '^/domain/post.rating/toggle';
 
 export default function useTogglePostRating()
 {

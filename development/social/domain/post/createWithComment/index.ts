@@ -1,6 +1,6 @@
 
 import { type Requester } from '@comify/common/security';
-import createComment from '~/comment/create';
+import createComment from '~/post.comment/create';
 
 import createPost from '../_create';
 

@@ -5,8 +5,8 @@ import type { Relation } from '^/domain/relation';
 import { Column, Panel, Row } from '@maskingtech/designsystem';
 
 import { RemoveOption } from '~/components/common';
-import { Image as Comic } from '~/components/comic';
-import { Comment } from '~/components/comment';
+import { Image as Comic } from '~/components/post.comic';
+import { Comment } from '~/components/post.comment';
 import { TimeElapsed } from '~/components/relation';
 
 import EngagementRow from './elements/EngagementRow';

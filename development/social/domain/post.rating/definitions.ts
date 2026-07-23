@@ -11,5 +11,5 @@ export type Record = BaseData &
 
 // A rating does not have a specific domain representation.
 
-export const RECORD_TYPE = 'rating';
-export const EVENT_CHANNEL = 'rating';
+export const RECORD_TYPE = 'post.rating';
+export const EVENT_CHANNEL = 'post.rating';

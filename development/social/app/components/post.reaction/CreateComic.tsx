@@ -1,9 +1,9 @@
 
 import { useOutletContext } from 'react-router-dom';
 
-import { Form } from '~/components/comment';
+import { Editor } from '~/components/post.comic';
 
-import useCreateComment from './hooks/useCreateComment';
+import useCreateComic from './hooks/useCreateComic';
 
 type Props = {
     readonly postId: string;
@@ -11,13 +11,11 @@ type Props = {
     readonly onCancelled: () => void;
 };
 
-const MESSAGE_MAX_LENGTH = 1000;
-
 export default function Feature()
 {
     const { postId, onCreated, onCancelled } = useOutletContext<Props>();
 
-    const createComment = useCreateComment(postId, onCreated);
+    const createComic = useCreateComic(postId, onCreated);
 
-    return <Form limit={MESSAGE_MAX_LENGTH} onCreate={createComment} onCancel={onCancelled} />;
+    return <Editor onCreate={createComic} onCancel={onCancelled} />;
 }

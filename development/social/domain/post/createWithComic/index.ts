@@ -1,6 +1,6 @@
 
 import { type Requester } from '@comify/common/security';
-import createComic from '~/comic/create';
+import createComic from '~/post.comic/create';
 
 import createPost from '../_create';
 

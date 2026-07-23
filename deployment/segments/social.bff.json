@@ -38,7 +38,7 @@
     "./social/domain/post.metrics/updateReactions": { "default": {  "access": "private" } },
     "./social/domain/post.metrics/subscriptions": { "default": {  "access": "private" } },
 
-    "./social/domain/rating/toggle": { "default": { "access": "public" }, "subscribe": {  "access": "private" } },
+    "./social/domain/post.rating/toggle": { "default": { "access": "public" }, "subscribe": {  "access": "private" } },
 
     "./social/domain/relation/_toModel": { "default": { "access": "private" }},
     "./social/domain/relation/explore": { "default": {  "access": "public" } },

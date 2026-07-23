@@ -2,7 +2,7 @@
 import { Column } from '@maskingtech/designsystem';
 
 import { PullToRefresh, ResultContainer, ScrollLoader } from '~/components/common';
-import { useToggle } from '~/components/rating';
+import { useToggle } from '~/components/post.rating';
 
 import useCreatorPosts from './hooks/useCreatorPosts';
 import useViewPostDetails from './hooks/useViewPostDetails';

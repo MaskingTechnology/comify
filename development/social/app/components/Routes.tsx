@@ -1,13 +1,13 @@
 
 import { Route, Routes } from 'react-router-dom';
 
-import accountRoutes from './account';
+import accountRoutes from './creator.account';
 import { legalRoutes, guestRoutes, appRoutes, ApplicationLayout, GuestLayout, LegalLayout, ProtectedRoute } from './application';
 import timelineRoutes from './timeline';
 import exploreRoutes from './explore';
 import notificationRoutes from './notification';
 import postRoutes from './post';
-import profileRoutes from './profile';
+import profileRoutes from './creator.profile';
 
 export default function Component()
 {
@@ -24,7 +24,7 @@ export default function Component()
                 <Route path="/posts">{postRoutes}</Route>
                 <Route path="/profile">{profileRoutes}</Route>
             </Route>
-            
+
         </Route>
 
         <Route element={<GuestLayout />}>

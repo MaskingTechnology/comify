@@ -1,8 +1,4 @@
 {
-    "./social/domain/comic/_retrieveById": { "default": {  "access": "protected" } },
-
-    "./social/domain/comment/getById/retrieve": { "default": {  "access": "protected" } },
-
     "./social/domain/creator/_retrieveById": { "default": {  "access": "protected" } },
     "./social/domain/creator/create/retrieveByNickname": { "default": {  "access": "protected" } },
     "./social/domain/creator/create/retrieveByStartNickname": { "default": {  "access": "protected" } },
@@ -22,10 +18,14 @@
     "./social/domain/post/getByParent/retrieve": { "default": {  "access": "protected" } },
     "./social/domain/post/getRecommended/retrieve": { "default": {  "access": "protected" } },
 
+    "./social/domain/post.comic/_retrieveById": { "default": {  "access": "protected" } },
+
+    "./social/domain/post.comment/getById/retrieve": { "default": {  "access": "protected" } },
+
     "./social/domain/post.metrics/_retrieveByPost": { "default": {  "access": "protected" } },
 
-    "./social/domain/rating/exists/retrieve": { "default": {  "access": "protected" } },
-    "./social/domain/rating/toggle/retrieve": { "default": {  "access": "protected" } },
+    "./social/domain/post.rating/exists/retrieve": { "default": {  "access": "protected" } },
+    "./social/domain/post.rating/toggle/retrieve": { "default": {  "access": "protected" } },
 
     "./social/domain/relation/_retrieve": { "default": {  "access": "protected" } },
     "./social/domain/relation/_retrieveFollowing": { "default": {  "access": "protected" } },

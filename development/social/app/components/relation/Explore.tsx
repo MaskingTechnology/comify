@@ -4,7 +4,7 @@ import { Column } from '@maskingtech/designsystem';
 import type { Relation } from '^/domain/relation';
 
 import { OrderAndSearchRow, PullToRefresh, ResultContainer, ScrollLoader } from '~/components/common';
-import { useViewProfile } from '~/components/profile';
+import { useViewProfile } from '~/components/creator.profile';
 
 import PanelList from './components/PanelList';
 

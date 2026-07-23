@@ -1,9 +1,9 @@
 
 import { type Requester } from '@comify/common/security';
-import getComicData from '~/comic/getById';
-import getCommentData from '~/comment/getById';
+import getComicData from '~/post.comic/getById';
+import getCommentData from '~/post.comment/getById';
 import getMetrics from '~/post.metrics/getByPost';
-import ratingExists from '~/rating/exists';
+import ratingExists from '~/post.rating/exists';
 import getRelationData from '~/relation/get';
 
 import type { Record, Post } from '../definitions';

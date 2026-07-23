@@ -8,5 +8,5 @@ export type Record = BaseData &
 
 export type Comment = Omit<Record, 'id'>;
 
-export const RECORD_TYPE = 'comment';
+export const RECORD_TYPE = 'post.comment';
 export const MESSAGE_MAX_LENGTH = 2000;

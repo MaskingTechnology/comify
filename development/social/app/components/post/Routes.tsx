@@ -1,7 +1,7 @@
 
 import { Route } from 'react-router-dom';
 
-import reactionRoutes from '~/components/reaction';
+import reactionRoutes from '~/components/post.reaction';
 
 import Main from './Main';
 import Create from './Create';

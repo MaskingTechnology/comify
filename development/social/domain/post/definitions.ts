@@ -1,6 +1,6 @@
 
-import type { Comic } from '~/comic/';
-import type { Comment } from '~/comment';
+import type { Comic } from '~/post.comic';
+import type { Comment } from '~/post.comment';
 import type { Metrics } from '~/post.metrics';
 import type { Relation } from '~/relation';
 import type { BaseData, CountOperation } from '../definitions';

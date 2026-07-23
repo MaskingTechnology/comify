@@ -1,8 +1,8 @@
 
 import { Row } from '@maskingtech/designsystem';
 
-import { Engagement as RatingEngagement } from '~/components/rating';
-import { Engagement as ReactionEngagement } from '~/components/reaction';
+import { Engagement as RatingEngagement } from '~/components/post.rating';
+import { Engagement as ReactionEngagement } from '~/components/post.reaction';
 
 type Props = {
     readonly isRated: boolean;

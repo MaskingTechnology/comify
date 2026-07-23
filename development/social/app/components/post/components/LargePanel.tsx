@@ -4,8 +4,8 @@ import type { Relation } from '^/domain/relation';
 
 import { ClickArea, Column, Panel } from '@maskingtech/designsystem';
 
-import { Image as Comic } from '~/components/comic';
-import { Comment } from '~/components/comment';
+import { Image as Comic } from '~/components/post.comic';
+import { Comment } from '~/components/post.comment';
 import { TimeElapsed } from '~/components/relation';
 
 import EngagementsRow from './elements/EngagementRow';

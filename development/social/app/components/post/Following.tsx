@@ -2,8 +2,8 @@
 import { Column } from '@maskingtech/designsystem';
 
 import { PullToRefresh, ResultContainer, ScrollLoader } from '~/components/common';
-import { useViewProfile } from '~/components/profile';
-import { useToggle } from '~/components/rating';
+import { useViewProfile } from '~/components/creator.profile';
+import { useToggle } from '~/components/post.rating';
 import { useEstablish } from '~/components/relation';
 
 import PanelList from './components/PanelList';

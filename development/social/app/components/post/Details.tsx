@@ -6,8 +6,8 @@ import { Column, Ruler } from '@maskingtech/designsystem';
 import type { Post } from '^/domain/post';
 
 import { BackRow, LoadingAndResultContainer } from '~/components/common';
-import { useViewProfile } from '~/components/profile';
-import { useToggle } from '~/components/rating';
+import { useViewProfile } from '~/components/creator.profile';
+import { useToggle } from '~/components/post.rating';
 import { useEstablish } from '~/components/relation';
 
 import DetailsPanel from './components/DetailsPanel';
