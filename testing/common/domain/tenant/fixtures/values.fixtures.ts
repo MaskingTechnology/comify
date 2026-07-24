@@ -7,6 +7,6 @@ export const VALUES =
     ORIGINS: {
         FIRST: 'http://alpha.example.com',
         SECOND: 'http://beta.example.com',
-        UNKNOWN: 'unknown'
+        UNKNOWN: 'http://unknown.com'
     }
 };

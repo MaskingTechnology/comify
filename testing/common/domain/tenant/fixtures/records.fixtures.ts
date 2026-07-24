@@ -1,11 +1,11 @@
 
-import type { RecordData } from '@theshelf/database';
+import { type RecordData } from '@theshelf/database';
 
-import type { DataModel as TenantDataModel } from '^/domain/tenant';
+import { type Record as TenantRecord } from '^/domain/tenant';
 
 import { VALUES } from './values.fixtures';
 
-export const TENANTS: TenantDataModel[] = [
+export const TENANTS: TenantRecord[] = [
     { id: VALUES.IDS.TENANT1, origins: [VALUES.ORIGINS.FIRST, VALUES.ORIGINS.SECOND] }
 ];
 

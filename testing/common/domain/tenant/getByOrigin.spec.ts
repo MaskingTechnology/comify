@@ -1,9 +1,8 @@
 
 import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 
+import getByOrigin, { TenantNotFound } from '^/domain/tenant/getByOrigin';
 import database from '^/integrations/database';
-
-import getByOrigin, { TenantNotFound } from '^/domain/tenant/_retrieveByOrigin';
 
 import { DATABASES, VALUES } from './fixtures';
 
@@ -29,5 +28,13 @@ describe('domain/tenant/getByOrigin', () =>
         const promise = getByOrigin(VALUES.ORIGINS.UNKNOWN);
 
         await expect(promise).rejects.toThrow(TenantNotFound);
+    });
+
+    it('Should return a multi-origin tenant identified by a single origin', async () =>
+    {
+        const tenant = await getByOrigin(VALUES.ORIGINS.FIRST);
+
+        expect(tenant.id).toEqual(VALUES.IDS.TENANT1);
+        expect(tenant.origin).toEqual(VALUES.ORIGINS.FIRST);
     });
 });
