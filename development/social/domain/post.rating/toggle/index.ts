@@ -14,4 +14,4 @@ export default async function run(requester: Requester, postId: string): Promise
         : switchOff(requester.tenantId, record);
 }
 
-export { default as subscribe } from './subscribe';
+export { default as InvalidRating } from './InvalidRating';

@@ -12,8 +12,7 @@ export const SortOrders = {
     RECENT: 'recent'
 } as const;
 
-export const requiredIdValidation: Validation =
-{
+export const requiredIdValidation: Validation = {
     message: 'Value is not a valid id format',
     UUID:
     {
@@ -21,8 +20,7 @@ export const requiredIdValidation: Validation =
     }
 } as const;
 
-export const optionalIdValidation: Validation =
-{
+export const optionalIdValidation: Validation = {
     message: 'Value is not a valid id format',
     UUID:
     {
@@ -34,3 +32,4 @@ type SortOrderKeys = keyof typeof SortOrders;
 
 export type SortOrder = typeof SortOrders[SortOrderKeys];
 
+export const CONTEXT_ID = 'social';

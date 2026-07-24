@@ -1,6 +1,6 @@
 
-import create from '../_create';
 import { Types } from '../definitions';
+import create from '../_create';
 
 export default async function run(followerId: string, followingId: string): Promise<void>
 {

@@ -2,15 +2,15 @@
 import logger from '@comify/common/integrations/logging';
 
 import retrieve from './retrieve';
-import persist from './persist';
+import remove from './remove';
 
 export default async function run(postId: string): Promise<void>
 {
-    const notifications = await retrieve(postId);
+    const records = await retrieve(postId);
 
-    const ids = notifications.map(notification => notification.id);
+    const ids = records.map(notification => notification.id);
 
-    const succeeded = await persist(ids);
+    const succeeded = await remove(ids);
 
     if (succeeded === false)
     {

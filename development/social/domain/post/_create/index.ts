@@ -18,7 +18,7 @@ export default async function run(data: CreateData): Promise<string>
 
     try
     {
-        await publish(data.tenantId, data.creatorId, postId, data.parentId);
+        await publish(data.tenantId, data.creatorId, postId);
 
         return postId;
     }
@@ -31,5 +31,3 @@ export default async function run(data: CreateData): Promise<string>
         throw error;
     }
 }
-
-export { default as subscribe } from './subscribe';

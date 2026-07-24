@@ -3,7 +3,7 @@ import type { Record } from '../definitions';
 
 import create from './create';
 import erase from './erase';
-import publish from './publish';
+import publish from './publishRemoved';
 
 export default async function switchOff(tenantId: string, rating: Record): Promise<boolean>
 {

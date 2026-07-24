@@ -4,10 +4,11 @@ import logger from '@comify/common/integrations/logging';
 import { type Requester } from '@comify/common/security';
 
 import cleanNickname from '../_cleanNickname';
-import persist from './persist';
 
-import NicknameAlreadyExists from './NicknameAlreadyExists';
 import retrieve from './retrieve';
+import persist from './persist';
+import publish from './publish';
+import NicknameAlreadyExists from './NicknameAlreadyExists';
 
 export default async function updateNickname(requester: Requester, nickname: string): Promise<void>
 {
@@ -28,6 +29,8 @@ export default async function updateNickname(requester: Requester, nickname: str
     {
         logger.warn(`Nickname for creator with id '${requester.principalId}' has not been updated.`);
     }
+
+    return publish(requester.tenantId, requester.principalId);
 }
 
 export { default as NicknameAlreadyExists } from './NicknameAlreadyExists';

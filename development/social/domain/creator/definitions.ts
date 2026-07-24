@@ -25,7 +25,6 @@ export type Creator = Omit<Record, 'tenantId' | 'email' | 'portraitId'> &
 export { type CountOperation, SortOrders, type SortOrder };
 
 export const RECORD_TYPE = 'creator';
-export const EVENT_CHANNEL = 'creator';
 export const IMAGE_TYPE = 'portrait';
 
 export const NICKNAME_STRING_PATTERN = '^[a-z0-9_]+$';

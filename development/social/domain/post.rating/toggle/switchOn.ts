@@ -1,7 +1,7 @@
 
 import create from './create';
 import erase from './erase';
-import publish from './publish';
+import publish from './publishAdded';
 
 export default async function switchOn(tenantId: string, creatorId: string, postId: string): Promise<boolean>
 {

@@ -1,11 +1,11 @@
 
-import { publish as publishCreatorAdded } from '@comify/common/domain/creator/added';
+import { publish as publishCreatorUpdated } from '@comify/common/domain/creator/updated';
 
 import { CONTEXT_ID } from '~/definitions';
 
 export default async function publish(tenantId: string, creatorId: string): Promise<void>
 {
-    return publishCreatorAdded({
+    return publishCreatorUpdated({
         contextId: CONTEXT_ID,
         principalId: creatorId,
         tenantId,

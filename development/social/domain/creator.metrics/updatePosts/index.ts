@@ -1,24 +1,32 @@
 
 import logger from '@comify/common/integrations/logging';
 
+import retrievePost from '~/post/_retrieveById';
+
 import type { CountOperation } from '../definitions';
-import retrieve from '../_retrieveByCreator';
+import retrieveMetrics from '../_retrieveByCreator';
 import persist from './persist';
 
-export default async function updatePosts(creatorId: string, operation: CountOperation): Promise<number>
+export default async function updatePosts(tenantId: string, postId: string, operation: CountOperation): Promise<void>
 {
-    const record = await retrieve(creatorId);
+    const postRecord = await retrievePost(tenantId, postId);
+
+    if (postRecord.parentId !== undefined)
+    {
+        // We only want to count root posts
+        return;
+    }
+
+    const metricsRecord = await retrieveMetrics(postRecord.creatorId);
 
     const posts = operation === 'increase'
-        ? record.posts + 1
-        : record.posts - 1;
+        ? metricsRecord.posts + 1
+        : metricsRecord.posts - 1;
 
-    const succeeded = await persist(record.id, posts);
+    const succeeded = await persist(metricsRecord.id, posts);
 
     if (succeeded === false)
     {
-        logger.warn(`Post count for creator metrics with id '${record.id}' has not been updated.`);
+        logger.warn(`Post count for creator metrics with id '${metricsRecord.id}' has not been updated.`);
     }
-
-    return posts;
 }

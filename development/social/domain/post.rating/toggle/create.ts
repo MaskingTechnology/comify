@@ -11,5 +11,3 @@ export default async function run(creatorId: string, postId: string): Promise<st
 
     return persist(newData);
 }
-
-export { default as InvalidRating } from './InvalidRating';

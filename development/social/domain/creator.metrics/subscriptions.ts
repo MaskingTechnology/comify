@@ -1,34 +1,22 @@
 
-import { subscribe as subscribeToCreatorRegistered } from '~/creator/create';
-import { subscribe as subscribeToRelationEstablished } from '~/relation/establish';
-import { subscribe as subscribeToPostCreated } from '~/post/_create';
-import { subscribe as subscribeToPostRemoved } from '~/post/remove';
+import { subscribe as onCreatorAdded } from '@comify/common/domain/creator/added';
+import { subscribe as onRelationEstablished } from '@comify/common/domain/relation/established';
+import { subscribe as onPostAdded } from '@comify/common/domain/post/added';
+import { subscribe as onPostRemoved } from '@comify/common/domain/post/removed';
 
-import updatePosts from './updatePosts';
-import updateFollowing from './updateFollowing';
-import create from './create';
+import createMetrics from './create';
 import updateFollowerCount from './updateFollowers';
+import updateFollowingCount from './updateFollowing';
+import updatePostCount from './updatePosts';
 
 export default async function subscriptions(): Promise<void>
 {
     await Promise.all([
-        subscribeToCreatorRegistered(({ creatorId }) => create(creatorId)),
-        subscribeToRelationEstablished(({ followingId }) => updateFollowerCount(followingId, 'increase')),
-        subscribeToRelationEstablished(({ followerId }) => updateFollowing(followerId, 'increase')),
-
-        subscribeToPostCreated(({ creatorId, parentId }) =>
-        {
-            if (parentId !== undefined) return;
-
-            return updatePosts(creatorId, 'increase');
-        }),
-
-        subscribeToPostRemoved(({ creatorId, parentId }) =>
-        {
-            if (parentId !== undefined) return;
-
-            return updatePosts(creatorId, 'decrease');
-        })
+        onCreatorAdded(({ creatorId }) => createMetrics(creatorId)),
+        onRelationEstablished(({ followingId }) => updateFollowerCount(followingId, 'increase')),
+        onRelationEstablished(({ followerId }) => updateFollowingCount(followerId, 'increase')),
+        onPostAdded(({ tenantId, postId }) => updatePostCount(tenantId, postId, 'increase')),
+        onPostRemoved(({ tenantId, postId }) => updatePostCount(tenantId, postId, 'decrease'))
     ]);
 }
 

@@ -30,7 +30,7 @@ export default async function remove(requester: Requester, id: string): Promise<
 
         deleted = true;
 
-        await publish(requester.principalId, post.id, post.parentId);
+        await publish(requester.tenantId, requester.principalId, post.id);
     }
     catch (error)
     {
@@ -44,5 +44,3 @@ export default async function remove(requester: Requester, id: string): Promise<
         throw error;
     }
 }
-
-export { default as subscribe } from './subscribe';

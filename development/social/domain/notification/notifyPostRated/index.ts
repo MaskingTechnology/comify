@@ -1,17 +1,12 @@
 
-import getPost from '~/post/_retrieveById';
+import retrievePost from '~/post/_retrieveById';
 
-import create from '../_create';
 import { Types } from '../definitions';
+import create from '../_create';
 
-export default async function run(tenantId: string, creatorId: string, postId: string, rated: boolean): Promise<void>
+export default async function run(tenantId: string, creatorId: string, postId: string): Promise<void>
 {
-    if (rated === false)
-    {
-        return;
-    }
+    const postRecord = await retrievePost(tenantId, postId);
 
-    const post = await getPost(tenantId, postId); // TODO: Add required information to event data
-
-    return create(Types.RATED_POST, creatorId, post.creatorId, postId);
+    return create(Types.RATED_POST, creatorId, postRecord.creatorId, postId);
 }

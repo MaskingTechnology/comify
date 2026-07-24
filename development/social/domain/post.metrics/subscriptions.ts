@@ -1,37 +1,21 @@
 
-import { subscribe as subscribeToPostCreated } from '~/post/_create';
-import { subscribe as subscribeToRatingToggled } from '~/post.rating/toggle';
-import { subscribe as subscribeToPostRemoved } from '~/post/remove';
+import { subscribe as onPostAdded } from '@comify/common/domain/post/added';
+import { subscribe as onPostRemoved } from '@comify/common/domain/post/removed';
+import { subscribe as onRatingAdded } from '@comify/common/domain/post.rating/added';
+import { subscribe as onRatingRemoved } from '@comify/common/domain/post.rating/removed';
 
-import updateReactions from './updateReactions';
-import updateRatings from './updateRatings';
-import create from './create';
+import createMetrics from './create';
+import updateReactionCount from './updateReactions';
+import updateRatingCount from './updateRatings';
 
 export default async function subscriptions(): Promise<void>
 {
     await Promise.all([
-        subscribeToPostCreated(({ postId }) => create(postId)),
-
-        subscribeToRatingToggled(({ postId, rated }) =>
-        {
-            const operation = rated ? 'increase' : 'decrease';
-
-            return updateRatings(postId, operation);
-        }),
-
-        subscribeToPostCreated(({ parentId }) =>
-        {
-            if (parentId === undefined) return;
-
-            return updateReactions(parentId, 'increase');
-        }),
-
-        subscribeToPostRemoved(({ parentId }) =>
-        {
-            if (parentId === undefined) return;
-
-            return updateReactions(parentId, 'decrease');
-        })
+        onPostAdded(({ postId }) => createMetrics(postId)),
+        onPostAdded(({ postId }) => updateReactionCount(postId, 'increase')),
+        onPostRemoved(({ postId }) => updateReactionCount(postId, 'decrease')),
+        onRatingAdded(({ postId }) => updateRatingCount(postId, 'increase')),
+        onRatingRemoved(({ postId }) => updateRatingCount(postId, 'decrease'))
     ]);
 }
 
