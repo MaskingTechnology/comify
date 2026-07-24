@@ -1,8 +1,8 @@
 
 import eventBroker from '@comify/common/integrations/eventBroker';
 
-import { EVENT_CHANNEL } from '../definitions';
-import { EVENT_NAME, type EventData } from './definitions';
+import { EVENT_CHANNEL, type EventData } from '../definitions';
+import { EVENT_NAME } from './definitions';
 
 export default async function publish(data: EventData): Promise<void>
 {
