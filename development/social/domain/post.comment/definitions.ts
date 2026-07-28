@@ -1,7 +1,7 @@
 
-import type { BaseData } from '../definitions';
+import type { BaseRecord } from '../definitions';
 
-export type Record = BaseData &
+export type Record = BaseRecord &
 {
     readonly message: string;
 };

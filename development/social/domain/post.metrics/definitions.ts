@@ -1,7 +1,7 @@
 
-import type { BaseData, CountOperation } from '../definitions';
+import type { BaseRecord, CountOperation } from '../definitions';
 
-export type Record = BaseData &
+export type Record = BaseRecord &
 {
     readonly postId: string;
     readonly ratings: number;

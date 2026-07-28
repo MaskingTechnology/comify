@@ -4,9 +4,9 @@ import type { Validation } from '@theshelf/validation';
 import type { Metrics } from '~/creator.metrics';
 import type { ImageData } from '~/image';
 
-import { type SortOrder, SortOrders, type BaseData, type CountOperation } from '../definitions';
+import { type SortOrder, SortOrders, type BaseRecord, type CountOperation } from '../definitions';
 
-export type Record = BaseData &
+export type Record = BaseRecord &
 {
     readonly tenantId: string;
     readonly fullName: string;

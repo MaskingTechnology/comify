@@ -1,7 +1,7 @@
 
 import type { Validation } from '@theshelf/validation';
 
-export type BaseData = {
+export type BaseRecord = {
     readonly id: string;
 };
 

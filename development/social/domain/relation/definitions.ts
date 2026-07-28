@@ -1,10 +1,10 @@
 
 import type { Creator } from '~/creator/';
 
-import type { SortOrder, BaseData } from '../definitions';
+import type { SortOrder, BaseRecord } from '../definitions';
 import { SortOrders } from '../definitions';
 
-export type Record = Omit<BaseData, 'id'> & {
+export type Record = Omit<BaseRecord, 'id'> & {
     readonly id: string | undefined; // The id is undefined for unestablished relations.
     readonly followerId: string;
     readonly followingId: string;

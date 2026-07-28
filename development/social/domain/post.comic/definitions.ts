@@ -1,9 +1,9 @@
 
 import type { ImageData } from '~/image';
 
-import type { BaseData } from '../definitions';
+import type { BaseRecord } from '../definitions';
 
-export type Record = BaseData &
+export type Record = BaseRecord &
 {
     readonly imageId: string;
     readonly structure?: string;

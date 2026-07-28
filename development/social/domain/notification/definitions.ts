@@ -2,9 +2,9 @@
 import type { Relation } from '~/relation';
 import type { Post } from '~/post';
 
-import type { BaseData } from '../definitions';
+import type { BaseRecord } from '../definitions';
 
-export type Record = BaseData &
+export type Record = BaseRecord &
 {
     readonly createdAt: string;
     readonly type: string;
