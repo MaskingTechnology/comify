@@ -3,7 +3,7 @@ import { type Identity } from '@theshelf/authentication';
 
 import { type Tenant } from '@comify/common/domain/tenant';
 
-import createCreator from '~/creator/create';
+import createCreator from '^/domain/creator/create';
 
 export default async function register(tenant: Tenant, identity: Identity): Promise<string>
 {
