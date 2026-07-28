@@ -1,0 +1,23 @@
+
+import type { ImageData } from '../definitions';
+import { logger } from '../integrations';
+
+import retrieveRecords from './retrieveRecords';
+import retrieveFiles from './retrieveFiles';
+import toImageData from './toImageData';
+
+export default async function run(ids: string[]): Promise<Map<string, ImageData>>
+{
+    const records = await retrieveRecords(ids);
+
+    if (ids.length !== records.length)
+    {
+        logger.warn('Not all images were retrieved');
+    }
+
+    const storageKeys = records.map(record => record.storageKey);
+
+    const filesMap = await retrieveFiles(storageKeys);
+
+    return toImageData(records, filesMap);
+}

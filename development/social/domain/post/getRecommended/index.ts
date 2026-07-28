@@ -1,11 +1,11 @@
 
 import { type Requester } from '@comify/common/security';
-import filterResolved from '~/common/filterResolved';
+
 import type { Range } from '~/common/validateRange';
 import validateRange from '~/common/validateRange';
 
 import type { Post } from '../definitions';
-import toModel from '../_toModel';
+import toModels from '../_toModels';
 
 import retrieve from './retrieve';
 
@@ -15,7 +15,7 @@ export default async function run(requester: Requester, range: Range): Promise<P
 
     const records = await retrieve(requester.tenantId, requester.principalId, range.limit, range.offset);
 
-    const posts = records.map(item => toModel(requester, item));
+    const posts = await toModels(requester, records);
 
-    return filterResolved(posts);
+    return [...posts.values()];
 }

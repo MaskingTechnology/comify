@@ -1,7 +1,6 @@
 
-import logger from '@comify/common/integrations/logging';
-
 import { type Record } from '../definitions';
+import { logger } from '../integrations';
 import CreatorNotFound from './CreatorNotFound';
 
 import retrieve from './retrieve';

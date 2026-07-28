@@ -1,7 +1,6 @@
 
-import logger from '@comify/common/integrations/logging';
-
 import type { Type } from '../definitions';
+import { logger } from '../integrations';
 
 import createRecord from './createRecord';
 import persist from './persist';

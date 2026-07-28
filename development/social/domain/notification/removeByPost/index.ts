@@ -1,5 +1,5 @@
 
-import logger from '@comify/common/integrations/logging';
+import { logger } from '../integrations';
 
 import retrieve from './retrieve';
 import remove from './remove';

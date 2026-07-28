@@ -1,9 +1,9 @@
 
 import { type Tenant } from '@comify/common/domain/tenant';
-import logger from '@comify/common/integrations/logging';
 
-import createRecord from './createRecord';
 import { type CreateData } from './definitions';
+import { logger } from '../integrations';
+import createRecord from './createRecord';
 import erase from './erase';
 import makeFullName from './makeFullName';
 import makeNickname from './makeNickname';
@@ -33,7 +33,7 @@ export default async function run(tenant: Tenant, data: CreateData): Promise<str
     }
     catch (error)
     {
-        logger.error('Failed to register creator', error);
+        logger.error('Failed to create creator', error);
 
         erase(record.id);
 

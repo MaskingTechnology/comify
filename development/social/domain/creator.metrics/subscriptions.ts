@@ -9,7 +9,7 @@ import updateFollowerCount from './updateFollowers';
 import updateFollowingCount from './updateFollowing';
 import updatePostCount from './updatePosts';
 
-export default async function subscriptions(): Promise<void>
+export default async function subscribe(): Promise<void>
 {
     await Promise.all([
         onCreatorAdded(({ creatorId }) => createMetrics(creatorId)),
@@ -20,4 +20,4 @@ export default async function subscriptions(): Promise<void>
     ]);
 }
 
-subscriptions();
+subscribe();

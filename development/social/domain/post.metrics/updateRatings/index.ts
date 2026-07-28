@@ -1,8 +1,7 @@
 
-import logger from '@comify/common/integrations/logging';
-
 import retrieve from '../_retrieveByPost';
 import type { CountOperation } from '../definitions';
+import { logger } from '../integrations';
 import persist from './persist';
 
 export default async function updateRatings(postId: string, operation: CountOperation): Promise<number>

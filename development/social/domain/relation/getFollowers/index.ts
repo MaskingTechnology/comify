@@ -5,7 +5,7 @@ import validateRange from '~/common/validateRange';
 
 import type { Relation } from '../definitions';
 import translateToRequester from '../_translateToRequester';
-import toModel from '../_toModel';
+import toModels from '../_toModels';
 
 import retrieve from './retrieve';
 
@@ -17,5 +17,7 @@ export default async function run(requester: Requester, followingId: string, ran
 
     const translated = await translateToRequester(requester.principalId, 'follower', records);
 
-    return Promise.all(translated.map(record => toModel(requester.tenantId, record)));
+    const relations = await toModels(requester.tenantId, records);
+
+    return [...relations.values()];
 }

@@ -1,9 +1,9 @@
 
-import logger from '@comify/common/integrations/logging';
-
 import { type Requester } from '@comify/common/security';
+
 import getCreator from '~/creator/_retrieveById';
 
+import { logger } from '../integrations';
 import exists from '../exists';
 
 import create from './create';
@@ -13,13 +13,15 @@ import RelationAlreadyExists from './RelationAlreadyExists';
 
 export default async function run(requester: Requester, followingId: string): Promise<void>
 {
+    const key = { followerId: requester.principalId, followingId };
+
     let id;
 
     try
     {
         await getCreator(requester.tenantId, followingId);
 
-        const relationExists = await exists(requester.principalId, followingId);
+        const relationExists = await exists(key);
 
         if (relationExists)
         {

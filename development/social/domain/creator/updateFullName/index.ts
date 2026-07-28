@@ -1,7 +1,7 @@
 
-import logger from '@comify/common/integrations/logging';
-
 import { type Requester } from '@comify/common/security';
+
+import { logger } from '../integrations';
 
 import validate from './validate';
 import persist from './persist';

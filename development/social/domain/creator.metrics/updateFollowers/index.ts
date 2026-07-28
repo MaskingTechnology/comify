@@ -1,7 +1,6 @@
 
-import logger from '@comify/common/integrations/logging';
-
 import type { CountOperation } from '../definitions';
+import { logger } from '../integrations';
 import retrieve from '../_retrieveByCreator';
 import persist from './persist';
 

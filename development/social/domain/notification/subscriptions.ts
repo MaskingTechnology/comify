@@ -9,7 +9,7 @@ import notifyPostRated from './notifyPostRated';
 import notifyStartedFollowing from './notifyStartedFollowing';
 import removePostRelatedNotifications from './removeByPost';
 
-export default async function subscriptions(): Promise<void>
+export default async function subscribe(): Promise<void>
 {
     await Promise.all([
         onPostAdded(({ tenantId, postId }) => notifyReactionAdded(tenantId, postId)),
@@ -19,4 +19,4 @@ export default async function subscriptions(): Promise<void>
     ]);
 }
 
-subscriptions();
+subscribe();

@@ -5,8 +5,8 @@ import type { Range } from '~/common/validateRange';
 import validateRange from '~/common/validateRange';
 import retrieveOtherCreators from '~/creator/getOtherIds';
 
-import toModel from '../_toModel';
 import type { SortOrder, Relation } from '../definitions';
+import toModels from '../_toModels';
 import retrieveFollowing from '../_retrieveFollowing';
 
 export default async function run(requester: Requester, order: SortOrder, range: Range, search: string | undefined = undefined): Promise<Relation[]>
@@ -24,5 +24,7 @@ export default async function run(requester: Requester, order: SortOrder, range:
         return { id: undefined, followerId: requester.principalId, followingId: creatorId };
     });
 
-    return Promise.all(records.map(item => toModel(requester.tenantId, item)));
+    const relations = await toModels(requester.tenantId, records);
+
+    return [...relations.values()];
 }

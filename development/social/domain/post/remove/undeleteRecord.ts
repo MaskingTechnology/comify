@@ -1,8 +1,8 @@
 
 import database from '@comify/common/integrations/database';
-import logger from '@comify/common/integrations/logging';
 
 import { RECORD_TYPE, type Record } from '../definitions';
+import { logger } from '../integrations';
 
 export default async function undeleteRecord(id: string): Promise<void>
 {

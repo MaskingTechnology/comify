@@ -1,6 +1,6 @@
 
 import database from '@comify/common/integrations/database';
-import logger from '@comify/common/integrations/logging';
+import { logger } from '../integrations';
 
 import { RECORD_TYPE, type Record } from '../definitions';
 

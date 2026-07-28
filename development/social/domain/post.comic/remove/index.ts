@@ -1,8 +1,7 @@
 
-import logger from '@comify/common/integrations/logging';
-
 import removeImage from '~/image/remove';
 
+import { logger } from '../integrations';
 import retrieve from '../_retrieveById';
 
 import erase from './erase';

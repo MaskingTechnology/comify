@@ -8,7 +8,7 @@ import createMetrics from './create';
 import updateReactionCount from './updateReactions';
 import updateRatingCount from './updateRatings';
 
-export default async function subscriptions(): Promise<void>
+export default async function subscribe(): Promise<void>
 {
     await Promise.all([
         onPostAdded(({ postId }) => createMetrics(postId)),
@@ -19,4 +19,4 @@ export default async function subscriptions(): Promise<void>
     ]);
 }
 
-subscriptions();
+subscribe();

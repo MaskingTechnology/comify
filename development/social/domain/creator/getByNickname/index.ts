@@ -1,8 +1,8 @@
 
 import { type Requester } from '@comify/common/security';
-import logger from '@comify/common/integrations/logging';
 
 import type { Creator } from '../definitions';
+import { logger } from '../integrations';
 import toModel from '../_toModel';
 
 import retrieve from './retrieve';

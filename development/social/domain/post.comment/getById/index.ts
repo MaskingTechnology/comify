@@ -1,7 +1,6 @@
 
-import logger from '@comify/common/integrations/logging';
-
 import type { Comment } from '../definitions';
+import { logger } from '../integrations';
 import toModel from '../_toModel';
 
 import retrieve from './retrieve';

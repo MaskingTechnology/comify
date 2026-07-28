@@ -1,32 +1,32 @@
 
 import { type Requester } from '@comify/common/security';
-import getComicData from '~/post.comic/getById';
-import getCommentData from '~/post.comment/getById';
-import getMetrics from '~/post.metrics/getByPost';
+import getComic from '~/post.comic/getById';
+import getComment from '~/post.comment/getById';
+import getMetrics from '~/post.metrics/get';
 import ratingExists from '~/post.rating/exists';
-import getRelationData from '~/relation/get';
+import getRelation from '~/relation/get';
 
 import type { Record, Post } from '../definitions';
 
 export default async function run(requester: Requester, record: Record): Promise<Post>
 {
-    const [creatorData, isRated, comicData, commentData, metricsData] = await Promise.all([
-        getRelationData(requester, requester.principalId, record.creatorId),
-        ratingExists(requester.principalId, record.id),
-        record.comicId ? getComicData(record.comicId) : Promise.resolve(undefined),
-        record.commentId ? getCommentData(record.commentId) : Promise.resolve(undefined),
+    const [creator, isRated, comic, comment, metrics] = await Promise.all([
+        getRelation(requester, { followerId: requester.principalId, followingId: record.creatorId }),
+        ratingExists({ creatorId: requester.principalId, postId: record.id }),
+        record.comicId ? getComic(record.comicId) : Promise.resolve(undefined),
+        record.commentId ? getComment(record.commentId) : Promise.resolve(undefined),
         getMetrics(record.id)
     ]);
 
     return {
         id: record.id,
         createdAt: record.createdAt,
-        creator: creatorData,
-        comic: comicData,
-        comment: commentData,
+        creator: creator,
+        comic: comic,
+        comment: comment,
         parentId: record.parentId,
         hasParent: record.parentId !== undefined,
-        metrics: metricsData,
+        metrics: metrics,
         isRated
     };
 }

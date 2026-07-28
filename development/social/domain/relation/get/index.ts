@@ -1,13 +1,13 @@
 
 import { type Requester } from '@comify/common/security';
 
-import type { Relation } from '../definitions';
+import type { RelationKey, Relation } from '../definitions';
 import toModel from '../_toModel';
 import retrieve from '../_retrieve';
 
-export default async function run(requester: Requester, followerId: string, followingId: string): Promise<Relation>
+export default async function run(requester: Requester, key: RelationKey): Promise<Relation>
 {
-    const record = await retrieve(followerId, followingId);
+    const record = await retrieve(key.followerId, key.followingId);
 
     return toModel(requester.tenantId, record);
 }

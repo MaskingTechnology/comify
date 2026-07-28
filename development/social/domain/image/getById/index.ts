@@ -1,7 +1,6 @@
 
-import logger from '@comify/common/integrations/logging';
-
 import type { ImageData } from '../definitions';
+import { logger } from '../integrations';
 
 import createDataUrl from './createDataUrl';
 import retrieveRecord from './retrieveRecord';

@@ -1,9 +1,8 @@
 
-import logger from '@comify/common/integrations/logging';
-
 import retrievePost from '~/post/_retrieveById';
 
 import type { CountOperation } from '../definitions';
+import { logger } from '../integrations';
 import retrieveMetrics from '../_retrieveByCreator';
 import persist from './persist';
 
