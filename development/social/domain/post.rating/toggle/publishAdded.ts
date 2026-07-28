@@ -3,7 +3,7 @@ import { publish as publishRatingAdded } from '@comify/common/domain/post.rating
 
 import { CONTEXT_ID } from '~/definitions';
 
-export default async function publish(tenantId: string, creatorId: string, postId: string, rated: boolean): Promise<void>
+export default async function (tenantId: string, creatorId: string, postId: string, rated: boolean): Promise<void>
 {
     return publishRatingAdded({
         contextId: CONTEXT_ID,

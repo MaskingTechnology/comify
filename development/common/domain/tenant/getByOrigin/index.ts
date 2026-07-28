@@ -7,7 +7,7 @@ import retrieve from './retrieve';
 import validate from './validate';
 import TenantNotFound from './TenantNotFound';
 
-export default async function run(origin: string): Promise<Tenant>
+export default async function (origin: string): Promise<Tenant>
 {
     validate(origin);
 

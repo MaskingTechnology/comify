@@ -9,7 +9,7 @@ type Props = {
     readonly identity: Creator;
 };
 
-export default function Component({ identity }: Props)
+export default function ({ identity }: Props)
 {
     return <Column alignX='stretch' alignY='center'>
         <Menu vertical={false} identity={identity} />

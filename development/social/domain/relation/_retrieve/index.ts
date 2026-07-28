@@ -3,7 +3,7 @@ import { type Record } from '../definitions';
 
 import retrieve from './retrieve';
 
-export default async function run(followerId: string, followingId: string): Promise<Record>
+export default async function (followerId: string, followingId: string): Promise<Record>
 {
     const record = await retrieve(followerId, followingId);
 

@@ -9,7 +9,7 @@ import Sidebar from '../components/Sidebar';
 
 import { useAppContext } from '../contexts/AppContext';
 
-export default function Page()
+export default function ()
 {
     const navigate = useNavigate();
     const onLogout = () => navigate('/logout');

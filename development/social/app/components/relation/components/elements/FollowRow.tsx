@@ -15,7 +15,7 @@ type Props = {
     readonly children: ReactNode;
 };
 
-export default function Component({ isFollowing, isSelf, onFollowClick, onEditClick, children }: Props)
+export default function ({ isFollowing, isSelf, onFollowClick, onEditClick, children }: Props)
 {
     return <Row alignX='justify' alignY='top'>
         {children}

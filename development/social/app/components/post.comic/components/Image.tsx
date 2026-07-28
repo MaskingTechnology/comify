@@ -7,7 +7,7 @@ type Props = {
     readonly comic: Comic;
 };
 
-export default function Component({ comic }: Props)
+export default function ({ comic }: Props)
 {
     return <Image source={comic.image.dataUrl} width='100%' />;
 }

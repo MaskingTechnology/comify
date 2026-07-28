@@ -3,19 +3,19 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { Menu } from '@maskingtech/designsystem';
 
-type Item ={
+type Item = {
     readonly title: string;
     readonly route: string;
     readonly activeIcon: string;
     readonly inactiveIcon: string;
-}
+};
 
 type Props = {
     readonly vertical: boolean;
     readonly items: Item[];
 };
 
-export default function Component({ vertical, items }: Props)
+export default function ({ vertical, items }: Props)
 {
     const location = useLocation();
     const navigate = useNavigate();

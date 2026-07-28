@@ -9,7 +9,7 @@ type Props = {
     readonly onClick: () => void;
 };
 
-export default function Component({ comic, message, onClick }: Props)
+export default function ({ comic, message, onClick }: Props)
 {
     return <Row gap='medium' alignX='justify'>
         <Text value={message} />

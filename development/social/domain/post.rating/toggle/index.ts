@@ -5,7 +5,7 @@ import retrieve from './retrieve';
 import switchOff from './switchOff';
 import switchOn from './switchOn';
 
-export default async function run(requester: Requester, postId: string): Promise<boolean>
+export default async function (requester: Requester, postId: string): Promise<boolean>
 {
     const record = await retrieve(requester.principalId, postId);
 

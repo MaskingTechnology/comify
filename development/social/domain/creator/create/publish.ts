@@ -3,7 +3,7 @@ import { publish as publishCreatorAdded } from '@comify/common/domain/creator/ad
 
 import { CONTEXT_ID } from '~/definitions';
 
-export default async function publish(tenantId: string, creatorId: string): Promise<void>
+export default async function (tenantId: string, creatorId: string): Promise<void>
 {
     return publishCreatorAdded({
         contextId: CONTEXT_ID,

@@ -13,7 +13,7 @@ type Props = {
     readonly onClick: EngageHandler;
 };
 
-export default function Component({ isEngaged, count, onClick }: Props)
+export default function ({ isEngaged, count, onClick }: Props)
 {
     const [isRated, ratingCount, handleClick] = useEngagement(isEngaged, count, onClick);
 

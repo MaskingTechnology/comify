@@ -3,7 +3,7 @@ import type { Metrics } from '../definitions';
 import retrieve from '../_retrieveByPost';
 import toModel from '../_toModel';
 
-export default async function run(postId: string): Promise<Metrics>
+export default async function (postId: string): Promise<Metrics>
 {
     const record = await retrieve(postId);
 

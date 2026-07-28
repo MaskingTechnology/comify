@@ -8,7 +8,7 @@ import ImageNotDownloaded from './ImageNotDownloaded';
 const CONTENT_TYPE = 'Content-Type';
 const CONTENT_LENGTH = 'Content-Length';
 
-export default async function getMetaData(imageUrl: string): Promise<MetaData>
+export default async function (imageUrl: string): Promise<MetaData>
 {
     const response = await http.head(imageUrl);
 

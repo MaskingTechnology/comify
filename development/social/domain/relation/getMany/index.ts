@@ -7,7 +7,7 @@ import toModels from '../_toModels';
 
 import retrieve from './retrieve';
 
-export default async function run(requester: Requester, keys: RelationKey[]): Promise<Map<string, Relation>>
+export default async function (requester: Requester, keys: RelationKey[]): Promise<Map<string, Relation>>
 {
     const records = await retrieve(keys);
 

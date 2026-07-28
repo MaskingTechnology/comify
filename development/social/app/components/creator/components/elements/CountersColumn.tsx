@@ -13,7 +13,7 @@ type Props = {
     readonly onNameClick: () => void;
 };
 
-export default function Component({ fullName, nickname, postCount, followerCount, followingCount, onNameClick }: Props)
+export default function ({ fullName, nickname, postCount, followerCount, followingCount, onNameClick }: Props)
 {
     return <Column gap='small' alignY='justify' alignX='stretch'>
         <ClickArea onClick={onNameClick} padding='none'>

@@ -5,7 +5,7 @@ type Props = {
     readonly text: string;
 };
 
-export default function Component({ text }: Props)
+export default function ({ text }: Props)
 {
     return <Paragraph>
         {text}

@@ -7,7 +7,7 @@ type Props = {
     readonly onLogout: () => void;
 };
 
-export default function Component({ onLogout }: Props)
+export default function ({ onLogout }: Props)
 {
     return <ClickArea onClick={() => onLogout()}>
         <Image source={logoutIcon} alt='Logout' width='1em' />

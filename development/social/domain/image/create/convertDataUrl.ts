@@ -5,7 +5,7 @@ import InvalidDataURL from './InvalidDataURL';
 
 const DATA_URL_REGEX = /^record:(image\/(\w+));base64,(.*)$/;
 
-export default async function convertDataUrl(dataUrl: string): Promise<Image>
+export default async function (dataUrl: string): Promise<Image>
 {
     const matches = DATA_URL_REGEX.exec(dataUrl);
 

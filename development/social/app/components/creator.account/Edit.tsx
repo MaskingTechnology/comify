@@ -15,7 +15,7 @@ type Context = {
     identity: Creator;
 };
 
-export default function Feature()
+export default function ()
 {
     const { identity } = useOutletContext<Context>();
 

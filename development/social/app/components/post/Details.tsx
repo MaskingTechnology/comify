@@ -19,7 +19,7 @@ import useViewPostDetails from './hooks/useViewPostDetails';
 
 import Reactions from './Reactions';
 
-export default function Feature()
+export default function ()
 {
     const goToParentPost = useGoToParentPost();
     const establishRelation = useEstablish();

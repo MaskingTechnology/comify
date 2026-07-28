@@ -9,7 +9,7 @@ import publish from './publish';
 import deleteRecord from './deleteRecord';
 import undeleteRecord from './undeleteRecord';
 
-export default async function remove(requester: Requester, id: string): Promise<void>
+export default async function (requester: Requester, id: string): Promise<void>
 {
     // We only delete the post itself and do not cascade it towards it's children as it doesn't add
     // any value, and it would make the code more complex.

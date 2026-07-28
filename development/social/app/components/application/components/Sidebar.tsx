@@ -12,7 +12,7 @@ type Props = {
     readonly onLogout: () => void;
 };
 
-export default function Component({ identity, onLogout }: Props)
+export default function ({ identity, onLogout }: Props)
 {
     return <Row alignY='stretch' alignX='justify' gap='large'>
         <Column gap='large' alignX='stretch'>

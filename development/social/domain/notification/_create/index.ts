@@ -5,7 +5,7 @@ import { logger } from '../integrations';
 import createRecord from './createRecord';
 import persist from './persist';
 
-export default async function run(type: Type, senderId: string, receiverId: string, postId: string | undefined = undefined): Promise<void>
+export default async function (type: Type, senderId: string, receiverId: string, postId: string | undefined = undefined): Promise<void>
 {
     if (senderId === receiverId)
     {

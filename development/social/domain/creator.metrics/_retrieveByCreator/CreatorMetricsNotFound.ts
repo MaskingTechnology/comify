@@ -1,7 +1,7 @@
 
 import { NotFound } from '@comify/common/integrations/errors';
 
-export default class CreatorMetricsNotFound extends NotFound
+export default class extends NotFound
 {
     constructor()
     {

@@ -5,7 +5,7 @@ import { logger } from '../integrations';
 import retrieve from './retrieve';
 import ComicNotFound from './ComicNotFound';
 
-export default async function run(id: string): Promise<Record>
+export default async function (id: string): Promise<Record>
 {
     const record = await retrieve(id);
 

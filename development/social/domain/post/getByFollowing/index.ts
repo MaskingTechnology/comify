@@ -10,7 +10,7 @@ import toModels from '../_toModels';
 
 import retrieve from './retrieve';
 
-export default async function run(requester: Requester, range: Range): Promise<Post[]>
+export default async function (requester: Requester, range: Range): Promise<Post[]>
 {
     validateRange(range);
 

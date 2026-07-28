@@ -15,7 +15,7 @@ type Props = {
     readonly onReactionClick: (post: Post) => void;
 };
 
-export default function Component({ posts, onFollowClick, onCreatorClick, onContentClick, onRatingClick, onReactionClick }: Props)
+export default function ({ posts, onFollowClick, onCreatorClick, onContentClick, onRatingClick, onReactionClick }: Props)
 {
     return <Column gap='medium' alignX='stretch'>
         {

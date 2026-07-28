@@ -5,10 +5,10 @@ import { useAppContext } from './contexts/AppContext';
 
 import Login from './Login';
 
-export default function ProtectedRoute()
+export default function ()
 {
     const { identity } = useAppContext();
-    
+
     if (identity === undefined)
     {
         return <Login />;

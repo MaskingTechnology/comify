@@ -11,7 +11,7 @@ type Props = {
 
 const MESSAGE = 'I added a reaction.';
 
-export default function Component({ post, onClick }: Props)
+export default function ({ post, onClick }: Props)
 {
     return post.comic !== undefined
         ? <Comic comic={post.comic} message={MESSAGE} onClick={onClick} />

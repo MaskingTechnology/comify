@@ -1,10 +1,10 @@
 
 import { Column, List, Paragraph, Text, Title } from '@maskingtech/designsystem';
 
-export default function Feature()
+export default function ()
 {
     return <Column gap='large'>
-    
+
         <Column gap='medium'>
             <Title size='large'>Terms of Use</Title>
             <Paragraph>

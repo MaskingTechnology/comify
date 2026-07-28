@@ -4,7 +4,7 @@ import { logger } from '../integrations';
 import retrieve from './retrieve';
 import remove from './remove';
 
-export default async function run(postId: string): Promise<void>
+export default async function (postId: string): Promise<void>
 {
     const records = await retrieve(postId);
 

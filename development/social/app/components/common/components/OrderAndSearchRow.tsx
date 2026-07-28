@@ -10,7 +10,7 @@ type Props = {
     readonly onSearchChange: (newValue: string) => void;
 };
 
-export default function Component({ selected, onOrderChange, onSearchChange }: Props)
+export default function ({ selected, onOrderChange, onSearchChange }: Props)
 {
     const [, setValue] = useDebouncedValue<string>('', onSearchChange);
 

@@ -5,7 +5,7 @@ type Props = {
     readonly isFollowing: boolean;
 };
 
-export default function Component({ isFollowing }: Props)
+export default function ({ isFollowing }: Props)
 {
     const message = 'I started following you.'
         + (isFollowing ? '' : ' Hit the Follow button to follow me back.');

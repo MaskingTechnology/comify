@@ -5,7 +5,7 @@ import type { Creator } from '../definitions';
 import toModel from '../_toModel';
 import retrieveById from '../_retrieveById';
 
-export default async function getMe(requester: Requester): Promise<Creator>
+export default async function (requester: Requester): Promise<Creator>
 {
     const record = await retrieveById(requester.tenantId, requester.principalId);
 

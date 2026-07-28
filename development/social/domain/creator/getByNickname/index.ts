@@ -8,7 +8,7 @@ import toModel from '../_toModel';
 import retrieve from './retrieve';
 import NicknameNotFound from './NicknameNotFound';
 
-export default async function run(requester: Requester, nickname: string): Promise<Creator>
+export default async function (requester: Requester, nickname: string): Promise<Creator>
 {
     const record = await retrieve(requester.tenantId, nickname);
 

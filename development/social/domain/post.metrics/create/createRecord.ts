@@ -3,7 +3,7 @@ import { generateId } from '@comify/common/integrations/utilities/crypto';
 
 import type { Record } from '../definitions';
 
-export default function createRecord(postId: string): Record
+export default function (postId: string): Record
 {
     return {
         id: generateId(),

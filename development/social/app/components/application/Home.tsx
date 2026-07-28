@@ -6,7 +6,7 @@ import LegalInfo from './components/LegalInfo';
 
 import useNavigateLogin from './hooks/useNavigateLogin';
 
-export default function Feature()
+export default function ()
 {
     const login = useNavigateLogin();
 

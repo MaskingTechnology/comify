@@ -3,7 +3,7 @@ import type { Record, Comment } from '../definitions';
 
 import toModel from '../_toModel';
 
-export default async function run(records: Record[]): Promise<Map<string, Comment>>
+export default async function (records: Record[]): Promise<Map<string, Comment>>
 {
     const models = await Promise.all(records.map(toModel));
 

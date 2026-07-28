@@ -12,7 +12,7 @@ type Props = {
 const COMIC_MESSAGE = 'I like your comic.';
 const COMMENT_MESSAGE = 'I like your comment.';
 
-export default function Component({ post, onClick }: Props)
+export default function ({ post, onClick }: Props)
 {
     return post.comic !== undefined
         ? <Comic comic={post.comic} message={COMIC_MESSAGE} onClick={onClick} />

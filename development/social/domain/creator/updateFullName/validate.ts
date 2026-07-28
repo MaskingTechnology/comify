@@ -11,7 +11,7 @@ const schema: ValidationSchema =
     fullName: fullNameValidation
 };
 
-export default function validate(fullName: string): void
+export default function (fullName: string): void
 {
     const result = validator.validate({ fullName }, schema);
 

@@ -16,7 +16,7 @@ type Props = {
     readonly onReactionClick: () => void;
 };
 
-export default function Component({ post, onContentClick, onRatingClick, onReactionClick }: Props)
+export default function ({ post, onContentClick, onRatingClick, onReactionClick }: Props)
 {
     return <Panel padding='small'>
         <Column gap='small' alignX='stretch'>

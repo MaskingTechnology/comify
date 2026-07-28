@@ -33,7 +33,7 @@ const schema: ValidationSchema =
     }
 };
 
-export default function run({ offset, limit }: Range): void
+export default function ({ offset, limit }: Range): void
 {
     const result = validator.validate({ offset, limit }, schema);
 

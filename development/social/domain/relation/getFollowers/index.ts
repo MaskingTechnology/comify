@@ -9,7 +9,7 @@ import toModels from '../_toModels';
 
 import retrieve from './retrieve';
 
-export default async function run(requester: Requester, followingId: string, range: Range): Promise<Relation[]>
+export default async function (requester: Requester, followingId: string, range: Range): Promise<Relation[]>
 {
     validateRange(range);
 

@@ -5,7 +5,7 @@ import database from '@comify/common/integrations/database';
 
 import { RECORD_TYPE, type Record } from '../definitions';
 
-export default async function retrieve(followerId: string, limit: number | undefined = undefined, offset: number | undefined = undefined): Promise<Record[]>
+export default async function (followerId: string, limit: number | undefined = undefined, offset: number | undefined = undefined): Promise<Record[]>
 {
     const query: RecordQuery<Record> =
     {

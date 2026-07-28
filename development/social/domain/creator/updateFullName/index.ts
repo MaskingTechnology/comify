@@ -7,7 +7,7 @@ import validate from './validate';
 import persist from './persist';
 import publish from './publish';
 
-export default async function run(requester: Requester, fullName: string): Promise<void>
+export default async function (requester: Requester, fullName: string): Promise<void>
 {
     validate(fullName);
 

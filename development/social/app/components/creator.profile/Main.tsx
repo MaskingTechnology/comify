@@ -10,7 +10,7 @@ import { Profile } from '~/components/relation';
 import useProfile from './hooks/useProfile';
 import useEditProfile from './hooks/useEditProfile';
 
-export default function Feature()
+export default function ()
 {
     const { nickname } = useParams();
     const [profile, isLoading] = useProfile(nickname);

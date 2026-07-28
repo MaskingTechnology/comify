@@ -12,7 +12,7 @@ type Props = {
     readonly onCreatorClick: (relation: Relation) => void;
 };
 
-export default function Component({ relations, onFollowClick, onEditClick, onCreatorClick }: Props)
+export default function ({ relations, onFollowClick, onEditClick, onCreatorClick }: Props)
 {
     return <Column gap='medium' alignX='stretch'>
         {

@@ -7,7 +7,7 @@ type Props = {
     children: ReactNode;
 };
 
-export default function Component({ children }: Props)
+export default function ({ children }: Props)
 {
     const [tenant] = useTenant();
 

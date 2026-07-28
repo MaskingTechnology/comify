@@ -1,7 +1,7 @@
 
 import type { Record, ImageData } from '../definitions';
 
-export default function toImageData(records: Record[], filesMap: Map<string, Buffer>): Map<string, ImageData>
+export default function (records: Record[], filesMap: Map<string, Buffer>): Map<string, ImageData>
 {
     const map = new Map();
 

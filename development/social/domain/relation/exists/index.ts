@@ -3,7 +3,7 @@ import { type RelationKey } from '../definitions';
 
 import retrieve from './retrieve';
 
-export default async function run(key: RelationKey): Promise<boolean>
+export default async function (key: RelationKey): Promise<boolean>
 {
     const record = await retrieve(key.followerId, key.followingId);
 

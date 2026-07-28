@@ -19,7 +19,7 @@ import usePost from './hooks/usePost';
 import useConfirmPostRemoval from './hooks/useConfirmPostRemoval';
 import useViewPostDetails from './hooks/useViewPostDetails';
 
-export default function Feature()
+export default function ()
 {
     const establishRelation = useEstablish();
     const togglePostRating = useToggle();

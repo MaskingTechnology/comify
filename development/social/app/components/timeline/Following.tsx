@@ -1,7 +1,7 @@
 
 import { Following } from '~/components/post';
 
-export default function Feature()
+export default function ()
 {
     return <Following />;
 }

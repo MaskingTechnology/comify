@@ -3,7 +3,7 @@ import database from '@comify/common/integrations/database';
 
 import { RECORD_TYPE, type Record } from '../definitions';
 
-export default async function retrieve(postIds: string[]): Promise<Record[]>
+export default async function (postIds: string[]): Promise<Record[]>
 {
     return database.searchRecords<Record>(RECORD_TYPE, {
         postId: { IN: postIds }

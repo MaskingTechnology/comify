@@ -1,7 +1,7 @@
 
 import useIdentify from './hooks/useIdentify';
 
-export default function Feature()
+export default function ()
 {
     useIdentify();
 

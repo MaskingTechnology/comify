@@ -5,8 +5,6 @@ import validator from '@comify/common/integrations/validation';
 
 import { requiredIdValidation } from '~/definitions';
 
-import type { Record } from '../definitions';
-
 import { type CreateData } from './definitions';
 import InvalidComic from './InvalidComic';
 
@@ -23,7 +21,7 @@ const schema: ValidationSchema =
     }
 };
 
-export default function validate(data: CreateData): void
+export default function (data: CreateData): void
 {
     const result = validator.validate(data, schema);
 

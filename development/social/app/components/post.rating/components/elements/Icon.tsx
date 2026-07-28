@@ -8,7 +8,7 @@ type Props = {
     readonly isRated: boolean;
 };
 
-export default function Component({ isRated }: Props)
+export default function ({ isRated }: Props)
 {
     return <Image source={isRated ? ratedIcon : unratedIcon} height='1.2em' />;
 }

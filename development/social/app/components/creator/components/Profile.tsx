@@ -8,7 +8,7 @@ type Props = {
     readonly creator: Creator;
 };
 
-export default function Component({ creator }: Props)
+export default function ({ creator }: Props)
 {
     return <AvatarRow avatarSize='large' avatarUrl={creator.portrait?.dataUrl}>
         <JoinedColumn

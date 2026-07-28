@@ -5,7 +5,7 @@ import database from '@comify/common/integrations/database';
 
 import { RECORD_TYPE, type Record } from '../definitions';
 
-export default async function retrieveByStartNickname(tenantId: string, nickname: string): Promise<Record | undefined>
+export default async function (tenantId: string, nickname: string): Promise<Record | undefined>
 {
     const query: RecordQuery<Record> = {
         tenantId: { 'EQUALS': tenantId },

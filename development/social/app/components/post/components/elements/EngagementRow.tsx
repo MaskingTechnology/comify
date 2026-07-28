@@ -12,7 +12,7 @@ type Props = {
     readonly onReactionClick: () => void;
 };
 
-export default function Component({ isRated, ratingCount, reactionCount, onRatingClick, onReactionClick }: Props)
+export default function ({ isRated, ratingCount, reactionCount, onRatingClick, onReactionClick }: Props)
 {
     return <Row gap='medium' alignY='center'>
         <RatingEngagement isEngaged={isRated} count={ratingCount} onClick={onRatingClick} />

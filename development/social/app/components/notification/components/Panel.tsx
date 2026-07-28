@@ -28,7 +28,7 @@ function getContent(notification: Notification, onNotificationClick: (notificati
     }
 }
 
-export default function Component({ notification, onFollowClick, onCreatorClick, onNotificationClick }: Props)
+export default function ({ notification, onFollowClick, onCreatorClick, onNotificationClick }: Props)
 {
     return <Panel>
         <Column gap='medium' alignX='stretch'>

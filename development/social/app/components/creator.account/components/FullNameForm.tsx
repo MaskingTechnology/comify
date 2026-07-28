@@ -13,7 +13,7 @@ type Props = {
 
 const FULL_NAME_MAX_LENGTH = 100;
 
-export default function Component({ fullName, onSubmit }: Props)
+export default function ({ fullName, onSubmit }: Props)
 {
     const handleSubmit = useFullNameFormHandler(onSubmit);
 

@@ -10,7 +10,7 @@ const options = new Map<string, string>();
 options.set('recent', 'Most recent');
 options.set('popular', 'Most popular');
 
-export default function Component({ selected, onChange }: Props)
+export default function ({ selected, onChange }: Props)
 {
     return <Select border='none' name='order'
         options={options}

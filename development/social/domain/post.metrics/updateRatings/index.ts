@@ -4,7 +4,7 @@ import type { CountOperation } from '../definitions';
 import { logger } from '../integrations';
 import persist from './persist';
 
-export default async function updateRatings(postId: string, operation: CountOperation): Promise<number>
+export default async function (postId: string, operation: CountOperation): Promise<number>
 {
     const record = await retrieve(postId);
 

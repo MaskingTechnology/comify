@@ -7,7 +7,7 @@ import retrieveByStartNickname from './retrieveByStartNickname';
 
 import { MAX_NICKNAME_NUMBER } from './definitions';
 
-export default async function makeNickname(tenantId: string, nickname: string): Promise<string>
+export default async function (tenantId: string, nickname: string): Promise<string>
 {
     const cleanedNickname = cleanNickname(nickname);
 

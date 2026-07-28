@@ -9,7 +9,7 @@ type Data = {
     readonly parentId?: string;
 };
 
-export default async function run(requester: Requester, data: Data): Promise<string>
+export default async function (requester: Requester, data: Data): Promise<string>
 {
     const commentId = await createComment({ message: data.message });
 

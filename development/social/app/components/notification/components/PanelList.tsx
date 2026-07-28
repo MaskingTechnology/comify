@@ -13,7 +13,7 @@ type Props = {
     readonly onNotificationClick: (notification: Notification) => void;
 };
 
-export default function Component({ notifications, onFollowClick, onCreatorClick, onNotificationClick }: Props)
+export default function ({ notifications, onFollowClick, onCreatorClick, onNotificationClick }: Props)
 {
     return <Column gap='medium' alignX='stretch'>
         {

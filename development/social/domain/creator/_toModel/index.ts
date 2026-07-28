@@ -4,7 +4,7 @@ import getImageData from '~/image/getById';
 
 import { type Record, type Creator } from '../definitions';
 
-export default async function run(record: Record): Promise<Creator>
+export default async function (record: Record): Promise<Creator>
 {
     const [portrait, metrics] = await Promise.all([
         record.portraitId !== undefined ? getImageData(record.portraitId) : Promise.resolve(undefined),

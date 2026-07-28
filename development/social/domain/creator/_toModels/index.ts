@@ -5,7 +5,7 @@ import { logger } from '../integrations';
 import getPortraits from '~/image/getManyById';
 import getMetrics from '~/creator.metrics/getMany';
 
-export default async function run(records: Record[]): Promise<Map<string, Creator>>
+export default async function (records: Record[]): Promise<Map<string, Creator>>
 {
     const portraitIds = new Set(records.map(record => record.portraitId).filter(id => id !== undefined));
     const creatorIds = new Set(records.map(record => record.id));

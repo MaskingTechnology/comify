@@ -21,7 +21,7 @@ type Props = {
 
 const SCROLL_THRESHOLD = 0.8;
 
-export default function Feature({ post }: Props)
+export default function ({ post }: Props)
 {
     const establishRelation = useEstablish();
     const viewProfile = useViewProfile();

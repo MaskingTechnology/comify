@@ -14,7 +14,7 @@ import useReorderList from './hooks/useReorderList';
 
 const SCROLL_THRESHOLD = 0.7;
 
-export default function Feature()
+export default function ()
 {
     const establishRelation = useEstablishRelation();
     const reorderList = useReorderList();

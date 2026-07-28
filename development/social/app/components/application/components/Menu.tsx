@@ -21,7 +21,7 @@ type Props = {
     readonly identity: Creator;
 };
 
-export default function Component({ vertical, identity }: Props)
+export default function ({ vertical, identity }: Props)
 {
     const items = useMemo(() => [
         { title: 'Timeline', route: '/timeline', activeIcon: timelineActiveIcon, inactiveIcon: timelineInactiveIcon },

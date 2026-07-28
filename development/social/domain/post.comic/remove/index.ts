@@ -6,7 +6,7 @@ import retrieve from '../_retrieveById';
 
 import erase from './erase';
 
-export default async function run(id: string): Promise<void>
+export default async function (id: string): Promise<void>
 {
     const record = await retrieve(id);
 

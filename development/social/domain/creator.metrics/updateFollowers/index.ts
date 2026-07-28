@@ -4,7 +4,7 @@ import { logger } from '../integrations';
 import retrieve from '../_retrieveByCreator';
 import persist from './persist';
 
-export default async function updateFollowers(creatorId: string, operation: CountOperation): Promise<number>
+export default async function (creatorId: string, operation: CountOperation): Promise<number>
 {
     const record = await retrieve(creatorId);
 

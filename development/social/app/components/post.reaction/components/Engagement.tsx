@@ -10,7 +10,7 @@ type Props = {
     readonly onClick: () => void;
 };
 
-export default function Component({ reactionCount, onClick }: Props)
+export default function ({ reactionCount, onClick }: Props)
 {
     return <ClickArea onClick={onClick}>
         <Row gap='small' alignX='left' alignY='center'>

@@ -1,7 +1,7 @@
 
 import { Explore } from '~/components/post';
 
-export default function Feature()
+export default function ()
 {
     return <Explore />;
 }

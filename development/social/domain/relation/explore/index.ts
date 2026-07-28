@@ -9,7 +9,7 @@ import type { SortOrder, Relation } from '../definitions';
 import toModels from '../_toModels';
 import retrieveFollowing from '../_retrieveFollowing';
 
-export default async function run(requester: Requester, order: SortOrder, range: Range, search: string | undefined = undefined): Promise<Relation[]>
+export default async function (requester: Requester, order: SortOrder, range: Range, search: string | undefined = undefined): Promise<Relation[]>
 {
     validateRange(range);
 

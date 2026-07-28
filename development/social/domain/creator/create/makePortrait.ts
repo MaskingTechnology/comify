@@ -3,7 +3,7 @@ import downloadImage from '~/image/download';
 
 import { IMAGE_TYPE } from '../definitions';
 
-export default async function makePortrait(portraitUrl?: string): Promise<string | undefined>
+export default async function (portraitUrl?: string): Promise<string | undefined>
 {
     if (portraitUrl === undefined)
     {

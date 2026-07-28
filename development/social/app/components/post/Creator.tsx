@@ -15,7 +15,7 @@ type Props = {
 
 const SCROLL_THRESHOLD = 0.9;
 
-export default function Feature({ creatorId }: Props)
+export default function ({ creatorId }: Props)
 {
     const viewPostDetails = useViewPostDetails();
     const toggleRating = useToggle();

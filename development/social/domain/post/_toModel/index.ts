@@ -8,7 +8,7 @@ import getRelation from '~/relation/get';
 
 import type { Record, Post } from '../definitions';
 
-export default async function run(requester: Requester, record: Record): Promise<Post>
+export default async function (requester: Requester, record: Record): Promise<Post>
 {
     const [creator, isRated, comic, comment, metrics] = await Promise.all([
         getRelation(requester, { followerId: requester.principalId, followingId: record.creatorId }),

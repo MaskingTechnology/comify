@@ -4,7 +4,7 @@ import { logger } from '../integrations';
 
 import { RECORD_TYPE, type Record } from '../definitions';
 
-export default async function run(id: string): Promise<void>
+export default async function (id: string): Promise<void>
 {
     const result = await database.deleteRecord<Record>(RECORD_TYPE, { id: { EQUALS: id } });
 

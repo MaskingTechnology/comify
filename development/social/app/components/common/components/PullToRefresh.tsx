@@ -11,7 +11,7 @@ type Props = {
 
 const DISPLAY_HEIGHT_EM = 8;
 
-export default function Component({ onRefresh, children }: Props)
+export default function ({ onRefresh, children }: Props)
 {
     const [containerRef, distance, readyToRefresh] = useRefreshOnPull(DISPLAY_HEIGHT_EM, onRefresh);
 

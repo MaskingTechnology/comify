@@ -7,7 +7,7 @@ import retrieveRecord from './retrieveRecord';
 import retrieveFile from './retrieveFile';
 import ImageNotFound from './ImageNotFound';
 
-export default async function run(id: string): Promise<ImageData>
+export default async function (id: string): Promise<ImageData>
 {
     const record = await retrieveRecord(id);
 

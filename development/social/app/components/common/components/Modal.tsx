@@ -7,7 +7,7 @@ type Props = {
     readonly children?: ReactNode;
 };
 
-export default function Component({ children }: Props)
+export default function ({ children }: Props)
 {
     return <Modal>
         <Border type='normal' size='medium' padding='small'>

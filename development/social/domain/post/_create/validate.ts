@@ -24,7 +24,7 @@ const schema: ValidationSchema =
     parentId: optionalIdValidation
 };
 
-export default function validate(data: CreateData): void
+export default function (data: CreateData): void
 {
     if (data.comicId === undefined && data.commentId === undefined)
     {

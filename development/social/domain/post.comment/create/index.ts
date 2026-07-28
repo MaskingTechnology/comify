@@ -4,7 +4,7 @@ import createRecord from './createRecord';
 import persist from './persist';
 import validate from './validate';
 
-export default async function run(data: CreateData): Promise<string>
+export default async function (data: CreateData): Promise<string>
 {
     validate(data);
 

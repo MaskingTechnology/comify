@@ -1,7 +1,7 @@
 
 import { Outlet } from 'react-router-dom';
 
-export default function Feature()
+export default function ()
 {
     return <Outlet />;
 }

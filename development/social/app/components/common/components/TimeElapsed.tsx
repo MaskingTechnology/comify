@@ -9,7 +9,7 @@ type Props = {
     readonly weight?: 'light' | 'normal' | 'bold';
 };
 
-export default function Component({ date, size = 'medium', weight = 'normal' }: Props)
+export default function ({ date, size = 'medium', weight = 'normal' }: Props)
 {
     const value = timeElapsed(date);
 

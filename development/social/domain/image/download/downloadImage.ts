@@ -3,7 +3,7 @@ import http from '@comify/common/integrations/http';
 
 import ImageNotDownloaded from './ImageNotDownloaded';
 
-export default async function downloadImage(imageUrl: string): Promise<Buffer>
+export default async function (imageUrl: string): Promise<Buffer>
 {
     const response = await http.get(imageUrl);
 

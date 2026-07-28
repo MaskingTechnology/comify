@@ -15,10 +15,10 @@ type ParamProps = {
     readonly postId: string;
 };
 
-export default function Feature()
+export default function ()
 {
-    const {postId} = useParams<ParamProps>();
-    
+    const { postId } = useParams<ParamProps>();
+
     const onCreated = useViewReaction(postId);
     const onCancelled = useViewPost(postId);
 

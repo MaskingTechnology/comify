@@ -10,7 +10,7 @@ import getRelations from '~/relation/getMany';
 import type { Record, Post } from '../definitions';
 import { logger } from '../integrations';
 
-export default async function run(requester: Requester, records: Record[]): Promise<Map<string, Post>>
+export default async function (requester: Requester, records: Record[]): Promise<Map<string, Post>>
 {
     const relationKeys = new Set(records.map(record => { return { followerId: requester.principalId, followingId: record.creatorId }; }));
     const ratingKeys = new Set(records.map(record => { return { creatorId: requester.principalId, postId: record.id }; }));

@@ -8,7 +8,7 @@ import publish from './publish';
 import validate from './validate';
 import erase from './erase';
 
-export default async function run(data: CreateData): Promise<string>
+export default async function (data: CreateData): Promise<string>
 {
     validate(data);
 

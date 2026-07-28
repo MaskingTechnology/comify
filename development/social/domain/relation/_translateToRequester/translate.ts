@@ -4,7 +4,7 @@ import type { Record } from '../definitions';
 
 import type { Mapping } from './definitions';
 
-export default async function translate(requesterId: string, mapping: Mapping, record: Record): Promise<Record>
+export default async function (requesterId: string, mapping: Mapping, record: Record): Promise<Record>
 {
     const followingId: string = mapping === 'follower'
         ? record.followerId

@@ -1,12 +1,12 @@
 
 import { Outlet } from 'react-router-dom';
 
-import { PortraitLayout  } from '@maskingtech/designsystem';
+import { PortraitLayout } from '@maskingtech/designsystem';
 
 import LegalHeader from '../components/LegalHeader';
 import useNavigateHome from '../hooks/useNavigateHome';
 
-export default function Page()
+export default function ()
 {
     const navigateHome = useNavigateHome();
 

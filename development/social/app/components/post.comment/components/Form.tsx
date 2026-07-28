@@ -11,7 +11,7 @@ type Props = {
     readonly onCancel: CancelHandler;
 };
 
-export default function Component({ limit, onCreate, onCancel }: Props)
+export default function ({ limit, onCreate, onCancel }: Props)
 {
     const [inputRef, creating, handleCreate, handleCancel] = useCreateHandler(onCreate, onCancel);
 

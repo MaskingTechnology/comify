@@ -17,7 +17,7 @@ const schema: ValidationSchema =
     }
 };
 
-export default function validate(origin: string): void
+export default function (origin: string): void
 {
     const result = validator.validate({ origin }, schema);
 

@@ -6,7 +6,7 @@ import { logger } from '../integrations';
 import retrieveMetrics from '../_retrieveByCreator';
 import persist from './persist';
 
-export default async function updatePosts(tenantId: string, postId: string, operation: CountOperation): Promise<void>
+export default async function (tenantId: string, postId: string, operation: CountOperation): Promise<void>
 {
     const postRecord = await retrievePost(tenantId, postId);
 

@@ -15,7 +15,7 @@ type Props = {
 const NICKNAME_MAX_LENGTH = 20;
 const NICKNAME_STRING_PATTERN = '^[a-z0-9]+$';
 
-export default function Component({ nickname, alreadyInUse, onSubmit }: Props)
+export default function ({ nickname, alreadyInUse, onSubmit }: Props)
 {
     const handleSubmit = useNicknameFormHandler(onSubmit);
 

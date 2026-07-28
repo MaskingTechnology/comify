@@ -9,7 +9,7 @@ import toModels from '../_toModels';
 
 import getByCreator from './retrieve';
 
-export default async function run(requester: Requester, creatorId: string, range: Range): Promise<Post[]>
+export default async function (requester: Requester, creatorId: string, range: Range): Promise<Post[]>
 {
     validateRange(range);
 

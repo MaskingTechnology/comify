@@ -6,7 +6,7 @@ import toModel from '../_toModel';
 import retrieve from './retrieve';
 import CommentNotFound from './CommentNotFound';
 
-export default async function run(id: string): Promise<Comment>
+export default async function (id: string): Promise<Comment>
 {
     const record = await retrieve(id);
 

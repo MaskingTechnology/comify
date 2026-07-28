@@ -4,7 +4,7 @@ import getCreators from '~/creator/getManyById';
 import type { Record, Relation } from '../definitions';
 import { logger } from '../integrations';
 
-export default async function run(tenantId: string, records: Record[]): Promise<Map<string, Relation>>
+export default async function (tenantId: string, records: Record[]): Promise<Map<string, Relation>>
 {
     const followingIds = new Set(records.map(record => record.followingId));
 

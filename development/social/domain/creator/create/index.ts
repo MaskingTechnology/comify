@@ -12,7 +12,7 @@ import persist from './persist';
 import publish from './publish';
 import validate from './validate';
 
-export default async function run(tenant: Tenant, data: CreateData): Promise<string>
+export default async function (tenant: Tenant, data: CreateData): Promise<string>
 {
     validate(data);
 

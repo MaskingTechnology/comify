@@ -7,7 +7,7 @@ import retrieveByFollower from '../_retrieveFollowing';
 import toModels from '../_toModels';
 import { type Relation } from '../definitions';
 
-export default async function run(requester: Requester, followerId: string, range: Range): Promise<Relation[]>
+export default async function (requester: Requester, followerId: string, range: Range): Promise<Relation[]>
 {
     validateRange(range);
 

@@ -4,17 +4,17 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { Column, Tabs } from '@maskingtech/designsystem';
 
-type Tab ={
+type Tab = {
     readonly title: string;
     readonly route: string;
-}
+};
 
 type Props = {
     readonly items: Tab[];
     readonly children?: ReactNode;
 };
 
-export default function Component({ items, children }: Props)
+export default function ({ items, children }: Props)
 {
     const location = useLocation();
     const navigate = useNavigate();
@@ -30,7 +30,7 @@ export default function Component({ items, children }: Props)
                 )
             }
         </Tabs>
-        
+
         {children}
 
     </Column>;

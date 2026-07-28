@@ -7,7 +7,7 @@ type Props = {
     readonly creatorId: string;
 };
 
-export default function Feature()
+export default function ()
 {
     const { creatorId } = useOutletContext<Props>();
 

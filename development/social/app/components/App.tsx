@@ -7,7 +7,7 @@ import { AppContextProvider, ErrorHandler } from './application';
 
 import Routes from './Routes';
 
-export default function App()
+export default function ()
 {
     return <AppContextProvider>
         <BrowserRouter>

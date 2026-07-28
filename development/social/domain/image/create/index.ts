@@ -4,7 +4,7 @@ import validate from '../_validate';
 
 import convertDataUrl from './convertDataUrl';
 
-export default async function run(type: string, dataUrl: string): Promise<string>
+export default async function (type: string, dataUrl: string): Promise<string>
 {
     const image = await convertDataUrl(dataUrl);
 

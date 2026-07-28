@@ -1,7 +1,7 @@
 
 import { ServerError } from '@comify/common/integrations/errors';
 
-export default class ImageNotDownloaded extends ServerError
+export default class extends ServerError
 {
     constructor()
     {

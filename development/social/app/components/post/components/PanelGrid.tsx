@@ -12,7 +12,7 @@ type Props = {
     readonly onReactionClick: (post: Post) => void;
 };
 
-export default function Component({ posts, onContentClick, onRatingClick, onReactionClick }: Props)
+export default function ({ posts, onContentClick, onRatingClick, onReactionClick }: Props)
 {
     return <Grid layout='two-columns' gap='medium'>
         {

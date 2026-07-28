@@ -5,7 +5,7 @@ import { type Tenant } from '@comify/common/domain/tenant';
 
 import createCreator from '^/domain/creator/create';
 
-export default async function register(tenant: Tenant, identity: Identity): Promise<string>
+export default async function (tenant: Tenant, identity: Identity): Promise<string>
 {
     return createCreator(tenant, {
         fullName: identity.name,

@@ -1,7 +1,7 @@
 
 import { BadRequest } from '@comify/common/integrations/errors';
 
-export default class NicknameAlreadyExists extends BadRequest
+export default class extends BadRequest
 {
     constructor()
     {

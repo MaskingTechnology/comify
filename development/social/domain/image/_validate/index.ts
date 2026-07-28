@@ -41,7 +41,7 @@ const schema: ValidationSchema =
     }
 };
 
-export default function run(metaData: MetaData): void
+export default function (metaData: MetaData): void
 {
     const result = validator.validate(metaData, schema);
 

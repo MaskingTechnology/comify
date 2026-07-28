@@ -9,7 +9,7 @@ type Props = {
     readonly joinedAt: string;
 };
 
-export default function Component({ fullName, nickname, joinedAt }: Props)
+export default function ({ fullName, nickname, joinedAt }: Props)
 {
     const joinedAtDate = new Date(joinedAt);
 

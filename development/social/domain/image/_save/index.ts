@@ -7,7 +7,7 @@ import generateStorageKey from './generateStorageKey';
 import persist from './persist';
 import insertFile from './insertFile';
 
-export default async function run(type: string, image: Image): Promise<string>
+export default async function (type: string, image: Image): Promise<string>
 {
     const storageKey = generateStorageKey(type, image.buffer);
 

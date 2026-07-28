@@ -13,7 +13,7 @@ type Props = {
     readonly onEdit: () => void;
 };
 
-export default function Feature({ creatorId, onEdit }: Props)
+export default function ({ creatorId, onEdit }: Props)
 {
     const establishRelation = useEstablish();
 

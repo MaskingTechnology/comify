@@ -8,7 +8,7 @@ import type { Notification } from '../definitions';
 import toModels from '../_toModels';
 import retrieve from './retrieve';
 
-export default async function run(requester: Requester, range: Range): Promise<Notification[]>
+export default async function (requester: Requester, range: Range): Promise<Notification[]>
 {
     validateRange(range);
 

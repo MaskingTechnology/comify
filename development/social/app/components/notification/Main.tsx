@@ -14,7 +14,7 @@ import useViewNotificationDetails from './hooks/useViewNotificationDetails';
 
 const SCROLL_THRESHOLD = 0.7;
 
-export default function Feature()
+export default function ()
 {
     const establishRelation = useEstablish();
     const viewProfile = useViewProfile();

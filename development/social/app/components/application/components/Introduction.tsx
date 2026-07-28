@@ -9,7 +9,7 @@ type Props = {
     readonly onGetIn: () => void;
 };
 
-export default function Component({ onGetIn }: Props)
+export default function ({ onGetIn }: Props)
 {
     return <Panel>
         <Column gap='medium' alignX='stretch'>

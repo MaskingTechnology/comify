@@ -8,7 +8,7 @@ import type { Creator } from '^/domain/creator';
 import { useAppContext } from '~/components/application';
 import { Profile } from '~/components/creator';
 
-export default function Feature()
+export default function ()
 {
     const { identity } = useAppContext();
 

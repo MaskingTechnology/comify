@@ -5,7 +5,7 @@ import validate from '../_validate';
 import downloadImage from './downloadImage';
 import getMetaData from './getMetaData';
 
-export default async function run(type: string, imageUrl: string): Promise<string>
+export default async function (type: string, imageUrl: string): Promise<string>
 {
     const metaData = await getMetaData(imageUrl);
 

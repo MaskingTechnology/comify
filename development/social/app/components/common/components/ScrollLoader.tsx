@@ -13,7 +13,7 @@ type Props = {
     readonly children: ReactNode;
 };
 
-export default function Component({ onLoad, isLoading, isFinished, threshold, children }: Props)
+export default function ({ onLoad, isLoading, isFinished, threshold, children }: Props)
 {
     const [childRef] = useLoadOnScroll(onLoad, isLoading, isFinished, threshold);
 

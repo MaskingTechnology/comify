@@ -5,7 +5,7 @@ import CreatorNotFound from './CreatorNotFound';
 
 import retrieve from './retrieve';
 
-export default async function run(tenantId: string, id: string): Promise<Record>
+export default async function (tenantId: string, id: string): Promise<Record>
 {
     const record = await retrieve(tenantId, id);
 

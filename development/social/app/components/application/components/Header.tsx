@@ -13,7 +13,7 @@ type Props = {
     readonly onLogout: () => void;
 };
 
-export default function Component({ identity, onLogout }: Props)
+export default function ({ identity, onLogout }: Props)
 {
     return <Row alignX='justify' alignY='center'>
         <Logo size='small' />

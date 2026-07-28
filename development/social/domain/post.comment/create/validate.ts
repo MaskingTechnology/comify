@@ -20,7 +20,7 @@ const schema: ValidationSchema =
     }
 };
 
-export default function validate(data: CreateData): void
+export default function (data: CreateData): void
 {
     const result = validator.validate(data, schema);
 

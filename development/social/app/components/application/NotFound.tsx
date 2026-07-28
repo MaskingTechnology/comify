@@ -1,7 +1,7 @@
 
 import { Panel, Paragraph, Title } from '@maskingtech/designsystem';
 
-export default function Feature()
+export default function ()
 {
     return <Panel>
         <Title>Not Found</Title>

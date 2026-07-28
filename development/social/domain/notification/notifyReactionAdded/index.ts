@@ -4,7 +4,7 @@ import retrievePost from '~/post/_retrieveById';
 import { Types } from '../definitions';
 import create from '../_create';
 
-export default async function run(tenantId: string, postId: string): Promise<void>
+export default async function (tenantId: string, postId: string): Promise<void>
 {
     const postRecord = await retrievePost(tenantId, postId);
 

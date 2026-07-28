@@ -7,7 +7,7 @@ import getRelations from '~/relation/getMany';
 import type { Record, Notification } from '../definitions';
 import { logger } from '../integrations';
 
-export default async function toModel(requester: Requester, records: Record[]): Promise<Map<string, Notification>>
+export default async function (requester: Requester, records: Record[]): Promise<Map<string, Notification>>
 {
     const relationKeys = new Set(records.map(record => { return { followerId: record.receiverId, followingId: record.senderId }; }));
     const postIds = new Set(records.map(record => record.postId).filter(id => id !== undefined));

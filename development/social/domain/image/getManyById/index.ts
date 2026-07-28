@@ -6,7 +6,7 @@ import retrieveRecords from './retrieveRecords';
 import retrieveFiles from './retrieveFiles';
 import toImageData from './toImageData';
 
-export default async function run(ids: string[]): Promise<Map<string, ImageData>>
+export default async function (ids: string[]): Promise<Map<string, ImageData>>
 {
     const records = await retrieveRecords(ids);
 

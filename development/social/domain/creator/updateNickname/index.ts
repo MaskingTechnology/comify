@@ -9,7 +9,7 @@ import persist from './persist';
 import publish from './publish';
 import NicknameAlreadyExists from './NicknameAlreadyExists';
 
-export default async function run(requester: Requester, nickname: string): Promise<void>
+export default async function (requester: Requester, nickname: string): Promise<void>
 {
     const cleanedNickname = cleanNickname(nickname);
 

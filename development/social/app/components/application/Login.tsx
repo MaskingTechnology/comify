@@ -1,7 +1,7 @@
 
 import useLogin from './hooks/useLogin';
 
-export default function Feature()
+export default function ()
 {
     useLogin();
 

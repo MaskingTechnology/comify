@@ -11,7 +11,7 @@ type Props = {
     readonly onCancelled: () => void;
 };
 
-export default function Feature()
+export default function ()
 {
     const { postId, onCreated, onCancelled } = useOutletContext<Props>();
 

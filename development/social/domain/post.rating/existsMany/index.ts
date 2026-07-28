@@ -4,7 +4,7 @@ import { logger } from '../integrations';
 
 import retrieve from './retrieve';
 
-export default async function run(keys: RatingKey[]): Promise<Map<string, boolean>>
+export default async function (keys: RatingKey[]): Promise<Map<string, boolean>>
 {
     const records = await retrieve(keys);
 

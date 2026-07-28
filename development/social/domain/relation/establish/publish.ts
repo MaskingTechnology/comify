@@ -5,7 +5,7 @@ import { EVENT_CHANNEL } from '../definitions';
 import { EVENT_NAME } from './definitions';
 import type { EstablishedPublication } from './definitions';
 
-export default async function publish(followerId: string, followingId: string): Promise<void>
+export default async function (followerId: string, followingId: string): Promise<void>
 {
     const publication: EstablishedPublication = {
         channel: EVENT_CHANNEL,

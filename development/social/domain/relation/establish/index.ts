@@ -11,7 +11,7 @@ import erase from './erase';
 import publish from './publish';
 import RelationAlreadyExists from './RelationAlreadyExists';
 
-export default async function run(requester: Requester, followingId: string): Promise<void>
+export default async function (requester: Requester, followingId: string): Promise<void>
 {
     const key = { followerId: requester.principalId, followingId };
 

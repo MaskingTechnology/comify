@@ -1,7 +1,7 @@
 
 import { Recommended } from '~/components/post';
 
-export default function Feature()
+export default function ()
 {
     return <Recommended />;
 }

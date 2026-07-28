@@ -1,7 +1,7 @@
 
 import { BadRequest } from '@comify/common/integrations/errors';
 
-export default class TooManySimilarNicknames extends BadRequest
+export default class extends BadRequest
 {
     constructor(message?: string)
     {

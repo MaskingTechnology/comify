@@ -8,7 +8,7 @@ type Props = {
     readonly children: ReactNode;
 };
 
-export default function Component({ isLoading, children }: Props)
+export default function ({ isLoading, children }: Props)
 {
     if (isLoading) return <LoadingIndicator />;
 

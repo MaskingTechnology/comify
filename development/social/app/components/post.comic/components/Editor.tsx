@@ -10,7 +10,7 @@ type Props = {
     readonly onCancel?: CancelHandler;
 };
 
-export default function Component({ onCreate, onCancel }: Props)
+export default function ({ onCreate, onCancel }: Props)
 {
     const [canvasRef, editor] = useEditor();
     const [creating, handleCreate, handleCancel] = useCreateHandler(editor, onCreate, onCancel);

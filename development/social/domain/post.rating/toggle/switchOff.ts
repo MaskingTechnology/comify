@@ -5,7 +5,7 @@ import create from './create';
 import erase from './erase';
 import publish from './publishRemoved';
 
-export default async function switchOff(tenantId: string, rating: Record): Promise<boolean>
+export default async function (tenantId: string, rating: Record): Promise<boolean>
 {
     await erase(rating.id);
 

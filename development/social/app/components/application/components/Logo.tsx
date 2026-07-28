@@ -7,7 +7,7 @@ type Props = {
     readonly size: 'small' | 'large';
 };
 
-export default function Component({ size }: Props)
+export default function ({ size }: Props)
 {
     const height = size === 'small' ? '1.5em' : '2.2em';
 

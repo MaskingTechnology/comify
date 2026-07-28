@@ -9,7 +9,7 @@ import notificationRoutes from './notification';
 import postRoutes from './post';
 import profileRoutes from './creator.profile';
 
-export default function Component()
+export default function ()
 {
     return <Routes>
 

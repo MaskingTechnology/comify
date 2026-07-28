@@ -10,7 +10,7 @@ type Props = {
     readonly children: ReactNode;
 };
 
-export default function Component({ data, isLoading, children }: Props)
+export default function ({ data, isLoading, children }: Props)
 {
     return <LoadingContainer isLoading={isLoading}>
         <ResultContainer data={data} isLoading={isLoading}>

@@ -13,7 +13,7 @@ type Props = {
     readonly onCreatorClick: (relation: Relation) => void;
 };
 
-export default function Component({ relation, date, onFollowClick, onEditClick, onCreatorClick }: Props)
+export default function ({ relation, date, onFollowClick, onEditClick, onCreatorClick }: Props)
 {
     return <FollowRow
         isFollowing={relation.established}

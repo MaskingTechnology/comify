@@ -13,7 +13,7 @@ type Props = {
 
 const MESSAGE_MAX_LENGTH = 1000;
 
-export default function Feature()
+export default function ()
 {
     const { postId, onCreated, onCancelled } = useOutletContext<Props>();
 

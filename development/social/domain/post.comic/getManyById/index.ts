@@ -5,7 +5,7 @@ import toModels from '../_toModels';
 
 import retrieve from './retrieve';
 
-export default async function run(ids: string[]): Promise<Map<string, Comic>>
+export default async function (ids: string[]): Promise<Map<string, Comic>>
 {
     const records = await retrieve(ids);
 

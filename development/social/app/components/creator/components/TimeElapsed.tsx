@@ -10,7 +10,7 @@ type Props = {
     readonly onCreatorClick: () => void;
 };
 
-export default function Component({ creator, date, onCreatorClick }: Props)
+export default function ({ creator, date, onCreatorClick }: Props)
 {
     return <AvatarRow avatarSize='medium' avatarUrl={creator.portrait?.dataUrl}>
         <TimeElapsedColumn

@@ -5,7 +5,7 @@ import getRelation from '~/relation/get';
 
 import type { Record, Notification } from '../definitions';
 
-export default async function toModel(requester: Requester, record: Record): Promise<Notification>
+export default async function (requester: Requester, record: Record): Promise<Notification>
 {
     const [relation, post] = await Promise.all([
         getRelation(requester, { followerId: record.receiverId, followingId: record.senderId }),

@@ -7,7 +7,7 @@ import { type Tenant } from '@comify/common/domain/tenant';
 import get from './get';
 import register from './register';
 
-export default async function run(tenant: Tenant, identity: Identity): Promise<Requester>
+export default async function (tenant: Tenant, identity: Identity): Promise<Requester>
 {
     const principalId = await get(tenant, identity)
         ?? await register(tenant, identity);

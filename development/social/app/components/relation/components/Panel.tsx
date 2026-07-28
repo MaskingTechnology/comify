@@ -12,7 +12,7 @@ type Props = {
     readonly onCreatorClick: () => void;
 };
 
-export default function Component({ relation, onFollowClick, onEditClick, onCreatorClick }: Props)
+export default function ({ relation, onFollowClick, onEditClick, onCreatorClick }: Props)
 {
     return <Panel padding='medium'>
         <Counters

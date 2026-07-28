@@ -6,7 +6,7 @@ import database from '@comify/common/integrations/database';
 
 import { RECORD_TYPE, SortOrders, type Record, type SortOrder } from '../definitions';
 
-export default async function retrieve(tenantId: string, ids: string[], order: SortOrder, limit: number, offset: number, search: string | undefined = undefined): Promise<Record[]>
+export default async function (tenantId: string, ids: string[], order: SortOrder, limit: number, offset: number, search: string | undefined = undefined): Promise<Record[]>
 {
     const defaultQuery: RecordQuery<Record> = {
         AND: [

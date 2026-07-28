@@ -10,7 +10,7 @@ type Props = {
     readonly children: ReactNode;
 };
 
-export default function Component({ onSubmit, children }: Props)
+export default function ({ onSubmit, children }: Props)
 {
     const [formRef, state, handleSubmit] = useForm(onSubmit);
 

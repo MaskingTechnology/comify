@@ -4,7 +4,7 @@ import getImageData from '~/image/getManyById';
 import { type Record, type Comic } from '../definitions';
 import { logger } from '../integrations';
 
-export default async function run(records: Record[]): Promise<Map<string, Comic>>
+export default async function (records: Record[]): Promise<Map<string, Comic>>
 {
     const imageIds = new Set(records.map(record => record.imageId));
 

@@ -1,7 +1,7 @@
 
 import { ValidationError } from '^/integrations/errors';
 
-export default class InvalidOrigin extends ValidationError
+export default class extends ValidationError
 {
 
 }

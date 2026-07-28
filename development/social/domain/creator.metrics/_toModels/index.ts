@@ -3,7 +3,7 @@ import type { Metrics, Record } from '../definitions';
 
 import toModel from '../_toModel';
 
-export default async function run(records: Record[]): Promise<Map<string, Metrics>>
+export default async function (records: Record[]): Promise<Map<string, Metrics>>
 {
     const models = await Promise.all(records.map(toModel));
 

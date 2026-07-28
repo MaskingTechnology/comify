@@ -8,7 +8,7 @@ import toModels from '../_toModels';
 
 import retrieve from './retrieve';
 
-export default async function run(requester: Requester, postId: string, range: Range): Promise<Post[]>
+export default async function (requester: Requester, postId: string, range: Range): Promise<Post[]>
 {
     const records = await retrieve(requester.tenantId, postId, range.limit, range.offset);
 
