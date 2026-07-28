@@ -1,5 +1,5 @@
 
-import eventBroker from '@comify/common/integrations/eventBroker';
+import eventBroker from '^/integrations/eventBroker';
 
 import { EVENT_CHANNEL, type EventData, type EventHandler } from '../definitions';
 import { EVENT_NAME } from './definitions';
