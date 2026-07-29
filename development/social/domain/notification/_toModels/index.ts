@@ -9,6 +9,10 @@ import { logger } from '../integrations';
 
 export default async function (requester: Requester, records: Record[]): Promise<Map<string, Notification>>
 {
+    const map = new Map();
+
+    if (records.length === 0) return map;
+
     const relationKeys = new Set(records.map(record => { return { followerId: record.receiverId, followingId: record.senderId }; }));
     const postIds = new Set(records.map(record => record.postId).filter(id => id !== undefined));
 
@@ -16,8 +20,6 @@ export default async function (requester: Requester, records: Record[]): Promise
         getRelations(requester, [...relationKeys]),
         getPosts(requester, [...postIds])
     ]);
-
-    const map = new Map();
 
     records.forEach(record =>
     {

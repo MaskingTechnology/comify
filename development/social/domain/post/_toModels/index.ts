@@ -12,6 +12,10 @@ import { logger } from '../integrations';
 
 export default async function (requester: Requester, records: Record[]): Promise<Map<string, Post>>
 {
+    const map = new Map();
+
+    if (records.length === 0) return map;
+
     const relationKeys = new Set(records.map(record => { return { followerId: requester.principalId, followingId: record.creatorId }; }));
     const ratingKeys = new Set(records.map(record => { return { creatorId: requester.principalId, postId: record.id }; }));
     const postIds = new Set(records.map(record => record.id));
@@ -25,8 +29,6 @@ export default async function (requester: Requester, records: Record[]): Promise
         getComments([...commentIds]),
         getMetrics([...postIds])
     ]);
-
-    const map = new Map();
 
     records.forEach(record =>
     {

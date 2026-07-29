@@ -6,11 +6,13 @@ import { logger } from '../integrations';
 
 export default async function (records: Record[]): Promise<Map<string, Comic>>
 {
+    const map = new Map();
+
+    if (records.length === 0) return map;
+
     const imageIds = new Set(records.map(record => record.imageId));
 
     const imageDataMap = await getImageData([...imageIds]);
-
-    const map = new Map();
 
     records.map(record =>
     {

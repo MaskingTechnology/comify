@@ -4,9 +4,9 @@ import { AuthenticationMiddleware } from '@jitar-plugins/authentication';
 import identityProvider from './identityProvider';
 
 const authProcedures = {
-    loginUrl: 'social/domain/authentication/getLoginUrl',
-    login: 'social/domain/authentication/login',
-    logout: 'social/domain/authentication/logout'
+    loginUrl: 'social/security/authentication/getLoginUrl',
+    login: 'social/security/authentication/login',
+    logout: 'social/security/authentication/logout'
 };
 
 const redirectPath = process.env.AUTHENTICATION_CLIENT_PATH ?? '';

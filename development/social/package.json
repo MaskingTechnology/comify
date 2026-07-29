@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite --config app/vite.config.js",
-    "build": "npm run clean && npm run build-domain && npm run build-security && npm run build-app",
+    "build": "npm run clean && npm run build-logic && npm run build-app",
     "build-app": "vite build --config app/vite.config.js",
+    "build-logic": "npm run build-domain && npm run build-security",
     "build-domain": "tsc -p domain/tsconfig.json && tsc-alias -p domain/tsconfig.json",
     "build-security": "tsc -p security/tsconfig.json && tsc-alias -p security/tsconfig.json",
     "clean": "rimraf ../../artifacts/build/social",

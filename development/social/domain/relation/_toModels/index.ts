@@ -6,11 +6,13 @@ import { logger } from '../integrations';
 
 export default async function (tenantId: string, records: Record[]): Promise<Map<string, Relation>>
 {
+    const map = new Map();
+
+    if (records.length === 0) return map;
+
     const followingIds = new Set(records.map(record => record.followingId));
 
     const creators = await getCreators(tenantId, [...followingIds]);
-
-    const map = new Map();
 
     records.forEach(record =>
     {

@@ -666,8 +666,8 @@
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "http://localhost:3000/rpc/social/domain/authentication/login",
-        "http://localhost:5173/rpc/social/domain/authentication/login"
+        "http://localhost:3000/rpc/social/security/authentication/login",
+        "http://localhost:5173/rpc/social/security/authentication/login"
       ],
       "webOrigins": [
         "https://www.keycloak.org"

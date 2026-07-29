@@ -4,8 +4,9 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "build": "npm run build-domain && npm run build-app",
-    "build-domain": "npm run build-domain --workspaces",
+    "artifacts": "npm run build && npm run dist",
+    "build": "npm run build-logic && npm run build-app",
+    "build-logic": "npm run build-logic --workspaces",
     "build-app": "npm run build-app --workspaces --if-present",
     "lint": "npm run lint --workspaces",
     "review": "npm run review --workspaces",

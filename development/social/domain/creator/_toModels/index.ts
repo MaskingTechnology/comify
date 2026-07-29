@@ -7,6 +7,10 @@ import getMetrics from '~/creator.metrics/getMany';
 
 export default async function (records: Record[]): Promise<Map<string, Creator>>
 {
+    const map = new Map();
+
+    if (records.length === 0) return map;
+
     const portraitIds = new Set(records.map(record => record.portraitId).filter(id => id !== undefined));
     const creatorIds = new Set(records.map(record => record.id));
 
@@ -14,8 +18,6 @@ export default async function (records: Record[]): Promise<Map<string, Creator>>
         getPortraits([...portraitIds]),
         getMetrics([...creatorIds])
     ]);
-
-    const map = new Map();
 
     records.forEach(record =>
     {
