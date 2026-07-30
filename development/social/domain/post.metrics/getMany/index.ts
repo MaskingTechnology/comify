@@ -1,18 +1,15 @@
 
 import type { Metrics } from '../definitions';
-import { logger } from '../integrations';
 import toModels from '../_toModels';
 
-import retrieve from './retrieve';
+import retrieveExisting from './retrieveExisting';
+import addMissing from './addMissing';
 
 export default async function (postIds: string[]): Promise<Map<string, Metrics>>
 {
-    const records = await retrieve(postIds);
+    const existingRecords = await retrieveExisting(postIds);
 
-    if (postIds.length !== records.length)
-    {
-        logger.warn('Not all post metrics were retrieved');
-    }
+    const allRecords = addMissing(postIds, existingRecords);
 
-    return toModels(records);
+    return toModels(allRecords);
 }

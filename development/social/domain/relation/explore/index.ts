@@ -26,5 +26,5 @@ export default async function (requester: Requester, order: SortOrder, range: Ra
 
     const relations = await toModels(requester.tenantId, records);
 
-    return [...relations.values()];
+    return relations.values().toArray();
 }

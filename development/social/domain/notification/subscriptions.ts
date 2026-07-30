@@ -12,7 +12,7 @@ import removePostRelatedNotifications from './removeByPost';
 export default async function subscribe(): Promise<void>
 {
     await Promise.all([
-        onPostAdded(({ tenantId, postId }) => notifyReactionAdded(tenantId, postId)),
+        onPostAdded(({ tenantId, postId, parentId }) => notifyReactionAdded(tenantId, postId, parentId)),
         onPostRated(({ tenantId, creatorId, postId }) => notifyPostRated(tenantId, creatorId, postId)),
         onRelationEstablished(({ followerId, followingId }) => notifyStartedFollowing(followerId, followingId)),
         onPostRemoved(({ postId }) => removePostRelatedNotifications(postId))

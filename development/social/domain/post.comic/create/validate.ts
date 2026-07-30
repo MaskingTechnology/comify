@@ -3,14 +3,19 @@ import type { ValidationSchema } from '@theshelf/validation';
 
 import validator from '@comify/common/integrations/validation';
 
-import { requiredIdValidation } from '~/definitions';
-
 import { type CreateData } from './definitions';
 import InvalidComic from './InvalidComic';
 
 const schema: ValidationSchema =
 {
-    imageDataUrl: requiredIdValidation,
+    imageDataUrl:
+    {
+        message: 'Value is not a string',
+        STRING:
+        {
+            required: true
+        }
+    },
     structure:
     {
         message: 'Value is not a string',

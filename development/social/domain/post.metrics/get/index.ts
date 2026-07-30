@@ -1,11 +1,17 @@
 
 import type { Metrics } from '../definitions';
-import retrieve from '../_retrieveByPost';
 import toModel from '../_toModel';
+
+import retrieveExisting from './retrieveExisting';
+import createMissing from './createMissing';
 
 export default async function (postId: string): Promise<Metrics>
 {
-    const record = await retrieve(postId);
+    // If the record doesn't exist, we create an empty dummy record to allow
+    // the system to process the post added event and replicate the record.
+
+    const record = await retrieveExisting(postId)
+        ?? createMissing(postId);
 
     return toModel(record);
 }

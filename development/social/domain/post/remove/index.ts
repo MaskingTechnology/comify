@@ -18,9 +18,9 @@ export default async function (requester: Requester, id: string): Promise<void>
 
     try
     {
-        const post = await retrieveById(requester.tenantId, id);
+        const record = await retrieveById(requester.tenantId, id);
 
-        if (isNotOwner(post, requester.principalId))
+        if (isNotOwner(record, requester.principalId))
         {
             // Fail silently
             return;
@@ -30,7 +30,7 @@ export default async function (requester: Requester, id: string): Promise<void>
 
         deleted = true;
 
-        await publish(requester.tenantId, requester.principalId, post.id);
+        await publish(requester.tenantId, requester.principalId, record.id, record.parentId);
     }
     catch (error)
     {

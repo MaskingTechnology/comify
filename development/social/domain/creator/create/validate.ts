@@ -32,9 +32,9 @@ const schema: ValidationSchema =
     }
 };
 
-export default function (data: CreateData): void
+export default function ({ fullName, nickname, email }: CreateData): void
 {
-    const result = validator.validate(data, schema);
+    const result = validator.validate({ fullName, nickname, email }, schema);
 
     if (result.invalid)
     {

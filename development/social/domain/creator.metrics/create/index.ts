@@ -2,9 +2,9 @@
 import createRecord from './createRecord';
 import persist from './persist';
 
-export default async function (creatorId: string): Promise<string>
+export default async function (creatorId: string): Promise<void>
 {
     const record = createRecord(creatorId);
 
-    return persist(record);
+    await persist(record);
 }

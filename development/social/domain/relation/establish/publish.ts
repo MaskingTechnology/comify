@@ -1,17 +1,18 @@
 
-import eventBroker from '@comify/common/integrations/eventBroker';
+import { publish as publishRelationEstablished } from '@comify/common/domain/relation/established';
+import { type Requester } from '@comify/common/security';
 
-import { EVENT_CHANNEL } from '../definitions';
-import { EVENT_NAME } from './definitions';
-import type { EstablishedPublication } from './definitions';
+import { CONTEXT_ID } from '~/definitions';
 
-export default async function (followerId: string, followingId: string): Promise<void>
+import { type RelationKey } from '../definitions';
+
+export default async function (requester: Requester, key: RelationKey): Promise<void>
 {
-    const publication: EstablishedPublication = {
-        channel: EVENT_CHANNEL,
-        name: EVENT_NAME,
-        data: { followerId, followingId }
-    };
-
-    return eventBroker.publish(publication);
+    return publishRelationEstablished({
+        contextId: CONTEXT_ID,
+        principalId: requester.principalId,
+        tenantId: requester.tenantId,
+        followerId: key.followerId,
+        followingId: key.followingId
+    });
 }

@@ -12,12 +12,17 @@ export default async function (ids: string[]): Promise<Map<string, ImageData>>
 
     if (ids.length !== records.length)
     {
-        logger.warn('Not all images were retrieved');
+        logger.warn('Not all image records were retrieved');
     }
 
     const storageKeys = records.map(record => record.storageKey);
 
     const filesMap = await retrieveFiles(storageKeys);
+
+    if (storageKeys.length !== filesMap.size)
+    {
+        logger.warn('Not all image files were retrieved');
+    }
 
     return toImageData(records, filesMap);
 }

@@ -12,7 +12,7 @@ const FIVE_MB = 1024 * 1024 * 5;
 
 const schema: ValidationSchema =
 {
-    fileName:
+    filename:
     {
         message: 'Value is not a valid file name',
         STRING:
@@ -41,9 +41,9 @@ const schema: ValidationSchema =
     }
 };
 
-export default function (metaData: MetaData): void
+export default function ({ filename, mimeType, size }: MetaData): void
 {
-    const result = validator.validate(metaData, schema);
+    const result = validator.validate({ filename, mimeType, size }, schema);
 
     if (result.invalid)
     {

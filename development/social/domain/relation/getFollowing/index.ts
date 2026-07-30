@@ -15,5 +15,5 @@ export default async function (requester: Requester, followerId: string, range: 
 
     const relations = await toModels(requester.tenantId, records);
 
-    return [...relations.values()];
+    return relations.values().toArray();
 }

@@ -1,27 +1,17 @@
 
-import getImageData from '~/image/getManyById';
-
 import { type Record, type Comic } from '../definitions';
-import { logger } from '../integrations';
+
+import getImages from './getImages';
+import createModels from './createModels';
 
 export default async function (records: Record[]): Promise<Map<string, Comic>>
 {
-    const map = new Map();
-
-    if (records.length === 0) return map;
-
-    const imageIds = new Set(records.map(record => record.imageId));
-
-    const imageDataMap = await getImageData([...imageIds]);
-
-    records.map(record =>
+    if (records.length === 0)
     {
-        const imageData = imageDataMap.get(record.imageId);
+        return new Map();
+    }
 
-        if (imageData === undefined) return logger.warn(`Image data for comic with id ${record.id} not found`);
+    const imageMap = await getImages(records);
 
-        map.set(record.id, { imageData });
-    });
-
-    return map;
+    return createModels(records, imageMap);
 }

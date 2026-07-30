@@ -1,7 +1,7 @@
 
 import { NotFound } from '@comify/common/integrations/errors';
 
-export default class extends NotFound
+export default class NicknameNotFound extends NotFound
 {
     constructor()
     {

@@ -4,23 +4,24 @@ import retrievePost from '~/post/_retrieveById';
 import type { CountOperation } from '../definitions';
 import { logger } from '../integrations';
 import retrieveMetrics from '../_retrieveByCreator';
+
+import updateCount from './updateCount';
 import persist from './persist';
 
-export default async function (tenantId: string, postId: string, operation: CountOperation): Promise<void>
+export default async function (tenantId: string, postId: string, parentId: string | undefined, operation: CountOperation): Promise<void>
 {
-    const postRecord = await retrievePost(tenantId, postId);
-
-    if (postRecord.parentId !== undefined)
+    if (parentId !== undefined)
     {
-        // We only want to count root posts
+        // Only root posts are counted
+
         return;
     }
 
+    const postRecord = await retrievePost(tenantId, postId);
+
     const metricsRecord = await retrieveMetrics(postRecord.creatorId);
 
-    const posts = operation === 'increase'
-        ? metricsRecord.posts + 1
-        : metricsRecord.posts - 1;
+    const posts = updateCount(metricsRecord, operation);
 
     const succeeded = await persist(metricsRecord.id, posts);
 

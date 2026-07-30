@@ -15,5 +15,5 @@ export default async function (keys: RatingKey[]): Promise<Record[]>
         };
     });
 
-    return database.searchRecords<Record>(RECORD_TYPE, { OR: queries }, ['id']);
+    return database.searchRecords<Record>(RECORD_TYPE, { OR: queries });
 }

@@ -1,6 +1,5 @@
 
 import fileStore from '@comify/common/integrations/fileStore';
-import { logger } from '../integrations';
 
 export default async function (storageKeys: string[]): Promise<Map<string, Buffer>>
 {
@@ -12,12 +11,7 @@ export default async function (storageKeys: string[]): Promise<Map<string, Buffe
     {
         const key = storageKeys[index];
 
-        if (result.status !== 'fulfilled')
-        {
-            logger.warn(`Failed to retrieve file for key ${key}`);
-
-            return;
-        }
+        if (result.status !== 'fulfilled') return;
 
         map.set(key, result.value);
     });

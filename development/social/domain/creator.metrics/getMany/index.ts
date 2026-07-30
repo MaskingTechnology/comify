@@ -1,18 +1,15 @@
 
 import type { Metrics } from '../definitions';
-import { logger } from '../integrations';
 import toModels from '../_toModels';
 
-import retrieve from './retrieve';
+import retrieveExisting from './retrieveExisting';
+import addMissing from './addMissing';
 
 export default async function (creatorIds: string[]): Promise<Map<string, Metrics>>
 {
-    const records = await retrieve(creatorIds);
+    const existingRecords = await retrieveExisting(creatorIds);
 
-    if (creatorIds.length !== records.length)
-    {
-        logger.warn('Not all creator metrics were retrieved');
-    }
+    const allRecords = addMissing(creatorIds, existingRecords);
 
-    return toModels(records);
+    return toModels(allRecords);
 }

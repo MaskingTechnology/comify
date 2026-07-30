@@ -2,15 +2,15 @@
 import type { CountOperation } from '../definitions';
 import { logger } from '../integrations';
 import retrieve from '../_retrieveByCreator';
+
+import updateCount from './updateCount';
 import persist from './persist';
 
-export default async function (creatorId: string, operation: CountOperation): Promise<number>
+export default async function (creatorId: string, operation: CountOperation): Promise<void>
 {
     const record = await retrieve(creatorId);
 
-    const following = operation === 'increase'
-        ? record.following + 1
-        : record.following - 1;
+    const following = updateCount(record, operation);
 
     const succeeded = await persist(record.id, following);
 
@@ -18,6 +18,4 @@ export default async function (creatorId: string, operation: CountOperation): Pr
     {
         logger.warn(`Following count for creator metrics with id '${record.id}' has not been updated.`);
     }
-
-    return following;
 }

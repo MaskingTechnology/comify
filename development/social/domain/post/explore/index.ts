@@ -22,5 +22,5 @@ export default async function (requester: Requester, range: Range): Promise<Post
 
     const posts = await toModels(requester, records);
 
-    return [...posts.values()];
+    return posts.values().toArray();
 }

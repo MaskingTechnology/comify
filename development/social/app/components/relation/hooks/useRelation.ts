@@ -19,7 +19,7 @@ export default function useRelation(creatorId?: string)
             return undefined;
         }
 
-        return getRelation(requester, { followingId: identity.id, followerId: creatorId });
+        return getRelation(requester, { followerId: identity.id, followingId: creatorId });
 
     }, [identity, creatorId]);
 

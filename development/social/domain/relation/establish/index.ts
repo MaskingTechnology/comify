@@ -1,51 +1,41 @@
 
 import { type Requester } from '@comify/common/security';
 
-import getCreator from '~/creator/_retrieveById';
-
+import { type RelationKey } from '../definitions';
 import { logger } from '../integrations';
-import exists from '../exists';
 
+import exists from './exists';
 import create from './create';
-import erase from './erase';
+import remove from './remove';
 import publish from './publish';
 import RelationAlreadyExists from './RelationAlreadyExists';
 
 export default async function (requester: Requester, followingId: string): Promise<void>
 {
-    const key = { followerId: requester.principalId, followingId };
+    const key: RelationKey = { followerId: requester.principalId, followingId };
 
-    let id;
+    const relationExists = await exists(key);
+
+    if (relationExists)
+    {
+        throw new RelationAlreadyExists();
+    }
+
+    await create(key);
 
     try
     {
-        await getCreator(requester.tenantId, followingId);
-
-        const relationExists = await exists(key);
-
-        if (relationExists)
-        {
-            throw new RelationAlreadyExists();
-        }
-
-        id = await create(requester.principalId, followingId);
-
-        await publish(requester.principalId, followingId);
+        await publish(requester, key);
     }
     catch (error)
     {
         logger.error('Failed to establish relation', error);
 
-        if (id !== undefined)
-        {
-            await erase(id);
-        }
+        await remove(key);
 
         throw error;
     }
 }
 
-export { default as subscribe } from './subscribe';
-
-export { default as InvalidRelation } from './InvalidRelation';
-export { default as RelationAlreadyExists } from './RelationAlreadyExists';
+export { InvalidRelation } from './create';
+export { RelationAlreadyExists };

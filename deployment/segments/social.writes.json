@@ -27,9 +27,9 @@
     "./social/domain/post.metrics/updateRatings/persist": { "default": { "access": "protected" } },
     "./social/domain/post.metrics/updateReactions/persist": { "default": { "access": "protected" } },
 
-    "./social/domain/post.rating/toggle/persist": { "default": {  "access": "protected" } },
-    "./social/domain/post.rating/toggle/erase": { "default": {  "access": "protected" } },
+    "./social/domain/post.rating/toggle/create/persist": { "default": {  "access": "protected" } },
+    "./social/domain/post.rating/toggle/remove/erase": { "default": {  "access": "protected" } },
 
-    "./social/domain/relation/establish/persist": { "default": {  "access": "protected" } },
+    "./social/domain/relation/establish/create/persist": { "default": {  "access": "protected" } },
     "./social/domain/relation/establish/erase": { "default": {  "access": "protected" } }
 }

@@ -1,7 +1,7 @@
 
-import { type CreateData } from './definitions';
 import { logger } from '../integrations';
 
+import { type CreateData } from './definitions';
 import createRecord from './createRecord';
 import persist from './persist';
 import publish from './publish';
@@ -18,7 +18,7 @@ export default async function (data: CreateData): Promise<string>
 
     try
     {
-        await publish(data.tenantId, data.creatorId, postId);
+        await publish(data.tenantId, data.creatorId, postId, data.parentId);
 
         return postId;
     }

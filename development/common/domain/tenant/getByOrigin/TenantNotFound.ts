@@ -1,7 +1,7 @@
 
 import { NotFound } from '^/integrations/errors';
 
-export default class extends NotFound
+export default class TenantNotFound extends NotFound
 {
     constructor()
     {

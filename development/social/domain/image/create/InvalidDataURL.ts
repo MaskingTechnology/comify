@@ -1,7 +1,7 @@
 
 import { BadRequest } from '@comify/common/integrations/errors';
 
-export default class extends BadRequest
+export default class InvalidDataURL extends BadRequest
 {
     constructor()
     {

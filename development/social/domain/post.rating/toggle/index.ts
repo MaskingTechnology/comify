@@ -1,17 +1,28 @@
 
 import { type Requester } from '@comify/common/security';
 
+import { type RatingKey } from '../definitions';
+
 import retrieve from './retrieve';
 import switchOff from './switchOff';
 import switchOn from './switchOn';
 
 export default async function (requester: Requester, postId: string): Promise<boolean>
 {
-    const record = await retrieve(requester.principalId, postId);
+    const key: RatingKey = { creatorId: requester.principalId, postId };
 
-    return record === undefined
-        ? switchOn(requester.tenantId, requester.principalId, postId)
-        : switchOff(requester.tenantId, record);
+    const record = await retrieve(key.creatorId, key.postId);
+
+    if (record === undefined)
+    {
+        await switchOn(requester, key);
+
+        return true;
+    }
+
+    await switchOff(requester, key);
+
+    return false;
 }
 
-export { default as InvalidRating } from './InvalidRating';
+export { default as InvalidRating } from './create';

@@ -16,5 +16,5 @@ export default async function (requester: Requester, range: Range): Promise<Noti
 
     const notifications = await toModels(requester, records);
 
-    return [...notifications.values()];
+    return notifications.values().toArray();
 }

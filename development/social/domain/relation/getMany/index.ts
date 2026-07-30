@@ -2,19 +2,16 @@
 import { type Requester } from '@comify/common/security';
 
 import type { RelationKey, Relation } from '../definitions';
-import { logger } from '../integrations';
 import toModels from '../_toModels';
 
-import retrieve from './retrieve';
+import retrieveEstablished from './retrieveEstablished';
+import addUnestablished from './addUnestablished';
 
 export default async function (requester: Requester, keys: RelationKey[]): Promise<Map<string, Relation>>
 {
-    const records = await retrieve(keys);
+    const establishedRecords = await retrieveEstablished(keys);
 
-    if (keys.length !== records.length)
-    {
-        logger.warn('Not all creators were retrieved');
-    }
+    const allRecords = addUnestablished(keys, establishedRecords);
 
-    return toModels(requester.tenantId, records);
+    return toModels(requester.tenantId, allRecords);
 }

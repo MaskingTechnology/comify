@@ -17,7 +17,7 @@ export default async function (requester: Requester, followingId: string, range:
 
     const translated = await translateToRequester(requester.principalId, 'follower', records);
 
-    const relations = await toModels(requester.tenantId, records);
+    const relations = await toModels(requester.tenantId, translated);
 
-    return [...relations.values()];
+    return relations.values().toArray();
 }

@@ -14,5 +14,5 @@ export default async function (requester: Requester, postId: string, range: Rang
 
     const posts = await toModels(requester, records);
 
-    return [...posts.values()];
+    return posts.values().toArray();
 }

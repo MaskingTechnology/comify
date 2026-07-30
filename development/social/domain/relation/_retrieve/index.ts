@@ -1,11 +1,11 @@
 
 import { type Record } from '../definitions';
 
-import retrieve from './retrieve';
+import retrieveEstablished from './retrieveEstablished';
+import createUnestablished from './createUnestablished';
 
 export default async function (followerId: string, followingId: string): Promise<Record>
 {
-    const record = await retrieve(followerId, followingId);
-
-    return record ?? { id: undefined, followerId, followingId, };
+    return await retrieveEstablished(followerId, followingId)
+        ?? createUnestablished(followerId, followingId);
 }

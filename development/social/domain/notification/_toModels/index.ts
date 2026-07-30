@@ -1,41 +1,19 @@
 
 import { type Requester } from '@comify/common/security';
 
-import getPosts from '~/post/getManyById';
-import getRelations from '~/relation/getMany';
-
 import type { Record, Notification } from '../definitions';
-import { logger } from '../integrations';
+
+import getReferences from './getReferences';
+import createModels from './createModels';
 
 export default async function (requester: Requester, records: Record[]): Promise<Map<string, Notification>>
 {
-    const map = new Map();
-
-    if (records.length === 0) return map;
-
-    const relationKeys = new Set(records.map(record => { return { followerId: record.receiverId, followingId: record.senderId }; }));
-    const postIds = new Set(records.map(record => record.postId).filter(id => id !== undefined));
-
-    const [relationMap, postMap] = await Promise.all([
-        getRelations(requester, [...relationKeys]),
-        getPosts(requester, [...postIds])
-    ]);
-
-    records.forEach(record =>
+    if (records.length === 0)
     {
-        const relation = relationMap.get(`${record.receiverId}:${record.senderId}`);
+        return new Map();
+    }
 
-        if (relation === undefined) return logger.warn(`Relation for notification with id ${record.id} not found`);
+    const references = await getReferences(requester, records);
 
-        const post = record.postId !== undefined ? postMap.get(record.postId) : undefined;
-
-        map.set(record.id, {
-            createdAt: record.createdAt,
-            type: record.type,
-            relation: relation,
-            post: post
-        });
-    });
-
-    return map;
+    return createModels(records, references);
 }
