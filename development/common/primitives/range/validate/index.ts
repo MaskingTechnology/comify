@@ -5,10 +5,7 @@ import validator from '@comify/common/integrations/validation';
 
 import InvalidRange from './InvalidRange';
 
-export type Range = {
-    offset: number;
-    limit: number;
-};
+import { type Range } from '../definitions';
 
 const schema: ValidationSchema =
 {
@@ -33,9 +30,9 @@ const schema: ValidationSchema =
     }
 };
 
-export default function ({ offset, limit }: Range): void
+export default function (range: Range): void
 {
-    const result = validator.validate({ offset, limit }, schema);
+    const result = validator.validate(range, schema);
 
     if (result.invalid)
     {

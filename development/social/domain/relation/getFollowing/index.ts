@@ -1,7 +1,7 @@
 
+import { type Range } from '@comify/common/primitives/range';
+import validateRange from '@comify/common/primitives/range/validate';
 import { type Requester } from '@comify/common/security';
-
-import validateRange, { type Range } from '~/common/validateRange';
 
 import retrieveByFollower from '../_retrieveFollowing';
 import toModels from '../_toModels';

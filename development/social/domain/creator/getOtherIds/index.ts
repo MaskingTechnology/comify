@@ -1,7 +1,6 @@
 
-import { Requester } from '@comify/common/security';
-
-import { Range } from '~/common/validateRange';
+import { type Range } from '@comify/common/primitives/range';
+import { type Requester } from '@comify/common/security';
 
 import { type SortOrder } from '../definitions';
 

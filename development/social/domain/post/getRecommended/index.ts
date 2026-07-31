@@ -1,8 +1,7 @@
 
+import { type Range } from '@comify/common/primitives/range';
+import validateRange from '@comify/common/primitives/range/validate';
 import { type Requester } from '@comify/common/security';
-
-import type { Range } from '~/common/validateRange';
-import validateRange from '~/common/validateRange';
 
 import type { Post } from '../definitions';
 import toModels from '../_toModels';
