@@ -1,10 +1,11 @@
 
 import { type Tenant } from '@comify/common/domain/tenant';
+import type { Identifier } from '@comify/common/primitives/identifier';
 
 import { type CreateData } from './definitions';
 import { logger } from '../integrations';
 import createRecord from './createRecord';
-import erase from './erase';
+import remove from './remove';
 import makeFullName from './makeFullName';
 import makeNickname from './makeNickname';
 import makePortrait from './makePortrait';
@@ -12,7 +13,7 @@ import persist from './persist';
 import publish from './publish';
 import validate from './validate';
 
-export default async function (tenant: Tenant, data: CreateData): Promise<string>
+export default async function (tenant: Tenant, data: CreateData): Promise<Identifier>
 {
     validate(data);
 
@@ -23,7 +24,7 @@ export default async function (tenant: Tenant, data: CreateData): Promise<string
 
     const record = createRecord(tenant.id, fullName, nickname, email, portraitId);
 
-    await persist(record);
+    const id = await persist(record);
 
     try
     {
@@ -35,7 +36,7 @@ export default async function (tenant: Tenant, data: CreateData): Promise<string
     {
         logger.error('Failed to create creator', error);
 
-        erase(record.id);
+        remove(id);
 
         throw error;
     }
