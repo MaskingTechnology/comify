@@ -1,11 +1,12 @@
 
+import type { Identifier } from '@comify/common/primitives/identifier';
 import { type Requester } from '@comify/common/security';
 
 import type { Post } from '../definitions';
 import toModel from '../_toModel';
 import retrieve from '../_retrieveById';
 
-export default async function (requester: Requester, id: string): Promise<Post>
+export default async function (requester: Requester, id: Identifier): Promise<Post>
 {
     const record = await retrieve(requester.tenantId, id);
 

@@ -1,4 +1,6 @@
 
+import type { Identifier } from '@comify/common/primitives/identifier';
+
 import removeImage from '~/image/remove';
 
 import { logger } from '../integrations';
@@ -6,7 +8,7 @@ import retrieve from '../_retrieveById';
 
 import erase from './erase';
 
-export default async function (id: string): Promise<void>
+export default async function (id: Identifier): Promise<void>
 {
     const record = await retrieve(id);
 

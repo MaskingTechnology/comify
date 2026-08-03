@@ -1,4 +1,7 @@
 
+import type { TenantId } from '@comify/common/domain/tenant';
+
+import type { Nickname } from '../../definitions';
 import cleanNickname from '../../_cleanNickname';
 
 import TooManySimilarNicknames from './TooManySimilarNicknames';
@@ -7,7 +10,7 @@ import retrieveByStartNickname from './retrieveByStartNickname';
 
 import { MAX_NICKNAME_NUMBER } from '../definitions';
 
-export default async function (tenantId: string, nickname: string): Promise<string>
+export default async function (tenantId: TenantId, nickname: Nickname): Promise<string>
 {
     const cleanedNickname = cleanNickname(nickname);
 

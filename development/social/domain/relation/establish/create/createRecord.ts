@@ -1,5 +1,5 @@
 
-import { generateId } from '@comify/common/integrations/utilities/crypto';
+import generateId from '@comify/common/primitives/identifier/generate';
 
 import type { Record } from '../../definitions';
 

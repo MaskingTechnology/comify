@@ -1,7 +1,10 @@
 
+import type { TenantId } from '^/domain/tenant';
+import type { Identifier } from '^/primitives/identifier';
+
 export type Requester = {
-    readonly principalId: string;
-    readonly tenantId: string;
+    readonly principalId: Identifier;
+    readonly tenantId: TenantId;
 };
 
 export const requester: Requester = {

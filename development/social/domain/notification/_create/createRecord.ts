@@ -1,9 +1,10 @@
 
-import { generateId } from '@comify/common/integrations/utilities/crypto';
+import type { Identifier } from '@comify/common/primitives/identifier';
+import generateId from '@comify/common/primitives/identifier/generate';
 
-import type { Record } from '../definitions';
+import type { Record, Type } from '../definitions';
 
-export default function (type: string, senderId: string, receiverId: string, postId: string | undefined = undefined): Record
+export default function (type: Type, senderId: Identifier, receiverId: Identifier, postId: Identifier | undefined = undefined): Record
 {
     return {
         id: generateId(),

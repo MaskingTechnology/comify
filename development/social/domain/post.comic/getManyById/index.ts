@@ -1,11 +1,13 @@
 
+import type { Identifier } from '@comify/common/primitives/identifier';
+
 import { type Comic } from '../definitions';
 import { logger } from '../integrations';
 import toModels from '../_toModels';
 
 import retrieve from './retrieve';
 
-export default async function (ids: string[]): Promise<Map<string, Comic>>
+export default async function (ids: Identifier[]): Promise<Map<Identifier, Comic>>
 {
     const records = await retrieve(ids);
 

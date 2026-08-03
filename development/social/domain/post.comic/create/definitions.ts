@@ -1,5 +1,9 @@
 
+import type { ImageDataUrl } from '~/image';
+
+import type { Structure } from '../definitions';
+
 export type CreateData = {
-    readonly imageDataUrl: string;
-    readonly structure?: string;
+    readonly imageDataUrl: ImageDataUrl;
+    readonly structure?: Structure;
 };

@@ -5,7 +5,9 @@ import type { References } from './definitions';
 
 export default function (record: Record, references: References): Post
 {
-    const { id, createdAt, parentId } = record;
+    const { id, parentId } = record;
+
+    const createdAt = new Date(record.createdAt);
 
     const { relation: creator, comic, comment, metrics, isRated } = references;
 

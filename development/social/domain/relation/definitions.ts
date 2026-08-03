@@ -1,4 +1,6 @@
 
+import type { Identifier } from '@comify/common/primitives/identifier';
+
 import type { Creator } from '~/creator/';
 
 import type { SortOrder, BaseRecord } from '../definitions';
@@ -16,12 +18,13 @@ export type Relation = {
     readonly self: boolean;
 };
 
+export type RelationId = string;
+
 export type RelationKey = {
-    readonly followerId: string;
-    readonly followingId: string;
+    readonly followerId: Identifier;
+    readonly followingId: Identifier;
 };
 
 export const RECORD_TYPE = 'relation';
-export const EVENT_CHANNEL = 'relation';
 
 export { SortOrders, type SortOrder };

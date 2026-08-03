@@ -1,4 +1,6 @@
 
+import type { Identifier } from '@comify/common/primitives/identifier';
+
 import { logger } from '../integrations';
 
 import { type CreateData } from './definitions';
@@ -6,9 +8,9 @@ import createRecord from './createRecord';
 import persist from './persist';
 import publish from './publish';
 import validate from './validate';
-import erase from './erase';
+import remove from './remove';
 
-export default async function (data: CreateData): Promise<string>
+export default async function (data: CreateData): Promise<Identifier>
 {
     validate(data);
 
@@ -26,7 +28,7 @@ export default async function (data: CreateData): Promise<string>
     {
         logger.error('Failed to create post', error);
 
-        await erase(postId);
+        await remove(postId);
 
         throw error;
     }

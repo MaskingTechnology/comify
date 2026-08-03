@@ -1,11 +1,13 @@
 
+import type { Identifier } from '@comify/common/primitives/identifier';
+
 import type { Metrics } from '../definitions';
 import toModel from '../_toModel';
 
 import retrieveExisting from './retrieveExisting';
 import createMissing from './createMissing';
 
-export default async function (postId: string): Promise<Metrics>
+export default async function (postId: Identifier): Promise<Metrics>
 {
     // If the record doesn't exist, we create an empty dummy record to allow
     // the system to process the creator added event and replicate the record.

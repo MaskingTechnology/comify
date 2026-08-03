@@ -1,4 +1,6 @@
 
+import type { Message } from '../definitions';
+
 export type CreateData = {
-    readonly message: string;
+    readonly message: Message;
 };

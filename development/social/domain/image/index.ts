@@ -1,2 +1,2 @@
 
-export { RECORD_TYPE, type ImageData } from './definitions';
+export { RECORD_TYPE, type ImageData, type ImageDataUrl } from './definitions';

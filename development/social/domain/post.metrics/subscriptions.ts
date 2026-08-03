@@ -12,8 +12,8 @@ export default async function subscribe(): Promise<void>
 {
     await Promise.all([
         onPostAdded(({ postId }) => createMetrics(postId)),
-        onPostAdded(({ tenantId, postId, parentId }) => updateReactionCount(tenantId, postId, parentId, 'increase')),
-        onPostRemoved(({ tenantId, postId, parentId }) => updateReactionCount(tenantId, postId, parentId, 'decrease')),
+        onPostAdded(({ parentId }) => updateReactionCount(parentId, 'increase')),
+        onPostRemoved(({ parentId }) => updateReactionCount(parentId, 'decrease')),
         onRatingAdded(({ postId }) => updateRatingCount(postId, 'increase')),
         onRatingRemoved(({ postId }) => updateRatingCount(postId, 'decrease'))
     ]);

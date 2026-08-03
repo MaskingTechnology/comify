@@ -10,10 +10,11 @@ export type Record = BaseRecord & {
 
 // A rating does not have a specific domain representation.
 
+export type RatingId = string;
+
 export type RatingKey = {
     readonly creatorId: string;
     readonly postId: string;
 };
 
 export const RECORD_TYPE = 'post.rating';
-export const EVENT_CHANNEL = 'post.rating';

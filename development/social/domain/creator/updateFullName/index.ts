@@ -1,13 +1,14 @@
 
 import { type Requester } from '@comify/common/security';
 
+import type { FullName } from '../definitions';
 import { logger } from '../integrations';
 
 import validate from './validate';
 import persist from './persist';
 import publish from './publish';
 
-export default async function (requester: Requester, fullName: string): Promise<void>
+export default async function (requester: Requester, fullName: FullName): Promise<void>
 {
     validate(fullName);
 

@@ -1,4 +1,6 @@
 
+import type { Identifier } from '@comify/common/primitives/identifier';
+
 import type { ImageData } from '../definitions';
 import { logger } from '../integrations';
 
@@ -7,7 +9,7 @@ import retrieveRecord from './retrieveRecord';
 import retrieveFile from './retrieveFile';
 import ImageNotFound from './ImageNotFound';
 
-export default async function (id: string): Promise<ImageData>
+export default async function (id: Identifier): Promise<ImageData>
 {
     const record = await retrieveRecord(id);
 

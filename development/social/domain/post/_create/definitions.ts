@@ -1,8 +1,11 @@
 
+import type { TenantId } from '@comify/common/domain/tenant';
+import type { Identifier } from '@comify/common/primitives/identifier';
+
 export type CreateData = {
-    readonly tenantId: string;
-    readonly creatorId: string;
-    readonly comicId?: string;
-    readonly commentId?: string;
-    readonly parentId?: string;
+    readonly tenantId: TenantId;
+    readonly creatorId: Identifier;
+    readonly comicId?: Identifier;
+    readonly commentId?: Identifier;
+    readonly parentId?: Identifier;
 };

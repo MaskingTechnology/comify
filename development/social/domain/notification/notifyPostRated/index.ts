@@ -1,10 +1,13 @@
 
+import type { TenantId } from '@comify/common/domain/tenant';
+import type { Identifier } from '@comify/common/primitives/identifier';
+
 import retrievePost from '~/post/_retrieveById';
 
 import { Types } from '../definitions';
 import create from '../_create';
 
-export default async function (tenantId: string, creatorId: string, postId: string): Promise<void>
+export default async function (tenantId: TenantId, creatorId: Identifier, postId: Identifier): Promise<void>
 {
     const postRecord = await retrievePost(tenantId, postId);
 

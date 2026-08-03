@@ -29,6 +29,6 @@
 
     "./social/domain/relation/_retrieve": { "default": {  "access": "protected" } },
     "./social/domain/relation/_retrieveFollowing": { "default": {  "access": "protected" } },
-    "./social/domain/relation/exists": { "default": {  "access": "protected" } },
+    "./social/domain/relation/establish/exists": { "default": {  "access": "protected" } },
     "./social/domain/relation/getFollowers/retrieve": { "default": {  "access": "protected" } }
 }

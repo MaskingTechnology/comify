@@ -1,4 +1,6 @@
 
+import type { Identifier } from '@comify/common/primitives/identifier';
+
 import type { ImageData } from '../definitions';
 import { logger } from '../integrations';
 
@@ -6,7 +8,7 @@ import retrieveRecords from './retrieveRecords';
 import retrieveFiles from './retrieveFiles';
 import toImageData from './toImageData';
 
-export default async function (ids: string[]): Promise<Map<string, ImageData>>
+export default async function (ids: Identifier[]): Promise<Map<Identifier, ImageData>>
 {
     const records = await retrieveRecords(ids);
 

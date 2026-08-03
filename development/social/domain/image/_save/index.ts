@@ -1,4 +1,6 @@
 
+import type { Identifier } from '@comify/common/primitives/identifier';
+
 import type { Image } from '../definitions';
 
 import createRecord from './createRecord';
@@ -7,7 +9,7 @@ import generateStorageKey from './generateStorageKey';
 import persist from './persist';
 import insertFile from './insertFile';
 
-export default async function (type: string, image: Image): Promise<string>
+export default async function (type: string, image: Image): Promise<Identifier>
 {
     const storageKey = generateStorageKey(type, image.buffer);
 

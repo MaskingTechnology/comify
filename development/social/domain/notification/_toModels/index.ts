@@ -1,4 +1,5 @@
 
+import type { Identifier } from '@comify/common/primitives/identifier';
 import { type Requester } from '@comify/common/security';
 
 import type { Record, Notification } from '../definitions';
@@ -6,7 +7,7 @@ import type { Record, Notification } from '../definitions';
 import getReferences from './getReferences';
 import createModels from './createModels';
 
-export default async function (requester: Requester, records: Record[]): Promise<Map<string, Notification>>
+export default async function (requester: Requester, records: Record[]): Promise<Map<Identifier, Notification>>
 {
     if (records.length === 0)
     {

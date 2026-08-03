@@ -1,15 +1,14 @@
 
+import type { Identifier } from '@comify/common/primitives/identifier';
 import { type Requester } from '@comify/common/security';
+
 import createComment from '~/post.comment/create';
 
 import createPost from '../_create';
 
-type Data = {
-    readonly message: string;
-    readonly parentId?: string;
-};
+import type { CreateData } from './definitions';
 
-export default async function (requester: Requester, data: Data): Promise<string>
+export default async function (requester: Requester, data: CreateData): Promise<Identifier>
 {
     const commentId = await createComment({ message: data.message });
 

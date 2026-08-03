@@ -1,12 +1,14 @@
 
-import type { CountOperation } from '../definitions';
+import type { CountOperation } from '@comify/common/primitives/count';
+import type { Identifier } from '@comify/common/primitives/identifier';
+
 import { logger } from '../integrations';
 import retrieve from '../_retrieveByCreator';
 
 import updateCount from './updateCount';
 import persist from './persist';
 
-export default async function (creatorId: string, operation: CountOperation): Promise<void>
+export default async function (creatorId: Identifier, operation: CountOperation): Promise<void>
 {
     const record = await retrieve(creatorId);
 

@@ -3,9 +3,11 @@ import http from '@comify/common/integrations/http';
 
 import ImageNotDownloaded from './ImageNotDownloaded';
 
-export default async function (imageUrl: string): Promise<Buffer>
+export default async function (url: URL): Promise<Buffer>
 {
-    const response = await http.get(imageUrl);
+    const urlString = url.toString();
+
+    const response = await http.get(urlString);
 
     if (response.ok === false)
     {

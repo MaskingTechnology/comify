@@ -1,6 +1,7 @@
 
 import { type Requester } from '@comify/common/security';
 
+import type { Nickname } from '../definitions';
 import { logger } from '../integrations';
 import cleanNickname from '../_cleanNickname';
 
@@ -9,7 +10,7 @@ import persist from './persist';
 import publish from './publish';
 import NicknameAlreadyExists from './NicknameAlreadyExists';
 
-export default async function (requester: Requester, nickname: string): Promise<void>
+export default async function (requester: Requester, nickname: Nickname): Promise<void>
 {
     const cleanedNickname = cleanNickname(nickname);
 

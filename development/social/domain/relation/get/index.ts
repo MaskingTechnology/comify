@@ -7,7 +7,7 @@ import retrieve from '../_retrieve';
 
 export default async function (requester: Requester, key: RelationKey): Promise<Relation>
 {
-    const record = await retrieve(key.followerId, key.followingId);
+    const record = await retrieve(key);
 
     return toModel(requester.tenantId, record);
 }

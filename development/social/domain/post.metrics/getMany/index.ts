@@ -1,11 +1,13 @@
 
+import type { Identifier } from '@comify/common/primitives/identifier';
+
 import type { Metrics } from '../definitions';
 import toModels from '../_toModels';
 
 import retrieveExisting from './retrieveExisting';
 import addMissing from './addMissing';
 
-export default async function (postIds: string[]): Promise<Map<string, Metrics>>
+export default async function (postIds: Identifier[]): Promise<Map<Identifier, Metrics>>
 {
     const existingRecords = await retrieveExisting(postIds);
 

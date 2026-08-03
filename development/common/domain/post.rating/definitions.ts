@@ -1,9 +1,11 @@
 
+import { Identifier } from '^/primitives/identifier';
+
 import { BaseEventData } from '../definitions';
 
 export type EventData = BaseEventData & {
-    readonly creatorId: string;
-    readonly postId: string;
+    readonly creatorId: Identifier;
+    readonly postId: Identifier;
 };
 
 export type EventHandler = (eventData: EventData) => void;

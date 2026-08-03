@@ -1,17 +1,16 @@
 
+import type { Identifier } from '@comify/common/primitives/identifier';
 import { type Requester } from '@comify/common/security';
+
 import createComic from '~/post.comic/create';
 
 import createPost from '../_create';
 
-type Data = {
-    readonly comicImageDataUrl: string;
-    readonly parentId?: string;
-};
+import type { CreateData } from './definitions';
 
-export default async function (requester: Requester, data: Data): Promise<string>
+export default async function (requester: Requester, data: CreateData): Promise<Identifier>
 {
-    const comicId = await createComic({ imageDataUrl: data.comicImageDataUrl });
+    const comicId = await createComic({ imageDataUrl: data.imageDataUrl });
 
     return createPost({
         tenantId: requester.tenantId,

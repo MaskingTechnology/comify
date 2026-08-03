@@ -5,9 +5,11 @@ import { type References } from './definitions';
 
 export default function (record: Record, references: References): Creator
 {
-    const { id, fullName, nickname, joinedAt } = record;
+    const { id, fullName, nickname } = record;
+
+    const joinedAt = new Date(record.joinedAt);
 
     const { portrait, metrics } = references;
 
-    return { id, fullName, nickname, joinedAt, portrait, metrics };
+    return { id, fullName, nickname, portrait, joinedAt, metrics };
 }

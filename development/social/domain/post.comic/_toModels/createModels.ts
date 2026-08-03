@@ -1,10 +1,12 @@
 
+import type { Identifier } from '@comify/common/primitives/identifier';
+
 import { type ImageData } from '~/image';
 
 import type { Record, Comic } from '../definitions';
 import { logger } from '../integrations';
 
-export default function (records: Record[], imageMap: Map<string, ImageData>): Map<string, Comic>
+export default function (records: Record[], imageMap: Map<Identifier, ImageData>): Map<Identifier, Comic>
 {
     const map = new Map();
 

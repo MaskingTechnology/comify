@@ -3,8 +3,10 @@ import type { Validation } from '@theshelf/validation';
 
 import type { BaseRecord } from '../definitions';
 
+export type ImageDataUrl = string;
+
 export type ImageData = {
-    readonly dataUrl: string;
+    readonly dataUrl: ImageDataUrl;
 };
 
 export type MetaData = {

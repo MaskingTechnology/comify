@@ -1,4 +1,5 @@
 
+import type { Identifier } from '@comify/common/primitives/identifier';
 import { type Range } from '@comify/common/primitives/range';
 import validateRange from '@comify/common/primitives/range/validate';
 import { type Requester } from '@comify/common/security';
@@ -8,7 +9,7 @@ import toModels from '../_toModels';
 
 import getByCreator from './retrieve';
 
-export default async function (requester: Requester, creatorId: string, range: Range): Promise<Post[]>
+export default async function (requester: Requester, creatorId: Identifier, range: Range): Promise<Post[]>
 {
     validateRange(range);
 

@@ -1,9 +1,11 @@
 
-import { generateId } from '@comify/common/integrations/utilities/crypto';
+import type { TenantId } from '@comify/common/domain/tenant';
+import type { Identifier } from '@comify/common/primitives/identifier';
+import generateId from '@comify/common/primitives/identifier/generate';
 
-import type { Record } from '../definitions';
+import type { FullName, Nickname, Email, Record } from '../definitions';
 
-export default function (tenantId: string, fullName: string, nickname: string, email: string, portraitId?: string): Record
+export default function (tenantId: TenantId, fullName: FullName, nickname: Nickname, email: Email, portraitId?: Identifier): Record
 {
     return {
         id: generateId(),

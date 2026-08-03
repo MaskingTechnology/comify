@@ -3,7 +3,7 @@ import type { ValidationSchema } from '@theshelf/validation';
 
 import validator from '@comify/common/integrations/validation';
 
-import { requiredIdValidation } from '~/definitions';
+import { identifierValidation } from '@comify/common/primitives/identifier';
 
 import { type RelationKey } from '../../definitions';
 
@@ -11,8 +11,8 @@ import InvalidRelation from './InvalidRelation';
 
 const schema: ValidationSchema =
 {
-    followerId: requiredIdValidation,
-    followingId: requiredIdValidation
+    followerId: identifierValidation,
+    followingId: identifierValidation
 };
 
 export default function (key: RelationKey): void

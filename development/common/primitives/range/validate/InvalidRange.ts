@@ -1,5 +1,5 @@
 
-import { ValidationError } from '@comify/common/integrations/errors';
+import { ValidationError } from '^/integrations/errors';
 
 export default class InvalidRange extends ValidationError
 {

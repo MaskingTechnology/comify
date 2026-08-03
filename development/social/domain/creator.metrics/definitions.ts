@@ -1,8 +1,9 @@
 
-import type { BaseRecord, CountOperation } from '../definitions';
+import type { Count } from '@comify/common/primitives/count';
 
-export type Record = BaseRecord &
-{
+import type { BaseRecord } from '../definitions';
+
+export type Record = BaseRecord & {
     readonly creatorId: string;
     readonly posts: number;
     readonly followers: number;
@@ -10,9 +11,11 @@ export type Record = BaseRecord &
     readonly popularity: number;
 };
 
-export type Metrics = Omit<Record, 'id' | 'creatorId'>;
-
-export type { CountOperation };
+export type Metrics = {
+    posts: Count;
+    followers: Count;
+    following: Count;
+    popularity: Count;
+};
 
 export const RECORD_TYPE = 'creator.metrics';
-export const EVENT_CHANNEL = 'creator.metrics';

@@ -1,10 +1,12 @@
 
 import type { Validation } from '@theshelf/validation';
 
-import type { Metrics } from '~/creator.metrics';
-import type { ImageData } from '~/image';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
-import { type SortOrder, SortOrders, type BaseRecord, type CountOperation } from '../definitions';
+import { type Metrics } from '~/creator.metrics';
+import { type ImageData } from '~/image';
+
+import { type BaseRecord } from '../definitions';
 
 export type Record = BaseRecord &
 {
@@ -16,13 +18,18 @@ export type Record = BaseRecord &
     readonly joinedAt: string;
 };
 
-export type Creator = Omit<Record, 'tenantId' | 'email' | 'portraitId'> &
-{
+export type FullName = string;
+export type Nickname = string;
+export type Email = string;
+
+export type Creator = {
+    readonly id: Identifier;
+    readonly fullName: FullName;
+    readonly nickname: Nickname;
     readonly portrait?: ImageData;
+    readonly joinedAt: Date;
     readonly metrics: Metrics;
 };
-
-export { type CountOperation, SortOrders, type SortOrder };
 
 export const RECORD_TYPE = 'creator';
 export const IMAGE_TYPE = 'portrait';

@@ -1,10 +1,12 @@
 
+import type { Identifier } from '@comify/common/primitives/identifier';
+
 import { type CreateData } from './definitions';
 import createRecord from './createRecord';
 import persist from './persist';
 import validate from './validate';
 
-export default async function (data: CreateData): Promise<string>
+export default async function (data: CreateData): Promise<Identifier>
 {
     validate(data);
 

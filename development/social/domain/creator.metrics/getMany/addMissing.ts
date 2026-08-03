@@ -1,9 +1,11 @@
 
+import type { Identifier } from '@comify/common/primitives/identifier';
+
 import { type Record } from '../definitions';
 
 import createMissing from './createMissing';
 
-export default function (creatorIds: string[], records: Record[]): Record[]
+export default function (creatorIds: Identifier[], records: Record[]): Record[]
 {
     const result: Record[] = [];
 

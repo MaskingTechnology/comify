@@ -14,9 +14,10 @@ export default function (requester: Requester, records: Record[], references: Re
 
     records.forEach(record =>
     {
-        const { id, createdAt, parentId } = record;
+        const { id, parentId } = record;
 
         const hasParent = parentId !== undefined;
+        const createdAt = new Date(record.createdAt);
 
         const comicId = record.comicId ?? '';
         const commentId = record.commentId ?? '';
@@ -35,7 +36,7 @@ export default function (requester: Requester, records: Record[], references: Re
         if (isRated === undefined) return logger.warn(`Rating for post with id ${record.id} not found`);
         if (metrics === undefined) return logger.warn(`Metrics for post with id ${record.id} not found`);
 
-        const post = { id, createdAt, hasParent, parentId, creator, comic, comment, metrics, isRated };
+        const post: Post = { id, createdAt, hasParent, parentId, creator, comic, comment, metrics, isRated };
 
         map.set(record.id, post);
     });

@@ -1,10 +1,12 @@
 
+import type { Identifier } from '@comify/common/primitives/identifier';
+
 import { logger } from '../integrations';
 
 import retrieve from './retrieve';
 import remove from './remove';
 
-export default async function (postId: string): Promise<void>
+export default async function (postId: Identifier): Promise<void>
 {
     const records = await retrieve(postId);
 

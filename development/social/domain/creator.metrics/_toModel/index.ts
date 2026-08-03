@@ -1,7 +1,7 @@
 
 import type { Metrics, Record } from '../definitions';
 
-export default async function (record: Record): Promise<Metrics>
+export default function (record: Record): Metrics
 {
     return {
         posts: record.posts,

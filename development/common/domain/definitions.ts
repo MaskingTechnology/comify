@@ -1,10 +1,14 @@
 
+import type { TenantId } from '^/domain/tenant';
+import type { ContextId } from '^/primitives/context';
+import type { Identifier } from '^/primitives/identifier';
+
 export type BaseEventData = {
-    readonly contextId: string;
-    readonly tenantId: string;
-    readonly principalId: string;
+    readonly contextId: ContextId;
+    readonly tenantId: TenantId;
+    readonly principalId: Identifier;
 };
 
 export type BaseRecord = {
-    readonly id: string;
+    readonly id: Identifier;
 };

@@ -1,4 +1,5 @@
 
+import type { Identifier } from '@comify/common/primitives/identifier';
 import { type Requester } from '@comify/common/security';
 
 import { logger } from '../integrations';
@@ -6,10 +7,10 @@ import retrieveById from '../_retrieveById';
 
 import isNotOwner from './isNotOwner';
 import publish from './publish';
-import deleteRecord from './deleteRecord';
-import undeleteRecord from './undeleteRecord';
+import markDeleted from './markDeleted';
+import markUndeleted from './markUndeleted';
 
-export default async function (requester: Requester, id: string): Promise<void>
+export default async function (requester: Requester, id: Identifier): Promise<void>
 {
     // We only delete the post itself and do not cascade it towards it's children as it doesn't add
     // any value, and it would make the code more complex.
@@ -26,7 +27,7 @@ export default async function (requester: Requester, id: string): Promise<void>
             return;
         }
 
-        await deleteRecord(id);
+        await markDeleted(id);
 
         deleted = true;
 
@@ -38,7 +39,7 @@ export default async function (requester: Requester, id: string): Promise<void>
 
         if (deleted)
         {
-            await undeleteRecord(id);
+            await markUndeleted(id);
         }
 
         throw error;

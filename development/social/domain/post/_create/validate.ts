@@ -3,7 +3,7 @@ import type { ValidationSchema } from '@theshelf/validation';
 
 import validator from '@comify/common/integrations/validation';
 
-import { optionalIdValidation, requiredIdValidation } from '~/definitions';
+import { identifierValidation, optionalIdentifierValidation } from '@comify/common/primitives/identifier';
 
 import InvalidPost from './InvalidPost';
 import type { CreateData } from './definitions';
@@ -18,10 +18,10 @@ const schema: ValidationSchema =
             required: true
         }
     },
-    creatorId: requiredIdValidation,
-    comicId: optionalIdValidation,
-    commentId: optionalIdValidation,
-    parentId: optionalIdValidation
+    creatorId: identifierValidation,
+    comicId: optionalIdentifierValidation,
+    commentId: optionalIdentifierValidation,
+    parentId: optionalIdentifierValidation
 };
 
 export default function (data: CreateData): void

@@ -6,15 +6,13 @@ import NamesRow from './NamesRow';
 type Props = {
     readonly fullName: string;
     readonly nickname: string;
-    readonly joinedAt: string;
+    readonly joinedAt: Date;
 };
 
 export default function ({ fullName, nickname, joinedAt }: Props)
 {
-    const joinedAtDate = new Date(joinedAt);
-
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-    const joinedText = 'Joined ' + joinedAtDate.toLocaleDateString('en-GB', options);
+    const joinedText = 'Joined ' + joinedAt.toLocaleDateString('en-GB', options);
 
     return <Column gap='small' alignY='justify' alignX='stretch'>
         <NamesRow fullName={fullName} nickname={nickname} />

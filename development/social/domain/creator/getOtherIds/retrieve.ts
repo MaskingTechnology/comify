@@ -4,9 +4,9 @@ import { SortDirections } from '@theshelf/database';
 
 import database from '@comify/common/integrations/database';
 
-import { RECORD_TYPE, SortOrders, type Record, type SortOrder } from '../definitions';
+import { RECORD_TYPE, type Record } from '../definitions';
 
-export default async function (tenantId: string, ids: string[], order: SortOrder, limit: number, offset: number, search: string | undefined = undefined): Promise<Record[]>
+export default async function (tenantId: string, ids: string[], limit: number, offset: number, search: string | undefined = undefined): Promise<Record[]>
 {
     const defaultQuery: RecordQuery<Record> = {
         AND: [
@@ -21,10 +21,8 @@ export default async function (tenantId: string, ids: string[], order: SortOrder
         ]
     };
 
-    const sortField = order === SortOrders.POPULAR ? 'popularity' : 'joinedAt';
-
     const query: QueryStatement<Record> = search !== undefined ? { ...defaultQuery, ...searchQuery } : defaultQuery;
-    const recordSort: RecordSort<Record> = { [sortField]: SortDirections.ASCENDING };
+    const recordSort: RecordSort<Record> = { joinedAt: SortDirections.ASCENDING };
 
     return database.searchRecords<Record>(RECORD_TYPE, query, undefined, recordSort, limit, offset);
 }

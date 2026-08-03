@@ -1,2 +1,2 @@
 
-export { RECORD_TYPE, type Record, type Tenant, tenant } from './definitions';
+export { RECORD_TYPE, tenant, type TenantId, type Origin, type Tenant } from './definitions';

@@ -1,9 +1,9 @@
 
-import { generateId } from '@comify/common/integrations/utilities/crypto';
+import generateId from '@comify/common/primitives/identifier/generate';
 
-import type { Record } from '../definitions';
+import type { Record, Message } from '../definitions';
 
-export default function (message: string): Record
+export default function (message: Message): Record
 {
     return {
         id: generateId(),

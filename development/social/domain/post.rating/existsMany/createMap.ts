@@ -9,10 +9,10 @@ export default function (keys: RatingKey[], records: Record[]): Map<string, bool
     {
         const record = records.find(record => record.creatorId === creatorId && record.postId === postId);
 
-        const key = `${creatorId}:${postId}`;
+        const id = `${creatorId}:${postId}`;
         const exists = record !== undefined;
 
-        map.set(key, exists);
+        map.set(id, exists);
     });
 
     return map;

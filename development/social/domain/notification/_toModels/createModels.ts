@@ -1,10 +1,12 @@
 
-import type { Record, Notification } from '../definitions';
+import type { Identifier } from '@comify/common/primitives/identifier';
+
+import type { Record, Notification, Type } from '../definitions';
 import { logger } from '../integrations';
 
 import type { References } from './definitions';
 
-export default function (records: Record[], references: References): Map<string, Notification>
+export default function (records: Record[], references: References): Map<Identifier, Notification>
 {
     const { postMap, relationMap } = references;
 
@@ -12,7 +14,8 @@ export default function (records: Record[], references: References): Map<string,
 
     records.forEach(record =>
     {
-        const { createdAt, type } = record;
+        const createdAt = new Date(record.createdAt);
+        const type = record.type as Type;
 
         const relationKey = `${record.receiverId}:${record.senderId}`;
 
@@ -22,7 +25,7 @@ export default function (records: Record[], references: References): Map<string,
 
         const post = record.postId !== undefined ? postMap.get(record.postId) : undefined;
 
-        const notification = { createdAt, type, relation, post };
+        const notification: Notification = { createdAt, type, relation, post };
 
         map.set(record.id, notification);
     });

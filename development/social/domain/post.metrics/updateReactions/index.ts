@@ -1,12 +1,14 @@
 
-import type { CountOperation } from '../definitions';
+import type { CountOperation } from '@comify/common/primitives/count';
+import type { Identifier } from '@comify/common/primitives/identifier';
+
 import { logger } from '../integrations';
 import retrieve from '../_retrieveByPost';
 
 import updateCount from './updateCount';
 import persist from './persist';
 
-export default async function (tenantId: string, postId: string, parentId: string | undefined, operation: CountOperation): Promise<void>
+export default async function (parentId: Identifier | undefined, operation: CountOperation): Promise<void>
 {
     if (parentId === undefined)
     {

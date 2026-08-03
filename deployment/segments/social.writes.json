@@ -1,6 +1,6 @@
 {
     "./social/domain/creator/create/persist": { "default": {  "access": "protected" } },
-    "./social/domain/creator/create/erase": { "default": {  "access": "protected" } },
+    "./social/domain/creator/create/remove/erase": { "default": {  "access": "protected" } },
     "./social/domain/creator/updateFullName/persist": { "default": {  "access": "protected" } },
     "./social/domain/creator/updateNickname/persist": { "default": {  "access": "protected" } },
 
@@ -13,9 +13,9 @@
     "./social/domain/image/remove/erase": { "default": {  "access": "protected" } },
 
     "./social/domain/post/_create/persist": { "default": {  "access": "protected" } },
-    "./social/domain/post/_create/erase": { "default": {  "access": "protected" } },
-    "./social/domain/post/remove/deleteRecord": { "default": { "access": "protected" }},
-    "./social/domain/post/remove/undeleteRecord": { "default": { "access": "protected" }},
+    "./social/domain/post/_create/remove/erase": { "default": {  "access": "protected" } },
+    "./social/domain/post/remove/markDeleted": { "default": { "access": "protected" }},
+    "./social/domain/post/remove/markUndeleted": { "default": { "access": "protected" }},
 
     "./social/domain/post.comic/create/persist": { "default": {  "access": "protected" } },
     "./social/domain/post.comic/remove/erase": { "default": {  "access": "protected" } },
@@ -31,5 +31,5 @@
     "./social/domain/post.rating/toggle/remove/erase": { "default": {  "access": "protected" } },
 
     "./social/domain/relation/establish/create/persist": { "default": {  "access": "protected" } },
-    "./social/domain/relation/establish/erase": { "default": {  "access": "protected" } }
+    "./social/domain/relation/establish/remove/erase": { "default": {  "access": "protected" } }
 }

@@ -1,11 +1,13 @@
 
+import type { Identifier } from '@comify/common/primitives/identifier';
+
 import type { Type } from '../definitions';
 import { logger } from '../integrations';
 
 import createRecord from './createRecord';
 import persist from './persist';
 
-export default async function (type: Type, senderId: string, receiverId: string, postId: string | undefined = undefined): Promise<void>
+export default async function (type: Type, senderId: Identifier, receiverId: Identifier, postId: Identifier | undefined = undefined): Promise<void>
 {
     if (senderId === receiverId)
     {

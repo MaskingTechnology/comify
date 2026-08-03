@@ -5,9 +5,12 @@ export type Record = BaseRecord & {
     readonly origins: string[];
 };
 
+export type TenantId = string;
+export type Origin = string;
+
 export type Tenant = {
-    readonly id: string;
-    readonly origin: string;
+    readonly id: TenantId;
+    readonly origin: Origin;
 };
 
 export const tenant: Tenant = {

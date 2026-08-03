@@ -1,4 +1,6 @@
 
+import type { Identifier } from '@comify/common/primitives/identifier';
+
 import type { Comment } from '../definitions';
 import { logger } from '../integrations';
 import toModel from '../_toModel';
@@ -6,7 +8,7 @@ import toModel from '../_toModel';
 import retrieve from './retrieve';
 import CommentNotFound from './CommentNotFound';
 
-export default async function (id: string): Promise<Comment>
+export default async function (id: Identifier): Promise<Comment>
 {
     const record = await retrieve(id);
 

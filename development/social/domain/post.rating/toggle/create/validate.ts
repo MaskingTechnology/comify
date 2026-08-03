@@ -3,14 +3,14 @@ import type { ValidationSchema } from '@theshelf/validation';
 
 import validator from '@comify/common/integrations/validation';
 
-import { requiredIdValidation } from '~/definitions';
+import { identifierValidation } from '@comify/common/primitives/identifier';
 
 import { type CreateData } from '../definitions';
 import InvalidRating from './InvalidRating';
 
 const schema: ValidationSchema =
 {
-    postId: requiredIdValidation
+    postId: identifierValidation
 };
 
 export default function ({ postId }: CreateData): void

@@ -1,7 +1,7 @@
 
-import { FULL_NAME_MAX_LENGTH } from '../definitions';
+import { FULL_NAME_MAX_LENGTH, type FullName } from '../definitions';
 
-export default function (fullName: string): string
+export default function (fullName: FullName): string
 {
     return fullName.substring(0, FULL_NAME_MAX_LENGTH);
 }
