@@ -15,8 +15,8 @@ export default async function subscribe(): Promise<void>
         onCreatorAdded(({ creatorId }) => createMetrics(creatorId)),
         onRelationEstablished(({ followingId }) => updateFollowerCount(followingId, 'increase')),
         onRelationEstablished(({ followerId }) => updateFollowingCount(followerId, 'increase')),
-        onPostAdded(({ tenantId, postId, parentId }) => updatePostCount(tenantId, postId, parentId, 'increase')),
-        onPostRemoved(({ tenantId, postId, parentId }) => updatePostCount(tenantId, postId, parentId, 'decrease'))
+        onPostAdded(({ tenantId, principalId, parentId }) => updatePostCount(tenantId, principalId, parentId, 'increase')),
+        onPostRemoved(({ tenantId, principalId, parentId }) => updatePostCount(tenantId, principalId, parentId, 'decrease'))
     ]);
 }
 

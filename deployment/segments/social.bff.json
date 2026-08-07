@@ -12,7 +12,6 @@
     "./social/domain/creator.metrics/subscriptions": { "default": {  "access": "private" } },
 
     "./social/domain/notification/getRecent": { "default": {  "access": "public" } },
-    "./social/domain/notification/subscriptions": { "default": {  "access": "private" } },
 
     "./social/domain/post/createWithComic": { "default": {  "access": "public" } },
     "./social/domain/post/createWithComment": { "default": {  "access": "public" } },

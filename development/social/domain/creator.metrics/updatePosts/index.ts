@@ -11,7 +11,7 @@ import retrieveMetrics from '../_retrieveByCreator';
 import updateCount from './updateCount';
 import persist from './persist';
 
-export default async function (tenantId: TenantId, postId: Identifier, parentId: Identifier | undefined, operation: CountOperation): Promise<void>
+export default async function (tenantId: TenantId, creatorId: Identifier, parentId: Identifier | undefined, operation: CountOperation): Promise<void>
 {
     if (parentId !== undefined)
     {
@@ -20,9 +20,7 @@ export default async function (tenantId: TenantId, postId: Identifier, parentId:
         return;
     }
 
-    const postRecord = await retrievePost(tenantId, postId);
-
-    const metricsRecord = await retrieveMetrics(postRecord.creatorId);
+    const metricsRecord = await retrieveMetrics(creatorId);
 
     const posts = updateCount(metricsRecord, operation);
 

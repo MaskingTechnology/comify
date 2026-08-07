@@ -1,35 +1,19 @@
 
 import type { TenantId } from '@comify/common/domain/tenant';
 
-import getCreators from '~/creator/getManyById';
-
 import type { Record, Relation, RelationId } from '../definitions';
-import { logger } from '../integrations';
+
+import getCreators from './getCreators';
+import createModels from './createModels';
 
 export default async function (tenantId: TenantId, records: Record[]): Promise<Map<RelationId, Relation>>
 {
-    const map = new Map();
-
-    if (records.length === 0) return map;
-
-    const followingIds = new Set(records.map(record => record.followingId));
-
-    const creators = await getCreators(tenantId, [...followingIds]);
-
-    records.forEach(record =>
+    if (records.length === 0)
     {
-        const creator = creators.get(record.followingId);
+        return new Map();
+    }
 
-        if (creator === undefined) return logger.warn(`Following creator for relation with id ${record.id} not found`);
+    const creators = await getCreators(tenantId, records);
 
-        const id = `${record.followerId}:${record.followingId}`;
-
-        map.set(id, {
-            following: creator,
-            established: record.id !== undefined,
-            self: record.followerId === record.followingId
-        });
-    });
-
-    return map;
+    return createModels(records, creators);
 }

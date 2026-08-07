@@ -14,7 +14,7 @@ export default function useAddComicPost()
 
     return useCallback(async (imageData: string) =>
     {
-        await createPostWithComic(requester, { comicImageDataUrl: imageData });
+        await createPostWithComic(requester, { imageDataUrl: imageData });
 
         navigate(`/profile/${identity?.nickname}`);
 

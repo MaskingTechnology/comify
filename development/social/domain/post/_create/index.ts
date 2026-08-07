@@ -1,5 +1,6 @@
 
 import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Requester } from '@comify/common/security';
 
 import { logger } from '../integrations';
 
@@ -10,7 +11,7 @@ import publish from './publish';
 import validate from './validate';
 import remove from './remove';
 
-export default async function (data: CreateData): Promise<Identifier>
+export default async function (requester: Requester, data: CreateData): Promise<Identifier>
 {
     validate(data);
 
@@ -20,7 +21,7 @@ export default async function (data: CreateData): Promise<Identifier>
 
     try
     {
-        await publish(data.tenantId, data.creatorId, postId, data.parentId);
+        await publish(requester.tenantId, requester.principalId, record.id, record.parentId);
 
         return postId;
     }

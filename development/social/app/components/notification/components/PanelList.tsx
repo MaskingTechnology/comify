@@ -19,7 +19,7 @@ export default function ({ notifications, onFollowClick, onCreatorClick, onNotif
         {
             notifications.map(notification =>
                 <Panel
-                    key={notification.id}
+                    key={notification.createdAt.getDate()}
                     notification={notification}
                     onFollowClick={onFollowClick}
                     onCreatorClick={onCreatorClick}

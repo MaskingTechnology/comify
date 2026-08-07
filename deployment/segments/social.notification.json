@@ -1,6 +1,3 @@
 {
-    "./social/domain/notification/notifyPostRated": { "default": {  "access": "protected" } },
-    "./social/domain/notification/notifyReactionAdded": { "default": {  "access": "protected" } },
-    "./social/domain/notification/notifyStartedFollowing": { "default": {  "access": "protected" } },
-    "./social/domain/notification/removeByPost": { "default": {  "access": "protected" } }
+    "./social/domain/notification/subscriptions": { "default": {  "access": "private" } }
 }

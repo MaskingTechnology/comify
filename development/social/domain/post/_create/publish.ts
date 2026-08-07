@@ -5,11 +5,11 @@ import type { Identifier } from '@comify/common/primitives/identifier';
 
 import { CONTEXT_ID } from '~/definitions';
 
-export default async function (tenantId: TenantId, creatorId: Identifier, postId: Identifier, parentId?: Identifier): Promise<void>
+export default async function (tenantId: TenantId, principalId: Identifier, postId: Identifier, parentId?: Identifier): Promise<void>
 {
     return publishPostAdded({
         contextId: CONTEXT_ID,
-        principalId: creatorId,
+        principalId,
         tenantId,
         postId,
         parentId
