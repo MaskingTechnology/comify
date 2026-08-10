@@ -4,6 +4,14 @@
     "composite": true,
     "rootDir": "./",
     "outDir": "../../artifacts/build/social",
+    "paths": {
+      "~/*": ["./domain/*", "./security/*"],
+      "^/*": ["./*"],
+      "@comify/common/*": ["../common/*"]
+    }
   },
+  "references": [
+    { "path" : "../common" }
+  ],
   "include": ["./domain", "./security"]
 }

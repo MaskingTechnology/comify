@@ -1,5 +1,4 @@
 {
-    "./social/domain/creator/_retrieveById": { "default": {  "access": "protected" } },
     "./social/domain/creator/create/makeNickname/retrieveByNickname": { "default": {  "access": "protected" } },
     "./social/domain/creator/create/makeNickname/retrieveByStartNickname": { "default": {  "access": "protected" } },
     "./social/domain/creator/getByNickname/retrieve": { "default": {  "access": "protected" } },

@@ -5,14 +5,17 @@
   "type": "module",
   "scripts": {
     "artifacts": "npm run build && npm run dist",
+
     "build": "npm run build-logic && npm run build-app",
-    "build-logic": "npm run build-logic --workspaces",
+    "build-logic": "npm run build-logic --workspaces --if-present",
     "build-app": "npm run build-app --workspaces --if-present",
-    "lint": "npm run lint --workspaces",
-    "review": "npm run review --workspaces",
-    "clean": "npm run clean --workspaces",
+    "lint": "npm run lint --workspaces --if-present",
+    "review": "npm run review --workspaces --if-present",
+    "clean": "npm run clean --workspaces --if-present",
+
     "test": "vitest run",
     "test-coverage": "vitest run --coverage",
+
     "dist": "npm run clean-dist && npm run bundle && npm run copy",
     "bundle": "jitar build",
     "clean-build": "rimraf artifacts/build",
@@ -20,8 +23,10 @@
     "copy": "npm run copy-apps && npm run copy-assets",
     "copy-apps": "cpx 'artifacts/build/*/app/**/*' 'artifacts/dist'",
     "copy-assets": "cpx 'artifacts/build/*/assets/**/*' 'artifacts/dist'",
+
     "docker-up": "docker compose --env-file development.env up -d",
     "docker-down": "docker compose --env-file development.env down",
+    
     "dev": "jitar start --env-file=development.env --service=deployment/services/development/worker.json --http-body-limit=512000",
     "demo": "jitar start --env-file=development.env --service=deployment/services/demonstration/social.json --http-body-limit=512000",
     "gateway": "jitar start --env-file=development.env --service=deployment/services/production/gateway.json --http-body-limit=512000",
@@ -37,7 +42,12 @@
     "development/common",
     "development/insights",
     "development/social",
-    "development/moderation"
+    "development/moderation",
+
+    "testing/common",
+    "testing/insights",
+    "testing/moderation",
+    "testing/social"
   ],
   "dependencies": {
     "@jitar-plugins/authentication": "^0.1.5",
