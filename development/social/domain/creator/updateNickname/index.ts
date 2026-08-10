@@ -3,8 +3,9 @@ import { type Requester } from '@comify/common/security';
 
 import type { Nickname } from '../definitions';
 import { logger } from '../integrations';
-import cleanNickname from '../_cleanNickname';
+import formatNickname from '../_formatNickname';
 
+import validate from './validate';
 import retrieve from './retrieve';
 import persist from './persist';
 import publish from './publish';
@@ -12,9 +13,11 @@ import NicknameAlreadyExists from './NicknameAlreadyExists';
 
 export default async function (requester: Requester, nickname: Nickname): Promise<void>
 {
-    const cleanedNickname = cleanNickname(nickname);
+    validate(nickname);
 
-    const record = await retrieve(requester.tenantId, cleanedNickname);
+    const formattedNickname = formatNickname(nickname);
+
+    const record = await retrieve(requester.tenantId, formattedNickname);
 
     if (record !== undefined)
     {

@@ -2,7 +2,7 @@
 import type { TenantId } from '@comify/common/domain/tenant';
 
 import type { Nickname } from '../../definitions';
-import cleanNickname from '../../_cleanNickname';
+import formatNickname from '../../_formatNickname';
 
 import TooManySimilarNicknames from './TooManySimilarNicknames';
 import retrieveByNickname from './retrieveByNickname';
@@ -12,13 +12,13 @@ import { MAX_NICKNAME_NUMBER } from '../definitions';
 
 export default async function (tenantId: TenantId, nickname: Nickname): Promise<string>
 {
-    const cleanedNickname = cleanNickname(nickname);
+    const formattedNickname = formatNickname(nickname);
 
-    const existingRecord = await retrieveByNickname(tenantId, cleanedNickname);
+    const existingRecord = await retrieveByNickname(tenantId, formattedNickname);
 
     if (existingRecord === undefined)
     {
-        return cleanedNickname;
+        return formattedNickname;
     }
 
     const foundRecord = await retrieveByStartNickname(tenantId, `${existingRecord.nickname}_`);
@@ -28,7 +28,7 @@ export default async function (tenantId: TenantId, nickname: Nickname): Promise<
         return `${existingRecord.nickname}_001`;
     }
 
-    const oldNumber = parseInt(foundRecord.nickname.substring(cleanedNickname.length + 1));
+    const oldNumber = parseInt(foundRecord.nickname.substring(formattedNickname.length + 1));
     const newNumber = oldNumber + 1;
 
     if (newNumber === MAX_NICKNAME_NUMBER)
@@ -38,5 +38,5 @@ export default async function (tenantId: TenantId, nickname: Nickname): Promise<
 
     const stringNumber = newNumber.toString().padStart(3, '0');
 
-    return `${cleanedNickname}_${stringNumber}`;
+    return `${formattedNickname}_${stringNumber}`;
 }
