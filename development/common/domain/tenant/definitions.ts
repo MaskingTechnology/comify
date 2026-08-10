@@ -1,4 +1,6 @@
 
+import type { Validation } from '@theshelf/validation';
+
 import type { BaseRecord } from '../definitions';
 
 export type Record = BaseRecord & {
@@ -11,6 +13,16 @@ export type Origin = string;
 export type Tenant = {
     readonly id: TenantId;
     readonly origin: Origin;
+};
+
+export const tenantIdValidation: Validation = {
+    message: 'Invalid origin',
+    STRING: {}
+};
+
+export const originValidation: Validation = {
+    message: 'Invalid origin',
+    URL: {}
 };
 
 export const tenant: Tenant = {

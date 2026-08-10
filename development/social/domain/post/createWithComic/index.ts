@@ -13,7 +13,6 @@ export default async function (requester: Requester, data: CreateData): Promise<
     const comicId = await createComic({ imageDataUrl: data.imageDataUrl });
 
     return createPost(requester, {
-        tenantId: requester.tenantId,
         creatorId: requester.principalId,
         comicId,
         parentId: data.parentId

@@ -1,2 +1,2 @@
 
-export { identifierValidation, optionalIdentifierValidation, type Identifier } from './definitions';
+export { identifierValidation, type Identifier } from './definitions';

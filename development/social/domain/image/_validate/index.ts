@@ -1,52 +1,22 @@
 
-import type { ValidationSchema } from '@theshelf/validation';
-
 import validator from '@comify/common/integrations/validation';
 
-import type { MetaData } from '../definitions';
+import { type MetaData, filenameValidation, mimeTypeValidation, sizeValidation } from '../definitions';
 
 import InvalidImage from './InvalidImage';
 
-const TEN_B = 10;
-const FIVE_MB = 1024 * 1024 * 5;
-
-const schema: ValidationSchema =
-{
-    filename:
-    {
-        message: 'Value is not a valid file name',
-        STRING:
-        {
-            required: true
-        }
-    },
-    mimeType:
-    {
-        message: 'Value is not a valid mime type',
-        STRING:
-        {
-            required: true,
-            pattern: 'image/(jpeg|png|gif)'
-        }
-    },
-    size:
-    {
-        message: 'Value is not a valid size',
-        NUMBER:
-        {
-            required: true,
-            minValue: TEN_B,
-            maxValue: FIVE_MB
-        }
-    }
-};
-
 export default function ({ filename, mimeType, size }: MetaData): void
 {
-    const result = validator.validate({ filename, mimeType, size }, schema);
+    const result = validator.validate({ filename, mimeType, size }, {
+        filename: filenameValidation,
+        mimeType: mimeTypeValidation,
+        size: sizeValidation
+    });
 
     if (result.invalid)
     {
         throw new InvalidImage(result.messages);
     }
 }
+
+export { InvalidImage };

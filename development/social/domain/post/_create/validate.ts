@@ -1,28 +1,10 @@
 
-import type { ValidationSchema } from '@theshelf/validation';
-
 import validator from '@comify/common/integrations/validation';
 
-import { identifierValidation, optionalIdentifierValidation } from '@comify/common/primitives/identifier';
+import { identifierValidation } from '@comify/common/primitives/identifier';
 
 import InvalidPost from './InvalidPost';
 import type { CreateData } from './definitions';
-
-const schema: ValidationSchema =
-{
-    tenantId:
-    {
-        message: 'Value is not a valid tenant id',
-        STRING:
-        {
-            required: true
-        }
-    },
-    creatorId: identifierValidation,
-    comicId: optionalIdentifierValidation,
-    commentId: optionalIdentifierValidation,
-    parentId: optionalIdentifierValidation
-};
 
 export default function (data: CreateData): void
 {
@@ -35,7 +17,14 @@ export default function (data: CreateData): void
         throw new InvalidPost(messages);
     }
 
-    const result = validator.validate(data, schema);
+    const optionalIdentifierValidation = { ...identifierValidation, required: false };
+
+    const result = validator.validate(data, {
+        creatorId: identifierValidation,
+        comicId: optionalIdentifierValidation,
+        commentId: optionalIdentifierValidation,
+        parentId: optionalIdentifierValidation
+    });
 
     if (result.invalid)
     {

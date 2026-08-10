@@ -13,7 +13,6 @@ export default async function (requester: Requester, data: CreateData): Promise<
     const commentId = await createComment({ message: data.message });
 
     return createPost(requester, {
-        tenantId: requester.tenantId,
         creatorId: requester.principalId,
         commentId,
         parentId: data.parentId

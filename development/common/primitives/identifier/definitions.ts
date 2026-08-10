@@ -5,10 +5,5 @@ export type Identifier = string;
 
 export const identifierValidation: Validation = {
     message: 'Value is not a valid identifier',
-    UUID: { required: true }
-} as const;
-
-export const optionalIdentifierValidation: Validation = {
-    message: 'Value is not a valid identifier',
-    UUID: { required: false }
+    UUID: {}
 } as const;

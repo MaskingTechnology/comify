@@ -40,8 +40,15 @@ export const FULL_NAME_MAX_LENGTH = 200;
 
 export const fullNameValidation: Validation = {
     message: 'Value is empty or too long',
-    STRING: {
-        required: true,
-        maxLength: FULL_NAME_MAX_LENGTH
-    }
+    STRING: { maxLength: FULL_NAME_MAX_LENGTH }
+};
+
+export const nicknameValidation: Validation = {
+    message: 'Value is not a valid nickname',
+    STRING: { minLength: 3, maxLength: 255 }
+};
+
+export const emailValidation: Validation = {
+    message: 'Value is not a valid email',
+    EMAIL: {}
 };

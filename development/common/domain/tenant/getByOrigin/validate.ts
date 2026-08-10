@@ -1,25 +1,15 @@
 
-import type { ValidationSchema } from '@theshelf/validation';
-
 import validator from '^/integrations/validation';
+
+import { originValidation } from '../definitions';
 
 import InvalidOrigin from './InvalidOrigin';
 
-const schema: ValidationSchema =
-{
-    origin:
-    {
-        message: 'Invalid origin',
-        URL:
-        {
-            required: true
-        }
-    }
-};
-
 export default function (origin: string): void
 {
-    const result = validator.validate({ origin }, schema);
+    const result = validator.validate({ origin }, {
+        origin: originValidation
+    });
 
     if (result.invalid)
     {

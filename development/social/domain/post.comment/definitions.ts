@@ -1,4 +1,6 @@
 
+import type { Validation } from '@theshelf/validation';
+
 import type { BaseRecord } from '../definitions';
 
 export type Record = BaseRecord & {
@@ -12,4 +14,9 @@ export type Comment = {
 };
 
 export const RECORD_TYPE = 'post.comment';
-export const MESSAGE_MAX_LENGTH = 2000;
+
+export const messageValidation: Validation =
+{
+    message: 'Value is missing or too long',
+    STRING: { maxLength: 2000 }
+};

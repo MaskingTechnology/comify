@@ -24,5 +24,3 @@ export default async function (type: string, image: Image): Promise<Identifier>
 
     return persist(record);
 }
-
-export { default as InvalidImage } from './InvalidImage';

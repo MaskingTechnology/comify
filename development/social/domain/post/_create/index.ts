@@ -15,7 +15,7 @@ export default async function (requester: Requester, data: CreateData): Promise<
 {
     validate(data);
 
-    const record = createRecord(data.tenantId, data.creatorId, data.comicId, data.commentId, data.parentId);
+    const record = createRecord(requester.tenantId, data.creatorId, data.comicId, data.commentId, data.parentId);
 
     const postId = await persist(record);
 
