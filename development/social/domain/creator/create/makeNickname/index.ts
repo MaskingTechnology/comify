@@ -1,14 +1,12 @@
 
 import type { TenantId } from '@comify/common/domain/tenant';
 
-import type { Nickname } from '../../definitions';
+import { MAX_NICKNAME_NUMBER, type Nickname } from '../../definitions';
 import formatNickname from '../../_formatNickname';
 
 import TooManySimilarNicknames from './TooManySimilarNicknames';
 import retrieveByNickname from './retrieveByNickname';
 import retrieveByStartNickname from './retrieveByStartNickname';
-
-import { MAX_NICKNAME_NUMBER } from '../definitions';
 
 export default async function (tenantId: TenantId, nickname: Nickname): Promise<string>
 {

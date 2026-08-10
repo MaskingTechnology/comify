@@ -7,5 +7,3 @@ export type CreateData = {
     readonly email: Email;
     readonly portraitUrl?: URL;
 };
-
-export const MAX_NICKNAME_NUMBER = 1000;
