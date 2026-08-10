@@ -21,9 +21,17 @@ export default function (records: Record[], references: References): Map<Identif
 
         const relation = relationMap.get(relationKey);
 
-        if (relation === undefined) return logger.warn(`Relation for notification with id ${record.id} not found`);
+        if (relation === undefined)
+        {
+            return logger.warn(`Relation for notification with id ${record.id} not found`);
+        }
 
         const post = record.postId !== undefined ? postMap.get(record.postId) : undefined;
+
+        if (post === undefined && type !== 'started-following')
+        {
+            return logger.warn(`Post for notification with id ${record.id} not found`);
+        }
 
         const notification: Notification = { createdAt, type, relation, post };
 
