@@ -3,8 +3,8 @@ import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 
 import database from '@comify/common/integrations/database';
 
-import getByPostId from '^/domain/notification/getByPostId';
-import removedPost from '^/domain/notification/notify/removedPost';
+import { RECORD_TYPE, type Record } from '@comify/social/domain/notification';
+import removeByPost from '@comify/social/domain/notification/removeByPost';
 
 import { DATABASES, VALUES } from './fixtures';
 
@@ -23,13 +23,13 @@ beforeEach(async () =>
     await DATABASES.withCreatorsPostsAndNotifications();
 });
 
-describe('domain/notification/remove', () =>
+describe('domain/notification/removeByPost', () =>
 {
     it('should remove all notifications of a removed post', async () =>
     {
-        await removedPost(VALUES.IDS.POST_RATED);
-        
-        const result = await getByPostId(VALUES.IDS.POST_RATED);
+        await removeByPost(VALUES.IDS.POST_RATED);
+
+        const result = await database.searchRecords<Record>(RECORD_TYPE, { postId: { EQUALS: VALUES.IDS.POST_RATED }, deleted: { EQUALS: false } });
 
         expect(result).toHaveLength(0);
     });

@@ -1,7 +1,7 @@
 
 import { DATA_URLS } from './dataUrls.fixture';
 
-export const RESPONSES =
+export const RESPONSES: Record<string, Response> =
 {
     VALID: new Response(DATA_URLS.VALID, { status: 200, headers: { 'Content-Type': 'image/jpeg', 'Content-Length': '95' } }),
     INVALID_TYPE: new Response(DATA_URLS.INVALID_TYPE, { status: 200, headers: { 'Content-Type': 'image/tiff', 'Content-Length': '96' } }),

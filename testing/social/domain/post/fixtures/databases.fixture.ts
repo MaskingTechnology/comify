@@ -3,13 +3,13 @@ import type { MemoryDriver } from '@theshelf/database';
 
 import database, { driver } from '@comify/common/integrations/database';
 
-import { RECORD_TYPE as COMIC_RECORD_TYPE } from '^/domain/comic';
-import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator';
-import { RECORD_TYPE as CREATOR_METRICS_RECORD_TYPE } from '^/domain/creator.metrics';
-import { RECORD_TYPE as IMAGE_RECORD_TYPE } from '^/domain/image';
-import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post';
-import { RECORD_TYPE as POST_METRICS_RECORD_TYPE } from '^/domain/post.metrics';
-import { RECORD_TYPE as RELATION_RECORD_TYPE } from '^/domain/relation';
+import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '@comify/social/domain/creator';
+import { RECORD_TYPE as CREATOR_METRICS_RECORD_TYPE } from '@comify/social/domain/creator.metrics';
+import { RECORD_TYPE as IMAGE_RECORD_TYPE } from '@comify/social/domain/image';
+import { RECORD_TYPE as POST_RECORD_TYPE } from '@comify/social/domain/post';
+import { RECORD_TYPE as COMIC_RECORD_TYPE } from '@comify/social/domain/post.comic';
+import { RECORD_TYPE as POST_METRICS_RECORD_TYPE } from '@comify/social/domain/post.metrics';
+import { RECORD_TYPE as RELATION_RECORD_TYPE } from '@comify/social/domain/relation';
 
 import { RECORDS } from './records.fixture';
 

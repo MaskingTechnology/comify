@@ -1,5 +1,5 @@
 
-import { MESSAGE_MAX_LENGTH } from '^/domain/comment/definitions';
+import { MESSAGE_MAX_LENGTH } from '@comify/social/domain/post.comment/definitions';
 
 export const VALUES =
 {

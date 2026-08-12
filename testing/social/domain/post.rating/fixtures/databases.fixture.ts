@@ -3,7 +3,7 @@ import type { MemoryDriver } from '@theshelf/database';
 
 import database, { driver } from '@comify/common/integrations/database';
 
-import { RECORD_TYPE as RATING_RECORD_TYPE } from '^/domain/rating';
+import { RECORD_TYPE as RATING_RECORD_TYPE } from '@comify/social/domain/post.rating';
 
 import { RECORDS } from './records.fixture';
 

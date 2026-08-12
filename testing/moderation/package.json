@@ -1,0 +1,13 @@
+{
+  "name": "@comify/moderation-test",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@comify/common": "*",
+    "@comify/moderation": "*"
+  }
+}

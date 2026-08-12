@@ -3,9 +3,9 @@ import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 
 import database from '@comify/common/integrations/database';
 
-import getFollowers from '^/domain/relation/getFollowersAggregated';
+import getFollowers from '@comify/social/domain/relation/getFollowers';
 
-import { DATABASES, REQUESTERS, TENANTS, VALUES } from './fixtures';
+import { DATABASES, REQUESTERS, VALUES } from './fixtures';
 
 beforeAll(async () =>
 {
@@ -26,8 +26,8 @@ describe('domain/relation/getFollowers', () =>
 {
     it('should retrieve follower relations for a following creator', async () =>
     {
-        const relations = await getFollowers(TENANTS.default, REQUESTERS.FIRST, VALUES.IDS.CREATOR3, VALUES.RANGE);
-        
+        const relations = await getFollowers(REQUESTERS.FIRST, VALUES.IDS.CREATOR3, VALUES.RANGE);
+
         expect(relations).toHaveLength(2);
         expect(relations[0].following?.id).toBe(VALUES.IDS.CREATOR1);
         expect(relations[1].following?.id).toBe(VALUES.IDS.CREATOR2);

@@ -1,5 +1,5 @@
 
-import { FULL_NAME_MAX_LENGTH } from '^/domain/creator/definitions';
+import { FULL_NAME_MAX_LENGTH } from '@comify/social/domain/creator/definitions';
 
 export const VALUES =
 {

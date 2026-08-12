@@ -4,10 +4,9 @@ import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 import database from '@comify/common/integrations/database';
 import fileStore from '@comify/common/integrations/fileStore';
 
-import getByFollowingAggregated from '^/domain/post/getByFollowingAggregated';
+import getRecommended from '@comify/social/domain/post/getRecommended';
 
-import { DATABASES, FILE_STORES, REQUESTERS, TENANTS } from './fixtures';
-
+import { DATA_URLS, DATABASES, FILE_STORES, REQUESTERS, TENANTS } from './fixtures';
 
 beforeAll(async () =>
 {
@@ -33,13 +32,14 @@ beforeEach(async () =>
     ]);
 });
 
-describe('domain/post/getByFollowingAggregated', () =>
+describe('domain/post/getRecommended', () =>
 {
-    it('should get posts from everyone followed by the requester', async () =>
+    it('should give all posts except those created by the requester', async () =>
     {
-        const result = await getByFollowingAggregated(TENANTS.default, REQUESTERS.CREATOR1, { offset: 0, limit: 7 });
+        const result = await getRecommended(REQUESTERS.CREATOR1, { offset: 0, limit: 7 });
 
         expect(result).toHaveLength(1);
-        expect(result[0].creator.following.id).toBe(REQUESTERS.CREATOR2.id);
+        expect(result[0].creator.following.id).toBe(REQUESTERS.CREATOR2.principalId);
+        expect(result[0].comic?.image.dataUrl).toBe(DATA_URLS.COMIC_IMAGE);
     });
 });

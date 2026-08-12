@@ -4,9 +4,9 @@ import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 import database from '@comify/common/integrations/database';
 import fileStore from '@comify/common/integrations/fileStore';
 
-import { RECORD_TYPE } from '^/domain/image';
-import download, { ImageNotDownloaded } from '^/domain/image/download';
-import InvalidImage from '^/domain/image/validate/InvalidImage';
+import { RECORD_TYPE, type Record } from '@comify/social/domain/image';
+import download, { ImageNotDownloaded } from '@comify/social/domain/image/download';
+import { InvalidImage } from '@comify/social/domain/image/_validate';
 
 import { DATABASES, FILE_STORES, HTTP_CLIENTS, URLS } from './fixtures';
 
@@ -43,7 +43,7 @@ describe('domain/image/download', () =>
     it('should download an image', async () =>
     {
         const imageId = await download('test', URLS.VALID);
-        const image = await database.readRecord(RECORD_TYPE, { id: { EQUALS: imageId } });
+        const image = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: imageId } });
 
         expect(image).toBeDefined();
 

@@ -5,8 +5,10 @@ import database from '@comify/common/integrations/database';
 import eventBroker from '@comify/common/integrations/eventBroker';
 import fileStore from '@comify/common/integrations/fileStore';
 
-import login from '^/domain/authentication/login';
-import { TooManySimilarNicknames } from '^/domain/creator/generateNickname';
+import login from '@comify/social/security/authentication/login';
+
+import { TooManySimilarNicknames } from '@comify/social/domain/creator/create';
+import getCreatorById from '@comify/social/domain/creator/getById';
 
 import { DATABASES, FILE_STORES, HTTP_CLIENTS, IDENTITIES, TENANTS, VALUES } from './fixtures';
 
@@ -46,28 +48,36 @@ describe('domain/authentication', () =>
         {
             const requester = await login(TENANTS.default, IDENTITIES.EXISTING);
 
-            expect(requester.nickname).toBe(VALUES.NICKNAMES.FIRST);
+            const creator = await getCreatorById(requester.tenantId, requester.principalId);
+
+            expect(creator.nickname).toBe(VALUES.NICKNAMES.FIRST);
         });
 
         it('should register without a nickname', async () =>
         {
             const requester = await login(TENANTS.default, IDENTITIES.NO_NICKNAME);
 
-            expect(requester.nickname).toBe(VALUES.NICKNAMES.FROM_FULL_NAME);
+            const creator = await getCreatorById(requester.tenantId, requester.principalId);
+
+            expect(creator.nickname).toBe(VALUES.NICKNAMES.FROM_FULL_NAME);
         });
 
         it('should register with a duplicate nickname', async () =>
         {
             const requester = await login(TENANTS.default, IDENTITIES.DUPLICATE_NICKNAME);
 
-            expect(requester.nickname).toBe(VALUES.NICKNAMES.DEDUPLICATED);
+            const creator = await getCreatorById(requester.tenantId, requester.principalId);
+
+            expect(creator.nickname).toBe(VALUES.NICKNAMES.DEDUPLICATED);
         });
 
         it('should register with multiple occurrences of nickname', async () =>
         {
             const requester = await login(TENANTS.default, IDENTITIES.MULTIPLE_OCCURRENCES_NICKNAME);
 
-            expect(requester.nickname).toBe(VALUES.NICKNAMES.NEXT_OCCURRED);
+            const creator = await getCreatorById(requester.tenantId, requester.principalId);
+
+            expect(creator.nickname).toBe(VALUES.NICKNAMES.NEXT_OCCURRED);
         });
 
         it('should NOT register with too many occurrences nickname', async () =>
@@ -81,21 +91,27 @@ describe('domain/authentication', () =>
         {
             const requester = await login(TENANTS.default, IDENTITIES.SPACED_NICKNAME);
 
-            expect(requester.nickname).toBe(VALUES.NICKNAMES.DESPACED);
+            const creator = await getCreatorById(requester.tenantId, requester.principalId);
+
+            expect(creator.nickname).toBe(VALUES.NICKNAMES.DESPACED);
         });
 
         it('should register with underscores in nickname', async () =>
         {
             const requester = await login(TENANTS.default, IDENTITIES.UNDERSCORED_NICKNAME);
 
-            expect(requester.nickname).toBe(VALUES.NICKNAMES.DEUNDERSCORED);
+            const creator = await getCreatorById(requester.tenantId, requester.principalId);
+
+            expect(creator.nickname).toBe(VALUES.NICKNAMES.DEUNDERSCORED);
         });
 
         it('should register with a valid profile picture', async () =>
         {
             const requester = await login(TENANTS.default, IDENTITIES.WITH_PICTURE);
-            
-            expect(requester.nickname).toBe(VALUES.NICKNAMES.WITH_PICTURE);
+
+            const creator = await getCreatorById(requester.tenantId, requester.principalId);
+
+            expect(creator.nickname).toBe(VALUES.NICKNAMES.WITH_PICTURE);
         });
     });
 });

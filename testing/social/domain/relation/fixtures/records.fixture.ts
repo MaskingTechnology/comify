@@ -1,14 +1,14 @@
 
 import type { RecordData } from '@theshelf/database';
 
-import type { DataModel as CreatorDataModel } from '^/domain/creator';
-import type { DataModel as CreatorMetricsDataModel } from '^/domain/creator.metrics';
-import type { DataModel as RelationDataModel } from '^/domain/relation';
+import type { Record as CreatorRecord } from '@comify/social/domain/creator';
+import type { Record as CreatorMetricsRecord } from '@comify/social/domain/creator.metrics';
+import type { Record as RelationRecord } from '@comify/social/domain/relation';
 
 import { TENANTS } from './tenants.fixture';
 import { VALUES } from './values.fixture';
 
-const CREATORS: CreatorDataModel[] = [
+const CREATORS: CreatorRecord[] = [
     { id: VALUES.IDS.CREATOR1, fullName: 'Creator 1', nickname: 'creator1', email: 'creator1@mail.com', joinedAt: new Date(2024, 5, 23).toISOString(), tenantId: TENANTS.default.id, portraitId: undefined },
     { id: VALUES.IDS.CREATOR2, fullName: 'Creator 2', nickname: 'creator2', email: 'creator2@mail.com', joinedAt: new Date(2024, 7, 11).toISOString(), tenantId: TENANTS.default.id, portraitId: undefined },
     { id: VALUES.IDS.CREATOR3, fullName: 'Creator 3', nickname: 'creator3', email: 'creator3@mail.com', joinedAt: new Date(2024, 1, 24).toISOString(), tenantId: TENANTS.default.id, portraitId: undefined },
@@ -17,7 +17,7 @@ const CREATORS: CreatorDataModel[] = [
     { id: VALUES.IDS.CREATOR6, fullName: 'Creator 6', nickname: 'not_five', email: 'creator6@mail.com', joinedAt: new Date(2024, 3, 18).toISOString(), tenantId: TENANTS.default.id, portraitId: undefined }
 ];
 
-const CREATOR_METRICS: CreatorMetricsDataModel[] = [
+const CREATOR_METRICS: CreatorMetricsRecord[] = [
     { id: VALUES.IDS.CREATOR1, creatorId: VALUES.IDS.CREATOR1, posts: 0, followers: 0, following: 0, popularity: 0 },
     { id: VALUES.IDS.CREATOR2, creatorId: VALUES.IDS.CREATOR2, posts: 0, followers: 0, following: 0, popularity: 0 },
     { id: VALUES.IDS.CREATOR3, creatorId: VALUES.IDS.CREATOR3, posts: 0, followers: 0, following: 0, popularity: 0 },
@@ -26,7 +26,7 @@ const CREATOR_METRICS: CreatorMetricsDataModel[] = [
     { id: VALUES.IDS.CREATOR6, creatorId: VALUES.IDS.CREATOR6, posts: 0, followers: 0, following: 0, popularity: 0 }
 ];
 
-const RELATIONS: RelationDataModel[] = [
+const RELATIONS: RelationRecord[] = [
     { id: VALUES.IDS.RELATION1, followerId: VALUES.IDS.CREATOR1, followingId: VALUES.IDS.CREATOR2 },
     { id: VALUES.IDS.RELATION2, followerId: VALUES.IDS.CREATOR1, followingId: VALUES.IDS.CREATOR3 },
     { id: VALUES.IDS.RELATION3, followerId: VALUES.IDS.CREATOR2, followingId: VALUES.IDS.CREATOR3 },

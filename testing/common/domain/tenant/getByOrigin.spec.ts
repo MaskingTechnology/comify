@@ -1,8 +1,8 @@
 
 import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 
-import getByOrigin, { TenantNotFound } from '^/domain/tenant/getByOrigin';
-import database from '^/integrations/database';
+import getByOrigin, { TenantNotFound } from '@comify/common/domain/tenant/getByOrigin';
+import database from '@comify/common/integrations/database';
 
 import { DATABASES, VALUES } from './fixtures';
 

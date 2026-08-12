@@ -1,14 +1,12 @@
 
-import type { RecordData } from '@theshelf/database';
-
-import type { DataModel as CreatorDataModel } from '^/domain/creator';
+import type { Record as CreatorRecord } from '@comify/social/domain/creator';
 
 import { TENANTS } from './tenants.fixture';
 import { VALUES } from './values.fixture';
 
 const DEFAULT_DATA = { tenantId: TENANTS.default.id, portraitId: undefined, joinedAt: new Date().toISOString() };
 
-const CREATORS: CreatorDataModel[] = [
+const CREATORS: CreatorRecord[] = [
     { id: VALUES.IDS.FIRST, fullName: VALUES.FULL_NAMES.FIRST, nickname: VALUES.NICKNAMES.FIRST, email: VALUES.EMAILS.FIRST, ...DEFAULT_DATA },
     { id: VALUES.IDS.SECOND, fullName: VALUES.FULL_NAMES.SECOND, nickname: VALUES.NICKNAMES.SECOND, email: VALUES.EMAILS.SECOND, ...DEFAULT_DATA },
     { id: VALUES.IDS.THIRD, fullName: VALUES.FULL_NAMES.THIRD, nickname: VALUES.NICKNAMES.THIRD, email: VALUES.EMAILS.THIRD, ...DEFAULT_DATA },
@@ -17,4 +15,4 @@ const CREATORS: CreatorDataModel[] = [
     { id: VALUES.IDS.SIXTH, fullName: VALUES.FULL_NAMES.SIXTH, nickname: VALUES.NICKNAMES.SIXTH, email: VALUES.EMAILS.SIXTH, ...DEFAULT_DATA }
 ];
 
-export const RECORDS: Record<string, RecordData[]> = { CREATORS };
+export const RECORDS: Record<string, CreatorRecord[]> = { CREATORS };

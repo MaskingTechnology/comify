@@ -4,8 +4,8 @@ import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 import database from '@comify/common/integrations/database';
 import fileStore from '@comify/common/integrations/fileStore';
 
-import { Types } from '^/domain/notification';
-import getRecentAggregated from '^/domain/notification/getRecentAggregated';
+import { Types } from '@comify/social/domain/notification';
+import getRecent from '@comify/social/domain/notification/getRecent';
 
 import { DATABASES, FILE_STORES, REQUESTERS, TENANTS, VALUES } from './fixtures';
 
@@ -33,11 +33,11 @@ beforeEach(async () =>
     ]);
 });
 
-describe('domain/notification/getallAggregated', () =>
+describe('domain/notification/getRecent', () =>
 {
     it('should give all notifications under normal circumstances', async () =>
     {
-        const result = await getRecentAggregated(TENANTS.default, REQUESTERS.CREATOR2, { offset: 0, limit: 7 });
+        const result = await getRecent(REQUESTERS.CREATOR2, { offset: 0, limit: 7 });
 
         expect(result).toHaveLength(2);
 
@@ -51,12 +51,11 @@ describe('domain/notification/getallAggregated', () =>
         expect(notification2.type).toBe(Types.RATED_POST);
         expect(notification2.post?.id).toBe(VALUES.IDS.POST_RATED);
         expect(notification2.relation.following.id).toBe(VALUES.IDS.CREATOR3);
-
     });
 
     it('should give only the notifications that aggregate without errors', async () =>
     {
-        const result = await getRecentAggregated(TENANTS.default, REQUESTERS.CREATOR1, { offset: 0, limit: 7 });
+        const result = await getRecent(REQUESTERS.CREATOR1, { offset: 0, limit: 7 });
 
         expect(result).toHaveLength(2);
 
@@ -70,6 +69,5 @@ describe('domain/notification/getallAggregated', () =>
         expect(notification2.type).toBe(Types.RATED_POST);
         expect(notification2.post?.id).toBe(VALUES.IDS.REACTION_LIKED);
         expect(notification2.relation.following.id).toBe(VALUES.IDS.CREATOR2);
-
     });
 });

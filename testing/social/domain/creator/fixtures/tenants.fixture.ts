@@ -1,4 +1,4 @@
 
-import { tenant } from '@comify/common/domain/tenant';
+import { tenant, Tenant } from '@comify/common/domain/tenant';
 
-export const TENANTS = { default: tenant };
+export const TENANTS: Record<string, Tenant> = { default: tenant };

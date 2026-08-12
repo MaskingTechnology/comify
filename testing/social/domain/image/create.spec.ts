@@ -4,9 +4,9 @@ import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 import database from '@comify/common/integrations/database';
 import fileStore from '@comify/common/integrations/fileStore';
 
-import { RECORD_TYPE } from '^/domain/image';
-import create, { InvalidDataURL } from '^/domain/image/create';
-import InvalidImage from '^/domain/image/validate/InvalidImage';
+import { RECORD_TYPE, type Record } from '@comify/social/domain/image';
+import create, { InvalidDataURL } from '@comify/social/domain/image/create';
+import { InvalidImage } from '@comify/social/domain/image/_validate';
 
 import { DATA_URLS, DATABASES, FILE_STORES } from './fixtures';
 
@@ -39,7 +39,7 @@ describe('domain/image/create', () =>
     it('should create an image from a valid data url', async () =>
     {
         const imageId = await create('test', DATA_URLS.VALID);
-        const image = await database.readRecord(RECORD_TYPE, { id: { EQUALS: imageId } });
+        const image = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: imageId } });
 
         expect(image).toBeDefined();
 
@@ -72,7 +72,7 @@ describe('domain/image/create', () =>
         const messages = new Map([['size', 'Invalid size']]);
 
         const promise = create('test', DATA_URLS.INVALID_SIZE);
-        
+
         await expect(promise).rejects.toStrictEqual(new InvalidImage(messages));
     });
 });

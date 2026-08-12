@@ -4,9 +4,9 @@ import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 import database from '@comify/common/integrations/database';
 import eventBroker from '@comify/common/integrations/eventBroker';
 
-import toggle from '^/domain/rating/toggle';
+import toggle from '@comify/social/domain/post.rating/toggle';
 
-import { DATABASES, REQUESTERS, TENANTS, VALUES } from './fixtures';
+import { DATABASES, REQUESTERS, VALUES } from './fixtures';
 
 beforeAll(async () =>
 {
@@ -33,15 +33,15 @@ describe('domain/post/toggleRating', () =>
 {
     it('should add a rating', async () =>
     {
-        const isRated = await toggle(TENANTS.default, REQUESTERS.CREATOR1, VALUES.IDS.POST_UNRATED);
+        const result = await toggle(REQUESTERS.CREATOR1, VALUES.IDS.POST_UNRATED);
 
-        expect(isRated).toBeTruthy();
+        expect(result).toBeTruthy();
     });
 
     it('should remove a rating', async () =>
     {
-        const isRated = await toggle(TENANTS.default, REQUESTERS.CREATOR1, VALUES.IDS.POST_RATED);
-        
-        expect(isRated).toBeFalsy();
+        const result = await toggle(REQUESTERS.CREATOR1, VALUES.IDS.POST_RATED);
+
+        expect(result).toBeFalsy();
     });
 });

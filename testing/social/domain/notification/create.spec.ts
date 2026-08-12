@@ -3,9 +3,8 @@ import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 
 import database from '@comify/common/integrations/database';
 
-import type { DataModel} from '^/domain/notification';
-import { RECORD_TYPE as NOTIFICATION_RECORD_TYPE, Types } from '^/domain/notification';
-import create from '^/domain/notification/create';
+import { RECORD_TYPE as NOTIFICATION_RECORD_TYPE, Types, type Record } from '@comify/social/domain/notification';
+import create from '@comify/social/domain/notification/_create';
 
 import { DATABASES, REQUESTERS, VALUES } from './fixtures';
 
@@ -30,13 +29,13 @@ describe('domain/notification/create', () =>
     {
         await create(Types.RATED_POST, VALUES.IDS.CREATOR1, VALUES.IDS.CREATOR2, VALUES.IDS.POST_RATED);
 
-        const notifications = await database.searchRecords(NOTIFICATION_RECORD_TYPE, {}) as DataModel[];
+        const notifications = await database.searchRecords<Record>(NOTIFICATION_RECORD_TYPE, {});
         expect(notifications).toHaveLength(1);
 
         const notification = notifications[0];
         expect(notification.type).toBe(Types.RATED_POST);
         expect(notification.createdAt).toBeDefined();
-        expect(notification.senderId).toBe(REQUESTERS.CREATOR1.id);
+        expect(notification.senderId).toBe(REQUESTERS.CREATOR1.principalId);
         expect(notification.receiverId).toBe(VALUES.IDS.CREATOR2);
         expect(notification.postId).toBe(VALUES.IDS.POST_RATED);
     });
@@ -45,13 +44,13 @@ describe('domain/notification/create', () =>
     {
         await create(Types.STARTED_FOLLOWING, VALUES.IDS.CREATOR1, VALUES.IDS.CREATOR2);
 
-        const notifications = await database.searchRecords(NOTIFICATION_RECORD_TYPE, {});
+        const notifications = await database.searchRecords<Record>(NOTIFICATION_RECORD_TYPE, {});
         expect(notifications).toHaveLength(1);
 
         const notification = notifications[0];
         expect(notification.type).toBe(Types.STARTED_FOLLOWING);
         expect(notification.createdAt).toBeDefined();
-        expect(notification.senderId).toBe(REQUESTERS.CREATOR1.id);
+        expect(notification.senderId).toBe(REQUESTERS.CREATOR1.principalId);
         expect(notification.receiverId).toBe(VALUES.IDS.CREATOR2);
     });
 
@@ -59,7 +58,7 @@ describe('domain/notification/create', () =>
     {
         await create(Types.REACTED_TO_POST, VALUES.IDS.CREATOR1, VALUES.IDS.CREATOR2, VALUES.IDS.REACTION_REACTION);
 
-        const notifications = await database.searchRecords(NOTIFICATION_RECORD_TYPE, {});
+        const notifications = await database.searchRecords<Record>(NOTIFICATION_RECORD_TYPE, {});
         expect(notifications).toHaveLength(1);
 
         const notification = notifications[0];

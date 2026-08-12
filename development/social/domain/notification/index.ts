@@ -1,2 +1,2 @@
 
-export { RECORD_TYPE, Types, type Notification } from './definitions';
+export { RECORD_TYPE, Types, type Record, type Notification } from './definitions';

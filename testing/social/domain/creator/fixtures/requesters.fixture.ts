@@ -1,10 +1,11 @@
 
-import { requester } from '^/domain/authentication';
+import { requester, type Requester } from '@comify/common/security';
 
+import { TENANTS } from './tenants.fixture';
 import { VALUES } from './values.fixture';
 
-export const REQUESTERS =
+export const REQUESTERS: Record<string, Requester> =
 {
     UNKNOWN: requester,
-    CREATOR: { id: VALUES.IDS.CREATOR, fullName: VALUES.FULL_NAMES.CREATOR, nickname: VALUES.NICKNAMES.CREATOR }
+    CREATOR: { tenantId: TENANTS.default.id, principalId: VALUES.IDS.CREATOR }
 };

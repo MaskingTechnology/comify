@@ -1,7 +1,7 @@
 
 import { describe, expect, it } from 'vitest';
 
-import validateRange, { InvalidRange } from '^/domain/common/validateRange';
+import validateRange, { InvalidRange } from '@comify/common/primitives/range/validate';
 
 import { VALUES } from './fixtures';
 

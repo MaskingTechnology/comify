@@ -3,9 +3,9 @@ import type { MemoryDriver } from '@theshelf/database';
 
 import database, { driver } from '@comify/common/integrations/database';
 
-import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator';
-import { RECORD_TYPE as CREATOR_METRICS_RECORD_TYPE } from '^/domain/creator.metrics';
-import { RECORD_TYPE as RELATION_RECORD_TYPE } from '^/domain/relation';
+import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '@comify/social/domain/creator';
+import { RECORD_TYPE as CREATOR_METRICS_RECORD_TYPE } from '@comify/social/domain/creator.metrics';
+import { RECORD_TYPE as RELATION_RECORD_TYPE } from '@comify/social/domain/relation';
 
 import { RECORDS } from './records.fixture';
 

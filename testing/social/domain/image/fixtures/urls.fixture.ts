@@ -1,9 +1,9 @@
 
-export const URLS =
+export const URLS: Record<string, URL> =
 {
-    VALID: 'http://localhost/image.jpg',
-    INVALID_DATA: 'http://localhost/invalid.jpg',
-    INVALID_TYPE: 'http://localhost/invalid-type.jpg',
-    INVALID_SIZE: 'http://localhost/invalid-size.jpg',
-    NONEXISTING: 'http://localhost/nonexisting.jpg',
+    VALID: new URL('http://localhost/image.jpg'),
+    INVALID_DATA: new URL('http://localhost/invalid.jpg'),
+    INVALID_TYPE: new URL('http://localhost/invalid-type.jpg'),
+    INVALID_SIZE: new URL('http://localhost/invalid-size.jpg'),
+    NONEXISTING: new URL('http://localhost/nonexisting.jpg')
 };

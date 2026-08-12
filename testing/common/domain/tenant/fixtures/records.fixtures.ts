@@ -1,7 +1,7 @@
 
 import { type RecordData } from '@theshelf/database';
 
-import { type Record as TenantRecord } from '^/domain/tenant';
+import { type Record as TenantRecord } from '@comify/common/domain/tenant';
 
 import { VALUES } from './values.fixtures';
 

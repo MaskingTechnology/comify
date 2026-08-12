@@ -5,8 +5,8 @@ import database from '@comify/common/integrations/database';
 import eventBroker from '@comify/common/integrations/eventBroker';
 import fileStore from '@comify/common/integrations/fileStore';
 
-import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post';
-import createWithComic from '^/domain/post/createWithComic';
+import { RECORD_TYPE as POST_RECORD_TYPE, type Record } from '@comify/social/domain/post';
+import createWithComic from '@comify/social/domain/post/createWithComic';
 
 import { DATABASES, DATA_URLS, FILE_STORES, REQUESTERS, TENANTS } from './fixtures';
 
@@ -36,19 +36,19 @@ beforeEach(async () =>
     ]);
 });
 
-describe('domain/post/add', () =>
+describe('domain/post/createWithComic', () =>
 {
     it('should create a post', async () =>
     {
-        await createWithComic(TENANTS.default, REQUESTERS.CREATOR1, DATA_URLS.COMIC_IMAGE);
+        await createWithComic(REQUESTERS.CREATOR1, { imageDataUrl: DATA_URLS.COMIC_IMAGE });
 
-        const posts = await database.searchRecords(POST_RECORD_TYPE, {});
+        const records = await database.searchRecords<Record>(POST_RECORD_TYPE, {});
 
-        expect(posts.length).toBe(1);
+        expect(records.length).toBe(1);
 
-        const post = posts[0];
-        
-        expect(post?.creatorId).toBe(REQUESTERS.CREATOR1.id);
+        const post = records[0];
+
+        expect(post?.creatorId).toBe(REQUESTERS.CREATOR1.principalId);
         expect(post?.comicId).toBeDefined();
         expect(post?.createdAt).toBeDefined();
     });
