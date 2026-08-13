@@ -1,12 +1,11 @@
 
-import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
+import { beforeAll, afterAll, describe, expect, it } from 'vitest';
 
 import database from '@comify/common/integrations/database';
 
 import { RECORD_TYPE, type Record } from '@comify/social/domain/post.comment';
+import { MESSAGE_MAX_LENGTH } from '@comify/social/domain/post.comment/definitions';
 import create, { InvalidComment } from '@comify/social/domain/post.comment/create';
-
-import { DATABASES, VALUES } from './fixtures';
 
 beforeAll(async () =>
 {
@@ -18,25 +17,25 @@ afterAll(async () =>
     await database.disconnect();
 });
 
-beforeEach(async () =>
-{
-    await DATABASES.empty();
-});
-
-describe('domain/post.comment/create', () =>
+describe('index', () =>
 {
     it('should create a comment', async () =>
     {
-        const reactionId = await create({ message: VALUES.MESSAGES.VALID_COMMENT });
+        const message = 'New comment';
 
-        const result = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: reactionId } });
+        const reactionId = await create({ message });
 
-        expect(result?.message).toBe(VALUES.MESSAGES.VALID_COMMENT);
+        const record = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: reactionId } });
+
+        expect(record).toBeDefined();
+        expect(record?.message).toEqual(message);
     });
 
     it('should fail when message is invalid', async () =>
     {
-        const promise = create({ message: VALUES.MESSAGES.INVALID_COMMENT });
+        const message = 'A'.repeat(MESSAGE_MAX_LENGTH + 1);
+
+        const promise = create({ message });
 
         await expect(promise).rejects.toThrow(InvalidComment);
     });

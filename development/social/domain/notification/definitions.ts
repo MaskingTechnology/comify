@@ -1,4 +1,6 @@
 
+import { type Identifier } from '@comify/common/primitives/identifier';
+
 import type { Relation } from '~/relation';
 import type { Post } from '~/post';
 
@@ -23,6 +25,7 @@ type TypeKeys = keyof typeof Types;
 export type Type = typeof Types[TypeKeys];
 
 export type Notification = {
+    readonly id: Identifier;
     readonly type: Type;
     readonly createdAt: Date;
     readonly relation: Relation;

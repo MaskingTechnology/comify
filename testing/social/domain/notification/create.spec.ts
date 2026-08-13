@@ -3,10 +3,10 @@ import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 
 import database from '@comify/common/integrations/database';
 
-import { RECORD_TYPE as NOTIFICATION_RECORD_TYPE, Types, type Record } from '@comify/social/domain/notification';
+import { RECORD_TYPE, Types, type Record } from '@comify/social/domain/notification';
 import create from '@comify/social/domain/notification/_create';
 
-import { DATABASES, REQUESTERS, VALUES } from './fixtures';
+import { CREATOR_RECORDS, POST_RECORDS, seedNotifications } from '../../fixtures';
 
 beforeAll(async () =>
 {
@@ -20,57 +20,55 @@ afterAll(async () =>
 
 beforeEach(async () =>
 {
-    await DATABASES.withCreators();
+    await seedNotifications();
 });
 
-describe('domain/notification/create', () =>
+describe('index', () =>
 {
     it('should create a notification by liking a post', async () =>
     {
-        await create(Types.RATED_POST, VALUES.IDS.CREATOR1, VALUES.IDS.CREATOR2, VALUES.IDS.POST_RATED);
+        await create(Types.RATED_POST, CREATOR_RECORDS.ALICE.id, POST_RECORDS.THIRD.creatorId, POST_RECORDS.THIRD.id);
 
-        const notifications = await database.searchRecords<Record>(NOTIFICATION_RECORD_TYPE, {});
-        expect(notifications).toHaveLength(1);
+        const records = await database.searchRecords<Record>(RECORD_TYPE, {
+            type: { EQUALS: Types.RATED_POST },
+            senderId: { EQUALS: CREATOR_RECORDS.ALICE.id },
+            receiverId: { EQUALS: POST_RECORDS.THIRD.creatorId },
+            postId: { EQUALS: POST_RECORDS.THIRD.id }
+        });
 
-        const notification = notifications[0];
-        expect(notification.type).toBe(Types.RATED_POST);
-        expect(notification.createdAt).toBeDefined();
-        expect(notification.senderId).toBe(REQUESTERS.CREATOR1.principalId);
-        expect(notification.receiverId).toBe(VALUES.IDS.CREATOR2);
-        expect(notification.postId).toBe(VALUES.IDS.POST_RATED);
+        expect(records).toHaveLength(1);
     });
 
     it('should create a notification when someone gets followed', async () =>
     {
-        await create(Types.STARTED_FOLLOWING, VALUES.IDS.CREATOR1, VALUES.IDS.CREATOR2);
+        await create(Types.STARTED_FOLLOWING, CREATOR_RECORDS.ALICE.id, CREATOR_RECORDS.DAVID.id);
 
-        const notifications = await database.searchRecords<Record>(NOTIFICATION_RECORD_TYPE, {});
-        expect(notifications).toHaveLength(1);
+        const records = await database.searchRecords<Record>(RECORD_TYPE, {
+            type: { EQUALS: Types.STARTED_FOLLOWING },
+            senderId: { EQUALS: CREATOR_RECORDS.ALICE.id },
+            receiverId: { EQUALS: CREATOR_RECORDS.DAVID.id },
+            postId: { EQUALS: undefined }
+        });
 
-        const notification = notifications[0];
-        expect(notification.type).toBe(Types.STARTED_FOLLOWING);
-        expect(notification.createdAt).toBeDefined();
-        expect(notification.senderId).toBe(REQUESTERS.CREATOR1.principalId);
-        expect(notification.receiverId).toBe(VALUES.IDS.CREATOR2);
+        expect(records).toHaveLength(1);
     });
 
     it('should create a notification when a reaction is added to a post', async () =>
     {
-        await create(Types.REACTED_TO_POST, VALUES.IDS.CREATOR1, VALUES.IDS.CREATOR2, VALUES.IDS.REACTION_REACTION);
+        await create(Types.REACTED_TO_POST, CREATOR_RECORDS.ALICE.id, POST_RECORDS.FOURTH.creatorId, POST_RECORDS.FOURTH.id);
 
-        const notifications = await database.searchRecords<Record>(NOTIFICATION_RECORD_TYPE, {});
-        expect(notifications).toHaveLength(1);
+        const records = await database.searchRecords<Record>(RECORD_TYPE, {
+            type: { EQUALS: Types.REACTED_TO_POST },
+            senderId: { EQUALS: CREATOR_RECORDS.ALICE.id },
+            receiverId: { EQUALS: POST_RECORDS.FOURTH.creatorId },
+            postId: { EQUALS: POST_RECORDS.FOURTH.id }
+        });
 
-        const notification = notifications[0];
-        expect(notification.type).toBe(Types.REACTED_TO_POST);
-        expect(notification.createdAt).toBeDefined();
-        expect(notification.senderId).toBe(VALUES.IDS.CREATOR1);
-        expect(notification.receiverId).toBe(VALUES.IDS.CREATOR2);
-        expect(notification.postId).toBe(VALUES.IDS.REACTION_REACTION);
+        expect(records).toHaveLength(1);
     });
 
     it('should do nothing on failure', async () =>
     {
-        //    This only fail on integration level, so there's nothing to do here.
+        // This only fail on integration level, so there's nothing to do here.
     });
 });

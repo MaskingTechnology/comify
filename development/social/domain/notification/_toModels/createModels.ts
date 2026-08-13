@@ -14,6 +14,7 @@ export default function (records: Record[], references: References): Map<Identif
 
     records.forEach(record =>
     {
+        const id = record.id;
         const createdAt = new Date(record.createdAt);
         const type = record.type as Type;
 
@@ -33,7 +34,7 @@ export default function (records: Record[], references: References): Map<Identif
             return logger.warn(`Post for notification with id ${record.id} not found`);
         }
 
-        const notification: Notification = { createdAt, type, relation, post };
+        const notification: Notification = { id, createdAt, type, relation, post };
 
         map.set(record.id, notification);
     });

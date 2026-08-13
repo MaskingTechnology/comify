@@ -5,7 +5,7 @@ import { RECORD_TYPE, type Record } from '../definitions';
 
 export default async function (ids: string[]): Promise<boolean>
 {
-    const result = await database.updateRecord<Record>(RECORD_TYPE, { id: { IN: ids } }, { deleted: true });
+    const result = await database.updateRecords<Record>(RECORD_TYPE, { id: { IN: ids } }, { deleted: true });
 
     return result === ids.length;
 }

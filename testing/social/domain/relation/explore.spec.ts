@@ -5,7 +5,7 @@ import database from '@comify/common/integrations/database';
 
 import explore from '@comify/social/domain/relation/explore';
 
-import { DATABASES, REQUESTERS, VALUES } from './fixtures';
+import { REQUESTERS, CREATOR_RECORDS, fullySeedCreators } from '../../fixtures';
 
 beforeAll(async () =>
 {
@@ -19,50 +19,51 @@ afterAll(async () =>
 
 beforeEach(async () =>
 {
-    await DATABASES.withEverything();
+    await fullySeedCreators();
 });
 
-describe('domain/relation/explore', () =>
+const range = { limit: 7, offset: 0 };
+
+describe('index', () =>
 {
     it('should explore relations based on recent', async () =>
     {
-        const relations = await explore(REQUESTERS.FIRST, VALUES.RANGE);
+        const relations = await explore(REQUESTERS.CHARLIE, range);
 
-        expect(relations).toHaveLength(3);
-        expect(relations[0].following?.id).toBe(VALUES.IDS.CREATOR4);
-        expect(relations[1].following?.id).toBe(VALUES.IDS.CREATOR6);
-        expect(relations[2].following?.id).toBe(VALUES.IDS.CREATOR5);
+        expect(relations).toHaveLength(2);
+        expect(relations[0].following?.id).toEqual(CREATOR_RECORDS.BOB.id);
+        expect(relations[1].following?.id).toEqual(CREATOR_RECORDS.DAVID.id);
     });
 
     it('should find no relations based on search', async () =>
     {
-        const relations = await explore(REQUESTERS.FIRST, VALUES.RANGE, 'or2');
+        const relations = await explore(REQUESTERS.ALICE, range, 'eve');
 
         expect(relations).toHaveLength(0);
     });
 
     it('should find relations based on search full name', async () =>
     {
-        const relations = await explore(REQUESTERS.FIRST, VALUES.RANGE, 'or 4');
+        const relations = await explore(REQUESTERS.ALICE, range, 'Castillo');
 
         expect(relations).toHaveLength(1);
-        expect(relations[0].following?.id).toBe(VALUES.IDS.CREATOR4);
+        expect(relations[0].following?.id).toEqual(CREATOR_RECORDS.CHARLIE.id);
     });
 
     it('should find relations based on search nickname', async () =>
     {
-        const relations = await explore(REQUESTERS.FIRST, VALUES.RANGE, 'creator4');
+        const relations = await explore(REQUESTERS.ALICE, range, 'thegreat');
 
         expect(relations).toHaveLength(1);
-        expect(relations[0].following?.id).toBe(VALUES.IDS.CREATOR4);
+        expect(relations[0].following?.id).toEqual(CREATOR_RECORDS.BOB.id);
     });
 
     it('should find relations based on search full name and nickname', async () =>
     {
-        const relations = await explore(REQUESTERS.FIRST, VALUES.RANGE, 'five');
+        const relations = await explore(REQUESTERS.DAVID, range, 'li');
 
         expect(relations).toHaveLength(2);
-        expect(relations[0].following?.id).toBe(VALUES.IDS.CREATOR6);
-        expect(relations[1].following?.id).toBe(VALUES.IDS.CREATOR5);
+        expect(relations[0].following?.id).toEqual(CREATOR_RECORDS.ALICE.id);
+        expect(relations[1].following?.id).toEqual(CREATOR_RECORDS.CHARLIE.id);
     });
 });

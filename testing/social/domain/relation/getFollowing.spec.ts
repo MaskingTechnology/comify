@@ -5,7 +5,7 @@ import database from '@comify/common/integrations/database';
 
 import getFollowing from '@comify/social/domain/relation/getFollowing';
 
-import { DATABASES, REQUESTERS, VALUES } from './fixtures';
+import { REQUESTERS, CREATOR_RECORDS, fullySeedCreators } from '../../fixtures';
 
 beforeAll(async () =>
 {
@@ -19,17 +19,17 @@ afterAll(async () =>
 
 beforeEach(async () =>
 {
-    await DATABASES.withEverything();
+    await fullySeedCreators();
 });
 
-describe('domain/relation/getFollowing', () =>
+describe('index', () =>
 {
     it('should retrieve relations for a follower', async () =>
     {
-        const relations = await getFollowing(REQUESTERS.FIRST, VALUES.IDS.CREATOR1, VALUES.RANGE);
+        const relations = await getFollowing(REQUESTERS.BOB, CREATOR_RECORDS.BOB.id, { limit: 7, offset: 0 });
 
         expect(relations).toHaveLength(2);
-        expect(relations[0].following?.id).toBe(VALUES.IDS.CREATOR2);
-        expect(relations[1].following?.id).toBe(VALUES.IDS.CREATOR3);
+        expect(relations[0].following?.id).toBe(CREATOR_RECORDS.ALICE.id);
+        expect(relations[1].following?.id).toBe(CREATOR_RECORDS.DAVID.id);
     });
 });

@@ -6,7 +6,7 @@ import fileStore from '@comify/common/integrations/fileStore';
 
 import getRecommended from '@comify/social/domain/post/getRecommended';
 
-import { DATA_URLS, DATABASES, FILE_STORES, REQUESTERS, TENANTS } from './fixtures';
+import { REQUESTERS, POST_RECORDS, fullySeedPosts } from '../../fixtures';
 
 beforeAll(async () =>
 {
@@ -26,20 +26,20 @@ afterAll(async () =>
 
 beforeEach(async () =>
 {
-    await Promise.all([
-        DATABASES.withCreatorsPostsAndRelations(),
-        FILE_STORES.withImage()
-    ]);
+    await fullySeedPosts();
 });
 
-describe('domain/post/getRecommended', () =>
+describe('index', () =>
 {
     it('should give all posts except those created by the requester', async () =>
     {
-        const result = await getRecommended(REQUESTERS.CREATOR1, { offset: 0, limit: 7 });
+        const posts = await getRecommended(REQUESTERS.CHARLIE, { offset: 0, limit: 7 });
 
-        expect(result).toHaveLength(1);
-        expect(result[0].creator.following.id).toBe(REQUESTERS.CREATOR2.principalId);
-        expect(result[0].comic?.image.dataUrl).toBe(DATA_URLS.COMIC_IMAGE);
+        // Charlie created the third post, so should not be a part of the result.
+
+        expect(posts).toHaveLength(3);
+        expect(posts[0].id).toEqual(POST_RECORDS.FOURTH.id);
+        expect(posts[1].id).toEqual(POST_RECORDS.SECOND.id);
+        expect(posts[2].id).toEqual(POST_RECORDS.FIRST.id);
     });
 });

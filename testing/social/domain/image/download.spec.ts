@@ -8,9 +8,7 @@ import { RECORD_TYPE, type Record } from '@comify/social/domain/image';
 import download, { ImageNotDownloaded } from '@comify/social/domain/image/download';
 import { InvalidImage } from '@comify/social/domain/image/_validate';
 
-import { DATABASES, FILE_STORES, HTTP_CLIENTS, URLS } from './fixtures';
-
-HTTP_CLIENTS.withImages();
+import { URLS, seedImages } from './fixtures';
 
 beforeAll(async () =>
 {
@@ -28,30 +26,26 @@ afterAll(async () =>
     ]);
 });
 
-beforeEach(async () =>
+beforeEach(() =>
 {
-    HTTP_CLIENTS.withImages();
-
-    await Promise.all([
-        DATABASES.empty(),
-        FILE_STORES.empty()
-    ]);
+    seedImages();
 });
 
-describe('domain/image/download', () =>
+describe('index', () =>
 {
     it('should download an image', async () =>
     {
         const imageId = await download('test', URLS.VALID);
-        const image = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: imageId } });
 
-        expect(image).toBeDefined();
+        const record = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: imageId } });
 
-        const data = await fileStore.readFile(image?.storageKey as string);
+        expect(record).toBeDefined();
+        expect(record?.filename).toEqual('image.jpg');
+        expect(record?.mimeType).toEqual('image/jpeg');
+        expect(record?.storageKey).toContain('test/');
 
-        expect(image?.filename).toEqual('image.jpg');
-        expect(image?.mimeType).toEqual('image/jpeg');
-        expect(image?.storageKey).toContain('test/');
+        const data = await fileStore.readFile(record?.storageKey as string);
+
         expect(data.length).toEqual(95);
     });
 

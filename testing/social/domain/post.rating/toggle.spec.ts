@@ -6,7 +6,7 @@ import eventBroker from '@comify/common/integrations/eventBroker';
 
 import toggle from '@comify/social/domain/post.rating/toggle';
 
-import { DATABASES, REQUESTERS, VALUES } from './fixtures';
+import { REQUESTERS, POST_RECORDS, seedPosts, seedRatings } from '../../fixtures';
 
 beforeAll(async () =>
 {
@@ -26,21 +26,24 @@ afterAll(async () =>
 
 beforeEach(async () =>
 {
-    await DATABASES.withRatings();
+    await Promise.all([
+        seedPosts(),
+        seedRatings()
+    ]);
 });
 
-describe('domain/post/toggleRating', () =>
+describe('index', () =>
 {
     it('should add a rating', async () =>
     {
-        const result = await toggle(REQUESTERS.CREATOR1, VALUES.IDS.POST_UNRATED);
+        const result = await toggle(REQUESTERS.BOB, POST_RECORDS.SECOND.id);
 
         expect(result).toBeTruthy();
     });
 
     it('should remove a rating', async () =>
     {
-        const result = await toggle(REQUESTERS.CREATOR1, VALUES.IDS.POST_RATED);
+        const result = await toggle(REQUESTERS.BOB, POST_RECORDS.FIRST.id);
 
         expect(result).toBeFalsy();
     });

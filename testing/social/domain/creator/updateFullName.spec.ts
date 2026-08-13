@@ -4,10 +4,11 @@ import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 import database from '@comify/common/integrations/database';
 import eventBroker from '@comify/common/integrations/eventBroker';
 
-import { RECORD_TYPE as CREATOR_RECORD_TYPE, type Record } from '@comify/social/domain/creator';
+import { RECORD_TYPE, type Record } from '@comify/social/domain/creator';
+import { FULL_NAME_MAX_LENGTH } from '@comify/social/domain/creator/definitions';
 import updateFullName, { InvalidFullName } from '@comify/social/domain/creator/updateFullName';
 
-import { DATABASES, REQUESTERS, VALUES } from './fixtures';
+import { REQUESTERS, CREATOR_RECORDS, seedCreators } from '../../fixtures';
 
 beforeAll(async () =>
 {
@@ -27,23 +28,27 @@ afterAll(async () =>
 
 beforeEach(async () =>
 {
-    await DATABASES.withEverything();
+    await seedCreators();
 });
 
-describe('domain/creator/updateFullName', () =>
+describe('index', () =>
 {
     it('should update the full name', async () =>
     {
-        await updateFullName(REQUESTERS.CREATOR, VALUES.FULL_NAMES.NEW);
+        const newName = CREATOR_RECORDS.ALICE.fullName + ' Updated';
 
-        const creator = await database.readRecord<Record>(CREATOR_RECORD_TYPE, { id: { EQUALS: REQUESTERS.CREATOR.principalId } });
+        await updateFullName(REQUESTERS.ALICE, newName);
 
-        expect(creator?.fullName).toBe(VALUES.FULL_NAMES.NEW);
+        const record = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: REQUESTERS.ALICE.principalId } });
+
+        expect(record?.fullName).toBe(newName);
     });
 
     it('should not accept an invalid full name', async () =>
     {
-        const promise = updateFullName(REQUESTERS.CREATOR, VALUES.FULL_NAMES.INVALID);
+        const invalidName = 'A'.repeat(FULL_NAME_MAX_LENGTH + 1);
+
+        const promise = updateFullName(REQUESTERS.ALICE, invalidName);
 
         await expect(promise).rejects.toThrow(InvalidFullName);
     });

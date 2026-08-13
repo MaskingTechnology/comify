@@ -6,8 +6,7 @@ import fileStore from '@comify/common/integrations/fileStore';
 
 import getByFollowing from '@comify/social/domain/post/getByFollowing';
 
-import { DATABASES, FILE_STORES, REQUESTERS, TENANTS } from './fixtures';
-
+import { REQUESTERS, POST_RECORDS, fullySeedPosts } from '../../fixtures';
 
 beforeAll(async () =>
 {
@@ -27,19 +26,19 @@ afterAll(async () =>
 
 beforeEach(async () =>
 {
-    await Promise.all([
-        DATABASES.withCreatorsPostsAndRelations(),
-        FILE_STORES.withImage()
-    ]);
+    await fullySeedPosts();
 });
 
-describe('domain/post/getByFollowing', () =>
+describe('index', () =>
 {
     it('should get posts from everyone followed by the requester', async () =>
     {
-        const result = await getByFollowing(REQUESTERS.CREATOR1, { offset: 0, limit: 7 });
+        const posts = await getByFollowing(REQUESTERS.CHARLIE, { offset: 0, limit: 7 });
 
-        expect(result).toHaveLength(1);
-        expect(result[0].creator.following.id).toBe(REQUESTERS.CREATOR2.principalId);
+        // Charlie only follows Alice which has 2 posts.
+
+        expect(posts).toHaveLength(2);
+        expect(posts[0].id).toBe(POST_RECORDS.SECOND.id);
+        expect(posts[1].id).toBe(POST_RECORDS.FIRST.id);
     });
 });

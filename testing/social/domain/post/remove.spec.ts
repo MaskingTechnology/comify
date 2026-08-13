@@ -7,7 +7,7 @@ import eventBroker from '@comify/common/integrations/eventBroker';
 import { PostNotFound, RECORD_TYPE, type Record } from '@comify/social/domain/post';
 import remove from '@comify/social/domain/post/remove';
 
-import { DATABASES, REQUESTERS, TENANTS, VALUES } from './fixtures';
+import { REQUESTERS, POST_RECORDS, seedPosts } from '../../fixtures';
 
 beforeAll(async () =>
 {
@@ -27,33 +27,33 @@ afterAll(async () =>
 
 beforeEach(async () =>
 {
-    await DATABASES.withPostsAndCreators();
+    await seedPosts();
 });
 
-describe('domain/post/remove', () =>
+describe('index', () =>
 {
     it('should soft delete a post', async () =>
     {
-        await remove(REQUESTERS.CREATOR1, VALUES.IDS.POST_RATED);
+        await remove(REQUESTERS.ALICE, POST_RECORDS.SECOND.id);
 
-        const result = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: VALUES.IDS.POST_RATED } });
+        const record = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: POST_RECORDS.SECOND.id } });
 
-        expect(result?.deleted).toBeTruthy();
+        expect(record?.deleted).toBeTruthy();
     });
 
     it('should not delete an already deleted post', async () =>
     {
-        const promise = remove(REQUESTERS.CREATOR1, VALUES.IDS.POST_DELETED);
+        const promise = remove(REQUESTERS.HENRY, POST_RECORDS.DELETED.id);
 
         await expect(promise).rejects.toThrow(PostNotFound);
     });
 
     it('should not delete a post from another creator', async () =>
     {
-        await remove(REQUESTERS.VIEWER, VALUES.IDS.POST_RATED);
+        await remove(REQUESTERS.BOB, POST_RECORDS.FIRST.id);
 
-        const result = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: VALUES.IDS.POST_RATED } });
+        const record = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: POST_RECORDS.FIRST.id } });
 
-        expect(result?.deleted).toBeFalsy();
+        expect(record?.deleted).toBeFalsy();
     });
 });

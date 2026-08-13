@@ -6,7 +6,7 @@ import database from '@comify/common/integrations/database';
 import { RECORD_TYPE, type Record } from '@comify/social/domain/notification';
 import removeByPost from '@comify/social/domain/notification/removeByPost';
 
-import { DATABASES, VALUES } from './fixtures';
+import { POST_RECORDS, seedNotifications } from '../../fixtures';
 
 beforeAll(async () =>
 {
@@ -20,17 +20,20 @@ afterAll(async () =>
 
 beforeEach(async () =>
 {
-    await DATABASES.withCreatorsPostsAndNotifications();
+    await seedNotifications();
 });
 
-describe('domain/notification/removeByPost', () =>
+describe('index', () =>
 {
     it('should remove all notifications of a removed post', async () =>
     {
-        await removeByPost(VALUES.IDS.POST_RATED);
+        await removeByPost(POST_RECORDS.FIRST.id);
 
-        const result = await database.searchRecords<Record>(RECORD_TYPE, { postId: { EQUALS: VALUES.IDS.POST_RATED }, deleted: { EQUALS: false } });
+        const records = await database.searchRecords<Record>(RECORD_TYPE, {
+            postId: { EQUALS: POST_RECORDS.FIRST.id },
+            deleted: { EQUALS: false }
+        });
 
-        expect(result).toHaveLength(0);
+        expect(records).toHaveLength(0);
     });
 });
