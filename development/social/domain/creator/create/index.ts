@@ -43,3 +43,5 @@ export default async function (tenant: Tenant, data: CreateData): Promise<Identi
 }
 
 export { TooManySimilarNicknames };
+
+export { type CreateData } from './definitions';

@@ -3,8 +3,7 @@ import { beforeAll, afterAll, describe, expect, it } from 'vitest';
 
 import database from '@comify/common/integrations/database';
 
-import { RECORD_TYPE, type Record } from '@comify/social/domain/post.comment';
-import { MESSAGE_MAX_LENGTH } from '@comify/social/domain/post.comment/definitions';
+import { RECORD_TYPE, MESSAGE_MAX_LENGTH, type Record } from '@comify/social/domain/post.comment';
 import create, { InvalidComment } from '@comify/social/domain/post.comment/create';
 
 beforeAll(async () =>

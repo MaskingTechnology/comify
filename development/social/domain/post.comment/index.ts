@@ -1,2 +1,9 @@
 
-export { RECORD_TYPE, type Record, type Comment, type Message } from './definitions';
+export
+{
+    RECORD_TYPE,
+    MESSAGE_MAX_LENGTH,
+    type Record,
+    type Comment,
+    type Message
+} from './definitions';

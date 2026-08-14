@@ -13,12 +13,15 @@ import
     seedRelations
 } from './database.fixture';
 
+import { seedImages as seedImagesHttp } from './http.fixture';
+
 import { seedImages as seedImagesStorage } from './storage.fixture';
 
 export async function seedImages(): Promise<void>
 {
     await Promise.all([
         seedImagesDatabase(),
+        seedImagesHttp(),
         seedImagesStorage()
     ]);
 }
