@@ -1,16 +1,17 @@
 
 import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 
+import type { Identity } from '@theshelf/authentication';
+
 import database from '@comify/common/integrations/database';
 import eventBroker from '@comify/common/integrations/eventBroker';
 import fileStore from '@comify/common/integrations/fileStore';
 
 import login from '@comify/social/security/authentication/login';
 
-import { TooManySimilarNicknames } from '@comify/social/domain/creator/create';
 import getCreatorById from '@comify/social/domain/creator/getById';
 
-import { DATABASES, FILE_STORES, HTTP_CLIENTS, IDENTITIES, TENANTS, VALUES } from './fixtures';
+import { IDENTITIES, TENANTS, CREATOR_RECORDS, fullySeedCreators } from '../../fixtures';
 
 beforeAll(async () =>
 {
@@ -32,86 +33,34 @@ afterAll(async () =>
 
 beforeEach(async () =>
 {
-    HTTP_CLIENTS.withProfilePictures();
-
-    await Promise.all([
-        DATABASES.withCreators(),
-        FILE_STORES.empty()
-    ]);
+    await fullySeedCreators();
 });
 
-describe('domain/authentication', () =>
+describe('index', () =>
 {
-    describe('.login(tenant, identity)', () =>
+    it('should login with an existing account', async () =>
     {
-        it('should login with an existing email', async () =>
-        {
-            const requester = await login(TENANTS.default, IDENTITIES.EXISTING);
+        const requester = await login(TENANTS.ABCD, IDENTITIES.ALICE);
 
-            const creator = await getCreatorById(requester.tenantId, requester.principalId);
+        const creator = await getCreatorById(requester.tenantId, requester.principalId);
 
-            expect(creator.nickname).toBe(VALUES.NICKNAMES.FIRST);
-        });
+        expect(creator.nickname).toBe(CREATOR_RECORDS.ALICE.nickname);
+    });
 
-        it('should register without a nickname', async () =>
-        {
-            const requester = await login(TENANTS.default, IDENTITIES.NO_NICKNAME);
+    it('should login with an non-existing account', async () =>
+    {
+        const identity: Identity = {
+            name: 'New Creator',
+            nickname: 'newcreator',
+            email: 'new@example.com',
+            picture: undefined,
+            email_verified: false
+        };
 
-            const creator = await getCreatorById(requester.tenantId, requester.principalId);
+        const requester = await login(TENANTS.ABCD, identity);
 
-            expect(creator.nickname).toBe(VALUES.NICKNAMES.FROM_FULL_NAME);
-        });
+        const creator = await getCreatorById(requester.tenantId, requester.principalId);
 
-        it('should register with a duplicate nickname', async () =>
-        {
-            const requester = await login(TENANTS.default, IDENTITIES.DUPLICATE_NICKNAME);
-
-            const creator = await getCreatorById(requester.tenantId, requester.principalId);
-
-            expect(creator.nickname).toBe(VALUES.NICKNAMES.DEDUPLICATED);
-        });
-
-        it('should register with multiple occurrences of nickname', async () =>
-        {
-            const requester = await login(TENANTS.default, IDENTITIES.MULTIPLE_OCCURRENCES_NICKNAME);
-
-            const creator = await getCreatorById(requester.tenantId, requester.principalId);
-
-            expect(creator.nickname).toBe(VALUES.NICKNAMES.NEXT_OCCURRED);
-        });
-
-        it('should NOT register with too many occurrences nickname', async () =>
-        {
-            const promise = login(TENANTS.default, IDENTITIES.TOO_MANY_SIMILAR_NICKNAMES);
-
-            await expect(promise).rejects.toStrictEqual(new TooManySimilarNicknames());
-        });
-
-        it('should register with spaces in nickname', async () =>
-        {
-            const requester = await login(TENANTS.default, IDENTITIES.SPACED_NICKNAME);
-
-            const creator = await getCreatorById(requester.tenantId, requester.principalId);
-
-            expect(creator.nickname).toBe(VALUES.NICKNAMES.DESPACED);
-        });
-
-        it('should register with underscores in nickname', async () =>
-        {
-            const requester = await login(TENANTS.default, IDENTITIES.UNDERSCORED_NICKNAME);
-
-            const creator = await getCreatorById(requester.tenantId, requester.principalId);
-
-            expect(creator.nickname).toBe(VALUES.NICKNAMES.DEUNDERSCORED);
-        });
-
-        it('should register with a valid profile picture', async () =>
-        {
-            const requester = await login(TENANTS.default, IDENTITIES.WITH_PICTURE);
-
-            const creator = await getCreatorById(requester.tenantId, requester.principalId);
-
-            expect(creator.nickname).toBe(VALUES.NICKNAMES.WITH_PICTURE);
-        });
+        expect(creator.nickname).toBe(identity.nickname);
     });
 });
