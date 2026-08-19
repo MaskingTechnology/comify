@@ -14,5 +14,3 @@ export default async function (data: CreateData): Promise<Identifier>
 
     return persist(record);
 }
-
-export { default as InvalidComment } from './InvalidComment';

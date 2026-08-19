@@ -25,5 +25,3 @@ export default async function (requester: Requester, postId: Identifier): Promis
 
     return false;
 }
-
-export { default as InvalidRating } from './create';

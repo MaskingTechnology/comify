@@ -1,0 +1,31 @@
+{
+    "./social/domain/creator/create/makeNickname/TooManySimilarNicknames": { "default": { }},
+    "./social/domain/creator/create/InvalidCreator": { "default": { }},
+    "./social/domain/creator/getById/CreatorNotFound": { "default": { }},
+    "./social/domain/creator/getByNickname/NicknameNotFound": { "default": { }},
+    "./social/domain/creator/updateFullName/InvalidFullName": { "default": { }},
+    "./social/domain/creator/updateNickname/InvalidNickname": { "default": { }},
+    "./social/domain/creator/updateNickname/NicknameAlreadyExists": { "default": { }},
+
+    "./social/domain/creator.metrics/_retrieveByCreator/CreatorMetricsNotFound": { "default": {} },
+
+    "./social/domain/image/create/InvalidDataURL": { "default": {} },
+    "./social/domain/image/download/ImageNotDownloaded": { "default": {} },
+    "./social/domain/image/getById/ImageNotFound": { "default": {} },
+
+    "./social/domain/post/_create/InvalidPost": { "default": {} },
+    "./social/domain/post/_retrieveById/PostNotFound": { "default": {} },
+
+    "./social/domain/post.comic/_retrieveById/ComicNotFound": { "default": {} },
+    "./social/domain/post.comic/create/InvalidComic": { "default": {} },
+
+    "./social/domain/post.comment/create/InvalidComment": { "default": {} },
+    "./social/domain/post.comment/getById/CommentNotFound": { "default": {} },
+
+    "./social/domain/post.metrics/_retrieveByPost/PostMetricsNotFound": { "default": {} },
+
+    "./social/domain/post.rating/toggle/create/InvalidRating": { "default": {} },
+
+    "./social/domain/relation/establish/create/InvalidRelation": { "default": {} },
+    "./social/domain/relation/establish/RelationAlreadyExists": { "default": {} }
+}

@@ -36,6 +36,3 @@ export default async function (requester: Requester, followingId: string): Promi
         throw error;
     }
 }
-
-export { InvalidRelation } from './create';
-export { RelationAlreadyExists };

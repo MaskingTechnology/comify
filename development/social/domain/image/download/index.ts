@@ -19,5 +19,3 @@ export default async function (type: string, url: URL): Promise<Identifier>
 
     return save(type, image);
 }
-
-export { default as ImageNotDownloaded } from './ImageNotDownloaded';

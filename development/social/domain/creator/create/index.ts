@@ -7,7 +7,7 @@ import { logger } from '../integrations';
 import createRecord from './createRecord';
 import remove from './remove';
 import makeFullName from './makeFullName';
-import makeNickname, { TooManySimilarNicknames } from './makeNickname';
+import makeNickname from './makeNickname';
 import makePortrait from './makePortrait';
 import persist from './persist';
 import publish from './publish';
@@ -41,7 +41,5 @@ export default async function (tenant: Tenant, data: CreateData): Promise<Identi
         throw error;
     }
 }
-
-export { TooManySimilarNicknames };
 
 export { type CreateData } from './definitions';

@@ -21,5 +21,3 @@ export default async function (id: Identifier): Promise<Comment>
 
     return toModel(record);
 }
-
-export { default as CommentNotFound } from './CommentNotFound';

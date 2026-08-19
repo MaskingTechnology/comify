@@ -20,5 +20,3 @@ export default async function (id: Identifier): Promise<Record>
 
     return record;
 }
-
-export { ComicNotFound };

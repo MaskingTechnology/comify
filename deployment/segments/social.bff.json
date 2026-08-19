@@ -7,7 +7,7 @@
     "./social/domain/creator/getByNickname": { "default": {  "access": "public" } },
     "./social/domain/creator/getMe": { "default": {  "access": "public" } },
     "./social/domain/creator/updateFullName": { "default": {  "access": "public" } },
-    "./social/domain/creator/updateNickname": { "default": {  "access": "public" } },
+    "./social/domain/creator/updateNickname": { "default": {  "access": "public" }},
 
     "./social/domain/creator.metrics/subscriptions": { "default": {  "access": "private" } },
 

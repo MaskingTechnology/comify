@@ -13,5 +13,3 @@ export default async function (key: RelationKey): Promise<string>
 
     return persist(record);
 }
-
-export { default as InvalidRelation } from './InvalidRelation';

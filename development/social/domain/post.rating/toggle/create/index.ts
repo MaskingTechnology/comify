@@ -13,5 +13,3 @@ export default async function (key: RatingKey): Promise<string>
 
     return persist(newData);
 }
-
-export { default as InvalidRating } from './InvalidRating';

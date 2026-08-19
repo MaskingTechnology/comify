@@ -14,5 +14,3 @@ export default async function (type: string, dataUrl: string): Promise<Identifie
 
     return save(type, image);
 }
-
-export { default as InvalidDataURL } from './InvalidDataURL';

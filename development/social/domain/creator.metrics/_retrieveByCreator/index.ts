@@ -20,5 +20,3 @@ export default async function (creatorId: Identifier): Promise<Record>
 
     return record;
 }
-
-export { CreatorMetricsNotFound };

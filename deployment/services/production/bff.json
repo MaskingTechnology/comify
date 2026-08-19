@@ -20,6 +20,6 @@
     {
         "gateway": "http://127.0.0.1:2000",
         "trustKey": "${JITAR_TRUST_KEY}",
-        "segments": ["common.bff", "social.bff"]
+        "segments": ["common.bff", "common.errors", "social.bff", "social.errors"]
     }
 }
