@@ -1,8 +1,7 @@
 
-import type { ReactNode } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-
 import { Column, Tabs } from '@maskingtech/designsystem';
+import { type ReactNode } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 type Tab = {
     readonly title: string;

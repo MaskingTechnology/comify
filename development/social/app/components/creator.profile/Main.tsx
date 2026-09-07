@@ -1,14 +1,13 @@
 
+import { Column } from '@maskingtech/designsystem';
 import { useMemo } from 'react';
 import { useParams, Outlet } from 'react-router-dom';
-
-import { Column } from '@maskingtech/designsystem';
 
 import { Tabs, LoadingAndResultContainer } from '~/components/common';
 import { Profile } from '~/components/relation';
 
-import useProfile from './hooks/useProfile';
 import useEditProfile from './hooks/useEditProfile';
+import useProfile from './hooks/useProfile';
 
 export default function ()
 {

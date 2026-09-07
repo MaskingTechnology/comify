@@ -1,8 +1,8 @@
 
 import { type Identity } from '@theshelf/authentication';
 
-import { type Requester } from '@comify/common/security';
 import { type Tenant } from '@comify/common/domain/tenant';
+import { type Requester } from '@comify/common/security';
 
 import get from './get';
 import register from './register';

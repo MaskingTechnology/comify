@@ -1,10 +1,10 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
 import { logger } from '../integrations';
 
-import retrieve from './retrieve';
 import remove from './remove';
+import retrieve from './retrieve';
 
 export default async function (postId: Identifier): Promise<void>
 {

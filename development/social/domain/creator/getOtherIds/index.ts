@@ -1,6 +1,6 @@
 
+import { type Identifier } from '@comify/common/primitives/identifier';
 import { type Range } from '@comify/common/primitives/range';
-import type { Identifier } from '@comify/common/primitives/identifier';
 import { type Requester } from '@comify/common/security';
 
 import retrieve from './retrieve';

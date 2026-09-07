@@ -1,15 +1,13 @@
 
+import { Column } from '@maskingtech/designsystem';
 import { useOutletContext } from 'react-router-dom';
 
-import { Column } from '@maskingtech/designsystem';
-
-import type { Creator } from '^/domain/creator';
-
-import useUpdateFullName from './hooks/useUpdateFullName';
-import useUpdateNickname from './hooks/useUpdateNickname';
+import { type Creator } from '^/domain/creator';
 
 import FullNameForm from './components/FullNameForm';
 import NicknameForm from './components/NicknameForm';
+import useUpdateFullName from './hooks/useUpdateFullName';
+import useUpdateNickname from './hooks/useUpdateNickname';
 
 type Context = {
     identity: Creator;

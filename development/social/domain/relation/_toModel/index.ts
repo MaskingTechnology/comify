@@ -1,9 +1,9 @@
 
-import type { TenantId } from '@comify/common/domain/tenant';
+import { type TenantId } from '@comify/common/domain/tenant';
 
 import getCreator from '~/creator/getById';
 
-import type { Record, Relation } from '../definitions';
+import { type Record, type Relation } from '../definitions';
 
 import createModel from './createModel';
 

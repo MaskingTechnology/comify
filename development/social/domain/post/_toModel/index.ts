@@ -1,10 +1,10 @@
 
 import { type Requester } from '@comify/common/security';
 
-import type { Record, Post } from '../definitions';
+import { type Record, type Post } from '../definitions';
 
-import getReferences from './getReferences';
 import createModel from './createModel';
+import getReferences from './getReferences';
 
 export default async function (requester: Requester, record: Record): Promise<Post>
 {

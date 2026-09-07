@@ -4,11 +4,11 @@ import { Route } from 'react-router-dom';
 import { NotFound } from '~/components/common';
 
 import Home from './Home';
-import Login from './Login';
 import Identify from './Identify';
+import Login from './Login';
 import Logout from './Logout';
-import Terms from './Terms';
 import Privacy from './Privacy';
+import Terms from './Terms';
 
 export const legalRoutes = <Route>
     <Route path='/terms' element={<Terms />} />

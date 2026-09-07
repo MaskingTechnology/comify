@@ -1,5 +1,5 @@
 
-import type { QuerySingleStatement } from '@theshelf/database';
+import { type QuerySingleStatement } from '@theshelf/database';
 
 import database from '@comify/common/integrations/database';
 

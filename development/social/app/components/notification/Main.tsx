@@ -1,14 +1,13 @@
 
 import { Column } from '@maskingtech/designsystem';
 
-import type { Notification } from '^/domain/notification';
+import { type Notification } from '^/domain/notification';
 
 import { PullToRefresh, ResultContainer, ScrollLoader } from '~/components/common';
 import { useViewProfile } from '~/components/creator.profile';
 import { useEstablish } from '~/components/relation';
 
 import PanelList from './components/PanelList';
-
 import useNotifications from './hooks/useNotifications';
 import useViewNotificationDetails from './hooks/useViewNotificationDetails';
 

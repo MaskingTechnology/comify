@@ -1,7 +1,7 @@
 
 import { type Tenant } from '@comify/common/domain/tenant';
 
-import type { Email } from '../definitions';
+import { type Email } from '../definitions';
 
 import retrieve from './retrieve';
 

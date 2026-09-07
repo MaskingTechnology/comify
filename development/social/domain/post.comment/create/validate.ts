@@ -1,8 +1,9 @@
 
 import validator from '@comify/common/integrations/validation';
 
-import { type CreateData } from './definitions';
 import { messageValidation } from '../definitions';
+
+import { type CreateData } from './definitions';
 import InvalidComment from './InvalidComment';
 
 export default function (data: CreateData): void

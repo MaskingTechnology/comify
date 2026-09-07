@@ -1,8 +1,8 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
-import { Types } from '../definitions';
 import create from '../_create';
+import { Types } from '../definitions';
 
 export default async function (followerId: Identifier, followingId: Identifier): Promise<void>
 {

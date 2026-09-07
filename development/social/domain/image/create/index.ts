@@ -1,5 +1,5 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
 import save from '../_save';
 import validate from '../_validate';

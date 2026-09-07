@@ -1,13 +1,13 @@
 
-import type { TenantId } from '@comify/common/domain/tenant';
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type TenantId } from '@comify/common/domain/tenant';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
-import type { Creator } from '../definitions';
-import { logger } from '../integrations';
 import toModel from '../_toModel';
+import { type Creator } from '../definitions';
+import { logger } from '../integrations';
 
-import retrieve from './retrieve';
 import CreatorNotFound from './CreatorNotFound';
+import retrieve from './retrieve';
 
 export default async function (tenantId: TenantId, id: Identifier): Promise<Creator>
 {

@@ -1,5 +1,5 @@
 
-import type { Relation } from '^/domain/relation';
+import { type Relation } from '^/domain/relation';
 
 import { Profile } from '~/components/creator';
 

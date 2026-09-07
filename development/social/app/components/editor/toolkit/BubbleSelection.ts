@@ -2,6 +2,7 @@
 import Styling from '../definitions/Styling';
 import Group from '../elements/Group';
 import type Bubble from '../model/Bubble';
+
 import Button from './Button';
 
 type Handler = {

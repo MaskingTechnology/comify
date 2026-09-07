@@ -1,7 +1,7 @@
 
 import { Column } from '@maskingtech/designsystem';
 
-import type { Creator } from '^/domain/creator';
+import { type Creator } from '^/domain/creator';
 
 import Menu from './Menu';
 

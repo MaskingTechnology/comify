@@ -1,13 +1,12 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
-
+import { type Identifier } from '@comify/common/primitives/identifier';
 import { type Range } from '@comify/common/primitives/range';
 import validateRange from '@comify/common/primitives/range/validate';
 import { type Requester } from '@comify/common/security';
 
-import type { Relation } from '../definitions';
-import translate from '../_translateMany';
 import toModels from '../_toModels';
+import translate from '../_translateMany';
+import { type Relation } from '../definitions';
 
 import retrieve from './retrieve';
 

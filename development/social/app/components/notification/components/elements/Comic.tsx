@@ -1,7 +1,7 @@
 
 import { ClickArea, Image, Row, Text } from '@maskingtech/designsystem';
 
-import type { Comic } from '^/domain/comic';
+import { type Comic } from '^/domain/post.comic';
 
 type Props = {
     readonly comic: Comic;

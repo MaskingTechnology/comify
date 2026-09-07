@@ -1,7 +1,7 @@
 
 import database from '@comify/common/integrations/database';
 
-import { RECORD_TYPE, Record } from '../definitions';
+import { RECORD_TYPE, type Record } from '../definitions';
 
 export default async function (id: string): Promise<Record | undefined>
 {

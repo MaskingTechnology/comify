@@ -1,12 +1,12 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
-import type { Comic } from '~/post.comic';
-import type { Comment } from '~/post.comment';
-import type { Metrics } from '~/post.metrics';
-import type { Relation } from '~/relation';
+import { type Comic } from '~/post.comic';
+import { type Comment } from '~/post.comment';
+import { type Metrics } from '~/post.metrics';
+import { type Relation } from '~/relation';
 
-import type { BaseRecord } from '../definitions';
+import { type BaseRecord } from '../definitions';
 
 export type Record = BaseRecord & {
     readonly tenantId: string;

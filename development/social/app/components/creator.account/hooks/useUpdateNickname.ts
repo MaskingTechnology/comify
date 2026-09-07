@@ -2,7 +2,8 @@
 import { useCallback, useState } from 'react';
 
 import { requester } from '@comify/common/security';
-import type { Creator } from '^/domain/creator';
+
+import { type Creator } from '^/domain/creator';
 import updateNickname from '^/domain/creator/updateNickname';
 import NicknameAlreadyExists from '^/domain/creator/updateNickname/NicknameAlreadyExists';
 

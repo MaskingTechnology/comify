@@ -3,7 +3,8 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { requester } from '@comify/common/security';
-import type { Creator } from '^/domain/creator';
+
+import { type Creator } from '^/domain/creator';
 import getMe from '^/domain/creator/getMe';
 
 import { useAppContext } from '../contexts/AppContext';

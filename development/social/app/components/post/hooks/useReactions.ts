@@ -1,10 +1,10 @@
 
+import { usePagination } from '@maskingtech/react-toolkit';
 import { useCallback } from 'react';
 
-import { usePagination } from '@maskingtech/react-toolkit';
-
 import { requester } from '@comify/common/security';
-import type { Post } from '^/domain/post';
+
+import { type Post } from '^/domain/post';
 import getReactionsByPost from '^/domain/post/getByParent';
 
 export default function useReactions(post: Post)

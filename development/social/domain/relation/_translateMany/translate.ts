@@ -1,8 +1,8 @@
 
 import retrieve from '../_retrieve';
-import type { Record } from '../definitions';
+import { type Record } from '../definitions';
 
-import type { Mapping } from './definitions';
+import { type Mapping } from './definitions';
 
 export default async function (followerId: string, mapping: Mapping, record: Record): Promise<Record>
 {

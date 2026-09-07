@@ -3,10 +3,10 @@ import { Route } from 'react-router-dom';
 
 import reactionRoutes from '~/components/post.reaction';
 
-import Main from './Main';
 import Create from './Create';
 import Details from './Details';
 import Highlight from './Highlight';
+import Main from './Main';
 import Remove from './Remove';
 
 export default <Route path='' element={<Main />}>

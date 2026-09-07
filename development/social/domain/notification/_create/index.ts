@@ -1,7 +1,7 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
-import type { Type } from '../definitions';
+import { type Type } from '../definitions';
 import { logger } from '../integrations';
 
 import createRecord from './createRecord';

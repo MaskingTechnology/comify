@@ -2,7 +2,6 @@
 import { type Requester } from '@comify/common/security';
 
 import { type RatingKey } from '../../definitions';
-
 import create from '../create';
 import remove from '../remove';
 

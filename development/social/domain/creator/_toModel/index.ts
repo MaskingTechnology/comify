@@ -1,8 +1,8 @@
 
 import { type Record, type Creator } from '../definitions';
 
-import getReferences from './getReferences';
 import createModel from './createModel';
+import getReferences from './getReferences';
 
 export default async function (record: Record): Promise<Creator>
 {

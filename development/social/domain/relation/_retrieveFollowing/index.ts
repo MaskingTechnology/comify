@@ -2,7 +2,7 @@
 import { type Identifier } from '@comify/common/primitives/identifier';
 
 import translate from '../_translateMany';
-import type { Record } from '../definitions';
+import { type Record } from '../definitions';
 
 import retrieve from './retrieve';
 

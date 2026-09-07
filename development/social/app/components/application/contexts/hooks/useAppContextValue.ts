@@ -1,7 +1,7 @@
 
 import { useMemo, useState } from 'react';
 
-import type { Creator } from '^/domain/creator';
+import { type Creator } from '^/domain/creator';
 
 export default function useAppContextValue(initialIdentity?: Creator)
 {

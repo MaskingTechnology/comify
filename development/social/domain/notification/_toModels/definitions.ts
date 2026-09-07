@@ -1,5 +1,5 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
 import { type Post } from '~/post';
 import { type Relation } from '~/relation';

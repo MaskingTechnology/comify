@@ -2,10 +2,11 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useAppContext } from '~/components/application';
-
 import { requester } from '@comify/common/security';
+
 import remove from '^/domain/post/remove';
+
+import { useAppContext } from '~/components/application';
 
 export default function useRemovePost(id?: string)
 {

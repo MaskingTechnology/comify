@@ -1,10 +1,10 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
-import type { Record, Notification, Type } from '../definitions';
+import { type Record, type Notification, type Type } from '../definitions';
 import { logger } from '../integrations';
 
-import type { References } from './definitions';
+import { type References } from './definitions';
 
 export default function (records: Record[], references: References): Map<Identifier, Notification>
 {

@@ -1,7 +1,6 @@
 
-import type { ReactNode } from 'react';
-
 import { Row } from '@maskingtech/designsystem';
+import { type ReactNode } from 'react';
 
 import Avatar from './Avatar';
 

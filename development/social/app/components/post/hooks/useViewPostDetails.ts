@@ -2,7 +2,7 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import type { Post } from '^/domain/post';
+import { type Post } from '^/domain/post';
 
 export default function useViewPostDetails()
 {

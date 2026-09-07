@@ -1,9 +1,9 @@
 
-import { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
-import type { Record } from '../definitions';
+import { type Record } from '../definitions';
 
-import type { Mapping } from './definitions';
+import { type Mapping } from './definitions';
 import translate from './translate';
 
 export default async function (followerId: Identifier, mapping: Mapping, records: Record[]): Promise<Record[]>

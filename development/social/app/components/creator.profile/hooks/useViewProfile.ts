@@ -1,7 +1,7 @@
 
 import { useNavigate } from 'react-router-dom';
 
-import type { Relation } from '^/domain/relation';
+import { type Relation } from '^/domain/relation';
 
 export default function useViewProfile()
 {

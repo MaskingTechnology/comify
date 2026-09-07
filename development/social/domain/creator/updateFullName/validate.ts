@@ -2,6 +2,7 @@
 import validator from '@comify/common/integrations/validation';
 
 import { type FullName, fullNameValidation } from '../definitions';
+
 import InvalidFullName from './InvalidFullName';
 
 export default function (fullName: FullName): void

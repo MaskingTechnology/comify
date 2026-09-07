@@ -1,7 +1,6 @@
 
-import { useCallback } from 'react';
-
 import { useLoadData } from '@maskingtech/react-toolkit';
+import { useCallback } from 'react';
 
 import { tenant } from '@comify/common/domain/tenant';
 import getByOrigin from '@comify/common/domain/tenant/getByOrigin';

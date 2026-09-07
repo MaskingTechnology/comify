@@ -1,12 +1,12 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
-import type { Comment } from '../definitions';
-import { logger } from '../integrations';
 import toModel from '../_toModel';
+import { type Comment } from '../definitions';
+import { logger } from '../integrations';
 
-import retrieve from './retrieve';
 import CommentNotFound from './CommentNotFound';
+import retrieve from './retrieve';
 
 export default async function (id: Identifier): Promise<Comment>
 {

@@ -5,9 +5,9 @@ import { type Requester } from '@comify/common/security';
 
 import retrieveOtherCreators from '~/creator/getOtherIds';
 
-import type { Relation } from '../definitions';
-import toModels from '../_toModels';
 import retrieveFollowing from '../_retrieveFollowing';
+import toModels from '../_toModels';
+import { type Relation } from '../definitions';
 
 export default async function (requester: Requester, range: Range, search: string | undefined = undefined): Promise<Relation[]>
 {

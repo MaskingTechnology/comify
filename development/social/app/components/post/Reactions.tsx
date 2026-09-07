@@ -1,19 +1,17 @@
 
 import { Column } from '@maskingtech/designsystem';
 
-import type { Post } from '^/domain/post';
+import { type Post } from '^/domain/post';
 
 import { PullToRefresh, ResultContainer, ScrollLoader, OrderAndAddRow } from '~/components/common';
-
 import { useViewProfile } from '~/components/creator.profile';
 import { useToggle } from '~/components/post.rating';
 import { useEstablish } from '~/components/relation';
 
 import PanelList from './components/PanelList';
-
 import useReactions from './hooks/useReactions';
-import useViewPostDetails from './hooks/useViewPostDetails';
 import useShowCreateReaction from './hooks/useShowCreateReaction';
+import useViewPostDetails from './hooks/useViewPostDetails';
 
 type Props = {
     readonly post: Post;

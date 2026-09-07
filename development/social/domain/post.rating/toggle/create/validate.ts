@@ -1,9 +1,9 @@
 
 import validator from '@comify/common/integrations/validation';
-
 import { identifierValidation } from '@comify/common/primitives/identifier';
 
 import { type CreateData } from '../definitions';
+
 import InvalidRating from './InvalidRating';
 
 export default function ({ postId }: CreateData): void

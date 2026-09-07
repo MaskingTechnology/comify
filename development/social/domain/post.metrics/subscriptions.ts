@@ -5,8 +5,8 @@ import { subscribe as onRatingAdded } from '@comify/common/domain/post.rating/ad
 import { subscribe as onRatingRemoved } from '@comify/common/domain/post.rating/removed';
 
 import createMetrics from './create';
-import updateReactionCount from './updateReactions';
 import updateRatingCount from './updateRatings';
+import updateReactionCount from './updateReactions';
 
 export default async function subscribe(): Promise<void>
 {

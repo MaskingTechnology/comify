@@ -1,7 +1,7 @@
 
 import { Cell, Column, Row, Ruler } from '@maskingtech/designsystem';
 
-import type { Creator } from '^/domain/creator';
+import { type Creator } from '^/domain/creator';
 
 import Identity from './Identity';
 import Logo from './Logo';

@@ -1,7 +1,7 @@
 
 import { useMemo } from 'react';
 
-import type { Creator } from '^/domain/creator';
+import { type Creator } from '^/domain/creator';
 
 import createActiveIcon from '~/assets/images/navigation/create-active.svg';
 import createInactiveIcon from '~/assets/images/navigation/create-inactive.svg';
@@ -13,7 +13,6 @@ import profileActiveIcon from '~/assets/images/navigation/profile-active.svg';
 import profileInactiveIcon from '~/assets/images/navigation/profile-inactive.svg';
 import timelineActiveIcon from '~/assets/images/navigation/timeline-active.svg';
 import timelineInactiveIcon from '~/assets/images/navigation/timeline-inactive.svg';
-
 import { Menu } from '~/components/common';
 
 type Props = {

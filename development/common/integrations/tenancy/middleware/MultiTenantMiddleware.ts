@@ -1,8 +1,7 @@
 
-import type { Middleware, NextHandler, Request } from 'jitar';
-import { Response } from 'jitar';
+import { type Middleware, type NextHandler, type Request, Response } from 'jitar';
 
-import type { Tenant } from '^/domain/tenant';
+import { type Tenant } from '^/domain/tenant';
 import getByOrigin from '^/domain/tenant/getByOrigin';
 
 const GEY_BY_ORIGIN_FQN = 'common/domain/tenant/getByOrigin';

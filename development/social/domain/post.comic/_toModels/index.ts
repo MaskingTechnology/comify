@@ -1,8 +1,8 @@
 
 import { type Record, type Comic } from '../definitions';
 
-import getImages from './getImages';
 import createModels from './createModels';
+import getImages from './getImages';
 
 export default async function (records: Record[]): Promise<Map<string, Comic>>
 {

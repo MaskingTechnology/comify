@@ -1,2 +1,2 @@
 
-export type { Range } from './definitions';
+export { type Range } from './definitions';

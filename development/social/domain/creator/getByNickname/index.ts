@@ -1,12 +1,12 @@
 
 import { type Requester } from '@comify/common/security';
 
-import type { Creator, Nickname } from '../definitions';
-import { logger } from '../integrations';
 import toModel from '../_toModel';
+import { type Creator, type Nickname } from '../definitions';
+import { logger } from '../integrations';
 
-import retrieve from './retrieve';
 import NicknameNotFound from './NicknameNotFound';
+import retrieve from './retrieve';
 
 export default async function (requester: Requester, nickname: Nickname): Promise<Creator>
 {

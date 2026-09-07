@@ -1,9 +1,9 @@
 
+import { type TenantId } from '@comify/common/domain/tenant';
+import { type Identifier } from '@comify/common/primitives/identifier';
 import generateId from '@comify/common/primitives/identifier/generate';
-import type { TenantId } from '@comify/common/domain/tenant';
-import type { Identifier } from '@comify/common/primitives/identifier';
 
-import type { Record } from '../definitions';
+import { type Record } from '../definitions';
 
 export default function (tenantId: TenantId, creatorId: Identifier, comicId?: Identifier, commentId?: Identifier, parentId?: Identifier): Record
 {

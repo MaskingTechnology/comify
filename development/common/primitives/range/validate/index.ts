@@ -1,9 +1,9 @@
 
 import validator from '^/integrations/validation';
 
-import InvalidRange from './InvalidRange';
-
 import { type Range, offsetValidation, limitValidation } from '../definitions';
+
+import InvalidRange from './InvalidRange';
 
 export default function (range: Range): void
 {

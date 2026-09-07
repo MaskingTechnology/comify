@@ -39,22 +39,26 @@ export default tseslint.config(
         rules: {
             ...react.configs.recommended.rules,
             ...reactHooks.configs.recommended.rules,
+
             "@typescript-eslint/no-non-null-assertion": "off",
             "@typescript-eslint/no-extraneous-class": "off",
             "@typescript-eslint/no-unsafe-function-type": "off",
             "@typescript-eslint/consistent-type-definitions": "off",
             "@typescript-eslint/consistent-type-imports": "error",
             "@typescript-eslint/unified-signatures": "off",
+
             "semi": ["error", "always"],
             "eol-last": ["error", "always"],
             "brace-style": ["error", "allman", { "allowSingleLine": true }],
+            "no-console": "error",
+
             "react/jsx-uses-react": "off",
             "react/react-in-jsx-scope": "off",
-            "no-console": "error",
+            "react/display-name": "off",
 
             "import/no-duplicates": ["error", { "prefer-inline": true, "considerQueryString": true }],
             "import/consistent-type-specifier-style": ["error", "prefer-inline"],
-            "import/prefer-default-export": "error",
+            "import/prefer-default-export": "off",
             "import/enforce-node-protocol-usage": ["error", "always"],
             "import/newline-after-import": ["error", { count: 1 }],
             'import/order': [

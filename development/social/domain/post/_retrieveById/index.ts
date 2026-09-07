@@ -1,12 +1,12 @@
 
-import type { TenantId } from '@comify/common/domain/tenant';
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type TenantId } from '@comify/common/domain/tenant';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
 import { type Record } from '../definitions';
 import { logger } from '../integrations';
 
-import retrieve from './retrieve';
 import PostNotFound from './PostNotFound';
+import retrieve from './retrieve';
 
 export default async function (tenantId: TenantId, id: Identifier): Promise<Record>
 {

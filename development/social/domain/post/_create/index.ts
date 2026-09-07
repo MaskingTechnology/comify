@@ -1,15 +1,15 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 import { type Requester } from '@comify/common/security';
 
 import { logger } from '../integrations';
 
-import { type CreateData } from './definitions';
 import createRecord from './createRecord';
+import { type CreateData } from './definitions';
 import persist from './persist';
 import publish from './publish';
-import validate from './validate';
 import remove from './remove';
+import validate from './validate';
 
 export default async function (requester: Requester, data: CreateData): Promise<Identifier>
 {

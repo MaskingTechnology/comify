@@ -7,9 +7,8 @@ import { useToggle } from '~/components/post.rating';
 import { useEstablish } from '~/components/relation';
 
 import PanelList from './components/PanelList';
-
-import useViewPostDetails from './hooks/useViewPostDetails';
 import usePostsRecommended from './hooks/usePostsRecommended';
+import useViewPostDetails from './hooks/useViewPostDetails';
 
 const SCROLL_THRESHOLD = 0.7;
 

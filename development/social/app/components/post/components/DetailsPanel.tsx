@@ -1,8 +1,8 @@
 
-import type { Post } from '^/domain/post';
-import type { Relation } from '^/domain/relation';
-
 import { Column, Panel, Row } from '@maskingtech/designsystem';
+
+import { type Post } from '^/domain/post';
+import { type Relation } from '^/domain/relation';
 
 import { RemoveOption } from '~/components/common';
 import { Image as Comic } from '~/components/post.comic';

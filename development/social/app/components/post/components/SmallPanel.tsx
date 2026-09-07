@@ -1,7 +1,7 @@
 
-import type { Post } from '^/domain/post';
-
 import { ClickArea, Column, Panel, Row } from '@maskingtech/designsystem';
+
+import { type Post } from '^/domain/post';
 
 import { TimeElapsed } from '~/components/common';
 import { Image as Comic } from '~/components/post.comic';

@@ -1,8 +1,8 @@
 
 import { subscribe as onCreatorAdded } from '@comify/common/domain/creator/added';
-import { subscribe as onRelationEstablished } from '@comify/common/domain/relation/established';
 import { subscribe as onPostAdded } from '@comify/common/domain/post/added';
 import { subscribe as onPostRemoved } from '@comify/common/domain/post/removed';
+import { subscribe as onRelationEstablished } from '@comify/common/domain/relation/established';
 
 import createMetrics from './create';
 import updateFollowerCount from './updateFollowers';

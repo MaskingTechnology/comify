@@ -1,13 +1,13 @@
 
 import { Route, Routes } from 'react-router-dom';
 
-import accountRoutes from './creator.account';
 import { legalRoutes, guestRoutes, appRoutes, ApplicationLayout, GuestLayout, LegalLayout, ProtectedRoute } from './application';
-import timelineRoutes from './timeline';
+import accountRoutes from './creator.account';
+import profileRoutes from './creator.profile';
 import exploreRoutes from './explore';
 import notificationRoutes from './notification';
 import postRoutes from './post';
-import profileRoutes from './creator.profile';
+import timelineRoutes from './timeline';
 
 export default function ()
 {

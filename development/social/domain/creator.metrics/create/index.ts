@@ -1,5 +1,5 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
 import createRecord from './createRecord';
 import persist from './persist';

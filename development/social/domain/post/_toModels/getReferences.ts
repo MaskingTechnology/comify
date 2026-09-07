@@ -4,12 +4,12 @@ import { type Requester } from '@comify/common/security';
 import getComics from '~/post.comic/getManyById';
 import getComments from '~/post.comment/getManyById';
 import getMetrics from '~/post.metrics/getMany';
-import getRelations from '~/relation/getMany';
 import ratingsExists from '~/post.rating/existsMany';
+import getRelations from '~/relation/getMany';
 
-import type { Record } from '../definitions';
+import { type Record } from '../definitions';
 
-import type { References } from './definitions';
+import { type References } from './definitions';
 
 export default async function (requester: Requester, records: Record[]): Promise<References>
 {

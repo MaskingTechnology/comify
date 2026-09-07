@@ -1,11 +1,11 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 import { type Requester } from '@comify/common/security';
 
-import type { Record, Post } from '../definitions';
+import { type Record, type Post } from '../definitions';
 
-import getReferences from './getReferences';
 import createModels from './createModels';
+import getReferences from './getReferences';
 
 export default async function (requester: Requester, records: Record[]): Promise<Map<Identifier, Post>>
 {

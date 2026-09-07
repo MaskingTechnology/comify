@@ -4,8 +4,8 @@ import { subscribe as onPostRemoved } from '@comify/common/domain/post/removed';
 import { subscribe as onPostRated } from '@comify/common/domain/post.rating/added';
 import { subscribe as onRelationEstablished } from '@comify/common/domain/relation/established';
 
-import notifyReactionAdded from './notifyReactionAdded';
 import notifyPostRated from './notifyPostRated';
+import notifyReactionAdded from './notifyReactionAdded';
 import notifyStartedFollowing from './notifyStartedFollowing';
 import removePostRelatedNotifications from './removeByPost';
 

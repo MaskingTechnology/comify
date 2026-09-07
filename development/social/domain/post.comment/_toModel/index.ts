@@ -1,5 +1,5 @@
 
-import type { Record, Comment } from '../definitions';
+import { type Record, type Comment } from '../definitions';
 
 export default async function (record: Record): Promise<Comment>
 {

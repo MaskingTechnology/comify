@@ -4,7 +4,7 @@ import { Text } from '@maskingtech/designsystem';
 import { timeElapsed } from '@comify/common/integrations/utilities/dates';
 
 type Props = {
-    readonly date: string;
+    readonly date: Date;
     readonly size?: 'large' | 'medium' | 'small';
     readonly weight?: 'light' | 'normal' | 'bold';
 };

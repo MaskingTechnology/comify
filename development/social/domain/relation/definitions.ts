@@ -1,10 +1,9 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
-import type { Creator } from '~/creator/';
+import { type Creator } from '~/creator/';
 
-import type { SortOrder, BaseRecord } from '../definitions';
-import { SortOrders } from '../definitions';
+import { type SortOrder, type BaseRecord, SortOrders } from '../definitions';
 
 export type Record = Omit<BaseRecord, 'id'> & {
     readonly id: string | undefined; // The id is undefined for unestablished relations.

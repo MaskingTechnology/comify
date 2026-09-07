@@ -1,8 +1,7 @@
 
 import { Button, Column, Panel, Row } from '@maskingtech/designsystem';
 
-import type { CancelHandler, CreateHandler } from './hooks/useCreateHandler';
-import useCreateHandler from './hooks/useCreateHandler';
+import useCreateHandler, { type CancelHandler, type CreateHandler } from './hooks/useCreateHandler';
 import useEditor from './hooks/useEditor';
 
 type Props = {

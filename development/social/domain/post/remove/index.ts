@@ -1,14 +1,14 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 import { type Requester } from '@comify/common/security';
 
-import { logger } from '../integrations';
 import retrieveById from '../_retrieveById';
+import { logger } from '../integrations';
 
 import isNotOwner from './isNotOwner';
-import publish from './publish';
 import markDeleted from './markDeleted';
 import markUndeleted from './markUndeleted';
+import publish from './publish';
 
 export default async function (requester: Requester, id: Identifier): Promise<void>
 {

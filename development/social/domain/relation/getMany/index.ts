@@ -1,11 +1,11 @@
 
 import { type Requester } from '@comify/common/security';
 
-import type { RelationKey, Relation } from '../definitions';
 import toModels from '../_toModels';
+import { type RelationKey, type Relation } from '../definitions';
 
-import retrieveEstablished from './retrieveEstablished';
 import addUnestablished from './addUnestablished';
+import retrieveEstablished from './retrieveEstablished';
 
 export default async function (requester: Requester, keys: RelationKey[]): Promise<Map<string, Relation>>
 {

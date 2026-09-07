@@ -1,7 +1,7 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
-import type { Record, ImageData } from '../definitions';
+import { type Record, type ImageData } from '../definitions';
 
 export default function (records: Record[], filesMap: Map<string, Buffer>): Map<Identifier, ImageData>
 {

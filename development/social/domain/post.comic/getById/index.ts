@@ -1,9 +1,9 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
-import { type Comic } from '../definitions';
-import toModel from '../_toModel';
 import retrieve from '../_retrieveById';
+import toModel from '../_toModel';
+import { type Comic } from '../definitions';
 
 export default async function (id: Identifier): Promise<Comic>
 {

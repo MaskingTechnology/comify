@@ -1,7 +1,7 @@
 
-import type { Validation } from '@theshelf/validation';
+import { type Validation } from '@theshelf/validation';
 
-import type { BaseRecord } from '../definitions';
+import { type BaseRecord } from '../definitions';
 
 export type Record = BaseRecord & {
     readonly origins: string[];

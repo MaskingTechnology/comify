@@ -1,12 +1,12 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 import { type Requester } from '@comify/common/security';
 
 import createComic from '~/post.comic/create';
 
 import createPost from '../_create';
 
-import type { CreateData } from './definitions';
+import { type CreateData } from './definitions';
 
 export default async function (requester: Requester, data: CreateData): Promise<Identifier>
 {

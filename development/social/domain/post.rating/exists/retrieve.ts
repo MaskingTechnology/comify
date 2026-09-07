@@ -1,5 +1,5 @@
 
-import type { RecordQuery } from '@theshelf/database';
+import { type RecordQuery } from '@theshelf/database';
 
 import database from '@comify/common/integrations/database';
 

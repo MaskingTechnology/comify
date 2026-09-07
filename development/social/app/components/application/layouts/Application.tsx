@@ -1,12 +1,10 @@
 
-import { useNavigate, Outlet } from 'react-router-dom';
-
 import { SidebarLayout } from '@maskingtech/designsystem';
+import { useNavigate, Outlet } from 'react-router-dom';
 
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
-
 import { useAppContext } from '../contexts/AppContext';
 
 export default function ()

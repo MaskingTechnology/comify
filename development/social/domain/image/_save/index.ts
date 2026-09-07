@@ -1,13 +1,13 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
-import type { Image } from '../definitions';
+import { type Image } from '../definitions';
 
 import createRecord from './createRecord';
 import fileExists from './fileExists';
 import generateStorageKey from './generateStorageKey';
-import persist from './persist';
 import insertFile from './insertFile';
+import persist from './persist';
 
 export default async function (type: string, image: Image): Promise<Identifier>
 {

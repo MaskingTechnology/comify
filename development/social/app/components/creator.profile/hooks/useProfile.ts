@@ -1,9 +1,9 @@
 
+import { useLoadData } from '@maskingtech/react-toolkit';
 import { useCallback } from 'react';
 
-import { useLoadData } from '@maskingtech/react-toolkit';
-
 import { requester } from '@comify/common/security';
+
 import getCreatorByNickname from '^/domain/creator/getByNickname';
 
 export default function useProfile(nickname?: string)

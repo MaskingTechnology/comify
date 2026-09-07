@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { requester } from '@comify/common/security';
+
 import createPostWithComic from '^/domain/post/createWithComic';
 
 import { useAppContext } from '~/components/application';

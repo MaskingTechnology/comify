@@ -1,9 +1,9 @@
 
+import { usePagination } from '@maskingtech/react-toolkit';
 import { useCallback } from 'react';
 
-import { usePagination } from '@maskingtech/react-toolkit';
-
 import { requester } from '@comify/common/security';
+
 import getPostsFollowing from '^/domain/post/getByFollowing';
 
 export default function usePostsFollowing()

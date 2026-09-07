@@ -1,5 +1,5 @@
 
-import type { Creator } from '^/domain/creator';
+import { type Creator } from '^/domain/creator';
 
 import Avatar from './elements/Avatar';
 

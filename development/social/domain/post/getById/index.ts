@@ -1,10 +1,10 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 import { type Requester } from '@comify/common/security';
 
-import type { Post } from '../definitions';
-import toModel from '../_toModel';
 import retrieve from '../_retrieveById';
+import toModel from '../_toModel';
+import { type Post } from '../definitions';
 
 export default async function (requester: Requester, id: Identifier): Promise<Post>
 {

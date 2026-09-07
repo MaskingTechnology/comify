@@ -1,8 +1,8 @@
 
 import { Column } from '@maskingtech/designsystem';
 
-import type { Notification } from '^/domain/notification';
-import type { Relation } from '^/domain/relation';
+import { type Notification } from '^/domain/notification';
+import { type Relation } from '^/domain/relation';
 
 import Panel from './Panel';
 

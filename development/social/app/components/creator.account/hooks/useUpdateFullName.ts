@@ -2,7 +2,8 @@
 import { useCallback } from 'react';
 
 import { requester } from '@comify/common/security';
-import type { Creator } from '^/domain/creator';
+
+import { type Creator } from '^/domain/creator';
 import updateFullName from '^/domain/creator/updateFullName';
 
 import { useAppContext } from '~/components/application';

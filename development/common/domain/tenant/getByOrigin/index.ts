@@ -1,11 +1,11 @@
 
 import logger from '^/integrations/logging';
 
-import type { Tenant } from '../definitions';
+import { type Tenant } from '../definitions';
 
 import retrieve from './retrieve';
-import validate from './validate';
 import TenantNotFound from './TenantNotFound';
+import validate from './validate';
 
 export default async function (origin: string): Promise<Tenant>
 {

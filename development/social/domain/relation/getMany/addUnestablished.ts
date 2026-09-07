@@ -1,5 +1,5 @@
 
-import type { RelationKey, Record } from '../definitions';
+import { type RelationKey, type Record } from '../definitions';
 
 import createUnestablished from './createUnestablished';
 

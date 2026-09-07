@@ -1,6 +1,6 @@
 
-import getPortraits from '~/image/getManyById';
 import getMetrics from '~/creator.metrics/getMany';
+import getPortraits from '~/image/getManyById';
 
 import { type Record } from '../definitions';
 

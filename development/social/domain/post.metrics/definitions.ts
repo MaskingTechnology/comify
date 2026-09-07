@@ -1,7 +1,7 @@
 
-import type { Count } from '@comify/common/primitives/count';
+import { type Count } from '@comify/common/primitives/count';
 
-import type { BaseRecord } from '../definitions';
+import { type BaseRecord } from '../definitions';
 
 export type Record = BaseRecord &
 {

@@ -1,5 +1,5 @@
 
-import type { RatingKey, Record } from '../definitions';
+import { type RatingKey, type Record } from '../definitions';
 
 export default function (keys: RatingKey[], records: Record[]): Map<string, boolean>
 {

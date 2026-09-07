@@ -1,8 +1,8 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
-import type { Metrics, Record } from '../definitions';
 import toModel from '../_toModel';
+import { type Metrics, type Record } from '../definitions';
 
 export default async function (records: Record[]): Promise<Map<Identifier, Metrics>>
 {

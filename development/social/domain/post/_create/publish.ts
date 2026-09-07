@@ -1,7 +1,7 @@
 
 import { publish as publishPostAdded } from '@comify/common/domain/post/added';
-import type { TenantId } from '@comify/common/domain/tenant';
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type TenantId } from '@comify/common/domain/tenant';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
 import { CONTEXT_ID } from '~/definitions';
 

@@ -1,10 +1,10 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
-import type { TenantId } from '@comify/common/domain/tenant';
+import { type TenantId } from '@comify/common/domain/tenant';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
-import type { Creator } from '../definitions';
-import { logger } from '../integrations';
 import toModels from '../_toModels';
+import { type Creator } from '../definitions';
+import { logger } from '../integrations';
 
 import retrieve from './retrieve';
 

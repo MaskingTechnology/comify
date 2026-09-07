@@ -2,8 +2,7 @@
 import { Button, Column, Panel, Row, TextArea } from '@maskingtech/designsystem';
 import { useFocusOnMount } from '@maskingtech/react-toolkit';
 
-import type { CancelHandler, CreateHandler } from './hooks/useCreateHandler';
-import useCreateHandler from './hooks/useCreateHandler';
+import useCreateHandler, { type CancelHandler, type CreateHandler } from './hooks/useCreateHandler';
 
 type Props = {
     readonly limit?: number;

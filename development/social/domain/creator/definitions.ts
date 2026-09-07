@@ -1,5 +1,5 @@
 
-import type { Validation } from '@theshelf/validation';
+import { type Validation } from '@theshelf/validation';
 
 import { type Identifier } from '@comify/common/primitives/identifier';
 

@@ -1,9 +1,9 @@
 
 import { type Requester } from '@comify/common/security';
 
-import type { RelationKey, Relation } from '../definitions';
-import toModel from '../_toModel';
 import retrieve from '../_retrieve';
+import toModel from '../_toModel';
+import { type RelationKey, type Relation } from '../definitions';
 
 export default async function (requester: Requester, key: RelationKey): Promise<Relation>
 {

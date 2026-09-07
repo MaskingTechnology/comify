@@ -1,7 +1,7 @@
 
-import type { Record, Post } from '../definitions';
+import { type Record, type Post } from '../definitions';
 
-import type { References } from './definitions';
+import { type References } from './definitions';
 
 export default function (record: Record, references: References): Post
 {

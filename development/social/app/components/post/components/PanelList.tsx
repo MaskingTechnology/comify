@@ -1,8 +1,8 @@
 
-import type { Post } from '^/domain/post';
-import type { Relation } from '^/domain/relation';
-
 import { Column } from '@maskingtech/designsystem';
+
+import { type Post } from '^/domain/post';
+import { type Relation } from '^/domain/relation';
 
 import LargePanel from './LargePanel';
 

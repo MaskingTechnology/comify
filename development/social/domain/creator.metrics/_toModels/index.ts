@@ -1,9 +1,8 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
-
-import type { Metrics, Record } from '../definitions';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
 import toModel from '../_toModel';
+import { type Metrics, type Record } from '../definitions';
 
 export default function (records: Record[]): Map<Identifier, Metrics>
 {

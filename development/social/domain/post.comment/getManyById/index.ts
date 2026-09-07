@@ -1,9 +1,9 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
-import type { Comment } from '../definitions';
-import { logger } from '../integrations';
 import toModels from '../_toModels';
+import { type Comment } from '../definitions';
+import { logger } from '../integrations';
 
 import retrieve from './retrieve';
 

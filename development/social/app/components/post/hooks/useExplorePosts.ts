@@ -1,9 +1,9 @@
 
+import { usePagination } from '@maskingtech/react-toolkit';
 import { useCallback } from 'react';
 
-import { usePagination } from '@maskingtech/react-toolkit';
-
 import { requester } from '@comify/common/security';
+
 import explorePosts from '^/domain/post/explore';
 
 export default function useExplorePosts()

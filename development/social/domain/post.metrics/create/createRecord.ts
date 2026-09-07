@@ -1,7 +1,7 @@
 
 import generateId from '@comify/common/primitives/identifier/generate';
 
-import type { Record } from '../definitions';
+import { type Record } from '../definitions';
 
 export default function (postId: string): Record
 {

@@ -1,5 +1,5 @@
 
-import type { Relation } from '^/domain/relation';
+import { type Relation } from '^/domain/relation';
 
 import { TimeElapsed } from '~/components/creator';
 
@@ -7,7 +7,7 @@ import FollowRow from './elements/FollowRow';
 
 type Props = {
     readonly relation: Relation;
-    readonly date: string;
+    readonly date: Date;
     readonly onFollowClick: (relation: Relation) => Promise<void>;
     readonly onEditClick?: (relation: Relation) => void;
     readonly onCreatorClick: (relation: Relation) => void;

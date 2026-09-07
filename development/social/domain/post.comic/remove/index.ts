@@ -1,10 +1,10 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
 import removeImage from '~/image/remove';
 
-import { logger } from '../integrations';
 import retrieve from '../_retrieveById';
+import { logger } from '../integrations';
 
 import erase from './erase';
 

@@ -1,5 +1,5 @@
 
-import type { Image } from '../definitions';
+import { type Image } from '../definitions';
 
 import InvalidDataURL from './InvalidDataURL';
 

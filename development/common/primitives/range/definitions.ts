@@ -1,5 +1,5 @@
 
-import type { Validation } from '@theshelf/validation';
+import { type Validation } from '@theshelf/validation';
 
 export type Range = {
     offset: number;

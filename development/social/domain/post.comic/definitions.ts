@@ -1,9 +1,9 @@
 
-import type { Validation } from '@theshelf/validation';
+import { type Validation } from '@theshelf/validation';
 
-import type { ImageData } from '~/image';
+import { type ImageData } from '~/image';
 
-import type { BaseRecord } from '../definitions';
+import { type BaseRecord } from '../definitions';
 
 export type Record = BaseRecord & {
     readonly imageId: string;

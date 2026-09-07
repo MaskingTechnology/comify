@@ -1,6 +1,5 @@
 
 import validator from '@comify/common/integrations/validation';
-
 import { identifierValidation } from '@comify/common/primitives/identifier';
 
 import { type RelationKey } from '../../definitions';

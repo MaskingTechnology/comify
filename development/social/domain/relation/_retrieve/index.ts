@@ -1,8 +1,8 @@
 
 import { type RelationKey, type Record } from '../definitions';
 
-import retrieveEstablished from './retrieveEstablished';
 import createUnestablished from './createUnestablished';
+import retrieveEstablished from './retrieveEstablished';
 
 export default async function (key: RelationKey): Promise<Record>
 {

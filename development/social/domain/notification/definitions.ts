@@ -1,10 +1,10 @@
 
 import { type Identifier } from '@comify/common/primitives/identifier';
 
-import type { Relation } from '~/relation';
-import type { Post } from '~/post';
+import { type Post } from '~/post';
+import { type Relation } from '~/relation';
 
-import type { BaseRecord } from '../definitions';
+import { type BaseRecord } from '../definitions';
 
 export type Record = BaseRecord & {
     readonly createdAt: string;

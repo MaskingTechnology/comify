@@ -1,6 +1,6 @@
 
-import EventBroker, { MemoryDriver } from '@theshelf/events';
 import ConnectionManager from '@theshelf/connection';
+import EventBroker, { MemoryDriver } from '@theshelf/events';
 
 import { shelfLogger } from '^/integrations/logging';
 

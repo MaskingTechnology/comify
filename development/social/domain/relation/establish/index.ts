@@ -4,11 +4,11 @@ import { type Requester } from '@comify/common/security';
 import { type RelationKey } from '../definitions';
 import { logger } from '../integrations';
 
-import exists from './exists';
 import create from './create';
-import remove from './remove';
+import exists from './exists';
 import publish from './publish';
 import RelationAlreadyExists from './RelationAlreadyExists';
+import remove from './remove';
 
 export default async function (requester: Requester, followingId: string): Promise<void>
 {

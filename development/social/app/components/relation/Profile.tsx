@@ -1,10 +1,9 @@
 
-import type { Relation } from '^/domain/relation';
+import { type Relation } from '^/domain/relation';
 
 import { LoadingAndResultContainer } from '~/components/common';
 
 import Profile from './components/Profile';
-
 import useEstablish from './hooks/useEstablish';
 import useRelation from './hooks/useRelation';
 

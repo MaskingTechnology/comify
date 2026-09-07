@@ -1,11 +1,11 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
-import type { Metrics } from '../definitions';
 import toModel from '../_toModel';
+import { type Metrics } from '../definitions';
 
-import retrieveExisting from './retrieveExisting';
 import createMissing from './createMissing';
+import retrieveExisting from './retrieveExisting';
 
 export default async function (postId: Identifier): Promise<Metrics>
 {

@@ -2,6 +2,7 @@
 import validator from '@comify/common/integrations/validation';
 
 import { type Nickname, nicknameValidation } from '../definitions';
+
 import InvalidNickname from './InvalidNickname';
 
 export default function (nickname: Nickname): void

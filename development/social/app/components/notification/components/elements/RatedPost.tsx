@@ -1,5 +1,5 @@
 
-import type { Post } from '^/domain/post';
+import { type Post } from '^/domain/post';
 
 import Comic from './Comic';
 import Comment from './Comment';

@@ -1,5 +1,5 @@
 
-import type { Metrics, Record } from '../definitions';
+import { type Metrics, type Record } from '../definitions';
 
 export default async function (record: Record): Promise<Metrics>
 {

@@ -1,8 +1,8 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 import generateId from '@comify/common/primitives/identifier/generate';
 
-import type { Record, Type } from '../definitions';
+import { type Record, type Type } from '../definitions';
 
 export default function (type: Type, senderId: Identifier, receiverId: Identifier, postId: Identifier | undefined = undefined): Record
 {

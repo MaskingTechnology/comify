@@ -1,7 +1,6 @@
 
-import { useLocation, useNavigate } from 'react-router-dom';
-
 import { Menu } from '@maskingtech/designsystem';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 type Item = {
     readonly title: string;

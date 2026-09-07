@@ -1,9 +1,10 @@
 
-import { useCallback } from 'react';
 
 import { usePagination } from '@maskingtech/react-toolkit';
+import { useCallback } from 'react';
 
 import { requester } from '@comify/common/security';
+
 import getCreatorPosts from '^/domain/post/getByCreator';
 
 export default function useCreatorPosts(creatorId: string)

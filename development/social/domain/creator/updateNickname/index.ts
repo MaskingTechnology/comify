@@ -1,15 +1,15 @@
 
 import { type Requester } from '@comify/common/security';
 
-import type { Nickname } from '../definitions';
-import { logger } from '../integrations';
 import formatNickname from '../_formatNickname';
+import { type Nickname } from '../definitions';
+import { logger } from '../integrations';
 
-import validate from './validate';
-import retrieve from './retrieve';
+import NicknameAlreadyExists from './NicknameAlreadyExists';
 import persist from './persist';
 import publish from './publish';
-import NicknameAlreadyExists from './NicknameAlreadyExists';
+import retrieve from './retrieve';
+import validate from './validate';
 
 export default async function (requester: Requester, nickname: Nickname): Promise<void>
 {

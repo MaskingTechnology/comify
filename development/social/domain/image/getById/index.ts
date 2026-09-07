@@ -1,13 +1,13 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
-import type { ImageData } from '../definitions';
+import { type ImageData } from '../definitions';
 import { logger } from '../integrations';
 
 import createDataUrl from './createDataUrl';
-import retrieveRecord from './retrieveRecord';
-import retrieveFile from './retrieveFile';
 import ImageNotFound from './ImageNotFound';
+import retrieveFile from './retrieveFile';
+import retrieveRecord from './retrieveRecord';
 
 export default async function (id: Identifier): Promise<ImageData>
 {

@@ -1,9 +1,9 @@
 
+import { usePagination } from '@maskingtech/react-toolkit';
 import { useCallback } from 'react';
 
-import { usePagination } from '@maskingtech/react-toolkit';
-
 import { requester } from '@comify/common/security';
+
 import getFollowers from '^/domain/relation/getFollowers';
 
 export default function useCreatorFollowers(creatorId?: string)

@@ -1,8 +1,7 @@
 
 import { Button } from '@maskingtech/designsystem';
 
-import type { EstablishHandler } from '../hooks/useEstablish';
-import useEstablish from '../hooks/useEstablish';
+import useEstablish, { type EstablishHandler } from '../hooks/useEstablish';
 
 type Props = {
     readonly isFollowing: boolean;

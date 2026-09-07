@@ -1,5 +1,5 @@
 
-import { ImageData } from '~/image';
+import { type ImageData } from '~/image';
 
 import { type Record, type Comic } from '../definitions';
 

@@ -2,6 +2,7 @@
 import { useCallback } from 'react';
 
 import { requester } from '@comify/common/security';
+
 import createCommentReaction from '^/domain/post/createWithComment';
 
 export default function useCreateComment(postId: string, onCreated: (reactionId: string) => void)

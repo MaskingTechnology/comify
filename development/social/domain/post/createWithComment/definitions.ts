@@ -1,7 +1,7 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
-import type { Message } from '~/post.comment';
+import { type Message } from '~/post.comment';
 
 export type CreateData = {
     readonly message: Message;

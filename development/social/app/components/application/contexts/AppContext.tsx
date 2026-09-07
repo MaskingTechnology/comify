@@ -1,8 +1,7 @@
 
-import type { ReactNode } from 'react';
-import { createContext, useContext } from 'react';
+import { type ReactNode, createContext, useContext } from 'react';
 
-import type { Creator } from '^/domain/creator';
+import { type Creator } from '^/domain/creator';
 
 import useAppContextValue from './hooks/useAppContextValue';
 

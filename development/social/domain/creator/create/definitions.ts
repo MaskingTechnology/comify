@@ -1,5 +1,5 @@
 
-import type { FullName, Nickname, Email } from '../definitions';
+import { type FullName, type Nickname, type Email } from '../definitions';
 
 export type CreateData = {
     readonly fullName: FullName;

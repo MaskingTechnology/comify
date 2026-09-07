@@ -1,5 +1,5 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
 import { type Record, type Creator } from '../definitions';
 import { logger } from '../integrations';

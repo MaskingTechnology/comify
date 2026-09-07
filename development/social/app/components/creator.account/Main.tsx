@@ -1,9 +1,8 @@
 
+import { Column, Ruler } from '@maskingtech/designsystem';
 import { Outlet } from 'react-router-dom';
 
-import { Column, Ruler } from '@maskingtech/designsystem';
-
-import type { Creator } from '^/domain/creator';
+import { type Creator } from '^/domain/creator';
 
 import { useAppContext } from '~/components/application';
 import { Profile } from '~/components/creator';

@@ -1,9 +1,9 @@
 
-import Renderer from './Renderer';
-import Workbench from './Workbench';
 import type Element from './elements/Element';
 import Model from './model/Model';
+import Renderer from './Renderer';
 import InputManager from './utils/InputManager';
+import Workbench from './Workbench';
 
 const COMIC_WIDTH = 960;
 const COMIC_HEIGHT = 540;

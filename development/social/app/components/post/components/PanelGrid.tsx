@@ -1,7 +1,7 @@
 
-import type { Post } from '^/domain/post';
-
 import { Grid } from '@maskingtech/designsystem';
+
+import { type Post } from '^/domain/post';
 
 import SmallPanel from './SmallPanel';
 

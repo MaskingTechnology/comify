@@ -1,11 +1,9 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
-import type { Creator } from '~/creator';
+import { type Creator } from '~/creator';
 
-import type { Relation, RelationId } from '../definitions';
-
-import type { Record } from '../definitions';
+import { type Relation, type Record, type RelationId } from '../definitions';
 import { logger } from '../integrations';
 
 export default function (records: Record[], creators: Map<Identifier, Creator>): Map<RelationId, Relation>

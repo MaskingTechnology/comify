@@ -4,8 +4,7 @@ import { ClickArea, Row } from '@maskingtech/designsystem';
 import { CompactNumber } from '~/components/common';
 
 import Icon from './elements/Icon';
-import type { EngageHandler } from './hooks/useEngagement';
-import useEngagement from './hooks/useEngagement';
+import useEngagement, { type EngageHandler } from './hooks/useEngagement';
 
 type Props = {
     readonly isEngaged: boolean;

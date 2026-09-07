@@ -1,7 +1,7 @@
 
-import { Identifier } from '^/primitives/identifier';
+import { type Identifier } from '^/primitives/identifier';
 
-import { BaseEventData, BaseEventHandler } from '../definitions';
+import { type BaseEventData, type BaseEventHandler } from '../definitions';
 
 export type EventData = BaseEventData & {
     readonly followerId: Identifier;

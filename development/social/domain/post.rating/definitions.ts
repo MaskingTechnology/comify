@@ -1,5 +1,5 @@
 
-import type { BaseRecord } from '../definitions';
+import { type BaseRecord } from '../definitions';
 
 export type Record = BaseRecord & {
     readonly id: string;

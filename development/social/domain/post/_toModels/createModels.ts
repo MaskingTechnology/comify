@@ -1,10 +1,10 @@
 
 import { type Requester } from '@comify/common/security';
 
-import type { Record, Post } from '../definitions';
+import { type Record, type Post } from '../definitions';
 import { logger } from '../integrations';
 
-import type { References } from './definitions';
+import { type References } from './definitions';
 
 export default function (requester: Requester, records: Record[], references: References): Map<string, Post>
 {

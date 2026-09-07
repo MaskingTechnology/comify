@@ -1,6 +1,5 @@
 
-import type { QueryStatement, RecordQuery, RecordSort } from '@theshelf/database';
-import { SortDirections } from '@theshelf/database';
+import { type QueryStatement, type RecordQuery, type RecordSort, SortDirections } from '@theshelf/database';
 
 import database from '@comify/common/integrations/database';
 

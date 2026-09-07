@@ -1,7 +1,7 @@
 
+import ConnectionManager from '@theshelf/connection';
 import Database, { MemoryDriver } from '@theshelf/database';
 import { MongoDBDriver } from '@theshelf/database-driver-mongodb';
-import ConnectionManager from '@theshelf/connection';
 
 import { shelfLogger } from '^/integrations/logging';
 

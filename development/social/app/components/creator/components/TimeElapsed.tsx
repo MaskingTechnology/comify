@@ -1,12 +1,12 @@
 
-import type { Creator } from '^/domain/creator';
+import { type Creator } from '^/domain/creator';
 
 import AvatarRow from './elements/AvatarRow';
 import TimeElapsedColumn from './elements/TimeElapsedColumn';
 
 type Props = {
     readonly creator: Creator;
-    readonly date: string;
+    readonly date: Date;
     readonly onCreatorClick: () => void;
 };
 

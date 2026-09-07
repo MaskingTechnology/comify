@@ -1,8 +1,8 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 import generateId from '@comify/common/primitives/identifier/generate';
 
-import type { Record } from '../definitions';
+import { type Record } from '../definitions';
 
 export default function (creatorId: Identifier): Record
 {

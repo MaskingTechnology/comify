@@ -3,9 +3,9 @@ import { type Range } from '@comify/common/primitives/range';
 import validateRange from '@comify/common/primitives/range/validate';
 import { type Requester } from '@comify/common/security';
 
-import type { Notification } from '../definitions';
-
 import toModels from '../_toModels';
+import { type Notification } from '../definitions';
+
 import retrieve from './retrieve';
 
 export default async function (requester: Requester, range: Range): Promise<Notification[]>

@@ -1,5 +1,5 @@
 
-import type { Record } from '../definitions';
+import { type Record } from '../definitions';
 
 export default function (record: Record, requesterId: string): boolean
 {

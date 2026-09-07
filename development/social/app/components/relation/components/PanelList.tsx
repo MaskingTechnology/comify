@@ -1,7 +1,7 @@
 
-import type { Relation } from '^/domain/relation';
-
 import { Column } from '@maskingtech/designsystem';
+
+import { type Relation } from '^/domain/relation';
 
 import Panel from './Panel';
 

@@ -1,8 +1,8 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
-import { type CreateData } from './definitions';
 import createRecord from './createRecord';
+import { type CreateData } from './definitions';
 import persist from './persist';
 import validate from './validate';
 

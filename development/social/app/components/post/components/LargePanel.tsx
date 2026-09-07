@@ -1,8 +1,8 @@
 
-import type { Post } from '^/domain/post';
-import type { Relation } from '^/domain/relation';
-
 import { ClickArea, Column, Panel } from '@maskingtech/designsystem';
+
+import { type Post } from '^/domain/post';
+import { type Relation } from '^/domain/relation';
 
 import { Image as Comic } from '~/components/post.comic';
 import { Comment } from '~/components/post.comment';

@@ -1,6 +1,6 @@
 
-import getPortrait from '~/image/getById';
 import getMetrics from '~/creator.metrics/get';
+import getPortrait from '~/image/getById';
 
 import { type Record } from '../definitions';
 

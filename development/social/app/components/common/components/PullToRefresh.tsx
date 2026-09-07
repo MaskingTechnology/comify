@@ -1,8 +1,8 @@
 
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
-import useRefreshOnPull from './hooks/useRefreshOnPull';
 import LoadingIndicator from './elements/LoadingIndicator';
+import useRefreshOnPull from './hooks/useRefreshOnPull';
 
 type Props = {
     readonly onRefresh: () => void;

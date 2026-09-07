@@ -1,10 +1,10 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 import { type Requester } from '@comify/common/security';
 
-import type { Post } from '../definitions';
-import { logger } from '../integrations';
 import toModels from '../_toModels';
+import { type Post } from '../definitions';
+import { logger } from '../integrations';
 
 import retrieve from './retrieve';
 

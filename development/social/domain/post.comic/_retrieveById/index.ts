@@ -1,11 +1,11 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
-import type { Record } from '../definitions';
+import { type Record } from '../definitions';
 import { logger } from '../integrations';
 
-import retrieve from './retrieve';
 import ComicNotFound from './ComicNotFound';
+import retrieve from './retrieve';
 
 export default async function (id: Identifier): Promise<Record>
 {

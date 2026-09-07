@@ -1,9 +1,8 @@
 
+import { Column, Ruler } from '@maskingtech/designsystem';
 import { Outlet } from 'react-router-dom';
 
-import { Column, Ruler } from '@maskingtech/designsystem';
-
-import type { Post } from '^/domain/post';
+import { type Post } from '^/domain/post';
 
 import { BackRow, LoadingAndResultContainer } from '~/components/common';
 import { useViewProfile } from '~/components/creator.profile';
@@ -11,12 +10,10 @@ import { useToggle } from '~/components/post.rating';
 import { useEstablish } from '~/components/relation';
 
 import DetailsPanel from './components/DetailsPanel';
-
+import useConfirmPostRemoval from './hooks/useConfirmPostRemoval';
 import useGoToParentPost from './hooks/useGoToParentPost';
 import usePost from './hooks/usePost';
-import useConfirmPostRemoval from './hooks/useConfirmPostRemoval';
 import useViewPostDetails from './hooks/useViewPostDetails';
-
 import Reactions from './Reactions';
 
 export default function ()

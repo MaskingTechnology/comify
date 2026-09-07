@@ -1,7 +1,7 @@
 
 import http from '@comify/common/integrations/http';
 
-import type { MetaData } from '../definitions';
+import { type MetaData } from '../definitions';
 
 import ImageNotDownloaded from './ImageNotDownloaded';
 

@@ -3,8 +3,7 @@ import { Input, Label, Panel, TextBox } from '@maskingtech/designsystem';
 
 import { Form } from '~/components/common';
 
-import type { SubmitHandler } from './hooks/useNicknameFormHandler';
-import useNicknameFormHandler from './hooks/useNicknameFormHandler';
+import useNicknameFormHandler, { type SubmitHandler } from './hooks/useNicknameFormHandler';
 
 type Props = {
     readonly nickname: string;

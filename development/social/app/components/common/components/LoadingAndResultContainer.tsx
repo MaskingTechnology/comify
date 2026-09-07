@@ -1,5 +1,5 @@
 
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 import LoadingContainer from './LoadingContainer';
 import ResultContainer from './ResultContainer';

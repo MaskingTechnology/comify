@@ -3,8 +3,7 @@ import validator from '@comify/common/integrations/validation';
 
 import { fullNameValidation, nicknameValidation, emailValidation } from '../definitions';
 
-import type { CreateData } from './definitions';
-
+import { type CreateData } from './definitions';
 import InvalidCreator from './InvalidCreator';
 
 export default function ({ fullName, nickname, email }: CreateData): void

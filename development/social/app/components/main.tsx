@@ -1,13 +1,12 @@
 
+import { DesignSystem } from '@maskingtech/designsystem';
+import '@maskingtech/designsystem/style.css';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 
-import { DesignSystem } from '@maskingtech/designsystem';
-
-import { TenantContainer } from './common';
 import App from './App';
+import { TenantContainer } from './common';
 
-import '@maskingtech/designsystem/style.css';
 import './theme.css';
 import './main.css';
 

@@ -2,7 +2,7 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import type { Notification } from '^/domain/notification'; // TODO: refactor to post
+import { type Notification } from '^/domain/notification';
 
 export default function useViewPostHighlightDetails()
 {

@@ -1,7 +1,8 @@
 
-import type { Relation } from '^/domain/relation';
 
 import { Panel } from '@maskingtech/designsystem';
+
+import { type Relation } from '^/domain/relation';
 
 import Counters from './Counters';
 

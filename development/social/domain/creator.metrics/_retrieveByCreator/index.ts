@@ -1,11 +1,11 @@
 
-import type { Identifier } from '@comify/common/primitives/identifier';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
 import { type Record } from '../definitions';
 import { logger } from '../integrations';
 
-import retrieve from './retrieve';
 import CreatorMetricsNotFound from './CreatorMetricsNotFound';
+import retrieve from './retrieve';
 
 export default async function (creatorId: Identifier): Promise<Record>
 {

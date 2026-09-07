@@ -1,10 +1,10 @@
 
 import { Border, ClickArea, Column, Text } from '@maskingtech/designsystem';
 
-import type { DataModel as CommentData } from '^/domain/comment';
+import { type Comment } from '^/domain/post.comment';
 
 type Props = {
-    readonly comment: CommentData;
+    readonly comment: Comment;
     readonly message: string;
     readonly onClick: () => void;
 };

@@ -4,10 +4,9 @@ import { Column } from '@maskingtech/designsystem';
 import { PullToRefresh, ResultContainer, ScrollLoader } from '~/components/common';
 import { useToggle } from '~/components/post.rating';
 
+import PanelGrid from './components/PanelGrid';
 import useCreatorPosts from './hooks/useCreatorPosts';
 import useViewPostDetails from './hooks/useViewPostDetails';
-
-import PanelGrid from './components/PanelGrid';
 
 type Props = {
     readonly creatorId: string;
