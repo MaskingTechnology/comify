@@ -3,19 +3,19 @@
     "setUp": [
         "./common/integrations/authentication/setUp",
         "./common/integrations/database/setUp",
-        "./common/integrations/fileStore/setUp",
-        "./common/integrations/eventBroker/setUp"
+        "./common/integrations/files/setUp",
+        "./common/integrations/events/setUp"
     ],
     "tearDown": [
         "./common/integrations/authentication/tearDown",
         "./common/integrations/database/tearDown",
-        "./common/integrations/fileStore/tearDown",
-        "./common/integrations/eventBroker/tearDown"
+        "./common/integrations/files/tearDown",
+        "./common/integrations/events/tearDown"
     ],
     "healthChecks": [
         "./common/integrations/database/healthCheck",
-        "./common/integrations/fileStore/healthCheck",
-        "./common/integrations/eventBroker/healthCheck"
+        "./common/integrations/files/healthCheck",
+        "./common/integrations/events/healthCheck"
     ],
     "middleware": [
         "./common/integrations/authentication/originMiddleware",

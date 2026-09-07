@@ -2,14 +2,14 @@
     "url": "http://127.0.0.1:4000",
     "setUp": [
         "./common/integrations/authentication/setUp",
-        "./common/integrations/eventBroker/setUp"
+        "./common/integrations/events/setUp"
     ],
     "tearDown": [
         "./common/integrations/authentication/tearDown",
-        "./common/integrations/eventBroker/tearDown"
+        "./common/integrations/events/tearDown"
     ],
     "healthChecks": [
-        "./common/integrations/eventBroker/healthCheck"
+        "./common/integrations/events/healthCheck"
     ],
     "middleware": [
         "./common/integrations/authentication/originMiddleware",
