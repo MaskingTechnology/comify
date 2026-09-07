@@ -2,5 +2,9 @@
     "source": "./artifacts/build",
     "target": "./artifacts/dist",
     "segments": "./deployment/segments",
-    "resources": "./deployment/resources"
+    "resources": "./deployment/resources",
+
+    "build": {
+        "ignore": ["**/app/**/*"]
+    }
 }

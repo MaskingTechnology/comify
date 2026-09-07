@@ -1,6 +1,6 @@
 
-import FileStore, { MemoryDriver } from '@theshelf/filestore';
-import { S3Driver } from '@theshelf/filestore-driver-s3';
+import FileStore, { MemoryDriver } from '@theshelf/files';
+import { S3Driver } from '@theshelf/files-driver-s3';
 import ConnectionManager from '@theshelf/connection';
 
 import { shelfLogger } from '^/integrations/logging';
@@ -13,7 +13,7 @@ function setUpMemory(): MemoryDriver
 function setUpS3(): S3Driver
 {
     const config = {
-        bucketName:  process.env.S3_BUCKET_NAME ?? '',
+        bucketName: process.env.S3_BUCKET_NAME ?? '',
         clientConfig: {
             region: process.env.S3_REGION ?? 'local',
             credentials: {

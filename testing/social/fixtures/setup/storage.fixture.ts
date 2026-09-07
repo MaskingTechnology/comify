@@ -1,5 +1,5 @@
 
-import type { MemoryDriver } from '@theshelf/filestore';
+import type { MemoryDriver } from '@theshelf/files';
 
 import fileStore, { driver as fileStoreDriver } from '@comify/common/integrations/fileStore';
 

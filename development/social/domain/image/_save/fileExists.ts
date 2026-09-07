@@ -1,5 +1,5 @@
 
-import fileStore from '@comify/common/integrations/fileStore';
+import fileStore from '@comify/common/integrations/files';
 
 export default async function (storageKey: string): Promise<boolean>
 {

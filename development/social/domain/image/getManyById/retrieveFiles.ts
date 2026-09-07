@@ -1,5 +1,5 @@
 
-import fileStore from '@comify/common/integrations/fileStore';
+import fileStore from '@comify/common/integrations/files';
 
 export default async function (storageKeys: string[]): Promise<Map<string, Buffer>>
 {
