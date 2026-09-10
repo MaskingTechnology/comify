@@ -85,7 +85,7 @@
     "vite": "^7.3.3",
     "vite-plugin-pwa": "^1.2.0",
     "vite-tsconfig-paths": "^6.1.1",
-    "vitest": "^4.1.6"
+    "vitest": "^4.1.11"
   },
   "overrides": {
     "@rollup/plugin-terser": "^1.0.0"
