@@ -64,6 +64,7 @@
     "@theshelf/database": "^0.5.0",
     "@theshelf/database-driver-mongodb": "^0.5.0",
     "@theshelf/events": "^0.5.0",
+    "@theshelf/events-driver-kafka": "^0.5.0",
     "@theshelf/files": "^0.5.0",
     "@theshelf/files-driver-s3": "^0.5.0",
     "@theshelf/http": "^0.5.0",
