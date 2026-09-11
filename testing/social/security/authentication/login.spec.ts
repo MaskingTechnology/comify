@@ -4,8 +4,8 @@ import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 import type { Identity } from '@theshelf/authentication';
 
 import database from '@comify/common/integrations/database';
-import eventBroker from '@comify/common/integrations/eventBroker';
-import fileStore from '@comify/common/integrations/fileStore';
+import eventBroker from '@comify/common/integrations/events';
+import fileStore from '@comify/common/integrations/files';
 
 import login from '@comify/social/security/authentication/login';
 

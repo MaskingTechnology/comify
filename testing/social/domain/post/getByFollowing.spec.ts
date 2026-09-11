@@ -2,7 +2,7 @@
 import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 
 import database from '@comify/common/integrations/database';
-import fileStore from '@comify/common/integrations/fileStore';
+import fileStore from '@comify/common/integrations/files';
 
 import getByFollowing from '@comify/social/domain/post/getByFollowing';
 

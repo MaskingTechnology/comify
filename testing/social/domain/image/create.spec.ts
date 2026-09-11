@@ -2,7 +2,7 @@
 import { beforeAll, afterAll, describe, expect, it } from 'vitest';
 
 import database from '@comify/common/integrations/database';
-import fileStore from '@comify/common/integrations/fileStore';
+import fileStore from '@comify/common/integrations/files';
 
 import { RECORD_TYPE, type Record } from '@comify/social/domain/image';
 import create, { InvalidDataURL } from '@comify/social/domain/image/create';

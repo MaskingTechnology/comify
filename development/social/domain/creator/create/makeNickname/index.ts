@@ -38,3 +38,5 @@ export default async function (tenantId: TenantId, nickname: Nickname): Promise<
 
     return `${formattedNickname}_${stringNumber}`;
 }
+
+export { TooManySimilarNicknames };

@@ -2,8 +2,8 @@
 import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 
 import database from '@comify/common/integrations/database';
-import eventBroker from '@comify/common/integrations/eventBroker';
-import fileStore from '@comify/common/integrations/fileStore';
+import eventBroker from '@comify/common/integrations/events';
+import fileStore from '@comify/common/integrations/files';
 
 import { RECORD_TYPE, type Record } from '@comify/social/domain/post';
 import createWithComic from '@comify/social/domain/post/createWithComic';

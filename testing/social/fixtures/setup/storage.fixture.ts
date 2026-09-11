@@ -1,7 +1,7 @@
 
 import type { MemoryDriver } from '@theshelf/files';
 
-import fileStore, { driver as fileStoreDriver } from '@comify/common/integrations/fileStore';
+import fileStore, { driver as fileStoreDriver } from '@comify/common/integrations/files';
 
 import { IMAGE_STORAGE_KEYS, IMAGES } from '../data';
 
