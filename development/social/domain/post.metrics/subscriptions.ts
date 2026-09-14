@@ -19,4 +19,4 @@ export default async function subscribe(): Promise<void>
     ]);
 }
 
-subscribe();
+await subscribe();
