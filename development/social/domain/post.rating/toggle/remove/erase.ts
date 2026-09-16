@@ -10,5 +10,5 @@ export default async function (creatorId: string, postId: string): Promise<boole
         postId: { EQUALS: postId }
     });
 
-    return result > 0;
+    return result.hasChanges;
 }

@@ -16,5 +16,7 @@ export default async function (tenantId: string, nickname: string): Promise<Reco
         nickname: SortDirections.DESCENDING
     };
 
-    return database.readRecord<Record>(RECORD_TYPE, query, undefined, sort);
+    const result = await database.readRecord<Record>(RECORD_TYPE, query, undefined, sort);
+
+    return result.record;
 };

@@ -10,5 +10,5 @@ export default async function (followerId: string, followingId: string): Promise
         followingId: { EQUALS: followingId },
     });
 
-    return result > 0;
+    return result.hasChanges;
 }

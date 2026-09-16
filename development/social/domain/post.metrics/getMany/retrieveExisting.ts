@@ -5,7 +5,9 @@ import { RECORD_TYPE, type Record } from '../definitions';
 
 export default async function (postIds: string[]): Promise<Record[]>
 {
-    return database.searchRecords<Record>(RECORD_TYPE, {
+    const result = await database.searchRecords<Record>(RECORD_TYPE, {
         postId: { IN: postIds }
     });
+
+    return result.records;
 }

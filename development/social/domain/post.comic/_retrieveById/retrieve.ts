@@ -5,5 +5,7 @@ import { type Record, RECORD_TYPE } from '../definitions';
 
 export default async function (id: string): Promise<Record | undefined>
 {
-    return database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: id } });
+    const result = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: id } });
+
+    return result.record;
 }

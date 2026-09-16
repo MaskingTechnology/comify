@@ -15,5 +15,7 @@ export default async function (keys: RelationKey[]): Promise<Record[]>
         };
     });
 
-    return database.searchRecords<Record>(RECORD_TYPE, { OR: queries });
+    const result = await database.searchRecords<Record>(RECORD_TYPE, { OR: queries });
+
+    return result.records;
 }

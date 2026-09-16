@@ -7,5 +7,5 @@ export default async function (id: string): Promise<boolean>
 {
     const result = await database.deleteRecord<Record>(RECORD_TYPE, { id: { EQUALS: id } });
 
-    return result > 0;
+    return result.hasChanges;
 }

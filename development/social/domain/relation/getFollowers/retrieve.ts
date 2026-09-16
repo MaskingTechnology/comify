@@ -12,5 +12,7 @@ export default async function (followingId: string, limit: number, offset: numbe
         followingId: { EQUALS: followingId }
     };
 
-    return database.searchRecords<Record>(RECORD_TYPE, query, undefined, undefined, limit, offset);
+    const result = await database.searchRecords<Record>(RECORD_TYPE, query, undefined, undefined, limit, offset);
+
+    return result.records;
 }

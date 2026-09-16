@@ -8,7 +8,7 @@ export default async function (id: string): Promise<void>
 {
     const result = await database.updateRecord<Record>(RECORD_TYPE, { id: { EQUALS: id } }, { deleted: true });
 
-    if (result === 0)
+    if (result.noChanges)
     {
         logger.warn(`Post with id '${id}' has not been deleted.`);
     }

@@ -15,7 +15,8 @@ function setUpKafka(): KafkaDriver
     return new KafkaDriver({
         brokers: [process.env.KAFKA_BROKER ?? ''],
         groupId: process.env.KAFKA_GROUP_ID ?? '',
-        clientId: process.env.KAFKA_CLIENT_ID ?? ''
+        clientId: process.env.KAFKA_CLIENT_ID ?? '',
+        autocreateTopics: process.env.KAFKA_AUTOCREATE_TOPICS === 'true'
     });
 }
 

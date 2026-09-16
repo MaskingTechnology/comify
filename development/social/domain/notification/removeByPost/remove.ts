@@ -7,5 +7,5 @@ export default async function (ids: string[]): Promise<boolean>
 {
     const result = await database.updateRecords<Record>(RECORD_TYPE, { id: { IN: ids } }, { deleted: true });
 
-    return result === ids.length;
+    return result.affectedCount === ids.length;
 }

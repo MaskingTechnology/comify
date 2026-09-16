@@ -23,5 +23,7 @@ export default async function (tenantId: string, ids: string[], limit: number, o
     const query: QueryStatement<Record> = search !== undefined ? { ...defaultQuery, ...searchQuery } : defaultQuery;
     const recordSort: RecordSort<Record> = { joinedAt: SortDirections.ASCENDING };
 
-    return database.searchRecords<Record>(RECORD_TYPE, query, undefined, recordSort, limit, offset);
+    const result = await database.searchRecords<Record>(RECORD_TYPE, query, undefined, recordSort, limit, offset);
+
+    return result.records;
 }

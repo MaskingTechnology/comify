@@ -9,5 +9,5 @@ export default async function (id: string): Promise<boolean>
         id: { EQUALS: id }
     });
 
-    return result > 0;
+    return result.hasChanges;
 }

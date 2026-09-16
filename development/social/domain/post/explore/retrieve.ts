@@ -17,5 +17,7 @@ export default async function (tenantId: string, excludedIds: string[], limit: n
 
     const sort: RecordSort<Record> = { createdAt: SortDirections.DESCENDING };
 
-    return database.searchRecords<Record>(RECORD_TYPE, query, undefined, sort, limit, offset);
+    const result = await database.searchRecords<Record>(RECORD_TYPE, query, undefined, sort, limit, offset);
+
+    return result.records;
 }

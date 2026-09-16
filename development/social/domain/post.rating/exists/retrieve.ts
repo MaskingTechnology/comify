@@ -13,5 +13,7 @@ export default async function (key: RatingKey): Promise<Record | undefined>
         postId: { EQUALS: key.postId }
     };
 
-    return database.readRecord<Record>(RECORD_TYPE, query, ['id']);
+    const result = await database.readRecord<Record>(RECORD_TYPE, query, ['id']);
+
+    return result.record;
 }

@@ -12,5 +12,7 @@ export default async function (followerId: string, limit: number | undefined = u
         followerId: { EQUALS: followerId }
     };
 
-    return database.searchRecords<Record>(RECORD_TYPE, query, undefined, undefined, limit, offset);
+    const result = await database.searchRecords<Record>(RECORD_TYPE, query, undefined, undefined, limit, offset);
+
+    return result.records;
 }
