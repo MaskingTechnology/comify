@@ -7,7 +7,7 @@ import InvalidOrigin from './InvalidOrigin';
 
 export default function (origin: string): void
 {
-    const result = validator.validate({ origin }, {
+    const result = validator.validate<unknown>({ origin }, {
         origin: originValidation
     });
 

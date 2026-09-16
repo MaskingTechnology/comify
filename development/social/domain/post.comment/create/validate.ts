@@ -8,7 +8,7 @@ import InvalidComment from './InvalidComment';
 
 export default function (data: CreateData): void
 {
-    const result = validator.validate(data, {
+    const result = validator.validate<CreateData>(data, {
         message: messageValidation
     });
 

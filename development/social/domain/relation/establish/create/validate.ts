@@ -8,7 +8,7 @@ import InvalidRelation from './InvalidRelation';
 
 export default function (key: RelationKey): void
 {
-    const result = validator.validate(key, {
+    const result = validator.validate<RelationKey>(key, {
         followerId: identifierValidation,
         followingId: identifierValidation
     });

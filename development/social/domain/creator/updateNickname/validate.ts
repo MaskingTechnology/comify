@@ -7,7 +7,7 @@ import InvalidNickname from './InvalidNickname';
 
 export default function (nickname: Nickname): void
 {
-    const result = validator.validate({ nickname }, {
+    const result = validator.validate<unknown>({ nickname }, {
         nickname: nicknameValidation
     });
 

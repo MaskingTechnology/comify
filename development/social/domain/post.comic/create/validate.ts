@@ -8,7 +8,7 @@ import InvalidComic from './InvalidComic';
 
 export default function (data: CreateData): void
 {
-    const result = validator.validate(data, {
+    const result = validator.validate<CreateData>(data, {
         imageDataUrl: dataUrlValidation,
         structure: structureValidation
     });

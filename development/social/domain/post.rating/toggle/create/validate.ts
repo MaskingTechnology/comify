@@ -6,9 +6,9 @@ import { type CreateData } from '../definitions';
 
 import InvalidRating from './InvalidRating';
 
-export default function ({ postId }: CreateData): void
+export default function (data: CreateData): void
 {
-    const result = validator.validate({ postId }, {
+    const result = validator.validate<CreateData>(data, {
         postId: identifierValidation
     });
 

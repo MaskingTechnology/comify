@@ -18,7 +18,7 @@ export default function (data: CreateData): void
 
     const optionalIdentifierValidation = { ...identifierValidation, required: false };
 
-    const result = validator.validate(data, {
+    const result = validator.validate<CreateData>(data, {
         creatorId: identifierValidation,
         comicId: optionalIdentifierValidation,
         commentId: optionalIdentifierValidation,

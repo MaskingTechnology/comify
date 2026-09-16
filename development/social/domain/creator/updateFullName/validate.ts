@@ -7,7 +7,7 @@ import InvalidFullName from './InvalidFullName';
 
 export default function (fullName: FullName): void
 {
-    const result = validator.validate({ fullName }, {
+    const result = validator.validate<unknown>({ fullName }, {
         fullName: fullNameValidation
     });
 

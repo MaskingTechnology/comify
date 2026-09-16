@@ -5,9 +5,9 @@ import { type MetaData, filenameValidation, mimeTypeValidation, sizeValidation }
 
 import InvalidImage from './InvalidImage';
 
-export default function ({ filename, mimeType, size }: MetaData): void
+export default function (data: MetaData): void
 {
-    const result = validator.validate({ filename, mimeType, size }, {
+    const result = validator.validate<MetaData>(data, {
         filename: filenameValidation,
         mimeType: mimeTypeValidation,
         size: sizeValidation

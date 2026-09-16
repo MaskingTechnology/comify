@@ -7,7 +7,7 @@ import InvalidRange from './InvalidRange';
 
 export default function (range: Range): void
 {
-    const result = validator.validate(range, {
+    const result = validator.validate<Range>(range, {
         offset: offsetValidation,
         limit: limitValidation
     });

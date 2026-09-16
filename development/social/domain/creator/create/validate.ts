@@ -6,9 +6,9 @@ import { fullNameValidation, nicknameValidation, emailValidation } from '../defi
 import { type CreateData } from './definitions';
 import InvalidCreator from './InvalidCreator';
 
-export default function ({ fullName, nickname, email }: CreateData): void
+export default function (data: CreateData): void
 {
-    const result = validator.validate({ fullName, nickname, email }, {
+    const result = validator.validate<CreateData>(data, {
         fullName: fullNameValidation,
         nickname: nicknameValidation,
         email: emailValidation
