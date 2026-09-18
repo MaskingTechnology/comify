@@ -7,3 +7,9 @@ export type CreateData = {
     readonly email: Email;
     readonly portraitUrl?: URL;
 };
+
+export const portraitUrlValidation = {
+    message: 'Value is empty or too long',
+    required: false,
+    URL: { }
+};
