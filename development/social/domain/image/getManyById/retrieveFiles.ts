@@ -1,6 +1,8 @@
 
 import fileStore from '@comify/common/integrations/files';
 
+import { logger } from '../integrations';
+
 export default async function (storageKeys: string[]): Promise<Map<string, Buffer>>
 {
     const results = await Promise.allSettled(storageKeys.map(key => fileStore.readFile(key)));
@@ -15,6 +17,11 @@ export default async function (storageKeys: string[]): Promise<Map<string, Buffe
 
         map.set(key, result.value);
     });
+
+    if (storageKeys.length !== map.size)
+    {
+        logger.warn('Not all image files were retrieved');
+    }
 
     return map;
 }

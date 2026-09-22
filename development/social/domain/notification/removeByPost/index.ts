@@ -1,8 +1,6 @@
 
 import { type Identifier } from '@comify/common/primitives/identifier';
 
-import { logger } from '../integrations';
-
 import remove from './remove';
 import retrieve from './retrieve';
 
@@ -12,10 +10,5 @@ export default async function (postId: Identifier): Promise<void>
 
     const ids = records.map(notification => notification.id);
 
-    const succeeded = await remove(ids);
-
-    if (succeeded === false)
-    {
-        logger.warn(`Not all notifications for post with id '${postId}' have been deleted.`);
-    }
+    await remove(postId, ids);
 }

@@ -4,7 +4,6 @@ import { type CountOperation } from '@comify/common/primitives/count';
 import { type Identifier } from '@comify/common/primitives/identifier';
 
 import retrieveMetrics from '../_retrieveByCreator';
-import { logger } from '../integrations';
 
 import persist from './persist';
 import updateCount from './updateCount';
@@ -22,10 +21,5 @@ export default async function (tenantId: TenantId, creatorId: Identifier, parent
 
     const posts = updateCount(metricsRecord, operation);
 
-    const succeeded = await persist(metricsRecord.id, posts);
-
-    if (succeeded === false)
-    {
-        logger.warn(`Post count for creator metrics with id '${metricsRecord.id}' has not been updated.`);
-    }
+    return persist(metricsRecord.id, posts);
 }
