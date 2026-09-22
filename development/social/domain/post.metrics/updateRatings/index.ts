@@ -3,7 +3,7 @@ import { type CountOperation } from '@comify/common/primitives/count';
 import { type Identifier } from '@comify/common/primitives/identifier';
 
 import retrieve from '../_retrieveByPost';
-import { logger } from '../integrations';
+
 
 import persist from './persist';
 import updateCount from './updateCount';
@@ -14,10 +14,5 @@ export default async function (postId: Identifier, operation: CountOperation): P
 
     const ratings = updateCount(record, operation);
 
-    const succeeded = await persist(record.id, ratings);
-
-    if (succeeded === false)
-    {
-        logger.warn(`Rating count for post metrics with id '${record.id}' has not been updated.`);
-    }
+    return persist(record.id, ratings);
 }

@@ -23,6 +23,8 @@ export default async function (requester: Requester, id: Identifier): Promise<vo
 
         if (isNotOwner(record, requester.principalId))
         {
+            logger.warn('Failed to remove post because it is not owned by the requester');
+
             // Fail silently
             return;
         }
