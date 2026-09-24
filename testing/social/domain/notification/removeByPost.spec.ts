@@ -29,11 +29,11 @@ describe('index', () =>
     {
         await removeByPost(POST_RECORDS.FIRST.id);
 
-        const records = await database.searchRecords<Record>(RECORD_TYPE, {
+        const result = await database.searchRecords<Record>(RECORD_TYPE, {
             postId: { EQUALS: POST_RECORDS.FIRST.id },
             deleted: { EQUALS: false }
         });
 
-        expect(records).toHaveLength(0);
+        expect(result.records).toHaveLength(0);
     });
 });

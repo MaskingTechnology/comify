@@ -7,9 +7,9 @@ import validate from './validate';
 
 export default async function (key: RatingKey): Promise<string>
 {
-    const newData = createRecord(key.creatorId, key.postId);
+    validate(key.postId);
 
-    validate(newData);
+    const newData = createRecord(key.creatorId, key.postId);
 
     return persist(newData);
 }

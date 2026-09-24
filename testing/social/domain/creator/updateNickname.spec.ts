@@ -38,9 +38,9 @@ describe('index', () =>
 
         await updateNickname(REQUESTERS.ALICE, newNickname);
 
-        const creator = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: REQUESTERS.ALICE.principalId } });
+        const result = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: REQUESTERS.ALICE.principalId } });
 
-        expect(creator?.nickname).toBe(newNickname);
+        expect(result.record?.nickname).toBe(newNickname);
     });
 
     it('should NOT update the nickname because of a duplicate', async () =>

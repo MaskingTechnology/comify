@@ -31,9 +31,9 @@ describe('index', () =>
     {
         const comicId = await create({ imageDataUrl: IMAGE_DATA_URLS.COMIC });
 
-        const record = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: comicId } });
+        const result = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: comicId } });
 
-        expect(record).toBeDefined();
-        expect(record?.imageId).toBeDefined();
+        expect(result.record).toBeDefined();
+        expect(result.record?.imageId).toBeDefined();
     });
 });

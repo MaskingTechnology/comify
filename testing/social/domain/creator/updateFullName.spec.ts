@@ -38,9 +38,9 @@ describe('index', () =>
 
         await updateFullName(REQUESTERS.ALICE, newName);
 
-        const record = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: REQUESTERS.ALICE.principalId } });
+        const result = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: REQUESTERS.ALICE.principalId } });
 
-        expect(record?.fullName).toBe(newName);
+        expect(result.record?.fullName).toBe(newName);
     });
 
     it('should not accept an invalid full name', async () =>

@@ -21,3 +21,5 @@ export default async function (requester: Requester, nickname: Nickname): Promis
 
     return publish(requester.tenantId, requester.principalId);
 }
+
+export { default as NicknameAlreadyExists } from './NicknameAlreadyExists';

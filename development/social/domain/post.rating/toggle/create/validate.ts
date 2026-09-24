@@ -1,14 +1,14 @@
 
 import validator from '@comify/common/integrations/validation';
-import { identifierValidation } from '@comify/common/primitives/identifier';
+import { type Identifier, identifierValidation } from '@comify/common/primitives/identifier';
 
 import { type CreateData } from '../definitions';
 
 import InvalidRating from './InvalidRating';
 
-export default function (data: CreateData): void
+export default function (postId: Identifier): void
 {
-    const result = validator.validate<CreateData>(data, {
+    const result = validator.validate<CreateData>({ postId}, {
         postId: identifierValidation
     });
 

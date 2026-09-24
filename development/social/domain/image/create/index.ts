@@ -10,7 +10,7 @@ export default async function (type: string, dataUrl: string): Promise<Identifie
 {
     const image = await convertDataUrl(dataUrl);
 
-    validate(image);
+    validate({ filename: image.filename, mimeType: image.mimeType, size: image.size });
 
     return save(type, image);
 }

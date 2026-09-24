@@ -29,42 +29,42 @@ describe('index', () =>
     {
         await create(Types.RATED_POST, CREATOR_RECORDS.ALICE.id, POST_RECORDS.THIRD.creatorId, POST_RECORDS.THIRD.id);
 
-        const records = await database.searchRecords<Record>(RECORD_TYPE, {
+        const result = await database.searchRecords<Record>(RECORD_TYPE, {
             type: { EQUALS: Types.RATED_POST },
             senderId: { EQUALS: CREATOR_RECORDS.ALICE.id },
             receiverId: { EQUALS: POST_RECORDS.THIRD.creatorId },
             postId: { EQUALS: POST_RECORDS.THIRD.id }
         });
 
-        expect(records).toHaveLength(1);
+        expect(result.records).toHaveLength(1);
     });
 
     it('should create a notification when someone gets followed', async () =>
     {
         await create(Types.STARTED_FOLLOWING, CREATOR_RECORDS.ALICE.id, CREATOR_RECORDS.DAVID.id);
 
-        const records = await database.searchRecords<Record>(RECORD_TYPE, {
+        const result = await database.searchRecords<Record>(RECORD_TYPE, {
             type: { EQUALS: Types.STARTED_FOLLOWING },
             senderId: { EQUALS: CREATOR_RECORDS.ALICE.id },
             receiverId: { EQUALS: CREATOR_RECORDS.DAVID.id },
             postId: { EQUALS: undefined }
         });
 
-        expect(records).toHaveLength(1);
+        expect(result.records).toHaveLength(1);
     });
 
     it('should create a notification when a reaction is added to a post', async () =>
     {
         await create(Types.REACTED_TO_POST, CREATOR_RECORDS.ALICE.id, POST_RECORDS.FOURTH.creatorId, POST_RECORDS.FOURTH.id);
 
-        const records = await database.searchRecords<Record>(RECORD_TYPE, {
+        const result = await database.searchRecords<Record>(RECORD_TYPE, {
             type: { EQUALS: Types.REACTED_TO_POST },
             senderId: { EQUALS: CREATOR_RECORDS.ALICE.id },
             receiverId: { EQUALS: POST_RECORDS.FOURTH.creatorId },
             postId: { EQUALS: POST_RECORDS.FOURTH.id }
         });
 
-        expect(records).toHaveLength(1);
+        expect(result.records).toHaveLength(1);
     });
 
     it('should do nothing on failure', async () =>

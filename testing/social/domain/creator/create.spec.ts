@@ -48,14 +48,14 @@ describe('index', () =>
         const firstId = await create(TENANTS.EFGH, firstData);
         const secondId = await create(TENANTS.EFGH, secondData);
 
-        const firstRecord = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: firstId } });
-        const secondRecord = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: secondId } });
+        const firstResult = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: firstId } });
+        const secondResult = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: secondId } });
 
-        expect(firstRecord).toBeDefined();
-        expect(firstRecord?.nickname).toBe(nickname + '_001');
+        expect(firstResult.record).toBeDefined();
+        expect(firstResult.record?.nickname).toBe(nickname + '_001');
 
-        expect(secondRecord).toBeDefined();
-        expect(secondRecord?.nickname).toBe(nickname + '_002');
+        expect(secondResult.record).toBeDefined();
+        expect(secondResult.record?.nickname).toBe(nickname + '_002');
     });
 
     it('should NOT register with too many occurrences nickname', async () =>
@@ -75,10 +75,10 @@ describe('index', () =>
 
         const id = await create(TENANTS.EFGH, data);
 
-        const record = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: id } });
+        const result = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: id } });
 
-        expect(record).toBeDefined();
-        expect(record?.nickname).toBe('newcreator');
+        expect(result.record).toBeDefined();
+        expect(result.record?.nickname).toBe('newcreator');
     });
 
     it('should create with underscores in nickname', async () =>
@@ -87,23 +87,23 @@ describe('index', () =>
 
         const id = await create(TENANTS.EFGH, data);
 
-        const record = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: id } });
+        const result = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: id } });
 
-        expect(record).toBeDefined();
-        expect(record?.nickname).toBe('newcreator');
+        expect(result.record).toBeDefined();
+        expect(result.record?.nickname).toBe('newcreator');
     });
 
     it('should create with a valid profile picture', async () =>
     {
-        const portraitUrl = IMAGE_URLS.PROFILE;
+        const portraitUrl = IMAGE_URLS.PROFILE; // TODO: Fix validation - fails because it requires a string value
 
         const data: CreateData = { nickname: 'newcreator', fullName: 'New Creator', email: 'new@example.com', portraitUrl };
 
         const id = await create(TENANTS.EFGH, data);
 
-        const record = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: id } });
+        const result = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: id } });
 
-        expect(record).toBeDefined();
-        expect(record?.nickname).toBe('newcreator');
+        expect(result.record).toBeDefined();
+        expect(result.record?.nickname).toBe('newcreator');
     });
 });

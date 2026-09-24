@@ -32,14 +32,14 @@ describe('index', () =>
     {
         const imageId = await create('valid_url', DATA_URLS.VALID);
 
-        const record = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: imageId } });
+        const result = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: imageId } });
 
-        expect(record).toBeDefined();
-        expect(record?.filename).toEqual('dataUrl');
-        expect(record?.mimeType).toEqual('image/png');
-        expect(record?.storageKey).toContain('valid_url/');
+        expect(result.record).toBeDefined();
+        expect(result.record?.filename).toEqual('dataUrl');
+        expect(result.record?.mimeType).toEqual('image/png');
+        expect(result.record?.storageKey).toContain('valid_url/');
 
-        const data = await fileStore.readFile(record?.storageKey as string);
+        const data = await fileStore.readFile(result.record?.storageKey as string);
 
         expect(data.length).toEqual(54);
     });

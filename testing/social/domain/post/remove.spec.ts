@@ -36,9 +36,9 @@ describe('index', () =>
     {
         await remove(REQUESTERS.ALICE, POST_RECORDS.SECOND.id);
 
-        const record = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: POST_RECORDS.SECOND.id } });
+        const result = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: POST_RECORDS.SECOND.id } });
 
-        expect(record?.deleted).toBeTruthy();
+        expect(result.record?.deleted).toBeTruthy();
     });
 
     it('should not delete an already deleted post', async () =>
@@ -52,8 +52,8 @@ describe('index', () =>
     {
         await remove(REQUESTERS.BOB, POST_RECORDS.FIRST.id);
 
-        const record = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: POST_RECORDS.FIRST.id } });
+        const result = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: POST_RECORDS.FIRST.id } });
 
-        expect(record?.deleted).toBeFalsy();
+        expect(result.record?.deleted).toBeFalsy();
     });
 });

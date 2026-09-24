@@ -24,10 +24,10 @@ describe('index', () =>
 
         const reactionId = await create({ message });
 
-        const record = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: reactionId } });
+        const result = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: reactionId } });
 
-        expect(record).toBeDefined();
-        expect(record?.message).toEqual(message);
+        expect(result.record).toBeDefined();
+        expect(result.record?.message).toEqual(message);
     });
 
     it('should fail when message is invalid', async () =>

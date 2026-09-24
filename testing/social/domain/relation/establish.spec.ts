@@ -36,12 +36,12 @@ describe('index', () =>
     {
         await establish(REQUESTERS.ALICE, CREATOR_RECORDS.BOB.id);
 
-        const record = await database.readRecord<Record>(RECORD_TYPE, {
+        const result = await database.readRecord<Record>(RECORD_TYPE, {
             followerId: { EQUALS: REQUESTERS.ALICE.principalId },
             followingId: { EQUALS: CREATOR_RECORDS.BOB.id }
         });
 
-        expect(record).toBeDefined();
+        expect(result.record).toBeDefined();
     });
 
     it('should NOT establish a duplicate relation', async () =>

@@ -9,7 +9,7 @@ export type CreateData = {
 };
 
 export const portraitUrlValidation = {
-    message: 'Value is empty or too long',
+    message: 'Value is an invalid URL',
     required: false,
     URL: { }
 };

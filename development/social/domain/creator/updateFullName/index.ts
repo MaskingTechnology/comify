@@ -15,3 +15,5 @@ export default async function (requester: Requester, fullName: FullName): Promis
 
     return publish(requester.tenantId, requester.principalId);
 }
+
+export { default as InvalidFullName } from './InvalidFullName';
