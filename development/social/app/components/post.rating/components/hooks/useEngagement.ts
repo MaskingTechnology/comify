@@ -1,5 +1,5 @@
 
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 export type EngageHandler = () => Promise<boolean>;
 
@@ -8,7 +8,7 @@ export default function useEngagement(isEngaged: boolean, count: number, engage:
     const [isRated, setIsRated] = useState<boolean>(isEngaged);
     const [ratingCount, setRatingCount] = useState<number>(count);
 
-    const handleClick = useCallback(async () =>
+    const handleClick = async () =>
     {
         const updatedIsRated = !isRated;
 
@@ -21,7 +21,7 @@ export default function useEngagement(isEngaged: boolean, count: number, engage:
 
         await engage();
 
-    }, [engage, ratingCount]);
+    };
 
     return [isRated, ratingCount, handleClick] as const;
 }
