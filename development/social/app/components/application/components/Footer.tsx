@@ -1,15 +1,15 @@
 
 import { Column } from '@maskingtech/designsystem';
 
-import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
+import { type Creator } from '^/domain/creator';
 
 import Menu from './Menu';
 
 type Props = {
-    readonly identity: AggregatedCreatorData;
+    readonly identity: Creator;
 };
 
-export default function Component({ identity }: Props)
+export default function ({ identity }: Props)
 {
     return <Column alignX='stretch' alignY='center'>
         <Menu vertical={false} identity={identity} />

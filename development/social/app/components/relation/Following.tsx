@@ -2,10 +2,9 @@
 import { Column } from '@maskingtech/designsystem';
 
 import { OrderAndSearchRow, PullToRefresh, ResultContainer, ScrollLoader } from '~/components/common';
-import { useViewProfile } from '~/components/profile';
+import { useViewProfile } from '~/components/creator.profile';
 
 import PanelList from './components/PanelList';
-
 import useCreatorFollowing from './hooks/useCreatorFollowing';
 import useEstablishRelation from './hooks/useEstablish';
 import useReorderList from './hooks/useReorderList';
@@ -16,7 +15,7 @@ type Props = {
 
 const SCROLL_THRESHOLD = 0.9;
 
-export default function Feature({ creatorId }: Props)
+export default function ({ creatorId }: Props)
 {
     const viewProfile = useViewProfile();
     const establishRelation = useEstablishRelation();
@@ -26,7 +25,7 @@ export default function Feature({ creatorId }: Props)
 
     return <Column gap='medium' alignX='stretch'>
         { /* eslint-disable-next-line @typescript-eslint/no-empty-function */}
-        <OrderAndSearchRow selected='recent' onOrderChange={reorderList} onSearchChange={() => {}} />
+        <OrderAndSearchRow selected='recent' onOrderChange={reorderList} onSearchChange={() => { }} />
         <PullToRefresh onRefresh={refresh}>
             <ScrollLoader onLoad={getMoreRelations} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
                 <ResultContainer data={relations} isLoading={isLoading}>

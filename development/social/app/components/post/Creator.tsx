@@ -2,12 +2,11 @@
 import { Column } from '@maskingtech/designsystem';
 
 import { PullToRefresh, ResultContainer, ScrollLoader } from '~/components/common';
-import { useToggle } from '~/components/rating';
-
-import useCreatorPosts from './hooks/useCreatorPosts';
-import useViewPostDetails from './hooks/useViewPostDetails';
+import { useToggle } from '~/components/post.rating';
 
 import PanelGrid from './components/PanelGrid';
+import useCreatorPosts from './hooks/useCreatorPosts';
+import useViewPostDetails from './hooks/useViewPostDetails';
 
 type Props = {
     readonly creatorId: string;
@@ -15,7 +14,7 @@ type Props = {
 
 const SCROLL_THRESHOLD = 0.9;
 
-export default function Feature({ creatorId }: Props)
+export default function ({ creatorId }: Props)
 {
     const viewPostDetails = useViewPostDetails();
     const toggleRating = useToggle();

@@ -6,7 +6,7 @@ type Props = {
     readonly nickname: string;
 };
 
-export default function Component({ fullName, nickname }: Props)
+export default function ({ fullName, nickname }: Props)
 {
     return <Column gap='none'>
         <Text value={fullName} size='medium' weight='bold' />

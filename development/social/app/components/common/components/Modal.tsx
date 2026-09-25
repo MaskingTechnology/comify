@@ -1,13 +1,12 @@
 
-import type { ReactNode } from 'react';
-
 import { Border, Modal } from '@maskingtech/designsystem';
+import { type ReactNode } from 'react';
 
 type Props = {
     readonly children?: ReactNode;
 };
 
-export default function Component({ children }: Props)
+export default function ({ children }: Props)
 {
     return <Modal>
         <Border type='normal' size='medium' padding='small'>

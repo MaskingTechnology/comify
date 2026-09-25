@@ -1,20 +1,19 @@
 
+import { usePagination } from '@maskingtech/react-toolkit';
 import { useCallback } from 'react';
 
-import { usePagination } from '@maskingtech/react-toolkit';
+import { requester } from '@comify/common/security';
 
-import { requester } from '^/domain/authentication';
-import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
-import getReactionsByPost from '^/domain/post/getByParentAggregated';
-import { tenant } from '@comify/common/domain/tenant';
+import { type Post } from '^/domain/post';
+import getReactionsByPost from '^/domain/post/getByParent';
 
-export default function useReactions(post: AggregatedPostData)
+export default function useReactions(post: Post)
 {
     const limit = 15;
 
     const getData = useCallback((page: number) =>
     {
-        return getReactionsByPost(tenant, requester, post.id, { limit, offset: page * limit });
+        return getReactionsByPost(requester, post.id, { limit, offset: page * limit });
 
     }, [post]);
 

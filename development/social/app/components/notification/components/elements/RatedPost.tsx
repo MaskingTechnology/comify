@@ -1,18 +1,18 @@
 
-import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
+import { type Post } from '^/domain/post';
 
 import Comic from './Comic';
 import Comment from './Comment';
 
 type Props = {
-    readonly post: AggregatedPostData;
+    readonly post: Post;
     readonly onClick: () => void;
 };
 
 const COMIC_MESSAGE = 'I like your comic.';
 const COMMENT_MESSAGE = 'I like your comment.';
 
-export default function Component({ post, onClick }: Props)
+export default function ({ post, onClick }: Props)
 {
     return post.comic !== undefined
         ? <Comic comic={post.comic} message={COMIC_MESSAGE} onClick={onClick} />

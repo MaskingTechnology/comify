@@ -1,15 +1,14 @@
 
 import { Button } from '@maskingtech/designsystem';
 
-import type { EstablishHandler } from '../hooks/useEstablish';
-import useEstablish from '../hooks/useEstablish';
+import useEstablish, { type EstablishHandler } from '../hooks/useEstablish';
 
 type Props = {
     readonly isFollowing: boolean;
     readonly onClick: EstablishHandler;
 };
 
-export default function Component({ isFollowing, onClick }: Props)
+export default function ({ isFollowing, onClick }: Props)
 {
     const [status, handleClick] = useEstablish(isFollowing, onClick);
 

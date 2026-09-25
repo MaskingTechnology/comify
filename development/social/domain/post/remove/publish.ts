@@ -1,17 +1,17 @@
 
-import eventBroker from '@comify/common/integrations/eventBroker';
+import { publish as publishPostRemoved } from '@comify/common/domain/post/removed';
+import { type TenantId } from '@comify/common/domain/tenant';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
-import { EVENT_CHANNEL } from '../definitions';
-import { EVENT_NAME } from './definitions';
-import type { RemovedPublication } from './types';
+import { CONTEXT_ID } from '~/definitions';
 
-export default async function publish(creatorId: string, postId: string, parentId?: string): Promise<void>
+export default async function (tenantId: TenantId, principalId: Identifier, postId: Identifier, parentId?: Identifier): Promise<void>
 {
-    const publication: RemovedPublication = {
-        channel: EVENT_CHANNEL,
-        name: EVENT_NAME,
-        data: { creatorId, postId, parentId }
-    };
-
-    return eventBroker.publish(publication);
+    return publishPostRemoved({
+        contextId: CONTEXT_ID,
+        principalId,
+        tenantId,
+        postId,
+        parentId
+    });
 }

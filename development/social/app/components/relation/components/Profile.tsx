@@ -1,17 +1,17 @@
 
-import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
+import { type Relation } from '^/domain/relation';
 
 import { Profile } from '~/components/creator';
 
 import FollowRow from './elements/FollowRow';
 
 type Props = {
-    readonly relation: AggregatedRelationData;
-    readonly onFollowClick: (relation: AggregatedRelationData) => Promise<void>;
+    readonly relation: Relation;
+    readonly onFollowClick: (relation: Relation) => Promise<void>;
     readonly onEditClick?: () => void;
 };
 
-export default function Component({ relation, onFollowClick, onEditClick }: Props)
+export default function ({ relation, onFollowClick, onEditClick }: Props)
 {
     return <FollowRow
         isFollowing={relation.established}

@@ -2,10 +2,9 @@
 import jitar, { JitarConfig } from '@jitar/plugin-vite';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
-import tsconfigPaths from 'vite-tsconfig-paths';
 
 const JITAR_URL = 'http://localhost:3000';
-const JITAR_SEGMENTS: string[] = [];
+const JITAR_SEGMENTS: string[] = ['common.errors', 'social.errors'];
 const JITAR_MIDDLEWARES: string[] = [
   '../../common/integrations/authentication/requesterMiddleware'
 ];
@@ -28,10 +27,10 @@ export default defineConfig({
   },
   resolve: {
     dedupe: ['react', 'react-dom'],
+    tsconfigPaths: true
   },
   plugins: [
     react(),
-    tsconfigPaths(),
     jitar(jitarConfig)
   ]
 });

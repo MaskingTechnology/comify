@@ -1,14 +1,14 @@
 
-import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
+import { type Creator } from '^/domain/creator';
 
 import AvatarRow from './elements/AvatarRow';
 import NamesColumn from './elements/NamesColumn';
 
 type Props = {
-    readonly creator: AggregatedCreatorData;
+    readonly creator: Creator;
 };
 
-export default function Component({ creator }: Props)
+export default function ({ creator }: Props)
 {
     return <AvatarRow avatarSize='medium' avatarUrl={creator.portrait?.dataUrl}>
         <NamesColumn

@@ -1,7 +1,7 @@
 
-import fileStore from '@comify/common/integrations/fileStore';
+import fileStore from '@comify/common/integrations/files';
 
-export default async function retrieveFile(storageKey: string): Promise<Buffer>
+export default async function (storageKey: string): Promise<Buffer>
 {
     return fileStore.readFile(storageKey);
 }

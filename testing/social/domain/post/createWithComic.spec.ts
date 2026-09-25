@@ -1,14 +1,14 @@
 
-import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
+import { beforeAll, afterAll, describe, expect, it } from 'vitest';
 
 import database from '@comify/common/integrations/database';
-import eventBroker from '@comify/common/integrations/eventBroker';
-import fileStore from '@comify/common/integrations/fileStore';
+import eventBroker from '@comify/common/integrations/events';
+import fileStore from '@comify/common/integrations/files';
 
-import { RECORD_TYPE as POST_RECORD_TYPE } from '^/domain/post';
-import createWithComic from '^/domain/post/createWithComic';
+import { RECORD_TYPE, type Record } from '@comify/social/domain/post';
+import createWithComic from '@comify/social/domain/post/createWithComic';
 
-import { DATABASES, DATA_URLS, FILE_STORES, REQUESTERS, TENANTS } from './fixtures';
+import { REQUESTERS, IMAGE_DATA_URLS } from '../../fixtures';
 
 beforeAll(async () =>
 {
@@ -28,28 +28,17 @@ afterAll(async () =>
     ]);
 });
 
-beforeEach(async () =>
-{
-    await Promise.all([
-        DATABASES.withCreators(),
-        FILE_STORES.empty()
-    ]);
-});
-
-describe('domain/post/add', () =>
+describe('index', () =>
 {
     it('should create a post', async () =>
     {
-        await createWithComic(TENANTS.default, REQUESTERS.CREATOR1, DATA_URLS.COMIC_IMAGE);
+        const id = await createWithComic(REQUESTERS.ALICE, { imageDataUrl: IMAGE_DATA_URLS.COMIC });
 
-        const posts = await database.searchRecords(POST_RECORD_TYPE, {});
+        const result = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: id } });
 
-        expect(posts.length).toBe(1);
-
-        const post = posts[0];
-        
-        expect(post?.creatorId).toBe(REQUESTERS.CREATOR1.id);
-        expect(post?.comicId).toBeDefined();
-        expect(post?.createdAt).toBeDefined();
+        expect(result.record).toBeDefined();
+        expect(result.record?.creatorId).toBe(REQUESTERS.ALICE.principalId);
+        expect(result.record?.comicId).toBeDefined();
+        expect(result.record?.createdAt).toBeDefined();
     });
 });

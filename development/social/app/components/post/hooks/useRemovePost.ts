@@ -2,11 +2,11 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useAppContext } from '~/components/application';
+import { requester } from '@comify/common/security';
 
-import { requester } from '^/domain/authentication';
 import remove from '^/domain/post/remove';
-import { tenant } from '@comify/common/domain/tenant';
+
+import { useAppContext } from '~/components/application';
 
 export default function useRemovePost(id?: string)
 {
@@ -17,7 +17,7 @@ export default function useRemovePost(id?: string)
     {
         if (id === undefined) return;
 
-        await remove(tenant, requester, id);
+        await remove(requester, id);
 
         navigate(`/profile/${identity?.nickname}`);
 

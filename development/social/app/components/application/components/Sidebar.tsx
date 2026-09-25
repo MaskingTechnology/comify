@@ -1,18 +1,18 @@
 
 import { Cell, Column, Row, Ruler } from '@maskingtech/designsystem';
 
-import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
+import { type Creator } from '^/domain/creator';
 
 import Identity from './Identity';
 import Logo from './Logo';
 import Menu from './Menu';
 
 type Props = {
-    readonly identity: AggregatedCreatorData;
+    readonly identity: Creator;
     readonly onLogout: () => void;
 };
 
-export default function Component({ identity, onLogout }: Props)
+export default function ({ identity, onLogout }: Props)
 {
     return <Row alignY='stretch' alignX='justify' gap='large'>
         <Column gap='large' alignX='stretch'>

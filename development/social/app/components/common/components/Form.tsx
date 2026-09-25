@@ -1,16 +1,14 @@
 
-import type { ReactNode } from 'react';
-
-import { useForm } from '@maskingtech/react-toolkit';
-
 import { Button, Form, Row } from '@maskingtech/designsystem';
+import { useForm } from '@maskingtech/react-toolkit';
+import { type ReactNode } from 'react';
 
 type Props = {
     readonly onSubmit: (data: FormData) => Promise<void>;
     readonly children: ReactNode;
 };
 
-export default function Component({ onSubmit, children }: Props)
+export default function ({ onSubmit, children }: Props)
 {
     const [formRef, state, handleSubmit] = useForm(onSubmit);
 

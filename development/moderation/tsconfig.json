@@ -5,6 +5,7 @@
     "rootDir": "./",
     "outDir": "../../artifacts/build/moderation",
     "paths": {
+      "~/*": ["./domain/*"],
       "^/*": ["./*"],
       "@comify/common/*": ["../common/*"]
     }

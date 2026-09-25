@@ -1,7 +1,7 @@
 
 import { useEffect } from 'react';
 
-import getLoginUrl from '^/domain/authentication/getLoginUrl';
+import getLoginUrl from '^/security/authentication/getLoginUrl';
 
 const IGNORE_PATHS = new Set(['/', '/login', '/identify']);
 

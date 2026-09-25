@@ -8,7 +8,7 @@ const tabItems = [
     { title: 'Following', route: 'following' }
 ];
 
-export default function Feature()
+export default function ()
 {
     return <Tabs items={tabItems}>
         <Outlet />

@@ -1,11 +1,10 @@
 
+import { useLoadData } from '@maskingtech/react-toolkit';
 import { useCallback } from 'react';
 
-import { useLoadData } from '@maskingtech/react-toolkit';
+import { requester } from '@comify/common/security';
 
-import { requester } from '^/domain/authentication';
-import getRelation from '^/domain/relation/getAggregated';
-import { tenant } from '@comify/common/domain/tenant';
+import getRelation from '^/domain/relation/get';
 
 import { useAppContext } from '~/components/application';
 
@@ -20,7 +19,7 @@ export default function useRelation(creatorId?: string)
             return undefined;
         }
 
-        return getRelation(tenant, requester, identity.id, creatorId);
+        return getRelation(requester, { followerId: identity.id, followingId: creatorId });
 
     }, [identity, creatorId]);
 

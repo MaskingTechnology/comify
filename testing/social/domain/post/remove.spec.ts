@@ -2,12 +2,12 @@
 import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 
 import database from '@comify/common/integrations/database';
-import eventBroker from '@comify/common/integrations/eventBroker';
+import eventBroker from '@comify/common/integrations/events';
 
-import { PostNotFound, RECORD_TYPE } from '^/domain/post';
-import remove from '^/domain/post/remove';
+import { PostNotFound, RECORD_TYPE, type Record } from '@comify/social/domain/post';
+import remove from '@comify/social/domain/post/remove';
 
-import { DATABASES, REQUESTERS, TENANTS, VALUES } from './fixtures';
+import { REQUESTERS, POST_RECORDS, seedPosts } from '../../fixtures';
 
 beforeAll(async () =>
 {
@@ -27,33 +27,33 @@ afterAll(async () =>
 
 beforeEach(async () =>
 {
-    await DATABASES.withPostsAndCreators();
+    await seedPosts();
 });
 
-describe('domain/post/remove', () =>
+describe('index', () =>
 {
     it('should soft delete a post', async () =>
     {
-        await remove(TENANTS.default, REQUESTERS.CREATOR1, VALUES.IDS.POST_RATED);
+        await remove(REQUESTERS.ALICE, POST_RECORDS.SECOND.id);
 
-        const reaction = await database.readRecord(RECORD_TYPE, { id: { EQUALS: VALUES.IDS.POST_RATED } });
+        const result = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: POST_RECORDS.SECOND.id } });
 
-        expect(reaction?.deleted).toBeTruthy();
+        expect(result.record?.deleted).toBeTruthy();
     });
 
     it('should not delete an already deleted post', async () =>
     {
-        const promise = remove(TENANTS.default, REQUESTERS.CREATOR1, VALUES.IDS.POST_DELETED);
+        const promise = remove(REQUESTERS.HENRY, POST_RECORDS.DELETED.id);
 
         await expect(promise).rejects.toThrow(PostNotFound);
     });
 
     it('should not delete a post from another creator', async () =>
     {
-        await remove(TENANTS.default, REQUESTERS.VIEWER, VALUES.IDS.POST_RATED);
-        
-        const reaction = await database.readRecord(RECORD_TYPE, { id: { EQUALS: VALUES.IDS.POST_RATED } });
-        
-        expect(reaction?.deleted).toBeFalsy();
+        await remove(REQUESTERS.BOB, POST_RECORDS.FIRST.id);
+
+        const result = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: POST_RECORDS.FIRST.id } });
+
+        expect(result.record?.deleted).toBeFalsy();
     });
 });

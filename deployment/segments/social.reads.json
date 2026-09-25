@@ -1,36 +1,33 @@
 {
-    "./social/domain/comic/getById": { "default": {  "access": "protected" } },
-
-    "./social/domain/comment/getById": { "default": {  "access": "protected" } },
-
-    "./social/domain/creator/generateNickname/retrieveByNickname": { "default": { "access": "protected" } },
-    "./social/domain/creator/generateNickname/retrieveByStartNickname": { "default": { "access": "protected" } },
-    "./social/domain/creator/getByEmail": { "default": {  "access": "protected" } },
-    "./social/domain/creator/getById": { "default": {  "access": "protected" } },
-    "./social/domain/creator/getByNickname": { "default": {  "access": "protected" } },
-    "./social/domain/creator/getMe": { "default": {  "access": "protected" } },
-    "./social/domain/creator/getOthers": { "default": { "access": "private" }},
+    "./social/domain/creator/create/makeNickname/retrieveByNickname": { "default": {  "access": "protected" } },
+    "./social/domain/creator/create/makeNickname/retrieveByStartNickname": { "default": {  "access": "protected" } },
+    "./social/domain/creator/getByNickname/retrieve": { "default": {  "access": "protected" } },
+    "./social/domain/creator/getIdByEmail/retrieve": { "default": {  "access": "protected" } },
+    "./social/domain/creator/getOtherIds/retrieve": { "default": {  "access": "protected" } },
     "./social/domain/creator/updateNickname/retrieveByNickname": { "default": {  "access": "protected" } },
 
-    "./social/domain/creator.metrics/getByCreator": { "default": {  "access": "protected" } },
+    "./social/domain/creator.metrics/_retrieveByCreator": { "default": {  "access": "protected" } },
 
     "./social/domain/image/getById": { "default": {  "access": "protected" } },
 
-    "./social/domain/post/explore": { "default": {  "access": "protected" } },
-    "./social/domain/post/getByCreator": { "default": {  "access": "protected" } },
-    "./social/domain/post/getByFollowing": { "default": {  "access": "protected" } },
-    "./social/domain/post/getById": { "default": {  "access": "protected" } },
-    "./social/domain/post/getByParent": { "default": {  "access": "protected" } },
-    "./social/domain/post/getRecommended": { "default": {  "access": "protected" } },
+    "./social/domain/post/_retrieveById": { "default": {  "access": "protected" } },
+    "./social/domain/post/explore/retrieve": { "default": {  "access": "protected" } },
+    "./social/domain/post/getByCreator/retrieve": { "default": {  "access": "protected" } },
+    "./social/domain/post/getByFollowing/retrieve": { "default": {  "access": "protected" } },
+    "./social/domain/post/getByParent/retrieve": { "default": {  "access": "protected" } },
+    "./social/domain/post/getRecommended/retrieve": { "default": {  "access": "protected" } },
 
-    "./social/domain/post.metrics/getByPost": { "default": {  "access": "protected" } },
+    "./social/domain/post.comic/_retrieveById": { "default": {  "access": "protected" } },
 
-    "./social/domain/rating/exists": { "default": {  "access": "protected" } },
-    "./social/domain/rating/toggle/getData": { "default": {  "access": "protected" } },
+    "./social/domain/post.comment/getById/retrieve": { "default": {  "access": "protected" } },
 
-    "./social/domain/relation/exists": { "default": {  "access": "protected" } },
-    "./social/domain/relation/explore": { "default": {  "access": "protected" } },
-    "./social/domain/relation/get": { "default": {  "access": "protected" } },
-    "./social/domain/relation/getFollowers": { "default": {  "access": "protected" } },
-    "./social/domain/relation/getFollowing": { "default": {  "access": "protected" } }
+    "./social/domain/post.metrics/_retrieveByPost": { "default": {  "access": "protected" } },
+
+    "./social/domain/post.rating/exists/retrieve": { "default": {  "access": "protected" } },
+    "./social/domain/post.rating/toggle/retrieve": { "default": {  "access": "protected" } },
+
+    "./social/domain/relation/_retrieve": { "default": {  "access": "protected" } },
+    "./social/domain/relation/_retrieveFollowing": { "default": {  "access": "protected" } },
+    "./social/domain/relation/establish/exists": { "default": {  "access": "protected" } },
+    "./social/domain/relation/getFollowers/retrieve": { "default": {  "access": "protected" } }
 }

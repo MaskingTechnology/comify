@@ -1,7 +1,7 @@
 
-import type { DataModel } from '../types';
+import { type Record } from '../definitions';
 
-export default function isNotOwner(post: DataModel, requesterId: string): boolean
+export default function (record: Record, requesterId: string): boolean
 {
-    return post.creatorId !== requesterId;
+    return record.creatorId !== requesterId;
 }

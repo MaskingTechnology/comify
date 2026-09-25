@@ -1,6 +1,5 @@
 
-export { RECORD_TYPE } from './definitions';
+export { RECORD_TYPE, type Record, type Post } from './definitions';
 
-export type { DataModel } from './types';
-
-export { default as PostNotFound } from './getById/PostNotFound';
+export { default as PostNotFound } from './_retrieveById/PostNotFound';
+export { default as InvalidPost } from './_create/InvalidPost';

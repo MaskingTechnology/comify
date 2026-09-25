@@ -1,11 +1,10 @@
 
+import { usePagination } from '@maskingtech/react-toolkit';
 import { useCallback } from 'react';
 
-import { usePagination } from '@maskingtech/react-toolkit';
+import { requester } from '@comify/common/security';
 
-import { requester } from '^/domain/authentication';
-import getPostsRecommended from '^/domain/post/getRecommendedAggregated';
-import { tenant } from '@comify/common/domain/tenant';
+import getPostsRecommended from '^/domain/post/getRecommended';
 
 export default function usePostsRecommended()
 {
@@ -13,7 +12,7 @@ export default function usePostsRecommended()
 
     const getData = useCallback((page: number) =>
     {
-        return getPostsRecommended(tenant, requester, { limit, offset: page * limit });
+        return getPostsRecommended(requester, { limit, offset: page * limit });
 
     }, []);
 

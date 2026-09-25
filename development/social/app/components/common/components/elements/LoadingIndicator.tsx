@@ -5,7 +5,7 @@ type Props = {
     readonly active?: boolean;
 };
 
-export default function Element({ active }: Props)
+export default function ({ active }: Props)
 {
     return <Panel type='transparent' padding='large'>
         <Row alignX='center'>

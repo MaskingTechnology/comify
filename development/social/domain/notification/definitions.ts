@@ -1,5 +1,19 @@
 
-export const RECORD_TYPE = 'notification';
+import { type Identifier } from '@comify/common/primitives/identifier';
+
+import { type Post } from '~/post';
+import { type Relation } from '~/relation';
+
+import { type BaseRecord } from '../definitions';
+
+export type Record = BaseRecord & {
+    readonly createdAt: string;
+    readonly type: string;
+    readonly senderId: string;
+    readonly receiverId: string;
+    readonly postId?: string;
+    readonly deleted: boolean;
+};
 
 export const Types = {
     STARTED_FOLLOWING: 'started-following',
@@ -8,5 +22,13 @@ export const Types = {
 } as const;
 
 type TypeKeys = keyof typeof Types;
+export type Type = typeof Types[TypeKeys];
 
-export type Type = typeof Types[TypeKeys]; 
+export type Notification = {
+    readonly id: Identifier;
+    readonly type: Type;
+    readonly createdAt: Date;
+    readonly relation: Relation;
+    readonly post?: Post;
+};
+export const RECORD_TYPE = 'notification';

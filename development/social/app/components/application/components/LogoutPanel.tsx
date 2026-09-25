@@ -5,7 +5,7 @@ type Props = {
     readonly onLogout: () => void;
 };
 
-export default function Component({ onLogout }: Props)
+export default function ({ onLogout }: Props)
 {
     return <Panel>
         <Paragraph>

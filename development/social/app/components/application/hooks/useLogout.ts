@@ -2,7 +2,7 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import logout from '^/domain/authentication/logout';
+import logout from '^/security/authentication/logout';
 
 import { useAppContext } from '../contexts/AppContext';
 

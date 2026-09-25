@@ -1,10 +1,11 @@
 
-import type { Image } from '../types';
+import { type Image } from '../definitions';
+
 import InvalidDataURL from './InvalidDataURL';
 
 const DATA_URL_REGEX = /^data:(image\/(\w+));base64,(.*)$/;
 
-export default async function convertDataUrl(dataUrl: string): Promise<Image>
+export default async function (dataUrl: string): Promise<Image>
 {
     const matches = DATA_URL_REGEX.exec(dataUrl);
 

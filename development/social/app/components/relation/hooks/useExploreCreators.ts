@@ -1,11 +1,10 @@
 
+import { usePagination } from '@maskingtech/react-toolkit';
 import { useCallback } from 'react';
 
-import { usePagination } from '@maskingtech/react-toolkit';
+import { requester } from '@comify/common/security';
 
-import { requester } from '^/domain/authentication';
-import exploreRelations from '^/domain/relation/exploreAggregated';
-import { tenant } from '@comify/common/domain/tenant';
+import exploreRelations from '^/domain/relation/explore';
 
 export default function useExploreCreators()
 {
@@ -13,7 +12,7 @@ export default function useExploreCreators()
 
     const getData = useCallback((page: number) =>
     {
-        return exploreRelations(tenant, requester, 'popular', { limit, offset: page * limit });
+        return exploreRelations(requester, { limit, offset: page * limit });
 
     }, []);
 

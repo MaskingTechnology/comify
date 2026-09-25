@@ -8,7 +8,7 @@ type Props = {
     readonly onBackClick: () => void;
 };
 
-export default function Component({ canGoBack, onBackClick }: Props)
+export default function ({ canGoBack, onBackClick }: Props)
 {
     return <Row alignX='justify' gap='small'>
         {canGoBack && <BackButton onClick={onBackClick} />}

@@ -5,11 +5,11 @@ import { TimeElapsed } from '~/components/common';
 
 type Props = {
     readonly fullName: string;
-    readonly date: string;
+    readonly date: Date;
     readonly onNameClick: () => void;
 };
 
-export default function Component({ fullName, date, onNameClick }: Props)
+export default function ({ fullName, date, onNameClick }: Props)
 {
     return <Column alignY='justify' gap='none'>
         <ClickArea onClick={onNameClick}>

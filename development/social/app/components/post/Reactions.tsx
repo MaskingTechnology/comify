@@ -1,27 +1,25 @@
 
 import { Column } from '@maskingtech/designsystem';
 
-import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
+import { type Post } from '^/domain/post';
 
 import { PullToRefresh, ResultContainer, ScrollLoader, OrderAndAddRow } from '~/components/common';
-
-import { useViewProfile } from '~/components/profile';
-import { useToggle } from '~/components/rating';
+import { useViewProfile } from '~/components/creator.profile';
+import { useToggle } from '~/components/post.rating';
 import { useEstablish } from '~/components/relation';
 
 import PanelList from './components/PanelList';
-
 import useReactions from './hooks/useReactions';
+import useShowCreateReaction from './hooks/useShowCreateReaction';
 import useViewPostDetails from './hooks/useViewPostDetails';
-import useShowCreateReaction from './hooks/useShowCreateReaction'; 
 
 type Props = {
-    readonly post: AggregatedPostData;
+    readonly post: Post;
 };
 
 const SCROLL_THRESHOLD = 0.8;
 
-export default function Feature({ post }: Props)
+export default function ({ post }: Props)
 {
     const establishRelation = useEstablish();
     const viewProfile = useViewProfile();
@@ -37,7 +35,7 @@ export default function Feature({ post }: Props)
             <ScrollLoader onLoad={getMoreReactions} isLoading={isLoading} isFinished={isFinished} threshold={SCROLL_THRESHOLD}>
                 <ResultContainer data={reactions} isLoading={isLoading}>
                     <PanelList
-                        posts={reactions as AggregatedPostData[]}
+                        posts={reactions as Post[]}
                         onFollowClick={establishRelation}
                         onCreatorClick={viewProfile}
                         onRatingClick={togglePostRating}

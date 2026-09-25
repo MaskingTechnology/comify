@@ -7,7 +7,7 @@ type Props = {
     readonly error: unknown;
 };
 
-export default function ErrorHandler({ error }: Props)
+export default function ({ error }: Props)
 {
     const isUnauthorized = error?.constructor?.name === 'Unauthorized'
         || error === 'Invalid authorization type'

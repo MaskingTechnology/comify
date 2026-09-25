@@ -1,11 +1,10 @@
 
+import { usePagination } from '@maskingtech/react-toolkit';
 import { useCallback } from 'react';
 
-import { usePagination } from '@maskingtech/react-toolkit';
+import { requester } from '@comify/common/security';
 
-import { requester } from '^/domain/authentication';
-import getFollowing from '^/domain/relation/getFollowingAggregated';
-import { tenant } from '@comify/common/domain/tenant';
+import getFollowing from '^/domain/relation/getFollowing';
 
 export default function useCreatorFollowing(creatorId?: string)
 {
@@ -18,7 +17,7 @@ export default function useCreatorFollowing(creatorId?: string)
             return [];
         }
 
-        return getFollowing(tenant, requester, creatorId, { limit, offset: page * limit });
+        return getFollowing(requester, creatorId, { limit, offset: page * limit });
 
     }, [creatorId]);
 

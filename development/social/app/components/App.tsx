@@ -1,13 +1,11 @@
 
+import { ErrorBoundary } from '@maskingtech/react-toolkit';
 import { BrowserRouter } from 'react-router-dom';
 
-import { ErrorBoundary } from '@maskingtech/react-toolkit';
-
 import { AppContextProvider, ErrorHandler } from './application';
-
 import Routes from './Routes';
 
-export default function App()
+export default function ()
 {
     return <AppContextProvider>
         <BrowserRouter>

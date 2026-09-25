@@ -19,7 +19,7 @@ function getWidth(size: string): string
     }
 }
 
-export default function Component({ url, size }: Props)
+export default function ({ url, size }: Props)
 {
     const source = url ?? portraitImage;
     const width = getWidth(size);

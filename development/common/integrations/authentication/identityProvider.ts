@@ -25,7 +25,7 @@ export const driver = setUpOpenID();
 const identityProvider = new IdentityProvider(driver, shelfLogger);
 
 const connectionManager = new ConnectionManager({
-    name: 'Identity provider',
+    name: 'IdentityProvider',
     connectable: identityProvider
 }, shelfLogger);
 

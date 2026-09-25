@@ -5,6 +5,7 @@
     "rootDir": "./",
     "outDir": "../../artifacts/build/insights",
     "paths": {
+      "~/*": ["./domain/*"],
       "^/*": ["./*"],
       "@comify/common/*": ["../common/*"]
     }

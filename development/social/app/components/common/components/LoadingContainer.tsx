@@ -1,5 +1,5 @@
 
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 import LoadingIndicator from './elements/LoadingIndicator';
 
@@ -8,7 +8,7 @@ type Props = {
     readonly children: ReactNode;
 };
 
-export default function Component({ isLoading, children }: Props)
+export default function ({ isLoading, children }: Props)
 {
     if (isLoading) return <LoadingIndicator />;
 

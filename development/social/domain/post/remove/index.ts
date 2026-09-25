@@ -1,4 +1,49 @@
 
-export { default } from './remove';
+import { type Identifier } from '@comify/common/primitives/identifier';
+import { type Requester } from '@comify/common/security';
 
-export { default as subscribe } from './subscribe';
+import retrieveById from '../_retrieveById';
+import { logger } from '../integrations';
+
+import isNotOwner from './isNotOwner';
+import markDeleted from './markDeleted';
+import markUndeleted from './markUndeleted';
+import publish from './publish';
+
+export default async function (requester: Requester, id: Identifier): Promise<void>
+{
+    // We only delete the post itself and do not cascade it towards it's children as it doesn't add
+    // any value, and it would make the code more complex.
+
+    let deleted = false;
+
+    try
+    {
+        const record = await retrieveById(requester.tenantId, id);
+
+        if (isNotOwner(record, requester.principalId))
+        {
+            logger.warn('Failed to remove post because it is not owned by the requester');
+
+            // Fail silently
+            return;
+        }
+
+        await markDeleted(id);
+
+        deleted = true;
+
+        await publish(requester.tenantId, requester.principalId, record.id, record.parentId);
+    }
+    catch (error)
+    {
+        logger.error('Failed to remove post', error);
+
+        if (deleted)
+        {
+            await markUndeleted(id);
+        }
+
+        throw error;
+    }
+}

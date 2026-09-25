@@ -1,11 +1,10 @@
 
+import { usePagination } from '@maskingtech/react-toolkit';
 import { useCallback } from 'react';
 
-import { usePagination } from '@maskingtech/react-toolkit';
+import { requester } from '@comify/common/security';
 
-import { requester } from '^/domain/authentication';
-import getRecentNotifications from '^/domain/notification/getRecentAggregated';
-import { tenant } from '@comify/common/domain/tenant';
+import getRecentNotifications from '^/domain/notification/getRecent';
 
 export default function useNotifications()
 {
@@ -13,7 +12,7 @@ export default function useNotifications()
 
     const getNotifications = useCallback((page: number) =>
     {
-        return getRecentNotifications(tenant, requester, { limit, offset: page * limit });
+        return getRecentNotifications(requester, { limit, offset: page * limit });
 
     }, []);
 

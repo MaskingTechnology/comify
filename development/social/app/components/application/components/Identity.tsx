@@ -1,17 +1,18 @@
 
 import { Row } from '@maskingtech/designsystem';
 
-import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
+import { type Creator } from '^/domain/creator';
 
 import { FullIdentity } from '~/components/creator';
+
 import LogoutButton from './LogoutButton';
 
 type Props = {
-    readonly identity: AggregatedCreatorData;
+    readonly identity: Creator;
     readonly onLogout: () => void;
 };
 
-export default function Component({ identity, onLogout }: Props)
+export default function ({ identity, onLogout }: Props)
 {
     return <Row alignX='justify' alignY='center'>
         <FullIdentity creator={identity} />

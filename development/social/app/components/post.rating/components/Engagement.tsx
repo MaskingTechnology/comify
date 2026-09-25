@@ -1,0 +1,25 @@
+
+import { ClickArea, Row } from '@maskingtech/designsystem';
+
+import { CompactNumber } from '~/components/common';
+
+import Icon from './elements/Icon';
+import useEngagement, { type EngageHandler } from './hooks/useEngagement';
+
+type Props = {
+    readonly isEngaged: boolean;
+    readonly count: number;
+    readonly onClick: EngageHandler;
+};
+
+export default function ({ isEngaged, count, onClick }: Props)
+{
+    const [isRated, ratingCount, handleClick] = useEngagement(isEngaged, count, onClick);
+
+    return <ClickArea onClick={handleClick}>
+        <Row gap='small' alignX='left' alignY='center'>
+            <Icon isRated={isRated} />
+            <CompactNumber value={ratingCount} />
+        </Row>
+    </ClickArea>;
+}

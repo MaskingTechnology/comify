@@ -1,0 +1,4 @@
+{
+    "./common/domain/tenant/getByOrigin/InvalidOrigin": { "default": {} },
+    "./common/domain/tenant/getByOrigin/TenantNotFound": { "default": {} }
+}

@@ -5,7 +5,7 @@ import { ConfirmationPanel, Modal } from '~/components/common';
 
 import useRemove from './hooks/useRemovePost';
 
-export default function Feature()
+export default function ()
 {
     const navigate = useNavigate();
     const { postId } = useParams();

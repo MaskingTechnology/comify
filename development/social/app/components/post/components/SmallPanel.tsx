@@ -1,22 +1,22 @@
 
-import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
-
 import { ClickArea, Column, Panel, Row } from '@maskingtech/designsystem';
 
+import { type Post } from '^/domain/post';
+
 import { TimeElapsed } from '~/components/common';
-import { Image as Comic } from '~/components/comic';
-import { Comment } from '~/components/comment';
+import { Image as Comic } from '~/components/post.comic';
+import { Comment } from '~/components/post.comment';
 
 import EngagementsRow from './elements/EngagementRow';
 
 type Props = {
-    readonly post: AggregatedPostData;
+    readonly post: Post;
     readonly onContentClick: () => void;
     readonly onRatingClick: () => Promise<boolean>;
     readonly onReactionClick: () => void;
 };
 
-export default function Component({ post, onContentClick, onRatingClick, onReactionClick }: Props)
+export default function ({ post, onContentClick, onRatingClick, onReactionClick }: Props)
 {
     return <Panel padding='small'>
         <Column gap='small' alignX='stretch'>

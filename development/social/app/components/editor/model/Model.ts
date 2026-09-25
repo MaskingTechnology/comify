@@ -1,5 +1,6 @@
 
 import Group from '../elements/Group';
+
 import Background from './Background';
 import type SpeechBubble from './SpeechBubble';
 

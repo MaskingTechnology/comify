@@ -11,6 +11,6 @@
     "js/ts.preferences.quoteStyle": "single",
     "js/ts.format.semicolons": "insert",
     "editor.codeActionsOnSave": {
-        "source.organizeImports": "explicit"
+        "source.fixAll.eslint": "explicit"
     }
 }

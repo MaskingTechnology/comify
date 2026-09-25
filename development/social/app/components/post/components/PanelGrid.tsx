@@ -1,18 +1,18 @@
 
-import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
-
 import { Grid } from '@maskingtech/designsystem';
+
+import { type Post } from '^/domain/post';
 
 import SmallPanel from './SmallPanel';
 
 type Props = {
-    readonly posts: AggregatedPostData[];
-    readonly onContentClick: (post: AggregatedPostData) => void;
-    readonly onRatingClick: (post: AggregatedPostData) => Promise<boolean>;
-    readonly onReactionClick: (post: AggregatedPostData) => void;
+    readonly posts: Post[];
+    readonly onContentClick: (post: Post) => void;
+    readonly onRatingClick: (post: Post) => Promise<boolean>;
+    readonly onReactionClick: (post: Post) => void;
 };
 
-export default function Component({ posts, onContentClick, onRatingClick, onReactionClick }: Props)
+export default function ({ posts, onContentClick, onRatingClick, onReactionClick }: Props)
 {
     return <Grid layout='two-columns' gap='medium'>
         {

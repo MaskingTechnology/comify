@@ -1,18 +1,19 @@
 
-import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
 
 import { Panel } from '@maskingtech/designsystem';
+
+import { type Relation } from '^/domain/relation';
 
 import Counters from './Counters';
 
 type Props = {
-    readonly relation: AggregatedRelationData;
+    readonly relation: Relation;
     readonly onFollowClick: () => Promise<void>;
     readonly onEditClick?: () => void;
     readonly onCreatorClick: () => void;
 };
 
-export default function Component({ relation, onFollowClick, onEditClick, onCreatorClick }: Props)
+export default function ({ relation, onFollowClick, onEditClick, onCreatorClick }: Props)
 {
     return <Panel padding='medium'>
         <Counters

@@ -1,16 +1,16 @@
 
-import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
+import { type Creator } from '^/domain/creator';
 
 import AvatarRow from './elements/AvatarRow';
 import TimeElapsedColumn from './elements/TimeElapsedColumn';
 
 type Props = {
-    readonly creator: AggregatedCreatorData;
-    readonly date: string;
+    readonly creator: Creator;
+    readonly date: Date;
     readonly onCreatorClick: () => void;
 };
 
-export default function Component({ creator, date, onCreatorClick }: Props)
+export default function ({ creator, date, onCreatorClick }: Props)
 {
     return <AvatarRow avatarSize='medium' avatarUrl={creator.portrait?.dataUrl}>
         <TimeElapsedColumn

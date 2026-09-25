@@ -1,4 +1,4 @@
 
-export { RECORD_TYPE } from './definitions';
+export { RECORD_TYPE, type Record, type Metrics } from './definitions';
 
-export type { DataModel } from './types';
+export { default as PostMetricsNotFound } from './_retrieveByPost';

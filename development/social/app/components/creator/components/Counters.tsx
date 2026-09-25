@@ -1,15 +1,15 @@
 
-import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
+import { type Creator } from '^/domain/creator';
 
 import AvatarRow from './elements/AvatarRow';
 import CountersColumn from './elements/CountersColumn';
 
 type Props = {
-    readonly creator: AggregatedCreatorData;
+    readonly creator: Creator;
     readonly onCreatorClick: () => void;
 };
 
-export default function Component({ creator, onCreatorClick }: Props)
+export default function ({ creator, onCreatorClick }: Props)
 {
     return <AvatarRow avatarSize='large' avatarUrl={creator.portrait?.dataUrl}>
         <CountersColumn

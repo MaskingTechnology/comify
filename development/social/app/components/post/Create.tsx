@@ -1,9 +1,9 @@
 
-import { Editor } from '~/components/comic';
+import { Editor } from '~/components/post.comic';
 
 import useAddComicPost from './hooks/useAddComicPost';
 
-export default function Feature()
+export default function ()
 {
     const addComicPost = useAddComicPost();
 

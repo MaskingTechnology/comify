@@ -1,7 +1,7 @@
 
 import { Column, Link, Paragraph } from '@maskingtech/designsystem';
 
-export default function Component()
+export default function ()
 {
     return <Column gap='none' alignX='center'>
         <Paragraph size='small'>

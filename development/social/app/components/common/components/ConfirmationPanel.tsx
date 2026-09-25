@@ -7,7 +7,7 @@ type Props = {
     readonly onCancel: () => void;
 };
 
-export default function Component({ message, onConfirm, onCancel }: Props)
+export default function ({ message, onConfirm, onCancel }: Props)
 {
     return <Panel padding='small'>
         <Column gap='medium' alignX='stretch'>

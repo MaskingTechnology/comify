@@ -8,7 +8,7 @@ type Props = {
     readonly nickname: string;
 };
 
-export default function Component({ fullName, nickname }: Props)
+export default function ({ fullName, nickname }: Props)
 {
     return <Row alignX='justify'>
         <NamesColumn fullName={fullName} nickname={nickname} />

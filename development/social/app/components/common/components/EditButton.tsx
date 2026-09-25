@@ -5,7 +5,7 @@ type Props = {
     readonly onClick: () => void;
 };
 
-export default function Component({ onClick }: Props)
+export default function ({ onClick }: Props)
 {
     return <Button
         type={'secondary'}

@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --config app/vite.config.js",
-    "build": "npm run clean && npm run build-domain",
-    "build-domain": "tsc && tsc-alias",
+    "build": "npm run clean && npm run build-logic",
+    "build-logic": "tsc && tsc-alias",
     "clean": "rimraf ../../artifacts/build/common",
     "lint": "eslint"
   }

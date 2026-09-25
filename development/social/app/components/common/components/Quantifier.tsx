@@ -8,7 +8,7 @@ type Props = {
     readonly text: string;
 };
 
-export default function Component({ value, text }: Props)
+export default function ({ value, text }: Props)
 {
     return <span>
         <CompactNumber value={value} weight='bold' />

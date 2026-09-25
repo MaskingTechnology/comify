@@ -3,7 +3,7 @@ import { Image, Panel, Row, Text } from '@maskingtech/designsystem';
 
 import noResultImage from '~/assets/images/noresult.svg';
 
-export default function Component()
+export default function ()
 {
     return <Panel type='transparent' padding='large'>
         <Row alignX='center' alignY='center' gap='medium'>

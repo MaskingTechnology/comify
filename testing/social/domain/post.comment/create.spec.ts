@@ -1,0 +1,41 @@
+
+import { beforeAll, afterAll, describe, expect, it } from 'vitest';
+
+import database from '@comify/common/integrations/database';
+
+import { RECORD_TYPE, MESSAGE_MAX_LENGTH, type Record } from '@comify/social/domain/post.comment';
+import create, { InvalidComment } from '@comify/social/domain/post.comment/create';
+
+beforeAll(async () =>
+{
+    await database.connect();
+});
+
+afterAll(async () =>
+{
+    await database.disconnect();
+});
+
+describe('index', () =>
+{
+    it('should create a comment', async () =>
+    {
+        const message = 'New comment';
+
+        const reactionId = await create({ message });
+
+        const result = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: reactionId } });
+
+        expect(result.record).toBeDefined();
+        expect(result.record?.message).toEqual(message);
+    });
+
+    it('should fail when message is invalid', async () =>
+    {
+        const message = 'A'.repeat(MESSAGE_MAX_LENGTH + 1);
+
+        const promise = create({ message });
+
+        await expect(promise).rejects.toThrow(InvalidComment);
+    });
+});

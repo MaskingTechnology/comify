@@ -1,8 +1,8 @@
 
 import { Row } from '@maskingtech/designsystem';
 
-import { Engagement as RatingEngagement } from '~/components/rating';
-import { Engagement as ReactionEngagement } from '~/components/reaction';
+import { Engagement as RatingEngagement } from '~/components/post.rating';
+import { Engagement as ReactionEngagement } from '~/components/post.reaction';
 
 type Props = {
     readonly isRated: boolean;
@@ -12,7 +12,7 @@ type Props = {
     readonly onReactionClick: () => void;
 };
 
-export default function Component({ isRated, ratingCount, reactionCount, onRatingClick, onReactionClick }: Props)
+export default function ({ isRated, ratingCount, reactionCount, onRatingClick, onReactionClick }: Props)
 {
     return <Row gap='medium' alignY='center'>
         <RatingEngagement isEngaged={isRated} count={ratingCount} onClick={onRatingClick} />

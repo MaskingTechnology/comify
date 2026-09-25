@@ -1,25 +1,23 @@
 
+import { Column, Ruler } from '@maskingtech/designsystem';
 import { Outlet } from 'react-router-dom';
 
-import { Column, Ruler } from '@maskingtech/designsystem';
-
-import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
+import { type Post } from '^/domain/post';
 
 import { LoadingAndResultContainer } from '~/components/common';
-import { useViewProfile } from '~/components/profile';
-import { useToggle } from '~/components/rating';
-import { SingleReactionRow } from '~/components/reaction';
+import { useViewProfile } from '~/components/creator.profile';
+import { useToggle } from '~/components/post.rating';
+import { SingleReactionRow } from '~/components/post.reaction';
 import { useEstablish } from '~/components/relation';
 
 import DetailsPanel from './components/DetailsPanel';
 import LargePanel from './components/LargePanel';
-
+import useConfirmPostRemoval from './hooks/useConfirmPostRemoval';
 import useHighlightReaction from './hooks/useHighlight';
 import usePost from './hooks/usePost';
-import useConfirmPostRemoval from './hooks/useConfirmPostRemoval';
 import useViewPostDetails from './hooks/useViewPostDetails';
 
-export default function Feature()
+export default function ()
 {
     const establishRelation = useEstablish();
     const togglePostRating = useToggle();
@@ -34,7 +32,7 @@ export default function Feature()
         <Column gap='medium' alignX='stretch'>
             <LoadingAndResultContainer data={post} isLoading={isPostLoading}>
                 <DetailsPanel
-                    post={post as AggregatedPostData}
+                    post={post as Post}
                     onFollowClick={establishRelation}
                     onRatingClick={togglePostRating}
                     onCreatorClick={viewProfile}
@@ -43,11 +41,11 @@ export default function Feature()
                 />
             </LoadingAndResultContainer>
             <Ruler direction='horizontal' />
-            <SingleReactionRow onShowClick={() => viewPostDetails(post as AggregatedPostData)} />
+            <SingleReactionRow onShowClick={() => viewPostDetails(post as Post)} />
             <LoadingAndResultContainer data={(highlight)} isLoading={isHighlightLoading}>
                 <LargePanel
                     key={highlight?.id}
-                    post={highlight as AggregatedPostData}
+                    post={highlight as Post}
                     onFollowClick={establishRelation}
                     onCreatorClick={viewProfile}
                     onRatingClick={togglePostRating}

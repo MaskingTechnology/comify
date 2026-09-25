@@ -2,42 +2,53 @@
 import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 
 import database from '@comify/common/integrations/database';
+import eventBroker from '@comify/common/integrations/events';
 
-import { RECORD_TYPE as CREATOR_RECORD_TYPE } from '^/domain/creator';
-import updateNickname, { NicknameAlreadyExists } from '^/domain/creator/updateNickname';
+import { RECORD_TYPE, type Record } from '@comify/social/domain/creator';
+import updateNickname, { NicknameAlreadyExists } from '@comify/social/domain/creator/updateNickname';
 
-import { DATABASES, REQUESTERS, TENANTS, VALUES } from './fixtures';
+import { REQUESTERS, CREATOR_RECORDS, seedCreators } from '../../fixtures';
 
 beforeAll(async () =>
 {
-    await database.connect();
+    await Promise.all([
+        database.connect(),
+        eventBroker.connect()
+    ]);
 });
 
 afterAll(async () =>
 {
-    await database.disconnect();
+    await Promise.all([
+        database.disconnect(),
+        eventBroker.disconnect()
+    ]);
 });
 
 beforeEach(async () =>
 {
-    await DATABASES.withEverything();
+    await seedCreators();
 });
 
-describe('domain/creator/updateNickname', () =>
+describe('index', () =>
 {
     it('should update the nickname', async () =>
     {
-        await updateNickname(TENANTS.default, REQUESTERS.CREATOR, VALUES.NICKNAMES.NEW);
+        const newNickname = 'aaaaaliceee';
 
-        const creator = await database.readRecord(CREATOR_RECORD_TYPE, { id: { EQUALS: REQUESTERS.CREATOR.id } });
+        await updateNickname(REQUESTERS.ALICE, newNickname);
 
-        expect(creator?.nickname).toBe(VALUES.NICKNAMES.NEW);
+        const result = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: REQUESTERS.ALICE.principalId } });
+
+        expect(result.record?.nickname).toBe(newNickname);
     });
 
     it('should NOT update the nickname because of a duplicate', async () =>
     {
-        const promise = updateNickname(TENANTS.default, REQUESTERS.CREATOR, VALUES.NICKNAMES.DUPLICATE);
-        
+        const duplicateNickname = CREATOR_RECORDS.BOB.nickname;
+
+        const promise = updateNickname(REQUESTERS.ALICE, duplicateNickname);
+
         await expect(promise).rejects.toThrow(NicknameAlreadyExists);
     });
 });

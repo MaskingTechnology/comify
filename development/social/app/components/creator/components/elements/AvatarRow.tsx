@@ -1,7 +1,6 @@
 
-import type { ReactNode } from 'react';
-
 import { Row } from '@maskingtech/designsystem';
+import { type ReactNode } from 'react';
 
 import Avatar from './Avatar';
 
@@ -11,7 +10,7 @@ type Props = {
     readonly children: ReactNode;
 };
 
-export default function Component({ avatarSize, avatarUrl, children }: Props)
+export default function ({ avatarSize, avatarUrl, children }: Props)
 {
     const gapSize = avatarSize === 'small' ? 'small' : 'medium';
 

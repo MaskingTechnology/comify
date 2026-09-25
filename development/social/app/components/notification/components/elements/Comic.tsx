@@ -1,15 +1,15 @@
 
 import { ClickArea, Image, Row, Text } from '@maskingtech/designsystem';
 
-import type { AggregatedData as AggregatedComicData } from '^/domain/comic/aggregate';
+import { type Comic } from '^/domain/post.comic';
 
 type Props = {
-    readonly comic: AggregatedComicData;
+    readonly comic: Comic;
     readonly message: string;
     readonly onClick: () => void;
 };
 
-export default function Component({ comic, message, onClick }: Props)
+export default function ({ comic, message, onClick }: Props)
 {
     return <Row gap='medium' alignX='justify'>
         <Text value={message} />

@@ -1,6 +1,6 @@
 
-import NotificationService, { MemoryDriver } from '@theshelf/notification';
 import ConnectionManager from '@theshelf/connection';
+import NotificationService, { MemoryDriver } from '@theshelf/notification';
 
 import { shelfLogger } from '^/integrations/logging';
 

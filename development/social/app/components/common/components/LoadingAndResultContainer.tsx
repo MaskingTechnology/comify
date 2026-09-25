@@ -1,5 +1,5 @@
 
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 import LoadingContainer from './LoadingContainer';
 import ResultContainer from './ResultContainer';
@@ -10,7 +10,7 @@ type Props = {
     readonly children: ReactNode;
 };
 
-export default function Component({ data, isLoading, children }: Props)
+export default function ({ data, isLoading, children }: Props)
 {
     return <LoadingContainer isLoading={isLoading}>
         <ResultContainer data={data} isLoading={isLoading}>

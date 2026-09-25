@@ -7,7 +7,7 @@ type Props = {
     readonly onGoHome: () => void;
 };
 
-export default function Component({ onGoHome }: Props)
+export default function ({ onGoHome }: Props)
 {
     return <Panel type='transparent' padding='small'>
         <ClickArea onClick={onGoHome}>

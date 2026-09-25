@@ -1,15 +1,14 @@
 
 import database from '@comify/common/integrations/database';
 
-import { RECORD_TYPE } from '../definitions';
-import type { DataModel } from '../types';
+import { RECORD_TYPE, type Record } from '../definitions';
 
-export default async function retrieveByNickname(tenantId: string, nickname: string): Promise<DataModel | undefined>
+export default async function (tenantId: string, nickname: string): Promise<Record | undefined>
 {
-    const query = {
+    const result = await database.readRecord<Record>(RECORD_TYPE, {
         tenantId: { EQUALS: tenantId },
         nickname: { EQUALS: nickname }
-    };
+    });
 
-    return database.readRecord(RECORD_TYPE, query) as Promise<DataModel | undefined>;
+    return result.record;
 }

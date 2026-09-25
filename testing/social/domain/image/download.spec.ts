@@ -2,15 +2,13 @@
 import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 
 import database from '@comify/common/integrations/database';
-import fileStore from '@comify/common/integrations/fileStore';
+import fileStore from '@comify/common/integrations/files';
 
-import { RECORD_TYPE } from '^/domain/image';
-import download, { ImageNotDownloaded } from '^/domain/image/download';
-import InvalidImage from '^/domain/image/validate/InvalidImage';
+import { RECORD_TYPE, type Record } from '@comify/social/domain/image';
+import download, { ImageNotDownloaded } from '@comify/social/domain/image/download';
+import { InvalidImage } from '@comify/social/domain/image/_validate';
 
-import { DATABASES, FILE_STORES, HTTP_CLIENTS, URLS } from './fixtures';
-
-HTTP_CLIENTS.withImages();
+import { URLS, seedImages } from './fixtures';
 
 beforeAll(async () =>
 {
@@ -28,30 +26,26 @@ afterAll(async () =>
     ]);
 });
 
-beforeEach(async () =>
+beforeEach(() =>
 {
-    HTTP_CLIENTS.withImages();
-
-    await Promise.all([
-        DATABASES.empty(),
-        FILE_STORES.empty()
-    ]);
+    seedImages();
 });
 
-describe('domain/image/download', () =>
+describe('index', () =>
 {
     it('should download an image', async () =>
     {
         const imageId = await download('test', URLS.VALID);
-        const image = await database.readRecord(RECORD_TYPE, { id: { EQUALS: imageId } });
 
-        expect(image).toBeDefined();
+        const result = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: imageId } });
 
-        const data = await fileStore.readFile(image?.storageKey as string);
+        expect(result.record).toBeDefined();
+        expect(result.record?.filename).toEqual('image.jpg');
+        expect(result.record?.mimeType).toEqual('image/jpeg');
+        expect(result.record?.storageKey).toContain('test/');
 
-        expect(image?.filename).toEqual('image.jpg');
-        expect(image?.mimeType).toEqual('image/jpeg');
-        expect(image?.storageKey).toContain('test/');
+        const data = await fileStore.readFile(result.record?.storageKey as string);
+
         expect(data.length).toEqual(95);
     });
 

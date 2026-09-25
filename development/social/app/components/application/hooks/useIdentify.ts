@@ -2,10 +2,10 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { requester } from '^/domain/authentication';
-import type { AggregatedData as IdentityModel } from '^/domain/creator/aggregate';
-import getMe from '^/domain/creator/getMeAggregated';
-import { tenant } from '@comify/common/domain/tenant';
+import { requester } from '@comify/common/security';
+
+import { type Creator } from '^/domain/creator';
+import getMe from '^/domain/creator/getMe';
 
 import { useAppContext } from '../contexts/AppContext';
 
@@ -16,7 +16,7 @@ export default function useIdentify()
 
     const identify = () =>
     {
-        const setIdentity = (identity: IdentityModel) =>
+        const setIdentity = (identity: Creator) =>
         {
             const redirectLocation = globalThis.sessionStorage.getItem('redirect');
 
@@ -27,7 +27,7 @@ export default function useIdentify()
 
         const getIdentity = async () =>
         {
-            const identity = await getMe(tenant, requester);
+            const identity = await getMe(requester);
 
             setIdentity(identity);
         };

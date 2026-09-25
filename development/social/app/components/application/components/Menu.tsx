@@ -1,7 +1,7 @@
 
 import { useMemo } from 'react';
 
-import type { AggregatedData as AggregatedCreatorData } from '^/domain/creator/aggregate';
+import { type Creator } from '^/domain/creator';
 
 import createActiveIcon from '~/assets/images/navigation/create-active.svg';
 import createInactiveIcon from '~/assets/images/navigation/create-inactive.svg';
@@ -13,15 +13,14 @@ import profileActiveIcon from '~/assets/images/navigation/profile-active.svg';
 import profileInactiveIcon from '~/assets/images/navigation/profile-inactive.svg';
 import timelineActiveIcon from '~/assets/images/navigation/timeline-active.svg';
 import timelineInactiveIcon from '~/assets/images/navigation/timeline-inactive.svg';
-
 import { Menu } from '~/components/common';
 
 type Props = {
     readonly vertical: boolean;
-    readonly identity: AggregatedCreatorData;
+    readonly identity: Creator;
 };
 
-export default function Component({ vertical, identity }: Props)
+export default function ({ vertical, identity }: Props)
 {
     const items = useMemo(() => [
         { title: 'Timeline', route: '/timeline', activeIcon: timelineActiveIcon, inactiveIcon: timelineInactiveIcon },

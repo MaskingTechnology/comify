@@ -1,25 +1,25 @@
 
-import type { AggregatedData as AggregatedPostData } from '^/domain/post/aggregate';
-import type { AggregatedData as AggregatedRelationData } from '^/domain/relation/aggregate';
-
 import { ClickArea, Column, Panel } from '@maskingtech/designsystem';
 
-import { Image as Comic } from '~/components/comic';
-import { Comment } from '~/components/comment';
+import { type Post } from '^/domain/post';
+import { type Relation } from '^/domain/relation';
+
+import { Image as Comic } from '~/components/post.comic';
+import { Comment } from '~/components/post.comment';
 import { TimeElapsed } from '~/components/relation';
 
 import EngagementsRow from './elements/EngagementRow';
 
 type Props = {
-    readonly post: AggregatedPostData;
-    readonly onFollowClick: (relation: AggregatedRelationData) => Promise<void>;
-    readonly onCreatorClick: (relation: AggregatedRelationData) => void;
-    readonly onContentClick: (post: AggregatedPostData) => void;
-    readonly onRatingClick: (post: AggregatedPostData) => Promise<boolean>;
-    readonly onReactionClick: (post: AggregatedPostData) => void;
+    readonly post: Post;
+    readonly onFollowClick: (relation: Relation) => Promise<void>;
+    readonly onCreatorClick: (relation: Relation) => void;
+    readonly onContentClick: (post: Post) => void;
+    readonly onRatingClick: (post: Post) => Promise<boolean>;
+    readonly onReactionClick: (post: Post) => void;
 };
 
-export default function Component({ post, onFollowClick, onCreatorClick, onContentClick, onRatingClick, onReactionClick }: Props)
+export default function ({ post, onFollowClick, onCreatorClick, onContentClick, onRatingClick, onReactionClick }: Props)
 {
     return <Panel padding='medium'>
         <Column gap='medium' alignX='stretch'>

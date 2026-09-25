@@ -9,7 +9,7 @@ type Props = {
     readonly onOrderChange?: (newKey: string) => void;
 };
 
-export default function Component({ selected, onOrderChange, reactionHandler }: Props)
+export default function ({ selected, onOrderChange, reactionHandler }: Props)
 {
     return <Row alignX='justify' alignY='center'>
         <OrderSelection key='ratings' selected={selected} onChange={onOrderChange} />
