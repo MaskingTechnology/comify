@@ -10,14 +10,16 @@ export default function useEngagement(isEngaged: boolean, count: number, engage:
 
     const handleClick = useCallback(async () =>
     {
-        const isRated = await engage();
+        const updatedIsRated = !isRated;
 
         // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-        isRated
+        updatedIsRated
             ? setRatingCount(ratingCount + 1)
             : setRatingCount(ratingCount - 1);
 
-        setIsRated(isRated);
+        setIsRated(updatedIsRated);
+
+        await engage();
 
     }, [engage, ratingCount]);
 
