@@ -4,7 +4,7 @@
     "./social/domain/creator/getByNickname/retrieve": { "default": {  "access": "protected" } },
     "./social/domain/creator/getIdByEmail/retrieve": { "default": {  "access": "protected" } },
     "./social/domain/creator/getOtherIds/retrieve": { "default": {  "access": "protected" } },
-    "./social/domain/creator/updateNickname/retrieve": { "default": {  "access": "protected" } },
+    "./social/domain/creator/updateNickname/retrieveByNickname": { "default": {  "access": "protected" } },
 
     "./social/domain/creator.metrics/_retrieveByCreator": { "default": {  "access": "protected" } },
 

@@ -1,6 +1,6 @@
 {
     "./social/domain/creator/create/persist": { "default": {  "access": "protected" } },
-    "./social/domain/creator/create/remove/erase": { "default": {  "access": "protected" } },
+    "./social/domain/creator/create/remove": { "default": {  "access": "protected" } },
     "./social/domain/creator/updateFullName/persist": { "default": {  "access": "protected" } },
     "./social/domain/creator/updateNickname/persist": { "default": {  "access": "protected" } },
 
@@ -10,10 +10,10 @@
     "./social/domain/creator.metrics/updatePosts/persist": { "default": { "access": "protected" } },
 
     "./social/domain/image/_save": { "default": {  "access": "protected" } },
-    "./social/domain/image/remove/erase": { "default": {  "access": "protected" } },
+    "./social/domain/image/remove": { "default": {  "access": "protected" } },
 
     "./social/domain/post/_create/persist": { "default": {  "access": "protected" } },
-    "./social/domain/post/_create/remove/erase": { "default": {  "access": "protected" } },
+    "./social/domain/post/_create/remove": { "default": {  "access": "protected" } },
     "./social/domain/post/remove/markDeleted": { "default": { "access": "protected" }},
     "./social/domain/post/remove/markUndeleted": { "default": { "access": "protected" }},
 
@@ -28,8 +28,8 @@
     "./social/domain/post.metrics/updateReactions/persist": { "default": { "access": "protected" } },
 
     "./social/domain/post.rating/toggle/create/persist": { "default": {  "access": "protected" } },
-    "./social/domain/post.rating/toggle/remove/erase": { "default": {  "access": "protected" } },
+    "./social/domain/post.rating/toggle/remove": { "default": {  "access": "protected" } },
 
     "./social/domain/relation/establish/create/persist": { "default": {  "access": "protected" } },
-    "./social/domain/relation/establish/remove/erase": { "default": {  "access": "protected" } }
+    "./social/domain/relation/establish/remove": { "default": {  "access": "protected" } }
 }
