@@ -35,7 +35,7 @@ export const driver = process.env.FILE_STORE_DRIVER === 's3'
 const fileStore = new FileStore(driver, shelfLogger);
 
 const connectionManager = new ConnectionManager({
-    name: 'File store',
+    name: 'FileStore',
     connectable: fileStore
 }, shelfLogger);
 

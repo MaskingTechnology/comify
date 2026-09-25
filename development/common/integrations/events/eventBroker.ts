@@ -27,7 +27,7 @@ export const driver = process.env.EVENT_BROKER_DRIVER === 'kafka'
 const eventBroker = new EventBroker(driver, shelfLogger);
 
 const connectionManager = new ConnectionManager({
-    name: 'Event broker',
+    name: 'EventBroker',
     connectable: eventBroker
 }, shelfLogger);
 
