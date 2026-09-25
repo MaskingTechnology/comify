@@ -26,7 +26,7 @@ export default async function (tenantId: TenantId, nickname: Nickname): Promise<
         return `${existingRecord.nickname}_001`;
     }
 
-    const oldNumber = parseInt(foundRecord.nickname.substring(formattedNickname.length + 1));
+    const oldNumber = Number.parseInt(foundRecord.nickname.substring(formattedNickname.length + 1));
     const newNumber = oldNumber + 1;
 
     if (newNumber === MAX_NICKNAME_NUMBER)
