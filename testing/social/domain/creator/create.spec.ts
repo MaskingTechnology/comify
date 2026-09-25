@@ -4,7 +4,6 @@ import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 import database from '@comify/common/integrations/database';
 import eventBroker from '@comify/common/integrations/events';
 import fileStore from '@comify/common/integrations/files';
-
 import { RECORD_TYPE, type Record } from '@comify/social/domain/creator';
 import create, { TooManySimilarNicknames, type CreateData } from '@comify/social/domain/creator/create';
 
@@ -95,7 +94,7 @@ describe('index', () =>
 
     it('should create with a valid profile picture', async () =>
     {
-        const portraitUrl = IMAGE_URLS.PROFILE; // TODO: Fix validation - fails because it requires a string value
+        const portraitUrl = IMAGE_URLS.PROFILE;
 
         const data: CreateData = { nickname: 'newcreator', fullName: 'New Creator', email: 'new@example.com', portraitUrl };
 

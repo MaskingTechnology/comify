@@ -1,5 +1,5 @@
 
-import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
+import { beforeAll, afterAll, describe, expect, it } from 'vitest';
 
 import database from '@comify/common/integrations/database';
 import eventBroker from '@comify/common/integrations/events';

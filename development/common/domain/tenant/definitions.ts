@@ -22,7 +22,7 @@ export const tenantIdValidation: Validation = {
 
 export const originValidation: Validation = {
     message: 'Invalid origin',
-    URL: {}
+    URL_STRING: {}
 };
 
 export const tenant: Tenant = {

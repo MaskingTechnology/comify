@@ -12,3 +12,5 @@ export default async function (origin: string): Promise<Tenant>
 
     return { id: record.id, origin: origin };
 }
+
+export { default as TenantNotFound } from './TenantNotFound';
