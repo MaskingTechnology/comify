@@ -1,7 +1,7 @@
 {
   "name": "comify",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.2.3",
   "type": "module",
   "scripts": {
     "artifacts": "npm run build && npm run dist",
@@ -29,6 +29,7 @@
     
     "dev": "jitar start --env-file=development.env --service=deployment/services/development/worker.json --http-body-limit=512000",
     "demo": "jitar start --env-file=development.env --service=deployment/services/demonstration/social.json --http-body-limit=512000",
+
     "gateway": "jitar start --env-file=development.env --service=deployment/services/production/gateway.json --http-body-limit=512000",
     "bff": "jitar start --env-file=development.env --service=deployment/services/production/bff.json --http-body-limit=512000",
     "notification": "jitar start --env-file=development.env --service=deployment/services/production/notification.json --http-body-limit=512000",
@@ -36,7 +37,9 @@
     "reads2": "jitar start --env-file=development.env --service=deployment/services/production/reads2.json --http-body-limit=512000",
     "writes": "jitar start --env-file=development.env --service=deployment/services/production/writes.json --http-body-limit=512000",
     "social-app": "jitar start --env-file=development.env --service=deployment/services/production/social-app.json --http-body-limit=512000",
-    "proxy": "jitar start --env-file=development.env --service=deployment/services/production/proxy.json --http-body-limit=512000"
+    "proxy": "jitar start --env-file=development.env --service=deployment/services/production/proxy.json --http-body-limit=512000",
+
+    "containerd": "jitar start --log-level=warn --service=service.json --http-body-limit=640000"
   },
   "workspaces": [
     "development/common",
