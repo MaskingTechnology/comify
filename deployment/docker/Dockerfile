@@ -9,11 +9,11 @@ COPY package.json /opt/app/package.json
 COPY package-lock.json /opt/app/package-lock.json
 
 # INIT configs
-COPY jitar.json /opt/app/jitar.json
+COPY deployment/jitar.prod.json /opt/app/jitar.json
 COPY deployment/services/demonstration/social.json /opt/app/service.json
 
 # Init dist
-RUN mkdir -p /opt/app/dist
+RUN mkdir /opt/app/dist
 COPY artifacts/dist /opt/app/dist
 
 WORKDIR /opt/app
