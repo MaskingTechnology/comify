@@ -4,25 +4,25 @@
   "version": "0.2.3",
   "type": "module",
   "scripts": {
-    "artifacts": "npm run build && npm run dist",
-
-    "build": "npm run build-logic && npm run build-app",
-    "build-logic": "npm run build-logic --workspaces --if-present",
-    "build-app": "npm run build-app --workspaces --if-present",
-    "lint": "npm run lint --workspaces --if-present",
-    "review": "npm run review --workspaces --if-present",
     "clean": "npm run clean --workspaces --if-present",
-
-    "test": "vitest run",
-    "test-coverage": "vitest run --coverage",
-
-    "dist": "npm run clean-dist && npm run bundle && npm run copy",
-    "bundle": "jitar build",
     "clean-build": "rimraf artifacts/build",
     "clean-dist": "rimraf artifacts/dist",
+
+    "build": "npm run compile && npm run bundle",
+
+    "compile": "npm run compile-logic && npm run compile-app",
+    "compile-logic": "npm run compile-logic --workspaces --if-present",
+    "compile-app": "npm run compile-app --workspaces --if-present",
+
+    "bundle": "npm run clean-dist && jitar build && npm run copy",
     "copy": "npm run copy-apps && npm run copy-assets",
     "copy-apps": "cpx 'artifacts/build/*/app/**/*' 'artifacts/dist'",
     "copy-assets": "cpx 'artifacts/build/*/assets/**/*' 'artifacts/dist'",
+
+    "test": "vitest run",
+    "test-coverage": "vitest run --coverage",
+    "lint": "npm run lint --workspaces --if-present",
+    "review": "npm run review --workspaces --if-present",
 
     "docker-up": "docker compose --env-file development.env up -d",
     "docker-down": "docker compose --env-file development.env down",
