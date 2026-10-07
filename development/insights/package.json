@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite --config app/vite.config.js",
-    "build": "npm run clean && npm run build-logic && npm run build-app",
-    "build-app": "vite build --config app/vite.config.js",
-    "build-logic": "tsc && tsc-alias",
+    "compile": "npm run clean && npm run compile-logic && npm run compile-app",
+    "compile-app": "vite build --config app/vite.config.js",
+    "compile-logic": "tsc && tsc-alias",
     "clean": "rimraf ../../artifacts/build/insights",
     "lint": "eslint"
   }
