@@ -1,10 +1,12 @@
 {
     "url": "http://127.0.0.1:4001",
     "setUp": [
-        "./common/integrations/database/setUp"
+        "./common/integrations/database/setUp",
+        "./common/integrations/events/setUp"
     ],
     "tearDown": [
-        "./common/integrations/database/tearDown"
+        "./common/integrations/database/tearDown",
+        "./common/integrations/events/tearDown"
     ],
     "healthChecks": [
         "./common/integrations/database/healthCheck"

@@ -1,3 +1,7 @@
 {
-    "./social/domain/notification/subscriptions": { "default": {  "access": "private" } }
+    "./social/domain/notification/getRecent/retrieve": { "default": {  "access": "protected" } },
+
+    "./social/domain/notification/subscriptions": { "default": {  "access": "private" } },
+    "./social/domain/notification/_create": { "default": {  "access": "private" } },
+    "./social/domain/notification/removeByPost": { "default": {  "access": "private" } }
 }
