@@ -35,7 +35,7 @@
             "social.writes"
         ],
 
-        "serveIndexOnNotFound": true,
+        "fallback": "index.html",
         "assetRoot": "./social/app",
         "assets": ["index.html", "appicon32.png", "assets/**/*", "registerSW.js", "sw.js", "workbox-*.js", "manifest.webmanifest"]
     }
