@@ -13,7 +13,6 @@
     "./social/domain/creator.metrics/get/retrieveExisting": { "default": {  "access": "protected" } },
     "./social/domain/creator.metrics/getMany/retrieveExisting": { "default": {  "access": "protected" } },
 
-    "./social/domain/image/_save/fileExists": { "default": {  "access": "protected" } },
     "./social/domain/image/getById/retrieveFile": { "default": {  "access": "protected" } },
     "./social/domain/image/getById/retrieveRecord": { "default": {  "access": "protected" } },
     "./social/domain/image/getManyById/retrieveFiles": { "default": {  "access": "protected" } },

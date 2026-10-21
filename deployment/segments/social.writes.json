@@ -9,8 +9,7 @@
     "./social/domain/creator.metrics/updateFollowing/persist": { "default": { "access": "protected" } },
     "./social/domain/creator.metrics/updatePosts/persist": { "default": { "access": "protected" } },
 
-    "./social/domain/image/_save/insertFile": { "default": {  "access": "protected" } },
-    "./social/domain/image/_save/persist": { "default": {  "access": "protected" } },
+    "./social/domain/image/_save": { "default": {  "access": "protected" } },
     "./social/domain/image/remove": { "default": {  "access": "protected" } },
 
     "./social/domain/post/_create/persist": { "default": {  "access": "protected" } },
