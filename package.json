@@ -4,7 +4,7 @@
   "version": "0.2.5",
   "type": "module",
   "scripts": {
-    "clean": "npm run clean --workspaces --if-present",
+    "clean": "rimraf artifacts",
     "clean-build": "rimraf artifacts/build",
     "clean-dist": "rimraf artifacts/dist",
 
@@ -16,8 +16,8 @@
 
     "bundle": "npm run clean-dist && jitar build && npm run copy",
     "copy": "npm run copy-apps && npm run copy-assets",
-    "copy-apps": "cpx 'artifacts/build/*/app/**/*' 'artifacts/dist'",
-    "copy-assets": "cpx 'artifacts/build/*/assets/**/*' 'artifacts/dist'",
+    "copy-apps": "cpx \"artifacts/build/*/app/**/*\" \"artifacts/dist\"",
+    "copy-assets": "cpx \"artifacts/build/*/assets/**/*\" \"artifacts/dist\"",
 
     "test": "vitest run",
     "test-coverage": "vitest run --coverage",
@@ -26,7 +26,7 @@
 
     "docker-up": "docker compose --env-file development.env up -d",
     "docker-down": "docker compose --env-file development.env down",
-    
+  
     "dev": "jitar start --env-file=development.env --service=deployment/services/development/worker.json --http-body-limit=512000",
     "demo": "jitar start --env-file=development.env --service=deployment/services/demonstration/social.json --http-body-limit=512000",
 
