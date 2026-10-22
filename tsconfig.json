@@ -7,11 +7,11 @@
     "isolatedModules": true,
     "noEmit": false,
     "declaration": true,
+    "removeComments": true,
     "useDefineForClassFields": true,
     "allowJs": false,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
     "forceConsistentCasingInFileNames": true
   }
 }
