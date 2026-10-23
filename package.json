@@ -83,14 +83,14 @@
     "@theshelf/validation": "^0.6.0",
     "@theshelf/validation-driver-zod": "^0.6.0",
     "dayjs": "^1.11.23",
-    "jitar": "^0.12.0",
+    "jitar": "^0.12.1",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "react-router-dom": "^7.18.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
-    "@jitar/plugin-vite": "^0.12.0",
+    "@jitar/plugin-vite": "^0.12.1",
     "@types/node": "^24.19.2",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
