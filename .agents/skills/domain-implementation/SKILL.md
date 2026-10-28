@@ -33,7 +33,7 @@ Before starting implementation, ensure you have:
 ### Step 2: Domain Model Design
 
 1. **Define TypeScript types** for both the **Record** (database layer) and the **Domain Model** (business layer).
-2. **Establish validation rules** using `@theshelf/validation` or custom validators.
+2. **Establish validation rules** via the shared `validator` singleton (`@comify/common/integrations/validation`, which wraps `@theshelf/validation`) or custom validators.
 3. **Define error types** specific to the domain (use domain-specific error classes, not generic errors).
 4. **Document invariants** — invariants that must hold true for the domain model.
 
@@ -94,16 +94,16 @@ export const RECORD_TYPE = 'post';
 
 Implement each use-case function following these conventions:
 
-1. **File location:** `development/<context>/domain/<feature>/<use-case>/index.ts` — each use case gets its own **directory** with an `index.ts` as the public entry point.
-2. **Naming (public use cases):** PascalCase directory names (`establish`, `explore`, `get`, `getFollowers`, `getFollowing`, `getMany`).
-3. **Naming (internal helpers):** `_camelCase` subdirectories for private/internal helpers (`_retrieve`, `_toModel`, `_toModels`, `_translateMany`, `_retrieveFollowing`).
+1. **File location:** `development/<context>/domain/<feature>/<use-case>/index.ts` — each use case gets its own **directory** with an `index.ts` as the public entry point. A use case may be a single file instead of a directory when it has no helpers of its own (e.g. `development/social/domain/post/getById/index.ts`).
+2. **Naming (public use cases):** camelCase directory names (`establish`, `explore`, `get`, `getById`, `getByCreator`, `getByFollowing`, `getByParent`, `getFollowers`, `getFollowing`, `getMany`, `getManyById`, `getRecommended`, `createWithComic`, `createWithComment`, `remove`).
+3. **Naming (internal helpers):** `_camelCase` subdirectories for private/internal helpers (`_create`, `_retrieveById`, `_toModel`, `_toModels`, `_translateMany`, `_retrieveFollowing`). These are not use cases themselves but are shared building blocks consumed by one or more public use cases (e.g. `post/_create` is the shared creation logic used by both `post/createWithComic` and `post/createWithComment`).
 4. **Pure functions** where possible; side effects (DB, external APIs) should be explicit and isolated.
 5. **Error handling:** Domain-specific error classes extending `@comify/common/integrations/errors` types (e.g., `BadRequest`, `NotFound`).
 6. **Type imports** inline: `import type { Post } from '../types'`
 7. **Single quotes**, no semicolons.
 
 ```typescript
-// Example: development/social/domain/establish/index.ts
+// Example: development/social/domain/relation/establish/index.ts
 import { type Requester } from '@comify/common/security';
 
 import { type RelationKey } from '../definitions';
@@ -155,7 +155,7 @@ The actual implementation maintains a clear separation between the **Record** (d
 Conversion functions (`_toModel`, `_toModels`) bridge the two layers, fetching related entities (e.g., `Creator`) and computing derived properties (`established`, `self`).
 
 ```typescript
-// Example: development/social/domain/_toModel/index.ts
+// Example: development/social/domain/relation/_toModel/index.ts
 import { type TenantId } from '@comify/common/domain/tenant';
 
 import getCreator from '~/creator/getById';
@@ -187,93 +187,174 @@ const result = await database.searchRecords<Record>(RECORD_TYPE, {
 return result.records;
 ```
 
-### Step 4: API Layer (If Applicable)
+### Step 4: Exposing Use Cases (Jitar Segments)
 
-1. **File location:** `development/<context>/app/api/<resource>.ts`
-2. **Route definitions** using the Jitar HTTP plugin (`@jitar-plugins/http`).
-3. **Middleware chain:** Authentication → Validation → Domain call → Response serialization.
-4. **Error mapping:** Convert domain errors to appropriate HTTP status codes.
+There is no separate REST API layer / route file to write. Jitar directly exposes the exported domain functions as remotely callable procedures; the frontend (or another bounded context) calls them like regular async functions (e.g. `import remove from '^/domain/post/remove'`, then `await remove(requester, id)`). What you need to do instead is **register the new use case(s) in the segment configuration** so Jitar knows how (and whether) to expose them:
 
-```typescript
-// Example: development/social/app/api/posts.ts
-import { post } from '@jitar-plugins/http';
-import { authenticate } from '@theshelf/authentication';
-import { validate } from '@theshelf/validation';
-import { createPost } from '../../domain/create';
+1. **File location:** `deployment/segments/<context>.<segment>.json` — segments group functions by access pattern, e.g. `social.bff.json` (functions callable from the browser/BFF), `social.reads.json` / `social.writes.json` (internal read/write helpers callable between segments), `social.errors.json` (error classes that must be serializable across segment boundaries).
+2. **Access levels:** `"public"` (callable directly from the client), `"protected"` (callable between segments/services but not from the client), `"private"` (not implemented here, reserved for segment-local only).
+3. **Public use cases** (the top-level `index.ts` of a use-case directory, e.g. `./social/domain/post/createWithComic`) are registered as `"access": "public"` in the relevant `*.bff.json` segment.
+4. **Internal helpers** that perform the actual DB/file reads or writes (e.g. `./social/domain/post/_create/persist`, `./social/domain/post/explore/retrieve`) are registered as `"access": "protected"` in the relevant `*.reads.json` / `*.writes.json` segment so they can run in a separate (e.g. database-adjacent) deployment segment.
+5. **Domain-specific error classes** that can be thrown back across a segment boundary (e.g. `PostNotFound`, `InvalidPost`) must be registered in the context's `*.errors.json` segment so Jitar can (de)serialize them correctly.
+6. **Authentication, validation, error mapping** all happen inside the domain layer itself (see Step 3) — there is no separate middleware chain per route. Jitar services apply cross-cutting middleware (origin, authentication, tenancy) globally, configured once per service in `deployment/services/**/*.json`.
 
-export const postRoutes = [
-  post('/api/posts', authenticate, validate, async (request) => {
-    const payload = request.body as CreatePostPayload;
-    const post = await createPost(payload, getPostRepository());
-    return { status: 201, body: post };
-  }),
-];
+```json
+// Example additions to deployment/segments/social.bff.json
+"./social/domain/post/createWithComic": { "default": { "access": "public" } },
+"./social/domain/post/getById": { "default": { "access": "public" } }
+
+// Example additions to deployment/segments/social.reads.json
+"./social/domain/post/_retrieveById": { "default": { "access": "protected" } }
+
+// Example additions to deployment/segments/social.writes.json
+"./social/domain/post/_create/persist": { "default": { "access": "protected" } }
+
+// Example addition to deployment/segments/social.errors.json
+"./social/domain/post/_retrieveById/PostNotFound": { "default": {} }
 ```
 
 ### Step 5: Testing
 
-1. **File location:** `testing/<context>/<feature>/<use-case>.spec.ts`
-2. **Test naming:** `describe('<use-case>', () => { it('should <behavior>', () => { ... }) })`
-3. **Mock external dependencies** using `vi.mock()` for:
-   - Keycloak authentication
-   - MongoDB repository
-   - SeaweedFS file storage
-   - Kafka event publishing
-4. **Test categories:**
-   - **Happy path** — Valid input, expected output
-   - **Error cases** — Invalid input, repository failures, constraint violations
-   - **Edge cases** — Empty collections, boundary values, race conditions
-5. **Coverage target:** Aim for high line and branch coverage on use-case logic.
+Tests are **integration tests**, not isolated unit tests with mocked collaborators. They run against real `database`, `eventBroker`, and `fileStore` integrations (backed by the Docker services from `AGENTS.md`), connecting once per file and reseeding fixture data before each test. Nothing is mocked with `vi.mock()` in this codebase's domain tests.
+
+1. **File location:** `testing/<context>/domain/<feature>/<use-case>.spec.ts` (mirrors `development/<context>/domain/<feature>/<use-case>`), e.g. `testing/social/domain/post/createWithComic.spec.ts`.
+2. **Test naming:** a single top-level `describe('index', () => { it('should <behavior>', async () => { ... }) })` per public use case being tested — the `describe` name is `'index'`, not the use-case name.
+3. **Connect/disconnect real integrations** in `beforeAll` / `afterAll`, only for the integrations the use case actually touches (`database`, `eventBroker`, `fileStore`):
 
 ```typescript
-// Example: testing/social/create.spec.ts
-import { describe, it, expect, vi } from 'vitest';
-import { createPost } from '../../development/social/domain/create';
-import type { PostRepository } from '../../development/social/domain/repositories';
+beforeAll(async () =>
+{
+    await Promise.all([
+        database.connect(),
+        eventBroker.connect()
+    ]);
+});
 
-vi.mock('@common/utils', () => ({
-  generateId: () => 'mocked-id-123',
-}));
+afterAll(async () =>
+{
+    await Promise.all([
+        database.disconnect(),
+        eventBroker.disconnect()
+    ]);
+});
+```
 
-describe('createPost', () => {
-  it('should create a post with valid payload', async () => {
-    const mockRepo: PostRepository = {
-      save: vi.fn().mockResolvedValue(undefined),
-    };
+4. **Seed fixture data** in `beforeEach` using the shared seed helpers exported from `testing/<context>/fixtures` (e.g. `seedPosts`, `fullySeedPosts`, `fullySeedCreators`). Fixture records and pre-built `Requester`s (`REQUESTERS.ALICE`, etc.) live in `testing/<context>/fixtures/data/*.fixture.ts`.
+5. **Assert against real side effects** — read the record back via `database.readRecord`/`searchRecords`, or assert a rejected promise against a domain error class (`expect(promise).rejects.toThrow(PostNotFound)` or `.rejects.toStrictEqual(new RelationAlreadyExists())`).
+6. **Test categories:**
+   - **Happy path** — Valid input, record persisted/returned as expected
+   - **Error cases** — Domain-specific errors thrown (e.g. `PostNotFound`, `RelationAlreadyExists`)
+   - **Authorization/ownership cases** — e.g. a requester who doesn't own a resource cannot modify it
+7. **Coverage target:** Aim for high line and branch coverage on use-case logic (`npm run test-coverage`).
 
-    const payload = {
-      authorId: 'user-1',
-      imageUrl: 'https://example.com/image.jpg',
-      bubbles: [{ text: 'Hello', position: { x: 10, y: 20 } }],
-    };
+```typescript
+// Example: testing/social/domain/post/remove.spec.ts
+import { beforeAll, afterAll, beforeEach, describe, expect, it } from 'vitest';
 
-    const result = await createPost(payload, mockRepo);
+import database from '@comify/common/integrations/database';
+import eventBroker from '@comify/common/integrations/events';
 
-    expect(result.id).toBe('mocked-id-123');
-    expect(result.authorId).toBe('user-1');
-    expect(mockRepo.save).toHaveBeenCalledTimes(1);
-  });
+import { PostNotFound, RECORD_TYPE, type Record } from '@comify/social/domain/post';
+import remove from '@comify/social/domain/post/remove';
+
+import { REQUESTERS, POST_RECORDS, seedPosts } from '../../fixtures';
+
+beforeAll(async () =>
+{
+    await Promise.all([
+        database.connect(),
+        eventBroker.connect()
+    ]);
+});
+
+afterAll(async () =>
+{
+    await Promise.all([
+        database.disconnect(),
+        eventBroker.disconnect()
+    ]);
+});
+
+beforeEach(async () =>
+{
+    await seedPosts();
+});
+
+describe('index', () =>
+{
+    it('should soft delete a post', async () =>
+    {
+        await remove(REQUESTERS.ALICE, POST_RECORDS.SECOND.id);
+
+        const result = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: POST_RECORDS.SECOND.id } });
+
+        expect(result.record?.deleted).toBeTruthy();
+    });
+
+    it('should not delete a post from another creator', async () =>
+    {
+        await remove(REQUESTERS.BOB, POST_RECORDS.FIRST.id);
+
+        const result = await database.readRecord<Record>(RECORD_TYPE, { id: { EQUALS: POST_RECORDS.FIRST.id } });
+
+        expect(result.record?.deleted).toBeFalsy();
+    });
 });
 ```
 
 ### Step 6: Event Publishing (If Applicable)
 
-1. **File location:** Same as the use-case or a dedicated event module.
-2. **Use `@theshelf/events`** for publishing domain events to Kafka.
-3. **Event naming:** Past-tense, domain-language (`PostCreated`, `RatingToggled`, `CommentAdded`).
-4. **Fire-and-forget** — Don't block the primary use-case on event publishing; handle failures gracefully.
+Shared cross-context event contracts (topic, event name, payload shape, `publish`/`subscribe` functions) live in `development/common/domain/<entity>/<eventName>/` and wrap the `eventBroker` integration (`@comify/common/integrations/events`, itself backed by `@theshelf/events` with a Kafka or in-memory driver). The social (or other context) domain layer only ever imports and calls the already-defined `publish` function for that event — it does not call `eventBroker` directly, and it does not define new event infrastructure per feature.
+
+1. **Shared event module location:** `development/common/domain/<entity>/<eventName>/{definitions,index,publish,subscribe}.ts`, e.g. `development/common/domain/post/added`. `definitions.ts` holds `EVENT_NAME`; the entity-level `../definitions.ts` holds the shared `EVENT_TOPIC` and `EventData` shape for that entity.
+2. **Calling from the domain layer:** a dedicated `publish.ts` next to the use-case imports the shared `publish` function (aliased), fills in `contextId` (the bounded context's `CONTEXT_ID`), `principalId`, `tenantId`, and the entity-specific fields, and is invoked **after** the state-changing persistence step — it is awaited, not fire-and-forget.
+3. **Event naming:** past-tense, domain-language (`added`, `removed`, `established`, `unestablished`), scoped under an entity topic (`common.post`, `common.relation`).
+4. **Compensating action on failure** — if publishing fails, the use case logs the error, **rolls back** the just-applied state change (e.g. delete the just-created record, or flip `deleted` back to `false`), and re-throws the error. This is the opposite of "fire-and-forget": the call is awaited and its failure is treated as the whole use case failing.
 
 ```typescript
-// Example: development/social/domain/events.ts
-import { publishEvent } from '@theshelf/events';
+// Example: development/social/domain/post/_create/publish.ts
+import { publish as publishPostAdded } from '@comify/common/domain/post/added';
+import { type TenantId } from '@comify/common/domain/tenant';
+import { type Identifier } from '@comify/common/primitives/identifier';
 
-export async function publishPostCreated(post: Post): Promise<void> {
-  await publishEvent('posts.created', {
-    postId: post.id,
-    authorId: post.authorId,
-    imageUrl: post.imageUrl,
-    timestamp: post.createdAt,
-  });
+import { CONTEXT_ID } from '~/definitions';
+
+export default async function (tenantId: TenantId, principalId: Identifier, postId: Identifier, parentId?: Identifier): Promise<void>
+{
+    return publishPostAdded({
+        contextId: CONTEXT_ID,
+        principalId,
+        tenantId,
+        postId,
+        parentId
+    });
+}
+```
+
+```typescript
+// Example: development/social/domain/post/_create/index.ts — awaited publish with compensating rollback
+export default async function (requester: Requester, data: CreateData): Promise<Identifier>
+{
+    validate(data);
+
+    const record = createRecord(requester.tenantId, data.creatorId, data.comicId, data.commentId, data.parentId);
+
+    const postId = await persist(record);
+
+    try
+    {
+        await publish(requester.tenantId, requester.principalId, record.id, record.parentId);
+
+        return postId;
+    }
+    catch (error)
+    {
+        logger.error('Failed to create post', error);
+
+        await remove(postId);
+
+        throw error;
+    }
 }
 ```
 
@@ -281,30 +362,31 @@ export async function publishPostCreated(post: Post): Promise<void> {
 
 Before marking the feature as complete, verify:
 
-- [ ] Domain models are well-typed with full TypeScript strict mode compliance
-- [ ] All use-case functions are pure or explicitly handle side effects
-- [ ] Domain-specific error types are used instead of generic errors
-- [ ] API endpoints (if any) include authentication, validation, and error mapping
-- [ ] Frontend components/hooks (if any) use React 19 patterns
-- [ ] Tests cover happy path, error cases, and edge cases
-- [ ] External dependencies (Keycloak, MongoDB, SeaweedFS, Kafka) are properly mocked in tests
-- [ ] Event publishing (if any) follows the fire-and-forget pattern
-- [ ] Code follows project conventions: single quotes, no semicolons, inline type imports, import ordering
-- [ ] Feature is documented in the relevant bounded context's README
+- [ ] Domain models are well-typed with full TypeScript strict mode compliance, with a clear `Record` (storage) vs. domain model (e.g. `Post`, `Relation`) split
+- [ ] All use-case functions make side effects (DB, file store, event publishing) explicit via small, composed helper functions (`_create`, `_retrieveById`, `persist`, `publish`, etc.)
+- [ ] Domain-specific error types extend `@comify/common/integrations/errors` (`BadRequest`, `NotFound`, `ValidationError`) instead of generic errors
+- [ ] New public use cases (and any protected helpers/errors they need) are registered in the relevant `deployment/segments/<context>.*.json` files with the correct `access` level
+- [ ] Tests are added under `testing/<context>/domain/<feature>/<use-case>.spec.ts`, using real `database`/`eventBroker`/`fileStore` connections and fixture seed helpers, covering happy path, domain-error cases, and ownership/authorization cases
+- [ ] State-changing use cases that publish an event await the publish and roll back (compensate) on failure rather than firing-and-forgetting
+- [ ] Code follows project conventions: single quotes, no semicolons, inline type imports, import ordering, `RECORD_TYPE` export per Record type
+- [ ] `npm run test` (and `npm run lint`) pass for the affected workspace
 
 ## Common Pitfalls
 
-1. **Impure functions with implicit side effects** — Always make DB calls, API calls, and event publishing explicit in the function signature.
-2. **Generic error handling** — Use domain-specific error classes for clarity and better debugging.
-3. **Tight coupling between contexts** — Respect bounded context boundaries; communicate via events, not direct calls.
-4. **Missing test mocks** — Never test against real external services; always mock Keycloak, MongoDB, SeaweedFS, and Kafka.
-5. **Skipping validation** — Validate all inputs at the API boundary and within use-case functions.
-6. **Semicolons or double quotes** — Enforce the project's formatting rules via ESLint; do not manually override.
+1. **Hidden side effects** — Keep DB calls, file store calls, and event publishing in their own small named functions (`persist`, `publish`, `retrieve`) composed by the use case's `index.ts`, rather than inlined ad hoc.
+2. **Generic error handling** — Use domain-specific error classes (extending `BadRequest`/`NotFound`/`ValidationError`) for clarity and correct segment (de)serialization.
+3. **Tight coupling between contexts** — Respect bounded context boundaries; cross-context communication goes through the shared `development/common/domain/<entity>/<event>` event contracts, not direct imports between `social`/`insights`/`moderation` domains.
+4. **Forgetting segment registration** — A new public use case or a newly extracted protected helper that isn't added to the right `deployment/segments/*.json` file won't be callable (or won't run in the intended segment) even though the code compiles and local tests pass.
+5. **Treating event publishing as fire-and-forget** — In this codebase, failed event publishing after a persisted change must trigger a compensating rollback and a re-thrown error, not a silently swallowed failure.
+6. **Mocking in domain tests** — Domain `.spec.ts` tests connect to real `database`/`eventBroker`/`fileStore` integrations and reseed fixtures; don't introduce `vi.mock()` for these, follow the existing integration-test pattern instead.
+7. **Semicolons or double quotes** — Enforce the project's formatting rules via ESLint; do not manually override.
 
 ## References
 
-- [Project AGENTS.md](../../AGENTS.md) — Full project conventions and setup
-- [@theshelf/validation](https://www.npmjs.com/package/@theshelf/validation) — Validation library
-- [@theshelf/events](https://www.npmjs.com/package/@theshelf/events) — Event publishing via Kafka
+- [Project AGENTS.md](../../../AGENTS.md) — Full project conventions and setup
+- [testing/social/domain-tests.md](../../../testing/social/domain-tests.md) — Documented behavior of existing social domain tests
+- [@theshelf/validation](https://www.npmjs.com/package/@theshelf/validation) — Validation library (wrapped by `@comify/common/integrations/validation`)
+- [@theshelf/events](https://www.npmjs.com/package/@theshelf/events) — Event publishing via Kafka/in-memory driver (wrapped by `@comify/common/integrations/events`)
 - [@theshelf/authentication](https://www.npmjs.com/package/@theshelf/authentication) — Keycloak/OIDC authentication
+- [Jitar](https://jitar.dev) — Distributed runtime responsible for exposing domain functions as remote procedures via segment configuration
 - [Vitest documentation](https://vitest.dev/) — Testing framework
