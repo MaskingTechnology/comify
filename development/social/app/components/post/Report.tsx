@@ -1,12 +1,12 @@
 
 import { useNavigate, useParams } from 'react-router-dom';
 
+import { REMARK_MAX_LENGTH } from '@comify/moderation/domain/report';
+
 import { Modal } from '~/components/common';
 import { Form } from '~/components/post.report';
 
 import useReportPost from './hooks/useReportPost';
-
-const REMARK_MAX_LENGTH = 1000;
 
 export default function ()
 {
