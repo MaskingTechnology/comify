@@ -1,20 +1,19 @@
-# App Implementation Skill
+---
+name: app-implementation
+description: Implement frontend/UI features (React components, hooks, routing) under development/<context>/app in Comify. Use when adding or extending user-facing features in the social app or another bounded context's app layer.
+---
 
-## Purpose
+# App Implementation
 
-This skill guides the implementation of **UI features** for the Comify application. It covers:
+## Overview
 
-- ✅ **Frontend-only** feature implementation (React components, hooks, routing)
-- ✅ User interface, interactions, local/global state, domain data integration
-- ✅ Testing UI components and behaviors
+Guides the implementation of **UI features** for the Comify application — frontend-only feature implementation (React components, hooks, routing), user interface, interactions, local/global state, and domain data integration, under `development/<context>/app`. Code style (quotes, semicolons, brace style, import ordering) follows the repository root [`AGENTS.md`](../../../AGENTS.md); this skill documents the app-layer-specific architecture on top of it.
 
 > **Scope:** UI feature implementation only. Domain logic (use-cases, gateways, repositories) is handled by the `domain-implementation` skill.
 
----
+## When to Use
 
-## Scope: UI Feature Implementation
-
-This skill is for implementing **user-facing features** — anything the user sees or interacts with in the browser, under `development/<context>/app`.
+Invoke this skill when implementing **user-facing features** — anything the user sees or interacts with in the browser, under `development/<context>/app`.
 
 ### What's IN scope
 
@@ -40,8 +39,6 @@ This skill is for implementing **user-facing features** — anything the user se
 | **Event publishing** | `@theshelf/events` |
 | **Backend API routes** | Backend services |
 
----
-
 ## Prerequisites
 
 Before implementing a UI feature, ensure:
@@ -49,8 +46,6 @@ Before implementing a UI feature, ensure:
 - The domain logic (use-case function, domain model/types) is already implemented under `development/<context>/domain` (see `domain-implementation` skill)
 - The feature name and requirements are clear, and you know which bounded sub-feature it belongs to (see naming convention below)
 - Design system components from `@maskingtech/designsystem` and helper hooks from `@maskingtech/react-toolkit` are identified for reuse
-
----
 
 ## Workflow
 
@@ -237,8 +232,6 @@ There are currently **no UI test files** under `development/<context>/app` or `t
 - Mock `@comify/common/security` (`requester`) and domain use-case functions with `vi.mock()` rather than hitting real Keycloak/MongoDB/SeaweedFS/Kafka
 - Run tests with `npm run test` (Vitest) from the repo root
 
----
-
 ## Checklist
 
 Before marking a UI feature complete, verify:
@@ -250,5 +243,12 @@ Before marking a UI feature complete, verify:
 - [ ] New routes are exported as a `<Route>` JSX fragment from the feature's `Routes.tsx` and mounted in the parent `Routes.tsx`
 - [ ] Reusable pieces are re-exported from the feature's `index.ts`; other features import only through that barrel
 - [ ] Styling relies on `@maskingtech/designsystem`, not ad-hoc CSS/Tailwind/styled-components
-- [ ] Code follows project conventions: single quotes, Allman brace style, one blank line after imports, import ordering (built-in → external → internal → relative, alphabetized)
+- [ ] Code follows the formatting rules in `AGENTS.md` (single quotes, semicolons, Allman braces, import ordering, leading/trailing blank lines)
+
+## References
+
+- [Project AGENTS.md](../../../AGENTS.md) — Full project conventions and setup
+- [`.agents/skills/domain-implementation/SKILL.md`](../domain-implementation/SKILL.md) — Implementing the domain use cases this skill's UI consumes
+- [React Router documentation](https://reactrouter.com/) — Route composition patterns used in `Routes.tsx`
+- [Vitest documentation](https://vitest.dev/) — Testing framework
 

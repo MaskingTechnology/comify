@@ -1,53 +1,48 @@
 ---
 name: code-review
-description: Review code changes for bugs, regressions, security issues, and missing tests.
+description: Review code changes for bugs, regressions, security issues, convention drift, and missing tests. Use when reviewing a pull request or diff in the Comify codebase.
 ---
 
-# Code Review Skill
+# Code Review
 
 ## Overview
 
-This skill guides thorough code reviews for the Comify project, an open-source social media platform that leverages comics for communication. Reviews should validate TypeScript compliance, architectural integrity, and adherence to project conventions defined in `AGENTS.md`.
+Reviews TypeScript changes across Comify's bounded contexts (`development/`, `testing/`, `deployment/`) for correctness, architectural integrity, and adherence to the conventions in the repository root [`AGENTS.md`](../../../AGENTS.md). For domain or UI code specifically, also cross-check against the `domain-implementation`, `domain-testing`, and `app-implementation` skills — this skill focuses on the cross-cutting checks that apply to every change.
 
-## Setup
+## When to Use
 
-Review against the active `AGENTS.md` in the repository root. Reference the project structure:
-- `development/` — Bounded contexts (`social`, `insights`, `moderation`, etc.)
-- `testing/` — Mirrors `development/` structure for test files
-- `deployment/` — Jitar runtime configuration (services, segments, resources)
-- `common/` — Shared utilities and core modules
+Invoke this skill when asked to review a diff, pull request, or set of staged changes.
 
----
+## Review Checklist
 
-## 1. TypeScript & Language Compliance
+### TypeScript & formatting
 
-### Strict Mode
-- **TypeScript strict mode** is enabled — all `noImplicit*` flags are on.
-- **No `any` types** without explicit justification and a comment explaining why.
-- Prefer `unknown` over `any` when the type is truly untyped.
-- Use type guards or narrowing instead of `as` assertions where possible.
+- [ ] TypeScript strict mode compliance — no unjustified `any` (prefer `unknown` with narrowing); no new `as` assertions where a type guard would do
+- [ ] Single quotes, semicolons on every statement, Allman brace style (see `AGENTS.md` → Code Style)
+- [ ] One leading blank line at the top of the file, one blank line after the import block, one trailing blank line at EOF
+- [ ] Imports ordered built-in → external → internal (`^/*`) → parent (`~/*`) → relative, alphabetized case-insensitively, no duplicates
+- [ ] Inline type imports (`import { type Foo } from 'bar'`) rather than a separate `import type` statement
+- [ ] No unused variables/imports, no stray `console.*` calls (use the shared `logger`)
 
-### Formatting Rules
-- **Single quotes** only (`'text'`, not `"text"`).
-- **Always use a semicolon** at end of statements.
-- **No unused variables** or imports.
+### Architecture
 
-### Import Ordering
-Imports must follow this exact order, alphabetically sorted within each group, case-insensitive:
-1. Built-in Node.js modules
-2. External packages
-3. Internal `@theshelf/*` packages
-4. Internal `@jitar-plugins/*` packages
-5. Internal project imports (`common/`, context-specific modules)
-6. Relative imports
+- [ ] Bounded context boundaries are respected — no direct imports between `social`/`insights`/`moderation` domains; cross-context communication goes through `development/common/domain/<topic>/<event>` event contracts
+- [ ] Domain logic doesn't leak into the app layer, and UI concerns don't leak into domain use cases
+- [ ] New/changed domain use cases are registered with the correct `access` level in the relevant `deployment/segments/<context>.*.json` file
+- [ ] Side effects (DB, file store, event publishing) are isolated in small, named helper functions rather than inlined
+- [ ] State-changing use cases that publish an event `await` the publish and roll back on failure instead of firing-and-forgetting
 
-No duplicate imports. One blank line after the import block. Inline type imports preferred (e.g., `import type { Foo } from 'bar'`).
+### Tests
 
-### Review Checklist
-- [ ] TypeScript strict mode enforced
-- [ ] No unjustified `any` types
-- [ ] Single quotes used, no semicolons
-- [ ] Imports properly ordered, sorted, no duplicates
-- [ ] One blank line after imports
-- [ ] One blank at the start of the file
-- [ ] One blank at the end of the file
+- [ ] New/changed public use cases have a matching `testing/<context>/domain/<feature>/<use-case>.spec.ts`
+- [ ] Domain tests use real `database`/`eventBroker`/`fileStore` integrations and fixture seed helpers — no `vi.mock()`
+- [ ] App/UI tests (if any) mock the domain layer and `requester` with `vi.mock()` rather than hitting real integrations
+- [ ] Happy path, error, and ownership/authorization cases are covered where applicable
+- [ ] `npm run test` and `npm run lint` pass for every affected workspace
+
+## References
+
+- [Project AGENTS.md](../../../AGENTS.md) — Full project conventions and setup
+- [`.agents/skills/domain-implementation/SKILL.md`](../domain-implementation/SKILL.md)
+- [`.agents/skills/domain-testing/SKILL.md`](../domain-testing/SKILL.md)
+- [`.agents/skills/app-implementation/SKILL.md`](../app-implementation/SKILL.md)

@@ -1,8 +1,13 @@
-# Domain Feature Implementation
+---
+name: domain-implementation
+description: Implement domain use cases (business logic, records/models, segment registration) within a Comify bounded context. Use when adding or extending backend domain features in social, insights, or moderation.
+---
+
+# Domain Implementation
 
 ## Overview
 
-This skill guides the implementation of new features within a bounded context in the Comify project. It covers the full lifecycle from domain analysis through to tested, production-ready code following project conventions.
+Guides the implementation of new domain features within a bounded context in the Comify project — from domain analysis through to tested, production-ready code following project conventions. Code style (quotes, semicolons, brace style, import ordering) follows the repository root [`AGENTS.md`](../../../AGENTS.md); this skill documents the domain-layer-specific architecture on top of it. It is the implementation counterpart to the `domain-testing` skill.
 
 ## When to Use
 
@@ -99,8 +104,8 @@ Implement each use-case function following these conventions:
 3. **Naming (internal helpers):** `_camelCase` subdirectories for private/internal helpers (`_create`, `_retrieveById`, `_toModel`, `_toModels`, `_translateMany`, `_retrieveFollowing`). These are not use cases themselves but are shared building blocks consumed by one or more public use cases (e.g. `post/_create` is the shared creation logic used by both `post/createWithComic` and `post/createWithComment`).
 4. **Pure functions** where possible; side effects (DB, external APIs) should be explicit and isolated.
 5. **Error handling:** Domain-specific error classes extending `@comify/common/integrations/errors` types (e.g., `BadRequest`, `NotFound`).
-6. **Type imports** inline: `import type { Post } from '../types'`
-7. **Single quotes**, no semicolons.
+6. **Type imports** inline: `import { type Post } from '../definitions'`
+7. Follow the formatting rules in `AGENTS.md` (single quotes, semicolons, Allman braces, import ordering, leading/trailing blank lines).
 
 ```typescript
 // Example: development/social/domain/relation/establish/index.ts
@@ -368,7 +373,8 @@ Before marking the feature as complete, verify:
 - [ ] New public use cases (and any protected helpers/errors they need) are registered in the relevant `deployment/segments/<context>.*.json` files with the correct `access` level
 - [ ] Tests are added under `testing/<context>/domain/<feature>/<use-case>.spec.ts`, using real `database`/`eventBroker`/`fileStore` connections and fixture seed helpers, covering happy path, domain-error cases, and ownership/authorization cases
 - [ ] State-changing use cases that publish an event await the publish and roll back (compensate) on failure rather than firing-and-forgetting
-- [ ] Code follows project conventions: single quotes, no semicolons, inline type imports, import ordering, `RECORD_TYPE` export per Record type
+- [ ] A `RECORD_TYPE` constant is exported alongside each Record type
+- [ ] Code follows the formatting rules in `AGENTS.md` (single quotes, semicolons, Allman braces, inline type imports, import ordering)
 - [ ] `npm run test` (and `npm run lint`) pass for the affected workspace
 
 ## Common Pitfalls
@@ -379,7 +385,7 @@ Before marking the feature as complete, verify:
 4. **Forgetting segment registration** — A new public use case or a newly extracted protected helper that isn't added to the right `deployment/segments/*.json` file won't be callable (or won't run in the intended segment) even though the code compiles and local tests pass.
 5. **Treating event publishing as fire-and-forget** — In this codebase, failed event publishing after a persisted change must trigger a compensating rollback and a re-thrown error, not a silently swallowed failure.
 6. **Mocking in domain tests** — Domain `.spec.ts` tests connect to real `database`/`eventBroker`/`fileStore` integrations and reseed fixtures; don't introduce `vi.mock()` for these, follow the existing integration-test pattern instead.
-7. **Semicolons or double quotes** — Enforce the project's formatting rules via ESLint; do not manually override.
+7. **Ignoring formatting rules** — Don't drop semicolons or switch to double quotes; let ESLint (`npm run lint`) enforce the rules in `AGENTS.md` rather than manually overriding them.
 
 ## References
 

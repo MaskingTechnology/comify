@@ -1,10 +1,13 @@
-# Domain Feature Testing
+---
+name: domain-testing
+description: Write integration tests for domain use cases (testing/<context>/domain/**/*.spec.ts) in a Comify bounded context. Use when adding, extending, or improving coverage for domain-layer tests.
+---
+
+# Domain Testing
 
 ## Overview
 
-This skill guides writing **integration tests** for domain use cases within a bounded context in the Comify project (`social`, `insights`, `moderation`, etc.). It is the testing counterpart to the `domain-implementation` skill (see `.agents/skills/domain-implementation/SKILL.md`) and documents the exact conventions already used by the ~20 spec files under `testing/social/domain`.
-
-Tests in this codebase are **integration tests, not isolated unit tests**. They run against real `database`, `eventBroker`, `fileStore` and `http` integrations (backed by in-memory/mapped drivers in the test environment) and reseed fixture data before each test. Nothing is mocked with `vi.mock()`.
+Guides writing **integration tests, not isolated unit tests**, for domain use cases within a bounded context in the Comify project (`social`, `insights`, `moderation`, etc.). Tests run against real `database`, `eventBroker`, `fileStore` and `http` integrations (backed by in-memory/mapped drivers in the test environment) and reseed fixture data before each test — nothing is mocked with `vi.mock()`. This is the testing counterpart to the `domain-implementation` skill (see [`../domain-implementation/SKILL.md`](../domain-implementation/SKILL.md)) and documents the exact conventions already used by the ~20 spec files under `testing/social/domain`. Formatting (quotes, semicolons, import ordering) follows the repository root [`AGENTS.md`](../../../AGENTS.md).
 
 ## When to Use
 
@@ -359,7 +362,7 @@ Before marking test coverage complete, verify:
 - [ ] Ownership/authorization branches are covered by asserting the resource is unchanged for non-owners
 - [ ] List-returning use cases assert both length and element ordering
 - [ ] No `vi.mock()` is used for `database`/`eventBroker`/`fileStore`/`http` — only the mapped/memory drivers already wired up for the test environment
-- [ ] Code follows project conventions: single quotes, no semicolons, inline type imports, import ordering, blank line after imports
+- [ ] Code follows the formatting rules in `AGENTS.md` (single quotes, semicolons, Allman braces, inline type imports, import ordering, blank line after imports)
 - [ ] `npm run test` (and `npm run lint`) pass for the affected workspace
 
 ## Common Pitfalls

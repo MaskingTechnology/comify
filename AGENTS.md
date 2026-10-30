@@ -21,6 +21,17 @@ Comify is an open-source social media platform that leverages comics for communi
 - `@theshelf/*` — authentication, connection, database, events, files, http, logging, notification, validation
 - `@maskingtech/*` — designsystem, react-toolkit
 
+## Agent Skills
+
+Task-specific guidance lives under `.agents/skills/`. Use the matching skill instead of re-deriving conventions:
+
+| Skill | Use for |
+|-------|---------|
+| `domain-implementation` | Implementing domain use cases (business logic, records/models, segment registration) |
+| `domain-testing` | Writing/extending `testing/<context>/domain/**/*.spec.ts` integration tests |
+| `app-implementation` | Implementing frontend/UI features under `development/<context>/app` |
+| `code-review` | Reviewing code changes for convention, correctness, and test coverage |
+
 ## Prerequisites
 
 - **Node.js** version 24+ (enforced via `engines` in package.json)
@@ -130,46 +141,48 @@ Services expose ports on localhost, and data persists via Docker volumes.
 ### General Rules
 
 - **TypeScript strict mode** enabled
-- **Single quotes** only, no semicolons
+- **Single quotes** only, **always use semicolons**
+- **Allman brace style** — opening brace on its own line for functions, conditionals, loops, etc. (`{ ... }` single-line blocks are allowed)
 - **Functional patterns** preferred (pure functions, immutable data)
 - **Higher-order functions** (`map`, `filter`, `reduce`) over loops
 - **Composition** over inheritance
-- **Consistent formatting** via ESLint + Prettier
-- **Import ordering**: Built-in → External → Internal → Relative (case-insensitive, alphabetically sorted)
+- **No `console.*` calls** (`no-console` is an ESLint error); use the shared `logger` instead
+- **One leading blank line** at the top of every file, before the first import
+- **One blank line** after the import block
+- **One trailing blank line** at the end of file (`eol-last`)
 - **No duplicate imports**
-- **One blank line** after imports
-- **Inline type imports** preferred
+- **Inline type imports** preferred (e.g. `import { type Foo } from 'bar'`)
+- **Import ordering**: Built-in → External (includes all `@theshelf/*`, `@jitar-plugins/*`, `@maskingtech/*`, `vitest`, etc.) → Internal (`^/*` alias) → Parent (`~/*` alias, and `../`) → Relative (`./`), alphabetized case-insensitively within each group, with a blank line between groups
 
 ### Linting
 
-- **ESLint** with TypeScript parser (`@typescript-eslint`)
-- **Imports plugin** for module resolution
-- **React** hooks and JSX linting
-- **Vitest** plugin for test file linting
-- **Jitar** plugin for framework-specific rules
+- **ESLint** (flat config, `eslint.config.js`) with `@typescript-eslint` (strict + stylistic presets)
+- **eslint-plugin-import** for import ordering and module resolution
+- **eslint-plugin-react** / **eslint-plugin-react-hooks** for React/JSX linting
+- Run with `npm run lint` (per-workspace via `--workspaces`)
 
 ## Testing
 
 ### Framework
 
-- **Vitest** — Fast unit and integration testing framework
-- **Testing Library** — Component testing with React hooks
-- **Node** environment for backend tests
+- **Vitest** — unit and integration testing framework, run in the **Node** environment
+- Tests live under `testing/<context>/...`, mirroring the structure of `development/<context>/...`
 
 ### Running Tests
 
 ```bash
-npm run test              # Run all tests (logic + app)
+npm run test              # Run the full suite across all workspaces
+npm run test-coverage     # Run with V8 coverage
 ```
 
 ### Test Conventions
 
-- **Naming:** `<module>.spec.ts` (e.g., `toggle.spec.ts`, `create.spec.ts`, `login.spec.ts`)
+- **Naming:** `<module>.spec.ts(x)` (e.g., `toggle.spec.ts`, `create.spec.ts`, `login.spec.ts`)
 - **Structure:** `describe` → `it` → setup → act → assert
-- **Mocks:** Use `vi.mock()` for external dependencies (Keycloak, MongoDB, SeaweedFS, etc.)
-- **Domain imports:** Import the specific domain function being tested (e.g., `create`, `toggleRating`, `establishRelation`)
+- **Domain tests** (`testing/<context>/domain/**`) are **integration tests**: they connect to the real `database`/`eventBroker`/`fileStore` integrations (backed by in-memory/mapped drivers in the test environment), reseed fixture data in `beforeEach`, and never use `vi.mock()`. See the `domain-testing` skill for the full convention.
+- **App/UI tests** (`testing/<context>/app/**`) mock domain use-case calls and the shared `requester` with `vi.mock()` rather than hitting real integrations. See the `app-implementation` skill.
 - **Async code:** Use `await` with standard Vitest assertions (e.g., `expect(...).resolves`, `expect(...).rejects`)
-- **Fixtures:** Keep test data in separate files or inline factories
+- **Fixtures:** Shared fixtures live in `testing/<context>/fixtures`; feature-local fixtures live in a `fixtures/` folder next to the spec files
 - **Coverage:** Aim for high coverage on use-cases
 
 ### Environment Variables
