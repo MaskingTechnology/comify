@@ -8,14 +8,17 @@ import Details from './Details';
 import Highlight from './Highlight';
 import Main from './Main';
 import Remove from './Remove';
+import Report from './Report';
 
 export default <Route path='' element={<Main />}>
     <Route path='create' element={<Create />} />
     <Route path=':postId' element={<Details />}>
         <Route path='reactions'>{reactionRoutes}</Route>
         <Route path='remove' element={<Remove />}></Route>
+        <Route path='report' element={<Report />}></Route>
     </Route>
     <Route path=':postId/highlight/:highlightId' element={<Highlight />}>
         <Route path='remove' element={<Remove />}></Route>
+        <Route path='report' element={<Report />}></Route>
     </Route>
 </Route>;

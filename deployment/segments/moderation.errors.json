@@ -1,0 +1,3 @@
+{
+    "./moderation/domain/report/create/InvalidReport": { "default": {} }
+}

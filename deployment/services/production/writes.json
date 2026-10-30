@@ -16,6 +16,6 @@
     {
         "gateway": "http://127.0.0.1:2000",
         "trustKey": "${JITAR_TRUST_KEY}",
-        "segments": ["social.writes"]
+        "segments": ["moderation.writes", "social.writes"]
     }
 }
