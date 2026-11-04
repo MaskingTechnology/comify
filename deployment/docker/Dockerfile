@@ -1,7 +1,7 @@
 # Comify Docker Image
 # Build this image from the project root directory
 
-FROM node:24.12-alpine3.22
+FROM node:24.22.1-alpine3.23
 
 # Init root
 RUN mkdir /opt/app
