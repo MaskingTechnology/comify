@@ -2,9 +2,10 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { publish as publishReportAdded } from '@comify/common/domain/report/added';
 import { requester } from '@comify/common/security';
-import { type Reason } from '@comify/moderation/domain/report';
-import create from '@comify/moderation/domain/report/create';
+
+import { CONTEXT_ID } from '^/domain/definitions';
 
 export default function useReportPost(id?: string)
 {
@@ -14,9 +15,12 @@ export default function useReportPost(id?: string)
     {
         if (id === undefined) return;
 
-        await create(requester, {
+        await publishReportAdded({
+            contextId: CONTEXT_ID,
+            principalId: requester.principalId,
+            tenantId: requester.tenantId,
             postId: id,
-            reason: reason as Reason,
+            reason,
             remark: remark === '' ? undefined : remark
         });
 
