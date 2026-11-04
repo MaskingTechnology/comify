@@ -84,7 +84,7 @@ services:
       - seaweedfs-filer
 
   keycloak:
-    image: quay.io/keycloak/keycloak:26.2
+    image: quay.io/keycloak/keycloak:26.5.2
     container_name: keycloak
     restart: always
     volumes:

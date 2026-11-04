@@ -4,7 +4,7 @@ import { Column, Panel, Row } from '@maskingtech/designsystem';
 import { type Post } from '^/domain/post';
 import { type Relation } from '^/domain/relation';
 
-import { RemoveOption } from '~/components/common';
+import { RemoveOption, ReportOption } from '~/components/common';
 import { Image as Comic } from '~/components/post.comic';
 import { Comment } from '~/components/post.comment';
 import { TimeElapsed } from '~/components/relation';
@@ -18,9 +18,10 @@ type Props = {
     readonly onRatingClick: (post: Post) => Promise<boolean>;
     readonly onDeleteClick: (post: Post) => Promise<void>;
     readonly onReactionClick: (post: Post) => void;
+    readonly onReportClick: (post: Post) => void;
 };
 
-export default function ({ post, onFollowClick, onCreatorClick, onRatingClick, onReactionClick, onDeleteClick }: Props)
+export default function ({ post, onFollowClick, onCreatorClick, onRatingClick, onReactionClick, onDeleteClick, onReportClick }: Props)
 {
     return <Panel padding='medium'>
         <Column gap='medium' alignX='stretch'>
@@ -43,7 +44,7 @@ export default function ({ post, onFollowClick, onCreatorClick, onRatingClick, o
                 {
                     post.creator.self
                         ? <RemoveOption onClick={() => onDeleteClick(post)} />
-                        : null
+                        : <ReportOption onClick={() => onReportClick(post)} />
                 }
             </Row>
         </Column>

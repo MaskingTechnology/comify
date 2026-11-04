@@ -2,7 +2,7 @@
     "url": "http://127.0.0.1:1000",
     "repository":
     {
-        "serveIndexOnNotFound": true,
+        "fallback": "index.html",
         "assetRoot": "./insights/app",
         "assets": ["index.html", "appicon32.png", "assets/**/*", "registerSW.js", "sw.js", "workbox-*.js", "manifest.webmanifest" ]
     }

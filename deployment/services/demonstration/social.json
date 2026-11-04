@@ -28,6 +28,9 @@
             "common.bff",
             "common.errors",
             "common.reads",
+            "moderation.bff",
+            "moderation.errors",
+            "moderation.writes",
             "social.bff",
             "social.errors",
             "social.notification",
@@ -35,7 +38,7 @@
             "social.writes"
         ],
 
-        "serveIndexOnNotFound": true,
+        "fallback": "index.html",
         "assetRoot": "./social/app",
         "assets": ["index.html", "appicon32.png", "assets/**/*", "registerSW.js", "sw.js", "workbox-*.js", "manifest.webmanifest"]
     }

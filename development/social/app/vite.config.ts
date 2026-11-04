@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
 const JITAR_URL = 'http://localhost:3000';
-const JITAR_SEGMENTS: string[] = ['common.errors', 'social.errors'];
+const JITAR_SEGMENTS: string[] = ['common.errors', 'moderation.errors', 'social.errors'];
 const JITAR_MIDDLEWARES: string[] = [
   '../../common/integrations/authentication/requesterMiddleware'
 ];

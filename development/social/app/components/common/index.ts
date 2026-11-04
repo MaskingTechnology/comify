@@ -2,6 +2,7 @@
 // Components
 
 export { default as RemoveOption } from './components/RemoveOption';
+export { default as ReportOption } from './components/ReportOption';
 
 export { default as Modal } from './components/Modal';
 

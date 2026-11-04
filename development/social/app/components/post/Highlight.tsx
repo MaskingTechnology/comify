@@ -13,6 +13,7 @@ import { useEstablish } from '~/components/relation';
 import DetailsPanel from './components/DetailsPanel';
 import LargePanel from './components/LargePanel';
 import useConfirmPostRemoval from './hooks/useConfirmPostRemoval';
+import useConfirmPostReport from './hooks/useConfirmPostReport';
 import useHighlightReaction from './hooks/useHighlight';
 import usePost from './hooks/usePost';
 import useViewPostDetails from './hooks/useViewPostDetails';
@@ -23,6 +24,7 @@ export default function ()
     const togglePostRating = useToggle();
     const viewProfile = useViewProfile();
     const removePost = useConfirmPostRemoval();
+    const reportPost = useConfirmPostReport();
     const viewPostDetails = useViewPostDetails();
 
     const [post, isPostLoading] = usePost();
@@ -37,6 +39,7 @@ export default function ()
                     onRatingClick={togglePostRating}
                     onCreatorClick={viewProfile}
                     onDeleteClick={removePost}
+                    onReportClick={reportPost}
                     onReactionClick={viewPostDetails}
                 />
             </LoadingAndResultContainer>
