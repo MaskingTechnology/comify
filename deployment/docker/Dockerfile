@@ -10,7 +10,7 @@ COPY package-lock.json /opt/app/package-lock.json
 
 # INIT configs
 COPY deployment/jitar.prod.json /opt/app/jitar.json
-COPY deployment/services/demonstration/social.json /opt/app/service.json
+COPY deployment/services/demonstration/containerd.json /opt/app/service.json
 
 # Init dist
 RUN mkdir /opt/app/dist

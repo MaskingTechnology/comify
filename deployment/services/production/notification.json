@@ -1,5 +1,8 @@
 {
     "url": "http://127.0.0.1:4001",
+    "http": {
+        "bodyLimit": 512000
+    },
     "setUp": [
         "./common/integrations/database/setUp",
         "./common/integrations/events/setUp"
