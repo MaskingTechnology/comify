@@ -1,0 +1,49 @@
+{
+    "url": "http://127.0.0.1:3000",
+    "http": {
+        "bodyLimit": 512000,
+        "proxied": true
+    },
+    "setUp": [
+        "./common/integrations/authentication/setUp",
+        "./common/integrations/database/setUp",
+        "./common/integrations/files/setUp",
+        "./common/integrations/events/setUp"
+    ],
+    "tearDown": [
+        "./common/integrations/authentication/tearDown",
+        "./common/integrations/database/tearDown",
+        "./common/integrations/files/tearDown",
+        "./common/integrations/events/tearDown"
+    ],
+    "healthChecks": [
+        "./common/integrations/database/healthCheck",
+        "./common/integrations/files/healthCheck",
+        "./common/integrations/events/healthCheck"
+    ],
+    "middleware": [
+        "./common/integrations/authentication/originMiddleware",
+        "./common/integrations/authentication/authenticationMiddleware",
+        "./common/integrations/tenancy/tenantMiddleware"
+    ],
+    "standalone":
+    {
+        "segments": [
+            "common.bff",
+            "common.errors",
+            "common.reads",
+            "moderation.bff",
+            "moderation.errors",
+            "moderation.writes",
+            "social.bff",
+            "social.errors",
+            "social.notification",
+            "social.reads",
+            "social.writes"
+        ],
+
+        "fallback": "index.html",
+        "assetRoot": "./social/app",
+        "assets": ["index.html", "appicon32.png", "assets/**/*", "registerSW.js", "sw.js", "workbox-*.js", "manifest.webmanifest"]
+    }
+}
